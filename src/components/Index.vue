@@ -7,7 +7,7 @@
       <a v-for="category in categories" @click="showItemsInSelectedCategory(category)">{{ category.name }}
         ({{ category.numberOfItems }})</a>
     </p>
-    <!-- <Search /> -->
+    <Search />
     <div class="grid">
       <!-- <transition name="fade"> -->
       <a v-for="item in categoryItemsContent" data-shorttext="" class="grid__item" href="#" @click="showModal()">
@@ -38,7 +38,7 @@
     },
     data() {
       return {
-        subtext: "Help us get it right and send a card xxx.",
+        subtext: "Help us get it right and send a card",
         // theJSON: "",
         categories: [],
         categoryItemsContent: []
@@ -104,7 +104,14 @@
       },
       showItemsInSelectedCategory(category) {
         // console.log('category: ', category.name);
-        this.$store.state.activeCategory = category.name;
+        //TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the fires <a>
+        if (category === undefined) {
+          this.$store.state.activeCategory = "All";
+        } else {
+          this.$store.state.activeCategory = category.name;  
+        }
+
+
         this.categoryItemsContent = [];
         
         function makeArray(a,b) {

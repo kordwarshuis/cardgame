@@ -17,6 +17,8 @@
     },
     methods: {
       search() {
+        const self = this;
+        var dataCardsSelection = [];
         var domAllPrejudices = document.querySelectorAll(".grid__item .box");
         // console.log('domAllPrejudices: ', domAllPrejudices);
         var domChangeGridView = document.querySelector(".changeGridView");
@@ -28,21 +30,21 @@
 
         // Init a timeout variable to be used below
         var timeout = null;
-
+// console.log('this: ', this);
         // setInputValue: () => {
-        function setInputValue(t) {
-          // var cat = language.all;
+        function setInputValue() {
+          var cat;
           //if there is no category in url
-        console.log(t.$store.state.activeCategory);
+        // console.log(t.$store.state.activeCategory);
 
-          // if (this.$store.state.activeCategory === undefined) {
-          //   // the text for 'all categories'
-          //   cat = language.all;
-          // } else {
-          //   cat = simpleRouter.getUrlValue("cat");
-          // }
-          // domTextInput.value = language.searchFieldText + " in category " + cat;
-          // domTextInput.value = language.searchFieldText;
+          if (self.$store.state.activeCategory === "All") {
+            // the text for 'all categories'
+            cat = language.all;
+          } else {
+            cat = self.$store.state.activeCategory;
+          }
+          domTextInput.value = language.searchFieldText + " in category " + cat;
+          domTextInput.value = language.searchFieldText;
         }
 
         function showResults(searchString) {
@@ -78,7 +80,7 @@
 
         function undoSearchResults() {
           showAllEntries();
-          setInputValue(this);
+          setInputValue();
         }
 
         domTextInput.addEventListener("click", function () {
@@ -106,7 +108,7 @@
           domBody.classList.toggle("condensedLayout");
         }, false);
 
-        setInputValue(this);
+        setInputValue();
       } // search
 
 
