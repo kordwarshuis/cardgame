@@ -38,7 +38,7 @@
     },
     data() {
       return {
-        subtext: "Help us get it right and send a card.",
+        subtext: "Help us get it right and send a card xxx.",
         // theJSON: "",
         categories: [],
         categoryItemsContent: []
