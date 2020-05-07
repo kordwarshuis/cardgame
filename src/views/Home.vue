@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
+  <div class="home logo-parent">
+    <a href=""><img class="logo" alt="logo" src="../assets/logo/blockchainbird-logo.png" /></a>
+    
     <Index msg="Bitcoin Card Game" />
+    <Modal />
+    
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Index from "@/components/Index.vue";
+import Modal from "@/components/Modal.vue";
+
 
 export default {
   name: "Home",
   components: {
-    Index
+    Index, Modal
   }
 };
 </script>

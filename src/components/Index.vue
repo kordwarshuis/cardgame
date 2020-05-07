@@ -1,30 +1,37 @@
 <template>
-  <div class="hello">
+  <div>
     <h1>{{ msg }}</h1>
     <p>{{ subtext }}</p>
-    <!-- <ol class="">
-      <li v-for="category in categories" >
-        <a href="">
-          {{ category }}
-        </a>
-      </li>
-    </ol> -->
-    <button v-for="category in categories" @click="showCategoryItems(category)">{{ category }}</button>
-
-    <div v-for="item in prejudice">
-      <p>
-        {{ item }}
-      </p>
+    <p class="categoryLinks">
+      <a @click="showItemsInSelectedCategory()">All</a>
+      <a v-for="category in categories" @click="showItemsInSelectedCategory(category)">{{ category.name }}
+        ({{ category.numberOfItems }})</a>
+    </p>
+    <!-- <Search /> -->
+    <div class="grid">
+      <!-- <transition name="fade"> -->
+      <a v-for="item in categoryItemsContent" data-shorttext="" class="grid__item" href="#" @click="showModal()">
+        <div class="box">
+          <div class="box__shadow"></div><img class="box__img" src="../assets/img/TrivialPursuit2.png" alt="" />
+          <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
+          <h4 class="box__text"><span class="box__text-inner">{{ item.prejudice }}</span></h4>
+        </div>
+      </a>
+      <!-- </transition> -->
     </div>
-
-
   </div>
 </template>
 
 <script>
-  import * as d3 from 'd3-dsv';
+  import * as d3 from "d3-dsv";
   import axios from "axios";
+  import Search from "@/components/Search.vue";
+
+  // import { bus } from '../main';
   export default {
+    components: {
+      Search
+    },
     name: "Index",
     props: {
       msg: String
@@ -32,28 +39,34 @@
     data() {
       return {
         subtext: "Help us get it right and send a card.",
-        theJSON: "",
-        categories: null,
-        categoryItems: null,
-        prejudice: []
+        // theJSON: "",
+        categories: [],
+        categoryItemsContent: []
 
       }
     },
     mounted: function () {
-      this.fetchData()
+      this.fetchData();
+
+      // var overlay = document.querySelector(".md-overlay");
+      // return overlay;
+    },
+    created: function () {
+      // this.codrops();
     },
     methods: {
       fetchData() {
         return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
           .then(response => {
-            this.theJSON = d3.csvParse(response.data);
-            this.createCategoryNames(this.theJSON);
+            this.$store.state.theJSON = d3.csvParse(response.data);
+            // this.$store.state.theJSON = d3.csvParse(response.data);
+            this.createCategoryList(this.$store.state.theJSON);
+            this.showItemsInSelectedCategory();
             // return d3.csvParse(response.data);
           });
       },
-      createCategoryNames(dataCardsAll) {
-        console.log(dataCardsAll.length);
-        var categoryNames = [];
+      createCategoryList(theJSON) {
+        var categoryList = [];
 
         // make array with all categories
         // https://stackoverflow.com/a/14438954
@@ -62,49 +75,570 @@
         }
 
         // create array with all categories (to create a menu with all categories):
-        for (var i = 0; i < dataCardsAll.length; i++) {
-          categoryNames.push(dataCardsAll[i].Cat);
+        for (var i = 0; i < theJSON.length; i++) {
+          categoryList.push(theJSON[i].Cat);
         }
 
         // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
         // var newArray = arr.filter(callback(element[, index[, array]])[, thisArg])
         // remove duplicate entries
-        console.log(categoryNames.filter(onlyUnique));
-        this.categories = categoryNames.filter(onlyUnique);
-        // return categoryNames.filter(onlyUnique);
-      },
-      showCategoryItems(category) {
-        this.prejudice = [];
-        for (var i = 0; i < this.theJSON.length; i++) {
-          
-          if (this.theJSON[i].Cat === category) {
-            this.prejudice.push(this.theJSON[i].Prejudice);
-          console.log(this.prejudice);
+        categoryList = categoryList.filter(onlyUnique);
+        for (let i = 0; i < categoryList.length; i++) {
+          var counter = 0;
+          for (let j = 0; j < theJSON.length; j++) {
+            if (theJSON[j].Cat === categoryList[i]) {
+              //TODO: number of items in category is sometimes wrong
+              counter++;
+            }
+
+            // categoryList.push(theJSON[i].Cat);
           }
-          // categoryNames.push(dataCardsAll[i].Cat);
+
+          this.categories.push({
+            "name": categoryList[i],
+            "numberOfItems": counter
+          });
         }
+
+        // return categoryList.filter(onlyUnique);
+      },
+      showItemsInSelectedCategory(category) {
+        // console.log('category: ', category.name);
+        this.$store.state.activeCategory = category.name;
+        this.categoryItemsContent = [];
+        
+        function makeArray(a,b) {
+          a.push({
+            "prejudice": b.Prejudice,
+            "category": b.Cat,
+            "prejudiceElaborate": b["Prejudice Elaborate"]
+            // ,
+            // "numberOfItems": 
+          });
+        }
+
+        // category === undefined runs when function is called without argument, which happens on the ajax callback. Should be the first, and not after the "||"
+        if (category === undefined) {
+          for (var i = 0; i < this.$store.state.theJSON.length; i++) {
+
+            // console.log('this: ', this);
+            makeArray(this.categoryItemsContent,this.$store.state.theJSON[i]);
+
+          }
+
+        } else {
+          for (var i = 0; i < this.$store.state.theJSON.length; i++) {
+            if (this.$store.state.theJSON[i].Cat === category.name) {
+              makeArray(this.categoryItemsContent,this.$store.state.theJSON[i]);
+            }
+          }
+
+        }
+
+        setTimeout(this.codrops, 1);
+      },
+      showModal() {
+        this.$store.state.modalState = " md-show";
+      },
+      modalEffects2() {
+        //used as a source, should be removed in the end
+        /**
+         * modalEffects.js v1.0.0
+         * http://www.codrops.com
+         * Licensed under the MIT license.
+         * http://www.opensource.org/licenses/mit-license.php
+         * Copyright 2013, Codrops
+         * http://www.codrops.com
+         * https://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/
+         */
+
+        [].slice.call(document.querySelectorAll(".md-trigger")).forEach(function (el) {
+          var modal = document.querySelector("#" + el.getAttribute("data-modal"));
+          var close = modal.querySelectorAll(".md-close");
+
+          // function removeModal( hasPerspective ) {
+          // hasPerspective (Modernizr) does not want to work, so I remove this for now, don't need it.
+          function removeModal() {
+            modal.classList.remove("md-show");
+          }
+
+          function removeModalHandler() {
+            removeModal();
+          }
+
+          el.addEventListener("click", function () {
+            modal.classList.add("md-show");
+            overlay.removeEventListener("click", removeModalHandler);
+            overlay.addEventListener("click", removeModalHandler);
+
+            if (typeof doAfterClickReadMore === "function") {
+              doAfterClickReadMore();
+            }
+
+            if (el.classList.contains("md-setperspective")) {
+              setTimeout(function () {
+                document.documentElement.classList.add("md-perspective");
+              }, 25);
+            }
+          });
+
+          for (let i = 0; i < close.length; i++) {
+            close[i].addEventListener("click", function (ev) {
+              ev.stopPropagation();
+              document.querySelector(".modal-content").innerHTML = "";
+              removeModalHandler();
+            });
+          }
+        });
+      },
+
+      codrops() {
+
+        /**
+         * demo.js
+         * http://www.codrops.com
+         *
+         * Licensed under the MIT license.
+         * http://www.opensource.org/licenses/mit-license.php
+         * 
+         * Copyright 2018, Codrops
+         * http://www.codrops.com
+         */
+
+        {
+          const lineEq = (y2, y1, x2, x1, currentVal) => {
+            // y = mx + b 
+            var m = (y2 - y1) / (x2 - x1),
+              b = y1 - m * x1;
+            return m * currentVal + b;
+          };
+
+          const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+          const getRandomFloat = (min, max) => (Math.random() * (max - min) + min).toFixed(2);
+
+          const setRange = (obj) => {
+            for (let k in obj) {
+              if (obj[k] == undefined) {
+                obj[k] = [0, 0];
+              } else if (typeof obj[k] === 'number') {
+                obj[k] = [-1 * obj[k], obj[k]];
+              }
+            }
+          };
+
+          // from http://www.quirksmode.org/js/events_properties.html#position
+          const getMousePos = (e) => {
+            let posx = 0;
+            let posy = 0;
+            if (!e) e = window.event;
+            if (e.pageX || e.pageY) {
+              posx = e.pageX;
+              posy = e.pageY;
+            } else if (e.clientX || e.clientY) {
+              posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+              posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+            }
+            return {
+              x: posx,
+              y: posy
+            }
+          };
+
+          class Item {
+            constructor(el, options) {
+              this.DOM = {
+                el: el
+              };
+
+              this.options = {
+                image: {
+                  translation: {
+                    x: -10,
+                    y: -10,
+                    z: 0
+                  },
+                  rotation: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                  }
+                },
+                title: {
+                  translation: {
+                    x: 20,
+                    y: 10,
+                    z: 0
+                  }
+                },
+                text: {
+                  translation: {
+                    x: 20,
+                    y: 50,
+                    z: 0
+                  },
+                  rotation: {
+                    x: 0,
+                    y: 0,
+                    z: -20
+                  }
+                },
+                deco: {
+                  translation: {
+                    x: -20,
+                    y: 0,
+                    z: 0
+                  },
+                  rotation: {
+                    x: 0,
+                    y: 0,
+                    z: 3
+                  }
+                },
+                shadow: {
+                  translation: {
+                    x: 30,
+                    y: 20,
+                    z: 0
+                  },
+                  rotation: {
+                    x: 0,
+                    y: 0,
+                    z: -2
+                  },
+                  reverseAnimation: {
+                    duration: 2,
+                    ease: 'Back.easeOut'
+                  }
+                },
+                content: {
+                  translation: {
+                    x: 5,
+                    y: 3,
+                    z: 0
+                  }
+                }
+              };
+              Object.assign(this.options, options);
+
+              this.DOM.animatable = {};
+              this.DOM.animatable.image = this.DOM.el.querySelector('.box__img');
+              this.DOM.animatable.title = this.DOM.el.querySelector('.box__title');
+              this.DOM.animatable.text = this.DOM.el.querySelector('.box__text');
+              this.DOM.animatable.deco = this.DOM.el.querySelector('.box__deco');
+              this.DOM.animatable.shadow = this.DOM.el.querySelector('.box__shadow');
+              this.DOM.animatable.content = this.DOM.el.querySelector('.box__content');
+
+              this.initEvents();
+            }
+            initEvents() {
+              let enter = false;
+              this.mouseenterFn = () => {
+                if (enter) {
+                  enter = false;
+                };
+                clearTimeout(this.mousetime);
+                this.mousetime = setTimeout(() => enter = true, 40);
+              };
+              this.mousemoveFn = ev => requestAnimationFrame(() => {
+                if (!enter) return;
+                this.tilt(ev);
+              });
+              this.mouseleaveFn = (ev) => requestAnimationFrame(() => {
+                if (!enter || !allowTilt) return;
+                enter = false;
+                clearTimeout(this.mousetime);
+
+                for (let key in this.DOM.animatable) {
+                  if (this.DOM.animatable[key] == undefined || this.options[key] == undefined) {
+                    continue;
+                  }
+                  TweenMax.to(this.DOM.animatable[key],
+                    this.options[key].reverseAnimation != undefined ? this.options[key].reverseAnimation
+                    .duration || 0 : 1.5, {
+                      ease: this.options[key].reverseAnimation != undefined ? this.options[key].reverseAnimation
+                        .ease || 'Power2.easeOut' : 'Power2.easeOut',
+                      x: 0,
+                      y: 0,
+                      z: 0,
+                      rotationX: 0,
+                      rotationY: 0,
+                      rotationZ: 0
+                    });
+                }
+              });
+              this.DOM.el.addEventListener('mouseenter', this.mouseenterFn);
+              this.DOM.el.addEventListener('mousemove', this.mousemoveFn);
+              this.DOM.el.addEventListener('mouseleave', this.mouseleaveFn);
+            }
+            tilt(ev) {
+              if (!allowTilt) return;
+              const mousepos = getMousePos(ev);
+              // Document scrolls.
+              const docScrolls = {
+                left: document.body.scrollLeft + document.documentElement.scrollLeft,
+                top: document.body.scrollTop + document.documentElement.scrollTop
+              };
+              const bounds = this.DOM.el.getBoundingClientRect();
+              // Mouse position relative to the main element (this.DOM.el).
+              const relmousepos = {
+                x: mousepos.x - bounds.left - docScrolls.left,
+                y: mousepos.y - bounds.top - docScrolls.top
+              };
+
+              // Movement settings for the animatable elements.
+              for (let key in this.DOM.animatable) {
+                if (this.DOM.animatable[key] == undefined || this.options[key] == undefined) {
+                  continue;
+                }
+
+                let t = this.options[key] != undefined ? this.options[key].translation || {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                  } : {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                  },
+                  r = this.options[key] != undefined ? this.options[key].rotation || {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                  } : {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                  };
+
+                setRange(t);
+                setRange(r);
+
+                const transforms = {
+                  translation: {
+                    x: (t.x[1] - t.x[0]) / bounds.width * relmousepos.x + t.x[0],
+                    y: (t.y[1] - t.y[0]) / bounds.height * relmousepos.y + t.y[0],
+                    z: (t.z[1] - t.z[0]) / bounds.height * relmousepos.y + t.z[0],
+                  },
+                  rotation: {
+                    x: (r.x[1] - r.x[0]) / bounds.height * relmousepos.y + r.x[0],
+                    y: (r.y[1] - r.y[0]) / bounds.width * relmousepos.x + r.y[0],
+                    z: (r.z[1] - r.z[0]) / bounds.width * relmousepos.x + r.z[0]
+                  }
+                };
+
+                TweenMax.to(this.DOM.animatable[key], 1.5, {
+                  ease: 'Power1.easeOut',
+                  x: transforms.translation.x,
+                  y: transforms.translation.y,
+                  z: transforms.translation.z,
+                  rotationX: transforms.rotation.x,
+                  rotationY: transforms.rotation.y,
+                  rotationZ: transforms.rotation.z
+                });
+              }
+            }
+          }
+
+          class Overlay {
+            constructor() {
+              this.DOM = {
+                el: document.querySelector('.overlay')
+              };
+              this.DOM.reveal = this.DOM.el.querySelector('.overlay__reveal');
+              this.DOM.items = this.DOM.el.querySelectorAll('.overlay__item');
+              this.DOM.close = this.DOM.el.querySelector('.overlay__close');
+            }
+            show(contentItem) {
+              this.contentItem = contentItem;
+              this.DOM.el.classList.add('overlay--open');
+              // show revealer
+              TweenMax.to(this.DOM.reveal, .5, {
+                ease: 'Power1.easeInOut',
+                x: '0%',
+                onComplete: () => {
+                  // hide scroll
+                  document.body.classList.add('preview-open');
+                  // show preview
+                  this.revealItem(contentItem);
+                  // hide revealer
+                  TweenMax.to(this.DOM.reveal, .5, {
+                    delay: 0.2,
+                    ease: 'Power3.easeOut',
+                    x: '-100%'
+                  });
+
+                  this.DOM.close.style.opacity = 1;
+                }
+              });
+            }
+            revealItem() {
+              this.contentItem.style.opacity = 1;
+
+              let itemElems = [];
+              itemElems.push(this.contentItem.querySelector('.box__shadow'));
+              itemElems.push(this.contentItem.querySelector('.box__img'));
+              itemElems.push(this.contentItem.querySelector('.box__title'));
+              itemElems.push(this.contentItem.querySelector('.box__text'));
+              itemElems.push(this.contentItem.querySelector('.box__deco'));
+              itemElems.push(this.contentItem.querySelector('.overlay__content'));
+
+              for (let el of itemElems) {
+                if (el == null) continue;
+                const bounds = el.getBoundingClientRect();
+                const win = {
+                  width: window.innerWidth,
+                  height: window.innerHeight
+                };
+                TweenMax.to(el, lineEq(0.8, 1.2, win.width, 0, Math.abs(bounds.left + bounds.width - win.width)), {
+                  ease: 'Expo.easeOut',
+                  delay: 0.2,
+                  startAt: {
+                    x: `${lineEq(0, 800, win.width, 0, Math.abs(bounds.left+bounds.width - win.width))}`,
+                    y: `${lineEq(-100, 100, win.height, 0, Math.abs(bounds.top+bounds.height - win.height))}`,
+                    rotationZ: `${lineEq(5, 30, 0, win.width, Math.abs(bounds.left+bounds.width - win.width))}`
+                  },
+                  x: 0,
+                  y: 0,
+                  rotationZ: 0
+                });
+              }
+            }
+            hide() {
+              this.DOM.el.classList.remove('overlay--open');
+
+              // show revealer
+              TweenMax.to(this.DOM.reveal, .5, {
+                //delay: 0.15,
+                ease: 'Power3.easeOut',
+                x: '0%',
+                onComplete: () => {
+                  this.DOM.close.style.opacity = 0;
+                  // show scroll
+                  document.body.classList.remove('preview-open');
+                  // hide preview
+                  this.contentItem.style.opacity = 0;
+                  // hide revealer
+                  TweenMax.to(this.DOM.reveal, .5, {
+                    delay: 0,
+                    ease: 'Power3.easeOut',
+                    x: '100%'
+                  });
+                }
+              });
+            }
+          }
+
+          class Grid {
+            constructor(el) {
+              this.DOM = {
+                el: el
+              };
+              this.items = [];
+              Array.from(this.DOM.el.querySelectorAll('a.grid__item')).forEach((item) => {
+                const itemObj = new Item(item);
+                this.items.push(itemObj);
+                if (!item.classList.contains('grid__item--noclick')) {
+                  itemObj.DOM.el.addEventListener('click', (ev) => {
+                    ev.preventDefault();
+                    this.openItem(document.querySelector(item.getAttribute('href')));
+                  });
+                }
+              });
+
+              // this.overlay = new Overlay();
+              // this.overlay.DOM.close.addEventListener('click', () => this.closeItem());
+            }
+            openItem(contentItem) {
+              if (this.isPreviewOpen) return;
+              this.isPreviewOpen = true;
+              allowTilt = false;
+              this.overlay.show(contentItem);
+              // "explode" grid..
+              for (let item of this.items) {
+                for (let key in item.DOM.animatable) {
+                  const el = item.DOM.animatable[key];
+                  if (el) {
+                    const bounds = el.getBoundingClientRect();
+
+                    let x;
+                    let y;
+                    const win = {
+                      width: window.innerWidth,
+                      height: window.innerHeight
+                    };
+
+                    if (bounds.top + bounds.height / 2 < win.height / 2 - win.height * .1) {
+                      //x = getRandomInt(-250,-50);
+                      //y = getRandomInt(20,100)*-1;
+                      x = -1 * lineEq(20, 600, 0, win.width, Math.abs(bounds.left + bounds.width - win.width));
+                      y = -1 * lineEq(20, 600, 0, win.width, Math.abs(bounds.left + bounds.width - win.width));
+                    } else if (bounds.top + bounds.height / 2 > win.height / 2 + win.height * .1) {
+                      //x = getRandomInt(-250,-50);
+                      //y = getRandomInt(20,100);
+                      x = -1 * lineEq(20, 600, 0, win.width, Math.abs(bounds.left + bounds.width - win.width));
+                      y = lineEq(20, 600, 0, win.width, Math.abs(bounds.left + bounds.width - win.width))
+                    } else {
+                      //x = getRandomInt(300,700)*-1;
+                      x = -1 * lineEq(10, 700, 0, win.width, Math.abs(bounds.left + bounds.width - win.width));
+                      y = getRandomInt(-25, 25);
+                    }
+
+                    TweenMax.to(el, 0.4, {
+                      ease: 'Power3.easeOut',
+                      delay: lineEq(0, 0.3, 0, win.width, Math.abs(bounds.left + bounds.width - win.width)),
+                      x: x,
+                      y: y,
+                      rotationZ: getRandomInt(-10, 10),
+                      opacity: 0
+                    });
+                  }
+                }
+              }
+            }
+            closeItem() {
+              if (!this.isPreviewOpen) return;
+              this.isPreviewOpen = false;
+              this.overlay.hide();
+
+              for (let item of this.items) {
+                for (let key in item.DOM.animatable) {
+                  const el = item.DOM.animatable[key];
+                  if (el) {
+                    const bounds = el.getBoundingClientRect();
+                    const win = {
+                      width: window.innerWidth
+                    };
+                    TweenMax.to(el, 0.6, {
+                      ease: 'Expo.easeOut',
+                      delay: .55 + lineEq(0, 0.2, 0, win.width, Math.abs(bounds.left + bounds.width - win.width)),
+                      x: 0,
+                      y: 0,
+                      rotationZ: 0,
+                      opacity: 1
+                    });
+                  }
+                }
+              }
+
+              allowTilt = true;
+            }
+          }
+
+          let allowTilt = true;
+          new Grid(document.querySelector('.grid'));
+
+          // Preload all the images in the page..
+          // imagesLoaded(document.querySelectorAll('.box__img'), () => document.body.classList.remove('loading'));
+        }
+
       }
+
     }
   };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped lang="scss">
-  h3 {
-    margin: 40px 0 0;
-  }
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
-  }
 </style>

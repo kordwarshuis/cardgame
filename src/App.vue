@@ -1,12 +1,27 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </div> -->
+    <Menu />
     <router-view />
+    <NewsTicker />
+    
   </div>
 </template>
+
+<script>
+  import Menu from "@/components/Menu.vue";
+  import NewsTicker from "@/components/NewsTicker.vue";
+
+export default {
+  components: {
+    Menu, NewsTicker
+  }
+
+}
+</script>
 
 <style lang="scss">
 #app {
