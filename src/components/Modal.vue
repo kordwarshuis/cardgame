@@ -4,9 +4,9 @@
       <h3 class="modal-header"></h3>
       <div>
         <div class="modal-content"></div>
-        <h2>{{ this.$store.state.currentTitle }}</h2>
-        <p>Hoi</p>
-        <p>Hoi</p>
+        <!-- <h2>{{ this.$store.state.currentTitle }}</h2> -->
+        <p>{{ this.$store.state.currentPrejudice.Prejudice }}</p>
+        <p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
         <p>Hoi</p>
         <p>Hoi</p>
         <p>Hoi</p>

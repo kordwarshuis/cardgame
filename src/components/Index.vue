@@ -26,6 +26,7 @@
   import * as d3 from "d3-dsv";
   import axios from "axios";
   import Search from "@/components/Search.vue";
+  // import "../assets/js/helpers.js";
 
   // import { bus } from '../main';
   export default {
@@ -189,12 +190,14 @@
         //TODO: why is this working, should mutations be used?
         this.$store.state.modalState = " md-show";
         
-        this.$store.commit("changeTitle", event.target.closest("a").dataset.id);
-        console.log('this.$store.state.currentTitle: ', this.$store.state.currentTitle);
+        // the data-id of the element set that is clicked is used
+        // this.$store.commit("changeTitle", event.target.closest("a").dataset.id);
+        
+        // returns object with all entries of one prejudice
+        var currentPrejudice = this.$store.getters.getPrejudice(event.target.closest("a").dataset.id);
+        // 
+        this.$store.commit("changePrejudice", currentPrejudice);
 
-      },
-      changeTitle() {
-        this.$store.dispatch("title", event.target.closest("a").dataset.id);
       },
       modalEffects2() {
         //used as a source, should be removed in the end
