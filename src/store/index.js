@@ -5,11 +5,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    modalState: "popup md-modal md-effect-1",
     theJSON: null,
-    activeCategory: ""
+    categories: [],
+    activeCategory: "All",
+    currentTitle: "–––"
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    // changeTitle: (state, title) => {
+    //   state.currentTitle = title;
+    // },
+    changeTitle (state, newTitle) {
+      state.currentTitle = newTitle;
+    }
+  },
   actions: {},
   modules: {}
 });

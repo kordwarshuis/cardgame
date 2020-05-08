@@ -52,6 +52,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 /* Menu Button */
 .menu-button {
 	position: fixed;
+	left: 0;
 	z-index: 5;
 	/* margin: 1em; */
 	margin: 0;

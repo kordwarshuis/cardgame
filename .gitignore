@@ -21,3 +21,4 @@ yarn-error.log*
 *.sw?
 .history
 /src/assets/img/
+/src/assets/audio/

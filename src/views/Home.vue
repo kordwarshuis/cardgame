@@ -1,6 +1,6 @@
 <template>
   <div class="home logo-parent">
-    <a href=""><img class="logo" alt="logo" src="../assets/logo/blockchainbird-logo.png" /></a>
+    <a href=""><img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" /></a>
     
     <Index msg="Bitcoin Card Game" />
     <Modal />

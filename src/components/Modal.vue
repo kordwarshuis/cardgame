@@ -4,7 +4,7 @@
       <h3 class="modal-header"></h3>
       <div>
         <div class="modal-content"></div>
-        <p>Hoi</p>
+        <h2>{{ this.$store.state.currentTitle }}</h2>
         <p>Hoi</p>
         <p>Hoi</p>
         <p>Hoi</p>
@@ -37,11 +37,17 @@
     //     modalState: "popup md-modal md-effect-1"
     //   }
     // },
+    data: function () {
+      return {
+        title: this.$store.state.currentTitle
+      }
+    },
     props: {
       msg: String
     },
     methods: {
       hideModal() {
+        //TODO: is this the way to change a store value? Seems not.
         this.$store.state.modalState = "";
       }
     }

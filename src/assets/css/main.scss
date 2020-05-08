@@ -2013,7 +2013,7 @@ button:hover,
 
 .categoryLinks .active {
 	border: 3px solid $categoryLinksBorderActive;
-	background: $categoryLinksBackgroundActive url(../logo/blockchainbird-logo.png) no-repeat center right;
+	background: $categoryLinksBackgroundActive url(../img/logo/blockchainbird-logo.png) no-repeat center right;
 	padding-right: 30px;
 	background-size: auto 70%;
 }
@@ -2171,7 +2171,7 @@ button:hover,
 .modal-content h3 {
 	display: inline-block;
 
-	background: transparent url(../logo/blockchainbird-logo.png) no-repeat left top;
+	background: transparent url(../img/logo/blockchainbird-logo.png) no-repeat left top;
 	// background-size: 0.8em;
 	background-size: 1.8em;
 	padding-left: 2em;
@@ -2228,7 +2228,7 @@ button:hover,
 }
 
 .modal-content h3.libbitcoin {
-	background-image: url(../logo/libbitcoin.png);
+	background-image: url(../img/logo/libbitcoin.png);
 }
 
 
@@ -2490,7 +2490,7 @@ body>.news-ticker {
 	// border: 1px solid red;
 	// display: block;
 	width: 10%;
-	background: transparent url(../icons/flat/menu.png) no-repeat center;
+	background: transparent url(../img/icons/flat/menu.png) no-repeat center;
 	background-size: contain;
 }
 

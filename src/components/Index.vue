@@ -3,14 +3,14 @@
     <h1>{{ msg }}</h1>
     <p>{{ subtext }}</p>
     <p class="categoryLinks">
-      <a @click="showItemsInSelectedCategory()">All</a>
-      <a v-for="category in categories" @click="showItemsInSelectedCategory(category)">{{ category.name }}
+      <a @click="showItemsInSelectedCategory()" data-category="All">All</a>
+      <a v-for="category in categories" @click="showItemsInSelectedCategory(category)" :data-category="category.name">{{ category.name }}
         ({{ category.numberOfItems }})</a>
     </p>
     <Search />
     <div class="grid">
       <!-- <transition name="fade"> -->
-      <a v-for="item in categoryItemsContent" data-shorttext="" class="grid__item" href="#" @click="showModal()">
+      <a v-for="item in categoryItemsContent" data-shorttext="" :data-id="item['id']" class="grid__item" href="#" @click="showModal">
         <div class="box">
           <div class="box__shadow"></div><img class="box__img" src="../assets/img/TrivialPursuit2.png" alt="" />
           <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
@@ -42,11 +42,13 @@
         // theJSON: "",
         categories: [],
         categoryItemsContent: []
+        
 
       }
     },
     mounted: function () {
       this.fetchData();
+      this.categories = this.$store.state.categories
 
       // var overlay = document.querySelector(".md-overlay");
       // return overlay;
@@ -94,7 +96,7 @@
             // categoryList.push(theJSON[i].Cat);
           }
 
-          this.categories.push({
+          this.$store.state.categories.push({
             "name": categoryList[i],
             "numberOfItems": counter
           });
@@ -103,7 +105,11 @@
         // return categoryList.filter(onlyUnique);
       },
       showItemsInSelectedCategory(category) {
-        // console.log('category: ', category.name);
+        console.log('category: ', category);
+        
+        this.setActiveMenuItem(category);
+
+
         //TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the fires <a>
         if (category === undefined) {
           this.$store.state.activeCategory = "All";
@@ -116,6 +122,7 @@
         
         function makeArray(a,b) {
           a.push({
+            "id": b["Unique URL"],
             "prejudice": b.Prejudice,
             "category": b.Cat,
             "prejudiceElaborate": b["Prejudice Elaborate"]
@@ -144,8 +151,50 @@
 
         setTimeout(this.codrops, 1);
       },
-      showModal() {
+      setActiveMenuItem(item) {
+        // console.log('item: ', item);
+        var allMenuItems = document.querySelectorAll(".categoryLinks a");
+        
+        // first remove class .active from all elements
+        for (let i = 0; i < allMenuItems.length; i++) {
+          allMenuItems[i].classList.remove("active");
+        }
+        
+        // console.log('allMenuItems: ', allMenuItems);
+        // console.log('this.categories: ', this.categories);
+        for (let i = 0; i < this.categories.length; i++) {
+          if (item === undefined) {
+            document.querySelector(".categoryLinks a[data-category='All']").classList.add("active");
+          } else
+          if (item.name === this.categories[i].name) {
+            document.querySelector(".categoryLinks a[data-category='"+this.categories[i].name+"']").classList.add("active");
+          }
+
+          // console.log('this.categories[i].name: ', this.categories[i].name);
+        //  console.log(document.querySelector(".categoryLinks a[data-category='+this.categories[i].name+']"));
+
+          // document.querySelector(".categoryLinks a[data-category='"+this.categories[i].name+"']"); 
+
+
+          // if (item.name === this.categories[i].name) {
+            
+          // }
+          
+        }
+      },
+      showModal(event) {
+        // console.log('e: ', event.target.closest("a").dataset.id);
+        // this.$store.state.currentTitle = event.target.closest("a").dataset.id;
+        
+        //TODO: why is this working, should mutations be used?
         this.$store.state.modalState = " md-show";
+        
+        this.$store.commit("changeTitle", event.target.closest("a").dataset.id);
+        console.log('this.$store.state.currentTitle: ', this.$store.state.currentTitle);
+
+      },
+      changeTitle() {
+        this.$store.dispatch("title", event.target.closest("a").dataset.id);
       },
       modalEffects2() {
         //used as a source, should be removed in the end
@@ -547,7 +596,7 @@
                 if (!item.classList.contains('grid__item--noclick')) {
                   itemObj.DOM.el.addEventListener('click', (ev) => {
                     ev.preventDefault();
-                    this.openItem(document.querySelector(item.getAttribute('href')));
+                    // this.openItem(document.querySelector(item.getAttribute('href')));
                   });
                 }
               });

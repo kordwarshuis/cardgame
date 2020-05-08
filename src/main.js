@@ -14,6 +14,12 @@ import './assets/js/menu_sideslide';
 Vue.use(d3);
 Vue.config.productionTip = false;
 
+// const Methods = {
+//   korkor() {
+//     console.log("korkor");
+//   }
+// };
+
 new Vue({
   router,
   store,
