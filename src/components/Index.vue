@@ -4,13 +4,15 @@
     <p>{{ subtext }}</p>
     <p class="categoryLinks">
       <a @click="showItemsInSelectedCategory()" data-category="All">All</a>
-      <a v-for="category in categories" @click="showItemsInSelectedCategory(category)" :data-category="category.name">{{ category.name }}
+      <a v-for="category in categories" @click="showItemsInSelectedCategory(category)"
+        :data-category="category.name">{{ category.name }}
         ({{ category.numberOfItems }})</a>
     </p>
     <Search />
     <div class="grid">
       <!-- <transition name="fade"> -->
-      <a v-for="item in categoryItemsContent" data-shorttext="" :data-id="item['id']" class="grid__item" href="#" @click="showModal">
+      <a v-for="item in categoryItemsContent" data-shorttext="" :data-id="item['id']" class="grid__item" href="#"
+        @click="showCardIntro">
         <div class="box">
           <div class="box__shadow"></div><img class="box__img" src="../assets/img/TrivialPursuit2.png" alt="" />
           <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
@@ -43,13 +45,13 @@
         // theJSON: "",
         categories: [],
         categoryItemsContent: []
-        
+
 
       }
     },
     mounted: function () {
       this.fetchData();
-      this.categories = this.$store.state.categories
+      this.categories = this.$store.state.categories;
 
       // var overlay = document.querySelector(".md-overlay");
       // return overlay;
@@ -107,7 +109,7 @@
       },
       showItemsInSelectedCategory(category) {
         console.log('category: ', category);
-        
+
         this.setActiveMenuItem(category);
 
 
@@ -115,13 +117,13 @@
         if (category === undefined) {
           this.$store.state.activeCategory = "All";
         } else {
-          this.$store.state.activeCategory = category.name;  
+          this.$store.state.activeCategory = category.name;
         }
 
 
         this.categoryItemsContent = [];
-        
-        function makeArray(a,b) {
+
+        function makeArray(a, b) {
           a.push({
             "id": b["Unique URL"],
             "prejudice": b.Prejudice,
@@ -137,14 +139,14 @@
           for (var i = 0; i < this.$store.state.theJSON.length; i++) {
 
             // console.log('this: ', this);
-            makeArray(this.categoryItemsContent,this.$store.state.theJSON[i]);
+            makeArray(this.categoryItemsContent, this.$store.state.theJSON[i]);
 
           }
 
         } else {
           for (var i = 0; i < this.$store.state.theJSON.length; i++) {
             if (this.$store.state.theJSON[i].Cat === category.name) {
-              makeArray(this.categoryItemsContent,this.$store.state.theJSON[i]);
+              makeArray(this.categoryItemsContent, this.$store.state.theJSON[i]);
             }
           }
 
@@ -155,12 +157,12 @@
       setActiveMenuItem(item) {
         // console.log('item: ', item);
         var allMenuItems = document.querySelectorAll(".categoryLinks a");
-        
+
         // first remove class .active from all elements
         for (let i = 0; i < allMenuItems.length; i++) {
           allMenuItems[i].classList.remove("active");
         }
-        
+
         // console.log('allMenuItems: ', allMenuItems);
         // console.log('this.categories: ', this.categories);
         for (let i = 0; i < this.categories.length; i++) {
@@ -168,88 +170,43 @@
             document.querySelector(".categoryLinks a[data-category='All']").classList.add("active");
           } else
           if (item.name === this.categories[i].name) {
-            document.querySelector(".categoryLinks a[data-category='"+this.categories[i].name+"']").classList.add("active");
+            document.querySelector(".categoryLinks a[data-category='" + this.categories[i].name + "']").classList.add(
+              "active");
           }
 
           // console.log('this.categories[i].name: ', this.categories[i].name);
-        //  console.log(document.querySelector(".categoryLinks a[data-category='+this.categories[i].name+']"));
+          //  console.log(document.querySelector(".categoryLinks a[data-category='+this.categories[i].name+']"));
 
           // document.querySelector(".categoryLinks a[data-category='"+this.categories[i].name+"']"); 
 
 
           // if (item.name === this.categories[i].name) {
-            
+
           // }
-          
+
         }
       },
-      showModal(event) {
+      showCardIntro(event) {
         // console.log('e: ', event.target.closest("a").dataset.id);
         // this.$store.state.currentTitle = event.target.closest("a").dataset.id;
-        
         //TODO: why is this working, should mutations be used?
-        this.$store.state.modalState = " md-show";
-        
+        // this.$store.state.cardIntroState = "open";
+        // this.$store.state.cardOverviewPageState = "overlay-fullscreen-open";
+
+        this.$store.commit("changeCardIntroState", "open");
+        this.$store.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
+
+
         // the data-id of the element set that is clicked is used
         // this.$store.commit("changeTitle", event.target.closest("a").dataset.id);
-        
+
         // returns object with all entries of one prejudice
         var currentPrejudice = this.$store.getters.getPrejudice(event.target.closest("a").dataset.id);
         // 
         this.$store.commit("changePrejudice", currentPrejudice);
 
       },
-      modalEffects2() {
-        //used as a source, should be removed in the end
-        /**
-         * modalEffects.js v1.0.0
-         * http://www.codrops.com
-         * Licensed under the MIT license.
-         * http://www.opensource.org/licenses/mit-license.php
-         * Copyright 2013, Codrops
-         * http://www.codrops.com
-         * https://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/
-         */
 
-        [].slice.call(document.querySelectorAll(".md-trigger")).forEach(function (el) {
-          var modal = document.querySelector("#" + el.getAttribute("data-modal"));
-          var close = modal.querySelectorAll(".md-close");
-
-          // function removeModal( hasPerspective ) {
-          // hasPerspective (Modernizr) does not want to work, so I remove this for now, don't need it.
-          function removeModal() {
-            modal.classList.remove("md-show");
-          }
-
-          function removeModalHandler() {
-            removeModal();
-          }
-
-          el.addEventListener("click", function () {
-            modal.classList.add("md-show");
-            overlay.removeEventListener("click", removeModalHandler);
-            overlay.addEventListener("click", removeModalHandler);
-
-            if (typeof doAfterClickReadMore === "function") {
-              doAfterClickReadMore();
-            }
-
-            if (el.classList.contains("md-setperspective")) {
-              setTimeout(function () {
-                document.documentElement.classList.add("md-perspective");
-              }, 25);
-            }
-          });
-
-          for (let i = 0; i < close.length; i++) {
-            close[i].addEventListener("click", function (ev) {
-              ev.stopPropagation();
-              document.querySelector(".modal-content").innerHTML = "";
-              removeModalHandler();
-            });
-          }
-        });
-      },
 
       codrops() {
 

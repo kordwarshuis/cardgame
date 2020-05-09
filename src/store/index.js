@@ -6,6 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     modalState: "popup md-modal md-effect-1",
+    cardIntroState: "",
+    cardOverviewPageState: "",
     theJSON: null,
     categories: [],
     activeCategory: "All",
@@ -17,19 +19,19 @@ export default new Vuex.Store({
       for (let i = 0; i < state.theJSON.length; i++) {
         if (state.theJSON[i]["Unique URL"] === id) {
           return state.theJSON[i];
-        }
+        } 
       }
     },
   },
   mutations: {
-    // changeTitle: (state, title) => {
-    //   state.currentTitle = title;
-    // },
-    // changeTitle (state, newTitle) {
-    //   state.currentTitle = newTitle;
-    // },
     changePrejudice (state, newPrejudice) {
       state.currentPrejudice = newPrejudice;
+    },
+    changeCardIntroState (state, newCardIntroState) {
+      state.cardIntroState = newCardIntroState;
+    },
+    changeCardOverviewPageState (state, newCardOverviewPageState) {
+      state.cardOverviewPageState = newCardOverviewPageState;
     }
   },
   actions: {},
