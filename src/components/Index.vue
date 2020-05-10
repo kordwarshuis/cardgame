@@ -66,7 +66,20 @@
             this.$store.state.theJSON = d3.csvParse(response.data);
             // this.$store.state.theJSON = d3.csvParse(response.data);
             this.createCategoryList(this.$store.state.theJSON);
+
+            //all items are generated if no argument is given
             this.showItemsInSelectedCategory();
+
+            // if ($route.params.card !== "") {
+            //   this.showCardIntroFromURL($route.params.card);
+            // }
+            
+            
+            
+            console.log('$route.params.card: ', this.$route.params.card);
+            
+            
+            
             // return d3.csvParse(response.data);
           });
       },
@@ -108,10 +121,7 @@
         // return categoryList.filter(onlyUnique);
       },
       showItemsInSelectedCategory(category) {
-        console.log('category: ', category);
-
         this.setActiveMenuItem(category);
-
 
         //TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the fires <a>
         if (category === undefined) {
@@ -119,7 +129,6 @@
         } else {
           this.$store.state.activeCategory = category.name;
         }
-
 
         this.categoryItemsContent = [];
 
@@ -187,26 +196,22 @@
         }
       },
       showCardIntro(event) {
-        // console.log('e: ', event.target.closest("a").dataset.id);
-        // this.$store.state.currentTitle = event.target.closest("a").dataset.id;
-        //TODO: why is this working, should mutations be used?
-        // this.$store.state.cardIntroState = "open";
-        // this.$store.state.cardOverviewPageState = "overlay-fullscreen-open";
-
         this.$store.commit("changeCardIntroState", "open");
         this.$store.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
-
-
-        // the data-id of the element set that is clicked is used
-        // this.$store.commit("changeTitle", event.target.closest("a").dataset.id);
 
         // returns object with all entries of one prejudice
         var currentPrejudice = this.$store.getters.getPrejudice(event.target.closest("a").dataset.id);
         // 
         this.$store.commit("changePrejudice", currentPrejudice);
-
+        // this.$router.push(currentPrejudice["Unique URL"]);  
       },
+      // showCardIntroFromURL(itemName) {
+      //   this.$store.commit("changeCardIntroState", "open");
+      //   this.$store.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
+      //   var currentPrejudice = itemName;
+      //   this.$store.commit("changePrejudice", itemName);
 
+      // },
 
       codrops() {
 

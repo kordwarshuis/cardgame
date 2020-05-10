@@ -8,9 +8,10 @@
 
       <a href=""><img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" /></a>
       <Index msg="Bitcoin Card Game" />
-      <Modal />
+      
     </div>
     <CardIntro />
+    <Modal />
   </div>
 </template>
 

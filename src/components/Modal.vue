@@ -9,7 +9,20 @@
         <p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
         <p>{{ this.$store.state.currentPrejudice["long answer+facts"] }}</p>
 
-
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
+		<p>jkj</p>
 
 
 
@@ -91,7 +104,8 @@ perspective effects (not including the modals and the overlay).
 	width: 50%;
 	max-width: 630px;
 	min-width: 320px;
-	height: auto;
+	// height: auto;
+	height: 100%;
 	z-index: 2000;
 	visibility: hidden;
 	-webkit-backface-visibility: hidden;
@@ -134,6 +148,8 @@ perspective effects (not including the modals and the overlay).
 	position: relative;
 	border-radius: 3px;
 	margin: 0 auto;
+	height: 100%;
+    overflow: scroll;
 }
 
 .md-content h3 {

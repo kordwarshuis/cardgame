@@ -7,6 +7,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
+    // path: "/:card",
     name: "Home",
     component: Home
   },

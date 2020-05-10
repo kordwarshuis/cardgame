@@ -14,7 +14,7 @@
 		<h2>{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
 		<p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
 		<p>{{ this.$store.state.currentPrejudice["long answer+facts"] }}</p>
-		<!-- <button @click="showModal">More</button> -->
+		<button @click="showModal">More</button>
 	</div>
 </template>
 
