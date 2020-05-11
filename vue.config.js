@@ -1,4 +1,4 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/test/cardgame-test/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/test1310/cardgame-test/' : '/',
   lintOnSave: false
 };

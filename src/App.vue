@@ -3,7 +3,6 @@
     <Menu />
     <router-view />
     <NewsTicker />
-    
   </div>
 </template>
 

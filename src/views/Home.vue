@@ -5,10 +5,8 @@
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>
       </div>
-
       <a href=""><img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" /></a>
       <Index msg="Bitcoin Card Game" />
-      
     </div>
     <CardIntro />
     <Modal />

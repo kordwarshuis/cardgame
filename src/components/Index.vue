@@ -32,10 +32,10 @@
 
   // import { bus } from '../main';
   export default {
+    name: "Index",
     components: {
       Search
     },
-    name: "Index",
     props: {
       msg: String
     },
@@ -64,22 +64,21 @@
         return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
           .then(response => {
             this.$store.state.theJSON = d3.csvParse(response.data);
-            // this.$store.state.theJSON = d3.csvParse(response.data);
             this.createCategoryList(this.$store.state.theJSON);
 
             //all items are generated if no argument is given
             this.showItemsInSelectedCategory();
 
-            // if ($route.params.card !== "") {
-            //   this.showCardIntroFromURL($route.params.card);
-            // }
-            
-            
-            
-            console.log('$route.params.card: ', this.$route.params.card);
-            
-            
-            
+            console.log('this.$route.params.card: ', this.$route.params.card);
+
+            if (this.$route.params.card === undefined) {
+              return;
+
+              // console.log();
+            } else if (this.$route.params.card !== "") {
+              this.showCardIntroFromURL(this.$route.params.card);
+            }
+
             // return d3.csvParse(response.data);
           });
       },
@@ -146,19 +145,15 @@
         // category === undefined runs when function is called without argument, which happens on the ajax callback. Should be the first, and not after the "||"
         if (category === undefined) {
           for (var i = 0; i < this.$store.state.theJSON.length; i++) {
-
             // console.log('this: ', this);
             makeArray(this.categoryItemsContent, this.$store.state.theJSON[i]);
-
           }
-
         } else {
           for (var i = 0; i < this.$store.state.theJSON.length; i++) {
             if (this.$store.state.theJSON[i].Cat === category.name) {
               makeArray(this.categoryItemsContent, this.$store.state.theJSON[i]);
             }
           }
-
         }
 
         setTimeout(this.codrops, 1);
@@ -201,17 +196,24 @@
 
         // returns object with all entries of one prejudice
         var currentPrejudice = this.$store.getters.getPrejudice(event.target.closest("a").dataset.id);
+        console.log('currentPrejudice: ', currentPrejudice);
         // 
         this.$store.commit("changePrejudice", currentPrejudice);
-        // this.$router.push(currentPrejudice["Unique URL"]);  
-      },
-      // showCardIntroFromURL(itemName) {
-      //   this.$store.commit("changeCardIntroState", "open");
-      //   this.$store.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
-      //   var currentPrejudice = itemName;
-      //   this.$store.commit("changePrejudice", itemName);
 
-      // },
+        // set URl to the item that was clicked
+        this.$router.push(currentPrejudice["Unique URL"]);
+        // this.$router.push(this.$route.params.card);
+      },
+      showCardIntroFromURL(itemName) {
+        this.$store.commit("changeCardIntroState", "open");
+        this.$store.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
+        var currentPrejudice = itemName;
+        // this.$store.commit("changePrejudice", itemName);
+        this.$store.commit("changePrejudice", this.$store.getters.getPrejudice(itemName));
+        // no need to set URL
+        // this.$router.push(currentPrejudice["Unique URL"]);
+        // this.$router.push(this.$route.params.card);
+      },
 
       codrops() {
 
