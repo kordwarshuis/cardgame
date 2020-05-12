@@ -1,12 +1,27 @@
 <template>
   <div class="miniQuizContainer modalbox-iconbackground">
     <p>Quizzzz</p>
+    
+    <!-- <div>  -->
+    <p v-if="gember">{{gember}}</p>
+    <!-- </div> -->
+    
+    <!-- <p>{{filteredFruits()}}</p> -->
+    <button @click="filteredFruits()">go</button>
 
-    <p>{{ this.$store.state.currentPrejudice["Quiz"] }}</p>
+
+    <p>Quizzzz</p>
+    <hr>
+    <!-- <p>{{ this.$store.state.currentPrejudice["Quiz"] }}</p> -->
+    <hr>
     <!-- <button @click="splitQuizString()">do</button> -->
     <form class="miniquiz miniquiz1">
       <fieldset>
-        <legend>xxx</legend>
+        <!-- <legend>{{ quizItems[0] }}</legend> -->
+
+        <!-- <label v-for="question in quizItems">{{ question }}<input type="radio" class="miniQuizVraag"
+            name="miniQuizVraag"></label> -->
+
         <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>
         <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>
         <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag" value="correct"></label>
@@ -19,20 +34,24 @@
 <script>
   export default {
     name: "Quiz",
-    data() {
+
+    computed: {
+
+    },
+
+    data: function () {
       return {
-        quizString: this.$store.state.currentPrejudice["Quiz"],
-        quizItems: []
+        gember: "tijdelijk"
       }
     },
-      mounted: function() {
-        this.splitQuizString(this.quizString)
-      },
-    computed: {
-      // this.splitQuizString(this.quizString)
-      ditiseentest: function() {
-        console.log("ditiseentest");
-      }
+
+
+
+    mounted: function () {
+      // this.$nextTick(function () {
+        console.log('created called.');
+        // this.filteredFruits();
+      // })
     },
     methods: {
       quizMultipleChoice(domSelectorArg) {
@@ -86,15 +105,26 @@
           domInputs[inputsLength].addEventListener("change", checkAnswer, false);
         }
       },
-      splitQuizString(quizString) {
-        console.log('quizString: ', quizString);
-        // QUIZ
-        // if (quizString !== "") {
-        //   // https://stackoverflow.com/a/5963202
-        //   // and the divider is a |
-        //   this.quizItems = quizString.split("|");      
-        // }
+      filteredFruits() {
+        console.log("123");
+        var quizString = this.$store.state.currentPrejudice["Quiz"];
+        // console.log('quizString: ', quizString);
+
+        function splitQuizString(quizString) {
+          console.log('quizString: ', quizString);
+          // console.log(this.$store.state.currentPrejudice["Quiz"]);
+          if (quizString !== "") {
+            // https://stackoverflow.com/a/5963202
+            // and the divider is a |
+            return quizString.split("|");
+          }
+        }
+        // return "korkorkorkorkorkor" + this.$store.state.currentPrejudice["Quiz"];
+        // var temp = this.splitQuizString(this.$store.state.currentPrejudice["Quiz"]);
+        // return splitQuizString(quizString);
+        this.gember = splitQuizString(quizString);
       }
+
     }
 
 

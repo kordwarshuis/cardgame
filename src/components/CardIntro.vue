@@ -21,11 +21,6 @@
 <script>
 	export default {
 		name: "CardIntro",
-		data: function () {
-			return {
-				title: this.$store.state.currentTitle
-			}
-		},
 		mounted: function () {
 			this.handleCardIntro();
 		},
@@ -85,20 +80,8 @@
 				closeBttn.addEventListener('click', toggleOverlayFullscreen);
 			},
 			showModal(event) {
-				// console.log('e: ', event.target.closest("a").dataset.id);
-				// this.$store.state.currentTitle = event.target.closest("a").dataset.id;
-
 				//TODO: why is this working, should mutations be used?
 				this.$store.state.modalState = " md-show";
-
-				// the data-id of the element set that is clicked is used
-				// this.$store.commit("changeTitle", event.target.closest("a").dataset.id);
-
-				// returns object with all entries of one prejudice
-				// var currentPrejudice = this.$store.getters.getPrejudice(event.target.closest("a").dataset.id);
-				// 
-				// this.$store.commit("changePrejudice", currentPrejudice);
-
 			}
 		}
 	};
