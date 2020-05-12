@@ -1,5 +1,9 @@
 <template>
   <div class="miniQuizContainer modalbox-iconbackground">
+    <p>Quizzzz</p>
+
+    <p>{{ this.$store.state.currentPrejudice["Quiz"] }}</p>
+    <!-- <button @click="splitQuizString()">do</button> -->
     <form class="miniquiz miniquiz1">
       <fieldset>
         <legend>xxx</legend>
@@ -15,6 +19,21 @@
 <script>
   export default {
     name: "Quiz",
+    data() {
+      return {
+        quizString: this.$store.state.currentPrejudice["Quiz"],
+        quizItems: []
+      }
+    },
+      mounted: function() {
+        this.splitQuizString(this.quizString)
+      },
+    computed: {
+      // this.splitQuizString(this.quizString)
+      ditiseentest: function() {
+        console.log("ditiseentest");
+      }
+    },
     methods: {
       quizMultipleChoice(domSelectorArg) {
         var domInputs = document.querySelectorAll(domSelectorArg + " input.miniQuizVraag");
@@ -66,6 +85,15 @@
         while (inputsLength--) {
           domInputs[inputsLength].addEventListener("change", checkAnswer, false);
         }
+      },
+      splitQuizString(quizString) {
+        console.log('quizString: ', quizString);
+        // QUIZ
+        // if (quizString !== "") {
+        //   // https://stackoverflow.com/a/5963202
+        //   // and the divider is a |
+        //   this.quizItems = quizString.split("|");      
+        // }
       }
     }
 

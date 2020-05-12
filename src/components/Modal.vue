@@ -9,22 +9,8 @@
         <p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
         <p>{{ this.$store.state.currentPrejudice["long answer+facts"] }}</p>
 
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
-		<p>jkj</p>
 
-
+		<Quiz />
 
 
         <!-- Trigger -->
@@ -40,8 +26,12 @@
 </template>
 
 <script>
+  import Quiz from "@/components/Quiz.vue";
+
   export default {
-    name: "Modal",
+	name: "Modal",
+	components: {Quiz},
+	
     // data() {
     //   return {
     //     modalState: "popup md-modal md-effect-1"

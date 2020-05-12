@@ -95,9 +95,9 @@
 				// this.$store.commit("changeTitle", event.target.closest("a").dataset.id);
 
 				// returns object with all entries of one prejudice
-				var currentPrejudice = this.$store.getters.getPrejudice(event.target.closest("a").dataset.id);
+				// var currentPrejudice = this.$store.getters.getPrejudice(event.target.closest("a").dataset.id);
 				// 
-				this.$store.commit("changePrejudice", currentPrejudice);
+				// this.$store.commit("changePrejudice", currentPrejudice);
 
 			}
 		}

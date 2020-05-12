@@ -45,19 +45,11 @@
         // theJSON: "",
         categories: [],
         categoryItemsContent: []
-
-
       }
     },
     mounted: function () {
       this.fetchData();
       this.categories = this.$store.state.categories;
-
-      // var overlay = document.querySelector(".md-overlay");
-      // return overlay;
-    },
-    created: function () {
-      // this.codrops();
     },
     methods: {
       fetchData() {
@@ -69,12 +61,9 @@
             //all items are generated if no argument is given
             this.showItemsInSelectedCategory();
 
-            console.log('this.$route.params.card: ', this.$route.params.card);
-
             if (this.$route.params.card === undefined) {
               return;
 
-              // console.log();
             } else if (this.$route.params.card !== "") {
               this.showCardIntroFromURL(this.$route.params.card);
             }
@@ -107,7 +96,6 @@
               //TODO: number of items in category is sometimes wrong
               counter++;
             }
-
             // categoryList.push(theJSON[i].Cat);
           }
 
@@ -131,6 +119,7 @@
 
         this.categoryItemsContent = [];
 
+        //TODO: is this really necessary since we have the store?
         function makeArray(a, b) {
           a.push({
             "id": b["Unique URL"],
@@ -143,6 +132,7 @@
         }
 
         // category === undefined runs when function is called without argument, which happens on the ajax callback. Should be the first, and not after the "||"
+        // here we create the info for the cards per category page
         if (category === undefined) {
           for (var i = 0; i < this.$store.state.theJSON.length; i++) {
             // console.log('this: ', this);
