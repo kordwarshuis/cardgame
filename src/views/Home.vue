@@ -6,7 +6,7 @@
         <router-link to="/about">About</router-link>
       </div>
       <a href=""><img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" /></a>
-      <Index msg="Bitcoin Card Game" />
+      <Cards msg="Bitcoin Card Game" />
     </div>
     <CardIntro />
     <Modal />
@@ -15,14 +15,14 @@
 
 <script>
   // @ is an alias to /src
-  import Index from "@/components/Index.vue";
+  import Cards from "@/components/Cards.vue";
   import Modal from "@/components/Modal.vue";
   import CardIntro from "@/components/CardIntro.vue";
 
   export default {
     name: "Home",
     components: {
-      Index,
+      Cards,
       Modal,
       CardIntro
     }

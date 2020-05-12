@@ -2,19 +2,19 @@
 	<!-- open/close -->
 	<div class="overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cardIntroState">
 		<button type="button" class="overlay-fullscreen-close">Close</button>
-		<!-- <nav>
-			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Work</a></li>
-				<li><a href="#">Clients</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</nav> -->
-		<h2>{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
+
+		<!-- <p>{{ this.$store.state.currentPrejudice["long answer+facts"] }}</p> -->
+
+
+		<div class="title-on-card">
+			<h2>{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
+		</div>
+		<h3>Answer</h3>
 		<p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
-		<p>{{ this.$store.state.currentPrejudice["long answer+facts"] }}</p>
-		<button @click="showModal">More</button>
+
+
+		<button class="closeCardIntro" @click="showModal">More</button>
+		<button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
 	</div>
 </template>
 
@@ -105,6 +105,121 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
+	// https://tympanus.net/Development/FullscreenOverlayStyles/index7.html#
+	/* Overlay style */
+	.overlay-fullscreen {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: $overlayItemBackground2;
+		padding: 3em;
+	}
 
+	/* Overlay closing cross */
+	.overlay-fullscreen .overlay-fullscreen-close {
+		cursor: pointer;
+		width: 80px;
+		height: 80px;
+		position: absolute;
+		right: 20px;
+		top: 20px;
+		overflow: hidden;
+		border: none;
+		background: url(../assets/img/icons/ui/cross.png) no-repeat center center;
+		text-indent: 200%;
+		color: transparent;
+		outline: none;
+		z-index: 100;
+	}
+
+
+	/* Effects */
+	// html,
+	// body {
+	//   overflow-x: hidden;
+	// }
+
+	.container {
+		overflow-x: hidden;
+		-webkit-transition: -webkit-transform 0.5s;
+		transition: transform 0.5s;
+	}
+
+	.container.overlay-fullscreen-open {
+		-webkit-transform: translateX(50%);
+		transform: translateX(50%);
+	}
+
+	.container::after {
+		content: '';
+		opacity: 0;
+		visibility: hidden;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.6);
+		-webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+		transition: opacity 0.5s, visibility 0s 0.5s;
+	}
+
+	.container.overlay-fullscreen-open::after {
+		visibility: visible;
+		opacity: 1;
+		-webkit-transition: opacity 0.5s;
+		transition: opacity 0.5s;
+	}
+
+	.overlay-fullscreen-contentpush {
+		background: $overlayItemBackground2;
+		visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%);
+		-webkit-transition: -webkit-transform 0.5s, visibility 0s 0.5s;
+		transition: transform 0.5s, visibility 0s 0.5s;
+	}
+
+	.overlay-fullscreen-contentpush.open {
+		visibility: visible;
+		-webkit-transform: translateX(0%);
+		transform: translateX(0%);
+		-webkit-transition: -webkit-transform 0.5s;
+		transition: transform 0.5s;
+	}
+
+
+
+
+	.title-on-card {
+		margin: 0;
+		padding: 2em;
+		background: transparent url(../assets/img/TrivialPursuit2.png) no-repeat top center !important;
+		background-size: 100% auto;
+		// border: 10px solid #999;
+		height: 71% !important;
+		max-width: 600px;
+		width: 100% !important;
+		float: left;
+		// padding: 0;
+	}
+
+	.closeCardIntro {
+		background: transparent url(../assets/img/TrivialPursuit2-stack.png) no-repeat center;
+		background-size: contain;
+		padding: 3em 1.2em 3em 2em;
+		z-index: auto;
+		transition: transform 0.3s;
+	}
+
+	.closeCardIntro:hover,
+	.copyURLtoClipboard:hover {
+		transform: rotate(360deg);
+		transition: transform 0.3s;
+	}
 </style>

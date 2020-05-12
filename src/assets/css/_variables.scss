@@ -1,0 +1,74 @@
+// @import url('https://fonts.googleapis.com/css?family=Anton|Buenard:400,700');
+// @import url('https://fonts.googleapis.com/css?family=Anton:400,700');
+
+$a6: #0051a3;
+// $a7: #ececec;
+// $a7: #d2e7ff;
+$a7: #faf1e2;
+$a7a: #f0f5f2;
+
+$goldenBorder: #ffd900;
+
+
+$a1:#ED6246;
+$a2:#564080;
+$a3:#B569B1;
+$a4:#80B2EF;
+$a5:#d2e7ff;
+
+
+
+$a8: #00c0ff;
+$a9: hsla(195, 100%, 50%, 0.388);
+$a10: #dad6d6;
+$a11: rgba(139, 137, 137, 0.8);
+// $a12: #0eee6b;
+$a12: #87e67a;
+$a13: hsla(195, 100%, 50%, 0.22);
+
+$a14: #222;
+$a15: yellow;
+
+
+$text: $a6;
+$background: $a7;
+$background2: $a7a;
+$loadingBackground: $a7;
+$generalLinksText: $a14;
+$generalLinksTextHover: $a6;
+$linksText: $a6;
+$linksBorder: $a6;
+$linksHoverBackground: $a9;
+$categoryLinksBorderActive: $a8;
+$categoryLinksBackgroundActive: $a13;
+
+
+// THE LAYER THAT IS MOVING BETWEEN THE INITIAL PAGE AND THE SPECIFIC CARD
+$overlayRevealBackground: $a6;
+// $overlayRevealBackground: #00bfff;
+
+// THE BACKGROUND OF A SPECIFIC CARD
+$overlayItemBackground: $a7;
+$overlayItemBackground2: $a7a;
+
+
+$boxTextBackground: $a5;
+$boxTextInnerBorder: $a6;
+$boxTextInnerReverseBackground: $a6;
+$boxTextInnerReverseText: #ececec;
+$boxTextVisited: $a9;
+$boxTextVisitedCheckmark: $a12;
+
+
+
+
+// SEARCH
+$searchBoxText: $a6;
+$searchBoxBorder: $a6;
+$searchStringBackground: $a15;
+$searchStringBorder: #222;
+
+
+// REPORT
+$reportBackground: #a7e7cd;
+$reportWarningText: #900;
