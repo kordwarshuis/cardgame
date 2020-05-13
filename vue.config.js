@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/test1310/cardgame-test/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/vue-cardgame/' : '/',
   lintOnSave: false,
   css: {
     loaderOptions: {

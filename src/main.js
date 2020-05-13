@@ -5,11 +5,8 @@ import router from "./router";
 import store from "./store/index";
 import * as d3 from 'd3-dsv';
 import './assets/css/main.scss';
-import './assets/css/menu_sideslide.css';
 import './assets/js/TweenMax.min';
 import './assets/js/menu_sideslide';
-// import './assets/js/helpers';
-// import './assets/js/GridLayoutMotionDemo';
 // import bootstrap from 'bootstrap';
 
 Vue.use(d3);

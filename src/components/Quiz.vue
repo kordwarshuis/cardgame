@@ -1,22 +1,7 @@
 <template>
   <div class="miniQuizContainer modalbox-iconbackground">
-    <p>Quizzzz</p>
+    <h2>Quiz</h2>
 
-    <!-- <div>  -->
-    <!-- <p v-if="gember">{{gember}}</p> -->
-    <p>{{this.$store.state.currentPrejudice["Quiz"][0]}}</p>
-    <!-- </div> -->
-
-    <!-- <p>{{filteredFruits()}}</p> -->
-    <!-- <button @click="filteredFruits()">go</button> -->
-    <!-- <button @click="testjekor">go</button> -->
-
-
-    <p>Quizzzz</p>
-    <hr>
-    <!-- <p>{{ this.$store.state.currentPrejudice["Quiz"] }}</p> -->
-    <hr>
-    <!-- <button @click="splitQuizString()">do</button> -->
     <form class="miniquiz miniquiz1">
       <fieldset>
         <legend>{{this.$store.state.currentPrejudice["Quiz"][0].question}}</legend>
@@ -36,43 +21,6 @@
 <script>
   export default {
     name: "Quiz",
-
-    // computed: {
-    //   testjekor() {
-    //     function splitQuizString(quizString) {
-    //       console.log('quizString: ', quizString);
-    //       // console.log(this.$store.state.currentPrejudice["Quiz"]);
-    //       if (quizString !== "") {
-    //         // https://stackoverflow.com/a/5963202
-    //         // and the divider is a |
-    //         return quizString.split("|");
-    //       }
-    //     }
-    //     // return this.$store.state.currentPrejudice["Quiz"];
-
-    //     // this.$store.getters.getcurrentPrejudice["Quiz"]
-    //     console.log('tesje kor: ', this.$store.getters.getcurrentPrejudice["Quiz"]);
-    //     // return splitQuizString(this.$store.getters.getcurrentPrejudice["Quiz"]);
-    //   }
-    // },
-
-    // data: function () {
-    //   return {
-    //     gember: "tijdelijk"
-    //   }
-    // },
-
-
-
-    // created: function () {
-    //   // this.$nextTick(function () {
-    //   console.log('created called.');
-    //   console.log(this.$store.getters.getcurrentPrejudice["Quiz"]);
-    //   // this.$store.state.currentPrejudice["Quiz"]
-    //   // console.log('this.$store.state.currentPrejudice["Quiz"]: ', this.$store.state.currentPrejudice["Quiz"]);
-
-    //   // })
-    // },
     methods: {
       quizMultipleChoice(domSelectorArg) {
         var domInputs = document.querySelectorAll(domSelectorArg + " input.miniQuizVraag");

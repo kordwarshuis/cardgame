@@ -9,9 +9,8 @@
         <p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
         <p>{{ this.$store.state.currentPrejudice["long answer+facts"] }}</p>
 
-
 		<Quiz />
-
+		<Video />
 
         <!-- Trigger -->
         <!-- <button class="copyURLtoClipboard copyURLtoClipboard1">
@@ -19,7 +18,7 @@
         </button> -->
 
         <button class="md-close" @click="hideModal">Close</button>
-        <a class="md-close md-close-cross">×</a>
+        <a @click="hideModal" class="md-close md-close-cross">×</a>
       </div>
     </div>
   </div>
@@ -27,10 +26,11 @@
 
 <script>
   import Quiz from "@/components/Quiz.vue";
+  import Video from "@/components/Video.vue";
 
   export default {
 	name: "Modal",
-	components: {Quiz},
+	components: {Quiz,Video},
 	
     // data() {
     //   return {
@@ -76,16 +76,16 @@ perspective effects (not including the modals and the overlay).
 }
 
 .md-perspective body  {
-	background: #222;
+	// background: #222;
 	-webkit-perspective: 600px;
 	-moz-perspective: 600px;
 	perspective: 600px;
 }
 
-.container {
-	background: #e74c3c;
-	min-height: 100%;
-}
+// .container {
+// 	background: #e74c3c;
+// 	min-height: 100%;
+// }
 
 .md-modal {
 	position: fixed;
@@ -98,6 +98,7 @@ perspective effects (not including the modals and the overlay).
 	height: 100%;
 	z-index: 2000;
 	visibility: hidden;
+	
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	backface-visibility: hidden;
@@ -120,7 +121,7 @@ perspective effects (not including the modals and the overlay).
 	left: 0;
 	z-index: 1000;
 	opacity: 0;
-	background: rgba(143,27,15,0.8);
+	// background: rgba(143,27,15,0.8);
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
@@ -133,13 +134,15 @@ perspective effects (not including the modals and the overlay).
 
 /* Content styles */
 .md-content {
-	color: #fff;
-	background: #5a4b4a;
+	color: $text;
+	// background: #5a4b4a;
+	background: $background;
 	position: relative;
 	border-radius: 3px;
 	margin: 0 auto;
 	height: 100%;
-    overflow: scroll;
+	overflow: scroll;
+	box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
 }
 
 .md-content h3 {

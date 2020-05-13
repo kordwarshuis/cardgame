@@ -22,3 +22,4 @@ yarn-error.log*
 .history
 /src/assets/img/
 /src/assets/audio/
+/src/assets/video/

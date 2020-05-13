@@ -31,6 +31,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
+  //TODO: duplicate code, see CardIntro, but cannot be removed without further change
+
   // https://tympanus.net/Development/FullscreenOverlayStyles/index7.html#
   /* Overlay style */
   .overlay-fullscreen {
@@ -52,7 +54,7 @@
     top: 20px;
     overflow: hidden;
     border: none;
-    background: url(../assets/img/icons/ui/cross.png) no-repeat center center;
+    // background: url(../assets/img/icons/ui/cross.png) no-repeat center center;
     text-indent: 200%;
     color: transparent;
     outline: none;

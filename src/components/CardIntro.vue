@@ -15,6 +15,7 @@
 
 		<button class="closeCardIntro" @click="showModal">More</button>
 		<button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
+
 	</div>
 </template>
 
@@ -23,8 +24,12 @@
 		name: "CardIntro",
 		mounted: function () {
 			this.handleCardIntro();
+			// textFit(document.getElementsByClassName("title-on-card"), {
+			// 	alignVert: true,
+			// 	multiLine: true
+			// });
 		},
-		
+
 		methods: {
 			hideCardIntro() {
 				//TODO: is this the way to change a store value? Seems not.
@@ -112,7 +117,7 @@
 		top: 20px;
 		overflow: hidden;
 		border: none;
-		background: url(../assets/img/icons/ui/cross.png) no-repeat center center;
+		background: url(../assets/img/icons/ui/cross-black.png) no-repeat center center;
 		text-indent: 200%;
 		color: transparent;
 		outline: none;
@@ -185,7 +190,7 @@
 		padding: 2em;
 		background: transparent url(../assets/img/TrivialPursuit2.png) no-repeat top center !important;
 		background-size: 100% auto;
-		// border: 10px solid #999;
+		border: 10px solid #999;
 		height: 71% !important;
 		max-width: 600px;
 		width: 100% !important;
