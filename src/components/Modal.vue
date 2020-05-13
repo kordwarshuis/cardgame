@@ -41,7 +41,7 @@
       return {
         title: this.$store.state.currentTitle
       }
-    },
+	},
     props: {
       msg: String
     },

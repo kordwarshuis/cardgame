@@ -1,13 +1,15 @@
 <template>
   <div class="miniQuizContainer modalbox-iconbackground">
     <p>Quizzzz</p>
-    
+
     <!-- <div>  -->
-    <p v-if="gember">{{gember}}</p>
+    <!-- <p v-if="gember">{{gember}}</p> -->
+    <p>{{this.$store.state.currentPrejudice["Quiz"][0]}}</p>
     <!-- </div> -->
-    
+
     <!-- <p>{{filteredFruits()}}</p> -->
-    <button @click="filteredFruits()">go</button>
+    <!-- <button @click="filteredFruits()">go</button> -->
+    <!-- <button @click="testjekor">go</button> -->
 
 
     <p>Quizzzz</p>
@@ -17,17 +19,17 @@
     <!-- <button @click="splitQuizString()">do</button> -->
     <form class="miniquiz miniquiz1">
       <fieldset>
-        <!-- <legend>{{ quizItems[0] }}</legend> -->
+        <legend>{{this.$store.state.currentPrejudice["Quiz"][0].question}}</legend>
 
-        <!-- <label v-for="question in quizItems">{{ question }}<input type="radio" class="miniQuizVraag"
-            name="miniQuizVraag"></label> -->
+        <label v-for="question in this.$store.state.currentPrejudice['Quiz'][1].answers" v-bind:key="question">{{ question }}<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>
 
+        <!-- <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>
         <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>
-        <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>
-        <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag" value="correct"></label>
+        <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag" value="correct"></label> -->
       </fieldset>
     </form>
-    <div class="quizExplanation displayNone">xxx</div>
+    <!-- <div class="quizExplanation displayNone">{{ this.$store.state.currentPrejudice["Quiz"][2].explanation }}</div> -->
+    <div class="quizExplanation ">{{ this.$store.state.currentPrejudice["Quiz"][2].explanation }}</div>
   </div>
 </template>
 
@@ -35,24 +37,42 @@
   export default {
     name: "Quiz",
 
-    computed: {
+    // computed: {
+    //   testjekor() {
+    //     function splitQuizString(quizString) {
+    //       console.log('quizString: ', quizString);
+    //       // console.log(this.$store.state.currentPrejudice["Quiz"]);
+    //       if (quizString !== "") {
+    //         // https://stackoverflow.com/a/5963202
+    //         // and the divider is a |
+    //         return quizString.split("|");
+    //       }
+    //     }
+    //     // return this.$store.state.currentPrejudice["Quiz"];
 
-    },
+    //     // this.$store.getters.getcurrentPrejudice["Quiz"]
+    //     console.log('tesje kor: ', this.$store.getters.getcurrentPrejudice["Quiz"]);
+    //     // return splitQuizString(this.$store.getters.getcurrentPrejudice["Quiz"]);
+    //   }
+    // },
 
-    data: function () {
-      return {
-        gember: "tijdelijk"
-      }
-    },
+    // data: function () {
+    //   return {
+    //     gember: "tijdelijk"
+    //   }
+    // },
 
 
 
-    mounted: function () {
-      // this.$nextTick(function () {
-        console.log('created called.');
-        // this.filteredFruits();
-      // })
-    },
+    // created: function () {
+    //   // this.$nextTick(function () {
+    //   console.log('created called.');
+    //   console.log(this.$store.getters.getcurrentPrejudice["Quiz"]);
+    //   // this.$store.state.currentPrejudice["Quiz"]
+    //   // console.log('this.$store.state.currentPrejudice["Quiz"]: ', this.$store.state.currentPrejudice["Quiz"]);
+
+    //   // })
+    // },
     methods: {
       quizMultipleChoice(domSelectorArg) {
         var domInputs = document.querySelectorAll(domSelectorArg + " input.miniQuizVraag");
@@ -122,7 +142,7 @@
         // return "korkorkorkorkorkor" + this.$store.state.currentPrejudice["Quiz"];
         // var temp = this.splitQuizString(this.$store.state.currentPrejudice["Quiz"]);
         // return splitQuizString(quizString);
-        this.gember = splitQuizString(quizString);
+        return splitQuizString(quizString);
       }
 
     }
@@ -134,5 +154,204 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+/*
+ * MINI QUIZ
+ */
+ form.miniquiz,
+ form.miniquiz label,
+ form.miniquiz legend,
+ form.miniquiz input
+ {
+     text-align: left;
+     display: block;
+     float: left;
+     width: 100%;
+ }
+ form.miniquiz {
+     float: none;
+     margin-bottom: 2em;
+ }
+ 
+ form.miniquiz input {
+     /*font-size: 3em;*/
+ }
+ form.miniquiz .antw {
+     position: absolute;
+     top: 0;
+     left: 0;
+     /*font-size: 1.5em;*/
+     /*text-shadow: 0 0 6px #000;*/
+     /*background-color: transparent;*/
+ }
+ form.miniquiz .antw-vinkje {
+     font-size: 2em;
+     text-shadow: 0 0 1px #eee;
+     color: #35a726 !important;
+     background: #eee;
+ }
+ form.miniquiz .antw-kruis {
+     font-size: 2.5em;
+     text-shadow: 0 0 1px #eee;
+     color: #d8350e !important;
+     background: #eee;
+ }
+ form.miniquiz label {
+     display: block;
+     position: relative;
+     /*height: 3.5em;*/
+ }
+ form.miniquiz input {
+     /* verbergen */
+     border: 0;
+     clip: rect(0 0 0 0);
+     height: 1px;
+     margin: -1px;
+     overflow: hidden;
+     padding: 0;
+     position: absolute;
+     width: 1px;
+ }
+ form.miniquiz label{
+     display      : inline-block;
+     /*margin-left  : -2em;*/
+     line-height  : 1.5em;
+ }
+ form.miniquiz label:before {
+     /*content: "O";*/
+     font-size: 1.5em;
+     content: "☐";
+ }
+ form.miniquiz p {
+     /*font-size: 0.7em;*/
+     margin-left: 1em;
+ }
+ .miniquizimage {
+     z-index: 4;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 256px;
+     height: 256px;
+     margin-left: -128px;
+     margin-top: -128px;
+     display: block;
+ }
+ 
+ /* fadeIen en FadeOet gebruikt bij de images die in en outfaden bij beantwoorden miniquiz*/
+ 
+ /*TODO: uiteindelijk verwijderen, wordt niet meer gebruikt, vermoedelijk*/
+ .animated {
+     animation-duration: 0.5s;
+     animation-fill-mode: both;
+ }
+ /*end todo*/
+ 
+ 
+ /* fadeIen en FadeOet gebruikt bij de images die in en outfaden bij beantwoorden miniquiz*/
+ /* let op. dit bepaald hoe snel de afbeelding wegfade, niet HOE LANG HET DUURT voordat dat begint, dus hoe lang het in beeld blijft, ga daarvoor naar JS */
+ .miniquizanimated {
+     animation-duration: 0.5s;
+     animation-fill-mode: both;
+ }
+ 
+ 
+ 
+ 
+ /*
+ @-webkit-keyframes fadeOet {
+     0% {
+         opacity: 1;
+         */
+ /*visibility: hidden;*//*
+ 
+     }
+     100% {
+         opacity: 0;
+         visibility: hidden;
+     }
+ }
+ */
+ 
+ @keyframes fadeOet {
+     0% {
+         opacity: 1;
+         /*visibility: hidden;*/
+     }
+     100% {
+         opacity: 0;
+         visibility: hidden;/* nodig omdat ze over de pagina heenliggen en je wilt toch op links kunnen klikken */
+     }
+ }
+ 
+ 
+ /*
+ @-webkit-keyframes fadeIen {
+     0% {
+         visibility: visible;
+         opacity: 0;
+     }
+ 
+     100% {
+         visibility: visible;
+         opacity: 1;
+     }
+ }
+ */
+ 
+ @keyframes fadeIen {
+     0% {
+         visibility: visible;
+         opacity: 0;
+     }
+ 
+     100% {
+         visibility: visible;
+         opacity: 1;
+     }
+ }
+ .fadeOet {
+     /*-webkit-animation-name: fadeOet;*/
+     animation-name: fadeOet;
+     display: none;
+ }
+ .fadeIen {
+     /*-webkit-animation-name: fadeIen;*/
+     animation-name: fadeIen;
+     display: block; /* TODO: noodgreep, nu werkt het maar de fade out werkt niet, dit moet beter geregeld worden,
+      als ik dit niet doe, kun je alleen eerste modal scrollen en de rest zit er onder en kun je niet bij
+      */
+ }
+
+
+
+
+ .miniQuizContainer {
+     
+ }
+
+ .quizExplanation {
+     margin: 0.5em 0;
+     padding: 1em;
+     background: #b1eca9;
+
+ }
+ .quizExplanation.displayNone {
+     display: none;
+ }
+
+
+
+ /*
+  * EINDE MINI QUIZ
+  */
+ 
+
+
+
+
+
+
+
+
 
 </style>

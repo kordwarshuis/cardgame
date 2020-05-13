@@ -24,6 +24,7 @@
 		mounted: function () {
 			this.handleCardIntro();
 		},
+		
 		methods: {
 			hideCardIntro() {
 				//TODO: is this the way to change a store value? Seems not.

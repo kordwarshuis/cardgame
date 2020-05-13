@@ -55,7 +55,12 @@
       fetchData() {
         return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
           .then(response => {
-            this.$store.state.theJSON = d3.csvParse(response.data);
+            var responseData = d3.csvParse(response.data);
+            for (let i = 0; i < responseData.length; i++) {
+              responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
+            }
+
+            this.$store.state.theJSON = responseData;
             this.createCategoryList(this.$store.state.theJSON);
 
             //all items are generated if no argument is given
@@ -64,6 +69,7 @@
             if (this.$route.params.card === undefined) {
               return;
 
+              // if there is a specific url
             } else if (this.$route.params.card !== "") {
               this.showCardIntroFromURL(this.$route.params.card);
             }
@@ -187,7 +193,8 @@
         // returns object with all entries of one prejudice
         var currentPrejudice = this.$store.getters.getPrejudice(event.target.closest("a").dataset.id);
         console.log('currentPrejudice: ', currentPrejudice);
-        // 
+        // currentPrejudice["Quiz"]
+        console.log('currentPrejudice["Quiz"]: ', currentPrejudice["Quiz"]);
         this.$store.commit("changePrejudice", currentPrejudice);
 
         // set URl to the item that was clicked
@@ -200,9 +207,40 @@
         var currentPrejudice = itemName;
         // this.$store.commit("changePrejudice", itemName);
         this.$store.commit("changePrejudice", this.$store.getters.getPrejudice(itemName));
+        // console.log('currentPrejudice["Quiz"]: ', this.$store.getters.getPrejudice(currentPrejudice)["Quiz"]);
+        // console.log("vegetable");
+
         // no need to set URL
         // this.$router.push(currentPrejudice["Unique URL"]);
         // this.$router.push(this.$route.params.card);
+      },
+      prepareQuiz(quiz) {
+        var temp = [];
+
+        if (quiz !== "") {
+          // split quiz, make array
+          quiz = splitString(quiz, "|");
+          //put question in first item, first string item is always question
+          temp[0] = {
+            "question": quiz[0]
+          }
+
+          // put answers in second item
+          temp[1] = {
+            "answers": []
+          };
+          for (let i = 1; i < quiz.length - 1; i++) {
+            temp[1].answers.push(quiz[i]);
+          }
+          // put explanation in third item, last string item is always answer
+          temp[2] = {
+            "explanation": quiz[quiz.length - 1]
+          };
+
+          quiz = [];
+          quiz = temp;
+          return quiz;
+        }
       },
 
       codrops() {

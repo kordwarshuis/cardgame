@@ -22,10 +22,21 @@ export default new Vuex.Store({
         } 
       }
     },
+    getcurrentPrejudice: (state) => {
+      // for (let i = 0; i < state.theJSON.length; i++) {
+      //   if (state.theJSON[i]["Unique URL"] === id) {
+      //     return state.theJSON[i];
+      //   } 
+      // }
+        return state.currentPrejudice;
+
+
+    }
   },
   mutations: {
     changePrejudice (state, newPrejudice) {
       state.currentPrejudice = newPrejudice;
+      console.log("newPrejudice vanuit the store");
     },
     changeCardIntroState (state, newCardIntroState) {
       state.cardIntroState = newCardIntroState;
