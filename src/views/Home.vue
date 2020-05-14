@@ -9,21 +9,21 @@
       <Cards msg="Bitcoin Card Game" />
     </div>
     <CardIntro />
-    <Modal />
+    <CardFull />
   </div>
 </template>
 
 <script>
   // @ is an alias to /src
   import Cards from "@/components/Cards.vue";
-  import Modal from "@/components/Modal.vue";
+  import CardFull from "@/components/CardFull.vue";
   import CardIntro from "@/components/CardIntro.vue";
 
   export default {
     name: "Home",
     components: {
       Cards,
-      Modal,
+      CardFull,
       CardIntro
     }
   };

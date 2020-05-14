@@ -5,34 +5,36 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Bitcoin Misconceptions, " />
-	<meta name="keywords" content="" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bitcoin Misconceptions, " />
+  <meta name="keywords" content="" />
   <meta name="author" content="Bitcoin Misconceptions." />
-  
-<!-- OPEN GRAPH -->
-	<meta property="og:image" itemprop="image" content="https://blockchainbird.com/vue-cardgame/img/homepage.jpg" />
-	<meta property="og:image:width" content="1200" />
-	<meta property="og:image:height" content="628" />
-	<meta property="og:title" content="Bitcoin Misconceptions." />
-	<meta property="og:description" content="Misconceptions about bitcoin hold back progress. Found a misconception? Lookup-Copy-Paste our permanent links with curated expert info!" />
-	
-	<!-- og:url basically tells the FB scraper "ignore anything on this page, and scrape this url instead" -->
-	<!-- <meta property="og:url" content="http://pad_naar_website" /> -->
-	
-	<meta property="og:site_name" content="Bitcoin Misconceptions." />
-  <meta property="og:type" content="website"/>
-<!-- END OPEN GRAPH -->
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:image" itemprop="image" content="https://blockchainbird.com/vue-cardgame/img/homepage.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="628" />
+  <meta property="og:title" content="Bitcoin Misconceptions." />
+  <meta property="og:description"
+    content="Misconceptions about bitcoin hold back progress. Found a misconception? Lookup-Copy-Paste our permanent links with curated expert info!" />
+
+  <!-- og:url basically tells the FB scraper "ignore anything on this page, and scrape this url instead" -->
+  <!-- <meta property="og:url" content="http://pad_naar_website" /> -->
+
+  <meta property="og:site_name" content="Bitcoin Misconceptions." />
+  <meta property="og:type" content="website" />
+  <!-- END OPEN GRAPH -->
 
 
-<!-- TWITTER SOCIAL -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Bitcoin Misconceptions." />
-	<meta name="twitter:description" content="Misconceptions about bitcoin hold back progress. Found a misconception? Lookup-Copy-Paste our permanent links with curated expert info!" />
-	<meta name="twitter:image" content="https://blockchainbird.com/vue-cardgame/img/homepage.jpg" />
-	<meta itemprop="image" content="https://blockchainbird.com/vue-cardgame/img/homepage.jpg" />
-<!-- END TWITTER SOCIAL-->
+  <!-- TWITTER SOCIAL -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bitcoin Misconceptions." />
+  <meta name="twitter:description"
+    content="Misconceptions about bitcoin hold back progress. Found a misconception? Lookup-Copy-Paste our permanent links with curated expert info!" />
+  <meta name="twitter:image" content="https://blockchainbird.com/vue-cardgame/img/homepage.jpg" />
+  <meta itemprop="image" content="https://blockchainbird.com/vue-cardgame/img/homepage.jpg" />
+  <!-- END TWITTER SOCIAL-->
 
 
 
@@ -43,6 +45,7 @@
   <script src="js/textFit.min.js"></script>
   <script src="js/clipboard.js/v2.0.0/clipboard.min.js"></script>
   <script src="js/helpers.js"></script>
+
 </head>
 
 <body class="btc">
@@ -51,9 +54,9 @@
       Please enable it to continue.</strong>
   </noscript>
   <!-- <main> -->
-    <div class="content">
-      <div id="app"></div>
-    </div>
+  <div class="content">
+    <div id="app"></div>
+  </div>
   <!-- </main> -->
   <!-- built files will be auto injected -->
   <div style="animation-duration: 70s;" class="news-ticker">
@@ -61,11 +64,11 @@
 
       <!-- <img style="height: 50px;margin-left:500px" src="@/assets/img/animated-gif/mens18.gif" alt=""><span
         style="margin-right: 3000px;">“Bitcoin is for criminals”</span> -->
-      
+
       <img style="height: 50px;margin-left:500px" src="./src/assets/img/animated-gif/mens18.gif" alt=""><span
         style="margin-right: 3000px;">“Bitcoin is for criminals”</span>
-      
-      
+
+
       <img style="height: 50px; transform: scaleX(-1);" src="@/assets/img/animated-gif/mens71.gif" alt=""><span
         style="margin-right: 3000px;">“Bitcoin is one big money laundering machine.”</span>
       <img style="height: 50px; transform: scaleX(-1);" src="@/assets/img/animated-gif/mens09.gif" alt=""><span
@@ -81,16 +84,50 @@
 
     </p>
   </div>
-<script>
-  		// copy URL into clipboard via click on button
-      var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
-			text: function() {
-				// console.log('attentionSeeker1: ', attentionSeeker);
-				// bitcoinPrejudiceCardGame.classToggler("attentionSeeker", "visible", toggleTimes, toggleSpeed);
-				return window.location.href;
-			}
-		});
-</script>
+
+  <!-- <script src="js/rlemon-Notifier.js-5284904/Notifier.js"></script> -->
+  <script>
+    // copy URL into clipboard via click on button
+    var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
+      text: function () {
+        // console.log('attentionSeeker1: ', attentionSeeker);
+        // bitcoinPrejudiceCardGame.classToggler("attentionSeeker", "visible", toggleTimes, toggleSpeed);
+        return window.location.href;
+      }
+    });
+
+
+    //Notifier
+    // Notifier.config.box_styles.fontSize = "0.9em";
+    // Notifier.config.box_styles.background = "#48C0FB";
+    // Notifier.config.box_styles.color = "#222";
+    // Notifier.config.default_timeout = 6000;
+
+
+    // function textCopiedFeedback(e) {
+    //   // change text on button…
+    //   e.trigger.innerHTML = language.textCopied;
+    //   e.trigger.classList.add("showWhatToDo");
+    //   console.log('e.trigger: ', e.trigger);
+
+    //   // …and change back
+    //   setTimeout(function () {
+    //     e.trigger.innerHTML = language.copyTextAgain;
+    //     e.trigger.classList.remove("showWhatToDo");
+    //   }, 4000)
+    //   e.clearSelection();
+
+    //   // make notification
+    //   Notifier.config.default_timeout = "2000";
+    //   Notifier.info(language.textCopiedInstructions);
+    // }
+
+    // clipboard1.on('success', textCopiedFeedback);
+    // clipboard2.on('success', textCopiedFeedback);
+    // document.querySelector(".copyURLtoClipboard3").addEventListener("click", textCopiedFeedback, false);
+    // clipboard3.on('success', textCopiedFeedback);
+
+  </script>
 </body>
 
 </html>

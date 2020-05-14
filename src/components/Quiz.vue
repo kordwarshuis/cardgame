@@ -4,6 +4,7 @@
 
     <form class="miniquiz miniquiz1">
       <fieldset>
+        <!-- TODO: this.$store.state.currentPrejudice["Quiz"] does not exist here, why? -->
         <legend>{{this.$store.state.currentPrejudice["Quiz"][0].question}}</legend>
 
         <label v-for="question in this.$store.state.currentPrejudice['Quiz'][1].answers" v-bind:key="question">{{ question }}<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>

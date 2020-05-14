@@ -8,10 +8,13 @@
         <h2>{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
         <p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
 
-	    <h2>Answer</h2>
+	    <h2 v-if="this.$store.state.currentPrejudice['long answer+facts']">Answer</h2>
 	    <p>{{this.$store.state.currentPrejudice["long answer+facts"]}}</p>
 
-		<Quiz />
+		<h2 v-if="this.$store.state.currentPrejudice['Read On 1 Text']">Read More</h2>
+	    <p>{{this.$store.state.currentPrejudice["Read On 1 Text"]}}</p>
+		
+		<!-- <Quiz /> -->
 		<Video />
 
         <!-- Trigger -->
@@ -33,7 +36,7 @@
   import Answer from "@/components/Answer.vue";
 
   export default {
-	name: "Modal",
+	name: "CardFull",
 	components: {Quiz,Video,Answer},
 	
     // data() {

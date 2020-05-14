@@ -11,10 +11,8 @@
 				<h2>{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
 			</div>
 			<h3>Answer</h3>
-			<p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
-
-
-			<button class="closeCardIntro" @click="showModal">More</button>
+			<p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }} …<a data-modal='modal-1' class='md-trigger further-reading' @click="showModal">+</a></p>
+			<button class="closeCardIntro" >All cards</button>
 			<button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
 		</div>
 	</div>
@@ -44,6 +42,7 @@
 					triggerBttn = document.getElementById('trigger-overlay-fullscreen'),
 					overlayFullscreen = document.querySelector('div.overlay-fullscreen'),
 					closeBttn = overlayFullscreen.querySelector('button.overlay-fullscreen-close'),
+					closeBttn2 = overlayFullscreen.querySelector('button.closeCardIntro'),
 					transEndEventNames = {
 						'WebkitTransition': 'webkitTransitionEnd',
 						'MozTransition': 'transitionend',
@@ -85,6 +84,7 @@
 
 				// triggerBttn.addEventListener('click', toggleOverlayFullscreen);
 				closeBttn.addEventListener('click', toggleOverlayFullscreen);
+				closeBttn2.addEventListener('click', toggleOverlayFullscreen);
 			},
 			showModal(event) {
 				//TODO: why is this working, should mutations be used?
