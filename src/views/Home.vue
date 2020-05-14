@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="container logo-parent" :class="this.$store.state.cardOverviewPageState">
-      <div id="nav">
+      <!-- <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>
-      </div>
+      </div> -->
       <a href=""><img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" /></a>
       <Cards msg="Bitcoin Card Game" />
     </div>

@@ -1,21 +1,22 @@
 <template>
 	<!-- open/close -->
 	<div class="overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cardIntroState">
-		<button type="button" class="overlay-fullscreen-close">Close</button>
+		<div>
+			<button type="button" class="overlay-fullscreen-close">Close</button>
 
-		<!-- <p>{{ this.$store.state.currentPrejudice["long answer+facts"] }}</p> -->
+			<!-- <p>{{ this.$store.state.currentPrejudice["long answer+facts"] }}</p> -->
 
 
-		<div class="title-on-card">
-			<h2>{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
+			<div class="title-on-card">
+				<h2>{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
+			</div>
+			<h3>Answer</h3>
+			<p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
+
+
+			<button class="closeCardIntro" @click="showModal">More</button>
+			<button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
 		</div>
-		<h3>Answer</h3>
-		<p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
-
-
-		<button class="closeCardIntro" @click="showModal">More</button>
-		<button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
-
 	</div>
 </template>
 
@@ -107,6 +108,11 @@
 		padding: 3em;
 	}
 
+	.overlay-fullscreen > div {
+		height: 100%;
+		overflow: scroll;
+	}
+
 	/* Overlay closing cross */
 	.overlay-fullscreen .overlay-fullscreen-close {
 		cursor: pointer;
@@ -186,11 +192,15 @@
 
 
 	.title-on-card {
-		margin: 0;
-		padding: 2em;
+		margin: 0 1em 0 0;
+		padding: 1em;
+		padding-left: 5em;
+		font-size: 1.7em;
 		background: transparent url(../assets/img/TrivialPursuit2.png) no-repeat top center !important;
-		background-size: 100% auto;
-		border: 10px solid #999;
+		// background-size: 100% auto;
+		background-size: cover !important;
+
+		// border: 10px solid #999;
 		height: 71% !important;
 		max-width: 600px;
 		width: 100% !important;

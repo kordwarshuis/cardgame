@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div v-if="(this.$store.state.currentPrejudice['Youtube Video Id'] === '')"></div>
+  
+  <div v-else>
     <h2>Video</h2>
 
     <p>{{this.$store.state.currentPrejudice["Youtube Video Id"]}}</p>
@@ -10,8 +12,6 @@
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
       </iframe>
     </div>
-    <p :class="'blaust' + this.$store.state.currentPrejudice['Youtube Video Id']">test</p>
-
   </div>
 </template>
 

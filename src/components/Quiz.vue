@@ -72,31 +72,9 @@
         while (inputsLength--) {
           domInputs[inputsLength].addEventListener("change", checkAnswer, false);
         }
-      },
-      filteredFruits() {
-        console.log("123");
-        var quizString = this.$store.state.currentPrejudice["Quiz"];
-        // console.log('quizString: ', quizString);
-
-        function splitQuizString(quizString) {
-          console.log('quizString: ', quizString);
-          // console.log(this.$store.state.currentPrejudice["Quiz"]);
-          if (quizString !== "") {
-            // https://stackoverflow.com/a/5963202
-            // and the divider is a |
-            return quizString.split("|");
-          }
-        }
-        // return "korkorkorkorkorkor" + this.$store.state.currentPrejudice["Quiz"];
-        // var temp = this.splitQuizString(this.$store.state.currentPrejudice["Quiz"]);
-        // return splitQuizString(quizString);
-        return splitQuizString(quizString);
       }
 
     }
-
-
-
   };
 </script>
 

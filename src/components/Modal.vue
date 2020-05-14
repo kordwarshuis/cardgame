@@ -3,11 +3,13 @@
     <div class="md-content">
       <h3 class="modal-header"></h3>
       <div>
-        <div class="modal-content"></div>
+        <div class="modal-content">
         <!-- <h2>{{ this.$store.state.currentTitle }}</h2> -->
         <h2>{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
         <p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
-        <p>{{ this.$store.state.currentPrejudice["long answer+facts"] }}</p>
+
+	    <h2>Answer</h2>
+	    <p>{{this.$store.state.currentPrejudice["long answer+facts"]}}</p>
 
 		<Quiz />
 		<Video />
@@ -20,6 +22,7 @@
         <button class="md-close" @click="hideModal">Close</button>
         <a @click="hideModal" class="md-close md-close-cross">×</a>
       </div>
+	  </div>
     </div>
   </div>
 </template>
@@ -27,10 +30,11 @@
 <script>
   import Quiz from "@/components/Quiz.vue";
   import Video from "@/components/Video.vue";
+  import Answer from "@/components/Answer.vue";
 
   export default {
 	name: "Modal",
-	components: {Quiz,Video},
+	components: {Quiz,Video,Answer},
 	
     // data() {
     //   return {
@@ -48,7 +52,11 @@
     methods: {
       hideModal() {
         //TODO: is this the way to change a store value? Seems not.
-        this.$store.state.modalState = "";
+		this.$store.state.modalState = "";
+		
+		//TODO: to stop video playing and avoind that scroll position is not top. Doesnt work
+		// document.querySelector(".modal-content").innerHTML = "";
+		
       }
     }
   };
@@ -143,6 +151,11 @@ perspective effects (not including the modals and the overlay).
 	height: 100%;
 	overflow: scroll;
 	box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+
+}
+
+* {
+	text-align: left !important;
 }
 
 .md-content h3 {

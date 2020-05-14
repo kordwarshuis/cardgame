@@ -4,15 +4,15 @@
     <p>{{ subtext }}</p>
     <p class="categoryLinks">
       <a @click="showItemsInSelectedCategory()" data-category="All">All</a>
-      <a v-for="category in categories" @click="showItemsInSelectedCategory(category)"
-        :data-category="category.name">{{ category.name }}
+      <a v-for="category in categories" @click="showItemsInSelectedCategory(category)" :data-category="category.name"
+        :key="category.name">{{ category.name }}
         ({{ category.numberOfItems }})</a>
     </p>
     <Search />
     <div class="grid">
       <!-- <transition name="fade"> -->
-      <a v-for="item in categoryItemsContent" data-shorttext="" :data-id="item['id']" class="grid__item" href="#"
-        @click="showCardIntro">
+      <a v-for="item in categoryItemsContent" data-shorttext="" :data-id="item['id']" :key="item.prejudice"
+        class="grid__item" href="#" @click="showCardIntro">
         <div class="box">
           <div class="box__shadow"></div><img class="box__img" src="../assets/img/TrivialPursuit2.png" alt="" />
           <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
@@ -213,6 +213,13 @@
         // no need to set URL
         // this.$router.push(currentPrejudice["Unique URL"]);
         // this.$router.push(this.$route.params.card);
+        // setTimeout(function () {
+        //   textFit(document.getElementsByClassName("title-on-card"), {
+        //     alignVert: true,
+        //     multiLine: true
+        //   });
+        // }, 1000);
+
       },
       prepareQuiz(quiz) {
         var temp = [];

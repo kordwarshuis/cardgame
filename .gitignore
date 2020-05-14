@@ -23,3 +23,4 @@ yarn-error.log*
 /src/assets/img/
 /src/assets/audio/
 /src/assets/video/
+/public/img/
