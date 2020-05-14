@@ -1,10 +1,7 @@
 <template>
   <div>
     <div class="container logo-parent" :class="this.$store.state.cardOverviewPageState">
-      <!-- <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
-      </div> -->
+
       <a href=""><img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" /></a>
       <Cards msg="Bitcoin Card Game" />
     </div>
@@ -16,15 +13,15 @@
 <script>
   // @ is an alias to /src
   import Cards from "@/components/Cards.vue";
-  import CardFull from "@/components/CardFull.vue";
   import CardIntro from "@/components/CardIntro.vue";
+  import CardFull from "@/components/CardFull.vue";
 
   export default {
     name: "Home",
     components: {
       Cards,
-      CardFull,
-      CardIntro
+      CardIntro,
+      CardFull
     }
   };
 </script>
