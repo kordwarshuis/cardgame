@@ -196,7 +196,7 @@
 		padding: 1em;
 		padding-left: 5em;
 		font-size: 1.7em;
-		background: transparent url(../assets/img/TrivialPursuit2.png) no-repeat top center !important;
+		background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center !important;
 		// background-size: 100% auto;
 		background-size: cover !important;
 
@@ -209,7 +209,7 @@
 	}
 
 	.closeCardIntro {
-		background: transparent url(../assets/img/TrivialPursuit2-stack.png) no-repeat center;
+		background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2-stack.png) no-repeat center;
 		background-size: contain;
 		padding: 3em 1.2em 3em 2em;
 		z-index: auto;
