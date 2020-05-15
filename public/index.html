@@ -41,6 +41,21 @@
 
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <title><%= htmlWebpackPlugin.options.title %></title>
+
+<!-- BOOTSTRAP -->
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+<!-- END BOOTSTRAP -->
+
   <script src="js/ModernizrForCardIntro.js"></script>
   <script src="js/textFit.min.js"></script>
   <script src="js/clipboard.js/v2.0.0/clipboard.min.js"></script>
@@ -83,8 +98,7 @@
 
     </p>
   </div>
-
-  <!-- <script src="js/rlemon-Notifier.js-5284904/Notifier.js"></script> -->
+  <script src="js/rlemon-Notifier.js-5284904/Notifier.js"></script>
   <script>
     // copy URL into clipboard via click on button
     var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
@@ -97,10 +111,10 @@
 
 
     //Notifier
-    // Notifier.config.box_styles.fontSize = "0.9em";
-    // Notifier.config.box_styles.background = "#48C0FB";
-    // Notifier.config.box_styles.color = "#222";
-    // Notifier.config.default_timeout = 6000;
+    Notifier.config.box_styles.fontSize = "0.9em";
+    Notifier.config.box_styles.background = "#48C0FB";
+    Notifier.config.box_styles.color = "#222";
+    Notifier.config.default_timeout = 6000;
 
 
     // function textCopiedFeedback(e) {
@@ -125,7 +139,6 @@
     // clipboard2.on('success', textCopiedFeedback);
     // document.querySelector(".copyURLtoClipboard3").addEventListener("click", textCopiedFeedback, false);
     // clipboard3.on('success', textCopiedFeedback);
-
   </script>
 </body>
 

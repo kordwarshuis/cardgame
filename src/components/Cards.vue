@@ -198,7 +198,7 @@
         this.$store.commit("changePrejudice", currentPrejudice);
 
         // set URl to the item that was clicked
-        this.$router.push(currentPrejudice["Unique URL"]);
+        this.$router.push("/card/" + currentPrejudice["Unique URL"]);
         // this.$router.push(this.$route.params.card);
       },
       showCardIntroFromURL(itemName) {
