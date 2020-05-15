@@ -25,6 +25,9 @@
 </script>
 
 <style lang="scss">
+// @import '~bootstrap/dist/css/bootstrap.min.css';
+
+
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

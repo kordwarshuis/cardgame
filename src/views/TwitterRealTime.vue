@@ -116,6 +116,7 @@
   import {
     language
   } from "@/assets/js/Language.js";
+  // import bootstrap;
   export default {
     mounted: function () {
       this.initTwitterRealTime();
