@@ -10,7 +10,10 @@
                 :data-category="category.name" :key="category.name">{{ category.name }}
                 ({{ category.numberOfItems }})</a>
         </p>
-        <Search />
+
+
+        <Search2 />
+
         <div class="grid">
             <!-- <transition name="fade"> -->
             <a v-for="item in categoryItemsContent" data-shorttext="" :data-id="item['id']" :key="item.prejudice"
@@ -33,15 +36,18 @@
     import axios from "axios";
     import Search from "@/components/Search.vue";
     import NewsTicker from "@/components/NewsTicker.vue";
+    import Search2 from "@/components/Search2.vue";
     import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
+    // import VueFuse from "vue-fuse";
 
     // import { bus } from '../main';
     export default {
         name: "Index",
         components: {
-            Search,
+            Search2,
             NewsTicker,
             BitcoinAnimation
+            // VueFuse
         },
         props: {
             msg: String
@@ -51,8 +57,15 @@
                 subtext: "Help us get it right and send a card",
                 // theJSON: "",
                 categories: [],
-                categoryItemsContent: []
+                categoryItemsContent: [],
+                results: [],
+                fuseSearchKeys: ["Prejudice"]
             }
+        },
+        created() {
+            this.$on("results", results => {
+                this.results = results;
+            });
         },
         mounted: function () {
             this.fetchData();
@@ -101,6 +114,7 @@
                         // return d3.csvParse(response.data);
                     });
             },
+
             createCategoryList(theJSON) {
                 var categoryList = [];
 

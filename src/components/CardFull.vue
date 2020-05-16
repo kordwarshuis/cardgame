@@ -4,7 +4,6 @@
 			<h3 class="modal-header"></h3>
 			<div>
 				<div class="modal-content">
-					<!-- <h2>{{ this.$store.state.currentTitle }}</h2> -->
 					<h2>{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
 					<p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }}</p>
 
@@ -17,10 +16,13 @@
 					<p>{{this.$store.state.currentPrejudice["Read On 2 Text"]}}</p>
 					<h2 v-if="this.$store.state.currentPrejudice['Read On 3 Text']">Read More</h2>
 					<p>{{this.$store.state.currentPrejudice["Read On 3 Text"]}}</p>
+
 					<h2 v-if="this.$store.state.currentPrejudice['analogy']">Analogy</h2>
 					<p>{{this.$store.state.currentPrejudice["analogy"]}}</p>
+
 					<h2 v-if="this.$store.state.currentPrejudice['FlowerPower']">FlowerPower</h2>
 					<p>{{this.$store.state.currentPrejudice["FlowerPower"]}}</p>
+
 					<h2 v-if="this.$store.state.currentPrejudice['Counter-questions']">Counter-questions</h2>
 					<p>{{this.$store.state.currentPrejudice["Counter-questions"]}}</p>
 
