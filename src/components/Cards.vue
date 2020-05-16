@@ -1,6 +1,7 @@
 <template>
     <div>
         <!-- <h1>{{ msg }}</h1> -->
+        <!-- <BitcoinAnimation /> -->
         <h1>Bitcoin Misconceptions</h1>
         <p>{{ subtext }}</p>
         <p class="categoryLinks">
@@ -32,13 +33,15 @@
     import axios from "axios";
     import Search from "@/components/Search.vue";
     import NewsTicker from "@/components/NewsTicker.vue";
+    import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
 
     // import { bus } from '../main';
     export default {
         name: "Index",
         components: {
             Search,
-            NewsTicker
+            NewsTicker,
+            BitcoinAnimation
         },
         props: {
             msg: String
