@@ -1,19 +1,27 @@
 <template>
 	<!-- open/close -->
-	<div class="overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cardIntroState">
-		<div>
-			<button type="button" class="overlay-fullscreen-close">Close</button>
-
-			<!-- <p>{{ this.$store.state.currentPrejudice["long answer+facts"] }}</p> -->
-
-
-			<div class="title-on-card">
-				<h2>{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
+	<div class="row pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0 overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cardIntroState">
+		<button type="button" class="overlay-fullscreen-close">Close</button>
+		<div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+			<div style="border: none;" class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+				<div class="card-body title-on-card center pr-0 pl-0 pt-0 pb-0 mr-1 ml-1 mt-5 mb-5">
+					<h2 class="ml-5">{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
+				</div>
 			</div>
-			<h3>Answer</h3>
-			<p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }} …<a data-modal='modal-1' class='md-trigger further-reading' @click="showModal">+</a></p>
-			<button class="closeCardIntro" >All cards</button>
-			<button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
+		</div>
+
+		<div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+			<div class="card h-100 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+				<div class="card-body">
+				<h3 class="">
+					Answer
+				</h3>
+					<p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }} …<a data-modal='modal-1'
+							class='md-trigger further-reading' @click="showModal">+</a></p>
+					<button class="closeCardIntro">All cards</button>
+					<button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -109,7 +117,7 @@
 	}
 
 	.overlay-fullscreen > div {
-		height: 100%;
+		// height: 100%;
 		overflow: scroll;
 	}
 
@@ -195,18 +203,33 @@
 		margin: 0 1em 0 0;
 		padding: 1em;
 		padding-left: 5em;
-		font-size: 1.7em;
+		// font-size: 1.7em;
+		// font-size: calc(1vw + 1vh + .5vmin);
+		
+
 		background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center !important;
 		// background-size: 100% auto;
-		background-size: cover !important;
-
-		// border: 10px solid #999;
-		height: 71% !important;
-		max-width: 600px;
-		width: 100% !important;
-		float: left;
-		// padding: 0;
+		background-size: contain !important;
 	}
+
+	.title-on-card h2 {
+		font-size: 6vw;
+			margin: 0;
+			padding: 0;
+
+}
+
+	/* Small devices (landscape phones, 576px and up) */
+	@media (min-width: 576px) {  
+		.title-on-card h2 {
+			font-size: 4vw;
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+
+
 
 	.closeCardIntro {
 		background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2-stack.png) no-repeat center;
