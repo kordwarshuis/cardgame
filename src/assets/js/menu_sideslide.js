@@ -11,7 +11,7 @@
 function sideMenu() {
 	'use strict';
 	var bodyEl = document.body,
-		content = document.querySelector( '.content' ),
+		app = document.querySelector( '#app' ),
 		openbtn = document.getElementById( 'open-button' ),
 		closebtn = document.getElementById( 'close-button' ),
 		isOpen = false;
@@ -27,7 +27,7 @@ function sideMenu() {
 		}
 
 		// close the menu element if the target it´s not the menu element or one of its descendants..
-		content.addEventListener( 'click', function(ev) {
+		app.addEventListener( 'click', function(ev) {
 			var target = ev.target;
 			if( isOpen && target !== openbtn ) {
 				toggleMenu();

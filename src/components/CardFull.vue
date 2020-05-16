@@ -13,6 +13,16 @@
 
 					<h2 v-if="this.$store.state.currentPrejudice['Read On 1 Text']">Read More</h2>
 					<p>{{this.$store.state.currentPrejudice["Read On 1 Text"]}}</p>
+					<h2 v-if="this.$store.state.currentPrejudice['Read On 2 Text']">Read More</h2>
+					<p>{{this.$store.state.currentPrejudice["Read On 2 Text"]}}</p>
+					<h2 v-if="this.$store.state.currentPrejudice['Read On 3 Text']">Read More</h2>
+					<p>{{this.$store.state.currentPrejudice["Read On 3 Text"]}}</p>
+					<h2 v-if="this.$store.state.currentPrejudice['analogy']">Analogy</h2>
+					<p>{{this.$store.state.currentPrejudice["analogy"]}}</p>
+					<h2 v-if="this.$store.state.currentPrejudice['FlowerPower']">FlowerPower</h2>
+					<p>{{this.$store.state.currentPrejudice["FlowerPower"]}}</p>
+					<h2 v-if="this.$store.state.currentPrejudice['Counter-questions']">Counter-questions</h2>
+					<p>{{this.$store.state.currentPrejudice["Counter-questions"]}}</p>
 
 					<!-- <Quiz /> -->
 					<Video />
@@ -23,8 +33,8 @@
         </button> -->
 
 					<button class="md-close" @click="hideModal">Close</button>
-					<a @click="hideModal" class="md-close md-close-cross">×</a>
 				</div>
+				<a @click="hideModal" class="md-close md-close-cross">×</a>
 			</div>
 		</div>
 	</div>
@@ -157,8 +167,14 @@ perspective effects (not including the modals and the overlay).
 		height: 100%;
 		overflow: scroll;
 		box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
-
+	
 	}
+
+	.md-content  div {
+		background: transparent;
+	border: none;	
+	}
+
 
 	* {
 		text-align: left !important;

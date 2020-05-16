@@ -1,7 +1,6 @@
 <template>
 	<!-- open/close -->
 	<div class="row pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0 overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cardIntroState">
-		<button type="button" class="overlay-fullscreen-close">Close</button>
 		<div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
 			<div style="border: none;" class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
 				<div class="card-body title-on-card center pr-0 pl-0 pt-0 pb-0 mr-1 ml-1 mt-5 mb-5">
@@ -20,6 +19,7 @@
 							class='md-trigger further-reading' @click="showModal">+</a></p>
 					<button class="closeCardIntro">All cards</button>
 					<button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
+					<button type="button" class="overlay-fullscreen-close">Close</button>
 				</div>
 			</div>
 		</div>
@@ -49,7 +49,7 @@
 				var container = document.querySelector('div.container'),
 					triggerBttn = document.getElementById('trigger-overlay-fullscreen'),
 					overlayFullscreen = document.querySelector('div.overlay-fullscreen'),
-					closeBttn = overlayFullscreen.querySelector('button.overlay-fullscreen-close'),
+					closeBttn = document.querySelector('button.overlay-fullscreen-close'),
 					closeBttn2 = overlayFullscreen.querySelector('button.closeCardIntro'),
 					transEndEventNames = {
 						'WebkitTransition': 'webkitTransitionEnd',
@@ -124,11 +124,11 @@
 	/* Overlay closing cross */
 	.overlay-fullscreen .overlay-fullscreen-close {
 		cursor: pointer;
-		width: 80px;
-		height: 80px;
+		width: 20px;
+		height: 20px;
 		position: absolute;
-		right: 20px;
-		top: 20px;
+		right: 5px;
+		top: 5px;
 		overflow: hidden;
 		border: none;
 		background: url(../assets/img/icons/ui/cross-black.png) no-repeat center center;
@@ -137,6 +137,22 @@
 		outline: none;
 		z-index: 100;
 	}
+
+	// cant get this to work
+	// .overlay-fullscreen .overlay-fullscreen-close:after {
+	// 	content: "×";
+	// 	position: fixed;
+	// 	top: 0px; 
+	// 	right: 0;
+	// 	line-height: 1;
+	// 	font-size: 3px;
+	// 	padding: 0px;
+	// 	margin: 0;
+	// 	width: 40px;
+	// 	height: 40px;
+	// 	border: 1px solid red;
+	// 	color: #222 !important;
+	// }
 
 
 	/* Effects */

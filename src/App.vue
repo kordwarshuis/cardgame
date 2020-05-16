@@ -53,29 +53,9 @@
 // @import url('https://fonts.googleapis.com/css?family=Anton|Buenard:400,700');
 // @import url('https://fonts.googleapis.com/css?family=Anton:400,700');
 
-
-
 /*accessibility*/
 .visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
 
-// https://endurtech.com/css-icon-for-links-that-open-new-window-for-web-accessibility/
-
-a[target="_blank"] {
-	// border: 10px solid #444 !important;
-	padding-right: 1em !important;
-	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==) no-repeat top 5px right 5px;;
-
-
-}
-
-// a[target="_blank"]::after {
-// 	content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==) !important;
-// 	// margin: 0px 3px 0px 5px !important;
-	
-// 	position: absolute;
-// 	left: 100%;
-// 	top: 0px;
-// 	}
 
 body {
 	// font-family: 'Buenard', serif;
@@ -159,12 +139,7 @@ a:focus {
 	fill: currentColor;
 }
 
-main {
-	position: relative;
-	z-index: 4;
-}
-
-.content {
+.app {
 	position: relative;
 
 	/* om de tekst in de boxjes zichtbaar te houden */
@@ -183,10 +158,6 @@ small {
 	/* margin: 0 */
 }
 
-.overlay__content p {
-	text-align: left;
-	margin-top: 0;
-}
 
 
 .grid {
@@ -203,110 +174,10 @@ small {
 	cursor: pointer;
 }
 
-
-
-
-.overlay {
-	pointer-events: none;
-	width: 100%;
-	/* height: 100vh; */
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 5;
-	overflow: scroll;
-}
-
-.overlay--open {
-	pointer-events: auto;
-}
-
-//@@@
-.overlay__reveal {
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-
-	background: $overlayRevealBackground;
-	// background: transparent url(https://cdn.dribbble.com/users/1373100/screenshots/5515742/btc_gif_drib_v1.gif) no-repeat center;
-	// background-size: cover;
-
-	position: fixed;
-	z-index: 2;
-	transform: translate3d(100%, 0, 0);
-}
-
 .box {
 	position: relative;
 	margin: 2rem;
 }
-
-.overlay__item {
-	width: 100%;
-	/* height: 100vh; */
-	min-height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: $overlayItemBackground;
-	opacity: 0;
-	display: flex;
-	flex-direction: column;
-	// align-items: center;
-	align-items: top;
-	padding: 5rem 5vw;
-	justify-content: center;
-	/* overflow: scroll; */
-	border-top: 1px solid #444;
-	border-bottom: 1px solid #444;
-	box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
-
-}
-
-.bcb .overlay__item {
-	background: $overlayItemBackground2;
-}
-
-
-
-
-
-// default, bitcoin
-.overlay__item .box {
-	margin: 0;
-	background: transparent url(/src/assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center;
-	background-size: 100% auto;
-	height: 71% !important;
-	max-width: 600px;
-	width: 100% !important;
-}
-
-// Blockchain
-.bcb .overlay__item .box {
-	background-image: url(/src/assets/img/trivial-pursuit/TrivialPursuit3.png);
-}
-
-// Lightning
-.lnd .overlay__item .box {
-	background-image: url(/src/assets/img/trivial-pursuit/TrivialPursuit4.png);
-}
-
-
-.overlay__content {
-	position: relative;
-	z-index: 1;
-	max-width: 100%;
-	margin: 0;
-	/* to keep it scrollable: */
-	min-height: 10%;
-
-	/* this makes mobile safari crash */
-	/* overflow: scroll; */
-}
-
-
 
 // https://codepen.io/joeyhoer/pen/BmqIx
 hr {
@@ -368,15 +239,14 @@ hr:after {
 
 }
 
-.overlay__item .box__title {
-	position: static;
-}
 
 // The card layer 2
 .box__title-inner {
 	display: block;
 	position: relative;
-	font-weight: normal;
+  font-weight: normal;
+  font-size: 0.7em;
+  opacity: 0.7;
 	text-transform: uppercase;
 	letter-spacing: 0.15rem;
 	line-height: 1.25;
@@ -422,7 +292,8 @@ hr:after {
 	font-weight: normal;
 	text-transform: uppercase;
 	letter-spacing: 0.15rem;
-	margin: 0.5rem 1rem;
+  margin: 0.5rem 1rem;
+  font-size: 1.3em;
 	// font-family: 'Anton', sans-serif;
 }
 
@@ -452,14 +323,6 @@ hr:after {
 	filter: grayscale(0);
 }
 
-
-
-
-.overlay__item .box__title {
-	/* bottom: 0; */
-	/* kor dwarshuis */
-	top: 0;
-}
 
 
 .further-reading {
@@ -522,23 +385,6 @@ hr:after {
 	}
 
 
-	.overlay__item {
-		flex-direction: row;
-	}
-
-	.overlay__content {
-		margin-top: 0;
-		max-width: 50%;
-		// margin: 1rem 0 0 10vw;
-		margin: 0 0 0 10vw;
-		min-height: 100%;
-	}
-
-	/* kor */
-	.overlay__item .box {
-
-		/* padding: 2em 1em 1em 4em; */
-	}
 }
 
 @media screen and (min-width: 80em) {
@@ -1152,33 +998,33 @@ iframe {
 	margin: 0.1em;
 } */
 
-.condensedLayout .content .grid .box .box__img,
-.condensedLayout .content .grid .box .box__title-inner {
+.condensedLayout .app .grid .box .box__img,
+.condensedLayout .app .grid .box .box__title-inner {
 	display: none;
 }
 
-.condensedLayout .content .grid * {
+.condensedLayout .app .grid * {
 	transform: none !important;
 	position: static !important;
 }
 
-.condensedLayout .content .grid {
+.condensedLayout .app .grid {
 	display: inline;
 }
 
-.condensedLayout .content .box {
+.condensedLayout .app .box {
 	margin: 0;
 }
 
-.condensedLayout .content .box__title {
+.condensedLayout .app .box__title {
 	margin: 0;
 }
 
 
 
-.condensedLayout .content .grid .box__text,
-.condensedLayout .content .grid .box__text-inner,
-.condensedLayout .content .grid .grid__item {
+.condensedLayout .app .grid .box__text,
+.condensedLayout .app .grid .box__text-inner,
+.condensedLayout .app .grid .grid__item {
 	border: none;
 	font-family: inherit;
 	/* width: auto !important; */
@@ -1187,15 +1033,15 @@ iframe {
 	margin: 0;
 }
 
-.condensedLayout .content .grid .box__text {
+.condensedLayout .app .grid .box__text {
 	border-bottom: 1px solid $a6;
 }
-.condensedLayout .content .grid .grid__item:first-child .box__text {
+.condensedLayout .app .grid .grid__item:first-child .box__text {
 	border-top: 1px solid $a6;
 	margin-top: 1em;
 }
 
-.condensedLayout .content .visited .box:after {
+.condensedLayout .app .visited .box:after {
 	content: "";
 }
 

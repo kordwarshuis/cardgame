@@ -113,11 +113,6 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 	-webkit-overflow-scrolling: touch;
 }
 
-/* .content {
-	position: relative;
-	background: #b4bad2;
-} */
-
 .content::before {
 	position: fixed;
 	top: 0;

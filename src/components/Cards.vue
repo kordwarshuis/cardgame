@@ -63,6 +63,23 @@
                 return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
                     .then(response => {
                         var responseData = d3.csvParse(response.data);
+
+                        // cleaning
+                        for (let i = 0; i < responseData.length; i++) {
+                            for (var k in responseData[i]) {
+                                if (responseData[i].hasOwnProperty(k)) {
+                                    // console.log("Key is " + k + ", value is: " + dataLayer1[i][k]);
+                                    // the csv source from google introduces \' so we remove the backslash:
+                                    responseData[i][k] = responseData[i][k].replace(/\\'/g, "‘");
+                                    //experimental:
+                                    responseData[i][k] = responseData[i][k].replace(/'/g, "‘");
+                                    // responseData[i][k] = responseData[i][k].replace(/(\n\n)/gm, "</p><p>");
+                                }
+                            }
+
+                        }
+
+                        // format quiz data
                         for (let i = 0; i < responseData.length; i++) {
                             responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
                         }
