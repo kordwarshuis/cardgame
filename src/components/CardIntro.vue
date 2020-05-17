@@ -4,7 +4,10 @@
 		<div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
 			<div style="border: none;" class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
 				<div class="card-body title-on-card center pr-0 pl-0 pt-0 pb-0 mr-1 ml-1 mt-5 mb-5">
-					<h2 class="ml-5">{{ this.$store.state.currentPrejudice.Prejudice }}</h2>
+					<!-- <h2 class="ml-5">{{ this.$store.state.currentPrejudice.Prejudice }}</h2> -->
+					<!-- <h2 class="ml-5">{{ this.$store.getters.getPrejudice("anarchists") }}</h2> -->
+					<!-- <h2 class="ml-5">{{ this.$store.getters.getPrejudice(this.$route.params.card).Prejudice }}</h2> -->
+					<h2 class="ml-5">{{ this.$store.commit("showCardIntroFromURL",this.$route.params.card ) }}</h2>
 				</div>
 			</div>
 		</div>
@@ -15,8 +18,8 @@
 				<h3 class="">
 					Answer
 				</h3>
-					<p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }} …<a data-modal='modal-1'
-							class='md-trigger further-reading' @click="showModal">+</a></p>
+					<!-- <p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }} …<a data-modal='modal-1'
+							class='md-trigger further-reading' @click="showModal">+</a></p> -->
 					<button class="closeCardIntro">All cards</button>
 					<button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
 					<button type="button" class="overlay-fullscreen-close">Close</button>
@@ -31,6 +34,8 @@
 		name: "CardIntro",
 		mounted: function () {
 			this.handleCardIntro();
+			console.log("konijn");
+			console.log(this.$store.state);
 			// textFit(document.getElementsByClassName("title-on-card"), {
 			// 	alignVert: true,
 			// 	multiLine: true

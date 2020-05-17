@@ -2,7 +2,7 @@ import Vue from "vue";
 // import axios from "axios";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store/index";
+import store from "./store/store";
 import * as d3 from 'd3-dsv';
 import './assets/js/TweenMax.min';
 import './assets/js/menu_sideslide';

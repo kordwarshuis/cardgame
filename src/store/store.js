@@ -23,16 +23,16 @@ export default new Vuex.Store({
         } 
       }
     },
-    getcurrentPrejudice: (state) => {
-      // for (let i = 0; i < state.theJSON.length; i++) {
-      //   if (state.theJSON[i]["Unique URL"] === id) {
-      //     return state.theJSON[i];
-      //   } 
-      // }
-        return state.currentPrejudice;
-
-
-    }
+    
+    // not used:
+    // getcurrentPrejudice: (state) => {
+    //   // for (let i = 0; i < state.theJSON.length; i++) {
+    //   //   if (state.theJSON[i]["Unique URL"] === id) {
+    //   //     return state.theJSON[i];
+    //   //   } 
+    //   // }
+    //     return state.currentPrejudice;
+    // }
   },
   mutations: {
     changePrejudice (state, newPrejudice) {
@@ -46,8 +46,20 @@ export default new Vuex.Store({
     },
     changeIsJSONloaded (state, theBoolean) {
       state.isJSONloaded = theBoolean;
+    },
+    showCardIntroFromURL (itemName) {
+      console.log('haas');
+      this.commit("changeCardIntroState", "open");
+      this.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
+      // this.commit("changePrejudice", this.getters.getPrejudice(itemName));
+console.log("woeha" + this.state.theJSON);
     }
+
   },
-  actions: {},
+  actions: {
+
+
+
+  },
   modules: {}
 });

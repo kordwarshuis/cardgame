@@ -6,7 +6,7 @@
       <Cards msg="Bitcoin Card Game" />
     </div>
     <CardIntro />
-    <CardFull />
+    <!-- <CardFull /> -->
   </div>
 </template>
 

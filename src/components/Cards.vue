@@ -36,16 +36,16 @@
     import axios from "axios";
     import NewsTicker from "@/components/NewsTicker.vue";
     import Search from "@/components/Search.vue";
-    import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
+    // import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
     // import VueFuse from "vue-fuse";
 
     // import { bus } from '../main';
     export default {
         name: "Index",
         components: {
-            Search,
-            NewsTicker,
-            BitcoinAnimation
+            Search
+            ,NewsTicker
+            // ,BitcoinAnimation
             // VueFuse
         },
         props: {
@@ -114,7 +114,16 @@
 
                             // if there is a specific url
                         } else if (this.$route.params.card !== "") {
-                            this.showCardIntroFromURL(this.$route.params.card);
+
+
+                            // this works
+                            // this.showCardIntroFromURL(this.$route.params.card);
+                            
+                            // this does not work
+                            this.$store.commit("showCardIntroFromURL", this.$route.params.card);
+                            
+                            
+                            // var currentPrejudice = this.$store.getters.getPrejudice(event.target.closest("a").dataset.id);
                         }
 
                         // return d3.csvParse(response.data);
@@ -234,25 +243,25 @@
                 // https://stackoverflow.com/a/58747480
                 this.$router.push("/card/" + currentPrejudice["Unique URL"]).catch(err => {});
             },
-            showCardIntroFromURL(itemName) {
-                this.$store.commit("changeCardIntroState", "open");
-                this.$store.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
-                this.$store.commit("changePrejudice", this.$store.getters.getPrejudice(itemName));
+            // showCardIntroFromURL(itemName) {
+            //     this.$store.commit("changeCardIntroState", "open");
+            //     this.$store.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
+            //     this.$store.commit("changePrejudice", this.$store.getters.getPrejudice(itemName));
                 
                 
-                // console.log('itemName["Quiz"]: ', this.$store.getters.getPrejudice(itemName)["Quiz"]);
+            //     // console.log('itemName["Quiz"]: ', this.$store.getters.getPrejudice(itemName)["Quiz"]);
 
-                // no need to set URL
-                // this.$router.push(itemName["Unique URL"]);
-                // this.$router.push(this.$route.params.card);
-                // setTimeout(function () {
-                //   textFit(document.getElementsByClassName("title-on-card"), {
-                //     alignVert: true,
-                //     multiLine: true
-                //   });
-                // }, 1000);
+            //     // no need to set URL
+            //     // this.$router.push(itemName["Unique URL"]);
+            //     // this.$router.push(this.$route.params.card);
+            //     // setTimeout(function () {
+            //     //   textFit(document.getElementsByClassName("title-on-card"), {
+            //     //     alignVert: true,
+            //     //     multiLine: true
+            //     //   });
+            //     // }, 1000);
 
-            },
+            // },
             prepareQuiz(quiz) {
                 var temp = [];
 
