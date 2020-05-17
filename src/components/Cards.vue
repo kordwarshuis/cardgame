@@ -73,8 +73,8 @@
         // https://stackoverflow.com/a/44347195
         watch: {
             isJSONloaded: function() {
-                console.log("JSON ready");
-                console.log(this.$store.state.isJSONloaded);
+                // console.log("JSON ready");
+                // console.log(this.$store.state.isJSONloaded);
             }
         },
         methods: {
@@ -228,27 +228,22 @@
 
                 // returns object with all entries of one prejudice
                 var currentPrejudice = this.$store.getters.getPrejudice(event.target.closest("a").dataset.id);
-                // console.log('currentPrejudice: ', currentPrejudice);
-                // currentPrejudice["Quiz"]
-                // console.log('currentPrejudice["Quiz"]: ', currentPrejudice["Quiz"]);
                 this.$store.commit("changePrejudice", currentPrejudice);
 
                 // set URl to the item that was clicked
                 // https://stackoverflow.com/a/58747480
                 this.$router.push("/card/" + currentPrejudice["Unique URL"]).catch(err => {});
-                // this.$router.push(this.$route.params.card);
             },
             showCardIntroFromURL(itemName) {
                 this.$store.commit("changeCardIntroState", "open");
                 this.$store.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
-                var currentPrejudice = itemName;
-                // this.$store.commit("changePrejudice", itemName);
                 this.$store.commit("changePrejudice", this.$store.getters.getPrejudice(itemName));
-                // console.log('currentPrejudice["Quiz"]: ', this.$store.getters.getPrejudice(currentPrejudice)["Quiz"]);
-                // console.log("vegetable");
+                
+                
+                // console.log('itemName["Quiz"]: ', this.$store.getters.getPrejudice(itemName)["Quiz"]);
 
                 // no need to set URL
-                // this.$router.push(currentPrejudice["Unique URL"]);
+                // this.$router.push(itemName["Unique URL"]);
                 // this.$router.push(this.$route.params.card);
                 // setTimeout(function () {
                 //   textFit(document.getElementsByClassName("title-on-card"), {

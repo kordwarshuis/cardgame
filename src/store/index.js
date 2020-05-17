@@ -37,7 +37,6 @@ export default new Vuex.Store({
   mutations: {
     changePrejudice (state, newPrejudice) {
       state.currentPrejudice = newPrejudice;
-      console.log("newPrejudice vanuit the store");
     },
     changeCardIntroState (state, newCardIntroState) {
       state.cardIntroState = newCardIntroState;

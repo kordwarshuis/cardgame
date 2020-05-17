@@ -196,6 +196,7 @@ function codrops() {
                     x: '0%',
                     onComplete: () => {
                         // hide scroll
+                        //TODO: remove?
                         document.body.classList.add('preview-open');
                         // show preview
                         this.revealItem(contentItem);
