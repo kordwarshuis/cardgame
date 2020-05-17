@@ -1,121 +1,59 @@
 <template>
-  <div class="searchContainer animated threeTimes">
-    <div>
-      <button class="changeGridView" title="Change view"><span class="visuallyhidden">Change view</span></button>
-      <input value="search" type="text" id="search" name="search" required minlength="2" maxlength="100" size="30">
+  <div class="md:w-1/2 center bg-teal-light min-h-screen overflow-scroll">
+    <div class="flex flex-col pt-8">
+      <VueFuse placeholder="Search Books of the Bible" event-name="results" :list="books"
+        :keys="['Prejudice', 'Prejudice Elaborate']" class="w-64 text-center h-8 border rounded-lg center" />
+
+    </div>
+    <div v-for="book in results" :key="book.Prejudice" class="">
+      <div>
+        <a :href=" '/#/card/' +   book['Unique URL']">
+          <h3 class="w-1/4">{{ book.Prejudice }}</h3>
+          <p class="ml-4 w-3/4">{{ book['Prejudice Elaborate'] }}</p>
+      </a>
+      </div>
     </div>
   </div>
-
 </template>
 
 <script>
-  import { language } from "@/assets/js/Language.js";
+  import {
+    language
+  } from "@/assets/js/Language.js";
+  import VueFuse from "vue-fuse";
+
   export default {
     name: "Search",
-    mounted: function() {
-      this.search();
+    components: {
+      VueFuse
     },
-    methods: {
-      search() {
-        const self = this;
-        var dataCardsSelection = [];
-        var domAllPrejudices = document.querySelectorAll(".grid__item .box");
-        // console.log('domAllPrejudices: ', domAllPrejudices);
-        var domChangeGridView = document.querySelector(".changeGridView");
-
-
-        // https://schier.co/blog/2014/12/08/wait-for-user-to-stop-typing-using-javascript.html
-        var domTextInput = document.querySelector("#search");
-        var domBody = document.querySelector("body");
-
-        // Init a timeout variable to be used below
-        var timeout = null;
-// console.log('this: ', this);
-        // setInputValue: () => {
-        function setInputValue() {
-          var cat;
-          //if there is no category in url
-        // console.log(t.$store.state.activeCategory);
-
-          if (self.$store.state.activeCategory === "All") {
-            // the text for 'all categories'
-            cat = language.all;
-          } else {
-            cat = self.$store.state.activeCategory;
-          }
-          domTextInput.value = language.searchFieldText + " in category " + cat;
-          domTextInput.value = language.searchFieldText;
+    data() {
+      return {
+        results: [],
+        books: []
+      }
+    },
+    computed: {
+      isJSONloaded() {
+        return this.$store.state.isJSONloaded;
+      }
+    },
+    // https://stackoverflow.com/a/44347195
+    watch: {
+      isJSONloaded: function () {
+        console.log("JSON ready");
+        console.log(this.$store.state.isJSONloaded);
+        if (this.$store.state.isJSONloaded === true) {
+          this.books = this.$store.state.theJSON;
         }
-
-        function showResults(searchString) {
-          domBody.classList.add("condensedLayout");
-
-          showAllEntries();
-
-          if (searchString !== "") { // als er iets in het zoekveld staat
-            for (var i = 0; i < domAllPrejudices.length; i++) {
-              // first hide all
-              domAllPrejudices[i].classList.add("hideSearchResult");
-
-              // if searchstring is found then remove class that hides result
-              if (
-                dataCardsSelection[i].Prejudice.toLowerCase().indexOf(searchString.toLowerCase()) > -1 ||
-                dataCardsSelection[i]["Prejudice Elaborate"].toLowerCase().indexOf(searchString.toLowerCase()) > -1
-              ) {
-                domAllPrejudices[i].classList.remove("hideSearchResult");
-              }
-            }
-          } else { // als er niks (meer) in het zoekveld staat moet alles gewoon weer getoond worden en de originele lay out weer getoond
-
-            showAllEntries();
-            domBody.classList.remove("condensedLayout");
-          }
-        }
-
-        function showAllEntries() {
-          for (var i = 0; i < domAllPrejudices.length; i++) {
-            domAllPrejudices[i].classList.remove("hideSearchResult");
-          }
-        }
-
-        function undoSearchResults() {
-          showAllEntries();
-          setInputValue();
-        }
-
-        domTextInput.addEventListener("click", function () {
-          undoSearchResults();
-          this.value = "";
-        }, false);
-
-        // Listen for keystroke events
-        domTextInput.addEventListener("keyup", function () {
-          // textInput.onchange = function (e) {
-          // Clear the timeout if it has already been set.
-          // This will prevent the previous task from executing
-          // if it has been less than <MILLISECONDS>
-          clearTimeout(timeout);
-
-          // Make a new timeout set to go off in 800ms
-          timeout = setTimeout(function () {
-            showResults(domTextInput.value);
-          }, 500);
-        }, false);
-
-
-        // toggle the grid lay out
-        domChangeGridView.addEventListener("click", function () {
-          domBody.classList.toggle("condensedLayout");
-        }, false);
-
-        setInputValue();
-      } // search
-
-
-    }
-
-
-
+      }
+    },
+    mounted: function () {
+      this.$on('results', results => {
+        this.results = results
+      })
+    },
+    created() {}
   };
 </script>
 

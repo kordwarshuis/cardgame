@@ -9,6 +9,7 @@ export default new Vuex.Store({
     cardIntroState: "",
     cardOverviewPageState: "",
     theJSON: null,
+    isJSONloaded: false,
     categories: [],
     activeCategory: "All",
     // currentTitle: "–––",
@@ -43,6 +44,9 @@ export default new Vuex.Store({
     },
     changeCardOverviewPageState (state, newCardOverviewPageState) {
       state.cardOverviewPageState = newCardOverviewPageState;
+    },
+    changeIsJSONloaded (state, theBoolean) {
+      state.isJSONloaded = theBoolean;
     }
   },
   actions: {},

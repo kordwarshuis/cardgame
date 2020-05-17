@@ -12,7 +12,7 @@
         </p>
 
 
-        <Search2 />
+        <Search />
 
         <div class="grid">
             <!-- <transition name="fade"> -->
@@ -34,9 +34,8 @@
 <script>
     import * as d3 from "d3-dsv";
     import axios from "axios";
-    import Search from "@/components/Search.vue";
     import NewsTicker from "@/components/NewsTicker.vue";
-    import Search2 from "@/components/Search2.vue";
+    import Search from "@/components/Search.vue";
     import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
     // import VueFuse from "vue-fuse";
 
@@ -44,7 +43,7 @@
     export default {
         name: "Index",
         components: {
-            Search2,
+            Search,
             NewsTicker,
             BitcoinAnimation
             // VueFuse
@@ -62,14 +61,21 @@
                 fuseSearchKeys: ["Prejudice"]
             }
         },
-        created() {
-            this.$on("results", results => {
-                this.results = results;
-            });
-        },
         mounted: function () {
             this.fetchData();
             this.categories = this.$store.state.categories;
+        },
+        computed: {
+            isJSONloaded() {
+                return this.$store.state.isJSONloaded;
+            }
+        },
+        // https://stackoverflow.com/a/44347195
+        watch: {
+            isJSONloaded: function() {
+                console.log("JSON ready");
+                console.log(this.$store.state.isJSONloaded);
+            }
         },
         methods: {
             fetchData() {
@@ -96,7 +102,7 @@
                         for (let i = 0; i < responseData.length; i++) {
                             responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
                         }
-
+                        this.$store.commit("changeIsJSONloaded", true);
                         this.$store.state.theJSON = responseData;
                         this.createCategoryList(this.$store.state.theJSON);
 
