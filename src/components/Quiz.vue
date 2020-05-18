@@ -4,18 +4,18 @@
 
     <form class="miniquiz miniquiz1">
       <fieldset>
-        <!-- TODO: this.$store.state.currentPrejudice["Quiz"] does not exist here, why? -->
-        <legend>{{this.$store.state.currentPrejudice["Quiz"][0].question}}</legend>
+        <!-- TODO: this.$store.state.currentCard["Quiz"] does not exist here, why? -->
+        <legend>{{this.$store.state.currentCard["Quiz"][0].question}}</legend>
 
-        <label v-for="question in this.$store.state.currentPrejudice['Quiz'][1].answers" v-bind:key="question">{{ question }}<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>
+        <label v-for="question in this.$store.state.currentCard['Quiz'][1].answers" v-bind:key="question">{{ question }}<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>
 
         <!-- <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>
         <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag"></label>
         <label>xxx<input type="radio" class="miniQuizVraag" name="miniQuizVraag" value="correct"></label> -->
       </fieldset>
     </form>
-    <!-- <div class="quizExplanation displayNone">{{ this.$store.state.currentPrejudice["Quiz"][2].explanation }}</div> -->
-    <div class="quizExplanation ">{{ this.$store.state.currentPrejudice["Quiz"][2].explanation }}</div>
+    <!-- <div class="quizExplanation displayNone">{{ this.$store.state.currentCard["Quiz"][2].explanation }}</div> -->
+    <div class="quizExplanation ">{{ this.$store.state.currentCard["Quiz"][2].explanation }}</div>
   </div>
 </template>
 

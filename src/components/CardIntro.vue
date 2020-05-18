@@ -1,13 +1,10 @@
 <template>
 <!-- open/close -->
-<div class="row pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0 overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cardIntroState">
+<div class="row pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0 overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
     <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
         <div style="border: none;" class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
             <div class="card-body title-on-card center pr-0 pl-0 pt-0 pb-0 mr-1 ml-1 mt-5 mb-5">
-                <h2 class="ml-5">hallo {{ this.$store.state.currentPrejudice.Prejudice }}</h2>
-                <!-- <h2 class="ml-5">{{ this.$store.getters.getPrejudice("anarchists") }}</h2> -->
-                <!-- <h2 class="ml-5">{{ this.$store.getters.getPrejudice(this.$route.params.card).Prejudice }}</h2> -->
-                <!-- <h2 class="ml-5">{{ this.$store.commit("showCardIntroFromURL",this.$route.params.card ) }}</h2> -->
+                <h2 class="ml-5">{{ this.$store.state.currentCard.Prejudice }}</h2>
             </div>
         </div>
     </div>
@@ -18,9 +15,7 @@
                 <h3 class="">
                     Answer
                 </h3>
-                <!-- <p>{{ this.$store.state.currentPrejudice["Prejudice Elaborate"] }} …<a data-modal='modal-1'
-
-class='md-trigger further-reading' @click="showModal">+</a></p> -->
+                <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }} …<a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a></p>
                 <button class="closeCardIntro">All cards</button>
                 <button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
                 <button type="button" class="overlay-fullscreen-close">Close</button>
@@ -44,12 +39,9 @@ export default {
     },
 
     methods: {
-        hideCardIntro() {
-            //TODO: is this the way to change a store value? Seems not.
-            // this.$store.state.cardIntroState = "";
-            // trying this:
-            this.$store.commit("changeCardIntroState", "");
-        },
+        // hideCardIntro() {
+        //     this.$store.commit("changeCssClassCardIntroState", "");
+        // },
         handleCardIntro() {
             var that = this;
             var container = document.querySelector('div.container'),
@@ -68,15 +60,18 @@ export default {
                 support = {
                     transitions: ModernizrForCardIntro.csstransitions
                 };
-
+            // TODO: rename, since it is not a toggle anymore
             function toggleOverlayFullscreen() {
                 if (overlayFullscreen.classList.contains('open')) {
                     // overlayFullscreen.classList.remove('open');
                     // container.classList.remove('overlay-fullscreen-open');
                     overlayFullscreen.classList.add('close');
 
-                    that.$store.commit("changeCardIntroState", "");
-                    that.$store.commit("changeCardOverviewPageState", "");
+                    that.$store.commit("changeCssClassCardIntroState", "");
+                    that.$store.commit("changeCssClassCardOverviewState", "");
+            console.log("rups");
+                                that.$router.push("/");
+
 
                     var onEndTransitionFn = function (ev) {
                         if (support.transitions) {
@@ -100,9 +95,10 @@ export default {
             closeBttn.addEventListener('click', toggleOverlayFullscreen);
             closeBttn2.addEventListener('click', toggleOverlayFullscreen);
         },
-        showModal(event) {
+        showCardFull(event) {
             //TODO: why is this working, should mutations be used?
-            this.$store.state.modalState = " md-show";
+            this.$store.state.cssClassCardFullState = " md-show";
+            // this.$store.commit("changeCssClassCardIntroState", " md-show");
         }
     }
 };

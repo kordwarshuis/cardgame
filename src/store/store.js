@@ -1,68 +1,110 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    modalState: "popup md-modal md-effect-1",
-    cardIntroState: "",
-    cardOverviewPageState: "",
+    cssClassCardOverviewState: "",
+    cssClassCardIntroState: "",
+    cssClassCardFullState: "popup md-modal md-effect-1",
     theJSON: null,
-    isJSONloaded: false,
-    categories: [],
+    categories: [], // [{name: xxx, numberOfItems: xxx}]
     activeCategory: "All",
-    // currentTitle: "–––",
-    currentPrejudice: {}
+    currentCard: {},
+    allCardsInChosenCategory: []
   },
   getters: {
-    getPrejudice: (state) => (id) => {
+    getCard: (state) => (id) => {
       for (let i = 0; i < state.theJSON.length; i++) {
         if (state.theJSON[i]["Unique URL"] === id) {
           return state.theJSON[i];
-        } 
+        }
       }
     },
-    
-    // not used:
-    // getcurrentPrejudice: (state) => {
-    //   // for (let i = 0; i < state.theJSON.length; i++) {
-    //   //   if (state.theJSON[i]["Unique URL"] === id) {
-    //   //     return state.theJSON[i];
-    //   //   } 
-    //   // }
-    //     return state.currentPrejudice;
-    // }
   },
   mutations: {
-    changePrejudice (state, newPrejudice) {
-      state.currentPrejudice = newPrejudice;
+    changeCard(state, newCard) {
+      state.currentCard = newCard;
     },
-    changeCardIntroState (state, newCardIntroState) {
-      state.cardIntroState = newCardIntroState;
+    changeCssClassCardIntroState(state, newCardIntroState) {
+      state.cssClassCardIntroState = newCardIntroState;
     },
-    changeCardOverviewPageState (state, newCardOverviewPageState) {
-      state.cardOverviewPageState = newCardOverviewPageState;
+    changeCssClassCardOverviewState(state, newCardOverviewPageState) {
+      state.cssClassCardOverviewState = newCardOverviewPageState;
     },
-    changeIsJSONloaded (state, theBoolean) {
-      state.isJSONloaded = theBoolean;
+    showCardIntroFromURL(state, uniqueIdFromUrl) {
+      // deal with CSS
+      this.commit("changeCssClassCardIntroState", "open");
+      this.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
+
+      // returns object with all entries of one prejudice
+      var currentCard = this.getters.getCard(uniqueIdFromUrl);
+      this.commit("changeCard", currentCard);
     },
-    showCardIntroFromURL (itemName) {
-      console.log('haas');
-      this.commit("changeCardIntroState", "open");
-      this.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
-      // this.commit("changePrejudice", this.getters.getPrejudice(itemName));
-console.log("woeha" + this.state.theJSON);
-this.state.currentPrejudice = itemName;
-// console.log('itemName: ', itemName);
-console.log('this.state.currentPrejudice: ', this.state.currentPrejudice);
+    showItemsInSelectedCategory(state, category) {
+      console.log('category: ', category);
+
+      var allCardsInChosenCategory = [];
+      // first make the selected menu item stand out:
+      this.commit("setActiveMenuItem", category);
+
+      // set active category name (TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the first <a>)
+      if (category === undefined) {
+        this.state.activeCategory = "All";
+      } else {
+        this.state.activeCategory = category.name;
+      }
+
+      function makeArray(a, b) {
+        a.push({
+          "id": b["Unique URL"],
+          "prejudice": b.Prejudice,
+          "category": b.Cat,
+          "prejudiceElaborate": b["Prejudice Elaborate"]
+          // ,
+          // "numberOfItems": 
+        });
+      }
+
+      // category === undefined runs when function is called without argument, which happens on the ajax callback. Should be the first, and not after the "||"
+      // here we create the info for the cards per category page
+      if (category === undefined) {
+        for (let i = 0; i < this.state.theJSON.length; i++) {
+          // console.log('this: ', this);
+          makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
+        }
+      } else {
+        for (let i = 0; i < this.state.theJSON.length; i++) {
+          if (this.state.theJSON[i].Cat === category.name) {
+            makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
+          }
+        }
+      }
+
+      // copy the final array to the store
+      this.state.allCardsInChosenCategory = allCardsInChosenCategory;
+
+      setTimeout(codrops, 1);
+    },
+    setActiveMenuItem(item) {
+      // console.log('item: ', item);
+      var allMenuItems = document.querySelectorAll(".categoryLinks a");
+
+      // first remove class .active from all elements
+      for (let i = 0; i < allMenuItems.length; i++) {
+        allMenuItems[i].classList.remove("active");
+      }
+
+      for (let i = 0; i < this.state.categories.length; i++) {
+        if (item === undefined) {
+          document.querySelector(".categoryLinks a[data-category='All']").classList.add("active");
+        } else
+        if (item.name === this.state.categories[i].name) {
+          document.querySelector(".categoryLinks a[data-category='" + this.state.categories[i].name + "']").classList.add("active");
+        }
+      }
     }
-
   },
-  actions: {
-
-
-
-  },
+  actions: {},
   modules: {}
 });
