@@ -10,7 +10,7 @@
             ({{ category.numberOfItems }})</a>
     </p>
 
-    <!-- <Search /> -->
+    <Search />
 
     <div class="grid">
         <!-- <transition name="fade"> -->

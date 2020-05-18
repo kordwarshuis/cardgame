@@ -11,9 +11,7 @@ function codrops() {
  * http://www.codrops.com
  */
 
-    console.log("kkkkk");
     {
-        console.log(":lll");
         const lineEq = (y2, y1, x2, x1, currentVal) => {
             // y = mx + b 
             var m = (y2 - y1) / (x2 - x1), b = y1 - m * x1;
@@ -365,10 +363,4 @@ function codrops() {
     
 
 }
-codrops();
-// document.addEventListener("load", codrops, false);
-// window.addEventListener("load", function(event) {
-//     setTimeout(codrops, 5000);
-//     console.log("All resources finished loading!");
-//   });
-  
+// codrops();  

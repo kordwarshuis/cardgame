@@ -1,7 +1,7 @@
 <template>
 <div class="md:w-1/2 center bg-teal-light min-h-screen overflow-scroll">
     <div class="flex flex-col pt-8">
-        <VueFuse placeholder="Search Books of the Bible" event-name="results" :list="books" :keys="['Prejudice', 'Prejudice Elaborate']" class="w-64 text-center h-8 border rounded-lg center" />
+        <VueFuse placeholder="Search" event-name="results" :list="books" :keys="['Prejudice', 'Prejudice Elaborate']" class="w-64 text-center h-8 border rounded-lg center" />
 
     </div>
     <div v-for="book in results" :key="book.Prejudice" @click="createSearchResultRoute(book.Prejudice)" class="">
@@ -33,13 +33,14 @@ export default {
         }
     },
     mounted: function () {
+        this.books = this.$store.state.theJSON;
         this.$on('results', results => {
             this.results = results
         })
     },
     methods: {
         createSearchResultRoute(itemName) {
-            console.log("asperge");
+          console.log("asperge");
             // this.$router.push("/card/" + currentCard["Unique URL"]).catch(err => {});
             // this.$router.push("/card/" + itemName);
             // this.$store.commit("changeCssClassCardIntroState", "open");
@@ -47,13 +48,10 @@ export default {
             // this.$store.commit("changeCard", this.$store.getters.getCard(itemName));
 
         }
-    },
-    created() {}
+    }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-
 <style scoped lang="scss">
-
 </style>

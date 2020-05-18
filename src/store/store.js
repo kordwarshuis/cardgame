@@ -42,8 +42,6 @@ export default new Vuex.Store({
       this.commit("changeCard", currentCard);
     },
     showItemsInSelectedCategory(state, category) {
-      console.log('category: ', category);
-
       var allCardsInChosenCategory = [];
       // first make the selected menu item stand out:
       this.commit("setActiveMenuItem", category);
@@ -70,7 +68,6 @@ export default new Vuex.Store({
       // here we create the info for the cards per category page
       if (category === undefined) {
         for (let i = 0; i < this.state.theJSON.length; i++) {
-          // console.log('this: ', this);
           makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
         }
       } else {
@@ -87,7 +84,6 @@ export default new Vuex.Store({
       setTimeout(codrops, 1);
     },
     setActiveMenuItem(item) {
-      // console.log('item: ', item);
       var allMenuItems = document.querySelectorAll(".categoryLinks a");
 
       // first remove class .active from all elements

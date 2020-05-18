@@ -30,8 +30,6 @@ export default {
     name: "CardIntro",
     mounted: function () {
         this.handleCardIntro();
-        console.log("konijn");
-        console.log(this.$store.state);
         // textFit(document.getElementsByClassName("title-on-card"), {
         // 	alignVert: true,
         // 	multiLine: true
@@ -69,9 +67,7 @@ export default {
 
                     that.$store.commit("changeCssClassCardIntroState", "");
                     that.$store.commit("changeCssClassCardOverviewState", "");
-            console.log("rups");
-                                that.$router.push("/");
-
+                    that.$router.push("/");
 
                     var onEndTransitionFn = function (ev) {
                         if (support.transitions) {
