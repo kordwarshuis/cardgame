@@ -53,6 +53,9 @@ export default new Vuex.Store({
       this.commit("changeCardOverviewPageState", "overlay-fullscreen-open");
       // this.commit("changePrejudice", this.getters.getPrejudice(itemName));
 console.log("woeha" + this.state.theJSON);
+this.state.currentPrejudice = itemName;
+// console.log('itemName: ', itemName);
+console.log('this.state.currentPrejudice: ', this.state.currentPrejudice);
     }
 
   },

@@ -36,6 +36,7 @@
     import axios from "axios";
     import NewsTicker from "@/components/NewsTicker.vue";
     import Search from "@/components/Search.vue";
+    
     // import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
     // import VueFuse from "vue-fuse";
 
