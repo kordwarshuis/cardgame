@@ -30,13 +30,8 @@ export default {
     name: "CardIntro",
     mounted: function () {
         this.handleCardIntro();
-        console.log("mounted");
     },
-
     methods: {
-        // hideCardIntro() {
-        //     this.$store.commit("changeCssClassCardIntroState", "");
-        // },
         handleCardIntro() {
             var that = this;
             var container = document.querySelector('div.container'),
@@ -208,21 +203,27 @@ export default {
 }
 
 .title-on-card {
-    margin: 0 1em 0 0 !important;
-    padding: 1em 1em 0 3.5em;
-    // border: 2px solid red;
-    // font-size: 1.7em;
-    // font-size: calc(1vw + 1vh + .5vmin);
+    // margin: 0 1em 0 0 !important;
+    margin: 10% 10% 0 10% !important;
 
+    // https://stackoverflow.com/a/48830291
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
+    padding: 5% 5% 0 14%;
     background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center !important;
     // background-size: 100% auto;
     background-size: contain !important;
 
-
-
-   	// height: 71% !important;
-	// max-width: 600px;
-	// width: 100% !important;
+    // height: 71% !important;
+    // max-width: 600px;
+    // width: 100% !important;
 }
 
 .title-on-card h2 {

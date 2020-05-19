@@ -10,7 +10,7 @@
             ({{ category.numberOfItems }})</a>
     </p>
 
-    <!-- <Search /> -->
+    <Search />
 
     <div class="grid">
         <!-- <transition name="fade"> -->
@@ -47,7 +47,7 @@ export default {
     data() {
         return {
             subtext: "Help us get it right and send a card",
-            results: [],
+            // results: [],
             fuseSearchKeys: ["Prejudice"]
         }
     },
@@ -63,17 +63,6 @@ export default {
             // returns object with all entries of one prejudice
             var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
             this.$store.commit("changeCard", currentCard);
-
-            // textFit(document.getElementsByClassName("title-on-card"), {
-        	//     alignVert: true,
-        	//     multiLine: true
-            // });
-
-            // textFit(document.querySelector(".title-on-card"), {
-        	//     alignVert: true,
-        	//     multiLine: true
-            // });
-
 
             // set URl to the item that was clicked
             // catch error: https://stackoverflow.com/a/58747480
