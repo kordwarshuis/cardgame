@@ -54,10 +54,11 @@
   </script>
   <!-- END BOOTSTRAP -->
 
-  <script src="js/ModernizrForCardIntro.js"></script>
-  <script src="js/textFit.min.js"></script>
-  <script src="js/clipboard.js/v2.0.0/clipboard.min.js"></script>
-  <script src="js/helpers.js"></script>
+  <script src="<%= BASE_URL %>js/ModernizrForCardIntro.js"></script>
+  <!-- <script src="js/textFit.min.js"></script> -->
+  <script src="<%= BASE_URL %>js/clipboard.js/v2.0.0/clipboard.min.js"></script>
+  <script src="<%= BASE_URL %>js/constants.js"></script>
+  <script src="<%= BASE_URL %>js/helpers.js"></script>
 </head>
 
 <body class="btc">
@@ -67,10 +68,10 @@
   </noscript>
 
   <div id="app"></div>
-  <div style="animation-duration: 70s;" class="news-ticker">
+  <!-- <div style="animation-duration: 70s;" class="news-ticker">
     <p>
-      <!-- <img style="height: 50px;margin-left:500px" src="@/assets/img/animated-gif/mens18.gif" alt=""><span
-        style="margin-right: 3000px;">“Bitcoin is for criminals”</span> -->
+      <img style="height: 50px;margin-left:500px" src="@/assets/img/animated-gif/mens18.gif" alt=""><span
+        style="margin-right: 3000px;">“Bitcoin is for criminals”</span>
       <img style="height: 50px;margin-left:500px" src="./src/assets/img/animated-gif/mens18.gif" alt=""><span
         style="margin-right: 3000px;">“Bitcoin is for criminals”</span>
       <img style="height: 50px; transform: scaleX(-1);" src="@/assets/img/animated-gif/mens71.gif" alt=""><span
@@ -86,8 +87,8 @@
       <img style="height: 50px;" src="@/assets/img/animated-gif/birds11.gif" alt=""><span
         style="margin-right: 3000px;">“Bitcoin is a ponzi scheme.”</span>
     </p>
-  </div>
-  <script src="js/rlemon-Notifier.js-5284904/Notifier.js"></script>
+  </div> -->
+  <script src="<%= BASE_URL %>js/rlemon-Notifier.js-5284904/Notifier.js"></script>
   <script>
     // copy URL into clipboard via click on button
     var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {

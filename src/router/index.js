@@ -6,17 +6,16 @@ import TwitterRealTime from "../views/TwitterRealTime.vue";
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     // path: "/:card",
-    name: "Home",
+    // name: "Home",
     component: Home
   },
   {
     // path: "/",
     path: "/card/:card",
-    name: "Home",
+    // name: "Home2",
     component: Home
   },
   {
@@ -27,7 +26,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     // component: About
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+      import( /* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
     path: "/twitter-real-time",
@@ -37,11 +36,15 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     // component: TwitterRealTime    
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/TwitterRealTime.vue")
+      import( /* webpackChunkName: "about" */ "../views/TwitterRealTime.vue")
   }
 ];
 
 const router = new VueRouter({
+  base: "/",
+  // base: "/vue-cardgame/",
+  // mode: 'hash', // back button not work, https://github.com/vuejs/vue-router/issues/853 ??
+  mode: 'history', // it's work
   routes
 });
 

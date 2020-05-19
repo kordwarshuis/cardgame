@@ -37,44 +37,50 @@ export default {
     // https://stackoverflow.com/a/44347195
     methods: {
         fetchData() {
-            return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
-                .then(response => {
-                    var responseData = d3.csvParse(response.data);
+            // pnly fetch data 
+            if (this.$store.state.dataFetched === false) {
+                return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
+                    .then(response => {
+                        var responseData = d3.csvParse(response.data);
 
-                    // cleaning
-                    for (let i = 0; i < responseData.length; i++) {
-                        for (var k in responseData[i]) {
-                            if (responseData[i].hasOwnProperty(k)) {
-                                // console.log("Key is " + k + ", value is: " + dataLayer1[i][k]);
-                                // the csv source from google introduces \' so we remove the backslash:
-                                responseData[i][k] = responseData[i][k].replace(/\\'/g, "‘");
-                                //experimental:
-                                responseData[i][k] = responseData[i][k].replace(/'/g, "‘");
-                                // responseData[i][k] = responseData[i][k].replace(/(\n\n)/gm, "</p><p>");
+                        // cleaning
+                        for (let i = 0; i < responseData.length; i++) {
+                            for (var k in responseData[i]) {
+                                if (responseData[i].hasOwnProperty(k)) {
+                                    // console.log("Key is " + k + ", value is: " + dataLayer1[i][k]);
+                                    // the csv source from google introduces \' so we remove the backslash:
+                                    responseData[i][k] = responseData[i][k].replace(/\\'/g, "‘");
+                                    //experimental:
+                                    responseData[i][k] = responseData[i][k].replace(/'/g, "‘");
+                                    // responseData[i][k] = responseData[i][k].replace(/(\n\n)/gm, "</p><p>");
+                                }
                             }
                         }
-                    }
-                    // format quiz data
-                    for (let i = 0; i < responseData.length; i++) {
-                        responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
-                    }
+                        // format quiz data
+                        for (let i = 0; i < responseData.length; i++) {
+                            responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
+                        }
 
-                    // save data to store, probably not necessary, can be done via data and props
-                    this.$store.state.theJSON = responseData;
-                    this.createCategoriesArray(this.$store.state.theJSON);
+                        // save data to store, probably not necessary, can be done via data and props
+                        this.$store.state.theJSON = responseData;
+                        this.createCategoriesArray(this.$store.state.theJSON);
 
-                    // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
-                    this.$store.commit("showItemsInSelectedCategory");
+                        // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
+                        this.$store.commit("showItemsInSelectedCategory");
 
-                    // deal with URL. We now have an overview of all the cards. Should we show a card intro? If no card param then stop…
-                    if (this.$route.params.card === undefined) {
-                        return;
+                        this.$store.state.dataFetched = true;
+                        // deal with URL. We now have an overview of all the cards. Should we show a card intro? If no card param then stop…
+                        if (this.$route.params.card === undefined) {
+                            return;
 
-                        // if there is a specific url / card param, the do following:
-                    } else if (this.$route.params.card !== "") {
-                        this.$store.commit("showCardIntroFromURL", this.$route.params.card);
-                    }
-                });
+                            // if there is a specific url / card param, the do following:
+                        } else if (this.$route.params.card !== "") {
+                            this.$store.commit("showCardIntroFromURL", this.$route.params.card);
+                        }
+
+                    });
+
+            }
         },
         prepareQuiz(quiz) {
             var temp = [];

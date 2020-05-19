@@ -11,7 +11,8 @@ export default new Vuex.Store({
     categories: [], // [{name: xxx, numberOfItems: xxx}]
     activeCategory: "All",
     currentCard: {},
-    allCardsInChosenCategory: []
+    allCardsInChosenCategory: [],
+    dataFetched: false,
   },
   getters: {
     getCard: (state) => (id) => {
