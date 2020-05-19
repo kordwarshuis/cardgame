@@ -64,6 +64,17 @@ export default {
             var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
             this.$store.commit("changeCard", currentCard);
 
+            // textFit(document.getElementsByClassName("title-on-card"), {
+        	//     alignVert: true,
+        	//     multiLine: true
+            // });
+
+            // textFit(document.querySelector(".title-on-card"), {
+        	//     alignVert: true,
+        	//     multiLine: true
+            // });
+
+
             // set URl to the item that was clicked
             // catch error: https://stackoverflow.com/a/58747480
             // this.$router.push("/card/" + currentCard["Unique URL"]).catch(err => {});

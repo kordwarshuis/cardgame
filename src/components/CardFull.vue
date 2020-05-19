@@ -54,12 +54,6 @@ export default {
         Video,
         Answer
     },
-
-    // data() {
-    //   return {
-    //     cssClassCardFullState: "popup md-modal md-effect-1"
-    //   }
-    // },
     data: function () {
         return {
             title: this.$store.state.currentTitle
@@ -119,8 +113,9 @@ perspective effects (not including the modals and the overlay).
     top: 50%;
     left: 50%;
     width: 50%;
+    width: 95%;
     max-width: 630px;
-    min-width: 320px;
+    // min-width: 320px;
     // height: auto;
     height: 100%;
     z-index: 2000;

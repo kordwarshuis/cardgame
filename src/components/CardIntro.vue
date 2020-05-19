@@ -3,8 +3,8 @@
 <div class="row pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0 overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
     <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
         <div style="border: none;" class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
-            <div class="card-body title-on-card center pr-0 pl-0 pt-0 pb-0 mr-1 ml-1 mt-5 mb-5">
-                <h2 class="ml-5">{{ this.$store.state.currentCard.Prejudice }}</h2>
+            <div class="card-body title-on-card center">
+                <h2 class="">{{ this.$store.state.currentCard.Prejudice }}</h2>
             </div>
         </div>
     </div>
@@ -30,10 +30,7 @@ export default {
     name: "CardIntro",
     mounted: function () {
         this.handleCardIntro();
-        // textFit(document.getElementsByClassName("title-on-card"), {
-        // 	alignVert: true,
-        // 	multiLine: true
-        // });
+        console.log("mounted");
     },
 
     methods: {
@@ -211,21 +208,28 @@ export default {
 }
 
 .title-on-card {
-    margin: 0 1em 0 0;
-    padding: 1em;
-    padding-left: 5em;
+    margin: 0 1em 0 0 !important;
+    padding: 1em 1em 0 3.5em;
+    // border: 2px solid red;
     // font-size: 1.7em;
     // font-size: calc(1vw + 1vh + .5vmin);
 
     background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center !important;
     // background-size: 100% auto;
     background-size: contain !important;
+
+
+
+   	// height: 71% !important;
+	// max-width: 600px;
+	// width: 100% !important;
 }
 
 .title-on-card h2 {
     font-size: 6vw;
     margin: 0;
     padding: 0;
+    // border: 1px solid red;
 
 }
 

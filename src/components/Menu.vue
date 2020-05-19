@@ -64,7 +64,7 @@
 
       </nav>
     </div>
-    <button class="close-button" id="close-button">Close Menu</button>
+    <!-- <button class="close-button" id="close-button">Close Menu</button> -->
     <button class="menu-button" id="open-button">Open Menu</button>
   </div>
 </template>
