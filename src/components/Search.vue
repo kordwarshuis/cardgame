@@ -7,8 +7,8 @@
 
     <div v-for="book in results" :key="book.Prejudice" @click="$store.commit('showCardIntroFromURL', book['Unique URL'])">
         <!-- <router-link :to="'/card/' + book['Unique URL']"> -->
-            <h3 style="cursor: pointer" class="w-1/4">{{ book.Prejudice }}</h3>
-            <p style="cursor: pointer" class="ml-4 w-3/4">{{ book['Prejudice Elaborate'] }}</p>
+        <h3 style="cursor: pointer" class="w-1/4">{{ book.Prejudice }}</h3>
+        <p style="cursor: pointer" class="ml-4 w-3/4">{{ book['Prejudice Elaborate'] }}</p>
         <!-- </router-link> -->
     </div>
 </div>
@@ -36,15 +36,6 @@ export default {
         })
     },
     methods: {
-        createSearchResultRoute(itemName) {
-            console.log("asperge");
-            // this.$router.push("/card/" + currentCard["Unique URL"]).catch(err => {});
-            // this.$router.push("/card/" + itemName);
-            // this.$store.commit("changeCssClassCardIntroState", "open");
-            // this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
-            // this.$store.commit("changeCard", this.$store.getters.getCard(itemName));
-
-        },
         showCardIntro(event) {
             // deal with CSS to open and close
             this.$store.commit("changeCssClassCardIntroState", "open");

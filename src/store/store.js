@@ -44,8 +44,6 @@ export default new Vuex.Store({
     },
     showItemsInSelectedCategory(state, category) {
       var allCardsInChosenCategory = [];
-      // first make the selected menu item stand out:
-      this.commit("setActiveMenuItem", category);
 
       // set active category name (TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the first <a>)
       if (category === undefined) {
@@ -53,6 +51,9 @@ export default new Vuex.Store({
       } else {
         this.state.activeCategory = category.name;
       }
+
+      // first make the selected menu item stand out:
+      this.commit("setActiveMenuItem", category);
 
       function makeArray(a, b) {
         a.push({
@@ -91,15 +92,17 @@ export default new Vuex.Store({
       for (let i = 0; i < allMenuItems.length; i++) {
         allMenuItems[i].classList.remove("active");
       }
-
       for (let i = 0; i < this.state.categories.length; i++) {
         if (item === undefined) {
           document.querySelector(".categoryLinks a[data-category='All']").classList.add("active");
         } else
-        if (item.name === this.state.categories[i].name) {
+        if (this.state.activeCategory === this.state.categories[i].name) {
           document.querySelector(".categoryLinks a[data-category='" + this.state.categories[i].name + "']").classList.add("active");
         }
       }
+      Notifier.config.default_timeout = "2000";
+			Notifier.info("You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
+
     }
   },
   actions: {},

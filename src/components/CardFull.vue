@@ -288,7 +288,7 @@ perspective effects (not including the modals and the overlay).
 .md-content button {
     display: block;
     margin: 0 auto;
-    font-size: 0.8em;
+    font-size: 0.6em;
 }
 
 /* Individual modal styles with animations/transitions */

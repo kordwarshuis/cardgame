@@ -179,8 +179,8 @@ export default {
 }
 
 .title-on-card {
-    // margin: 0 1em 0 0 !important;
     margin: 10% 10% 0 10% !important;
+    padding: 3% 5% 0 16%;
 
     // https://stackoverflow.com/a/48830291
     overflow-wrap: break-word;
@@ -192,20 +192,16 @@ export default {
     -webkit-hyphens: auto;
     hyphens: auto;
 
-    padding: 5% 5% 0 14%;
     background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center !important;
     // background-size: 100% auto;
     background-size: contain !important;
-
-    // height: 71% !important;
-    // max-width: 600px;
-    // width: 100% !important;
 }
 
 .title-on-card h2 {
     font-size: 6vw;
     margin: 0;
     padding: 0;
+    text-align: left;
 }
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {

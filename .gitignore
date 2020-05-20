@@ -24,4 +24,5 @@ yarn-error.log*
 /src/assets/img/
 /src/assets/audio/
 /src/assets/video/
+/src/assets/fonts/
 /public/img/
