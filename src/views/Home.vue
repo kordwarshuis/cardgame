@@ -43,6 +43,8 @@ export default {
                     .then(response => {
                         var responseData = d3.csvParse(response.data);
 
+                        // prepare data
+
                         // cleaning
                         for (let i = 0; i < responseData.length; i++) {
                             for (var k in responseData[i]) {
@@ -56,9 +58,17 @@ export default {
                                 }
                             }
                         }
-                        // format quiz data
+
+                        // split strings into arrays
                         for (let i = 0; i < responseData.length; i++) {
+                            // format quiz data
                             responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
+
+                            // split string on \n\n, so we can make paragraphs later, or separate links for example
+                            responseData[i]["long answer+facts"] = this.splitString(responseData[i]["long answer+facts"],"\n\n");
+                            
+                            responseData[i]["Related"] = this.splitString(responseData[i]["Related"],",");
+
                         }
 
                         // save data to store, probably not necessary, can be done via data and props
@@ -85,6 +95,13 @@ export default {
         prepareQuiz(quiz) {
             var temp = [];
 
+            function splitString(string, splitter) {
+                if (string !== "") {
+                    // https://stackoverflow.com/a/5963202
+                    return string.split(splitter);
+                }
+            }
+
             if (quiz !== "") {
                 // split quiz, make array
                 quiz = splitString(quiz, "|");
@@ -108,6 +125,11 @@ export default {
                 quiz = [];
                 quiz = temp;
                 return quiz;
+            }
+        },
+        splitString(string, splitter) {
+            if (string !== "") {
+                return string.split(splitter);
             }
         },
         createCategoriesArray(theJSON) {
@@ -150,86 +172,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-
 <style lang="scss">
-//TODO: duplicate code, see CardIntro, but cannot be removed without further change
-
-// https://tympanus.net/Development/FullscreenOverlayStyles/index7.html#
-/* Overlay style */
-.overlay-fullscreen {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(153, 204, 51, 0.9);
-}
-
-/* Overlay closing cross */
-.overlay-fullscreen .overlay-fullscreen-close {
-    cursor: pointer;
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    overflow: hidden;
-    border: none;
-    // background: url(../assets/img/icons/ui/cross.png) no-repeat center center;
-    text-indent: 200%;
-    color: transparent;
-    outline: none;
-    z-index: 100;
-}
-
-/* Menu style */
-.overlay-fullscreen nav {
-    text-align: center;
-    position: relative;
-    top: 50%;
-    height: 60%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-.overlay-fullscreen ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-    display: inline-block;
-    height: 100%;
-    position: relative;
-}
-
-.overlay-fullscreen ul li {
-    display: block;
-    height: 20%;
-    height: calc(100% / 5);
-    min-height: 54px;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-.overlay-fullscreen ul li a {
-    font-size: 54px;
-    font-weight: 300;
-    display: block;
-    color: #fff;
-    -webkit-transition: color 0.2s;
-    transition: color 0.2s;
-}
-
-.overlay-fullscreen ul li a:hover,
-.overlay-fullscreen ul li a:focus {
-    color: #f0f0f0;
-}
-
-/* Effects */
-// html,
-// body {
-//   overflow-x: hidden;
-// }
-
 .container {
     overflow-x: hidden;
     -webkit-transition: -webkit-transform 0.5s;
@@ -242,7 +185,7 @@ export default {
 }
 
 .container::after {
-    content: "";
+    content: '';
     opacity: 0;
     visibility: hidden;
     position: absolute;
@@ -255,40 +198,4 @@ export default {
     transition: opacity 0.5s, visibility 0s 0.5s;
 }
 
-.container.overlay-fullscreen-open::after {
-    visibility: visible;
-    opacity: 1;
-    -webkit-transition: opacity 0.5s;
-    transition: opacity 0.5s;
-}
-
-.overlay-fullscreen-contentpush {
-    background: rgba(153, 204, 51, 1);
-    visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
-    -webkit-transition: -webkit-transform 0.5s, visibility 0s 0.5s;
-    transition: transform 0.5s, visibility 0s 0.5s;
-}
-
-.overlay-fullscreen-contentpush.open {
-    visibility: visible;
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
-    -webkit-transition: -webkit-transform 0.5s;
-    transition: transform 0.5s;
-}
-
-@media screen and (max-height: 30.5em) {
-    .overlay-fullscreen nav {
-        height: 70%;
-        font-size: 34px;
-    }
-
-    .overlay-fullscreen ul li {
-        min-height: 34px;
-    }
-}
 </style>

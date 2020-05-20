@@ -1,11 +1,3 @@
-function splitString(string, splitter) {
-  if (string !== "") {
-    // https://stackoverflow.com/a/5963202
-    // and the divider is a |
-    return string.split(splitter);
-  }
-}
-
 // https://css-tricks.com/snippets/javascript/htmlentities-for-javascript/
 function quotesToHtmlEntities(str) {
   return String(str).replace(/"/g, "&quot;").replace(/"/g, "&apos;");

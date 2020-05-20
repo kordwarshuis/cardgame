@@ -55,7 +55,7 @@
   <!-- END BOOTSTRAP -->
 
   <script src="<%= BASE_URL %>js/ModernizrForCardIntro.js"></script>
-  <script src="<%= BASE_URL %>js/textFit.min.js"></script>
+  <!-- <script src="<%= BASE_URL %>js/textFit.min.js"></script> -->
   <script src="<%= BASE_URL %>js/clipboard.js/v2.0.0/clipboard.min.js"></script>
   <script src="<%= BASE_URL %>js/constants.js"></script>
   <script src="<%= BASE_URL %>js/helpers.js"></script>
@@ -90,19 +90,36 @@
   </div> -->
   <script src="<%= BASE_URL %>js/rlemon-Notifier.js-5284904/Notifier.js"></script>
   <script>
-    // copy URL into clipboard via click on button
-    var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
-      text: function () {
-        return window.location.href;
-      }
-    });
-
-
     //Notifier
     Notifier.config.box_styles.fontSize = "0.9em";
     Notifier.config.box_styles.background = "#48C0FB";
     Notifier.config.box_styles.color = "#222";
     Notifier.config.default_timeout = 6000;
+
+    // copy URL into clipboard via click on button
+    var clipboard1 = new ClipboardJS('.copyURLtoClipboard1', {
+      text: function () {
+			Notifier.config.default_timeout = "2000";
+			Notifier.info("You can now paste the link.");
+        return window.location.href;
+      }
+    });
+    var clipboard1 = new ClipboardJS('.copyURLtoClipboard2', {
+      text: function () {
+			Notifier.config.default_timeout = "2000";
+			Notifier.info("You can now paste the link.");
+        return window.location.href;
+      }
+    });
+    var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
+      text: function () {
+			Notifier.config.default_timeout = "2000";
+			Notifier.info("You can now paste the link.");
+        return window.location.href;
+      }
+    });
+
+
 
 
     // function textCopiedFeedback(e) {

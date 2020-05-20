@@ -1,10 +1,11 @@
 <template>
+  <!-- negate doesnt seem to work -->
   <div v-if="(this.$store.state.currentCard['Youtube Video Id'] === '')"></div>
   
   <div v-else>
-    <h2>Video</h2>
+    <h3 class="video">Video</h3>
 
-    <p>{{this.$store.state.currentCard["Youtube Video Id"]}}</p>
+    <p>{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
 
     <div class="videoWrapper">
       <iframe class="youtube"

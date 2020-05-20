@@ -4,30 +4,39 @@
         <h3 class="modal-header"></h3>
         <div>
             <div class="modal-content">
-                <h2>{{ this.$store.state.currentCard.Prejudice }}</h2>
+                <button class="copyURLtoClipboard copyURLtoClipboard1">Copy Link</button>
+                <h3 class="title">{{ this.$store.state.currentCard.Prejudice }}</h3>
                 <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}</p>
 
-                <h2 v-if="this.$store.state.currentCard['long answer+facts']">Answer</h2>
-                <p>{{this.$store.state.currentCard["long answer+facts"]}}</p>
-
-                <h2 v-if="this.$store.state.currentCard['Read On 1 Text']">Read More</h2>
-                <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
-                <h2 v-if="this.$store.state.currentCard['Read On 2 Text']">Read More</h2>
-                <p>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
-                <h2 v-if="this.$store.state.currentCard['Read On 3 Text']">Read More</h2>
-                <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
-
-                <h2 v-if="this.$store.state.currentCard['analogy']">Analogy</h2>
-                <p>{{this.$store.state.currentCard["analogy"]}}</p>
-
-                <h2 v-if="this.$store.state.currentCard['FlowerPower']">FlowerPower</h2>
-                <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
-
-                <h2 v-if="this.$store.state.currentCard['Counter-questions']">Counter-questions</h2>
-                <p>{{this.$store.state.currentCard["Counter-questions"]}}</p>
+                <h3 class="longAnswer" v-if="this.$store.state.currentCard['long answer+facts']">Answer</h3>
+                <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
 
                 <!-- <Quiz /> -->
                 <Video />
+
+                <h3 class="readOn" v-if="this.$store.state.currentCard['Read On 1 Text']">Read More</h3>
+                <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                <h3 v-if="this.$store.state.currentCard['Read On 2 Text']">Read More</h3>
+                <p>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
+                <h3 v-if="this.$store.state.currentCard['Read On 3 Text']">Read More</h3>
+                <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
+
+                <h3 class="counterQuestion" v-if="this.$store.state.currentCard['Counter-questions']">Counter-questions</h3>
+                <p>{{this.$store.state.currentCard["Counter-questions"]}}</p>
+
+                <h3 class="" v-if="this.$store.state.currentCard['analogy']">Analogy</h3>
+                <p>{{this.$store.state.currentCard["analogy"]}}</p>
+
+                <h3 class="flowerPower" v-if="this.$store.state.currentCard['FlowerPower']">Flower Power</h3>
+                <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
+
+
+                <h3 class="related" v-if="this.$store.state.currentCard['Related']">Related</h3>
+                <!-- <p><a v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item">{{ item }}</a></p> -->
+                <p v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
+                    <router-link :to="'/card/' + item">{{ item }}</router-link>
+                </p>
+
 
                 <!-- Trigger -->
                 <!-- <button class="copyURLtoClipboard copyURLtoClipboard1">
@@ -35,6 +44,7 @@
         </button> -->
 
                 <button class="md-close" @click="hideModal">Close</button>
+                <button class="copyURLtoClipboard copyURLtoClipboard2">Copy Link</button>
             </div>
             <a @click="hideModal" class="md-close md-close-cross">×</a>
         </div>
@@ -108,6 +118,85 @@ perspective effects (not including the modals and the overlay).
 // 	min-height: 100%;
 // }
 
+
+
+.modal-content h3 {
+    background-repeat: no-repeat;
+    background-size: 1.8em;
+    padding: 0.4em;
+    padding-left: 2em !important;
+    padding-bottom: 1em;
+}
+
+.modal-content h3.title {
+    background-image: url(../assets/img/logo/blockchainbird-logo.png);
+}
+
+.modal-content h3.longAnswer {
+    background-image: url(../assets/img/animated-gif/mens38.gif);
+}
+
+.modal-content h3.video {
+    background-image: url(../assets/img/logo/blockchainbird-logo.png);
+}
+
+.modal-content h3.flowerPower {
+    background-image: url(../assets/img/animated-gif/pink_panther_e0.gif);
+}
+
+.modal-content h3.readOn {
+    background-image: url(../assets/img/animated-gif/guestbk2.gif);
+}
+
+.modal-content h3.counterQuestion {
+    background-image: url(../assets/img/animated-gif/insects15.gif);
+}
+
+.modal-content h3.related {
+    background-image: url(../assets/img/logo/blockchainbird-logo.png);
+}
+
+.modal-content h3.libbitcoin {
+    background-image: url(../assets/img/logo/libbitcoin.png);
+}
+
+.modal-content a.modalbox-iconbackground {
+    text-decoration: underline;
+}
+
+.modal-content .modalbox-iconbackground:first-child {
+    /* margin-left: 0; */
+}
+
+.modal-content .modalbox-prejudiceElaborate {
+    // border: none;
+    // display: inline-block;
+    // min-height: 2em;
+    // width: auto;
+    // background-size: 2em;
+    // background-repeat: no-repeat;
+    // line-height: 1;
+    // margin: 0.5em 0;
+    // padding: 0 1em 0 0.5em;
+    // vertical-align: middle;
+
+}
+
+.modal-content .modalbox-prejudiceElaborate::before {
+    content: "“";
+    position: relative;
+    top: 0.09em;
+    left: 0;
+    margin: 0 0.1em 0 0;
+    padding: 0;
+    line-height: 1;
+    color: $a14;
+}
+
+
+
+
+
 .md-modal {
     position: fixed;
     top: 50%;
@@ -177,22 +266,9 @@ perspective effects (not including the modals and the overlay).
     text-align: left !important;
 }
 
-.md-content h3 {
-    margin: 0;
-    padding: 0.4em;
-    text-align: center;
-    font-size: 2.4em;
-    font-weight: 300;
-    opacity: 0.8;
-    // background: rgba(0, 0, 0, 0.1);
-    border-radius: 3px 3px 0 0;
-}
-
 .md-content>div {
     padding: 15px 40px 30px;
     margin: 0;
-    font-weight: 300;
-    font-size: 1.15em;
 }
 
 .md-content>div p {
@@ -871,11 +947,5 @@ perspective effects (not including the modals and the overlay).
     -webkit-transition: all 0.5s 0.1s;
     -moz-transition: all 0.5s 0.1s;
     transition: all 0.5s 0.1s;
-}
-
-@media screen and (max-width: 32em) {
-    body {
-        font-size: 75%;
-    }
 }
 </style>

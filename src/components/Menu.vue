@@ -163,40 +163,40 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 }
 
 /* Close Button */
-.close-button {
-	width: 1em;
-	height: 1em;
-	position: absolute;
-	right: 1em;
-	top: 1em;
-	overflow: hidden;
-	text-indent: 1em;
-	font-size: 0.75em;
-	border: none;
-	background: transparent;
-	color: transparent;
-}
+// .close-button {
+// 	width: 1em;
+// 	height: 1em;
+// 	position: absolute;
+// 	right: 1em;
+// 	top: 1em;
+// 	overflow: hidden;
+// 	text-indent: 1em;
+// 	font-size: 0.75em;
+// 	border: none;
+// 	background: transparent;
+// 	color: transparent;
+// }
 
-.close-button::before,
-.close-button::after {
-	content: '';
-	position: absolute;
-	width: 3px;
-	height: 100%;
-	top: 0;
-	left: 50%;
-	background: #bdc3c7;
-}
+// .close-button::before,
+// .close-button::after {
+// 	content: '';
+// 	position: absolute;
+// 	width: 3px;
+// 	height: 100%;
+// 	top: 0;
+// 	left: 50%;
+// 	background: #bdc3c7;
+// }
 
-.close-button::before {
-	-webkit-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
+// .close-button::before {
+// 	-webkit-transform: rotate(45deg);
+// 	transform: rotate(45deg);
+// }
 
-.close-button::after {
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-}
+// .close-button::after {
+// 	-webkit-transform: rotate(-45deg);
+// 	transform: rotate(-45deg);
+// }
 
 /* Menu */
 .menu-wrap {

@@ -27,25 +27,30 @@ export default {
 <style lang="scss">
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-}
+// #app {
+//     font-family: Avenir, Helvetica, Arial, sans-serif;
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+//     text-align: center;
+//     color: #2c3e50;
+// }
 
 #nav {
-    position: fixed;
-    padding: 30px;
+    // position: fixed;
+    // padding: 30px;
+    padding-top: 1em;
 
     a {
         font-weight: bold;
         color: #2c3e50;
-
+        padding: 1em;
         // &.router-link-exact-active {
         //   color: #42b983;
         // }
+    }
+
+    a:hover {
+        background: rgb(165, 219, 240);
     }
 }
 
@@ -66,7 +71,7 @@ export default {
 
 body {
     // font-family: 'Buenard', serif;
-    font-size: 100%;
+    // font-size: 100%;
     min-height: 100%;
     color: $text;
     background-color: $background;
@@ -83,39 +88,39 @@ body.bcb {
 }
 
 /* Page Loader */
-.js .loading::before {
-    content: '';
-    position: fixed;
-    z-index: 100000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: $loadingBackground;
-}
+// .js .loading::before {
+//     content: '';
+//     position: fixed;
+//     z-index: 100000;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background: $loadingBackground;
+// }
 
-.js .loading::after {
-    content: '';
-    position: fixed;
-    z-index: 100000;
-    top: 50%;
-    left: 50%;
-    width: 60px;
-    height: 60px;
-    margin: -30px 0 0 -30px;
-    pointer-events: none;
-    border-radius: 50%;
-    opacity: 0.4;
-    background: #000;
-    animation: loaderAnim 0.7s linear infinite alternate forwards;
-}
+// .js .loading::after {
+//     content: '';
+//     position: fixed;
+//     z-index: 100000;
+//     top: 50%;
+//     left: 50%;
+//     width: 60px;
+//     height: 60px;
+//     margin: -30px 0 0 -30px;
+//     pointer-events: none;
+//     border-radius: 50%;
+//     opacity: 0.4;
+//     background: #000;
+//     animation: loaderAnim 0.7s linear infinite alternate forwards;
+// }
 
-@keyframes loaderAnim {
-    to {
-        opacity: 1;
-        transform: scale3d(0.5, 0.5, 1);
-    }
-}
+// @keyframes loaderAnim {
+//     to {
+//         opacity: 1;
+//         transform: scale3d(0.5, 0.5, 1);
+//     }
+// }
 
 a {
     text-decoration: none;
@@ -240,13 +245,13 @@ hr:after {
 
 }
 
-// The card layer 2
+// Category on card collection  
 .box__title-inner {
     display: block;
     position: relative;
     font-weight: normal;
     font-size: 0.7em;
-    opacity: 0.7;
+    opacity: 0.3;
     text-transform: uppercase;
     letter-spacing: 0.15rem;
     line-height: 1.25;
@@ -283,7 +288,7 @@ hr:after {
     width: 100%;
 }
 
-// layer 1 grid
+// card collection
 .box__text {
     background: $boxTextBackground;
     margin: 0;
@@ -293,7 +298,7 @@ hr:after {
     text-transform: uppercase;
     letter-spacing: 0.15rem;
     margin: 0.5rem 1rem;
-    font-size: 1.3em;
+    font-size: 1.1em;
     // font-family: 'Anton', sans-serif;
 }
 
@@ -559,7 +564,7 @@ button,
 }
 
 a.overlay__close:not(.overlay__close-cross) {
-    background: transparent url(/src/assets/img/trivial-pursuit/TrivialPursuit2-stack.png) no-repeat center;
+    background: transparent url(./assets/img/trivial-pursuit/TrivialPursuit2-stack.png) no-repeat center;
     background-size: contain;
     padding: 3em 1.2em 3em 2em;
     z-index: auto;
@@ -654,7 +659,7 @@ button:hover,
 
 .categoryLinks .active {
     border: 3px solid $categoryLinksBorderActive;
-    background: $categoryLinksBackgroundActive url(/src/assets/img/logo/blockchainbird-logo.png) no-repeat center right;
+    background: $categoryLinksBackgroundActive url(./assets/img/logo/blockchainbird-logo.png) no-repeat center right;
     padding-right: 30px;
     background-size: auto 70%;
 }
@@ -752,6 +757,7 @@ button:hover,
     @include btn-border-drawing($a4, $a14, 3px, bottom, right);
 }
 
+// de read more / plus sign on the intro card
 a.md-trigger {
     border: 3px solid $a4;
     background: $a4;
@@ -777,119 +783,6 @@ a.md-trigger {
     width: 100%;
     min-height: 2em;
 
-}
-
-.modal-content .modalbox-iconbackground {
-    // border: none;
-    // display: inline-block;
-    // min-height: 1.5em;
-    // width: auto;
-    // background-size: 1.5em;
-    // background-repeat: no-repeat;
-    // line-height: 1;
-    // margin: 0.5em 0;
-    // padding: 0 1em 0 2em;
-    // vertical-align: middle;
-
-}
-
-// .modal-content .modalbox-iconbackground.flowerPower {
-// 	min-height: 8em !important;
-// }
-
-.modal-content h3 {
-    display: inline-block;
-
-    background: transparent url(/src/assets/img/logo/blockchainbird-logo.png) no-repeat left top;
-    // background-size: 0.8em;
-    background-size: 1.8em;
-    padding-left: 2em;
-    padding-bottom: 1em;
-    margin: 1em auto 0;
-    text-align: center;
-
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.modal-content #topHeaderContainer {
-    text-align: center;
-    // display: inline-block;
-    display: block;
-    // margin: 0 auto;
-    // padding: 0 auto;
-    // border: 1px solid #ED6246;
-    // width: auto !important;
-}
-
-.modal-content #topHeaderContainer button {
-    // position: static !important;
-    // display: inline-block;
-    margin-left: 1em;
-
-    // float: right !important;
-}
-
-.modal-content #topHeaderContainer h3 {
-    position: static !important;
-    // display: inline-block;
-    // float: left !important;
-    transform: translateX(0);
-
-}
-
-// .modal-content h3.longAnswer {
-// 	background-image: url(/src/assets/img/animated-gif/mens38.gif);
-// }
-
-// .modal-content h3.flowerPower {
-// 	background-image: url(/src/assets/img/animated-gif/pink_panther_e0.gif);
-// }
-
-// .modal-content h3.readOn {
-// 	background-image: url(/src/assets/img/animated-gif/guestbk2.gif);
-// }
-
-// .modal-content h3.counterQuestion {
-// 	background-image: url(/src/assets/img/animated-gif/insects15.gif);
-// }
-
-// .modal-content h3.libbitcoin {
-// 	background-image: url(/src/assets/img/logo/libbitcoin.png);
-// }
-
-.modal-content a.modalbox-iconbackground {
-    text-decoration: underline;
-}
-
-.modal-content .modalbox-iconbackground:first-child {
-    /* margin-left: 0; */
-}
-
-.modal-content .modalbox-prejudiceElaborate {
-    // border: none;
-    // display: inline-block;
-    // min-height: 2em;
-    // width: auto;
-    // background-size: 2em;
-    // background-repeat: no-repeat;
-    // line-height: 1;
-    // margin: 0.5em 0;
-    // padding: 0 1em 0 0.5em;
-    // vertical-align: middle;
-
-}
-
-.modal-content .modalbox-prejudiceElaborate::before {
-    content: "“";
-    position: relative;
-    top: 0.09em;
-    left: 0;
-    margin: 0 0.1em 0 0;
-    padding: 0;
-    line-height: 1;
-    color: $a14;
 }
 
 iframe,
@@ -1095,7 +988,7 @@ body>.news-ticker {
     // border: 1px solid red;
     // display: block;
     width: 10%;
-    background: transparent url(/src/assets/img/icons/flat/menu.png) no-repeat center;
+    background: transparent url(./assets/img/icons/flat/menu.png) no-repeat center;
     background-size: contain;
 }
 
@@ -1211,7 +1104,7 @@ Copyright (c) 2014 Daniel Eden
     width: 100%;
     height: 100%;
     // border: 3px solid #900;
-    background: transparent url(/src/assets/img/animated-gif/party.gif) no-repeat center;
+    background: transparent url(./assets/img/animated-gif/party.gif) no-repeat center;
     background-size: contain;
     z-index: 9;
     pointer-events: none;

@@ -151,30 +151,6 @@ export default {
 //   overflow-x: hidden;
 // }
 
-.container {
-    overflow-x: hidden;
-    -webkit-transition: -webkit-transform 0.5s;
-    transition: transform 0.5s;
-}
-
-.container.overlay-fullscreen-open {
-    -webkit-transform: translateX(50%);
-    transform: translateX(50%);
-}
-
-.container::after {
-    content: '';
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
-    transition: opacity 0.5s, visibility 0s 0.5s;
-}
 
 .container.overlay-fullscreen-open::after {
     visibility: visible;
@@ -230,10 +206,7 @@ export default {
     font-size: 6vw;
     margin: 0;
     padding: 0;
-    // border: 1px solid red;
-
 }
-
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
     .title-on-card h2 {

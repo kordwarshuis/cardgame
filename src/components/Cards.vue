@@ -5,7 +5,7 @@
     <h1>Bitcoin Misconceptions</h1>
     <p>{{ subtext }}</p>
     <p class="categoryLinks">
-        <a @click="showItemsInSelectedCategory()" data-category="All">All</a>
+        <a @click="$store.commit('showItemsInSelectedCategory', 'All')" data-category="All">All</a>
         <a v-for="category in $store.state.categories" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name" :key="category.name">{{ category.name }}
             ({{ category.numberOfItems }})</a>
     </p>

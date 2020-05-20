@@ -1,6 +1,7 @@
 <template>
   <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="masthead mb-auto">
+    <h1 class="cover-heading">Bitcoin Tweets Tracker</h1>
+    <header class="masthead mb-auto mt-5 ">
       <div class="inner">
         <nav class="mb-1 mt-0 navbar navbar-dark bg-dark">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -77,7 +78,7 @@
     </header>
 
     <main role="main" class="inner cover">
-      <h1 class="cover-heading">Bitcoin Tweets Tracker</h1>
+      
 
 
       <!-- <h1>Bitcoin Tweets Tracker</h1> -->
