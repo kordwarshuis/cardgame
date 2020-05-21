@@ -30,13 +30,13 @@
                 <h3 class="flowerPower" v-if="this.$store.state.currentCard['FlowerPower']">Flower Power</h3>
                 <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
 
-
                 <h3 class="related" v-if="this.$store.state.currentCard['Related']">Related</h3>
                 <!-- <p><a v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item">{{ item }}</a></p> -->
                 <p v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
                     <router-link :to="'/card/' + item">{{ item }}</router-link>
                 </p>
 
+                <SocialMedia />
 
                 <!-- Trigger -->
                 <!-- <button class="copyURLtoClipboard copyURLtoClipboard1">
@@ -55,14 +55,14 @@
 <script>
 import Quiz from "@/components/Quiz.vue";
 import Video from "@/components/Video.vue";
-import Answer from "@/components/Answer.vue";
+import SocialMedia from "@/components/SocialMedia.vue";
 
 export default {
     name: "CardFull",
     components: {
         Quiz,
         Video,
-        Answer
+        SocialMedia
     },
     data: function () {
         return {
@@ -117,8 +117,6 @@ perspective effects (not including the modals and the overlay).
 // 	background: #e74c3c;
 // 	min-height: 100%;
 // }
-
-
 
 .modal-content h3 {
     background-repeat: no-repeat;
@@ -192,10 +190,6 @@ perspective effects (not including the modals and the overlay).
     line-height: 1;
     color: $a14;
 }
-
-
-
-
 
 .md-modal {
     position: fixed;

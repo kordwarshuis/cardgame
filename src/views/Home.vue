@@ -23,7 +23,7 @@ export default {
     name: "Home",
     data() {
         return {
-            allCardsInChosenCategory: []
+            allCardsInChosenCategory: [] // TODO: remove?
         }
     },
     components: {
