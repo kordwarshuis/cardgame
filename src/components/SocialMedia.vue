@@ -3,14 +3,14 @@
   <!-- <p>{{this.socialMediaButtonsTitle}}</p> -->
     <div id="socialMediaButtonsTemplate">
         <!-- Sharingbutton Facebook -->
-        <!-- <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=xxxxx-href" target="_blank" rel="noopener" aria-label="Facebook">
+        <a class="resp-sharing-button__link" :href="'https://facebook.com/sharer/sharer.php?u=' + this.windowLocationOrigin + this.publicPath + 'card/' + this.$store.state.currentCard['Unique URL']" target="_blank" rel="noopener" aria-label="Facebook">
             <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium">
                 <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--circle">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="11.5" />
                         <path d="M15.84 9.5H13.5V8.48c0-.53.35-.65.6-.65h1.4v-2.3h-2.35c-2.3 0-2.65 1.7-2.65 2.8V9.5h-2v2h2v7h3v-7h2.1l.24-2z" /></svg></div>Facebook
             </div>
-        </a> -->
+        </a>
 
         <!-- Sharingbutton Twitter -->
         
