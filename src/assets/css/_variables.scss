@@ -1,72 +1,125 @@
 // @import url('https://fonts.googleapis.com/css?family=Anton|Buenard:400,700');
 // @import url('https://fonts.googleapis.com/css?family=Anton:400,700');
 
-$a6: #0051a3;
-// $a7: #ececec;
-// $a7: #d2e7ff;
-$a7: #faf1e2;
-$a7a: #f0f5f2;
 
-$goldenBorder: #ffd900;
+// #A2285E,#EA1F79,#42A530,#70EF5A,#6B29BA,#A2285E,#EA1F79,#42A530
+// #051622 #1BA098 #DEB992
+// #06396B #419583 #66DB94 #8DE4AF #EDF5E0
+// #FDD935 #111111
 
 
-$a1:#ED6246;
-$a2:#564080;
-$a3:#B569B1;
-$a4:#80B2EF;
-$a5:#d2e7ff;
-
-
-
-$a8: #00c0ff;
-$a9: hsla(195, 100%, 50%, 0.388);
-$a10: #dad6d6;
-$a11: rgba(139, 137, 137, 0.8);
-// $a12: #0eee6b;
-$a12: #87e67a;
-$a13: hsla(195, 100%, 50%, 0.22);
-
+$paletteTextColor:#111111;
+$paletteGridCardTitleTextColor: #FDD935;
+$paletteGridCardTitleTextHoverColor:#111111;
+$paletteBackgroundColor:#FDD935;
+$paletteTextColorOnCard:#111111;
+$paletteBorderMenuItemsAndButtons:#111111;
+$paletteCardTextBackground:#111111;
+$paletteCategoryLinksBorderActive:#111111;
+$paletteCategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
+$paletteLinksHoverBackground: hsla(195, 100%, 50%, 0.388);
+$paletteGeneralLinksText: #222;
+$paletteBoxTextVisitedCheckmark: #87e67a;
 $a14: #222;
-$a15: yellow;
 
 
-$text: $a6;
-$background: $a7;
-$background2: $a7a;
-$loadingBackground: $a7;
-$generalLinksText: $a14;
-$generalLinksTextHover: $a6;
-$linksText: $a6;
-$linksBorder: $a6;
-$linksHoverBackground: $a9;
-$categoryLinksBorderActive: $a8;
-$categoryLinksBackgroundActive: $a13;
+
+// $paletteTextColor:#06396B;
+// $paletteGridCardTitleTextColor: #EDF5E0;
+// $paletteGridCardTitleTextHoverColor:#EDF5E0;
+// $paletteBackgroundColor:#66DB94;
+// $paletteTextColorOnCard:#051622;
+// $paletteBorderMenuItemsAndButtons:#1BA098;
+// $paletteCardTextBackground:#06396B;
+// $paletteCategoryLinksBorderActive:#06396B;
+// $paletteCategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
+// $paletteLinksHoverBackground: hsla(195, 100%, 50%, 0.388);
+// $paletteGeneralLinksText: #222;
+// $paletteBoxTextVisitedCheckmark: #87e67a;
+// $a14: #222;
 
 
-// THE LAYER THAT IS MOVING BETWEEN THE INITIAL PAGE AND THE SPECIFIC CARD
-$overlayRevealBackground: $a6;
-// $overlayRevealBackground: #00bfff;
+
+
+// $paletteTextColor:#eee;
+// $paletteGridCardTitleTextColor: #222;
+// $paletteGridCardTitleTextHoverColor:#eee;
+// $paletteBackgroundColor:#6B29BA;
+// $paletteTextColorOnCard:#A2285E;
+// $paletteBorderMenuItemsAndButtons:#A2285E;
+// $paletteCardTextBackground:#EA1F79;
+// $paletteCategoryLinksBorderActive:#42A530;
+// $paletteCategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
+// $paletteLinksHoverBackground: hsla(195, 100%, 50%, 0.388);
+// $paletteGeneralLinksText: #222;
+// $paletteBoxTextVisitedCheckmark: #87e67a;
+// $a14: #222;
+
+
+// KEEP, IS CURRENT
+// $paletteTextColor:#0051a3;
+// $paletteGridCardTitleTextColor: #222;
+// $paletteGridCardTitleTextHoverColor:#444;
+// $paletteBackgroundColor:#faf1e2;
+// $paletteTextColorOnCard:#B569B1;
+// $paletteBorderMenuItemsAndButtons:#80B2EF;
+// $paletteCardTextBackground:#d2e7ff;
+// $paletteCategoryLinksBorderActive:#80B2EF;
+// $paletteCategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
+// $paletteLinksHoverBackground: hsla(195, 100%, 50%, 0.388);
+// $paletteGeneralLinksText: #222;
+// $paletteBoxTextVisitedCheckmark: #87e67a;
+// $a14: #222;
+
+
+
+
+
+
+
+$borderMenuItemsAndButtons: $paletteBorderMenuItemsAndButtons;
+$text: $paletteTextColor;
+$gridCardTitleTextColor: $paletteGridCardTitleTextColor;
+$gridCardTitleTextHoverColor: $paletteGridCardTitleTextHoverColor;
+$textOnCard: $paletteTextColorOnCard;
+$background: $paletteBackgroundColor;
+$loadingBackground: $paletteBackgroundColor;
+
+$generalLinksText: $paletteGeneralLinksText;
+$generalLinksTextHover: $paletteTextColor;
+$linksText: $paletteTextColor;
+$linksBorder: $paletteTextColor;
+$borderDrawingEffect: $paletteTextColor;
+$linksHoverBackground: $paletteLinksHoverBackground;
+$categoryLinksBorderActive: $paletteCategoryLinksBorderActive;
+$categoryLinksBackgroundActive: $paletteCategoryLinksBackgroundActive;
+
+$hr1: hsla(0, 0%, 50%, 1.0);
+$hr2: hsl(0, 0%, 75%);
+$hr1menu: #000;
+
 
 // THE BACKGROUND OF A SPECIFIC CARD
-$overlayItemBackground: $a7;
-$overlayItemBackground2: $a7a;
+$overlayItemBackground: $paletteBackgroundColor;
 
 
-$boxTextBackground: $a5;
-$boxTextInnerBorder: $a6;
-$boxTextInnerReverseBackground: $a6;
+
+$cardTextBackground: $paletteCardTextBackground;
+$boxTextInnerBorder: $paletteTextColor;
+$boxTextInnerReverseBackground: $paletteTextColor;
 $boxTextInnerReverseText: #ececec;
-$boxTextVisited: $a9;
-$boxTextVisitedCheckmark: $a12;
+$boxTextVisited: $paletteLinksHoverBackground;
+$boxTextVisitedCheckmark: $paletteBoxTextVisitedCheckmark;
 
-
+$slider: #2196F3;
+$slider2: #ccc;
 
 
 // SEARCH
-$searchBoxText: $a6;
-$searchBoxBorder: $a6;
-$searchStringBackground: $a15;
-$searchStringBorder: #222;
+// $searchBoxText: $a1;
+// $searchBoxBorder: $a1;
+// $searchStringBackground: $a15;
+// $searchStringBorder: #222;
 
 
 // REPORT

@@ -89,10 +89,6 @@ export default {
 
 <style lang="scss" scoped>
 // // MODAL
-// $modalH3background: $a9;
-// $modalBackground: $a7;
-// $modalOverlayBackground: $a11;
-
 /* General styles for the modal */
 
 /* 
@@ -162,35 +158,6 @@ perspective effects (not including the modals and the overlay).
     text-decoration: underline;
 }
 
-.modal-content .modalbox-iconbackground:first-child {
-    /* margin-left: 0; */
-}
-
-.modal-content .modalbox-prejudiceElaborate {
-    // border: none;
-    // display: inline-block;
-    // min-height: 2em;
-    // width: auto;
-    // background-size: 2em;
-    // background-repeat: no-repeat;
-    // line-height: 1;
-    // margin: 0.5em 0;
-    // padding: 0 1em 0 0.5em;
-    // vertical-align: middle;
-
-}
-
-.modal-content .modalbox-prejudiceElaborate::before {
-    content: "“";
-    position: relative;
-    top: 0.09em;
-    left: 0;
-    margin: 0 0.1em 0 0;
-    padding: 0;
-    line-height: 1;
-    color: $a14;
-}
-
 .md-modal {
     position: fixed;
     top: 50%;
@@ -226,7 +193,6 @@ perspective effects (not including the modals and the overlay).
     left: 0;
     z-index: 1000;
     opacity: 0;
-    // background: rgba(143,27,15,0.8);
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
@@ -240,7 +206,6 @@ perspective effects (not including the modals and the overlay).
 /* Content styles */
 .md-content {
     color: $text;
-    // background: #5a4b4a;
     background: $background;
     position: relative;
     border-radius: 3px;

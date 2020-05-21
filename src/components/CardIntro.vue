@@ -2,7 +2,7 @@
 <!-- open/close -->
 <div class="row pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0 overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
     <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
-        <div style="border: none;" class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+        <div class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
             <div class="card-body title-on-card center">
                 <h2 class="">{{ this.$store.state.currentCard.Prejudice }}</h2>
             </div>
@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
-        <div class="card h-100 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+        <div class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
             <div class="card-body">
                 <h3 class="">
                     Answer
@@ -103,7 +103,7 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
-    background: $overlayItemBackground2;
+    background: $overlayItemBackground;
     padding: 3em;
 }
 
@@ -160,7 +160,6 @@ export default {
 }
 
 .overlay-fullscreen-contentpush {
-    background: $overlayItemBackground2;
     visibility: hidden;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -178,9 +177,17 @@ export default {
     transition: transform 0.5s;
 }
 
+.card {
+    border: none;
+}
+
 .title-on-card {
     margin: 10% 10% 0 10% !important;
     padding: 3% 5% 0 16%;
+    background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center !important;
+    // background-size: 100% auto;
+    background-size: contain !important;
+    color: $textOnCard;
 
     // https://stackoverflow.com/a/48830291
     overflow-wrap: break-word;
@@ -192,9 +199,6 @@ export default {
     -webkit-hyphens: auto;
     hyphens: auto;
 
-    background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center !important;
-    // background-size: 100% auto;
-    background-size: contain !important;
 }
 
 .title-on-card h2 {
