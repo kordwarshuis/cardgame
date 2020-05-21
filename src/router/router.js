@@ -41,8 +41,8 @@ const routes = [{
 ];
 
 const router = new VueRouter({
-  base: "/",
-  // base: "/vue-cardgame/",
+  // base: "/",
+  base: "/vue-cardgame/",
   // mode: 'hash', // back button not work, https://github.com/vuejs/vue-router/issues/853 ??
   mode: 'history', // it's work
   routes

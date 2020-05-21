@@ -1,6 +1,6 @@
 <template>
 <div>
-  <!-- <p>{{this.socialMediaButtonsTitle}}</p> -->
+    <hr>
     <div id="socialMediaButtonsTemplate">
         <!-- Sharingbutton Facebook -->
         <a class="resp-sharing-button__link" :href="'https://facebook.com/sharer/sharer.php?u=' + this.windowLocationOrigin + this.publicPath + 'card/' + this.$store.state.currentCard['Unique URL']" target="_blank" rel="noopener" aria-label="Facebook">
@@ -111,7 +111,7 @@
         </a> -->
     </div>
 
-    <!-- <div v-html="this.socialMediaButtons"></div> -->
+    <hr>
 </div>
 </template>
 

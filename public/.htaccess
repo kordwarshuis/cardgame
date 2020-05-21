@@ -15,8 +15,8 @@
 # https://stackoverflow.com/a/49661967
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /
-    # RewriteBase /vue-cardgame/
+    # RewriteBase /
+    RewriteBase /vue-cardgame/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule (.*) index.html [QSA,L]

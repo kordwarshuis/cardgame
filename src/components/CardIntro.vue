@@ -18,10 +18,11 @@
                 <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }} …<a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a></p>
                 <button class="closeCardIntro">All cards</button>
                 <button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
-                <button type="button" class="overlay-fullscreen-close">Close</button>
+                <!-- <button type="button" class="overlay-fullscreen-close">Close</button> -->
             </div>
         </div>
     </div>
+<a type="button" class="overlay-fullscreen-close">×</a>
 </div>
 </template>
 
@@ -37,7 +38,7 @@ export default {
             var container = document.querySelector('div.container'),
                 triggerBttn = document.getElementById('trigger-overlay-fullscreen'),
                 overlayFullscreen = document.querySelector('div.overlay-fullscreen'),
-                closeBttn = document.querySelector('button.overlay-fullscreen-close'),
+                closeBttn = document.querySelector('.overlay-fullscreen-close'),
                 closeBttn2 = overlayFullscreen.querySelector('button.closeCardIntro'),
                 transEndEventNames = {
                     'WebkitTransition': 'webkitTransitionEnd',
@@ -114,20 +115,42 @@ export default {
 
 /* Overlay closing cross */
 .overlay-fullscreen .overlay-fullscreen-close {
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
     position: absolute;
-    right: 5px;
-    top: 5px;
-    overflow: hidden;
+    top: 20px;
+    right: 20px;
     border: none;
-    background: url(../assets/img/icons/ui/cross-black.png) no-repeat center center;
-    text-indent: 200%;
-    color: transparent;
-    outline: none;
-    z-index: 100;
+    display: block;
+    font-size: 2.5em;
+    line-height: 0.6;
+    padding: 0;
 }
+
+// de read more / plus sign on the intro card
+a.md-trigger {
+    border: 3px solid $borderMenuItemsAndButtons;
+    background: $background;
+    color: $linksText;
+    border-radius: 50%;
+    padding: 0.15em 0.2em 0.25em;
+    margin: 0;
+    line-height: 0.58;
+    font-size: 2em;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0.3em;
+    margin-left: 0;
+    
+    transition: background 0.3s ease-in-out;
+    cursor: pointer;
+}
+.md-trigger:hover {
+    background: $linksHoverBackground;
+    transition: background 0.3s ease-in-out;
+}
+
+
+
 
 // cant get this to work
 // .overlay-fullscreen .overlay-fullscreen-close:after {

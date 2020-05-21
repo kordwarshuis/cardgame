@@ -7,68 +7,90 @@
 // #06396B #419583 #66DB94 #8DE4AF #EDF5E0
 // #FDD935 #111111
 
+// https://designshack.net/articles/trends/best-website-color-schemes/
+// #EE7879 #2A3166 #F4ABAA #CAE7DF #3A457D
 
-$paletteTextColor:#111111;
-$paletteGridCardTitleTextColor: #FDD935;
-$paletteGridCardTitleTextHoverColor:#111111;
-$paletteBackgroundColor:#FDD935;
-$paletteTextColorOnCard:#111111;
-$paletteBorderMenuItemsAndButtons:#111111;
-$paletteCardTextBackground:#111111;
-$paletteCategoryLinksBorderActive:#111111;
-$paletteCategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
-$paletteLinksHoverBackground: hsla(195, 100%, 50%, 0.388);
-$paletteGeneralLinksText: #222;
-$paletteBoxTextVisitedCheckmark: #87e67a;
+
+
+// Qvartz
+$___TextColor:#EE7879;
+$___GridCardTitleTextColor: #FDD935;
+$___GridCardTitleTextHoverColor:#FDD935;
+$___BackgroundColor:#3A457D;
+$___TextColorOnCard:#111111;
+$___BorderMenuItemsAndButtons:#111111;
+$___CardGridBackground:#111111;
+$___CategoryLinksBorderActive:#111111;
+$___CategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
+$___LinksHoverBackground: hsla(195, 100%, 50%, 0.388);
+$___GeneralLinksText: #222;
+$___BoxTextVisitedCheckmark: #87e67a;
 $a14: #222;
 
 
 
-// $paletteTextColor:#06396B;
-// $paletteGridCardTitleTextColor: #EDF5E0;
-// $paletteGridCardTitleTextHoverColor:#EDF5E0;
-// $paletteBackgroundColor:#66DB94;
-// $paletteTextColorOnCard:#051622;
-// $paletteBorderMenuItemsAndButtons:#1BA098;
-// $paletteCardTextBackground:#06396B;
-// $paletteCategoryLinksBorderActive:#06396B;
-// $paletteCategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
-// $paletteLinksHoverBackground: hsla(195, 100%, 50%, 0.388);
-// $paletteGeneralLinksText: #222;
-// $paletteBoxTextVisitedCheckmark: #87e67a;
+// YELLOW
+// $___TextColor:#111111;
+// $___GridCardTitleTextColor: #FDD935;
+// $___GridCardTitleTextHoverColor:#FDD935;
+// $___BackgroundColor:#FDD935;
+// $___TextColorOnCard:#111111;
+// $___BorderMenuItemsAndButtons:#111111;
+// $___CardGridBackground:#111111;
+// $___CategoryLinksBorderActive:#111111;
+// $___CategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
+// $___LinksHoverBackground: hsla(195, 100%, 50%, 0.388);
+// $___GeneralLinksText: #222;
+// $___BoxTextVisitedCheckmark: #87e67a;
+// $a14: #222;
+
+
+
+// $___TextColor:#06396B;
+// $___GridCardTitleTextColor: #EDF5E0;
+// $___GridCardTitleTextHoverColor:#EDF5E0;
+// $___BackgroundColor:#66DB94;
+// $___TextColorOnCard:#051622;
+// $___BorderMenuItemsAndButtons:#1BA098;
+// $___CardGridBackground:#06396B;
+// $___CategoryLinksBorderActive:#06396B;
+// $___CategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
+// $___LinksHoverBackground: hsla(195, 100%, 50%, 0.388);
+// $___GeneralLinksText: #222;
+// $___BoxTextVisitedCheckmark: #87e67a;
 // $a14: #222;
 
 
 
 
-// $paletteTextColor:#eee;
-// $paletteGridCardTitleTextColor: #222;
-// $paletteGridCardTitleTextHoverColor:#eee;
-// $paletteBackgroundColor:#6B29BA;
-// $paletteTextColorOnCard:#A2285E;
-// $paletteBorderMenuItemsAndButtons:#A2285E;
-// $paletteCardTextBackground:#EA1F79;
-// $paletteCategoryLinksBorderActive:#42A530;
-// $paletteCategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
-// $paletteLinksHoverBackground: hsla(195, 100%, 50%, 0.388);
-// $paletteGeneralLinksText: #222;
-// $paletteBoxTextVisitedCheckmark: #87e67a;
+// $___TextColor:#eee;
+// $___GridCardTitleTextColor: #222;
+// $___GridCardTitleTextHoverColor:#eee;
+// $___BackgroundColor:#6B29BA;
+// $___TextColorOnCard:#A2285E;
+// $___BorderMenuItemsAndButtons:#A2285E;
+// $___CardGridBackground:#EA1F79;
+// $___CategoryLinksBorderActive:#42A530;
+// $___CategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
+// $___LinksHoverBackground: hsla(195, 100%, 50%, 0.388);
+// $___GeneralLinksText: #222;
+// $___BoxTextVisitedCheckmark: #87e67a;
 // $a14: #222;
 
 
 // KEEP, IS CURRENT
-// $paletteTextColor:#0051a3;
-// $paletteGridCardTitleTextColor: #222;
-// $paletteGridCardTitleTextHoverColor:#444;
-// $paletteBackgroundColor:#faf1e2;
-// $paletteTextColorOnCard:#B569B1;
-// $paletteBorderMenuItemsAndButtons:#80B2EF;
-// $paletteCardTextBackground:#d2e7ff;
-// $paletteCategoryLinksBorderActive:#80B2EF;
-// $paletteCategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
-// $paletteLinksHoverBackground: hsla(195, 100%, 50%, 0.388);
-// $paletteGeneralLinksText: #222;
-// $paletteBoxTextVisitedCheckmark: #87e67a;
+// $___TextColor:#0051a3;
+// $___GridCardTitleTextColor: #222;
+// $___GridCardTitleTextHoverColor:#444;
+// $___BackgroundColor:#faf1e2;
+// $___TextColorOnCard:#B569B1;
+// $___BorderMenuItemsAndButtons:#80B2EF;
+// $___CardGridBackground:#d2e7ff;
+// $___CategoryLinksBorderActive:#80B2EF;
+// $___CategoryLinksBackgroundActive: hsla(195, 100%, 50%, 0.22);
+// $___LinksHoverBackground: hsla(195, 100%, 50%, 0.388);
+// $___GeneralLinksText: #222;
+// $___BoxTextVisitedCheckmark: #87e67a;
 // $a14: #222;
 
 
@@ -77,39 +99,39 @@ $a14: #222;
 
 
 
-$borderMenuItemsAndButtons: $paletteBorderMenuItemsAndButtons;
-$text: $paletteTextColor;
-$gridCardTitleTextColor: $paletteGridCardTitleTextColor;
-$gridCardTitleTextHoverColor: $paletteGridCardTitleTextHoverColor;
-$textOnCard: $paletteTextColorOnCard;
-$background: $paletteBackgroundColor;
-$loadingBackground: $paletteBackgroundColor;
+$borderMenuItemsAndButtons: $___BorderMenuItemsAndButtons;
+$text: $___TextColor;
+$gridCardTitleTextColor: $___GridCardTitleTextColor;
+$gridCardTitleTextHoverColor: $___GridCardTitleTextHoverColor;
+$textOnCard: $___TextColorOnCard;
+$background: $___BackgroundColor;
+$loadingBackground: $___BackgroundColor;
 
-$generalLinksText: $paletteGeneralLinksText;
-$generalLinksTextHover: $paletteTextColor;
-$linksText: $paletteTextColor;
-$linksBorder: $paletteTextColor;
-$borderDrawingEffect: $paletteTextColor;
-$linksHoverBackground: $paletteLinksHoverBackground;
-$categoryLinksBorderActive: $paletteCategoryLinksBorderActive;
-$categoryLinksBackgroundActive: $paletteCategoryLinksBackgroundActive;
+$generalLinksText: $___GeneralLinksText;
+$generalLinksTextHover: $___TextColor;
+$linksText: $___TextColor;
+$linksBorder: $___TextColor;
+$borderDrawingEffect: $___TextColor;
+$linksHoverBackground: $___LinksHoverBackground;
+$categoryLinksBorderActive: $___CategoryLinksBorderActive;
+$categoryLinksBackgroundActive: $___CategoryLinksBackgroundActive;
 
-$hr1: hsla(0, 0%, 50%, 1.0);
-$hr2: hsl(0, 0%, 75%);
+$hr1: #222;
+$hr2: #222;
 $hr1menu: #000;
 
 
 // THE BACKGROUND OF A SPECIFIC CARD
-$overlayItemBackground: $paletteBackgroundColor;
+$overlayItemBackground: $___BackgroundColor;
 
 
 
-$cardTextBackground: $paletteCardTextBackground;
-$boxTextInnerBorder: $paletteTextColor;
-$boxTextInnerReverseBackground: $paletteTextColor;
+$cardGridBackground: $___CardGridBackground;
+$boxTextInnerBorder: $___TextColor;
+$boxTextInnerReverseBackground: $___TextColor;
 $boxTextInnerReverseText: #ececec;
-$boxTextVisited: $paletteLinksHoverBackground;
-$boxTextVisitedCheckmark: $paletteBoxTextVisitedCheckmark;
+$boxTextVisited: $___LinksHoverBackground;
+$boxTextVisitedCheckmark: $___BoxTextVisitedCheckmark;
 
 $slider: #2196F3;
 $slider2: #ccc;

@@ -13,6 +13,7 @@
 
 <script>
 import Menu from "@/components/Menu.vue";
+// import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
 // import NewsTicker from "@/components/NewsTicker.vue";
 
 export default {
@@ -131,8 +132,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-body.bcb {
-}
+body.bcb {}
 
 h1,
 h2,
@@ -290,33 +290,11 @@ small {
 }
 
 // https://codepen.io/joeyhoer/pen/BmqIx
+// 
+
 hr {
-    border: 0;
-    margin: 1.35em auto;
-    max-width: 100%;
-    background-position: 50%;
-    box-sizing: border-box;
-
-    height: 6px;
-    background-image: radial-gradient(closest-side, $hr1, 100%);
-    position: relative;
-}
-
-hr:after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    display: block;
-    background-color: $hr2;
-    height: 12px;
-    width: 12px;
-    transform: rotate(45deg);
-    margin-top: -10px;
-    margin-left: -10px;
-    border-radius: 4px 0;
-    border: 4px solid $hr2;
-    background-clip: padding-box;
-    box-shadow: -10px 10px 0 $hr2, 10px -10px 0 $hr2;
+    border: 1px solid #666;
+    width: 50%;
 }
 
 .menu hr {
@@ -384,10 +362,9 @@ hr:after {
     width: 100%;
 }
 
-
 // card collection
 .box__text {
-    background: $cardTextBackground;
+    background: $cardGridBackground;
     margin: 0;
     position: absolute;
     top: -6rem;
@@ -405,6 +382,7 @@ hr:after {
     padding: 0.25rem 1.25rem;
     color: $gridCardTitleTextColor;
 }
+
 .box__text-inner:hover {
     color: $gridCardTitleTextHoverColor;
 }
@@ -575,14 +553,14 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
 /* EIND GELUID AAN UIT */
-
-
 
 /* Visited cards get a visual sign */
 .visited .box__text {
     border: 10px solid $boxTextVisited;
 }
+
 .visited .box__text-inner:after {
     content: "√";
     color: $boxTextVisitedCheckmark;
@@ -596,7 +574,6 @@ input:checked+.slider:before {
     font-size: 6em;
     /* transform: rotate(323deg); */
 }
-
 
 .further-reading {
     cursor: pointer;
@@ -622,8 +599,6 @@ button {
 .overlay__close,
 /* het sluiten van de tweede popup: */
 button,
-/* lees meer in de tweede popup: */
-.md-trigger,
 /* alle links in de tweede popup: */
 .modal-content a,
 /* het menu met alle categorieen */
@@ -639,23 +614,17 @@ button,
     cursor: pointer;
 }
 
-.md-trigger {
-    margin-left: 0;
-}
-
 .md-close.md-close-cross,
 .overlay__close-cross {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 20px;
+    left: 20px;
     border: none;
     display: block;
     font-size: 2.5em;
     line-height: 0.6;
     padding: 0;
     cursor: pointer;
-    // border: 1px solid red;
-    // vertical-align: middle;
 }
 
 a.overlay__close:not(.overlay__close-cross) {
@@ -728,8 +697,6 @@ a.overlay__close:not(.overlay__close-cross):hover,
 .overlay__close:hover,
 /* het sluiten van de tweede popup: */
 button:hover,
-/* lees meer in de tweede popup: */
-.md-trigger:hover,
 /* alle links in de tweede popup: */
 .modal-content a:hover,
 /* het menu met alle categorieen */
@@ -843,29 +810,13 @@ button:hover,
 }
 
 .categoryLinks a //   ,.copyURLtoClipboard
-//   ,.md-trigger
 ,
 .md-close:not(.md-close-cross),
 .modal-content a //   ,a.overlay__close:not(.overlay__close-cross)
-
-    {
+{
     @include btn-border-drawing($borderMenuItemsAndButtons, $a14, 3px, bottom, right);
 }
 
-// de read more / plus sign on the intro card
-a.md-trigger {
-    border: 3px solid $borderMenuItemsAndButtons;
-    background: $borderMenuItemsAndButtons;
-    color: $text;
-    border-radius: 50%;
-    //   width: 1.5em;
-    //   height: 1.5em;
-    padding: 0.15em 0.2em 0.25em;
-    margin: 0;
-    line-height: 0.58;
-    font-size: 2em;
-    vertical-align: middle;
-}
 
 #socialMediaTekst {
     /* background: #685D79 !important; */
@@ -889,26 +840,6 @@ iframe {
     /* height: 70%; */
 
 }
-
-/* https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
-.videoWrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-}
-
-.videoWrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-
 
 /*
  *  BEGIN NEWS TICKER

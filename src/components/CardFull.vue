@@ -8,33 +8,67 @@
                 <h3 class="title">{{ this.$store.state.currentCard.Prejudice }}</h3>
                 <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}</p>
 
-                <h3 class="longAnswer" v-if="this.$store.state.currentCard['long answer+facts']">Answer</h3>
-                <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
+                <div v-if="this.$store.state.currentCard['long answer+facts']">
+                    <hr>
+                    <h3 class="longAnswer">Answer</h3>
+                    <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
+                </div>
 
                 <!-- <Quiz /> -->
                 <Video />
 
-                <h3 class="readOn" v-if="this.$store.state.currentCard['Read On 1 Text']">Read More</h3>
-                <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
-                <h3 v-if="this.$store.state.currentCard['Read On 2 Text']">Read More</h3>
-                <p>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
-                <h3 v-if="this.$store.state.currentCard['Read On 3 Text']">Read More</h3>
-                <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
+                <div v-if="this.$store.state.currentCard['Read On 1 Text']">
+                    <hr>
+                    <h3 class="readOn">Read More</h3>
+                    <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                    <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
+                </div>
 
-                <h3 class="counterQuestion" v-if="this.$store.state.currentCard['Counter-questions']">Counter-questions</h3>
-                <p>{{this.$store.state.currentCard["Counter-questions"]}}</p>
+                <div v-if="this.$store.state.currentCard['Read On 2 Text']">
+                    <hr>
+                    <h3 class="readOn">Read More</h3>
+                    <p>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
+                    <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">Read on</a></p>
+                </div>
 
-                <h3 class="" v-if="this.$store.state.currentCard['analogy']">Analogy</h3>
-                <p>{{this.$store.state.currentCard["analogy"]}}</p>
+                <div v-if="this.$store.state.currentCard['Read On 3 Text']">
+                    <hr>
+                    <h3 class="readOn">Read More</h3>
+                    <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
+                    <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
+                </div>
 
-                <h3 class="flowerPower" v-if="this.$store.state.currentCard['FlowerPower']">Flower Power</h3>
-                <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
+                <div v-if="this.$store.state.currentCard['Counter-questions']">
+                    <hr>
+                    <h3 class="counterQuestion">Counter-questions</h3>
+                    <p>{{this.$store.state.currentCard["Counter-questions"]}}</p>
+                </div>
 
-                <h3 class="related" v-if="this.$store.state.currentCard['Related']">Related</h3>
-                <!-- <p><a v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item">{{ item }}</a></p> -->
-                <p v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
-                    <router-link :to="'/card/' + item">{{ item }}</router-link>
-                </p>
+                <div v-if="this.$store.state.currentCard['analogy']">
+                    <hr>
+
+                    <h3 class="">Analogy</h3>
+                    <p>{{this.$store.state.currentCard["analogy"]}}</p>
+                </div>
+
+                <div v-if="this.$store.state.currentCard['FlowerPower']">
+                    <hr>
+
+                    <h3 class="flowerPower">Flower Power</h3>
+                    <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
+                </div>
+
+                <div v-if="this.$store.state.currentCard['Related']">
+                    <hr>
+                    <h3 class="related">Related</h3>
+                    <!-- <p><a v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item">{{ item }}</a></p> -->
+                    
+                    <p>
+                    <span v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
+                        <router-link :to="'/card/' + item">{{ item }}</router-link>
+                    </span>
+                    </p>
+                </div>
 
                 <SocialMedia />
 
@@ -87,7 +121,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style lang="scss" scoped>
+<style lang="scss">
 // // MODAL
 /* General styles for the modal */
 
@@ -109,17 +143,17 @@ perspective effects (not including the modals and the overlay).
     perspective: 600px;
 }
 
-// .container {
-// 	background: #e74c3c;
-// 	min-height: 100%;
-// }
 
+.modal-header {
+    border-bottom: none;
+}
 .modal-content h3 {
     background-repeat: no-repeat;
     background-size: 1.8em;
     padding: 0.4em;
     padding-left: 2em !important;
     padding-bottom: 1em;
+    margin-top: 2em;
 }
 
 .modal-content h3.title {
@@ -132,6 +166,7 @@ perspective effects (not including the modals and the overlay).
 
 .modal-content h3.video {
     background-image: url(../assets/img/logo/blockchainbird-logo.png);
+    text-align: left;
 }
 
 .modal-content h3.flowerPower {
@@ -156,6 +191,10 @@ perspective effects (not including the modals and the overlay).
 
 .modal-content a.modalbox-iconbackground {
     text-decoration: underline;
+}
+
+.md-modal * {
+    text-align: left;
 }
 
 .md-modal {
@@ -221,10 +260,6 @@ perspective effects (not including the modals and the overlay).
     border: none;
 }
 
-* {
-    text-align: left !important;
-}
-
 .md-content>div {
     padding: 15px 40px 30px;
     margin: 0;
@@ -247,7 +282,7 @@ perspective effects (not including the modals and the overlay).
 .md-content button {
     display: block;
     margin: 0 auto;
-    font-size: 0.6em;
+    font-size: 1em;
 }
 
 /* Individual modal styles with animations/transitions */
