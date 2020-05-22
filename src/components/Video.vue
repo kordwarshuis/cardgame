@@ -2,8 +2,8 @@
 <!-- negate doesnt seem to work -->
 <div v-if="(this.$store.state.currentCard['Youtube Video Id'] === '')"></div>
 
-<div v-else>
-    <hr>
+<div class="border p-3 mb-3" v-else>
+    
     <h3 class="video">Video</h3>
 
     <p>{{this.$store.state.currentCard["Youtube Video Description"]}}</p>

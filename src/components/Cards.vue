@@ -1,7 +1,7 @@
 <template>
 <div>
     <!-- <h1>{{ msg }}</h1> -->
-    <BitcoinAnimation />
+    <!-- <BitcoinAnimation /> -->
     <h1>Bitcoin Misconceptions</h1>
     <p>{{ subtext }}</p>
     <p class="categoryLinks">

@@ -163,7 +163,7 @@ h6 {
     a {
         font-weight: bold;
         color: $generalLinksText;
-        padding: 1em;
+        padding: 0.1em;
     }
 
     a:hover {

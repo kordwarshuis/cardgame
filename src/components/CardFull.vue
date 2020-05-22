@@ -1,15 +1,15 @@
 <template>
-<div class="popup md-modal md-effect-2" :class="this.$store.state.cssClassCardFullState" id="modal-6">
+<div class="popup md-modal md-effect-2 mt-3 mb-3" :class="this.$store.state.cssClassCardFullState" id="modal-6">
     <div class="md-content">
-        <h3 class="modal-header"></h3>
+        <!-- <h3 class="modal-header"></h3> -->
         <div>
-            <div class="modal-content">
+            <div class="modal-content p-2 pt-5">
                 <button class="copyURLtoClipboard copyURLtoClipboard1">Copy Link</button>
-                <h3 class="title">{{ this.$store.state.currentCard.Prejudice }}</h3>
+                <h2 class="title">{{ this.$store.state.currentCard.Prejudice }}</h2>
                 <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}</p>
 
-                <div v-if="this.$store.state.currentCard['long answer+facts']">
-                    <hr>
+                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['long answer+facts']">
+                    
                     <h3 class="longAnswer">Answer</h3>
                     <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
                 </div>
@@ -17,49 +17,49 @@
                 <!-- <Quiz /> -->
                 <Video />
 
-                <div v-if="this.$store.state.currentCard['Read On 1 Text']">
-                    <hr>
+                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
+                    
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
                 </div>
 
-                <div v-if="this.$store.state.currentCard['Read On 2 Text']">
-                    <hr>
+                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
+                    
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">Read on</a></p>
                 </div>
 
-                <div v-if="this.$store.state.currentCard['Read On 3 Text']">
-                    <hr>
+                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
+                    
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
                 </div>
 
-                <div v-if="this.$store.state.currentCard['Counter-questions']">
-                    <hr>
+                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
+                    
                     <h3 class="counterQuestion">Counter-questions</h3>
                     <p>{{this.$store.state.currentCard["Counter-questions"]}}</p>
                 </div>
 
-                <div v-if="this.$store.state.currentCard['analogy']">
-                    <hr>
+                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['analogy']">
+                    
 
                     <h3 class="">Analogy</h3>
                     <p>{{this.$store.state.currentCard["analogy"]}}</p>
                 </div>
 
-                <div v-if="this.$store.state.currentCard['FlowerPower']">
-                    <hr>
+                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
+                    
 
                     <h3 class="flowerPower">Flower Power</h3>
                     <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
                 </div>
 
-                <div v-if="this.$store.state.currentCard['Related']">
-                    <hr>
+                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Related']">
+                    
                     <h3 class="related">Related</h3>
                     <!-- <p><a v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item">{{ item }}</a></p> -->
 
@@ -126,28 +126,53 @@ export default {
 
 // MODAL
 /* General styles for the modal */
+// .modal-content {
+//     position: absolute;
+// }
+// div.popup.md-modal>div.md-content>div>.modal-content>div {
+//     width: 100%;
+//     border: 3px solid green;
+
+// }
+
+// /* Small devices (landscape phones, 576px and up) */
+// @media (min-width: 576px) {
+
+//     div.popup.md-modal>div.md-content>div>.modal-content>div {
+//         width: 33%;
+//         // position: static;
+//         float: left !important;
+//         // display: block;
+//     }
+// }
 
 
 
-.modal-header {
-    border-bottom: none;
+
+
+// .modal-header {
+//     border-bottom: none;
+// }
+
+.modal-content>div {
+    background: $background;
 }
 
 .modal-content h3 {
     background-repeat: no-repeat;
-    background-size: 1.8em;
-    padding: 0.4em;
+    background-size: 1.2em;
+    // padding: 0.4em;
     padding-left: 2em;
-    padding-bottom: 1em;
-    margin-top: 2em;
+    // padding-bottom: 1em;
+    // margin-top: 1em;
 }
 
-.modal-content h3.title {
-    // background-image: url(../assets/img/logo/blockchainbird-logo.png);
-    padding: 0.4em;
-    padding-left: 0;
-    padding-bottom: 0;
-}
+// .modal-content h3.title {
+//     // background-image: url(../assets/img/logo/blockchainbird-logo.png);
+//     padding: 0.4em;
+//     padding-left: 0;
+//     padding-bottom: 0;
+// }
 
 .modal-content h3.longAnswer {
     background-image: url(../assets/img/animated-gif/mens38.gif);
@@ -187,42 +212,35 @@ export default {
 }
 
 
-/* Content styles */
+// /* Content styles */
 .md-content {
-    color: $text;
-    background: $background;
-    position: relative;
-    border-radius: 3px;
-    margin: 0 auto;
-    height: 100%;
-    overflow: scroll;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
 
 }
 
-.md-content div {
-    background: transparent;
-    border: none;
-}
+// .md-content div {
+//     background: transparent;
+//     border: none;
+// }
 
-.md-content>div {
-    padding: 15px 40px 30px;
-    margin: 0;
-}
+// .md-content>div {
+//     padding: 15px 40px 30px;
+//     margin: 0;
+// }
 
-.md-content>div p {
-    margin: 0;
-    padding: 10px 0;
-}
+// .md-content>div p {
+//     margin: 0;
+//     padding: 10px 0;
+// }
 
-.md-content>div ul {
-    margin: 0;
-    padding: 0 0 30px 20px;
-}
+// .md-content>div ul {
+//     margin: 0;
+//     padding: 0 0 30px 20px;
+// }
 
-.md-content>div ul li {
-    padding: 5px 0;
-}
+// .md-content>div ul li {
+//     padding: 5px 0;
+// }
 
 .md-content button {
     display: block;
@@ -268,7 +286,8 @@ perspective effects (not including the modals and the overlay).
     left: 50%;
     width: 50%;
     width: 95%;
-    max-width: 630px;
+    // max-width: 630px;
+    max-width: 50em;
     // min-width: 320px;
     // height: auto;
     height: 100%;
