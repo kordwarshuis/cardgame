@@ -18,11 +18,11 @@
                 <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }} …<a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a></p>
                 <button class="closeCardIntro">All cards</button>
                 <button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
-                <!-- <button type="button" class="overlay-fullscreen-close">Close</button> -->
+                <!-- <button class="overlay-fullscreen-close">Close</button> -->
             </div>
         </div>
     </div>
-<a type="button" class="overlay-fullscreen-close">×</a>
+<a class="overlay-fullscreen-close">×</a>
 </div>
 </template>
 
@@ -123,6 +123,7 @@ export default {
     font-size: 2.5em;
     line-height: 0.6;
     padding: 0;
+    cursor: pointer;
 }
 
 // de read more / plus sign on the intro card

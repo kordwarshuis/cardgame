@@ -378,7 +378,7 @@ hr {
 .box__text-inner {
     position: relative;
     display: block;
-    border: 6px solid $boxTextInnerBorder;
+    border: 6px solid $cardGridBorder;
     padding: 0.25rem 1.25rem;
     color: $gridCardTitleTextColor;
 }
@@ -813,10 +813,10 @@ button:hover,
 ,
 .md-close:not(.md-close-cross),
 .modal-content a //   ,a.overlay__close:not(.overlay__close-cross)
-{
+
+    {
     @include btn-border-drawing($borderMenuItemsAndButtons, $a14, 3px, bottom, right);
 }
-
 
 #socialMediaTekst {
     /* background: #685D79 !important; */

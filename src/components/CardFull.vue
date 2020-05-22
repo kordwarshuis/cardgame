@@ -1,5 +1,5 @@
 <template>
-<div class="popup md-modal md-effect-6" :class="this.$store.state.cssClassCardFullState" id="modal-6">
+<div class="popup md-modal md-effect-2" :class="this.$store.state.cssClassCardFullState" id="modal-6">
     <div class="md-content">
         <h3 class="modal-header"></h3>
         <div>
@@ -62,11 +62,11 @@
                     <hr>
                     <h3 class="related">Related</h3>
                     <!-- <p><a v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item">{{ item }}</a></p> -->
-                    
+
                     <p>
-                    <span v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
-                        <router-link :to="'/card/' + item">{{ item }}</router-link>
-                    </span>
+                        <span v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
+                            <router-link :to="'/card/' + item">{{ item }}</router-link>
+                        </span>
                     </p>
                 </div>
 
@@ -122,8 +122,31 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss">
+//! https://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/
+
 // // MODAL
 /* General styles for the modal */
+
+
+
+@media screen and (max-width: 46.0625em) {}
+
+@media screen and (max-width: 25em) {}
+
+.md-show.md-effect-16~.container {
+    -ms-filter: blur(3px);
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    filter: url(#blur3px)
+}
+
+@media screen and (max-width: 32em) {}
+
+@media screen and (max-width: 800px) {}
+
+@media screen and (max-width: 460px) {}
+
 
 /* 
 Styles for the html/body for special modal where we want 3d effects
@@ -143,10 +166,10 @@ perspective effects (not including the modals and the overlay).
     perspective: 600px;
 }
 
-
 .modal-header {
     border-bottom: none;
 }
+
 .modal-content h3 {
     background-repeat: no-repeat;
     background-size: 1.8em;

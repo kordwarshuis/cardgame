@@ -1,8 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import publicPath from "../../vue.config";
+
 import Home from "../views/Home.vue";
+
 import About from "../views/About.vue";
 import TwitterRealTime from "../views/TwitterRealTime.vue";
+
 
 Vue.use(VueRouter);
 
@@ -41,8 +45,7 @@ const routes = [{
 ];
 
 const router = new VueRouter({
-  // base: "/",
-  base: "/vue-cardgame/",
+  base: publicPath.publicPath,
   // mode: 'hash', // back button not work, https://github.com/vuejs/vue-router/issues/853 ??
   mode: 'history', // it's work
   routes
