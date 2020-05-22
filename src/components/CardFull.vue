@@ -129,7 +129,106 @@ export default {
 
 
 
+.modal-header {
+    border-bottom: none;
+}
 
+.modal-content h3 {
+    background-repeat: no-repeat;
+    background-size: 1.8em;
+    padding: 0.4em;
+    padding-left: 2em;
+    padding-bottom: 1em;
+    margin-top: 2em;
+}
+
+.modal-content h3.title {
+    // background-image: url(../assets/img/logo/blockchainbird-logo.png);
+    padding: 0.4em;
+    padding-left: 0;
+    padding-bottom: 0;
+}
+
+.modal-content h3.longAnswer {
+    background-image: url(../assets/img/animated-gif/mens38.gif);
+}
+
+.modal-content h3.video {
+    background-image: url(../assets/img/logo/blockchainbird-logo.png);
+    text-align: left;
+}
+
+.modal-content h3.flowerPower {
+    background-image: url(../assets/img/animated-gif/pink_panther_e0.gif);
+}
+
+.modal-content h3.readOn {
+    background-image: url(../assets/img/animated-gif/guestbk2.gif);
+}
+
+.modal-content h3.counterQuestion {
+    background-image: url(../assets/img/animated-gif/insects15.gif);
+}
+
+.modal-content h3.related {
+    background-image: url(../assets/img/logo/blockchainbird-logo.png);
+}
+
+.modal-content h3.libbitcoin {
+    background-image: url(../assets/img/logo/libbitcoin.png);
+}
+
+.modal-content a.modalbox-iconbackground {
+    text-decoration: underline;
+}
+
+.md-modal * {
+    text-align: left;
+}
+
+
+/* Content styles */
+.md-content {
+    color: $text;
+    background: $background;
+    position: relative;
+    border-radius: 3px;
+    margin: 0 auto;
+    height: 100%;
+    overflow: scroll;
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+
+}
+
+.md-content div {
+    background: transparent;
+    border: none;
+}
+
+.md-content>div {
+    padding: 15px 40px 30px;
+    margin: 0;
+}
+
+.md-content>div p {
+    margin: 0;
+    padding: 10px 0;
+}
+
+.md-content>div ul {
+    margin: 0;
+    padding: 0 0 30px 20px;
+}
+
+.md-content>div ul li {
+    padding: 5px 0;
+}
+
+.md-content button {
+    display: block;
+    margin: 0 auto;
+    font-size: 1em;
+}
 
 
 
