@@ -122,17 +122,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss">
-//! https://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/
+/*! https://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/ */
 
-// // MODAL
+// MODAL
 /* General styles for the modal */
-
-
-
 @media screen and (max-width: 46.0625em) {}
-
 @media screen and (max-width: 25em) {}
-
 .md-show.md-effect-16~.container {
     -ms-filter: blur(3px);
     -webkit-filter: blur(3px);
@@ -140,11 +135,8 @@ export default {
     -o-filter: blur(3px);
     filter: url(#blur3px)
 }
-
 @media screen and (max-width: 32em) {}
-
 @media screen and (max-width: 800px) {}
-
 @media screen and (max-width: 460px) {}
 
 
@@ -174,13 +166,17 @@ perspective effects (not including the modals and the overlay).
     background-repeat: no-repeat;
     background-size: 1.8em;
     padding: 0.4em;
-    padding-left: 2em !important;
+    padding-left: 2em;
     padding-bottom: 1em;
     margin-top: 2em;
 }
 
 .modal-content h3.title {
-    background-image: url(../assets/img/logo/blockchainbird-logo.png);
+    // background-image: url(../assets/img/logo/blockchainbird-logo.png);
+    padding: 0.4em;
+    padding-left: 0;
+    padding-bottom: 0;
+
 }
 
 .modal-content h3.longAnswer {

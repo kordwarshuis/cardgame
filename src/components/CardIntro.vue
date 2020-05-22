@@ -96,7 +96,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-// https://tympanus.net/Development/FullscreenOverlayStyles/index7.html#
+/*! https://tympanus.net/Development/FullscreenOverlayStyles/index7.html# */
 /* Overlay style */
 .overlay-fullscreen {
     position: fixed;

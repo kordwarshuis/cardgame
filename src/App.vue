@@ -1,6 +1,7 @@
 <template>
 <div id="app">
     <Menu />
+    <!-- <CryptoRadio /> -->
     <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link> |
@@ -13,12 +14,14 @@
 
 <script>
 import Menu from "@/components/Menu.vue";
+import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
 // import NewsTicker from "@/components/NewsTicker.vue";
 
 export default {
     components: {
         Menu
+        ,CryptoRadio
         // ,NewsTicker
     }
 

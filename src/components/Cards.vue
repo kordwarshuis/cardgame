@@ -1,7 +1,7 @@
 <template>
 <div>
     <!-- <h1>{{ msg }}</h1> -->
-    <!-- <BitcoinAnimation /> -->
+    <BitcoinAnimation />
     <h1>Bitcoin Misconceptions</h1>
     <p>{{ subtext }}</p>
     <p class="categoryLinks">
@@ -31,13 +31,13 @@
 import NewsTicker from "@/components/NewsTicker.vue";
 import Search from "@/components/Search.vue";
 
-// import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
+import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
 export default {
     name: "Index",
     components: {
         Search,
-        NewsTicker
-        // ,BitcoinAnimation
+        NewsTicker,
+        BitcoinAnimation
         // VueFuse
     },
     props: {
@@ -54,7 +54,7 @@ export default {
     methods: {
         showCardIntro(event) {
             // adds a sign to the card that is visited TODO: make it so that everything is clickable and results in a sign
-            event.target.classList.add("visited");
+            event.target.closest("a").classList.add("visited");
 
             // deal with CSS to open and close
             this.$store.commit("changeCssClassCardIntroState", "open");
