@@ -31,9 +31,22 @@ export default {
         CardIntro,
         CardFull
     },
+    watch: {
+        '$route'(to, from) {
+            console.log("ja dus");
+            console.log(to.params.card);
+            // console.log(from);
+            var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
+            this.$store.commit("changeCard", currentCard);
+
+
+            
+        }
+    },
     mounted: function () {
         this.fetchData();
     },
+
     // https://stackoverflow.com/a/44347195
     methods: {
         fetchData() {
@@ -65,9 +78,9 @@ export default {
                             responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
 
                             // split string on \n\n, so we can make paragraphs later, or separate links for example
-                            responseData[i]["long answer+facts"] = this.splitString(responseData[i]["long answer+facts"],"\n\n");
-                            
-                            responseData[i]["Related"] = this.splitString(responseData[i]["Related"],",");
+                            responseData[i]["long answer+facts"] = this.splitString(responseData[i]["long answer+facts"], "\n\n");
+
+                            responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
 
                         }
 
@@ -172,6 +185,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style lang="scss">
 .container {
     overflow-x: hidden;
@@ -197,5 +211,4 @@ export default {
     -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
     transition: opacity 0.5s, visibility 0s 0.5s;
 }
-
 </style>

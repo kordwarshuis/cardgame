@@ -61,8 +61,8 @@ export default {
             this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
 
             // returns object with all entries of one prejudice
-            var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
-            this.$store.commit("changeCard", currentCard);
+            // var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
+            // this.$store.commit("changeCard", currentCard);
 
             // set URl to the item that was clicked
             // catch error: https://stackoverflow.com/a/58747480
