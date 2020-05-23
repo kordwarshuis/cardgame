@@ -8,7 +8,7 @@
         <router-link to="/twitter-real-time">Realtime Twitter</router-link>
     </div>
     <router-view />
-    <!-- <NewsTicker /> -->
+    <NewsTicker />
 </div>
 </template>
 
@@ -16,13 +16,13 @@
 import Menu from "@/components/Menu.vue";
 import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
-// import NewsTicker from "@/components/NewsTicker.vue";
+import NewsTicker from "@/components/NewsTicker.vue";
 
 export default {
     components: {
         Menu
         ,CryptoRadio
-        // ,NewsTicker
+        ,NewsTicker
     }
 
 }
@@ -843,74 +843,6 @@ iframe {
     /* height: 70%; */
 
 }
-
-/*
- *  BEGIN NEWS TICKER
- */
-
-/* I know I should not animate "right" property but I don't know how to do it another way. */
-.news-ticker {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    top: auto;
-    /*om te overrulen, als je hem buiten de div plaatst, zodat het een section > div is*/
-    left: auto;
-    /*om te overrulen, als je hem buiten de div plaatst, zodat het een section > div is*/
-    padding: 0;
-    /*om te overrulen, als je hem buiten de div plaatst, zodat het een section > div is*/
-    margin: 0;
-    height: auto !important;
-    transform: translateX(100%);
-    /* default speed, override via inline style, depending on text length */
-    animation-duration: 25s;
-    animation-timing-function: linear;
-    animation-iteration-count: 30;
-    z-index: 5;
-    pointer-events: none;
-}
-
-/*main .present .news-ticker, */
-/*alleen als slide actief is, loopt de animatie*/
-body>.news-ticker {
-    /*deze is voor als ie niet binnen de main staat en dus altijd te zien is*/
-    animation-name: news-ticker;
-}
-
-.news-ticker p {
-    white-space: nowrap;
-    margin: 0 1em;
-}
-
-.news-ticker img {
-    vertical-align: baseline;
-}
-
-@keyframes news-ticker {
-    0% {
-        right: 0;
-        transform: translateX(100%);
-    }
-
-    100% {
-        right: 100%;
-        transform: translateX(0);
-    }
-}
-
-.news-ticker p {
-    line-height: 1;
-}
-
-@media only screen and (max-width: 961px) {
-    .news-ticker p {
-        line-height: 1;
-    }
-}
-
-/*
- *  EIND NEWS TICKER
- */
 
 /* SEARCH */
 // .searchString {
