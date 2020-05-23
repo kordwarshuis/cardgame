@@ -37,7 +37,7 @@ export default {
     // https://stackoverflow.com/a/44347195
     methods: {
         fetchData() {
-            // only fetch data 
+            // pnly fetch data 
             if (this.$store.state.dataFetched === false) {
                 return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
                     .then(response => {
@@ -85,7 +85,7 @@ export default {
 
                             // if there is a specific url / card param, the do following:
                         } else if (this.$route.params.card !== "") {
-                            this.$store.commit("    ", this.$route.params.card);
+                            this.$store.commit("showCardIntroFromURL", this.$route.params.card);
                         }
 
                     });

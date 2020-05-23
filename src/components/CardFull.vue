@@ -9,7 +9,7 @@
                 <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}</p>
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['long answer+facts']">
-                    
+
                     <h3 class="longAnswer">Answer</h3>
                     <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
                 </div>
@@ -18,48 +18,46 @@
                 <Video />
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
-                    
+
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
                 </div>
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
-                    
+
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">Read on</a></p>
                 </div>
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
-                    
+
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
                 </div>
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
-                    
+
                     <h3 class="counterQuestion">Counter-questions</h3>
                     <p>{{this.$store.state.currentCard["Counter-questions"]}}</p>
                 </div>
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['analogy']">
-                    
 
                     <h3 class="">Analogy</h3>
                     <p>{{this.$store.state.currentCard["analogy"]}}</p>
                 </div>
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
-                    
 
                     <h3 class="flowerPower">Flower Power</h3>
                     <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
                 </div>
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Related']">
-                    
+
                     <h3 class="related">Related</h3>
                     <!-- <p><a v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item">{{ item }}</a></p> -->
 
@@ -71,11 +69,6 @@
                 </div>
 
                 <SocialMedia />
-
-                <!-- Trigger -->
-                <!-- <button class="copyURLtoClipboard copyURLtoClipboard1">
-          Copy Link
-        </button> -->
 
                 <button class="md-close" @click="hideModal">Close</button>
                 <button class="copyURLtoClipboard copyURLtoClipboard2">Copy Link</button>
@@ -146,10 +139,6 @@ export default {
 //     }
 // }
 
-
-
-
-
 // .modal-header {
 //     border-bottom: none;
 // }
@@ -211,7 +200,6 @@ export default {
     text-align: left;
 }
 
-
 // /* Content styles */
 .md-content {
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
@@ -248,18 +236,7 @@ export default {
     font-size: 1em;
 }
 
-
-
-
-
-
-
-
-
-
-
 // ESSENTIAL
-
 
 /* 
 Styles for the html/body for special modal where we want 3d effects
@@ -278,7 +255,6 @@ perspective effects (not including the modals and the overlay).
     -moz-perspective: 600px;
     perspective: 600px;
 }
-
 
 .md-modal {
     position: fixed;
@@ -332,7 +308,9 @@ perspective effects (not including the modals and the overlay).
 }
 
 @media screen and (max-width: 46.0625em) {}
+
 @media screen and (max-width: 25em) {}
+
 .md-show.md-effect-16~.container {
     -ms-filter: blur(3px);
     -webkit-filter: blur(3px);
@@ -340,10 +318,12 @@ perspective effects (not including the modals and the overlay).
     -o-filter: blur(3px);
     filter: url(#blur3px)
 }
-@media screen and (max-width: 32em) {}
-@media screen and (max-width: 800px) {}
-@media screen and (max-width: 460px) {}
 
+@media screen and (max-width: 32em) {}
+
+@media screen and (max-width: 800px) {}
+
+@media screen and (max-width: 460px) {}
 
 /* Individual modal styles with animations/transitions */
 
