@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="container logo-parent" :class="this.$store.state.cssClassCardOverviewState">
+    <div class=" logo-parent" :class="this.$store.state.cssClassCardOverviewState">
         <a href>
             <img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" />
         </a>

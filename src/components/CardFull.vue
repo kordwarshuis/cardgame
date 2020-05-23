@@ -73,9 +73,9 @@
                 <button class="md-close" @click="hideModal">Close</button>
                 <button class="copyURLtoClipboard copyURLtoClipboard2">Copy Link</button>
             </div>
-            <a @click="hideModal" class="md-close md-close-cross">×</a>
         </div>
     </div>
+    <a @click="hideModal" class="md-close md-close-cross">×</a>
 </div>
 </template>
 

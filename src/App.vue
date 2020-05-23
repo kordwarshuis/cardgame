@@ -1,6 +1,11 @@
 <template>
-<div id="app">
+<div id="app" class="container-fluid">
     <Menu />
+
+
+
+
+
     <!-- <CryptoRadio /> -->
     <div id="nav">
         <router-link to="/">Home</router-link> |
@@ -315,7 +320,7 @@ hr {
     margin: 0;
     line-height: 1;
     position: absolute;
-    z-index: 2;
+    // z-index: 2;
     /* important ivm de tekst passend maken middels textFit*/
     /* zie JS, allOverlayTitles[i].style.height */
     margin: 5% 1em 0 17%;
@@ -619,7 +624,7 @@ button,
 
 .md-close.md-close-cross,
 .overlay__close-cross {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 20px;
     border: none;
