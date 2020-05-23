@@ -14,7 +14,7 @@
                     <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
                 </div>
 
-                <!-- <Quiz /> -->
+                <Quiz />
                 <Video />
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">

@@ -43,7 +43,7 @@ export default {
                 this.$store.commit("changeCssClassCardIntroState", "");
                 this.$store.commit("changeCssClassCardOverviewState", "");
             }
-            
+
             if (currentCard !== undefined) {
                 this.$store.commit("changeCard", currentCard);
             }
@@ -134,7 +134,14 @@ export default {
                     "answers": []
                 };
                 for (let i = 1; i < quiz.length - 1; i++) {
-                    temp[1].answers.push(quiz[i]);
+                    let isQuizItemAnswerRight = false;
+
+                    if (quiz[i].charAt(0) === "+") {
+                        isQuizItemAnswerRight = true;
+                        quiz[i] = quiz[i].substr(1);
+                    }
+
+                    temp[1].answers.push([quiz[i],isQuizItemAnswerRight]);
                 }
                 // put explanation in third item, last string item is always answer
                 temp[2] = {
