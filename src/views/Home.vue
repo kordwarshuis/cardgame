@@ -31,13 +31,17 @@ export default {
         CardIntro,
         CardFull
     },
-    watch: {
+    watch: {//https://www.reddit.com/r/vuejs/comments/58g6u7/how_can_i_detect_the_browser_back_button_with_vue/
         '$route'(to, from) {
             console.log("ja dus");
             console.log(to.params.card);
+            console.log('this.$store.state.currentCard["Unique URL"]: ', this.$store.state.currentCard["Unique URL"]);
+            
             // console.log(from);
-            var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
-            this.$store.commit("changeCard", currentCard);
+            // var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
+            // var currentCard = this.$store.getters.getCard(this.$store.state.currentCard["Unique URL"]);
+            
+            this.$store.commit("changeCard", to.params.card);
 
 
             

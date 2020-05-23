@@ -43,6 +43,7 @@ export default {
 
             // returns object with all entries of one prejudice
             var currentCard = this.$store.getters.getCard(event.target.dataset.id);
+            // TODO: "currentCard" is confusing, should indicate it is a string with unique url
             this.$store.commit("changeCard", currentCard);
 
             // set URl to the item that was clicked
