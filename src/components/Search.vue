@@ -36,20 +36,7 @@ export default {
         })
     },
     methods: {
-        showCardIntro(event) {
-            // deal with CSS to open and close
-            this.$store.commit("changeCssClassCardIntroState", "open");
-            this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
 
-            // returns object with all entries of one prejudice
-            var currentCard = this.$store.getters.getCard(event.target.dataset.id);
-            this.$store.commit("changeCard", currentCard);
-
-            // set URl to the item that was clicked
-            // catch error: https://stackoverflow.com/a/58747480
-            // this.$router.push("/card/" + currentCard["Unique URL"]).catch(err => {});
-            // this.$router.push("/card/" + currentCard["Unique URL"]);
-        }
     }
 };
 </script>
