@@ -31,9 +31,28 @@ export default {
         CardIntro,
         CardFull
     },
+    watch: { //https://www.reddit.com/r/vuejs/comments/58g6u7/how_can_i_detect_the_browser_back_button_with_vue/
+        '$route'(to, from) {
+            if (to.params.card !== undefined) {
+                // deal with CSS to open and close
+                this.$store.commit("changeCssClassCardIntroState", "open");
+                this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
+                var currentCard = this.$store.getters.getCard(to.params.card);
+            } else {
+                // TODO: this is scattered around and should be made into a function / method or something
+                this.$store.commit("changeCssClassCardIntroState", "");
+                this.$store.commit("changeCssClassCardOverviewState", "");
+            }
+            
+            if (currentCard !== undefined) {
+                this.$store.commit("changeCard", currentCard);
+            }
+        }
+    },
     mounted: function () {
         this.fetchData();
     },
+
     // https://stackoverflow.com/a/44347195
     methods: {
         fetchData() {
@@ -65,9 +84,9 @@ export default {
                             responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
 
                             // split string on \n\n, so we can make paragraphs later, or separate links for example
-                            responseData[i]["long answer+facts"] = this.splitString(responseData[i]["long answer+facts"],"\n\n");
-                            
-                            responseData[i]["Related"] = this.splitString(responseData[i]["Related"],",");
+                            responseData[i]["long answer+facts"] = this.splitString(responseData[i]["long answer+facts"], "\n\n");
+
+                            responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
 
                         }
 
@@ -172,6 +191,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style lang="scss">
 .container {
     overflow-x: hidden;
@@ -197,5 +217,4 @@ export default {
     -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
     transition: opacity 0.5s, visibility 0s 0.5s;
 }
-
 </style>
