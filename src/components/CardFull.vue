@@ -68,7 +68,7 @@
                     </p>
                 </div>
 
-                <!-- <SocialMedia /> -->
+                <SocialMedia />
 
                 <button class="md-close" @click="hideModal">Close</button>
                 <button class="copyURLtoClipboard copyURLtoClipboard2">Copy Link</button>
