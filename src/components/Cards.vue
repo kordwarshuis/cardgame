@@ -62,9 +62,8 @@ export default {
 
             // returns object with all entries of one prejudice
             var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
-            this.$store.state.current
             
-            // this.$store.commit("changeCard", currentCard);
+            this.$store.commit("changeCard", currentCard);
 
             // set URl to the item that was clicked
             // catch error: https://stackoverflow.com/a/58747480

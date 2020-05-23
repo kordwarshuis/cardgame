@@ -31,20 +31,22 @@ export default {
         CardIntro,
         CardFull
     },
-    watch: {//https://www.reddit.com/r/vuejs/comments/58g6u7/how_can_i_detect_the_browser_back_button_with_vue/
+    watch: { //https://www.reddit.com/r/vuejs/comments/58g6u7/how_can_i_detect_the_browser_back_button_with_vue/
         '$route'(to, from) {
-            console.log("ja dus");
-            console.log(to.params.card);
-            console.log('this.$store.state.currentCard["Unique URL"]: ', this.$store.state.currentCard["Unique URL"]);
+            if (to.params.card !== undefined) {
+                // deal with CSS to open and close
+                this.$store.commit("changeCssClassCardIntroState", "open");
+                this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
+                var currentCard = this.$store.getters.getCard(to.params.card);
+            } else {
+                // TODO: this is scattered around and should be made into a function / method or something
+                this.$store.commit("changeCssClassCardIntroState", "");
+                this.$store.commit("changeCssClassCardOverviewState", "");
+            }
             
-            // console.log(from);
-            // var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
-            // var currentCard = this.$store.getters.getCard(this.$store.state.currentCard["Unique URL"]);
-            
-            this.$store.commit("changeCard", to.params.card);
-
-
-            
+            if (currentCard !== undefined) {
+                this.$store.commit("changeCard", currentCard);
+            }
         }
     },
     mounted: function () {
