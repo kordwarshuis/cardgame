@@ -123,7 +123,7 @@ export default {
 .overlay-fullscreen .overlay-fullscreen-close {
     position: absolute;
     top: 7px;
-    right: 20px;
+    right: 7px;
     border: none;
     display: block;
     font-size: 2.5em;
@@ -141,7 +141,7 @@ a.md-trigger {
     padding: 0.15em 0.2em 0.25em;
     margin: 0;
     line-height: 0.58;
-    font-size: 2em;
+    font-size: 1.5em;
     vertical-align: middle;
     display: inline-block;
     padding: 0.5em;
@@ -156,6 +156,39 @@ a.md-trigger {
     background: $linksHoverBackground;
     transition: background 0.3s ease-in-out;
 }
+
+.md-trigger {
+    transform: translateZ(0);
+    animation: background-pulsate 24s ease-out 0s 10;
+}
+
+@keyframes background-pulsate {
+    0% {
+        /*letter-spacing: 1px;*/
+        background-color: $background;
+        border-color: #444;
+        color: #444;
+    }
+    50% {
+        /*letter-spacing: 3px;*/
+        background-color: $borderMenuItemsAndButtons;
+        border-color: $borderMenuItemsAndButtons;
+        color: $linksText;
+    }
+    100% {
+        /*letter-spacing: 1px;*/
+        background-color: $background;
+        border-color: #444;
+        color: #444;
+    }
+}
+
+
+
+
+
+
+
 
 // cant get this to work
 // .overlay-fullscreen .overlay-fullscreen-close:after {

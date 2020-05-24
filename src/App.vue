@@ -2,12 +2,8 @@
 <div id="app" class="container-fluid">
     <Menu />
 
-
-
-
-
     <!-- <CryptoRadio /> -->
-    <div id="nav">
+    <div id="nav" class="">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link> |
         <router-link to="/twitter-real-time">Realtime Twitter</router-link>
@@ -166,13 +162,14 @@ p {
 #nav {
     // position: fixed;
     // padding: 30px;
-    padding-top: 1em;
+    // padding: 1em;
     text-align: right;
 
     a {
         font-weight: bold;
         color: $generalLinksText;
-        padding: 0.1em;
+        padding: 1em;
+        display: inline-block;
     }
 
     a:hover {

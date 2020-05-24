@@ -32,10 +32,19 @@
                 </div>
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
-
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
+                </div>
+
+                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['wiki - Myths']">
+                    <h3 class="WikiMyths">Wiki Myths</h3>
+                    <p>This bitcoin misconception cleared up by the bitcoin wiki community: <a target="_blank" rel="noopener" :href="this.$store.state.currentCard['wiki - Myths']">Read</a></p>
+                </div>
+
+                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Eric Voskuil']">
+                    <h3 class="EricVoskuil">Eric Voskuil</h3>
+                    <p>{{ this.$store.state.currentCard['Eric Voskuil'] }}</p>
                 </div>
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
@@ -66,6 +75,10 @@
                             <router-link :to="'/card/' + item">{{ item }}</router-link>
                         </span>
                     </p>
+                </div>
+
+                <div class="border p-3 mb-3">
+                    <p><a target="_blank" rel="noopener" href="https://web.telegram.org/#/im?p=@bcbird">Comment in our Telegram group</a></p>
                 </div>
 
                 <SocialMedia />
