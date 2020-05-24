@@ -104,6 +104,10 @@ export default {
             //TODO: is this the way to change a store value? Seems not.
             this.$store.state.cssClassCardFullState = "";
 
+
+            // document.querySelector(".videoWrapper").innerHTML = "";
+            // console.log('document.querySelector(".videoWrapper"): ', document.querySelector(".youtube"));
+
             //TODO: to stop video playing and avoind that scroll position is not top. Doesnt work
             // document.querySelector(".modal-content").innerHTML = "";
 

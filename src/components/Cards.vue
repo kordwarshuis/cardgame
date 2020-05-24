@@ -1,15 +1,15 @@
 <template>
-<div>
+<div class="">
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <BitcoinAnimation /> -->
-    <h1>Bitcoin Misconceptions</h1>
-    <p>{{ subtext }}</p>
+    <!-- <h1>Bitcoin Misconceptions</h1> -->
+    
     <p class="categoryLinks">
         <a @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
         <a v-for="category in $store.state.categories" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name" :key="category.name">{{ category.name }}
             ({{ category.numberOfItems }})</a>
     </p>
-
+    <h2>{{ subtext }}</h2>
     <Search />
 
     <div class="grid">
@@ -30,14 +30,14 @@
 <script>
 import NewsTicker from "@/components/NewsTicker.vue";
 import Search from "@/components/Search.vue";
+// import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
 
-import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
 export default {
     name: "Index",
     components: {
         Search,
-        NewsTicker,
-        BitcoinAnimation
+        NewsTicker
+        // ,BitcoinAnimation
         // VueFuse
     },
     props: {

@@ -1,7 +1,7 @@
 <template>
-<div class="md:w-1/2 center bg-teal-light min-h-screen overflow-scroll">
-    <div class="flex flex-col pt-8 mb-5">
-        <VueFuse placeholder="Search" event-name="results" :list="this.$store.state.theJSON" :keys="['Prejudice', 'Prejudice Elaborate']" :defaultAll="false" class="w-64 text-center h-8 border rounded-lg center" />
+<div class="">
+    <div class=" pt-8 mb-5 text-center">
+        <VueFuse placeholder="Search" event-name="results" :list="this.$store.state.theJSON" :keys="['Prejudice', 'Prejudice Elaborate']" :defaultAll="false" class="border " />
 
     </div>
 

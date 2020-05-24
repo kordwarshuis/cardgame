@@ -84,6 +84,11 @@ export default new Vuex.Store({
       this.state.allCardsInChosenCategory = allCardsInChosenCategory;
 
       setTimeout(codrops, 1);
+
+      if (category !== undefined) {
+        Notifier.config.default_timeout = "2000";
+        Notifier.info("You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
+      }
     },
     setActiveMenuItem(item) {
       var allMenuItems = document.querySelectorAll(".categoryLinks a");
@@ -100,9 +105,6 @@ export default new Vuex.Store({
           document.querySelector(".categoryLinks a[data-category='" + this.state.categories[i].name + "']").classList.add("active");
         }
       }
-      Notifier.config.default_timeout = "2000";
-			Notifier.info("You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
-
     }
   },
   actions: {},

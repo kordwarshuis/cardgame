@@ -12,7 +12,7 @@
         </a>
 
         <!-- Sharingbutton Twitter -->
-        
+
         <a class="resp-sharing-button__link" :href="'https://twitter.com/intent/tweet/?text=' + this.$store.state.currentCard.Prejudice + '&amp;url=' + this.windowLocationOrigin + this.publicPath + 'card/' + this.$store.state.currentCard['Unique URL']" target="_blank" rel="noopener" aria-label="Twitter">
             <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--medium">
                 <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--circle">
@@ -118,21 +118,8 @@ export default {
     name: "SocialMedia",
     data: function () {
         return {
-            // socialMediaButtonsTitle: "",
-            // socialMediaButtonsURL: ""
             publicPath: publicPath.publicPath,
             windowLocationOrigin: window.location.origin
-}
-    },
-    mounted: function () {
-        this.createSocialMediaButtons();
-    },
-    methods: {
-        createSocialMediaButtons() {
-
-          // console.log('this.$store.state.currentCard.name: ', this.$store.state.currentCard);
-          // this.socialMediaButtonsTitle = this.$store.state.currentCard.Prejudice;
-          // this.socialMediaButtonsURL = "blockchainbird.com/vue-cardgame/card/" + this.$store.state.currentCard["Unique URL"];
         }
     }
 };

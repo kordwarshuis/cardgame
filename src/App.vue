@@ -587,10 +587,6 @@ input:checked+.slider:before {
     cursor: pointer;
 }
 
-.logo-parent {
-    text-align: center;
-}
-
 .logo {
     /* display: block;
 	margin: 1em auto 0; */

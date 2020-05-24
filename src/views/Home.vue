@@ -1,9 +1,6 @@
 <template>
 <div>
-    <div class=" logo-parent" :class="this.$store.state.cssClassCardOverviewState">
-        <a href>
-            <img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" />
-        </a>
+    <div class="" :class="this.$store.state.cssClassCardOverviewState">
         <Cards msg="Bitcoin Card Game" />
     </div>
     <CardIntro />
@@ -51,6 +48,13 @@ export default {
     },
     mounted: function () {
         this.fetchData();
+
+        var tag = document.createElement('script');
+
+        // youtube api:
+        // tag.src = "https://www.youtube.com/iframe_api";
+        // var firstScriptTag = document.getElementsByTagName('script')[0];
+        // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     },
 
     // https://stackoverflow.com/a/44347195
@@ -141,7 +145,7 @@ export default {
                         quiz[i] = quiz[i].substr(1);
                     }
 
-                    temp[1].answers.push([quiz[i],isQuizItemAnswerRight]);
+                    temp[1].answers.push([quiz[i], isQuizItemAnswerRight]);
                 }
                 // put explanation in third item, last string item is always answer
                 temp[2] = {
