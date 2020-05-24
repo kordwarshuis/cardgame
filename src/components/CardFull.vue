@@ -3,9 +3,9 @@
     <div class="md-content">
         <!-- <h3 class="modal-header"></h3> -->
         <div>
-            <div class="modal-content p-2 pt-5">
+            <div class="modal-content p-4 pt-5">
+                <h2 class="title text-center">{{ this.$store.state.currentCard.Prejudice }}</h2>
                 <button class="copyURLtoClipboard copyURLtoClipboard1">Copy Link</button>
-                <h2 class="title">{{ this.$store.state.currentCard.Prejudice }}</h2>
                 <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}</p>
 
                 <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['long answer+facts']">
@@ -70,12 +70,12 @@
 
                 <SocialMedia />
 
-                <button class="md-close" @click="hideModal">Close</button>
+                <button class="md-close mt-5" @click="$store.commit('hideModal')">Close</button>
                 <button class="copyURLtoClipboard copyURLtoClipboard2">Copy Link</button>
             </div>
         </div>
     </div>
-    <a @click="hideModal" class="md-close md-close-cross">×</a>
+    <a @click="$store.commit('hideModal')" class="md-close md-close-cross">×</a>
 </div>
 </template>
 
@@ -100,18 +100,7 @@ export default {
         msg: String
     },
     methods: {
-        hideModal() {
-            //TODO: is this the way to change a store value? Seems not.
-            this.$store.state.cssClassCardFullState = "";
 
-
-            // document.querySelector(".videoWrapper").innerHTML = "";
-            // console.log('document.querySelector(".videoWrapper"): ', document.querySelector(".youtube"));
-
-            //TODO: to stop video playing and avoind that scroll position is not top. Doesnt work
-            // document.querySelector(".modal-content").innerHTML = "";
-
-        }
     }
 };
 </script>

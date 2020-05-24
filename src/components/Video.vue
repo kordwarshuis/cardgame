@@ -12,7 +12,7 @@
         <iframe class="youtube" :src="'https://www.youtube.com/embed/' + this.$store.state.currentCard['Youtube Video Id'] + '?start=' + this.$store.state.currentCard['Youtube Video Start'] + '&end=' + this.$store.state.currentCard['Youtube Video End'] + '&playsinline=1&enablejsapi=1'" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
         </iframe>
     </div>
-        <button @click="this.stopIt">stop</button>
+        <!-- <button @click="this.stopIt">stop</button> -->
 </div>
 </template>
 
@@ -20,7 +20,7 @@
 export default {
     name: "Video",
     mounted: function () {
-        console.log("mounted");
+        // console.log("mounted");
         
     },
     methods: {
@@ -29,10 +29,10 @@ export default {
         } 
     },
     beforeUpdate() {
-        console.log('beforeUpdate')
+        // console.log('beforeUpdate')
     },
     beforeDestroy() {
-        console.log('beforeDestroy')
+        // console.log('beforeDestroy')
     }
 
 };

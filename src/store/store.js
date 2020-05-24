@@ -24,6 +24,16 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    hideModal(state) {
+      //TODO: is this the way to change a store value? Seems not.
+      this.state.cssClassCardFullState = "";
+      // console.log("bizar");
+      // document.querySelector(".videoWrapper").innerHTML = "";
+      // console.log('document.querySelector(".videoWrapper"): ', document.querySelector(".youtube"));
+
+      //TODO: to stop video playing and avoind that scroll position is not top. Doesnt work
+      // document.querySelector(".modal-content").innerHTML = "";
+    },
     changeCard(state, newCard) {
       state.currentCard = newCard;
     },

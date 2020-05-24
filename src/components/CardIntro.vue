@@ -60,8 +60,11 @@ export default {
 
                     that.$store.commit("changeCssClassCardIntroState", "");
                     that.$store.commit("changeCssClassCardOverviewState", "");
-                    that.$router.push("/");
+                    // if you close the intro card, the full card screen should also be closed.
+                    // TODO: see also Home.vue, rewrite
+                    that.$store.commit('hideModal');
 
+                    that.$router.push("/");
                     var onEndTransitionFn = function (ev) {
                         if (support.transitions) {
                             if (ev.propertyName !== 'visibility') return;

@@ -30,15 +30,21 @@ export default {
     },
     watch: { //https://www.reddit.com/r/vuejs/comments/58g6u7/how_can_i_detect_the_browser_back_button_with_vue/
         '$route'(to, from) {
+            // if there is a card in the url -> card should be shown:
             if (to.params.card !== undefined) {
                 // deal with CSS to open and close
                 this.$store.commit("changeCssClassCardIntroState", "open");
                 this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
                 var currentCard = this.$store.getters.getCard(to.params.card);
-            } else {
+            }
+            // if there is no card, then intro-screen should not be shown
+            else {
                 // TODO: this is scattered around and should be made into a function / method or something
                 this.$store.commit("changeCssClassCardIntroState", "");
                 this.$store.commit("changeCssClassCardOverviewState", "");
+                // if you close the intro card, the full card screen should also be closed.
+                // TODO: see also toggleOverlayFullscreen, rewrite
+                this.$store.commit('hideModal');
             }
 
             if (currentCard !== undefined) {

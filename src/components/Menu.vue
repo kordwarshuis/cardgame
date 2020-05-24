@@ -10,13 +10,13 @@
 
                     <nav class="menu" >
                         <!-- <div style="position: relative;"> -->
-                        <h1>Bitcoin Misconceptions</h1>
-                        <label class="mt-3">
+                        <h1>Bit&shy;coin Mis&shy;con&shy;cep&shy;tions</h1>
+                        <!-- <label class="mt-3">
                             <input type="radio" name="soundOnOf" id="soundOnOf1" value="on" /> Sound on
                         </label>
                         <label>
                             <input class="ml-3" type="radio" name="soundOnOf" id="soundOnOf2" value="of" checked="" /> Sound off
-                        </label>
+                        </label> -->
                         <!-- <BitcoinAnimation /> -->
                         <!-- </div> -->
 
@@ -150,7 +150,9 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-$numberOfCycles: 4;
+$numberOfCycles: 8;
+
+/*! https://codepen.io/boyd/pen/ajpGbM */
 
 // ================
 // Helper functions
