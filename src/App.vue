@@ -152,6 +152,10 @@ h6 {
     font-family: roboto-light, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+p {
+    font-size: 1.3em;
+}
+
 // #app {
 //     font-family: Avenir, Helvetica, Arial, sans-serif;
 //     -webkit-font-smoothing: antialiased;

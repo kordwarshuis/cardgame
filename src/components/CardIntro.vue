@@ -1,28 +1,31 @@
 <template>
 <!-- open/close -->
-<div class="row pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0 overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
-    <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
-        <div class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
-            <div class="card-body title-on-card center">
-                <h2 class="">{{ this.$store.state.currentCard.Prejudice }}</h2>
+<div class="overlay-fullscreen overlay-fullscreen-contentpush pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0" :class="this.$store.state.cssClassCardIntroState">
+    <div class="row pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0 ">
+        <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+            <div class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+                <div class="card-body title-on-card center pr-0 pl-3 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+                    <img class="title-on-card-background-image" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
+                    <h2 class="title-on-card-text">{{ this.$store.state.currentCard.Prejudice }}</h2>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
-        <div class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
-            <div class="card-body">
-                <h3 class="">
-                    Answer
-                </h3>
-                <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }} …<a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a></p>
-                <button class="closeCardIntro">All cards</button>
-                <button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
-                <!-- <button class="overlay-fullscreen-close">Close</button> -->
+        <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+            <div class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+                <div class="card-body text-center">
+                    <h3 class="">
+                        Answer
+                    </h3>
+                    <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }} …<a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a></p>
+                    <button class="closeCardIntro">All cards</button>
+                    <button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
+                    <!-- <button class="overlay-fullscreen-close">Close</button> -->
+                </div>
             </div>
         </div>
+        <a class="overlay-fullscreen-close">×</a>
     </div>
-<a class="overlay-fullscreen-close">×</a>
 </div>
 </template>
 
@@ -112,14 +115,14 @@ export default {
 }
 
 .overlay-fullscreen>div {
-    // height: 100%;
     overflow: scroll;
+    height: 100%;
 }
 
 /* Overlay closing cross */
 .overlay-fullscreen .overlay-fullscreen-close {
     position: absolute;
-    top: 20px;
+    top: 7px;
     right: 20px;
     border: none;
     display: block;
@@ -144,17 +147,15 @@ a.md-trigger {
     padding: 0.5em;
     margin: 0.3em;
     margin-left: 0;
-    
+
     transition: background 0.3s ease-in-out;
     cursor: pointer;
 }
+
 .md-trigger:hover {
     background: $linksHoverBackground;
     transition: background 0.3s ease-in-out;
 }
-
-
-
 
 // cant get this to work
 // .overlay-fullscreen .overlay-fullscreen-close:after {
@@ -177,7 +178,6 @@ a.md-trigger {
 // body {
 //   overflow-x: hidden;
 // }
-
 
 .container.overlay-fullscreen-open::after {
     visibility: visible;
@@ -208,12 +208,44 @@ a.md-trigger {
     border: none;
 }
 
+// with image as background image
+// .title-on-card {
+//     margin: 10% 10% 0 10% !important;
+//     padding: 3% 5% 0 16%;
+//     background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center !important;
+//     // background-size: 100% auto;
+//     background-size: contain !important;
+//     color: $textOnCard;
+
+//     // https://stackoverflow.com/a/48830291
+//     overflow-wrap: break-word;
+//     word-wrap: break-word;
+//     -ms-word-break: break-all;
+//     word-break: break-word;
+//     -ms-hyphens: auto;
+//     -moz-hyphens: auto;
+//     -webkit-hyphens: auto;
+//     hyphens: auto;
+
+// }
+
+// .title-on-card h2 {
+//     font-size: 6vw;
+//     margin: 0;
+//     padding: 0;
+//     text-align: left;
+// }
+// /* Small devices (landscape phones, 576px and up) */
+// @media (min-width: 576px) {
+//     .title-on-card h2 {
+//         font-size: 4vw;
+//         margin: 0;
+//         padding: 0;
+//     }
+// }
+
 .title-on-card {
-    margin: 10% 10% 0 10% !important;
-    padding: 3% 5% 0 16%;
-    background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center !important;
-    // background-size: 100% auto;
-    background-size: contain !important;
+    margin: 10% 10% 0 0% !important;
     color: $textOnCard;
 
     // https://stackoverflow.com/a/48830291
@@ -226,17 +258,38 @@ a.md-trigger {
     -webkit-hyphens: auto;
     hyphens: auto;
 
+    // see also media query (two columns versus one column, determining how many vw it should be)
+    min-height: 60vw;
+
+}
+
+.title-on-card img {
+    position: absolute;
+    margin: 0;
+    width: 90%;
 }
 
 .title-on-card h2 {
-    font-size: 6vw;
+    position: relative;
+    margin: 4% 1% 0% 22% !important;
+    // padding: 3% 5% 0 16%;
+
+    // should be twice the value of the one inside the media query since this is a one column lay out and…
+    font-size: 8vw;
+    
     margin: 0;
     padding: 0;
     text-align: left;
 }
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
+    .title-on-card {
+        min-height: 30vw;
+    }
+    
     .title-on-card h2 {
+        // … this is a two column lay out
         font-size: 4vw;
         margin: 0;
         padding: 0;

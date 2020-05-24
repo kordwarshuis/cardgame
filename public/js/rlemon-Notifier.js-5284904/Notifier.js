@@ -39,7 +39,7 @@ var Notifier = (function() {
             padding: "12px 18px",
             margin: "0 0 6px 0",
             backgroundColor: "#000",
-            opacity: 0.8,
+            opacity: 1,
             color: "#fff",
             font: "normal 13px 'Lucida Sans Unicode', 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif",
             borderRadius: "3px",
