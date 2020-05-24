@@ -6,6 +6,7 @@ import Home from "../views/Home.vue";
 
 import About from "../views/About.vue";
 import TwitterRealTime from "../views/TwitterRealTime.vue";
+import Scores from "../views/Scores.vue";
 
 
 Vue.use(VueRouter);
@@ -27,6 +28,12 @@ const routes = [{
     // component: About
     component: () =>
       import( /* webpackChunkName: "about" */ "../views/About.vue")
+  },
+  {
+    path: "/scores",
+    name: "Scores",
+    component: () =>
+      import( /* webpackChunkName: "about" */ "../views/Scores.vue")
   },
   {
     path: "/twitter-real-time",

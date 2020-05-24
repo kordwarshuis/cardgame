@@ -6,7 +6,8 @@
     <div id="nav" class="">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link> |
-        <router-link to="/twitter-real-time">Realtime Twitter</router-link>
+        <router-link to="/twitter-real-time">Realtime Twitter</router-link> |
+        <router-link to="/scores">Scores</router-link>
     </div>
     <router-view />
     <NewsTicker />
@@ -149,7 +150,7 @@ h6 {
 }
 
 p {
-    font-size: 1.3em;
+    font-size: 1.2em;
 }
 
 // #app {
@@ -168,7 +169,7 @@ p {
     a {
         font-weight: bold;
         color: $generalLinksText;
-        padding: 1em;
+        padding: 1em 0.1em;
         display: inline-block;
     }
 

@@ -1,6 +1,7 @@
 <template>
 <div class="about">
     <div class="container">
+        <h1 class="text-center ">Bitcoin Card Game Score Board</h1>
         <div class="row">
             <div class="col-md-12">
                 <div class="row mt-5">

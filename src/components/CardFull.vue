@@ -3,12 +3,12 @@
     <div class="md-content">
         <!-- <h3 class="modal-header"></h3> -->
         <div>
-            <div class="modal-content p-4 pt-5">
+            <div class="modal-content p-3 pt-5">
                 <h2 class="title text-center">{{ this.$store.state.currentCard.Prejudice }}</h2>
                 <button class="copyURLtoClipboard copyURLtoClipboard1">Copy Link</button>
                 <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}</p>
 
-                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['long answer+facts']">
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['long answer+facts']">
 
                     <h3 class="longAnswer">Answer</h3>
                     <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
@@ -17,55 +17,55 @@
                 <Quiz />
                 <Video />
 
-                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
 
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
                 </div>
 
-                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
 
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">Read on</a></p>
                 </div>
 
-                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
                 </div>
 
-                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['wiki - Myths']">
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['wiki - Myths']">
                     <h3 class="WikiMyths">Wiki Myths</h3>
                     <p>This bitcoin misconception cleared up by the bitcoin wiki community: <a target="_blank" rel="noopener" :href="this.$store.state.currentCard['wiki - Myths']">Read</a></p>
                 </div>
 
-                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Eric Voskuil']">
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Eric Voskuil']">
                     <h3 class="EricVoskuil">Eric Voskuil</h3>
                     <p>{{ this.$store.state.currentCard['Eric Voskuil'] }}</p>
                 </div>
 
-                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
 
                     <h3 class="counterQuestion">Counter-questions</h3>
                     <p>{{this.$store.state.currentCard["Counter-questions"]}}</p>
                 </div>
 
-                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['analogy']">
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['analogy']">
 
                     <h3 class="">Analogy</h3>
                     <p>{{this.$store.state.currentCard["analogy"]}}</p>
                 </div>
 
-                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
 
                     <h3 class="flowerPower">Flower Power</h3>
                     <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
                 </div>
 
-                <div class="border p-3 mb-3" v-if="this.$store.state.currentCard['Related']">
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Related']">
 
                     <h3 class="related">Related</h3>
                     <!-- <p><a v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item">{{ item }}</a></p> -->
@@ -77,7 +77,7 @@
                     </p>
                 </div>
 
-                <div class="border p-3 mb-3">
+                <div class="border p-2 mb-3">
                     <p><a target="_blank" rel="noopener" href="https://web.telegram.org/#/im?p=@bcbird">Comment in our Telegram group</a></p>
                 </div>
 
