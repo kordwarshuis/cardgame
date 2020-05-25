@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div id="socialMediaButtonsTemplate" class="border p-3 "">
+    <div id="socialMediaButtonsTemplate" class="border p-3 ">
         <!-- Sharingbutton Facebook -->
         <a class="resp-sharing-button__link" :href="'https://facebook.com/sharer/sharer.php?u=' + this.windowLocationOrigin + this.publicPath + 'card/' + this.$store.state.currentCard['Unique URL']" target="_blank" rel="noopener" aria-label="Facebook">
             <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium">
@@ -33,27 +33,27 @@
         </a> -->
 
         <!-- Sharingbutton E-Mail -->
-        <!-- <a class="resp-sharing-button__link" href="mailto:?subject=xxxxx-title&amp;body=xxxxx-href" target="_self" rel="noopener" aria-label="E-Mail">
+        <a class="resp-sharing-button__link" :href="'mailto:?subject=' + this.$store.state.currentCard.Prejudice + '&amp;body=' + this.windowLocationOrigin + this.publicPath + 'card/' + this.$store.state.currentCard['Unique URL']" target="_self" rel="noopener" aria-label="E-Mail">
             <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--medium">
                 <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--circle">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M19.5 16c0 .8-.7 1.5-1.5 1.5H6c-.8 0-1.5-.7-1.5-1.5V8c0-.8.7-1.5 1.5-1.5h12c.8 0 1.5.7 1.5 1.5v8zm-2-7.5L12 13 6.5 8.5m11 6l-4-2.5m-7 2.5l4-2.5" />
                         <circle cx="12" cy="12" r="11.5" /></svg></div>E-Mail
             </div>
-        </a> -->
+        </a>
 
         <!-- Sharingbutton Pinterest -->
-        <!-- <a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=xxxxx-href&amp;media=xxxxx-href&amp;description=xxxxx-title" target="_blank" rel="noopener" aria-label="Pinterest">
+        <a class="resp-sharing-button__link" :href="'https://pinterest.com/pin/create/button/?url=' + this.windowLocationOrigin + this.publicPath + 'card/' + this.$store.state.currentCard['Unique URL'] + '&amp;media=' + '' + '&amp;description=' + this.$store.state.currentCard.Prejudice" target="_blank" rel="noopener" aria-label="Pinterest">
             <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--medium">
                 <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--circle">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="11.5" />
                         <path d="M8 11.2c-.15-.32-.25-.72-.25-1.22 0-2.32 1.74-4.4 4.53-4.4 2.47 0 3.82 1.5 3.82 3.52 0 2.64-1.17 4.88-2.9 4.88-.97 0-1.7-.8-1.46-1.77.28-1.14.8-2.4.8-3.23 0-.76-.4-1.38-1.23-1.38-.95 0-1.74 1-1.74 2.37 0 .86.3 1.45.3 1.45l-1.2 5c-.34 1.5-.04 3.33-.02 3.5.02.1.16.15.22.06.1-.12 1.26-1.56 1.66-3l.66-2.53c.32.6 1.25 1.14 2.24 1.14 2.95 0 4.95-2.7 4.95-6.3 0-2.73-2.3-5.27-5.82-5.27-4.36 0-6.57 3.14-6.57 5.75 0 .85.18 1.64.53 2.28l1.5-.8z" /></svg></div>Pinterest
             </div>
-        </a> -->
+        </a>
 
         <!-- Sharingbutton LinkedIn -->
-        <!-- <a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=xxxxx-href&amp;title=xxxxx-title&amp;summary=xxxxx-title&amp;source=xxxxx-href" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <a class="resp-sharing-button__link" :href="'https://www.linkedin.com/shareArticle?mini=true&amp;url=' + this.windowLocationOrigin + this.publicPath + 'card/' + this.$store.state.currentCard['Unique URL'] + '&amp;title=' + this.$store.state.currentCard.Prejudice + '&amp;summary=' + this.$store.state.currentCard.Prejudice + '&amp;source=' + this.windowLocationOrigin + this.publicPath + 'card/' + this.$store.state.currentCard['Unique URL']" target="_blank" rel="noopener" aria-label="LinkedIn">
             <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--medium">
                 <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--circle">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -61,7 +61,7 @@
                         <path d="M15 12.5c-.28 0-.5.22-.5.5v3.5h-3s.03-6.48 0-7h3v.83s.46-.75 1.7-.75c1.56 0 2.3 1.12 2.3 3.3v3.62h-3V13c0-.28-.23-.5-.5-.5zm-7.5-3h2v7h-2z" />
                         <circle cx="8.5" cy="6.5" r="1" /></svg></div>LinkedIn
             </div>
-        </a> -->
+        </a>
 
         <!-- Sharingbutton Reddit -->
         <!-- <a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=xxxxx-href&amp;resubmit=true&amp;title=xxxxx-title" target="_blank" rel="noopener" aria-label="Reddit">
@@ -135,6 +135,8 @@ export default {
 
 .resp-sharing-button__link {
     border: none !important;
+    margin-right: 1em;
+    margin-bottom: 1em;
 }
 
 .resp-sharing-button__link,
@@ -147,6 +149,11 @@ export default {
     color: #fff;
     margin: 0.2em;
     padding: 0.1em;
+}
+
+// override
+.modal-content a {
+    box-shadow: none;
 }
 
 .resp-sharing-button {
