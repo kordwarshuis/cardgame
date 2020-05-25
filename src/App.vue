@@ -3,12 +3,6 @@
     <Menu />
 
     <!-- <CryptoRadio /> -->
-    <div id="nav" class="">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
-        <router-link to="/twitter-real-time">Realtime Twitter</router-link> |
-        <router-link to="/scores">Scores</router-link>
-    </div>
     <router-view />
     <NewsTicker />
 </div>
@@ -22,9 +16,9 @@ import NewsTicker from "@/components/NewsTicker.vue";
 
 export default {
     components: {
-        Menu
-        ,CryptoRadio
-        ,NewsTicker
+        Menu,
+        CryptoRadio,
+        NewsTicker
     }
 
 }
@@ -159,24 +153,6 @@ p {
 //     -moz-osx-font-smoothing: grayscale;
 //     text-align: center;
 // }
-
-#nav {
-    // position: fixed;
-    // padding: 30px;
-    // padding: 1em;
-    text-align: right;
-
-    a {
-        font-weight: bold;
-        color: $generalLinksText;
-        padding: 1em 0.1em;
-        display: inline-block;
-    }
-
-    a:hover {
-        background: rgb(165, 219, 240);
-    }
-}
 
 // @import url('https://fonts.googleapis.com/css?family=Anton|Buenard:400,700');
 // @import url('https://fonts.googleapis.com/css?family=Anton:400,700');
@@ -388,14 +364,14 @@ hr {
 .box__text-inner {
     position: relative;
     display: block;
-    border: 6px solid $cardGridBorder;
-    padding: 0.25rem 1.25rem;
+    // border: 6px solid $cardGridBorder;
+    padding: 1rem 1.25rem;
     color: $gridCardTitleTextColor;
 }
 
-.box__text-inner:hover {
-    color: $gridCardTitleTextHoverColor;
-}
+// .box__text-inner:hover {
+//     color: $gridCardTitleTextHoverColor;
+// }
 
 .box__img {
     display: block;
@@ -726,9 +702,9 @@ button:hover,
 }
 
 .categoryLinks .active {
-    border: 3px solid $categoryLinksBorderActive;
+    // border: 3px solid $categoryLinksBorderActive;
     background: $categoryLinksBackgroundActive url(./assets/img/logo/blockchainbird-logo.png) no-repeat center right;
-    padding-right: 30px;
+    padding-right: 40px;
     background-size: auto 70%;
 }
 
@@ -815,13 +791,14 @@ button:hover,
     }
 }
 
-.categoryLinks a //   ,.copyURLtoClipboard
-,
+.categoryLinks a,
 .md-close:not(.md-close-cross),
-.modal-content a //   ,a.overlay__close:not(.overlay__close-cross)
-
-    {
+.modal-content a {
     @include btn-border-drawing($borderMenuItemsAndButtons, $a14, 3px, bottom, right);
+}
+
+.box__text-inner {
+    @include btn-border-drawing($borderMenuItemsAndButtons, $a14, 6px, bottom, right);
 }
 
 #socialMediaTekst {

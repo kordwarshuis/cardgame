@@ -1,14 +1,22 @@
 <template>
 <div id="menu-and-buttons-wrapper">
     <div class="menu-wrap">
-        <div class="container p-5" style="background: #fff;">
+        <div class="container p-5">
+
+            <div id="nav" class="">
+                <router-link to="/">Cards</router-link> |
+                <router-link to="/about">About</router-link> |
+                <router-link to="/twitter-real-time">Realtime</router-link> |
+                <router-link to="/scores">Scores</router-link>
+            </div>
+
             <div class="row">
                 <div class="col-md-12 text-center">
                     <a href>
                         <img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" />
                     </a>
 
-                    <nav class="menu" >
+                    <nav class="menu">
                         <!-- <div style="position: relative;"> -->
                         <h1>Bit&shy;coin Mis&shy;con&shy;cep&shy;tions</h1>
                         <!-- <label class="mt-3">
@@ -106,7 +114,7 @@ function sideMenu() {
         app = document.querySelector('#app'),
         openbtn = document.getElementById('open-button'),
         closebtn = document.getElementById('close-button'),
-        isOpen = false;
+        isOpen = true;
 
     function init() {
         initEvents();
@@ -136,7 +144,7 @@ function sideMenu() {
         isOpen = !isOpen;
     }
 
-    setTimeout(toggleMenu, 1000);
+    setTimeout(toggleMenu, 2000);
 
     init();
 
@@ -152,7 +160,30 @@ document.addEventListener("DOMContentLoaded", function () {
 <style lang="scss" scoped>
 $numberOfCycles: 8;
 
-/*! https://codepen.io/boyd/pen/ajpGbM */
+
+#nav {
+    // position: fixed;
+    // padding: 30px;
+    // padding: 1em;
+    // text-align: right;
+
+    a {
+        font-weight: bold;
+        color: $generalLinksText;
+        padding: 1em 0.1em;
+        display: inline-block;
+    }
+
+    a:hover {
+        background: rgb(165, 219, 240);
+    }
+}
+
+
+
+/*! 
+Bitcoin animation
+https://codepen.io/boyd/pen/ajpGbM */
 
 // ================
 // Helper functions
@@ -376,6 +407,11 @@ $spin-speed: 10s;
     }
 }
 
+
+
+
+// MENU
+
 #menu-and-buttons-wrapper {
     margin: 0;
     margin-left: -1em; // compensate for bootstrap grid
@@ -385,6 +421,7 @@ $spin-speed: 10s;
 audio {
     width: 100%;
 }
+
 
 /* 
 SOURCE: CODROPS
@@ -467,7 +504,10 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     height: 100%;
     text-align: left;
     color: $slideInMenuTextColor;
-    background: $slideInMenuBackgroundColor;
+    // background: $slideInMenuBackgroundColor;
+    background: transparent url(../assets/img/photos/dmitry-demidko-xZJpKskRdOg-unsplash.jpg) no-repeat center;
+    background-size: cover;
+
     padding: 2.5em 1.5em 0;
     // -webkit-transform: translate3d(-320px, 0, 0);
     // transform: translate3d(-320px, 0, 0);
@@ -491,6 +531,11 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 .menu {
     height: 100%;
 }
+.container {
+    background: rgba(239, 209, 188, 0.815);
+}
+
+
 
 /* Shown menu */
 .show-menu .menu-wrap {
