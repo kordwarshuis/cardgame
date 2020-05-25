@@ -5,7 +5,7 @@ function quotesToHtmlEntities(str) {
 
 
 
-function        codrops() {
+function codrops() {
 
             /**
              * demo.js

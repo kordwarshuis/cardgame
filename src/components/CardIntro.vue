@@ -5,6 +5,7 @@
         <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
             <div class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
                 <div class="card-body title-on-card center pr-0 pl-3 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+                    <h3>Misconception:</h3>
                     <img class="title-on-card-background-image" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
                     <h2 class="title-on-card-text">{{ this.$store.state.currentCard.Prejudice }}</h2>
                 </div>
@@ -14,10 +15,9 @@
         <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
             <div class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
                 <div class="card-body text-center">
-                    <h3 class="">
-                        Answer
-                    </h3>
-                    <p>{{ this.$store.state.currentCard["Prejudice Elaborate"] }} …<a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a></p>
+                    <h3 class="">Reply:</h3>
+                    <p>{{ this.$store.state.currentCard["short direct answer"] }} …</p>
+                    <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Read more</a></p>
                     <button class="closeCardIntro">All cards</button>
                     <button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
                     <!-- <button class="overlay-fullscreen-close">Close</button> -->
@@ -174,12 +174,14 @@ a.md-trigger {
         border-color: #444;
         color: #444;
     }
+
     50% {
         /*letter-spacing: 3px;*/
         background-color: $borderMenuItemsAndButtons;
         border-color: $borderMenuItemsAndButtons;
         color: $linksText;
     }
+
     100% {
         /*letter-spacing: 1px;*/
         background-color: $background;
@@ -187,13 +189,6 @@ a.md-trigger {
         color: #444;
     }
 }
-
-
-
-
-
-
-
 
 // cant get this to work
 // .overlay-fullscreen .overlay-fullscreen-close:after {
@@ -283,7 +278,8 @@ a.md-trigger {
 // }
 
 .title-on-card {
-    margin: 10% 10% 0 0% !important;
+    // margin-top should be set so it aligns with the right column (answer)
+    margin: 1.25em 10% 0 0% !important;
     color: $textOnCard;
 
     // https://stackoverflow.com/a/48830291
@@ -297,7 +293,7 @@ a.md-trigger {
     hyphens: auto;
 
     // see also media query (two columns versus one column, determining how many vw it should be)
-    min-height: 60vw;
+    min-height: 80vw;
 
 }
 
@@ -309,12 +305,12 @@ a.md-trigger {
 
 .title-on-card h2 {
     position: relative;
-    margin: 4% 1% 0% 22% !important;
+    margin: 6% 1% 0% 22% !important;
     // padding: 3% 5% 0 16%;
 
     // should be twice the value of the one inside the media query since this is a one column lay out and…
     font-size: 8vw;
-    
+
     margin: 0;
     padding: 0;
     text-align: left;
@@ -323,9 +319,9 @@ a.md-trigger {
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
     .title-on-card {
-        min-height: 30vw;
+        min-height: 40vw;
     }
-    
+
     .title-on-card h2 {
         // … this is a two column lay out
         font-size: 4vw;
