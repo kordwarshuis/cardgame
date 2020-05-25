@@ -4,9 +4,9 @@ import publicPath from "../../vue.config";
 
 import Home from "../views/Home.vue";
 
-import About from "../views/About.vue";
-import TwitterRealTime from "../views/TwitterRealTime.vue";
-import Scores from "../views/Scores.vue";
+// import About from "../views/About.vue";
+// import TwitterRealTime from "../views/TwitterRealTime.vue";
+// import Scores from "../views/Scores.vue";
 
 
 Vue.use(VueRouter);

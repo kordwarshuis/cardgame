@@ -60,6 +60,12 @@
                                     Tool: <a href="https://twitter.com/kordwarshuis" target="_blank" rel="noopener">@kordwarshuis</a>
                                 </li>
                             </ul>
+                            <h2>Credits</h2>
+                            <ul>
+                                <li>
+                                    Opening photo: <a href="https://unsplash.com/@wildbook" target="_blank" rel="noopener">Dmitry Demidko on Unsplash</a>
+                                </li>
+                            </ul>
 
                         </div>
                     </div>

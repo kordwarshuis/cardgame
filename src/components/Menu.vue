@@ -1,12 +1,12 @@
 <template>
 <div id="menu-and-buttons-wrapper">
     <div class="menu-wrap">
-        <div class="container p-5">
+        <div class="container p-1">
 
             <div id="nav" class="">
-                <router-link to="/">Cards</router-link> |
-                <router-link to="/about">About</router-link> |
-                <router-link to="/twitter-real-time">Realtime</router-link> |
+                <router-link to="/">Cards</router-link>
+                <router-link to="/about">About</router-link>
+                <router-link to="/twitter-real-time">Realtime</router-link>
                 <router-link to="/scores">Scores</router-link>
             </div>
 
@@ -441,7 +441,8 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     border: none;
     text-indent: 2.5em;
     color: transparent;
-    background: transparent;
+    // background: transparent;
+    background: #eee;
 }
 
 .menu-button::before {
@@ -460,16 +461,18 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 
 /* Close Button */
 .close-button {
-    width: 2em;
-    height: 2em;
+    width: 3.2em;
+    height: 3.2em;
     position: absolute;
-    right: 1em;
-    top: 1em;
+    right: 0;
+    top: 0;
+    margin: 0;
     overflow: hidden;
     text-indent: 1em;
     font-size: 0.75em;
-    border: none;
-    background: transparent;
+    border: 5px solid #eee;
+    // background: transparent;
+    background: #eee;
     color: transparent;
 }
 
@@ -519,13 +522,20 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
 }
 
-.menu-wrap a {
+// Menu items
+.menu-wrap #nav a {
     color: $slideInMenuLinkColor;
+    background: #eee;
+    padding: 0 0.5em !important;
+    margin: 0.5em 0.3em;
 }
 
 .menu-wrap a:hover {
     color: $slideInMenuLinkHoverColor;
 }
+
+
+
 
 // makes slide in menu scrollable vertical
 .menu {
