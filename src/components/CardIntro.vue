@@ -21,6 +21,7 @@
                     <button class="closeCardIntro">All cards</button>
                     <button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
                     <!-- <button class="overlay-fullscreen-close">Close</button> -->
+                    <SocialMedia />
                 </div>
             </div>
         </div>
@@ -30,10 +31,14 @@
 </template>
 
 <script>
+import SocialMedia from "@/components/SocialMedia.vue";
 export default {
     name: "CardIntro",
     mounted: function () {
         this.handleCardIntro();
+    },
+    components: {
+        SocialMedia
     },
     methods: {
         handleCardIntro() {
