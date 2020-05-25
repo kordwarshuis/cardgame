@@ -3,13 +3,13 @@
     <div class="menu-wrap">
         <div class="container p-1">
 
-            <div id="nav" class="">
+            <div id="nav" class="text-center">
                 <router-link to="/">Cards</router-link>
                 <router-link to="/about">About</router-link>
                 <router-link to="/twitter-real-time">Realtime</router-link>
                 <router-link to="/scores">Scores</router-link>
             </div>
-
+            <!-- <Gallery /> -->
             <div class="row">
                 <div class="col-md-12 text-center">
                     <a href>
@@ -90,11 +90,13 @@
 
 <script>
 // import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
+// import Gallery from "@/components/Gallery.vue";
 
 export default {
     name: "Menu",
     components: {
         // BitcoinAnimation
+        // Gallery
     }
 };
 
@@ -160,7 +162,6 @@ document.addEventListener("DOMContentLoaded", function () {
 <style lang="scss" scoped>
 $numberOfCycles: 8;
 
-
 #nav {
     // position: fixed;
     // padding: 30px;
@@ -178,8 +179,6 @@ $numberOfCycles: 8;
         background: rgb(165, 219, 240);
     }
 }
-
-
 
 /*! 
 Bitcoin animation
@@ -393,7 +392,7 @@ $spin-speed: 10s;
 // ================
 // Annimations
 // ================
-@-webkit-keyframes spin {
+@keyframes spin {
     0% {
         transform: rotate3d(0, 0, 0, 0deg);
     }
@@ -407,9 +406,6 @@ $spin-speed: 10s;
     }
 }
 
-
-
-
 // MENU
 
 #menu-and-buttons-wrapper {
@@ -421,7 +417,6 @@ $spin-speed: 10s;
 audio {
     width: 100%;
 }
-
 
 /* 
 SOURCE: CODROPS
@@ -534,18 +529,14 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     color: $slideInMenuLinkHoverColor;
 }
 
-
-
-
 // makes slide in menu scrollable vertical
 .menu {
     height: 100%;
 }
+
 .container {
     background: rgba(239, 209, 188, 0.815);
 }
-
-
 
 /* Shown menu */
 .show-menu .menu-wrap {

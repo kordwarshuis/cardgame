@@ -268,6 +268,13 @@ small {
     justify-content: center;
     margin: 0 0 10rem 0;
     cursor: pointer;
+
+    background: rgba(190, 43, 63, 0.045);
+    border-radius: 50%;
+}
+.grid__item.visited {
+    background: none;
+
 }
 
 .box {
