@@ -26,3 +26,5 @@ yarn-error.log*
 /src/assets/video/
 /src/assets/fonts/
 /public/img/
+/public/data/
+/public/php/writeCSV.php

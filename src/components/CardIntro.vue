@@ -32,13 +32,15 @@
 
 <script>
 import SocialMedia from "@/components/SocialMedia.vue";
+// import Quiz from "@/components/Quiz.vue";
 export default {
     name: "CardIntro",
     mounted: function () {
         this.handleCardIntro();
     },
     components: {
-        SocialMedia
+        SocialMedia,
+        // Quiz
     },
     methods: {
         handleCardIntro() {
