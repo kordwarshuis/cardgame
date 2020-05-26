@@ -1,7 +1,7 @@
 <template>
 <div id="menu-and-buttons-wrapper">
     <div class="menu-wrap">
-        <div class="container p-1">
+        <div class="container mt-5 p-1">
 
             <div id="nav" class="text-center">
                 <router-link to="/">Cards</router-link>
@@ -19,6 +19,8 @@
                     <nav class="menu">
                         <!-- <div style="position: relative;"> -->
                         <h1>Bit&shy;coin Mis&shy;con&shy;cep&shy;tions</h1>
+                        <p>A collection of misconceptions about Bitcoin.</p>
+                        <p>Strike back and send a card.</p>
                         <!-- <label class="mt-3">
                             <input type="radio" name="soundOnOf" id="soundOnOf1" value="on" /> Sound on
                         </label>
@@ -28,8 +30,7 @@
                         <!-- <BitcoinAnimation /> -->
                         <!-- </div> -->
 
-                        <div class="cryptocoins">
-
+                        <!-- <div class="cryptocoins">
                             <div class="cryptocoin cryptocoin--btc">
                                 <div class="cryptocoin--coin-face cryptocoin--coin-back">
                                     <svg class="cryptocoin--coin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244.9 324.2">
@@ -72,7 +73,7 @@
                                     <div class="spoke"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- <h2>Crypto radio 24</h2>
                         <audio style="max-width: 300px;" src="http://n0b.radiojar.com/exrd1tp5mceuv.mp3?1590145895=&rj-tok=AAABcjwec6UAMPRNZZ4HZ8WfJw&rj-ttl=5" controls />

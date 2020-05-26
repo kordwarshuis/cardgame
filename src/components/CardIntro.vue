@@ -152,7 +152,6 @@ a.md-trigger {
     padding: 0.5em;
     margin: 0.3em;
     margin-left: 0;
-
     transition: background 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -166,7 +165,7 @@ a.md-trigger {
     transform: translateZ(0);
     animation: background-pulsate 24s ease-out 0s 10;
 }
-
+// read more button:
 @keyframes background-pulsate {
     0% {
         /*letter-spacing: 1px;*/
@@ -223,8 +222,14 @@ a.md-trigger {
     visibility: hidden;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+
+    // slide in from the left
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
+
+    // slide in from the right
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
     -webkit-transition: -webkit-transform 0.5s, visibility 0s 0.5s;
     transition: transform 0.5s, visibility 0s 0.5s;
 }
