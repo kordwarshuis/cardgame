@@ -12,15 +12,16 @@
 import Menu from "@/components/Menu.vue";
 import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
+import * as Hammer from "hammerjs";
 import NewsTicker from "@/components/NewsTicker.vue";
 
 export default {
     components: {
         Menu,
         CryptoRadio,
-        NewsTicker
+        NewsTicker,
+        Hammer
     }
-
 }
 </script>
 
@@ -272,6 +273,7 @@ small {
     background: rgba(190, 43, 63, 0.045);
     border-radius: 50%;
 }
+
 .grid__item.visited {
     background: none;
 
@@ -550,9 +552,9 @@ input:checked+.slider:before {
 /* EIND GELUID AAN UIT */
 
 /* Visited cards get a visual sign */
-.visited .box__text {
-    border: 10px solid $boxTextVisited;
-}
+// .visited .box__text {
+    // border: 10px solid $boxTextVisited;
+// }
 
 .visited .box__text-inner:after {
     content: "√";
@@ -805,7 +807,8 @@ button:hover,
 }
 
 .box__text-inner {
-    @include btn-border-drawing($borderMenuItemsAndButtons, $a14, 6px, bottom, right);
+    // @include btn-border-drawing($borderMenuItemsAndButtons, $a14, 6px, bottom, right);
+    border: 7px solid $borderMenuItemsAndButtons;
 }
 
 #socialMediaTekst {

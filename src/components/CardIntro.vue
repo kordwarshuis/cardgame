@@ -167,6 +167,7 @@ a.md-trigger {
     transform: translateZ(0);
     animation: background-pulsate 24s ease-out 0s 10;
 }
+
 // read more button:
 @keyframes background-pulsate {
     0% {
@@ -220,29 +221,70 @@ a.md-trigger {
     transition: opacity 0.5s;
 }
 
+// .overlay-fullscreen-contentpush {
+//     visibility: hidden;
+//     -webkit-backface-visibility: hidden;
+//     backface-visibility: hidden;
+
+// }
+// .animationEnabled .overlay-fullscreen-contentpush {
+//     // slide in from the left
+//     -webkit-transform: translateX(-100%);
+//     transform: translateX(-100%);
+
+//     // slide in from the right
+//     -webkit-transform: translateX(100%);
+//     transform: translateX(100%);
+//     -webkit-transition: -webkit-transform 0.5s, visibility 0s 0.5s;
+//     transition: transform 0.5s, visibility 0s 0.5s;
+
+// }
+
+// .overlay-fullscreen-contentpush.open {
+//     visibility: visible;
+// }
+// .animationEnabled .overlay-fullscreen-contentpush.open {
+//     -webkit-transform: translateX(0%);
+//     transform: translateX(0%);
+//     -webkit-transition: -webkit-transform 0.5s;
+//     transition: transform 0.5s;
+
+// }
+
+// Opacity effect
 .overlay-fullscreen-contentpush {
     visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
 
-    // slide in from the left
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
-
-    // slide in from the right
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
-    -webkit-transition: -webkit-transform 0.5s, visibility 0s 0.5s;
-    transition: transform 0.5s, visibility 0s 0.5s;
+.open {
+    visibility: visible;
+    opacity: 1;
 }
 
 .overlay-fullscreen-contentpush.open {
-    visibility: visible;
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
-    -webkit-transition: -webkit-transform 0.5s;
-    transition: transform 0.5s;
+    transition: all 0.3s ease-in-out;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .card {
     border: none;

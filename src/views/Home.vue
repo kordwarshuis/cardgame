@@ -61,6 +61,40 @@ export default {
         // tag.src = "https://www.youtube.com/iframe_api";
         // var firstScriptTag = document.getElementsByTagName('script')[0];
         // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+
+
+
+
+        // var iOS = /iPad|iPhone|iPod/.test(navigator.platform);
+        // if (iOS) {
+        //     document.querySelector("body").classList.add("ios-device");
+        // }
+
+        // var mc = new Hammer(document.querySelector("#app"));
+
+        // mc.add(new Hammer.Swipe({
+        //     direction: Hammer.DIRECTION_HORIZONTAL,
+        //     threshold: 0
+        // }));
+
+        // function tempDisableAnimation() {
+        //     document.querySelector("body").classList.remove("animationEnabled");
+        //     setTimeout(function() {
+        //         document.querySelector("body").classList.add("animationEnabled");
+        //     }, 3000);
+        // }
+
+        // mc.on('tap', function () {
+        //     tempDisableAnimation;
+        // });
+        // mc.on('panleft', function () {
+        //     tempDisableAnimation;
+        // });
+        // mc.on('panright', function () {
+        //     tempDisableAnimation;
+        // });
     },
 
     // https://stackoverflow.com/a/44347195
@@ -210,6 +244,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss">
+// https://stackoverflow.com/a/57764811
+body.ios-device {
+    cursor: pointer !important;
+    /* iOS click events don't fire without this! */
+}
+
 .container {
     overflow-x: hidden;
     -webkit-transition: -webkit-transform 0.5s;
