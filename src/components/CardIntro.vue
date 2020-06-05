@@ -1,10 +1,10 @@
 <template>
 <!-- open/close -->
-<div class="overlay-fullscreen overlay-fullscreen-contentpush pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0" :class="this.$store.state.cssClassCardIntroState">
-    <div class="row pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0 ">
-        <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
-            <div class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
-                <div class="card-body title-on-card center pr-0 pl-3 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+<div class="overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
+    <div class="row">
+        <div class="col-lg-6 col-sm-6">
+            <div class="card h-100 bg-transparent">
+                <div class="card-body title-on-card center">
                     <h3>Misconception:</h3>
                     <img class="title-on-card-background-image" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
                     <h2 class="title-on-card-text">{{ this.$store.state.currentCard.Prejudice }}</h2>
@@ -12,8 +12,8 @@
             </div>
         </div>
 
-        <div class="col-lg-6 col-sm-6 pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
-            <div class="card h-100 bg-transparent pr-0 pl-0 pt-0 pb-0 mr-0 ml-0 mt-0 mb-0">
+        <div class="col-lg-6 col-sm-6">
+            <div class="card h-100 bg-transparent">
                 <div class="card-body text-center">
                     <h3 class="">Reply:</h3>
                     <p>{{ this.$store.state.currentCard["short direct answer"] }} …</p>
@@ -271,25 +271,6 @@ a.md-trigger {
     transition: all 0.3s ease-in-out;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .card {
     border: none;
 }
@@ -395,5 +376,19 @@ a.md-trigger {
 .copyURLtoClipboard:hover {
     transform: rotate(360deg);
     transition: transform 0.3s;
+}
+
+// positioning of the card
+.overlay-fullscreen,
+.overlay-fullscreen .row,
+.overlay-fullscreen .row>div,
+.overlay-fullscreen .card,
+.title-on-card {
+    margin: 0;
+    padding: 0;
+}
+
+.title-on-card {
+    padding-left: 1rem !important
 }
 </style>
