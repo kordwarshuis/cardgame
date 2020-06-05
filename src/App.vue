@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap/dist/css/bootstrap.min.css";
 
 // @font-face {
 //     font-family: 'League Gothic';
@@ -261,7 +261,7 @@ small {
     width: 100%;
     max-width: 1440px;
     margin: 7rem auto 0;
-    padding-bottom: 10rem;
+    // padding-bottom: 10rem;
 }
 
 .grid__item {
@@ -409,7 +409,7 @@ hr {
     .grid {
         display: grid;
         align-items: center;
-        padding: 3rem 3rem 15rem 3rem;
+        padding: 3rem 3rem 1rem 3rem;
         grid-row-gap: 2rem;
         grid-template-columns: repeat(3, calc(100% / 3));
     }
@@ -590,6 +590,8 @@ button {
 .overlay__close,
 /* het sluiten van de tweede popup: */
 button,
+// related Items
+.relatedItems a,
 /* alle links in de tweede popup: */
 .modal-content a,
 /* het menu met alle categorieen */
@@ -801,6 +803,7 @@ button:hover,
 }
 
 .categoryLinks a,
+.relatedItems a,
 .md-close:not(.md-close-cross),
 .modal-content a {
     @include btn-border-drawing($borderMenuItemsAndButtons, $a14, 3px, bottom, right);

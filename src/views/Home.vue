@@ -102,7 +102,11 @@ export default {
         fetchData() {
             // pnly fetch data 
             if (this.$store.state.dataFetched === false) {
-                return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
+                // return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
+                return axios.get("https://blockchainbird.com/vue-cardgame/php/cards-csv-cors.php")
+                // return axios.get("../public/php/cards-csv-cors.php")
+                    
+                    
                     .then(response => {
                         var responseData = d3.csvParse(response.data);
 
@@ -139,6 +143,8 @@ export default {
                         this.createCategoriesArray(this.$store.state.theJSON);
 
                         // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
+                        
+                        this.$store.commit("showPickedItems");
                         this.$store.commit("showItemsInSelectedCategory");
 
                         this.$store.state.dataFetched = true;

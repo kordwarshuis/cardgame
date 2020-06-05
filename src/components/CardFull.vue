@@ -65,17 +65,15 @@
                     <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
                 </div>
 
-                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Related']">
-
+                <!-- <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Related']">
                     <h3 class="related">Related</h3>
-                    <!-- <p><a v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item">{{ item }}</a></p> -->
-
                     <p>
                         <span v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
                             <router-link :to="'/card/' + item">{{ item }}</router-link>
                         </span>
                     </p>
-                </div>
+                </div> -->
+                <RelatedCards />
 
                 <div class="border p-2 mb-3">
                     <p><a target="_blank" rel="noopener" href="https://web.telegram.org/#/im?p=@bcbird">Comment in our Telegram group</a></p>
@@ -96,13 +94,15 @@
 import Quiz from "@/components/Quiz.vue";
 import Video from "@/components/Video.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
+import RelatedCards from "@/components/RelatedCards.vue";
 
 export default {
     name: "CardFull",
     components: {
         Quiz,
         Video,
-        SocialMedia
+        SocialMedia,
+        RelatedCards
     },
     data: function () {
         return {

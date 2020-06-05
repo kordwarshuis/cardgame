@@ -13,6 +13,7 @@ export default new Vuex.Store({
     currentCard: {},
     numberofCards: 0,// not in use yet
     allCardsInChosenCategory: [],
+    allPickedCards: [],
     dataFetched: false,
   },
   getters: {
@@ -100,6 +101,30 @@ export default new Vuex.Store({
         Notifier.config.default_timeout = "2000";
         Notifier.info("You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
       }
+    },
+    showPickedItems(state) {
+      var allPickedCards = [];
+
+      function makeArray(a, b) {
+        a.push({
+          "pickedId": b["Unique URL"],
+          "pickedPrejudice": b.Prejudice,
+          "pickedCategory": b.Cat,
+          "pickedPrejudiceElaborate": b["Prejudice Elaborate"]
+        });
+      }
+
+      for (let i = 0; i < this.state.theJSON.length; i++) {
+        if (this.state.theJSON[i].pick === "x") {          
+          makeArray(allPickedCards, this.state.theJSON[i]);
+        }
+      }
+
+      // copy the final array to the store
+      this.state.allPickedCards = allPickedCards;
+
+      // setTimeout(codrops, 1);
+
     },
     setActiveMenuItem(item) {
       var allMenuItems = document.querySelectorAll(".categoryLinks a");

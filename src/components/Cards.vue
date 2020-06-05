@@ -3,7 +3,7 @@
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <BitcoinAnimation /> -->
     <!-- <h1>Bitcoin Misconceptions</h1> -->
-    
+
     <p class="categoryLinks pt-5">
         <a @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
         <a v-for="category in $store.state.categories" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name" :key="category.name">{{ category.name }}
@@ -12,8 +12,26 @@
     <h2>{{ subtext }}</h2>
     <Search />
 
+    <div class="m-1 mt-5">
+        <h2>Cards of the Day</h2>
+        <div class="row mt-5 p-0 ">
+            <div v-for="item in $store.state.allPickedCards" data-shorttext="" :key="item.pickedPrejudice" class="col-md-4 mb-5">
+                <div class="p-3 card">
+                    <a :data-id="item['pickedId']" class="" href="#" @click="showCardIntro">
+                        <img style="float: left; width: 25%; margin-right: 1em;margin-bottom: 1em;" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
+                        <h3 class="">{{ item.pickedCategory }}</h3>
+                        <h4 class="">{{ item.pickedPrejudice }}</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2>Cards</h2>
     <div class="grid">
         <!-- <transition name="fade"> -->
+
         <a v-for="item in $store.state.allCardsInChosenCategory" data-shorttext="" :data-id="item['id']" :key="item.prejudice" class="grid__item" href="#" @click="showCardIntro">
             <div class="box">
                 <div class="box__shadow"></div><img class="box__img" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="" />
@@ -21,6 +39,7 @@
                 <h4 class="box__text"><span class="box__text-inner">{{ item.prejudice }}</span></h4>
             </div>
         </a>
+
         <!-- </transition> -->
     </div>
     <NewsTicker />
@@ -62,7 +81,8 @@ export default {
 
             // returns object with all entries of one prejudice
             var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
-            
+            console.log('currentCard: ', currentCard);
+
             this.$store.commit("changeCard", currentCard);
 
             // set URl to the item that was clicked

@@ -16,8 +16,8 @@ export default {
     name: "Quiz",
     methods: {
         quizMultipleChoice(e) {
-            var isChecked = this.checked;
-            var value = this.value;
+            var isChecked = this.checked;// TODO: remove?
+            var value = this.value;// TODO: remove?
             var domCorrectAnswer;
 
             // totaalAantalVragenBeantwoord++;

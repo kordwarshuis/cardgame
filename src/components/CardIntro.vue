@@ -21,6 +21,8 @@
                     <button class="closeCardIntro">All cards</button>
                     <button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
                     <!-- <button class="overlay-fullscreen-close">Close</button> -->
+                    <RelatedCards />
+
                     <SocialMedia />
                 </div>
             </div>
@@ -32,6 +34,7 @@
 
 <script>
 import SocialMedia from "@/components/SocialMedia.vue";
+import RelatedCards from "@/components/RelatedCards.vue";
 // import Quiz from "@/components/Quiz.vue";
 export default {
     name: "CardIntro",
@@ -40,6 +43,7 @@ export default {
     },
     components: {
         SocialMedia,
+        RelatedCards
         // Quiz
     },
     methods: {
