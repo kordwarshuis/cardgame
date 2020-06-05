@@ -11,7 +11,7 @@ export default new Vuex.Store({
     categories: [], // [{name: xxx, numberOfItems: xxx}]
     activeCategory: "All",
     currentCard: {},
-    numberofCards: 0,// not in use yet
+    numberofCards: 0, // not in use yet
     allCardsInChosenCategory: [],
     allPickedCards: [],
     dataFetched: false,
@@ -98,9 +98,14 @@ export default new Vuex.Store({
       setTimeout(codrops, 1);
 
       if (category !== undefined) {
-        Notifier.config.default_timeout = "2000";
-        Notifier.info("You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
+        // Notifier.config.default_timeout = "2000";
+        // Notifier.info("You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
+        this.commit("showToast", "You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
       }
+    },
+    showToast(state, a) {
+      // https://stackoverflow.com/a/57448058
+      this._vm.$toast.info(a);
     },
     showPickedItems(state) {
       var allPickedCards = [];
@@ -115,7 +120,7 @@ export default new Vuex.Store({
       }
 
       for (let i = 0; i < this.state.theJSON.length; i++) {
-        if (this.state.theJSON[i].pick === "x") {          
+        if (this.state.theJSON[i].pick === "x") {
           makeArray(allPickedCards, this.state.theJSON[i]);
         }
       }

@@ -1,7 +1,7 @@
 <template>
 <div id="app" class="container-fluid">
+    <Toasts :time-out="2000"></Toasts>
     <Menu />
-
     <!-- <CryptoRadio /> -->
     <router-view />
     <NewsTicker />
@@ -553,7 +553,7 @@ input:checked+.slider:before {
 
 /* Visited cards get a visual sign */
 // .visited .box__text {
-    // border: 10px solid $boxTextVisited;
+// border: 10px solid $boxTextVisited;
 // }
 
 .visited .box__text-inner:after {

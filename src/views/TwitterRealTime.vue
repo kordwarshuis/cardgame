@@ -108,6 +108,7 @@ export default {
     },
     methods: {
         initTwitterRealTime() {
+            var that = this;
             var refreshInterval = 10000;
             var numberOfFollowers = 750;
 
@@ -334,8 +335,9 @@ export default {
 
                 domStart.innerHTML = language.startbutton.started;
                 status.innerHTML = language.status.appStarted;
-                Notifier.config.default_timeout = "2000";
-                Notifier.info(language.notifications.appStarted);
+                // Notifier.config.default_timeout = "2000";
+                // Notifier.info(language.notifications.appStarted);
+                that.$store.commit("showToast", language.notifications.appStarted);
 
                 if (sound) {
                     alert.play();
@@ -622,8 +624,9 @@ export default {
                 console.log(followersSelect.value);
                 numberOfFollowers = followersSelect.value;
                 // showNumberOfFollowers();
-                Notifier.config.default_timeout = "2000";
-                Notifier.info(language.notifications.numberOfFollowersSet);
+                // Notifier.config.default_timeout = "2000";
+                // Notifier.info(language.notifications.numberOfFollowersSet);
+                that.$store.commit("showToast", language.notifications.appStarted);
 
             }, false);
 
