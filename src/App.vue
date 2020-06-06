@@ -22,7 +22,58 @@ export default {
         CryptoRadio,
         NewsTicker,
         Hammer
+    },
+    mounted() {
+        this.soundSetting();
+    },
+    methods: {
+        //TODO: change 'of' to 'off'
+        soundSetting() {
+            // radio buttons for sound on off:
+            var soundButton = document.querySelectorAll('input[name = "soundOnOf"]');
+            var i;
+
+            // set radio buttons with localstorage value, if any:
+            if (localStorage.getItem("soundOnOf") !== null) {
+                var val = localStorage.getItem("soundOnOf"); // local storage value
+                for (i = 0; i < soundButton.length; i++) {
+                    if (soundButton[i].value === val) {
+                        soundButton[i].checked = true; // marking the required radio as checked
+                    }
+                }
+            }
+
+            // set soud variable based on radio buttons setting:
+            for (i = 0; i < soundButton.length; i++) {
+                if (soundButton[i].checked === true) {
+                    if (soundButton[i].value === "on") {
+                        sound = true;
+                    } else {
+                        sound = false;
+                    }
+                }
+            }
+
+            // dealing with radio buttons user interactions:
+            var prev = null; // not used here
+            for (i = 0; i < soundButton.length; i++) {
+                soundButton[i].addEventListener('change', function () {
+                    // (prev) ? console.log(prev.value): null;
+                    if (this !== prev) {
+                        prev = this;
+                    }
+
+                    localStorage.setItem("soundOnOf", this.value);
+                    if (this.value === "on") {
+                        sound = true;
+                    } else {
+                        sound = false;
+                    }
+                });
+            }
+        }
     }
+
 }
 </script>
 
@@ -259,7 +310,7 @@ small {
 }
 
 .border {
-	border: 1px solid $_border1!important;
+    border: 1px solid $_border1 !important;
 }
 
 .grid {
@@ -396,10 +447,10 @@ hr {
     transition: filter 0.3s;
     pointer-events: none;
 }
+
 .design2 .box__img {
     max-width: 60%;
 }
-
 
 .grid__item:hover .box__img:not(.box__img--original) {
     filter: grayscale(1);

@@ -14,6 +14,12 @@
             <!-- <Gallery /> -->
             <div class="row">
                 <div class="col-md-12 text-center">
+                    <label class="mt-3">
+                        <input type="radio" name="soundOnOf" id="soundOnOf1" value="on" checked="" /> Sound on
+                    </label>
+                    <label>
+                        <input type="radio" name="soundOnOf" id="soundOnOf2" value="of" /> Sound off
+                    </label>
                     <a href>
                         <img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" />
                     </a>

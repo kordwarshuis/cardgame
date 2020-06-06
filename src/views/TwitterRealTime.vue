@@ -11,12 +11,6 @@
                     <div class="alert alert-info mt-3" role="alert">
                         All changes work immediately.
                     </div>
-                    <label class="mt-3">
-                        <input type="radio" name="soundOnOf" id="soundOnOf1" value="on" checked="" /> Sound on
-                    </label>
-                    <label>
-                        <input type="radio" name="soundOnOf" id="soundOnOf2" value="of" /> Sound off
-                    </label>
 
                     <hr>
 
@@ -132,7 +126,6 @@ export default {
             var lastDataSet;
             var keyWords = [];
             var tweetAccounts = [];
-            var sound = true;
             var followersSelect = document.querySelector("#followers");
             var followersSetCounter = document.querySelector("#followersset span");
 
@@ -156,52 +149,6 @@ export default {
             function timestampNu() {
                 return moment().format("HH:mm:ss");
             }
-
-            //TODO: change 'of' to 'off'
-            (function soundSetting() {
-                // radio buttons for sound on off:
-                var soundButton = document.querySelectorAll('input[name = "soundOnOf"]');
-                var i;
-
-                // set radio buttons with localstorage value, if any:
-                if (localStorage.getItem("soundOnOf") !== null) {
-                    var val = localStorage.getItem("soundOnOf"); // local storage value
-                    for (i = 0; i < soundButton.length; i++) {
-                        if (soundButton[i].value === val) {
-                            soundButton[i].checked = true; // marking the required radio as checked
-                        }
-                    }
-                }
-
-                // set soud variable based on radio buttons setting:
-                for (i = 0; i < soundButton.length; i++) {
-                    if (soundButton[i].checked === true) {
-                        if (soundButton[i].value === "on") {
-                            sound = true;
-                        } else {
-                            sound = false;
-                        }
-                    }
-                }
-
-                // dealing with radio buttons user interactions:
-                var prev = null; // not used here
-                for (i = 0; i < soundButton.length; i++) {
-                    soundButton[i].addEventListener('change', function () {
-                        // (prev) ? console.log(prev.value): null;
-                        if (this !== prev) {
-                            prev = this;
-                        }
-
-                        localStorage.setItem("soundOnOf", this.value);
-                        if (this.value === "on") {
-                            sound = true;
-                        } else {
-                            sound = false;
-                        }
-                    });
-                }
-            }());
 
             // https://stackoverflow.com/a/59329495
             function fixJSON(json) {
@@ -339,10 +286,8 @@ export default {
                 // Notifier.info(language.notifications.appStarted);
                 that.$store.commit("showToast", language.notifications.appStarted);
 
-                if (sound) {
-                    alert.play();
-                    // alertSpecialAccount.play();
-                }
+                if (sound) alert.play();
+
 
                 // Convert URLs (w/ or w/o protocol), @mentions, and #hashtags into anchor links
                 // http://roadha.us/2011/03/create-anchor-links-in-twitter-status-text-with-javascript/
@@ -408,9 +353,7 @@ export default {
 
                         if (isSpecialAccount === true) {
                             specialAccountHTMLcode = " specialAccount "; // space is important
-                            if (sound) {
-                                alertSpecialAccount.play();
-                            }
+                            if (sound) alertSpecialAccount.play();
                         } else {
                             specialAccountHTMLcode = "";
                         }
@@ -454,9 +397,8 @@ export default {
                     }
 
                     if (somethingFound) {
-                        if (sound) {
-                            alert.play();
-                        }
+                        if (sound) alert.play();
+                        
                         // console.log('domTemp: ', domTemp);
                         // console.log('domTempOld: ', domTempOld);
 
@@ -689,8 +631,7 @@ export default {
                 if (sound) {
                     alertSpecialAccount.play();
                     navigator.serviceWorker.getRegistration()
-                        .then(reg => reg.showNotification("kor"));
-
+                        .then(reg => reg.showNotification("test"));
                 }
             }, false);
 
