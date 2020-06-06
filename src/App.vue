@@ -6,6 +6,7 @@
     <!-- <CryptoRadio /> -->
     <router-view />
     <NewsTicker />
+    <audio id="click" src="@/assets/audio/click.mp3"></audio>
 </div>
 </template>
 
@@ -25,6 +26,7 @@ export default {
     },
     mounted() {
         this.soundSetting();
+        this.playClick();
     },
     methods: {
         //TODO: change 'of' to 'off'
@@ -71,6 +73,16 @@ export default {
                     }
                 });
             }
+        },
+        playClick() {
+            var alert = document.querySelector("#click");
+            document.querySelector("body").addEventListener("click", function () {
+                if (sound) {
+                    alert.pause();
+                    alert.currentTime = 0;
+                    alert.play();
+                }
+            }, false);
         }
     }
 

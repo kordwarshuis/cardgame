@@ -14,12 +14,18 @@
             <!-- <Gallery /> -->
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <label class="mt-3">
-                        <input type="radio" name="soundOnOf" id="soundOnOf1" value="on" checked="" /> Sound on
-                    </label>
-                    <label>
-                        <input type="radio" name="soundOnOf" id="soundOnOf2" value="of" /> Sound off
-                    </label>
+                    <form role="form" class="border m-3 p-2 pb-0 d-inline-block">
+
+                        <label class="mr-3 mb-0 d-inline-block">
+                            <input type="radio" name="soundOnOf" id="soundOnOf1" value="on" checked="" /> on
+                        </label>
+                        <p class="d-inline-block mr-3 m-0">
+                            Sound
+                        </p>
+                        <label class="mb-0 d-inline-block">
+                            <input type="radio" name="soundOnOf" id="soundOnOf2" value="of" /> off
+                        </label>
+                    </form>
                     <a href>
                         <img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" />
                     </a>
@@ -32,7 +38,6 @@
 
                         <!-- <button class="btn btn-primary" @click="activateDefaultDesign">Default Design</button>
                         <button class="btn btn-primary"  @click="activateDesign2">Design 2</button> -->
-
 
                         <!-- <h2>Crypto radio 24</h2>
                         <audio style="max-width: 300px;" src="http://n0b.radiojar.com/exrd1tp5mceuv.mp3?1590145895=&rj-tok=AAABcjwec6UAMPRNZZ4HZ8WfJw&rj-ttl=5" controls />
@@ -148,7 +153,6 @@ $numberOfCycles: 8;
         background: rgb(165, 219, 240);
     }
 }
-
 
 // MENU
 
@@ -279,8 +283,6 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     // filter: blur(0) brightness(0.91) hue-rotate(332deg) sepia(0.52) opacity(1) ;
     // filter: blur(0) brightness(0.91) hue-rotate(332deg) sepia(0.92) opacity(1) ;
 }
-
-
 
 // Menu items
 .menu-wrap #nav a {

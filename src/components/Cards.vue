@@ -82,7 +82,6 @@ export default {
 
             // returns object with all entries of one prejudice
             var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
-            console.log('currentCard: ', currentCard);
 
             this.$store.commit("changeCard", currentCard);
 
