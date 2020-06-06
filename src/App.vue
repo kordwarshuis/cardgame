@@ -396,6 +396,10 @@ hr {
     transition: filter 0.3s;
     pointer-events: none;
 }
+.design2 .box__img {
+    max-width: 60%;
+}
+
 
 .grid__item:hover .box__img:not(.box__img--original) {
     filter: grayscale(1);
