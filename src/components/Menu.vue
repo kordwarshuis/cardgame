@@ -1,6 +1,8 @@
 <template>
 <div id="menu-and-buttons-wrapper">
     <div class="menu-wrap">
+
+        <div class="colorshield"></div>
         <div class="container mt-5 p-1">
 
             <div id="nav" class="text-center">
@@ -21,59 +23,10 @@
                         <h1>Bit&shy;coin Mis&shy;con&shy;cep&shy;tions</h1>
                         <p>A collection of misconceptions about Bitcoin.</p>
                         <p>Strike back and send a card.</p>
-                        <!-- <label class="mt-3">
-                            <input type="radio" name="soundOnOf" id="soundOnOf1" value="on" /> Sound on
-                        </label>
-                        <label>
-                            <input class="ml-3" type="radio" name="soundOnOf" id="soundOnOf2" value="of" checked="" /> Sound off
-                        </label> -->
-                        <!-- <BitcoinAnimation /> -->
-                        <!-- </div> -->
 
-                        <!-- <div class="cryptocoins">
-                            <div class="cryptocoin cryptocoin--btc">
-                                <div class="cryptocoin--coin-face cryptocoin--coin-back">
-                                    <svg class="cryptocoin--coin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244.9 324.2">
-                                        <defs></defs>
-                                        <title>bitcoin</title>
-                                        <g id="Layer_2" data-name="Layer 2">
-                                            <g id="svg2">
-                                                <path id="symbol" class="cls-1" d="M244.3,130.3c5.1-34-20.9-52.3-56.3-64.6l11.5-46.1-28.1-7L160.2,57.5l-22.5-5.3L149,7,120.9,0,109.4,46.1c-6.1-1.4-12.1-2.7-18-4.2h.1L52.7,32.1l-7.4,30s20.8,4.8,20.4,5.1C77,70,79.1,77.5,78.8,83.5L65.6,136.1l3,.9-3-.7L47.2,209.9c-1.4,3.5-4.9,8.7-12.8,6.7.2.4-20.5-5.1-20.5-5.1L0,243.6l36.6,9.2,20,5.1L45,304.6l28,7,11.5-46.2c7.7,2.1,15.1,4,22.4,5.8l-11.5,46,28.1,7,11.6-46.6c47.9,9.1,84,5.4,99.1-37.9,12.2-34.9-.6-55-25.8-68.1,18.4-4.3,32.2-16.3,35.9-41.3Zm-64.2,90c-8.7,34.9-67.4,16-86.5,11.3l15.5-61.8C128.1,174.5,189.2,183.9,180.1,220.3Zm8.7-90.5c-7.9,31.8-56.8,15.6-72.7,11.7l14-56.1C146,89.4,197,96.7,188.8,129.8Z" />
-                                            </g>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <div class="cryptocoin--coin-face cryptocoin--coin-front">
-                                    <svg class="cryptocoin--coin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244.9 324.2">
-                                        <defs></defs>
-                                        <title>bitcoin</title>
-                                        <g id="Layer_2" data-name="Layer 2">
-                                            <g id="svg2">
-                                                <path id="symbol" class="cls-1" d="M244.3,130.3c5.1-34-20.9-52.3-56.3-64.6l11.5-46.1-28.1-7L160.2,57.5l-22.5-5.3L149,7,120.9,0,109.4,46.1c-6.1-1.4-12.1-2.7-18-4.2h.1L52.7,32.1l-7.4,30s20.8,4.8,20.4,5.1C77,70,79.1,77.5,78.8,83.5L65.6,136.1l3,.9-3-.7L47.2,209.9c-1.4,3.5-4.9,8.7-12.8,6.7.2.4-20.5-5.1-20.5-5.1L0,243.6l36.6,9.2,20,5.1L45,304.6l28,7,11.5-46.2c7.7,2.1,15.1,4,22.4,5.8l-11.5,46,28.1,7,11.6-46.6c47.9,9.1,84,5.4,99.1-37.9,12.2-34.9-.6-55-25.8-68.1,18.4-4.3,32.2-16.3,35.9-41.3Zm-64.2,90c-8.7,34.9-67.4,16-86.5,11.3l15.5-61.8C128.1,174.5,189.2,183.9,180.1,220.3Zm8.7-90.5c-7.9,31.8-56.8,15.6-72.7,11.7l14-56.1C146,89.4,197,96.7,188.8,129.8Z" />
-                                            </g>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <div class="cryptocoin--coin-side">
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                    <div class="spoke"></div>
-                                </div>
-                            </div>
-                        </div> -->
+                        <!-- <button class="btn btn-primary" @click="activateDefaultDesign">Default Design</button>
+                        <button class="btn btn-primary"  @click="activateDesign2">Design 2</button> -->
+
 
                         <!-- <h2>Crypto radio 24</h2>
                         <audio style="max-width: 300px;" src="http://n0b.radiojar.com/exrd1tp5mceuv.mp3?1590145895=&rj-tok=AAABcjwec6UAMPRNZZ4HZ8WfJw&rj-ttl=5" controls />
@@ -98,6 +51,15 @@ export default {
     components: {
         // BitcoinAnimation
         // Gallery
+    },
+    methods: {
+        activateDefaultDesign() {
+            document.querySelector('#app').classList.remove('design2');
+        },
+        activateDesign2() {
+            document.querySelector('#app').classList.add('design2');
+        }
+
     }
 };
 
@@ -181,231 +143,6 @@ $numberOfCycles: 8;
     }
 }
 
-/*! 
-Bitcoin animation
-https://codepen.io/boyd/pen/ajpGbM */
-
-// ================
-// Helper functions
-// ================
-
-@function pi() {
-    @return 3.14159265359;
-}
-
-@function pow($number, $exp) {
-    $value: 1;
-
-    @if $exp>0 {
-        @for $i from 1 through $exp {
-            $value: $value * $number;
-        }
-    }
-
-    @else if $exp < 0 {
-        @for $i from 1 through -$exp {
-            $value: $value / $number;
-        }
-    }
-
-    @return $value;
-}
-
-@function rad($angle) {
-    $unit: unit($angle);
-    $unitless: $angle / ($angle * 0 + 1);
-
-    // If the angle has 'deg' as unit, convert to radians.
-    @if $unit==deg {
-        $unitless: $unitless / 180 * pi();
-    }
-
-    @return $unitless;
-}
-
-@function fact($number) {
-    $value: 1;
-
-    @if $number>0 {
-        @for $i from 1 through $number {
-            $value: $value * $i;
-        }
-    }
-
-    @return $value;
-}
-
-@function sin($angle) {
-    $sin: 0;
-    $angle: rad($angle);
-
-    // Iterate a bunch of times.
-    @for $i from 0 through 10 {
-        $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
-    }
-
-    @return $sin;
-}
-
-// ================
-// Settings
-// ================
-
-$coin_diam: 10em;
-$coin_depth: $coin_diam * 0.1;
-$spin_speed: 2s;
-$facets: 32;
-$spokes: $facets / 2;
-$degs: sin(pi() / $facets);
-$facet_length: #{$coin_diam * $degs};
-$spin-speed: 10s;
-
-// ================
-// shared styles
-// ================
-
-.cryptocoins {
-    margin: auto;
-    // display: flex;
-    width: $coin_diam;
-    text-align: center;
-}
-
-.cryptocoin {
-    transform-style: preserve-3d;
-    perspective: 1000;
-    border-radius: 50%;
-    width: $coin_diam;
-    height: $coin_diam;
-    position: relative;
-    margin: 1em;
-    transform: rotateY(77deg);
-    animation: spin $spin_speed linear $numberOfCycles;
-
-    &--coin-face {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-    }
-
-    &--coin-front {
-        transform: translateZ(#{$coin_depth / 2});
-    }
-
-    &--coin-back {
-        transform: translateZ(#{-$coin_depth / 2}) rotateY(180deg);
-    }
-
-    &--coin-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 66.666%;
-        height: 66.666%;
-        transform: translate(-50%, -50%);
-
-    }
-
-    &--coin-side {
-        transform: translateZ(-($coin-diam/2)) rotateY(90deg);
-        transform-style: preserve-3d;
-        backface-visibility: hidden;
-
-        .spoke {
-            height: $coin_diam;
-            width: $coin_depth;
-            position: absolute;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-
-            &:before,
-            &:after {
-                content: '';
-                display: block;
-                height: $facet_length;
-                width: ($coin_depth);
-                position: absolute;
-                background: red;
-            }
-
-            // One at each end
-            &:before {
-                transform-origin: top center;
-                transform: rotateX(90deg) translateY(-$coin-depth);
-            }
-
-            &:after {
-                bottom: 0;
-                transform-origin: center bottom;
-                transform: rotateX(90deg);
-            }
-        }
-
-        @for $i from 1 through $facets {
-            .spoke:nth-child(#{$i}) {
-                transform: rotateX(#{(180/$spokes) * $i}deg) rotateY(90deg);
-            }
-        }
-    }
-}
-
-// ================
-// ETH styles
-// ================
-
-.cryptocoin--eth {
-    color: #ddd;
-
-    .cryptocoin--coin-face {
-        background-color: #eee;
-
-        svg {
-            opacity: .5;
-        }
-    }
-
-    .spoke {
-
-        &:before,
-        &:after {
-            background-color: currentColor;
-        }
-    }
-}
-
-.cryptocoin--btc {
-    color: darken(#eda550, 5%);
-
-    .cryptocoin--coin-face {
-        background-color: #eda550;
-    }
-
-    .spoke {
-
-        &:before,
-        &:after {
-            background-color: currentColor;
-        }
-    }
-}
-
-// ================
-// Annimations
-// ================
-@keyframes spin {
-    0% {
-        transform: rotate3d(0, 0, 0, 0deg);
-    }
-
-    50% {
-        transform: rotate3d(.5, .5, .5, 180deg);
-    }
-
-    100% {
-        transform: rotate3d(1, 1, 1, 360deg);
-    }
-}
 
 // MENU
 
@@ -413,6 +150,18 @@ $spin-speed: 10s;
     margin: 0;
     margin-left: -1em; // compensate for bootstrap grid
     padding: 0;
+}
+
+.colorshield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: $_background1;
+    opacity: 0.8;
+    z-index: -1;
 }
 
 audio {
@@ -439,6 +188,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     color: transparent;
     // background: transparent;
     background: #eee;
+    outline: none;
 }
 
 .menu-button::before {
@@ -503,9 +253,9 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     height: 100%;
     text-align: left;
     color: $slideInMenuTextColor;
-    // background: $slideInMenuBackgroundColor;
-    background: transparent url(../assets/img/photos/dmitry-demidko-xZJpKskRdOg-unsplash.jpg) no-repeat center;
+    background: $_background1 url(../assets/img/photos/dmitry-demidko-xZJpKskRdOg-unsplash.jpg) no-repeat center;
     background-size: cover;
+    // filter: grayscale(100%);
 
     padding: 2.5em 1.5em 0;
     // -webkit-transform: translate3d(-320px, 0, 0);
@@ -517,6 +267,14 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
 }
+
+.design2 .menu-wrap {
+    // filter: grayscale(100%) !important;
+    // filter: blur(0) brightness(0.91) hue-rotate(332deg) sepia(0.52) opacity(1) ;
+    // filter: blur(0) brightness(0.91) hue-rotate(332deg) sepia(0.92) opacity(1) ;
+}
+
+
 
 // Menu items
 .menu-wrap #nav a {
@@ -536,7 +294,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 }
 
 .container {
-    background: rgba(239, 209, 188, 0.815);
+    background: $_background1;
 }
 
 /* Shown menu */

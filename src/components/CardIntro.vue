@@ -7,7 +7,7 @@
                 <div class="card-body title-on-card center">
                     <h3>Misconception:</h3>
                     <img class="title-on-card-background-image" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
-                    <h2 class="title-on-card-text">{{ this.$store.state.currentCard.Prejudice }}</h2>
+                    <h2 class="title-on-card-text animated infinite">{{ this.$store.state.currentCard.Prejudice }}</h2>
                 </div>
             </div>
         </div>
@@ -121,6 +121,7 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
+    color: $overlayItemText;
     background: $overlayItemBackground;
     padding: 3em;
 }
@@ -145,7 +146,7 @@ export default {
 
 // de read more / plus sign on the intro card
 a.md-trigger {
-    border: 3px solid $borderMenuItemsAndButtons;
+    border: 3px solid $menuItemsAndButtonsBorder;
     background: $background;
     color: $linksText;
     border-radius: 50%;
@@ -183,8 +184,8 @@ a.md-trigger {
 
     50% {
         /*letter-spacing: 3px;*/
-        background-color: $borderMenuItemsAndButtons;
-        border-color: $borderMenuItemsAndButtons;
+        background-color: $menuItemsAndButtonsBorder;
+        border-color: $menuItemsAndButtonsBorder;
         color: $linksText;
     }
 
@@ -275,46 +276,10 @@ a.md-trigger {
     border: none;
 }
 
-// with image as background image
-// .title-on-card {
-//     margin: 10% 10% 0 10% !important;
-//     padding: 3% 5% 0 16%;
-//     background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2.png) no-repeat top center !important;
-//     // background-size: 100% auto;
-//     background-size: contain !important;
-//     color: $textOnCard;
-
-//     // https://stackoverflow.com/a/48830291
-//     overflow-wrap: break-word;
-//     word-wrap: break-word;
-//     -ms-word-break: break-all;
-//     word-break: break-word;
-//     -ms-hyphens: auto;
-//     -moz-hyphens: auto;
-//     -webkit-hyphens: auto;
-//     hyphens: auto;
-
-// }
-
-// .title-on-card h2 {
-//     font-size: 6vw;
-//     margin: 0;
-//     padding: 0;
-//     text-align: left;
-// }
-// /* Small devices (landscape phones, 576px and up) */
-// @media (min-width: 576px) {
-//     .title-on-card h2 {
-//         font-size: 4vw;
-//         margin: 0;
-//         padding: 0;
-//     }
-// }
-
 .title-on-card {
     // margin-top should be set so it aligns with the right column (answer)
     margin: 1.25em 10% 0 0% !important;
-    color: $textOnCard;
+    color: $cardLink;
 
     // https://stackoverflow.com/a/48830291
     overflow-wrap: break-word;
@@ -390,5 +355,92 @@ a.md-trigger {
 
 .title-on-card {
     padding-left: 1rem !important
+}
+
+// alternative design
+.design2 {
+    .title-on-card {
+        // background: yellow;
+        padding: 0;
+    }
+
+    .title-on-card img {
+        opacity: 0;
+        background: orange;
+        margin: 0;
+        padding: 0;
+    }
+
+    // https://codepen.io/andybelldesign/pen/MPLzay
+    .title-on-card h2 {
+        padding: 1em;
+        margin: 0 !important;
+        font-size: 2.5rem;
+
+    }
+
+    .title-on-card h2 {
+        // animation-name: animatedBorder;
+        // animation-duration: 0.8s;
+        // animation-iteration-count: infinite;
+        // animation-timing-function: ease-in-out;
+        // animation-fill-mode: both;
+
+        border: 2px solid $cardBorder;
+        background: $cardBackground;
+        border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+
+        &::before {
+            content: '';
+            border: 2px solid $cardBorder;
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.9deg);
+            border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+        }
+
+        &::after {
+            content: '';
+            border: 2px solid $cardBorder;
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0) scale(1.035) rotate(-0.7deg);
+            border-radius: 3% 4% 2% 4% / 4% 6% 1% 4%;
+        }
+
+    }
+
+    @keyframes animatedBorder {
+        0% {
+            border-radius: 3% 6% 5% 4% / 4% 7% 8% 4%;
+        }
+
+        14% {
+            border-radius: 5% 1% 5% 4% / 2% 1% 2% 4%;
+        }
+
+        28% {
+            border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
+        }
+
+        42% {
+            border-radius: 4% 12% 15% 7% / 4% 6% 9% 4%;
+        }
+
+        70% {
+            border-radius: 3% 6% 5% 4% / 4% 7% 8% 4%;
+        }
+    }
+
+    /* end animate.css */
+
 }
 </style>

@@ -149,8 +149,16 @@ export default {
 //     border-bottom: none;
 // }
 
+.modal-content {
+    background: $cardFullBackground;
+}
 .modal-content>div {
-    background: $background;
+    color: $cardFullBlockText;
+    background: $cardFullBlockBackground;
+}
+.modal-content>div a {
+    color: $cardFullBlockLink;
+    background: $cardFullBlockBackground;
 }
 
 .modal-content h3 {

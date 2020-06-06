@@ -1,5 +1,6 @@
 <template>
-<div id="app" class="container-fluid">
+<!-- <div id="app" class="container-fluid"> -->
+<div id="app" class="container-fluid design2">
     <Toasts :time-out="2000"></Toasts>
     <Menu />
     <!-- <CryptoRadio /> -->
@@ -257,6 +258,10 @@ small {
     /* margin: 0 */
 }
 
+.border {
+	border: 1px solid $_border1!important;
+}
+
 .grid {
     width: 100%;
     max-width: 1440px;
@@ -375,25 +380,25 @@ hr {
     display: block;
     // border: 6px solid $cardGridBorder;
     padding: 1rem 1.25rem;
-    color: $gridCardTitleTextColor;
+    color: $cardLink;
 }
 
-// .box__text-inner:hover {
-//     color: $gridCardTitleTextHoverColor;
-// }
+.box__text-inner:hover {
+    color: $cardLinkHover;
+}
 
 .box__img {
     display: block;
     flex: none;
     margin: 0 auto;
     max-width: 100%;
-    filter: grayscale(1);
+    filter: grayscale(0);
     transition: filter 0.3s;
     pointer-events: none;
 }
 
 .grid__item:hover .box__img:not(.box__img--original) {
-    filter: grayscale(0);
+    filter: grayscale(1);
 }
 
 .further-reading {
@@ -747,7 +752,7 @@ button:hover,
 
 //=== Drawing effect
 // https://codepen.io/giana/pen/xdXpJB
-@mixin btn-border-drawing($color: $borderMenuItemsAndButtons, $hover: $a6, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
+@mixin btn-border-drawing($color: $menuItemsAndButtonsBorder, $hover: $a6, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
     box-shadow: inset 0 0 0 $width $color;
     color: $borderDrawingEffect;
     transition: color $duration $duration/3;
@@ -806,12 +811,12 @@ button:hover,
 .relatedItems a,
 .md-close:not(.md-close-cross),
 .modal-content a {
-    @include btn-border-drawing($borderMenuItemsAndButtons, $a14, 3px, bottom, right);
+    @include btn-border-drawing($menuItemsAndButtonsBorder, $a14, 3px, bottom, right);
 }
 
 .box__text-inner {
-    // @include btn-border-drawing($borderMenuItemsAndButtons, $a14, 6px, bottom, right);
-    border: 7px solid $borderMenuItemsAndButtons;
+    // @include btn-border-drawing($menuItemsAndButtonsBorder, $a14, 6px, bottom, right);
+    border: 7px solid $menuItemsAndButtonsBorder;
 }
 
 #socialMediaTekst {
@@ -1020,5 +1025,46 @@ Copyright (c) 2014 Daniel Eden
     float: left;
     margin-right: 1em;
     // display: inline-block;
+}
+
+.design2 {
+    .grid .box__text-inner {
+        // animation-name: animatedBorder;
+        // animation-duration: 0.8s;
+        // animation-iteration-count: infinite;
+        // animation-timing-function: ease-in-out;
+        // animation-fill-mode: both;
+
+        border: 2px solid $cardBorder;
+        background: $cardBackground;
+        border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+
+        &::before {
+            content: '';
+            border: 2px solid $cardBorder;
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0) scale(1.095) rotate(1.7deg);
+            border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+        }
+
+        &::after {
+            content: '';
+            border: 2px solid $cardBorder;
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0) scale(1.045) rotate(-0.7deg);
+            border-radius: 3% 4% 2% 4% / 4% 6% 1% 4%;
+        }
+
+    }
 }
 </style>

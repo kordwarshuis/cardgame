@@ -12,7 +12,7 @@
     <h2>{{ subtext }}</h2>
     <Search />
 
-    <div class="m-1 mt-5">
+    <!-- <div class="m-1 mt-5">
         <h2>Cards of the Day</h2>
         <div class="row mt-5 p-0 ">
             <div v-for="item in $store.state.allPickedCards" data-shorttext="" :key="item.pickedPrejudice" class="col-md-4 mb-5">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 
     <h2>Cards</h2>
     <div class="grid">
@@ -34,7 +34,8 @@
 
         <a v-for="item in $store.state.allCardsInChosenCategory" data-shorttext="" :data-id="item['id']" :key="item.prejudice" class="grid__item" href="#" @click="showCardIntro">
             <div class="box">
-                <div class="box__shadow"></div><img class="box__img" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="" />
+                <!-- <div class="box__shadow"></div><img class="box__img" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="" /> -->
+                <div class="box__shadow"></div><img class="box__img" src="@/assets/img/icons/flat/bitcoin.svg" alt="" />
                 <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
                 <h4 class="box__text"><span class="box__text-inner">{{ item.prejudice }}</span></h4>
             </div>
@@ -97,4 +98,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped lang="scss">
+
+// svg.bitcoinimage {
+// .box__img {
+//     fill: #f59074;
+//     stroke: #f59074;
+// }
 </style>
