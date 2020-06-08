@@ -1,4 +1,5 @@
 import Vue from "vue";
+import publicPath from "../vue.config";
 // import axios from "axios";
 import App from "./App.vue";
 import router from "./router/router";
@@ -6,6 +7,7 @@ import VueAnalytics from "vue-analytics";
 import store from "./store/store";
 import * as d3 from 'd3-dsv';
 import './assets/js/TweenMax.min';
+// import {Howl, Howler} from 'howler';
 // import './assets/js/menu_sideslide';
 // import bootstrap from 'bootstrap';
 
@@ -15,6 +17,8 @@ import VueBootstrapToasts from "vue-bootstrap-toasts";
 Vue.use(d3);
 Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
+// Vue.use(Howl, Howler);
+
 Vue.use(VueAnalytics, {
   id: "G-N8VG5BGPSH",
   router
@@ -34,6 +38,7 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard1', {
       // Notifier.config.default_timeout = "2000";
       // Notifier.info("You can now paste the link.");
       store.commit("showToast", "You can now paste the link.");
+      if (sound) go.play();
       return window.location.href;
   }
 });
@@ -42,6 +47,7 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard2', {
       // Notifier.config.default_timeout = "2000";
       // Notifier.info("You can now paste the link.");
       store.commit("showToast", "You can now paste the link.");
+      if (sound) go.play();
       return window.location.href;
   }
 });
@@ -50,6 +56,7 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
       // Notifier.config.default_timeout = "2000";
       // Notifier.info("You can now paste the link.");
       store.commit("showToast", "You can now paste the link.");
+      if (sound) go.play();
       return window.location.href;
   }
 });

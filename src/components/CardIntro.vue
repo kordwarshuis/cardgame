@@ -67,6 +67,8 @@ export default {
                 };
             // TODO: rename, since it is not a toggle anymore
             function toggleOverlayFullscreen() {
+
+                if (sound) dong.play();
                 if (overlayFullscreen.classList.contains('open')) {
                     // overlayFullscreen.classList.remove('open');
                     // container.classList.remove('overlay-fullscreen-open');
@@ -102,6 +104,7 @@ export default {
             closeBttn2.addEventListener('click', toggleOverlayFullscreen);
         },
         showCardFull(event) {
+            if (sound) tada.play();
             //TODO: why is this working, should mutations be used?
             this.$store.state.cssClassCardFullState = " md-show";
             // this.$store.commit("changeCssClassCardIntroState", " md-show");
@@ -256,11 +259,13 @@ a.md-trigger {
 
 // }
 
+// Show/Hide card intro
 // Opacity effect
 .overlay-fullscreen-contentpush {
     visibility: hidden;
     opacity: 0;
-    transition: all 0.3s ease-in-out;
+    // transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-out;
 }
 
 .open {
@@ -269,7 +274,8 @@ a.md-trigger {
 }
 
 .overlay-fullscreen-contentpush.open {
-    transition: all 0.3s ease-in-out;
+    // transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-out;
 }
 
 .card {

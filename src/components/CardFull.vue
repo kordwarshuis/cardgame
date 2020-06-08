@@ -265,8 +265,8 @@ perspective effects (not including the modals and the overlay).
 
 .md-perspective body {
     // background: #222;
-    -webkit-perspective: 600px;
-    -moz-perspective: 600px;
+    // -webkit-perspective: 600px;
+    // -moz-perspective: 600px;
     perspective: 600px;
 }
 
@@ -284,12 +284,12 @@ perspective effects (not including the modals and the overlay).
     z-index: 2000;
     visibility: hidden;
 
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
+    // -webkit-backface-visibility: hidden;
+    // -moz-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -ms-transform: translateX(-50%) translateY(-50%);
+    // -webkit-transform: translateX(-50%) translateY(-50%);
+    // -moz-transform: translateX(-50%) translateY(-50%);
+    // -ms-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
 }
 
@@ -306,8 +306,8 @@ perspective effects (not including the modals and the overlay).
     left: 0;
     z-index: 1000;
     opacity: 0;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
+    // -webkit-transition: all 0.3s;
+    // -moz-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -368,8 +368,8 @@ perspective effects (not including the modals and the overlay).
     -ms-transform: translateX(20%);
     transform: translateX(20%);
     opacity: 0;
-    -webkit-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
-    -moz-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+    // -webkit-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+    // -moz-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
     transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
 

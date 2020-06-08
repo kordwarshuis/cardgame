@@ -6,11 +6,11 @@
     <!-- <CryptoRadio /> -->
     <router-view />
     <NewsTicker />
-    <audio id="click" src="@/assets/audio/click.mp3"></audio>
 </div>
 </template>
 
 <script>
+import publicPath from "../vue.config";
 import Menu from "@/components/Menu.vue";
 import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
@@ -24,9 +24,14 @@ export default {
         NewsTicker,
         Hammer
     },
+    data: function () {
+        return {
+            audioPath1: "https://dwarshuis.com/audio/315966__marekwojtaszek__bees-in-lavender.mp3"
+        }
+    },
     mounted() {
         this.soundSetting();
-        this.playClick();
+        // this.playClick();
     },
     methods: {
         //TODO: change 'of' to 'off'
@@ -75,17 +80,13 @@ export default {
             }
         },
         playClick() {
-            var alert = document.querySelector("#click");
             document.querySelector("body").addEventListener("click", function () {
                 if (sound) {
-                    alert.pause();
-                    alert.currentTime = 0;
-                    alert.play();
+                    click.play();
                 }
             }, false);
         }
     }
-
 }
 </script>
 

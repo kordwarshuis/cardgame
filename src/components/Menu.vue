@@ -64,12 +64,12 @@ export default {
         // Gallery
     },
     methods: {
-        activateDefaultDesign() {
-            document.querySelector('#app').classList.remove('design2');
-        },
-        activateDesign2() {
-            document.querySelector('#app').classList.add('design2');
-        }
+        // activateDefaultDesign() {
+        //     document.querySelector('#app').classList.remove('design2');
+        // },
+        // activateDesign2() {
+        //     document.querySelector('#app').classList.add('design2');
+        // }
 
     }
 };
@@ -112,6 +112,7 @@ function sideMenu() {
     }
 
     function toggleMenu() {
+        if (sound) whoosh.play();
         if (isOpen) {
             bodyEl.classList.remove('show-menu');
         } else {
@@ -307,21 +308,21 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 
 /* Shown menu */
 .show-menu .menu-wrap {
-    -webkit-transform: translate3d(0, 0, 0);
+    // -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    -webkit-transition: -webkit-transform 0.8s;
-    transition: transform 0.8s;
-    -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    // -webkit-transition: -webkit-transform 0.8s;
+    transition: transform 0.4s;
+    // -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
     transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 .show-menu .content::before {
     opacity: 1;
-    -webkit-transition: opacity 0.8s;
-    transition: opacity 0.8s;
-    -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    // -webkit-transition: opacity 0.8s;
+    transition: opacity 0.4s;
+    // -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
     transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-    -webkit-transform: translate3d(0, 0, 0);
+    // -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
 

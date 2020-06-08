@@ -256,28 +256,28 @@ body.ios-device {
     /* iOS click events don't fire without this! */
 }
 
-.container {
-    overflow-x: hidden;
-    -webkit-transition: -webkit-transform 0.5s;
-    transition: transform 0.5s;
-}
+// .container {
+//     overflow-x: hidden;
+//     // -webkit-transition: -webkit-transform 0.5s;
+//     transition: transform 0.5s;
+// }
 
-.container.overlay-fullscreen-open {
-    -webkit-transform: translateX(50%);
-    transform: translateX(50%);
-}
+// .container.overlay-fullscreen-open {
+//     -webkit-transform: translateX(50%);
+//     transform: translateX(50%);
+// }
 
-.container::after {
-    content: '';
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
-    transition: opacity 0.5s, visibility 0s 0.5s;
-}
+// .container::after {
+//     content: '';
+//     opacity: 0;
+//     visibility: hidden;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background: rgba(0, 0, 0, 0.6);
+//     // -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+//     transition: opacity 0.5s, visibility 0s 0.5s;
+// }
 </style>

@@ -77,8 +77,6 @@
         </div>
 
         <div id="tweets" class="row"></div>
-        <audio id="alert" src="@/assets/audio/330070__paulmorek__beep-05-single-2015-06-21.mp3"></audio>
-        <audio id="alertSpecialAccount" src="@/assets/audio/175893__toiletrolltube__110923-02-falling-metal-10.mp3"></audio>
     </main>
 
     <footer class="mastfoot mt-auto">
@@ -274,8 +272,6 @@ export default {
 
             function init() {
                 var tweets = document.querySelector("#tweets");
-                var alert = document.querySelector("#alert");
-                var alertSpecialAccount = document.querySelector("#alertSpecialAccount");
                 var stopNow = false;
                 var isSpecialAccount = false;
                 var specialAccountHTMLcode = "";
@@ -287,7 +283,6 @@ export default {
                 that.$store.commit("showToast", language.notifications.appStarted);
 
                 if (sound) alert.play();
-
 
                 // Convert URLs (w/ or w/o protocol), @mentions, and #hashtags into anchor links
                 // http://roadha.us/2011/03/create-anchor-links-in-twitter-status-text-with-javascript/

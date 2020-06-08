@@ -89,6 +89,9 @@ export default {
             // catch error: https://stackoverflow.com/a/58747480
             // this.$router.push("/card/" + currentCard["Unique URL"]).catch(err => {});
             this.$router.push("/card/" + currentCard["Unique URL"]);
+
+            if (sound) bleep.play();
+
         }
     }
 };
@@ -96,8 +99,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style scoped lang="scss">
-
+<style lang="scss" scoped>
 // svg.bitcoinimage {
 // .box__img {
 //     fill: #f59074;

@@ -20,7 +20,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
-.history
+/.history
 /src/assets/img/
 /src/assets/audio/
 /src/assets/video/
