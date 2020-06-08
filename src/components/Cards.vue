@@ -90,7 +90,8 @@ export default {
             // this.$router.push("/card/" + currentCard["Unique URL"]).catch(err => {});
             this.$router.push("/card/" + currentCard["Unique URL"]);
 
-            if (sound) bleep.play();
+            // if (sound) bleep.play();
+            if (sound) whoosh2.play();
 
         }
     }

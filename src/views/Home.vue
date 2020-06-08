@@ -62,11 +62,6 @@ export default {
         // var firstScriptTag = document.getElementsByTagName('script')[0];
         // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-
-
-
-
-
         // var iOS = /iPad|iPhone|iPod/.test(navigator.platform);
         // if (iOS) {
         //     document.querySelector("body").classList.add("ios-device");
@@ -104,9 +99,8 @@ export default {
             if (this.$store.state.dataFetched === false) {
                 // return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
                 return axios.get("https://blockchainbird.com/vue-cardgame/php/cards-csv-cors.php")
-                // return axios.get("../public/php/cards-csv-cors.php")
-                    
-                    
+                    // return axios.get("../public/php/cards-csv-cors.php")
+
                     .then(response => {
                         var responseData = d3.csvParse(response.data);
 
@@ -122,6 +116,8 @@ export default {
                                     //experimental:
                                     responseData[i][k] = responseData[i][k].replace(/'/g, "‘");
                                     // responseData[i][k] = responseData[i][k].replace(/(\n\n)/gm, "</p><p>");
+                                    responseData[i][k] = responseData[i][k].trim();
+                                    // console.log('responseData[i][k]: ', responseData[i][k]);
                                 }
                             }
                         }
@@ -136,6 +132,12 @@ export default {
 
                             responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
 
+                                // trim spaces (for example when source is: word1, word2) TODO: do this for everything
+                                if (responseData[i]["Related"] !== undefined) {
+                                for (let k = 0; k < responseData[i]["Related"].length; k++) {
+                                    responseData[i]["Related"][k] = responseData[i]["Related"][k].trim();
+                                }
+                            }
                         }
 
                         // save data to store, probably not necessary, can be done via data and props
@@ -143,7 +145,7 @@ export default {
                         this.createCategoriesArray(this.$store.state.theJSON);
 
                         // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
-                        
+
                         this.$store.commit("showPickedItems");
                         this.$store.commit("showItemsInSelectedCategory");
 
