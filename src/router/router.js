@@ -51,7 +51,14 @@ const router = new VueRouter({
   base: publicPath.publicPath,
   // mode: 'hash', // back button not work, https://github.com/vuejs/vue-router/issues/853 ??
   mode: 'history',
-  routes
+  routes,
+  scrollBehavior() {//https://stackoverflow.com/a/57212309, TODO: https://router.vuejs.org/guide/advanced/scroll-behavior.html#async-scrolling
+    // setTimeout(function(){document.getElementById('app').scrollIntoView();}, 3000);
+    document.getElementById("app").scrollIntoView();
+    document.querySelector(".modal-content .title").scrollIntoView();
+    document.querySelector(".overlay-fullscreen .card-body").scrollIntoView();
+  }
+
 });
 
 export default router;
