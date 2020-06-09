@@ -7,6 +7,7 @@
     <router-view />
     <NewsTicker />
     <Person1 />
+    <Person2 />
 </div>
 </template>
 
@@ -18,6 +19,7 @@ import CryptoRadio from "@/components/CryptoRadio.vue";
 import * as Hammer from "hammerjs";
 import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
+import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 
 export default {
     components: {
@@ -25,7 +27,8 @@ export default {
         CryptoRadio,
         NewsTicker,
         Hammer,
-        Person1
+        Person1,
+        Person2
     },
     data: function () {
         return {
@@ -82,9 +85,10 @@ export default {
             }
         },
         initSound() {
-            // // iOS needs somthing like this to activate sound
+            
             var button = document.querySelector("#activateSound");
 
+            // see index.html for declaration of vars
             alert = new Howl({
                 src: [require("./assets/audio/330070__paulmorek__beep-05-single-2015-06-21.mp4")]
             });
@@ -106,6 +110,10 @@ export default {
             whoosh2 = new Howl({
                 volume: 0.2,
                 src: [require("./assets/audio/63615__robinhood76__ae004-maracas-one-shot-faster.mp4")]
+            });
+            whistle = new Howl({
+                volume: 0.2,
+                src: [require("./assets/audio/110390__soundscalpel-com__cartoon-siren-whistle-001.mp4")]
             });
         }
     }

@@ -16,8 +16,8 @@ export default {
     name: "Quiz",
     methods: {
         quizMultipleChoice(e) {
-            var isChecked = this.checked;// TODO: remove?
-            var value = this.value;// TODO: remove?
+            var isChecked = this.checked; // TODO: remove?
+            var value = this.value; // TODO: remove?
             var domCorrectAnswer;
 
             // totaalAantalVragenBeantwoord++;
@@ -26,14 +26,21 @@ export default {
                 // class toevoegen na innerHTML gaat niet blijkbaar omdat de node door innerHTLM veranderd wordt?
                 // this.parentNode.innerHTML += "<span class='antw antw-vinkje'>√</span>";
                 e.target.parentNode.insertAdjacentHTML("beforeend", "<span class='antw antw-vinkje'>√</span>");
-                // play(audioAnswerGood);
+                
+                if (sound) go.play();
+                document.querySelector("body").classList.add("person1");
+                setTimeout(function () {
+                    document.querySelector("body").classList.remove("person1");
+                }, 4000);
+
             } else
 
             // foute antwoord gekozen
             {
                 // stel je hebt meerdere "correct", zoals bij een miniquiz waarin je vraagt om een beoordeling, dan kom je hier, in deze "else"  niet terecht, dus hoef ik verder niks te regelen
                 domCorrectAnswer = e.target.parentNode.parentNode.querySelector("input[value='true']").parentNode;
-
+                
+                if (sound) whistle.play();
                 setTimeout(
                     function () {
                         domCorrectAnswer.insertAdjacentHTML("beforeend", "<span class='antw antw-vinkje'>√</span>");
@@ -41,7 +48,11 @@ export default {
                     800);
 
                 e.target.parentNode.insertAdjacentHTML("beforeend", "<span class='antw antw-kruis'>×</span>");
-                // play(audioAnswerWrong);
+
+                document.querySelector("body").classList.add("person2");
+                setTimeout(function () {
+                    document.querySelector("body").classList.remove("person2");
+                }, 4000);
             }
 
             setTimeout(function () {

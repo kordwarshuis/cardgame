@@ -1,5 +1,5 @@
 <template>
-<div id='wrap'>
+<div id='wrap1'>
     <div class='body'>
         <div class='head'>
             <div class='hair'></div>
@@ -47,6 +47,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
+/*! https://codepen.io/cobra_winfrey/pen/oPXRrQ */
 $p: #fcdab7;
 $w: #fff;
 $b: #8ba9ca;
@@ -55,21 +56,22 @@ $y: #fadc0b;
 $bl: rgba(0, 0, 0, 0.5);
 
 .person1 {
-//     width: 100%;
-//     height: 100vh;
-//     overflow: hidden;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     background: #333;
+    //     width: 100%;
+    //     height: 100vh;
+    //     overflow: hidden;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     background: #333;
 
-    #wrap {
+    #wrap1 {
         width: 350px;
         height: 600px;
-        position: absolute;
+        position: fixed;
         bottom: 0;
-        left: 0;
-        transform: scale(0.65);
+        left: 50%;
+        transform: translate(-50%, 0%) scale(0.65);
+        // transform: scale(0.65);
         z-index: 2001;
 
         &:before {
