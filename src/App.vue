@@ -3,8 +3,6 @@
 <div id="app" class="container-fluid design2">
     <Toasts :time-out="2000"></Toasts>
     <Menu />
-    <!-- <button style="z-index: 100000000000;position: absolute;right: 20px;top: 10px;padding: 1em;border: 1px solid #333;" id="activateSound">Sound</button> -->
-    <!-- <audio style="z-index: 100000000000;position: absolute;right: 20px;top: 10px;padding: 1em;border: 1px solid #333;"  src="@/assets/audio/330055__paulmorek__beep-05-positive-4.mp3" controls></audio> -->
     <!-- <CryptoRadio /> -->
     <router-view />
     <NewsTicker />
@@ -28,12 +26,11 @@ export default {
     },
     data: function () {
         return {
-            audioPath1: "https://dwarshuis.com/audio/315966__marekwojtaszek__bees-in-lavender.mp3"
         }
     },
     mounted() {
         this.soundSetting();
-        // this.initSound();
+        this.initSound();
     },
     methods: {
         //TODO: change 'of' to 'off'
@@ -85,30 +82,28 @@ export default {
             // // iOS needs somthing like this to activate sound
             var button = document.querySelector("#activateSound");
 
-            function playSound() {
-                var bleep = new Pizzicato.Sound({
-                    source: "file",
-                    options: {
-                        path: require("./assets/audio/288958__littlerobotsoundfactory__click-electronic-08.mp3")
-                    }
-                }, function () {
-                    // console.log("sound file loaded!");
-                    if (sound) {
-                        bleep.play();
-                        // button.removeEventListener("click", playSound);
-                    }
-
-                });
-
-                // https://github.com/alemangui/pizzicato/issues/121
-                // const sound = new Pz.Sound(require("./assets/audio/288958__littlerobotsoundfactory__click-electronic-08.mp3"), () => {
-                //     sound.play();
-                // });
-
-            }
-
-            button.addEventListener("click", playSound, false);
-
+            alert = new Howl({
+                src: [require("./assets/audio/330070__paulmorek__beep-05-single-2015-06-21.mp4")]
+            });
+            alertSpecialAccount = new Howl({
+                src: [require("./assets/audio/175893__toiletrolltube__110923-02-falling-metal-10.mp4")]
+            });
+            dong = new Howl({
+                volume: 0.2,
+                src: [require("./assets/audio/288912__littlerobotsoundfactory__click-soft-00.mp4")]
+            });
+            go = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/41589__zajo__loop39.mp4")]
+            });
+            whoosh = new Howl({
+                volume: 0.2,
+                src: [require("./assets/audio/99263__robinhood76__01762-whoosh.mp4")]
+            });
+            whoosh2 = new Howl({
+                volume: 0.2,
+                src: [require("./assets/audio/63615__robinhood76__ae004-maracas-one-shot-faster.mp4")]
+            });
         }
     }
 }

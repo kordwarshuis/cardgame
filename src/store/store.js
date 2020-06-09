@@ -26,11 +26,13 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    initSounds(state) {
+
+    },
     hideModal(state) {
       //TODO: is this the way to change a store value? Seems not.
       this.state.cssClassCardFullState = "";
       if (sound) dong.play();
-      // console.log("bizar");
       // document.querySelector(".videoWrapper").innerHTML = "";
       // console.log('document.querySelector(".videoWrapper"): ', document.querySelector(".youtube"));
 

@@ -7,7 +7,7 @@ import VueAnalytics from "vue-analytics";
 import store from "./store/store";
 import * as d3 from 'd3-dsv';
 import './assets/js/TweenMax.min';
-// import {Howl, Howler} from 'howler';
+import {Howl, Howler} from 'howler';
 // import './assets/js/menu_sideslide';
 // import bootstrap from 'bootstrap';
 
@@ -17,7 +17,7 @@ import VueBootstrapToasts from "vue-bootstrap-toasts";
 Vue.use(d3);
 Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
-// Vue.use(Howl, Howler);
+Vue.use(Howl, Howler);
 
 Vue.use(VueAnalytics, {
   id: "G-N8VG5BGPSH",

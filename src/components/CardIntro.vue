@@ -104,7 +104,6 @@ export default {
             closeBttn2.addEventListener('click', toggleOverlayFullscreen);
         },
         showCardFull(event) {
-            // if (sound) tada.play();
             if (sound) whoosh2.play();
             //TODO: why is this working, should mutations be used?
             this.$store.state.cssClassCardFullState = " md-show";
