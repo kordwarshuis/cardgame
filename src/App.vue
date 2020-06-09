@@ -3,6 +3,8 @@
 <div id="app" class="container-fluid design2">
     <Toasts :time-out="2000"></Toasts>
     <Menu />
+    <!-- <button style="z-index: 100000000000;position: absolute;right: 20px;top: 10px;padding: 1em;border: 1px solid #333;" id="activateSound">Sound</button> -->
+    <!-- <audio style="z-index: 100000000000;position: absolute;right: 20px;top: 10px;padding: 1em;border: 1px solid #333;"  src="@/assets/audio/330055__paulmorek__beep-05-positive-4.mp3" controls></audio> -->
     <!-- <CryptoRadio /> -->
     <router-view />
     <NewsTicker />
@@ -31,7 +33,7 @@ export default {
     },
     mounted() {
         this.soundSetting();
-        // this.playClick();
+        // this.initSound();
     },
     methods: {
         //TODO: change 'of' to 'off'
@@ -79,12 +81,21 @@ export default {
                 });
             }
         },
-        playClick() {
-            document.querySelector("body").addEventListener("click", function () {
+        initSound() {
+            // iOS needs somthing like this to activate sound
+            var button = document.querySelector("#activateSound");
+
+            function playSound() {
+                // console.log('button: ', button);
+                // window.alert("test");
+                // console.log("test");
                 if (sound) {
-                    click.play();
+                    whoosh2.play();
+                    button.removeEventListener("click", playSound);
                 }
-            }, false);
+            }
+
+            button.addEventListener("click", playSound, false);
         }
     }
 }
@@ -196,8 +207,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-body.bcb {}
 
 h1,
 h2,
