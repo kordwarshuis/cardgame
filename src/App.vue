@@ -6,6 +6,7 @@
     <!-- <CryptoRadio /> -->
     <router-view />
     <NewsTicker />
+    <Person1 />
 </div>
 </template>
 
@@ -16,13 +17,15 @@ import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
 import * as Hammer from "hammerjs";
 import NewsTicker from "@/components/NewsTicker.vue";
+import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 
 export default {
     components: {
         Menu,
         CryptoRadio,
         NewsTicker,
-        Hammer
+        Hammer,
+        Person1
     },
     data: function () {
         return {

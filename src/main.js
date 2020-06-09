@@ -39,6 +39,8 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard1', {
       // Notifier.info("You can now paste the link.");
       store.commit("showToast", "You can now paste the link.");
       if (sound) go.play();
+      document.querySelector("body").classList.add("person1");
+      setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 4000);
       return window.location.href;
   }
 });
@@ -48,6 +50,8 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard2', {
       // Notifier.info("You can now paste the link.");
       store.commit("showToast", "You can now paste the link.");
       if (sound) go.play();
+      document.querySelector("body").classList.add("person1");
+      setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 4000);
       return window.location.href;
   }
 });
@@ -57,6 +61,8 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
       // Notifier.info("You can now paste the link.");
       store.commit("showToast", "You can now paste the link.");
       if (sound) go.play();
+      document.querySelector("body").classList.add("person1");
+      setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 4000);
       return window.location.href;
   }
 });
