@@ -82,20 +82,33 @@ export default {
             }
         },
         initSound() {
-            // iOS needs somthing like this to activate sound
+            // // iOS needs somthing like this to activate sound
             var button = document.querySelector("#activateSound");
 
             function playSound() {
-                // console.log('button: ', button);
-                // window.alert("test");
-                // console.log("test");
-                if (sound) {
-                    whoosh2.play();
-                    button.removeEventListener("click", playSound);
-                }
+                var bleep = new Pizzicato.Sound({
+                    source: "file",
+                    options: {
+                        path: require("./assets/audio/288958__littlerobotsoundfactory__click-electronic-08.mp3")
+                    }
+                }, function () {
+                    // console.log("sound file loaded!");
+                    if (sound) {
+                        bleep.play();
+                        // button.removeEventListener("click", playSound);
+                    }
+
+                });
+
+                // https://github.com/alemangui/pizzicato/issues/121
+                // const sound = new Pz.Sound(require("./assets/audio/288958__littlerobotsoundfactory__click-electronic-08.mp3"), () => {
+                //     sound.play();
+                // });
+
             }
 
             button.addEventListener("click", playSound, false);
+
         }
     }
 }
