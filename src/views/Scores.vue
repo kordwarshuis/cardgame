@@ -79,7 +79,7 @@
 <script>
 import moment from "moment";
 import axios from "axios";
-import scoresJSON from "../../vue.config";
+import scoresJSON from "../../paths.config";
 // import DatePickers from "./components/JavascriptComponents/DatePickers";
 
 export default {

@@ -15,7 +15,7 @@ import * as d3 from "d3-dsv";
 import Cards from "@/components/Cards.vue";
 import CardIntro from "@/components/CardIntro.vue";
 import CardFull from "@/components/CardFull.vue";
-import cardsContent from "../../vue.config";
+import cardsContent from "../../paths.config";
 
 export default {
     name: "Home",

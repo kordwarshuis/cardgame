@@ -89,9 +89,9 @@
 <script>
 import moment from "moment";
 import momentDurationFormat from "moment-duration-format";
-import realTimeTwitterJSON from "../../vue.config";
+import realTimeTwitterJSON from "../../paths.config";
 import { language } from "@/assets/js/Language.js";
-import realtimeTweetsScreenMessage from "../../vue.config";
+import realtimeTweetsScreenMessage from "../../paths.config";
 
 // import bootstrap;
 export default {
