@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import publicPath from "../../vue.config";
 export default {
     name: "Quiz",
     methods: {
@@ -32,6 +33,7 @@ export default {
                 setTimeout(function () {
                     document.querySelector("body").classList.remove("person1");
                 }, 4000);
+                console.log(publicPath.publicPath);
 
             } else
 

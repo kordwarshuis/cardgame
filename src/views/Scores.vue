@@ -79,6 +79,7 @@
 <script>
 import moment from "moment";
 import axios from "axios";
+import scoresJSON from "../../vue.config";
 // import DatePickers from "./components/JavascriptComponents/DatePickers";
 
 export default {
@@ -96,7 +97,7 @@ export default {
     },
     methods: {
         getScores() {
-            return axios.get("https://blockchainbird.com/data/cardgamescores.php")
+            return axios.get(scoresJSON.scoresJSON)
                 .then(response => {
                     this.results = response.data.gamedata;
                     return this.results;

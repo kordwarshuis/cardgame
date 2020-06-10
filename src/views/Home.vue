@@ -15,6 +15,7 @@ import * as d3 from "d3-dsv";
 import Cards from "@/components/Cards.vue";
 import CardIntro from "@/components/CardIntro.vue";
 import CardFull from "@/components/CardFull.vue";
+import cardsContent from "../../vue.config";
 
 export default {
     name: "Home",
@@ -98,7 +99,7 @@ export default {
             // pnly fetch data 
             if (this.$store.state.dataFetched === false) {
                 // return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
-                return axios.get("https://blockchainbird.com/vue-cardgame/php/cards-csv-cors.php")
+                return axios.get(cardsContent.cardsContent)
                     // return axios.get("../public/php/cards-csv-cors.php")
 
                     .then(response => {

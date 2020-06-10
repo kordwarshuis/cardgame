@@ -89,10 +89,10 @@
 <script>
 import moment from "moment";
 import momentDurationFormat from "moment-duration-format";
-import Paths from "../../path.config";
-import {
-    language
-} from "@/assets/js/Language.js";
+import realTimeTwitterJSON from "../../vue.config";
+import { language } from "@/assets/js/Language.js";
+import realtimeTweetsScreenMessage from "../../vue.config";
+
 // import bootstrap;
 export default {
     mounted: function () {
@@ -435,7 +435,7 @@ export default {
                 function getJSON() {
                     // AJAX GET
                     var request = new XMLHttpRequest();
-                    request.open("GET", Paths.realTimeTwitterJSON, true);
+                    request.open("GET", realTimeTwitterJSON.realTimeTwitterJSON, true);
                     request.onload = function () {
                         if (this.status >= 200 && this.status < 400) {
                             // Success!
@@ -515,7 +515,7 @@ export default {
                 function getScreenMessage() {
                     // AJAX GET
                     var request = new XMLHttpRequest();
-                    var path = "json/screen-messages.json?t=" + new Date().getTime();
+                    var path = realtimeTweetsScreenMessage.realtimeTweetsScreenMessage + "?t=" + new Date().getTime();
                     request.open("GET", path, true);
                     request.responseType = "text";
 
