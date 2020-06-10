@@ -8,6 +8,7 @@
     <NewsTicker />
     <Person1 />
     <Person2 />
+    <!-- <Person3 /> -->
 </div>
 </template>
 
@@ -20,6 +21,7 @@ import * as Hammer from "hammerjs";
 import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
+// import Person3 from "@/components/AnimatedCharacters/Person3.vue";
 
 export default {
     components: {
@@ -29,6 +31,7 @@ export default {
         Hammer,
         Person1,
         Person2
+        // Person3
     },
     data: function () {
         return {
@@ -88,6 +91,7 @@ export default {
             
             var button = document.querySelector("#activateSound");
 
+
             // see index.html for declaration of vars
             alert = new Howl({
                 src: [require("./assets/audio/330070__paulmorek__beep-05-single-2015-06-21.mp4")]
@@ -112,9 +116,21 @@ export default {
                 src: [require("./assets/audio/63615__robinhood76__ae004-maracas-one-shot-faster.mp4")]
             });
             whistle = new Howl({
-                volume: 0.2,
+                volume: 0.1,
                 src: [require("./assets/audio/110390__soundscalpel-com__cartoon-siren-whistle-001.mp4")]
             });
+            pur = new Howl({
+                volume: 1,
+                loop: true,
+                src: [require("./assets/audio/130968__cubilon__cat-purring.mp4")]
+            });
+            click = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/click.mp4")]
+            });
+        
+            document.querySelectorAll("a").forEach(item => item.addEventListener('click', function(){console.log("yep");click.play()},false));
+            document.querySelectorAll("button").forEach(item => item.addEventListener('click', function(){console.log("yep");click.play()},false));
         }
     }
 }

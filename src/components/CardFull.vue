@@ -80,9 +80,13 @@
                 </div>
 
                 <SocialMedia />
-
+                <Person3 />
                 <button class="md-close mt-5" @click="$store.commit('hideModal')">Close</button>
                 <button class="copyURLtoClipboard copyURLtoClipboard2">Copy Link</button>
+                <!-- <div class=" p-2 mb-3" style="background: none;"> -->
+
+                <!-- </div> -->
+
             </div>
         </div>
     </div>
@@ -95,6 +99,7 @@ import Quiz from "@/components/Quiz.vue";
 import Video from "@/components/Video.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
+import Person3 from "@/components/AnimatedCharacters/Person3.vue";
 
 export default {
     name: "CardFull",
@@ -102,17 +107,61 @@ export default {
         Quiz,
         Video,
         SocialMedia,
-        RelatedCards
+        RelatedCards,
+        Person3
     },
     data: function () {
         return {
             title: this.$store.state.currentTitle
         }
     },
+    mounted() {
+        this.showPurringCat();
+    },
     props: {
         msg: String
     },
     methods: {
+        showPurringCat() {
+            // var inViewport = false;
+            var isStarted = false;
+            /*!
+             * https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/
+             * Determine if an element is in the viewport
+             * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+             * @param  {Node}    elem The element
+             * @return {Boolean}      Returns true if element is in the viewport
+             */
+            var isInViewport = function (elem) {
+                var distance = elem.getBoundingClientRect();
+                return (
+                    distance.top >= 0 &&
+                    distance.left >= 0 &&
+                    distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    distance.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            };
+
+            function check(event) {
+                if (isInViewport(object)) {
+                    if (!isStarted) {
+                        if (sound) pur.play();
+                        document.querySelector("body").classList.add("person3");
+                        setTimeout(function () {
+                            pur.stop();
+                            document.querySelector("body").classList.remove("person3");
+                            isStarted = false;
+                        }, 15000);
+                        isStarted = true;
+                    }
+                }
+            }
+
+            var object = document.querySelector('.md-close');
+            // window.addEventListener('scroll', _.throttle(check, 1000), false);
+
+            var interval = setInterval(check, 1000);
+        }
 
     }
 };
@@ -152,10 +201,12 @@ export default {
 .modal-content {
     background: $cardFullBackground;
 }
+
 .modal-content>div {
     color: $cardFullBlockText;
     background: $cardFullBlockBackground;
 }
+
 .modal-content>div a {
     color: $cardFullBlockLink;
     background: $cardFullBlockBackground;
