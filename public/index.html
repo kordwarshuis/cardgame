@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Bitcoin Misconceptions.</title>
+  <!-- <title><%= htmlWebpackPlugin.options.title %></title> -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
     content="Misconceptions about bitcoin hold back progress. Found a misconception? Lookup-Copy-Paste our permanent links with curated expert info!" />
@@ -68,7 +69,18 @@
 
 
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-  <title><%= htmlWebpackPlugin.options.title %></title>
+
+
+  <script>
+    // https://developers.google.com/youtube/iframe_api_reference#Examples
+    // youtube iframe api is loaded in Vue method, search for youtubeVideo()
+    var youtubePlayer;
+
+    function onYouTubeIframeAPIReady() {
+      console.log("weather");
+      youtubePlayer = new YT.Player("youtubeVideo");
+    }
+  </script>
 
 
   <!-- <script src="<%= BASE_URL %>js/pizzicato/Pizzicato.min.js"></script> -->
@@ -93,7 +105,7 @@
   <script>
     // Sound
     var sound = true;
-    var alert,alertSpecialAccount,dong,go,whoosh,whoosh2,whistle,pur,click;
+    var alert, alertSpecialAccount, dong, go, whoosh, whoosh2, whistle, pur, click;
 
     // var alert = new Pizzicato.Sound({
     //   source: "file",

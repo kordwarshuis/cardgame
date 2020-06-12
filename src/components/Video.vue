@@ -9,10 +9,13 @@
     <p>{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
 
     <div class="videoWrapper">
-        <iframe class="youtube" :src="'https://www.youtube.com/embed/' + this.$store.state.currentCard['Youtube Video Id'] + '?start=' + this.$store.state.currentCard['Youtube Video Start'] + '&end=' + this.$store.state.currentCard['Youtube Video End'] + '&playsinline=1&enablejsapi=1'" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
+        <iframe id="youtubeVideo" class="youtube" :src="'https://www.youtube.com/embed/' + this.$store.state.currentCard['Youtube Video Id'] + '?start=' + this.$store.state.currentCard['Youtube Video Start'] + '&end=' + this.$store.state.currentCard['Youtube Video End'] + '&playsinline=1&enablejsapi=1'" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
         </iframe>
     </div>
-        <!-- <button @click="this.stopIt">stop</button> -->
+
+    <!-- <div id="player"></div> -->
+
+    <!-- <button @click="this.stopIt">stop</button> -->
 </div>
 </template>
 
@@ -21,12 +24,19 @@ export default {
     name: "Video",
     mounted: function () {
         // console.log("mounted");
-        
+        this.youtubeVideo();
+
     },
     methods: {
-        stopIt() {
-            document.querySelector(".youtube").stopVideo();
-        } 
+        youtubeVideo() {
+            // https://developers.google.com/youtube/iframe_api_reference#Examples
+            // inserting script tag calling youtube iframe api. This is done after this component is mounted. Only then onYouTubeIframeAPIReady() in index.html is run. In the store this is run: youtubePlayer.stopVideo();
+            var tag = document.createElement('script');
+
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
     },
     beforeUpdate() {
         // console.log('beforeUpdate')
