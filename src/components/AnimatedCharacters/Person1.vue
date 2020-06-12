@@ -55,6 +55,11 @@ $r: #c43720;
 $y: #fadc0b;
 $bl: rgba(0, 0, 0, 0.5);
 
+// display: none turns animation off
+#wrap1 {
+    display: none;
+}
+
 .person1 {
     //     width: 100%;
     //     height: 100vh;
@@ -65,6 +70,7 @@ $bl: rgba(0, 0, 0, 0.5);
     //     background: #333;
 
     #wrap1 {
+        display: block;
         width: 350px;
         height: 600px;
         position: fixed;

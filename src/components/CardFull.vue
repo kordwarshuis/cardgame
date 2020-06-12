@@ -151,7 +151,7 @@ export default {
                             pur.stop();
                             document.querySelector("body").classList.remove("person3");
                             isStarted = false;
-                        }, 15000);
+                        }, 7000);
                         isStarted = true;
                     }
                 }

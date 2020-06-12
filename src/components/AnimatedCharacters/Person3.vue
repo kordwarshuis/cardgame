@@ -48,6 +48,11 @@ export default {
 <style lang="scss" scoped>
 /*! https://codepen.io/aakashrodrigues/pen/ouspA */
 
+// display: none turns animation off
+.main {
+    display: none;
+}
+
 .person3 {
 
     $pink: #fd6e72;
@@ -176,6 +181,7 @@ export default {
     // }
 
     .main {
+        display: block;
         height: 400px;
         width: 400px;
         // background-color: white;

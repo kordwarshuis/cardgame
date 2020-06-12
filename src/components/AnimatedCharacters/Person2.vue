@@ -92,8 +92,14 @@ export default {
 <style lang="scss" scoped>
 /*! https://codepen.io/aakashrodrigues/pen/ouspA */
 
+// display: none turns animation off
+.wrapper {
+    display: none;
+}
+
 .person2 {
     .wrapper {
+        display: block;
         position: fixed;
         width: 210px;
         height: 210px;

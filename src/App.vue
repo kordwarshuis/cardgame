@@ -34,8 +34,7 @@ export default {
         // Person3
     },
     data: function () {
-        return {
-        }
+        return {}
     },
     mounted() {
         this.soundSetting();
@@ -88,9 +87,7 @@ export default {
             }
         },
         initSound() {
-            
             var button = document.querySelector("#activateSound");
-
 
             // see index.html for declaration of vars
             alert = new Howl({
@@ -121,16 +118,20 @@ export default {
             });
             pur = new Howl({
                 volume: 1,
-                loop: true,
+                // loop: true,
                 src: [require("./assets/audio/130968__cubilon__cat-purring.mp4")]
             });
             click = new Howl({
                 volume: 0.1,
                 src: [require("./assets/audio/click.mp4")]
             });
-        
-            document.querySelectorAll("a").forEach(item => item.addEventListener('click', function(){console.log("yep");click.play()},false));
-            document.querySelectorAll("button").forEach(item => item.addEventListener('click', function(){console.log("yep");click.play()},false));
+
+            document.querySelectorAll("a").forEach(item => item.addEventListener('click', function () {
+                click.play()
+            }, false));
+            document.querySelectorAll("button").forEach(item => item.addEventListener('click', function () {
+                click.play()
+            }, false));
         }
     }
 }
