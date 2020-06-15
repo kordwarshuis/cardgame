@@ -11,7 +11,7 @@
             </div>
 
             <div class="row justify-content-center ">
-                <div class="col-lg-6 col-sm-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="card border-primary mb-3 p-4">
                         <div class="card-header">
                             <h2 class="">All Time Tweeps</h2>
@@ -20,8 +20,14 @@
                             <hr>
                         </div>
                         <div class="card-body">
-                            <table>
+                            <table class=".table m-0 p-0" style="width: 100%;">
                                 <tr>
+                                    <th class="text-left">
+                                        #
+                                    </th>
+                                    <th class="text-left">
+                                        Avatar
+                                    </th>
                                     <th>
                                         User name
                                     </th>
@@ -29,7 +35,15 @@
                                         Tweets
                                     </th>
                                 </tr>
-                                <tr v-for="item in userNamesCountedAndSorted" :key="item[0]">
+                                <tr class="border-bottom" v-for="item in userNamesCountedAndSorted" :key="item[0]">
+                                    <td class="text-left">
+                                        <!-- trick to get a numbering in the table -->
+                                        {{ userNamesCountedAndSorted.indexOf(item)+1}} 
+                                    </td>
+                                    <td class="text-left">
+                                        <img class="mt-1 mr-2 mb-1" :src="item[2]" alt="" />
+                                    </td>
+
                                     <td>
                                         {{ item[0] }}
                                     </td>
@@ -44,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-sm-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="card border-primary mb-3 p-4">
                         <div class="card-header">
                             <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek }}</h2>
@@ -79,7 +93,7 @@
             </div>
 
             <div class="row justify-content-center ">
-                <div class="col-lg-6 col-sm-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="card border-primary mb-3 p-4">
                         <div class="card-header">
                             <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek -1 }}</h2>
@@ -109,7 +123,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-sm-6">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="card border-primary mb-3 p-4">
                         <div class="card-header">
                             <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek -2 }}</h2>
@@ -204,6 +218,7 @@ export default {
     name: "Scores",
     data() {
         return {
+            // counter: 0,
             scores: [],
             // sortedTweets: "",
             // sortedFavorites: "",
@@ -251,6 +266,10 @@ export default {
         this.fetchScores();
     },
     methods: {
+        // incrementCounter: function () {
+        //     return this.counter += 1;
+        // },
+
         // testDatePicked(datePicked) {
         //     // this.calculateHighestTweet(moment(datePicked, "YYYY-MM-DD").week());
 
@@ -325,15 +344,12 @@ export default {
             var selection = [];
 
             if (year === undefined && week === undefined) {
-                // console.log("gas");
                 selection = this.scores;
             } else {
                 for (let i = 0; i < this.scores.length; i++) {
                     if (this.scores[i].year === year && this.scores[i].week_nr === week) {
                         selection.push(this.scores[i]);
-
                     }
-
                 }
             }
 
@@ -357,6 +373,19 @@ export default {
                 return b[1] - a[1];
             });
 
+            // after the selection is made, we have to look up the images again
+            for (let i = 0; i < userNamesCountedAndSorted.length; i++) {
+                for (let j = 0; j < this.scores.length; j++) {
+                    if (userNamesCountedAndSorted[i][0] === this.scores[j].user_name) {
+                        userNamesCountedAndSorted[i][2] = this.scores[j].tweet_avatar
+                        // return
+                    }
+                }
+            }
+
+            console.log('userNamesCountedAndSorted: ', userNamesCountedAndSorted);
+
+            console.log('userNamesCountedAndSorted: ', userNamesCountedAndSorted);
             // copy the array to the data object with same name
             return userNamesCountedAndSorted;
 
