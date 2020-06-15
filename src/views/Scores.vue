@@ -1,6 +1,6 @@
 <template>
 <section class=" my-0">
-    <h1 class="text-center ">Bitcoin Card Game Score Board</h1>
+    <h1 class="text-center pt-5 ">Bitcoin Card Game Score Board</h1>
     <div class="container shape-container d-flex ">
         <div class="col px-0">
 
@@ -22,7 +22,7 @@
                         <div class="card-body">
                             <table class=".table m-0 p-0" style="width: 100%;">
                                 <tr>
-                                    <th class="text-left">
+                                    <th class="text-left pr-2">
                                         #
                                     </th>
                                     <th class="text-left">
@@ -36,7 +36,7 @@
                                     </th>
                                 </tr>
                                 <tr class="border-bottom" v-for="item in userNamesCountedAndSorted" :key="item[0]">
-                                    <td class="text-left">
+                                    <td class="text-left pr-2">
                                         <!-- trick to get a numbering in the table -->
                                         {{ userNamesCountedAndSorted.indexOf(item)+1}} 
                                     </td>
@@ -337,7 +337,6 @@ export default {
             for (let i = 0; i < this.scores.length; i++) {
                 this.scores[i].year = moment(this.scores[i].time).year();
             }
-            console.log(this.scores);
         },
         calculateTweetsPerUser(year, week) {
             var userNamesCountedAndSorted = [];
@@ -383,9 +382,6 @@ export default {
                 }
             }
 
-            console.log('userNamesCountedAndSorted: ', userNamesCountedAndSorted);
-
-            console.log('userNamesCountedAndSorted: ', userNamesCountedAndSorted);
             // copy the array to the data object with same name
             return userNamesCountedAndSorted;
 

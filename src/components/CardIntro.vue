@@ -1,11 +1,11 @@
 <template>
 <!-- open/close -->
-<div class="overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
+<div class="overlay-fullscreen overlay-fullscreen-contentpush " :class="this.$store.state.cssClassCardIntroState">
     <div class="row">
         <div class="col-lg-6 col-sm-6">
             <div class="card h-100 bg-transparent">
                 <div class="card-body title-on-card center">
-                    <h3>Misconception:</h3>
+                    <h3 class="pt-5">Misconception:</h3>
                     <img class="title-on-card-background-image" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
                     <h2 class="title-on-card-text animated infinite">{{ this.$store.state.currentCard.Prejudice }}</h2>
                 </div>
@@ -284,7 +284,8 @@ a.md-trigger {
 
 .title-on-card {
     // margin-top should be set so it aligns with the right column (answer)
-    margin: 1.25em 10% 0 0% !important;
+    // margin: 1.25em 10% 0 0% !important;
+    margin: 1.25em 5% 0 0% !important;
     color: $cardLink;
 
     // https://stackoverflow.com/a/48830291
