@@ -6,6 +6,7 @@
 
             <div class="row justify-content-center ">
                 <div class="col-lg-12 col-sm-12">
+                    <p>Overview of Tweeps posting misconceptions on Twitter and who has posted the most.</p>
                 </div>
             </div>
 
@@ -13,9 +14,9 @@
                 <div class="col-lg-6 col-sm-6">
                     <div class="card border-primary mb-3 p-4">
                         <div class="card-header">
-                            <h2 class="">All Time Tweeters</h2>
+                            <h2 class="">All Time Tweeps</h2>
                             <hr>
-                            <p>All tweeters, sorted by number of tweets.</p>
+                            <p>All Tweeps, sorted by number of tweets.</p>
                             <hr>
                         </div>
                         <div class="card-body">
@@ -46,9 +47,9 @@
                 <div class="col-lg-6 col-sm-6">
                     <div class="card border-primary mb-3 p-4">
                         <div class="card-header">
-                            <h2 class="">All Tweeters in week {{ userNamesCountedAndSorted2.mostRecentWeek }}</h2>
+                            <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek }}</h2>
                             <hr>
-                            <p>All tweeters in the most recent week</p>
+                            <p>All Tweeps in the most recent week</p>
                             <hr>
                         </div>
                         <div class="card-body">
@@ -81,7 +82,7 @@
                 <div class="col-lg-6 col-sm-6">
                     <div class="card border-primary mb-3 p-4">
                         <div class="card-header">
-                            <h2 class="">All Tweeters in week {{ userNamesCountedAndSorted2.mostRecentWeek -1 }}</h2>
+                            <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek -1 }}</h2>
                         </div>
                         <div class="card-body">
                             <table>
@@ -111,7 +112,7 @@
                 <div class="col-lg-6 col-sm-6">
                     <div class="card border-primary mb-3 p-4">
                         <div class="card-header">
-                            <h2 class="">All Tweeters in week {{ userNamesCountedAndSorted2.mostRecentWeek -2 }}</h2>
+                            <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek -2 }}</h2>
                         </div>
                         <div class="card-body">
                             <table>
