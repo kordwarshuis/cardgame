@@ -181,13 +181,13 @@ a.md-trigger {
     0% {
         /*letter-spacing: 1px;*/
         background-color: $background;
-        border-color: #444;
-        color: #444;
+        border-color: #ccc9c9;
+        color: #ccc9c9;
     }
 
     50% {
         /*letter-spacing: 3px;*/
-        background-color: $menuItemsAndButtonsBorder;
+        background-color: $cardBackground;
         border-color: $menuItemsAndButtonsBorder;
         color: $linksText;
     }
@@ -195,8 +195,8 @@ a.md-trigger {
     100% {
         /*letter-spacing: 1px;*/
         background-color: $background;
-        border-color: #444;
-        color: #444;
+        border-color: #ccc9c9;
+        color: #ccc9c9;
     }
 }
 

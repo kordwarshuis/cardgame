@@ -79,6 +79,7 @@ $bl: rgba(0, 0, 0, 0.5);
         transform: translate(-50%, 0%) scale(0.65);
         // transform: scale(0.65);
         z-index: 2001;
+        pointer-events: none;
 
         &:before {
             content: '';

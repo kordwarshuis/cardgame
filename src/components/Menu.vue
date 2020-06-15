@@ -84,13 +84,15 @@ export default {
  * Copyright 2014, Codrops
  * http://www.codrops.com
  */
+
+// TIP: open menu initially by adding this class to body: show-menu, and set isOpen = true;
 function sideMenu() {
     'use strict';
     var bodyEl = document.body,
         app = document.querySelector('#app'),
         openbtn = document.getElementById('open-button'),
         closebtn = document.getElementById('close-button'),
-        isOpen = true;
+        isOpen = false;
 
     function init() {
         initEvents();
@@ -121,7 +123,7 @@ function sideMenu() {
         isOpen = !isOpen;
     }
 
-    setTimeout(toggleMenu, 2000);
+    // setTimeout(toggleMenu, 500);
 
     init();
 

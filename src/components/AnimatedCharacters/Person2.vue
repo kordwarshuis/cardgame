@@ -108,6 +108,7 @@ export default {
         margin-left: -120px;
         // margin-top: -105px;
         z-index: 2001;
+        pointer-events: none;
     }
 
     .head {
