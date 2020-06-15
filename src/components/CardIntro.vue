@@ -7,7 +7,7 @@
                 <div class="card-body title-on-card center">
                     <h3 class="pt-5">Misconception:</h3>
                     <img class="title-on-card-background-image" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
-                    <h2 class="title-on-card-text animated infinite">{{ this.$store.state.currentCard.Prejudice }}</h2>
+                    <h2 class="title-on-card-text animated infinite"><span class="quote">“</span>{{ this.$store.state.currentCard.Prejudice }}<span class="quote">”</span></h2>
                 </div>
             </div>
         </div>

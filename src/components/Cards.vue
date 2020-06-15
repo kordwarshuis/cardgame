@@ -37,7 +37,7 @@
                 <!-- <div class="box__shadow"></div><img class="box__img" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="" /> -->
                 <div class="box__shadow"></div><img class="box__img" src="@/assets/img/icons/flat/bitcoin.svg" alt="" />
                 <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
-                <h4 class="box__text"><span class="box__text-inner">{{ item.prejudice }}</span></h4>
+                <h4 class="box__text"><span class="box__text-inner"><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></span></h4>
             </div>
         </a>
 
