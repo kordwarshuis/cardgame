@@ -160,7 +160,7 @@ export default {
             var object = document.querySelector('.md-close');
             // window.addEventListener('scroll', _.throttle(check, 1000), false);
 
-            var interval = setInterval(check, 1000);
+            // var interval = setInterval(check, 1000);
         }
 
     }
