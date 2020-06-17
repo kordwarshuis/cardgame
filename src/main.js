@@ -32,15 +32,11 @@ new Vue({
 }).$mount("#app");
 
 
-// if (window.location.href === "https://dwarshuis.com/test/bitcoin-card-game2/?cat=Existential&q=preview-3&title=Bitcoin%20will%20die") {
-//     window.location.replace("https://dwarshuis.com/test/bitcoin-card-game2/?q=preview-will-die&title=Bitcoin%20will%20die.");
-// } else if (window.location.href === "https://dwarshuis.com/test/bitcoin-card-game2/?q=preview-19&title=Quantum%20Computers%20will%20break%20the%20security") {
-//     window.location.replace("https://dwarshuis.com/test/bitcoin-card-game2/?q=preview-quantum-computing&title=Quantum%20Computers%20will%20break%20the%20security.");
-// }
+
+// console.log(window.location.href);
 
 
 // redirects
-
 if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Architecture&q=preview-7-transactions-per-second&title=Bitcoin%20has%20only%20seven%20transactions%20per%20second") {window.location.replace("https://blockchainbird.com/t/btc/card/7-transactions-per-second");}
 else if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Beliefs&q=preview-convince-me&title=You%20cannot%20convince%20me%20of%20the%20usefulness%20of%20bitcoin") {window.location.replace("https://blockchainbird.com/t/btc/card/convince-me");}
 else if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Beliefs&q=preview-too-late&title=I%E2%80%98ve%20already%20missed%20out%20on%20bitcoin") {window.location.replace("https://blockchainbird.com/t/btc/card/too-late");}

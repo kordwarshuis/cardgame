@@ -5,8 +5,8 @@
         <div>
             <div class="modal-content p-3 pt-5">
                 <h2 class="title text-center"><span class="quote">“</span>{{ this.$store.state.currentCard.Prejudice }}<span class="quote">”</span></h2>
+                <p class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}<span class="quote">”</span></p>
                 <button class="copyURLtoClipboard copyURLtoClipboard1">Copy Link</button>
-                <p><span class="quote">“</span>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}<span class="quote">”</span></p>
 
                 <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['long answer+facts']">
 

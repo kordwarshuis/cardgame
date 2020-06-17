@@ -11,16 +11,17 @@
             </div>
 
             <div class="row justify-content-center ">
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="card border-primary mb-3 p-4">
+                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
+                    <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
                             <h2 class="">All Time Tweeps</h2>
                             <hr>
                             <p>All Tweeps, sorted by number of tweets.</p>
                             <hr>
+                            <small>Scroll to the right if not everything is in view.</small>
                         </div>
-                        <div class="card-body">
-                            <table class=".table m-0 p-0" style="width: 100%;">
+                        <div class="card-body m-0 p-0">
+                            <table class="table table-responsive m-0 p-0" style="width: 100%;">
                                 <tr>
                                     <th class="text-left pr-2">
                                         #
@@ -33,6 +34,9 @@
                                     </th>
                                     <th class="text-right">
                                         Tweets
+                                    </th>
+                                    <th class="text-right">
+                                        Retweets
                                     </th>
                                 </tr>
                                 <tr class="border-bottom" v-for="item in userNamesCountedAndSorted" :key="item[0]">
@@ -50,6 +54,9 @@
                                     <td class="text-right">
                                         {{ item[1] }}
                                     </td>
+                                    <td class="text-right">
+                                        {{ item[3] }}
+                                    </td>
                                 </tr>
                             </table>
 
@@ -58,8 +65,8 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="card border-primary mb-3 p-4">
+                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
+                    <div class="card border-primary m-0 p-0 mb-3 ">
                         <div class="card-header">
                             <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek }}</h2>
                             <hr>
@@ -76,7 +83,7 @@
                                         Tweets
                                     </th>
                                 </tr>
-                                <tr v-for="item in userNamesCountedAndSorted2.tweetersMostRecentWeek" :key="item[0]">
+                                <tr v-for="item in userNamesCountedAndSorted.tweetersMostRecentWeek" :key="item[0]">
                                     <td>
                                         {{ item[0] }}
                                     </td>
@@ -93,8 +100,8 @@
             </div>
 
             <div class="row justify-content-center ">
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="card border-primary mb-3 p-4">
+                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
+                    <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
                             <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek -1 }}</h2>
                         </div>
@@ -123,8 +130,8 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div class="card border-primary mb-3 p-4">
+                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
+                    <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
                             <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek -2 }}</h2>
                         </div>
@@ -226,6 +233,11 @@ export default {
         }
     },
     computed: {
+        // userNamesCountedAndSortedFirst5: function() {
+        //     // console.log("regen");
+        //     // console.log('userNamesCountedAndSorted.slice(0, 5): ', this.userNamesCountedAndSorted.slice(0, 5));
+        //     return userNamesCountedAndSorted.slice(0, 5);
+        // },
         userNamesCountedAndSorted2: function () {
             // we want to find the most recent weeks. So first we search for most recent year
             var mostRecentYear = Math.max.apply(Math, this.scores.map(function (o) {
@@ -374,11 +386,18 @@ export default {
 
             // after the selection is made, we have to look up the images again
             for (let i = 0; i < userNamesCountedAndSorted.length; i++) {
+                var totalRetweets = 0;
+                userNamesCountedAndSorted[i][3] = 0; // retweets per user
                 for (let j = 0; j < this.scores.length; j++) {
                     if (userNamesCountedAndSorted[i][0] === this.scores[j].user_name) {
                         userNamesCountedAndSorted[i][2] = this.scores[j].tweet_avatar
-                        // return
+
+                        
+                        if (this.scores[j].retweets !== "") {
+                            userNamesCountedAndSorted[i][3] = userNamesCountedAndSorted[i][3] + parseInt(this.scores[j].retweets,10);
+                        }
                     }
+
                 }
             }
 
