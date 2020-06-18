@@ -36,6 +36,7 @@ new Vue({
 // console.log(window.location.href);
 
 
+
 // redirects
 if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Architecture&q=preview-7-transactions-per-second&title=Bitcoin%20has%20only%20seven%20transactions%20per%20second") {window.location.replace("https://blockchainbird.com/t/btc/card/7-transactions-per-second");}
 else if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Beliefs&q=preview-convince-me&title=You%20cannot%20convince%20me%20of%20the%20usefulness%20of%20bitcoin") {window.location.replace("https://blockchainbird.com/t/btc/card/convince-me");}
@@ -71,6 +72,20 @@ else if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Use&q=p
 else if (window.location.href === "https://www.blockchainbird.com/t/btc/?cat=Beliefs&q=preview-too-late&title=I%E2%80%98ve%20already%20missed%20out%20on%20bitcoin") {window.location.replace("https://blockchainbird.com/t/btc/card/too-late");}
 else if (window.location.href === "https://www.blockchainbird.com/t/btc/?cat=Environment&q=preview-proof-of-stake&title=Proof-of-stake%20coins%20are%20far%20more%20sustainable%20than%20mining%20bitcoin") {window.location.replace("https://blockchainbird.com/t/btc/card/proof-of-stake");}
 
+
+
+// find out what version of the cardgame is active. Based on URL.
+var cardGameVersion = "";
+export {cardGameVersion};
+
+// if "/btc/" in URL or "localhost" in URL then it's BTC, if not then BCB
+if ((window.location.href.indexOf("\/btc\/") > -1) || (window.location.href.indexOf("localhost") > -1)) {
+  document.querySelector("body").classList.add("btc");
+  cardGameVersion = "btc";
+} else {
+  document.querySelector("body").classList.add("bcb");
+  cardGameVersion = "bcb";
+}
 
 
 

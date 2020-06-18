@@ -1,6 +1,6 @@
 module.exports = {
-  cardsContent: "https://blockchainbird.com/vue-cardgame/php/cards-csv-cors.php",
-  realtimeTweetsScreenMessage: "json/screen-messages.json",
+  cardsContent: "https://blockchainbird.com/t/data/cards.php",
+  scoresJSON: "https://blockchainbird.com/t/data/cardgamescores.php",
   realTimeTwitterJSON: "https://blockchainbird.com/t/twitter-phirehose/tweets-cors.php",
-  scoresJSON: "https://blockchainbird.com/t/btc/data/cardgamescores.php",
+  realtimeTweetsScreenMessage: "json/screen-messages.json",
 };

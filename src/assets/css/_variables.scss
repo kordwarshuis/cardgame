@@ -66,6 +66,7 @@
 $_text1: #2A3166;
 $_border1: #3A457D;
 $_background1: #CAE7DF;
+$_background1BCB: #bccdf0;
 $_link1: #2A3166;
 $_linkHover1: #2A3166;
 //================
@@ -82,6 +83,18 @@ $a14: #222;
 
 
 
+// @mixin content($a, $b) {
+//     $_text1: $a;
+//     $_background1: $b;
+//   }
+
+// .btc {
+//     @include content(#2A3166, #CAE7DF);
+// }
+
+// .bcb {
+//     @include content(#434d96, #bccdf0);
+// }
 
 
 
@@ -96,6 +109,7 @@ $a14: #222;
 // General design
 $text: $_text1;
 $background: $_background1;
+$backgroundBCB: $_background1BCB;
 $loadingBackground: $_background2;
 
 // 1: Grid

@@ -16,6 +16,9 @@ import Cards from "@/components/Cards.vue";
 import CardIntro from "@/components/CardIntro.vue";
 import CardFull from "@/components/CardFull.vue";
 import cardsContent from "../../paths.config";
+import {
+    cardGameVersion
+} from "../main";
 
 export default {
     name: "Home",
@@ -55,42 +58,6 @@ export default {
     },
     mounted: function () {
         this.fetchData();
-
-        var tag = document.createElement('script');
-
-        // youtube api:
-        // tag.src = "https://www.youtube.com/iframe_api";
-        // var firstScriptTag = document.getElementsByTagName('script')[0];
-        // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        // var iOS = /iPad|iPhone|iPod/.test(navigator.platform);
-        // if (iOS) {
-        //     document.querySelector("body").classList.add("ios-device");
-        // }
-
-        // var mc = new Hammer(document.querySelector("#app"));
-
-        // mc.add(new Hammer.Swipe({
-        //     direction: Hammer.DIRECTION_HORIZONTAL,
-        //     threshold: 0
-        // }));
-
-        // function tempDisableAnimation() {
-        //     document.querySelector("body").classList.remove("animationEnabled");
-        //     setTimeout(function() {
-        //         document.querySelector("body").classList.add("animationEnabled");
-        //     }, 3000);
-        // }
-
-        // mc.on('tap', function () {
-        //     tempDisableAnimation;
-        // });
-        // mc.on('panleft', function () {
-        //     tempDisableAnimation;
-        // });
-        // mc.on('panright', function () {
-        //     tempDisableAnimation;
-        // });
     },
 
     // https://stackoverflow.com/a/44347195
@@ -104,8 +71,40 @@ export default {
 
                     .then(response => {
                         var responseData = d3.csvParse(response.data);
-
+                        var responseDataTemp = [];
                         // prepare data
+
+
+                        var stack = 0;
+                        if (cardGameVersion === "btc") {
+                            stack = 1;    
+                        } else {
+                            stack = 2;
+                        }
+
+
+
+                        // SELECT ONLY THE ITEMS THAT ARE IN THE SELECTED STACK (CONFIGURATION)
+                        // avoid working on a changing array by using a temp array
+                        for (let i = 0; i < responseData.length; i++) {
+                            if (responseData[i].Stack.indexOf(stack) > -1) {
+                                responseDataTemp.push(responseData[i]);
+                            }
+                        }
+                        // just to be sure that it's empty…:
+                        responseData = [];
+                        responseData.length = 0;
+                        // …and fill array again:
+                        responseData = responseDataTemp;
+                        // and empty the temp just to be sure, probably not necessary:
+                        responseDataTemp = [];
+                        responseDataTemp.length = 0;
+                        // NOW WE ONLY HAVE ITEMS THAT ARE IN THE GIVEN STACK
+
+
+
+
+
 
                         // cleaning
                         for (let i = 0; i < responseData.length; i++) {
@@ -133,8 +132,8 @@ export default {
 
                             responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
 
-                                // trim spaces (for example when source is: word1, word2) TODO: do this for everything
-                                if (responseData[i]["Related"] !== undefined) {
+                            // trim spaces (for example when source is: word1, word2) TODO: do this for everything
+                            if (responseData[i]["Related"] !== undefined) {
                                 for (let k = 0; k < responseData[i]["Related"].length; k++) {
                                     responseData[i]["Related"][k] = responseData[i]["Related"][k].trim();
                                 }

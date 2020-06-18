@@ -243,6 +243,10 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.bcb {
+        background-color: $backgroundBCB;
+}
+
 
 h1,
 h2,
