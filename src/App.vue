@@ -736,13 +736,14 @@ button,
 .md-close.md-close-cross,
 .overlay__close-cross {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     border: none;
+    background: rgba(238, 238, 238, 0.671);
     display: block;
     font-size: 2.5em;
     line-height: 0.6;
-    padding: 0;
+    padding: 0.1em;
     cursor: pointer;
 }
 

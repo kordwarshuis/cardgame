@@ -140,10 +140,11 @@ export default {
     top: 7px;
     right: 7px;
     border: none;
+    background: rgba(238, 238, 238, 0.671);
     display: block;
     font-size: 2.5em;
     line-height: 0.6;
-    padding: 0;
+    padding: 0.1em;
     cursor: pointer;
 }
 
