@@ -101,8 +101,8 @@ export default {
                 src: [require("./assets/audio/288912__littlerobotsoundfactory__click-soft-00.mp4")]
             });
             go = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/41589__zajo__loop39.mp4")]
+                volume: 0.5,
+                src: [require("./assets/audio/394477__gameloops__gamepack1-main-horrible-finish.mp4")]
             });
             whoosh = new Howl({
                 volume: 0.2,

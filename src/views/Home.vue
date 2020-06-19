@@ -75,16 +75,17 @@ export default {
                         // prepare data
 
 
+                        // select the stack
+                        // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to Bitcoin, if a "2" is in the string, it belong to Blockchain. "12" means it belongs to both.
+                        // TODO: move this to main.js
                         var stack = 0;
-                        if (cardGameName === "btc") {
+                        if (cardGameName === "Bitcoin") {
                             stack = 1;    
-                        } else {
+                        } else if (cardGameName === "Blockchain") {
                             stack = 2;
                         }
 
-
-
-                        // SELECT ONLY THE ITEMS THAT ARE IN THE SELECTED STACK (CONFIGURATION)
+                        // select only the items that are in the selected stack
                         // avoid working on a changing array by using a temp array
                         for (let i = 0; i < responseData.length; i++) {
                             if (responseData[i].Stack.indexOf(stack) > -1) {
@@ -99,11 +100,7 @@ export default {
                         // and empty the temp just to be sure, probably not necessary:
                         responseDataTemp = [];
                         responseDataTemp.length = 0;
-                        // NOW WE ONLY HAVE ITEMS THAT ARE IN THE GIVEN STACK
-
-
-
-
+                        // now we only have items that are in the given stack
 
 
                         // cleaning
