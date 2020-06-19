@@ -1,9 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import {cardGameName} from "../main";
+import {cardImage} from "../main";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    gameName: "",
+    cardImage: "",
     cssClassCardOverviewState: "",
     cssClassCardIntroState: "",
     cssClassCardFullState: "popup md-modal md-effect-1",
@@ -26,8 +30,11 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    initSounds(state) {
-
+    setCardImage(state) {
+      this.state.cardImage = cardImage;
+    },
+    setGameName(state) {
+      this.state.gameName = cardGameName;
     },
     hideModal(state) {
       //TODO: is this the way to change a store value? Seems not.

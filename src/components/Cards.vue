@@ -28,14 +28,14 @@
 
     </div> -->
 
-    <h2>Cards</h2>
+    <h2>{{this.$store.state.gameName}} Cards</h2>
     <div class="grid">
         <!-- <transition name="fade"> -->
 
         <a v-for="item in $store.state.allCardsInChosenCategory" data-shorttext="" :data-id="item['id']" :key="item.prejudice" class="grid__item" href="#" @click="showCardIntro">
             <div class="box">
-                <!-- <div class="box__shadow"></div><img class="box__img" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="" /> -->
-                <div class="box__shadow"></div><img class="box__img" src="@/assets/img/icons/flat/bitcoin.svg" alt="" />
+                <div class="box__shadow"></div>
+                <img class="box__img" :src="require('@/assets/img/icons/flat/' + $store.state.cardImage)"  alt="" />
                 <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
                 <h4 class="box__text"><span class="box__text-inner"><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></span></h4>
             </div>

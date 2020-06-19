@@ -1,6 +1,6 @@
 <template>
 <section class=" my-0">
-    <h1 class="text-center pt-5 ">Bitcoin Card Game Score Board</h1>
+    <h1 class="text-center pt-5 ">{{this.$store.state.gameName}} Card Game Score Board</h1>
     <div class="container shape-container d-flex ">
         <div class="col px-0">
 

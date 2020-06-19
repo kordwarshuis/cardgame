@@ -75,16 +75,24 @@ else if (window.location.href === "https://www.blockchainbird.com/t/btc/?cat=Env
 
 
 // find out what version of the cardgame is active. Based on URL.
-var cardGameVersion = "";
-export {cardGameVersion};
+var cardGameName = "";
+var cardImage = "";
+export {cardGameName};
+export {cardImage};
 
 // if "/btc/" in URL or "localhost" in URL then it's BTC, if not then BCB
 if ((window.location.href.indexOf("\/btc\/") > -1) || (window.location.href.indexOf("localhost") > -1)) {
   document.querySelector("body").classList.add("btc");
-  cardGameVersion = "btc";
+  cardGameName = "Bitcoin";
+  cardImage = "bitcoin.svg";
+  store.commit("setGameName", cardGameName);
+  store.commit("setCardImage", cardImage);
 } else {
   document.querySelector("body").classList.add("bcb");
-  cardGameVersion = "bcb";
+  cardGameName = "Blockchain";
+  cardImage = "blockchain.svg";
+  store.commit("setGameName", cardGameName);
+  store.commit("setCardImage", cardImage);
 }
 
 

@@ -17,7 +17,7 @@ import CardIntro from "@/components/CardIntro.vue";
 import CardFull from "@/components/CardFull.vue";
 import cardsContent from "../../paths.config";
 import {
-    cardGameVersion
+    cardGameName
 } from "../main";
 
 export default {
@@ -76,7 +76,7 @@ export default {
 
 
                         var stack = 0;
-                        if (cardGameVersion === "btc") {
+                        if (cardGameName === "btc") {
                             stack = 1;    
                         } else {
                             stack = 2;

@@ -8,8 +8,8 @@
             <div id="nav" class="text-center">
                 <router-link to="/">Cards</router-link>
                 <router-link to="/about">About</router-link>
-                <router-link to="/twitter-real-time">Realtime</router-link>
-                <router-link to="/scores">Scores</router-link>
+                <router-link v-if="this.$store.state.gameName === 'Bitcoin'" to="/twitter-real-time">Realtime</router-link>
+                <router-link v-if="this.$store.state.gameName === 'Bitcoin'" to="/scores">Scores</router-link>
             </div>
             <!-- <Gallery /> -->
             <div class="row">
@@ -32,8 +32,8 @@
 
                     <nav class="menu">
                         <!-- <div style="position: relative;"> -->
-                        <h1>Bit&shy;coin Mis&shy;con&shy;cep&shy;tions</h1>
-                        <p>A collection of misconceptions about Bitcoin.</p>
+                        <h1>{{this.$store.state.gameName}} Mis&shy;con&shy;cep&shy;tions</h1>
+                        <p>A collection of misconceptions about {{this.$store.state.gameName}}.</p>
                         <p>Strike back and send a card.</p>
 
                         <!-- <button class="btn btn-primary" @click="activateDefaultDesign">Default Design</button>
