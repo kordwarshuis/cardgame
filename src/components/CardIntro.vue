@@ -17,7 +17,7 @@
                 <div class="card-body text-center">
                     <h3 class="">Reply:</h3>
                     <p>{{ this.$store.state.currentCard["short direct answer"] }} …</p>
-                    <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Read more</a></p>
+                    <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></p>
                     <button class="closeCardIntro" title="All cards">All cards</button>
                     <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
                     <!-- <button class="overlay-fullscreen-close">Close</button> -->
