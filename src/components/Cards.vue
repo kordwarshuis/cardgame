@@ -1,15 +1,20 @@
 <template>
-<div class="">
+<div class="" >
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <BitcoinAnimation /> -->
     <!-- <h1>Bitcoin Misconceptions</h1> -->
+    <h1 class="pt-5">{{this.$store.state.gameName}} Cards</h1>
+    <!-- <nav class="scroll"> -->
+    <!-- <div class="container"> -->
 
-    <p class="categoryLinks pt-5">
-        <a @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
-        <a v-for="category in $store.state.categories" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name" :key="category.name">{{ category.name }}
-            ({{ category.numberOfItems }})</a>
-    </p>
-    <h2>{{ subtext }}</h2>
+    <ul class="nav nav-pills pt-0 ">
+        <li class="nav-item "><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a></li>
+        <li class="nav-item" v-for="category in $store.state.categories" :key="category.name"><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name">{{ category.name }}
+                ({{ category.numberOfItems }})</a></li>
+    </ul>
+    <!-- </div> -->
+    <!-- </nav> -->
+    <!-- <h2>{{ subtext }}</h2> -->
     <Search />
 
     <!-- <div class="m-1 mt-5">
@@ -28,14 +33,13 @@
 
     </div> -->
 
-    <h2>{{this.$store.state.gameName}} Cards</h2>
     <div class="grid">
         <!-- <transition name="fade"> -->
 
         <a v-for="item in $store.state.allCardsInChosenCategory" data-shorttext="" :data-id="item['id']" :key="item.prejudice" class="grid__item" href="#" @click="showCardIntro">
             <div class="box">
                 <div class="box__shadow"></div>
-                <img class="box__img" :src="require('@/assets/img/icons/flat/' + $store.state.cardImage)"  alt="" />
+                <img class="box__img" :src="require('@/assets/img/icons/flat/' + $store.state.cardImage)" alt="" />
                 <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
                 <h4 class="box__text"><span class="box__text-inner"><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></span></h4>
             </div>
@@ -100,9 +104,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-// svg.bitcoinimage {
-// .box__img {
-//     fill: #f59074;
-//     stroke: #f59074;
-// }
+
+.nav-link {
+    cursor: pointer;
+    font-variant: small-caps;
+    font-size: 1.2em;
+}
+
+.nav-link.active, .nav-link:hover {
+    color: $linksText;
+    background-color: $backgroundBCB;
+}
+
 </style>

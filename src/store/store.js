@@ -113,7 +113,7 @@ export default new Vuex.Store({
       if (category !== undefined) {
         // Notifier.config.default_timeout = "2000";
         // Notifier.info("You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
-        this.commit("showToast", "You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
+        // this.commit("showToast", "You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
       }
     },
     showToast(state, a) {
@@ -145,7 +145,8 @@ export default new Vuex.Store({
 
     },
     setActiveMenuItem(item) {
-      var allMenuItems = document.querySelectorAll(".categoryLinks a");
+      var selector = ".nav";
+      var allMenuItems = document.querySelectorAll(".nav a");
 
       // first remove class .active from all elements
       for (let i = 0; i < allMenuItems.length; i++) {
@@ -153,10 +154,10 @@ export default new Vuex.Store({
       }
       for (let i = 0; i < this.state.categories.length; i++) {
         if (item === undefined) {
-          document.querySelector(".categoryLinks a[data-category='All']").classList.add("active");
+          document.querySelector(selector + " a[data-category='All']").classList.add("active");
         } else
         if (this.state.activeCategory === this.state.categories[i].name) {
-          document.querySelector(".categoryLinks a[data-category='" + this.state.categories[i].name + "']").classList.add("active");
+          document.querySelector(selector + " a[data-category='" + this.state.categories[i].name + "']").classList.add("active");
         }
       }
     }

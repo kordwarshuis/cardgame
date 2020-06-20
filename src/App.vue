@@ -719,9 +719,10 @@ button,
 // related Items
 .relatedItems a,
 /* alle links in de tweede popup: */
-.modal-content a,
+.modal-content a    
 /* het menu met alle categorieen */
-.categoryLinks a {
+// .categoryLinks a 
+{
     // border: 3px solid $linksBorder;
     /* border-radius: 5px; */
     border: none;
@@ -820,11 +821,10 @@ button:hover,
 /* alle links in de tweede popup: */
 .modal-content a:hover,
 /* het menu met alle categorieen */
-.categoryLinks a:hover {
-    background: $linksHoverBackground;
-    transition: background 0.3s ease-in-out;
-
-}
+// .categoryLinks a:hover {
+//     background: $linksHoverBackground;
+//     transition: background 0.3s ease-in-out;
+// }
 
 /* het sluiten van de eerste popup: */
 .overlay__close:hover {
@@ -833,18 +833,18 @@ button:hover,
 
 }
 
-.categoryLinks a {
-    /* display: inline-block; */
-    margin: 0.2em;
-    padding: 0.2em 0.5em;
-}
+// .categoryLinks a {
+//     /* display: inline-block; */
+//     margin: 0.2em;
+//     padding: 0.2em 0.5em;
+// }
 
-.categoryLinks .active {
-    // border: 3px solid $categoryLinksBorderActive;
-    background: $categoryLinksBackgroundActive url(./assets/img/logo/blockchainbird-logo.png) no-repeat center right;
-    padding-right: 40px;
-    background-size: auto 70%;
-}
+// .categoryLinks .active {
+//     // border: 3px solid $categoryLinksBorderActive;
+//     background: $categoryLinksBackgroundActive url(./assets/img/logo/blockchainbird-logo.png) no-repeat center right;
+//     padding-right: 40px;
+//     background-size: auto 70%;
+// }
 
 /* .categoryLinks .active:after {
 	position: relative;
@@ -929,7 +929,7 @@ button:hover,
     }
 }
 
-.categoryLinks a,
+// .categoryLinks a,
 .relatedItems a,
 .md-close:not(.md-close-cross),
 .modal-content a {
