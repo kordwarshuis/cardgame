@@ -1,19 +1,14 @@
 <template>
-<div class="" >
+<div class="">
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <BitcoinAnimation /> -->
     <!-- <h1>Bitcoin Misconceptions</h1> -->
     <h1 class="pt-5">{{this.$store.state.gameName}} Cards</h1>
-    <!-- <nav class="scroll"> -->
-    <!-- <div class="container"> -->
-
-    <ul class="nav nav-pills pt-0 ">
+    <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
         <li class="nav-item "><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a></li>
         <li class="nav-item" v-for="category in $store.state.categories" :key="category.name"><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name">{{ category.name }}
                 ({{ category.numberOfItems }})</a></li>
     </ul>
-    <!-- </div> -->
-    <!-- </nav> -->
     <!-- <h2>{{ subtext }}</h2> -->
     <Search />
 
@@ -30,7 +25,6 @@
                 </div>
             </div>
         </div>
-
     </div> -->
 
     <div class="grid">
@@ -104,16 +98,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-
 .nav-link {
     cursor: pointer;
     font-variant: small-caps;
     font-size: 1.2em;
 }
 
-.nav-link.active, .nav-link:hover {
+.nav-link.active,
+.nav-link:hover {
     color: $linksText;
     background-color: $backgroundBCB;
 }
-
 </style>

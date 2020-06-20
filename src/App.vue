@@ -262,9 +262,9 @@ p {
     font-size: 1.2em;
 }
 
-.quote {
+// .quote {
     // font-size: 2.5em;
-}
+// }
 
 // #app {
 //     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -682,13 +682,13 @@ input:checked+.slider:before {
 // border: 10px solid $boxTextVisited;
 // }
 
-.visited .box__text-inner:after {
+.visited .box__text:after {
     content: "√";
     color: $boxTextVisitedCheckmark;
     text-shadow: 2px 2px 7px #000;
     position: absolute;
-    top: -0.3em;
-    left: -0.5em;
+    top: -0.1em;
+    left: -0.2em;
     margin: 0;
     padding: 0;
     line-height: 0.7;

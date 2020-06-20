@@ -118,15 +118,21 @@ export default {
 <style lang="scss" scoped>
 /*! https://tympanus.net/Development/FullscreenOverlayStyles/index7.html# */
 /* Overlay style */
-.overlay-fullscreen {
+#app .overlay-fullscreen {
     position: fixed;
     width: 100%;
+    max-width: 70em;
     height: 100%;
-    top: 0;
-    left: 0;
+    // top: 0;
+    // left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
     color: $overlayItemText;
     background: $overlayItemBackground;
-    padding: 3em;
+    padding: 2em;
 }
 
 .overlay-fullscreen>div {

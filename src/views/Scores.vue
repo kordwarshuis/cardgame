@@ -83,7 +83,7 @@
                                         Tweets
                                     </th>
                                 </tr>
-                                <tr v-for="item in userNamesCountedAndSorted.tweetersMostRecentWeek" :key="item[0]">
+                                <tr v-for="item in userNamesCountedAndSorted2.tweetersMostRecentWeek" :key="item[0]">
                                     <td>
                                         {{ item[0] }}
                                     </td>
