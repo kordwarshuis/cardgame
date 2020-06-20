@@ -18,8 +18,8 @@
                     <h3 class="">Reply:</h3>
                     <p>{{ this.$store.state.currentCard["short direct answer"] }} …</p>
                     <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Read more</a></p>
-                    <button class="closeCardIntro">All cards</button>
-                    <button class="copyURLtoClipboard copyURLtoClipboard3">Copy Link</button>
+                    <button class="closeCardIntro" title="All cards">All cards</button>
+                    <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
                     <!-- <button class="overlay-fullscreen-close">Close</button> -->
                     <RelatedCards />
 
@@ -128,12 +128,21 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
     color: $overlayItemText;
     background: $overlayItemBackground;
-    padding: 2em;
+    padding: 0em;
 }
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {  
+    #app .overlay-fullscreen {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+}
+
 
 .overlay-fullscreen>div {
     overflow: scroll;
@@ -344,11 +353,15 @@ a.md-trigger {
 }
 
 .closeCardIntro {
-    background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2-stack.png) no-repeat center;
+    // background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2-stack.png) no-repeat center;
+    background: transparent url(../assets/img/icons/flat/identity.svg) no-repeat center;
     background-size: contain;
-    padding: 3em 1.2em 3em 2em;
+    // padding: 3em 1.2em 3em 2em;
+    padding: 0.7em;
+    margin-bottom: 1em;
     z-index: auto;
     transition: transform 0.3s;
+    color: transparent;
 }
 
 .closeCardIntro:hover,

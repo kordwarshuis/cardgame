@@ -748,13 +748,14 @@ button,
     cursor: pointer;
 }
 
-a.overlay__close:not(.overlay__close-cross) {
-    background: transparent url(./assets/img/trivial-pursuit/TrivialPursuit2-stack.png) no-repeat center;
-    background-size: contain;
-    padding: 3em 1.2em 3em 2em;
-    z-index: auto;
-    transition: transform 0.3s;
-}
+// a.overlay__close:not(.overlay__close-cross) {
+//     background: transparent url(./assets/img/trivial-pursuit/TrivialPursuit2-stack.png) no-repeat center;
+//     background-size: contain;
+//     padding: 3em 1.2em 3em 2em;
+//     z-index: auto;
+//     transition: transform 0.3s;
+//         border: 10px solid #333;
+// }
 
 a.overlay__close:not(.overlay__close-cross):hover,
 .copyURLtoClipboard:hover {
@@ -763,17 +764,21 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .copyURLtoClipboard:hover {
-    background: transparent url(./assets/img/trivial-pursuit/TrivialPursuit-copy-link.png) no-repeat center;
+    // background: transparent url(./assets/img/trivial-pursuit/TrivialPursuit-copy-link.png) no-repeat center;
     background-size: contain;
 }
 
 .copyURLtoClipboard {
-    background: transparent url(./assets/img/trivial-pursuit/TrivialPursuit-copy-link.png) no-repeat center;
+    // background: transparent url(./assets/img/trivial-pursuit/TrivialPursuit-copy-link.png) no-repeat center;
+    background: transparent url(./assets/img/icons/flat/sheet.svg) no-repeat center;
     background-size: contain;
-    padding: 3em 1.2em 3em 2em;
+    // padding: 3em 1.2em 3em 2em;
+    // padding: 1.5em 0.6em 1.5em 1em;
+    padding: 0.7em;
+    margin-bottom: 1em;
     z-index: auto;
     transition: transform 0.3s;
-
+    color: transparent;
 }
 
 // .modal-content a.readOn {
@@ -964,78 +969,6 @@ iframe {
 
 }
 
-/* SEARCH */
-// .searchString {
-//     background: $searchStringBackground;
-//     border: 1px solid $searchStringBorder;
-//     padding: 0.3em;
-// }
-
-// .condensedLayout .box {
-//     margin: 0 !important;
-// }
-
-// .condensedLayout .box.hideSearchResult {
-//     margin: 0 !important;
-//     display: none !important;
-//     visibility: hidden;
-//     height: 0;
-//     line-height: 0;
-//     padding: 0;
-//     margin: 0;
-
-// }
-
-// .searchContainer {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     margin-bottom: 1em;
-// }
-
-// .searchContainer div {
-//     max-width: 95%;
-//     // border: 5px solid red;
-// }
-
-// .searchContainer input#search {
-//     width: 80%;
-// }
-
-// .searchContainer .changeGridView {
-//     padding: 0.6em;
-//     margin: 0;
-//     height: 1em;
-//     // border: 1px solid red;
-//     // display: block;
-//     width: 10%;
-//     background: transparent url(./assets/img/icons/flat/menu.png) no-repeat center;
-//     background-size: contain;
-// }
-
-// .searchContainer div {
-//     display: inline-block;
-// }
-
-// .searchContainer div:after {
-//     content: "🔍";
-// }
-
-// #searchPointer {
-//     position: absolute;
-//     top: 0.45em;
-//     right: 0.5em;
-//     width: 2em;
-//     height: 2em;
-//     cursor: pointer;
-//     z-index: 5;
-// }
-
-// #searchPointer:after {
-//     content: "🔍";
-//     font-size: 2em;
-//     ;
-// }
 
 // REPORT
 .report {
@@ -1150,7 +1083,8 @@ Copyright (c) 2014 Daniel Eden
 }
 
 .design2 {
-    .grid .box__text-inner {
+    .grid .box__text-inner,
+    .handDrawnBorder {
         // animation-name: animatedBorder;
         // animation-duration: 0.8s;
         // animation-iteration-count: infinite;
