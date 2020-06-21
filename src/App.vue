@@ -105,7 +105,7 @@ export default {
                 src: [require("./assets/audio/394477__gameloops__gamepack1-main-horrible-finish.mp4")]
             });
             whoosh = new Howl({
-                volume: 0.2,
+                volume: 0.1,
                 src: [require("./assets/audio/99263__robinhood76__01762-whoosh.mp4")]
             });
             whoosh2 = new Howl({

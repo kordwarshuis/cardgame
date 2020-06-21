@@ -20,7 +20,6 @@
                     <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></p>
                     <button class="closeCardIntro" title="All cards">All cards</button>
                     <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
-                    <!-- <button class="overlay-fullscreen-close">Close</button> -->
                     <RelatedCards />
 
                     <SocialMedia />
@@ -151,14 +150,15 @@ export default {
 
 /* Overlay closing cross */
 .overlay-fullscreen .overlay-fullscreen-close {
-    position: absolute;
+    position: fixed;
     top: 10px;
     right: 20px;
     border: none;
+    background: $_background1BCB;
+    padding: 0.1em;
     border: 1px solid transparent;
     border-radius: 50%;
     padding: 0.2em;
-    background: $_background1BCB;
     display: block;
     font-size: 2.5em;
     line-height: 0.6;

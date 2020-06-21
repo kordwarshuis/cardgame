@@ -44,11 +44,17 @@
 
                     </nav>
                 </div>
-                <button class="close-button" id="close-button">Close Menu</button>
+                <!-- <button class="close-button" id="close-button">Close Menu</button> -->
             </div>
         </div>
     </div>
-    <button class="menu-button" id="open-button">Open Menu</button>
+    <!-- <button class="menu-button" id="open-button">Open Menu</button> -->
+    <input type="checkbox" id="open-button" class="menu-button" />
+    <label class="menuicon " for="open-button">
+        <span></span>
+        <span class="visuallyhidden">Open/Close Menu</span>
+    </label>
+
 </div>
 </template>
 
@@ -62,15 +68,7 @@ export default {
         // BitcoinAnimation
         // Gallery
     },
-    methods: {
-        // activateDefaultDesign() {
-        //     document.querySelector('#app').classList.remove('design2');
-        // },
-        // activateDesign2() {
-        //     document.querySelector('#app').classList.add('design2');
-        // }
-
-    }
+    methods: {}
 };
 
 /**
@@ -90,7 +88,6 @@ function sideMenu() {
     var bodyEl = document.body,
         app = document.querySelector('#app'),
         openbtn = document.getElementById('open-button'),
-        closebtn = document.getElementById('close-button'),
         isOpen = false;
 
     function init() {
@@ -99,21 +96,12 @@ function sideMenu() {
 
     function initEvents() {
         openbtn.addEventListener('click', toggleMenu);
-        if (closebtn) {
-            closebtn.addEventListener('click', toggleMenu);
-        }
-
-        // close the menu element if the target it´s not the menu element or one of its descendants..
-        app.addEventListener('click', function (ev) {
-            var target = ev.target;
-            if (isOpen && target !== openbtn) {
-                toggleMenu();
-            }
-        });
     }
 
     function toggleMenu() {
+        if (localStorage.getItem("soundOn") === "true") whoosh2.play();
         if (localStorage.getItem("soundOn") === "true") whoosh.play();
+
         if (isOpen) {
             bodyEl.classList.remove('show-menu');
         } else {
@@ -136,14 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-$numberOfCycles: 8;
-
 #nav {
-    // position: fixed;
-    // padding: 30px;
-    // padding: 1em;
-    // text-align: right;
-
     a {
         font-weight: bold;
         color: $generalLinksText;
@@ -191,70 +172,10 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     top: 10px;
     left: 5px;
     z-index: 5;
-    /* margin: 1em; */
-    margin: 0;
-    padding: 0;
-    width: 2.7em;
-    height: 2.5em;
-    border: none;
-    text-indent: 2.5em;
-    color: transparent;
-    background: $_background1BCB;
-    // background: #eee;
-    outline: none;
-}
-
-.menu-button::before {
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    bottom: 0.5em;
-    left: 0.5em;
-    background: linear-gradient(#373a47 20%, transparent 20%, transparent 40%, #373a47 40%, #373a47 60%, transparent 60%, transparent 80%, #373a47 80%);
-    content: '';
 }
 
 .menu-button:hover {
     opacity: 0.6;
-}
-
-/* Close Button */
-.close-button {
-    width: 3.2em;
-    height: 3.2em;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    margin: 0;
-    overflow: hidden;
-    text-indent: 1em;
-    font-size: 0.75em;
-    border: 5px solid $_background1BCB;
-    border-radius: 50%;
-    // background: transparent;
-    background: $_background1BCB;
-    color: transparent;
-}
-
-.close-button::before,
-.close-button::after {
-    content: '';
-    position: absolute;
-    width: 3px;
-    height: 100%;
-    top: 0;
-    left: 50%;
-    background: #222;
-}
-
-.close-button::before {
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.close-button::after {
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
 }
 
 /* Menu */
@@ -280,6 +201,26 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
     transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+}
+
+/* Shown menu */
+.show-menu .menu-wrap {
+    // -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    // -webkit-transition: -webkit-transform 0.8s;
+    transition: transform 0.4s;
+    // -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.show-menu .content::before {
+    opacity: 1;
+    // -webkit-transition: opacity 0.8s;
+    transition: opacity 0.4s;
+    // -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    // -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 .design2 .menu-wrap {
@@ -309,27 +250,107 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     background: $_background1;
 }
 
-/* Shown menu */
-.show-menu .menu-wrap {
-    // -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    // -webkit-transition: -webkit-transform 0.8s;
-    transition: transform 0.4s;
-    // -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-}
-
-.show-menu .content::before {
-    opacity: 1;
-    // -webkit-transition: opacity 0.8s;
-    transition: opacity 0.4s;
-    // -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-    // -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-
 nav.menu {
     overflow: scroll;
+}
+
+/* HAMBURGER */
+// https://codepen.io/perjor/pen/yOzZPj
+#open-button {
+    display: none;
+}
+
+.menuicon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: block;
+    cursor: pointer;
+    height: 21px;
+    width: 25px;
+    z-index: 5;
+}
+
+.menuicon>span:first-child,
+.menuicon>span:first-child::after,
+.menuicon>span:first-child::before {
+    display: block;
+    width: 22px;
+    height: 3px;
+    border-radius: 15px;
+    background-color: #000;
+}
+
+.menuicon>span:first-child {
+    top: 8px;
+    position: relative;
+    -webkit-transition-duration: 0;
+    -moz-transition-duration: 0;
+    -ms-transition-duration: 0;
+    -o-transition-duration: 0;
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+    -ms-transition-delay: 0.2s;
+    -o-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.menuicon>span:first-child::after,
+.menuicon>span:first-child::before {
+
+    content: '';
+    position: absolute;
+    -webkit-transition-property: margin, -webkit-transform;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -ms-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-delay: 0.2s;
+    -moz-transition-delay: 0.2s;
+    -ms-transition-delay: 0.2s;
+    -o-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.menuicon>span:first-child::before {
+    margin-top: -8px;
+}
+
+.menuicon>span:first-child::after {
+    margin-top: 8px;
+}
+
+#open-button:checked~.menu {
+    display: block;
+}
+
+#open-button:checked~.title {
+    display: none;
+}
+
+#open-button:checked~.menuicon>span:first-child {
+    background-color: transparent;
+}
+
+#open-button:checked~.menuicon>span:first-child::before,
+#open-button:checked~.menuicon>span:first-child::after {
+    margin-top: 0px;
+}
+
+#open-button:checked~.menuicon>span:first-child::before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#open-button:checked~.menuicon>span:first-child::after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 </style>
