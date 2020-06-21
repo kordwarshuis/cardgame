@@ -28,7 +28,7 @@ export default {
                 // this.parentNode.innerHTML += "<span class='antw antw-vinkje'>√</span>";
                 e.target.parentNode.insertAdjacentHTML("beforeend", "<span class='antw antw-vinkje'>√</span>");
                 
-                if (sound) go.play();
+                if (localStorage.getItem("soundOn") === "true") go.play();
                 document.querySelector("body").classList.add("person1");
                 setTimeout(function () {
                     document.querySelector("body").classList.remove("person1");
@@ -42,7 +42,7 @@ export default {
                 // stel je hebt meerdere "correct", zoals bij een miniquiz waarin je vraagt om een beoordeling, dan kom je hier, in deze "else"  niet terecht, dus hoef ik verder niks te regelen
                 domCorrectAnswer = e.target.parentNode.parentNode.querySelector("input[value='true']").parentNode;
                 
-                if (sound) whistle.play();
+                if (localStorage.getItem("soundOn") === "true") whistle.play();
                 setTimeout(
                     function () {
                         domCorrectAnswer.insertAdjacentHTML("beforeend", "<span class='antw antw-vinkje'>√</span>");

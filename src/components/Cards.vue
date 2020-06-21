@@ -6,8 +6,7 @@
     <h1 class="pt-5">{{this.$store.state.gameName}} Cards</h1>
     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
         <li class="nav-item "><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a></li>
-        <li class="nav-item" v-for="category in $store.state.categories" :key="category.name"><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name">{{ category.name }}
-                ({{ category.numberOfItems }})</a></li>
+        <li class="nav-item" v-for="category in $store.state.categories" :key="category.name"><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name">{{ category.name }} ({{ category.numberOfItems }})</a></li>
     </ul>
     <!-- <h2>{{ subtext }}</h2> -->
     <Search />
@@ -42,19 +41,22 @@
         <!-- </transition> -->
     </div>
     <NewsTicker />
+    <SoundToggle />
 </div>
 </template>
 
 <script>
 import NewsTicker from "@/components/NewsTicker.vue";
 import Search from "@/components/Search.vue";
+import SoundToggle from "@/components/SoundToggle.vue";
 // import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
 
 export default {
     name: "Index",
     components: {
         Search,
-        NewsTicker
+        NewsTicker,
+        SoundToggle
         // ,BitcoinAnimation
         // VueFuse
     },
@@ -88,7 +90,7 @@ export default {
             // this.$router.push("/card/" + currentCard["Unique URL"]).catch(err => {});
             this.$router.push("/card/" + currentCard["Unique URL"]);
 
-            if (sound) whoosh2.play();
+            if (localStorage.getItem("soundOn") === "true") whoosh2.play();
 
         }
     }

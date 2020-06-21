@@ -39,7 +39,7 @@ export default new Vuex.Store({
     hideModal(state) {
       //TODO: is this the way to change a store value? Seems not.
       this.state.cssClassCardFullState = "";
-      if (sound) dong.play();
+      if (localStorage.getItem("soundOn") === "true") whoosh2.play();
       // document.querySelector(".videoWrapper").innerHTML = "";
       // console.log('document.querySelector(".videoWrapper"): ', document.querySelector(".youtube"));
 
@@ -67,7 +67,7 @@ export default new Vuex.Store({
       this.commit("changeCard", currentCard);
     },
     showItemsInSelectedCategory(state, category) {
-      if (sound) whoosh2.play();
+      if (localStorage.getItem("soundOn") === "true") whoosh2.play();
       var allCardsInChosenCategory = [];
 
       // set active category name (TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the first <a>)

@@ -37,55 +37,55 @@ export default {
         return {}
     },
     mounted() {
-        this.soundSetting();
+        // this.soundSetting();
         this.initSound();
     },
     methods: {
         //TODO: change 'of' to 'off'
-        soundSetting() {
-            // radio buttons for sound on off:
-            var soundButton = document.querySelectorAll('input[name = "soundOnOf"]');
-            var i;
+        // soundSetting() {
+        //     // radio buttons for sound on off:
+        //     var soundButton = document.querySelectorAll('input[name = "soundOnOf"]');
+        //     var i;
 
-            // set radio buttons with localstorage value, if any:
-            if (localStorage.getItem("soundOnOf") !== null) {
-                var val = localStorage.getItem("soundOnOf"); // local storage value
-                for (i = 0; i < soundButton.length; i++) {
-                    if (soundButton[i].value === val) {
-                        soundButton[i].checked = true; // marking the required radio as checked
-                    }
-                }
-            }
+        //     // set radio buttons with localstorage value, if any:
+        //     if (localStorage.getItem("soundOnOf") !== null) {
+        //         var val = localStorage.getItem("soundOnOf"); // local storage value
+        //         for (i = 0; i < soundButton.length; i++) {
+        //             if (soundButton[i].value === val) {
+        //                 soundButton[i].checked = true; // marking the required radio as checked
+        //             }
+        //         }
+        //     }
 
-            // set soud variable based on radio buttons setting:
-            for (i = 0; i < soundButton.length; i++) {
-                if (soundButton[i].checked === true) {
-                    if (soundButton[i].value === "on") {
-                        sound = true;
-                    } else {
-                        sound = false;
-                    }
-                }
-            }
+        //     // set soud variable based on radio buttons setting:
+        //     for (i = 0; i < soundButton.length; i++) {
+        //         if (soundButton[i].checked === true) {
+        //             if (soundButton[i].value === "on") {
+        //                 sound = true;
+        //             } else {
+        //                 sound = false;
+        //             }
+        //         }
+        //     }
 
-            // dealing with radio buttons user interactions:
-            var prev = null; // not used here
-            for (i = 0; i < soundButton.length; i++) {
-                soundButton[i].addEventListener('change', function () {
-                    // (prev) ? console.log(prev.value): null;
-                    if (this !== prev) {
-                        prev = this;
-                    }
+        //     // dealing with radio buttons user interactions:
+        //     var prev = null; // not used here
+        //     for (i = 0; i < soundButton.length; i++) {
+        //         soundButton[i].addEventListener('change', function () {
+        //             // (prev) ? console.log(prev.value): null;
+        //             if (this !== prev) {
+        //                 prev = this;
+        //             }
 
-                    localStorage.setItem("soundOnOf", this.value);
-                    if (this.value === "on") {
-                        sound = true;
-                    } else {
-                        sound = false;
-                    }
-                });
-            }
-        },
+        //             localStorage.setItem("soundOnOf", this.value);
+        //             if (this.value === "on") {
+        //                 sound = true;
+        //             } else {
+        //                 sound = false;
+        //             }
+        //         });
+        //     }
+        // },
         initSound() {
             var button = document.querySelector("#activateSound");
 

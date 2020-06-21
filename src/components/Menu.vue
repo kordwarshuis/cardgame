@@ -14,8 +14,7 @@
             <!-- <Gallery /> -->
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <form role="form" class="border m-3 p-2 pb-0 d-inline-block">
-
+                    <!-- <form role="form" class="border m-3 p-2 pb-0 d-inline-block">
                         <label class="mr-3 mb-0 d-inline-block">
                             <input type="radio" name="soundOnOf" id="soundOnOf1" value="on" checked="" /> on
                         </label>
@@ -25,7 +24,7 @@
                         <label class="mb-0 d-inline-block">
                             <input type="radio" name="soundOnOf" id="soundOnOf2" value="of" /> off
                         </label>
-                    </form>
+                    </form> -->
                     <a href>
                         <img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" />
                     </a>
@@ -114,7 +113,7 @@ function sideMenu() {
     }
 
     function toggleMenu() {
-        if (sound) whoosh.play();
+        if (localStorage.getItem("soundOn") === "true") whoosh.play();
         if (isOpen) {
             bodyEl.classList.remove('show-menu');
         } else {
@@ -189,18 +188,19 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 /* Menu Button */
 .menu-button {
     position: fixed;
-    left: 0;
+    top: 10px;
+    left: 5px;
     z-index: 5;
     /* margin: 1em; */
     margin: 0;
     padding: 0;
-    width: 2.5em;
-    height: 2.25em;
+    width: 2.7em;
+    height: 2.5em;
     border: none;
     text-indent: 2.5em;
     color: transparent;
-    // background: transparent;
-    background: #eee;
+    background: $_background1BCB;
+    // background: #eee;
     outline: none;
 }
 
@@ -223,15 +223,16 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     width: 3.2em;
     height: 3.2em;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 10px;
+    top: 10px;
     margin: 0;
     overflow: hidden;
     text-indent: 1em;
     font-size: 0.75em;
-    border: 5px solid #eee;
+    border: 5px solid $_background1BCB;
+    border-radius: 50%;
     // background: transparent;
-    background: #eee;
+    background: $_background1BCB;
     color: transparent;
 }
 

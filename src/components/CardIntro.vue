@@ -68,7 +68,7 @@ export default {
             // TODO: rename, since it is not a toggle anymore
             function toggleOverlayFullscreen() {
 
-                if (sound) dong.play();
+                if (localStorage.getItem("soundOn") === "true") whoosh2.play();
                 if (overlayFullscreen.classList.contains('open')) {
                     // overlayFullscreen.classList.remove('open');
                     // container.classList.remove('overlay-fullscreen-open');
@@ -104,7 +104,7 @@ export default {
             closeBttn2.addEventListener('click', toggleOverlayFullscreen);
         },
         showCardFull(event) {
-            if (sound) whoosh2.play();
+            if (localStorage.getItem("soundOn") === "true") whoosh2.play();
             //TODO: why is this working, should mutations be used?
             this.$store.state.cssClassCardFullState = " md-show";
             // this.$store.commit("changeCssClassCardIntroState", " md-show");

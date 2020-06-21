@@ -145,7 +145,7 @@ export default {
             function check(event) {
                 if (isInViewport(object)) {
                     if (!isStarted) {
-                        if (sound) pur.play();
+                        if (localStorage.getItem("soundOn") === "true") pur.play();
                         document.querySelector("body").classList.add("person3");
                         setTimeout(function () {
                             pur.stop();

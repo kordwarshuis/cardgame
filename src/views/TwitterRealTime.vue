@@ -282,7 +282,7 @@ export default {
                 // Notifier.info(language.notifications.appStarted);
                 that.$store.commit("showToast", language.notifications.appStarted);
 
-                if (sound) alert.play();
+                if (localStorage.getItem("soundOn") === "true") alert.play();
 
                 // Convert URLs (w/ or w/o protocol), @mentions, and #hashtags into anchor links
                 // http://roadha.us/2011/03/create-anchor-links-in-twitter-status-text-with-javascript/
@@ -348,7 +348,7 @@ export default {
 
                         if (isSpecialAccount === true) {
                             specialAccountHTMLcode = " specialAccount "; // space is important
-                            if (sound) alertSpecialAccount.play();
+                            if (localStorage.getItem("soundOn") === "true") alertSpecialAccount.play();
                         } else {
                             specialAccountHTMLcode = "";
                         }
@@ -392,7 +392,7 @@ export default {
                     }
 
                     if (somethingFound) {
-                        if (sound) alert.play();
+                        if (localStorage.getItem("soundOn") === "true") alert.play();
                         
                         // console.log('domTemp: ', domTemp);
                         // console.log('domTempOld: ', domTempOld);
@@ -623,7 +623,7 @@ export default {
             domRestoreTweetAccounts.addEventListener("click", restoreTweetAccounts, false);
             domEmptyTweetAccounts.addEventListener("click", emptyTweetAccounts, false);
             domTestTweetAccountsSound.addEventListener("click", function () {
-                if (sound) {
+                if (localStorage.getItem("soundOn") === "true") {
                     alertSpecialAccount.play();
                     navigator.serviceWorker.getRegistration()
                         .then(reg => reg.showNotification("test"));

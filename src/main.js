@@ -106,35 +106,29 @@ if ((window.location.href.indexOf("\/btc\/") > -1) || (window.location.href.inde
 // Note: here it is not: "this.$store.commit" but "store.commit" (https://stackoverflow.com/q/51348936)
 var clipboard1 = new ClipboardJS('.copyURLtoClipboard1', {
   text: function () {
-      // Notifier.config.default_timeout = "2000";
-      // Notifier.info("You can now paste the link.");
-      store.commit("showToast", "You can now paste the link.");
-      if (sound) go.play();
+      store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+      if (localStorage.getItem("soundOn") === "true") go.play();
       document.querySelector("body").classList.add("person1");
       setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 1500);
-      return window.location.href;
+      return store.state.currentCard["short direct answer"] + " > " + window.location.href;
   }
 });
 var clipboard1 = new ClipboardJS('.copyURLtoClipboard2', {
   text: function () {
-      // Notifier.config.default_timeout = "2000";
-      // Notifier.info("You can now paste the link.");
-      store.commit("showToast", "You can now paste the link.");
-      if (sound) go.play();
+      store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+      if (localStorage.getItem("soundOn") === "true") go.play();
       document.querySelector("body").classList.add("person1");
       setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 1500);
-      return window.location.href;
+      return store.state.currentCard["short direct answer"] + " > " + window.location.href;
   }
 });
 var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
   text: function () {
-      // Notifier.config.default_timeout = "2000";
-      // Notifier.info("You can now paste the link.");
-      store.commit("showToast", "You can now paste the link.");
-      if (sound) go.play();
+      store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+      if (localStorage.getItem("soundOn") === "true") go.play();
       document.querySelector("body").classList.add("person1");
       setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 1500);
-      return window.location.href;
+      return store.state.currentCard["short direct answer"] + " > " + window.location.href;
   }
 });
 
