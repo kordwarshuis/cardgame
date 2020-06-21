@@ -97,7 +97,7 @@ export default {
                 src: [require("./assets/audio/175893__toiletrolltube__110923-02-falling-metal-10.mp4")]
             });
             dong = new Howl({
-                volume: 0.2,
+                volume: 0.1,
                 src: [require("./assets/audio/288912__littlerobotsoundfactory__click-soft-00.mp4")]
             });
             go = new Howl({
@@ -109,29 +109,29 @@ export default {
                 src: [require("./assets/audio/99263__robinhood76__01762-whoosh.mp4")]
             });
             whoosh2 = new Howl({
-                volume: 0.2,
-                src: [require("./assets/audio/63615__robinhood76__ae004-maracas-one-shot-faster.mp4")]
+                volume: 0.1,
+                src: [require("./assets/audio/399934__waveplay__short-click-snap-perc.mp4")]
             });
             whistle = new Howl({
                 volume: 0.1,
                 src: [require("./assets/audio/110390__soundscalpel-com__cartoon-siren-whistle-001.mp4")]
             });
-            pur = new Howl({
-                volume: 1,
-                // loop: true,
-                src: [require("./assets/audio/130968__cubilon__cat-purring.mp4")]
-            });
+            // pur = new Howl({
+            //     volume: 1,
+            //     // loop: true,
+            //     src: [require("./assets/audio/130968__cubilon__cat-purring.mp4")]
+            // });
             click = new Howl({
                 volume: 0.1,
                 src: [require("./assets/audio/click.mp4")]
             });
 
-            document.querySelectorAll("a").forEach(item => item.addEventListener('click', function () {
-                click.play()
-            }, false));
-            document.querySelectorAll("button").forEach(item => item.addEventListener('click', function () {
-                click.play()
-            }, false));
+            // document.querySelectorAll("a").forEach(item => item.addEventListener('click', function () {
+            //     click.play()
+            // }, false));
+            // document.querySelectorAll("button").forEach(item => item.addEventListener('click', function () {
+            //     click.play()
+            // }, false));
         }
     }
 }
@@ -738,13 +738,18 @@ button,
 .overlay__close-cross {
     position: fixed;
     top: 10px;
-    left: 10px;
+    right: 10px;
     border: none;
-    background: rgba(238, 238, 238, 0.671);
+    background: $_background1BCB;
+    padding: 0.1em;
+        border: 1px solid transparent;
+    border-radius: 50%;
+    padding: 0.2em;
+
+    
     display: block;
     font-size: 2.5em;
     line-height: 0.6;
-    padding: 0.1em;
     cursor: pointer;
 }
 

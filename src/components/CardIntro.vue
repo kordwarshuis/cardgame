@@ -152,14 +152,16 @@ export default {
 /* Overlay closing cross */
 .overlay-fullscreen .overlay-fullscreen-close {
     position: absolute;
-    top: 7px;
-    right: 7px;
+    top: 10px;
+    right: 20px;
     border: none;
-    background: rgba(238, 238, 238, 0.671);
+    border: 1px solid transparent;
+    border-radius: 50%;
+    padding: 0.2em;
+    background: $_background1BCB;
     display: block;
     font-size: 2.5em;
     line-height: 0.6;
-    padding: 0.1em;
     cursor: pointer;
 }
 

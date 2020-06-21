@@ -3,7 +3,8 @@ import publicPath from "../vue.config";
 // import axios from "axios";
 import App from "./App.vue";
 import router from "./router/router";
-import VueAnalytics from "vue-analytics";
+// import VueAnalytics from "vue-analytics";
+import VueGtag from "vue-gtag";
 import store from "./store/store";
 import * as d3 from 'd3-dsv';
 import './assets/js/TweenMax.min';
@@ -20,10 +21,14 @@ Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
 Vue.use(Howl, Howler);
 
-Vue.use(VueAnalytics, {
-  id: "G-N8VG5BGPSH",
-  router
-});
+// Vue.use(VueAnalytics, {
+//   id: "G-N8VG5BGPSH",
+//   router
+// });
+
+Vue.use(VueGtag, {
+  config: { id: "G-N8VG5BGPSH" }
+}, router);
 
 new Vue({
   router,
@@ -106,7 +111,7 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard1', {
       store.commit("showToast", "You can now paste the link.");
       if (sound) go.play();
       document.querySelector("body").classList.add("person1");
-      setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 4000);
+      setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 1500);
       return window.location.href;
   }
 });
@@ -117,7 +122,7 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard2', {
       store.commit("showToast", "You can now paste the link.");
       if (sound) go.play();
       document.querySelector("body").classList.add("person1");
-      setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 4000);
+      setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 1500);
       return window.location.href;
   }
 });
@@ -128,7 +133,7 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
       store.commit("showToast", "You can now paste the link.");
       if (sound) go.play();
       document.querySelector("body").classList.add("person1");
-      setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 4000);
+      setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 1500);
       return window.location.href;
   }
 });
