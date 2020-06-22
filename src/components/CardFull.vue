@@ -88,9 +88,11 @@
                 <!-- </div> -->
 
             </div>
+        
         </div>
-        <a @click="$store.commit('hideModal')" class="md-close md-close-cross">×</a>
+        
     </div>
+    <a @click="$store.commit('hideModal')" class="md-close md-close-cross">×</a>
 </div>
 </template>
 

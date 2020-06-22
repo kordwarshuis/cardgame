@@ -734,8 +734,7 @@ button,
     cursor: pointer;
 }
 
-.md-close.md-close-cross,
-.overlay__close-cross {
+.md-close.md-close-cross {
     position: fixed;
     top: 10px;
     right: 10px;

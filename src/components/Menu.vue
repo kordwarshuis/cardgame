@@ -88,7 +88,11 @@ function sideMenu() {
     var bodyEl = document.body,
         app = document.querySelector('#app'),
         openbtn = document.getElementById('open-button'),
-        isOpen = false;
+        isOpen = false,
+        navMenuItems = document.querySelectorAll("#nav a");
+
+
+
 
     function init() {
         initEvents();
@@ -98,9 +102,25 @@ function sideMenu() {
         openbtn.addEventListener('click', toggleMenu);
     }
 
+    for (let i = 0; i < navMenuItems.length; i++) {
+        navMenuItems[i].addEventListener("click", toggleMenuFromNav, false);
+        
+    }
+
+    function toggleMenuFromNav() {
+        toggleMenu();
+
+        // if the input isnt clicked but menu is toggled anyway, then we have to remove checked=true also
+        openbtn.checked = false;
+    }
+
+
     function toggleMenu() {
         if (localStorage.getItem("soundOn") === "true") whoosh2.play();
         if (localStorage.getItem("soundOn") === "true") whoosh.play();
+        
+        
+
 
         if (isOpen) {
             bodyEl.classList.remove('show-menu');
@@ -261,7 +281,7 @@ nav.menu {
 }
 
 .menuicon {
-    position: absolute;
+    position: fixed;
     top: 10px;
     left: 10px;
     display: block;
