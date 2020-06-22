@@ -17,6 +17,7 @@
                 <div class="card-body text-center">
                     <h3 class="">Reply:</h3>
                     <p>{{ this.$store.state.currentCard["short direct answer"] }} …</p>
+                    <!-- TODO: make the <a> better accessible -->
                     <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></p>
                     <button class="closeCardIntro" title="All cards">All cards</button>
                     <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
@@ -106,7 +107,6 @@ export default {
             if (localStorage.getItem("soundOn") === "true") whoosh2.play();
             //TODO: why is this working, should mutations be used?
             this.$store.state.cssClassCardFullState = " md-show";
-            // this.$store.commit("changeCssClassCardIntroState", " md-show");
         }
     }
 };
@@ -133,15 +133,13 @@ export default {
     padding: 0em;
 }
 
-
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {  
+@media (min-width: 576px) {
     #app .overlay-fullscreen {
         padding-left: 2em;
         padding-right: 2em;
     }
 }
-
 
 .overlay-fullscreen>div {
     overflow: scroll;

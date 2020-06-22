@@ -71,10 +71,38 @@ export default {
             fuseSearchKeys: ["Prejudice"]
         }
     },
+    mounted() {
+        this.addVisitedToCards();
+    },
     methods: {
+        addVisitedToCards() {
+
+            setTimeout(function () {
+                var allCards = document.querySelectorAll(".grid__item");
+                console.log('allCards: ', allCards);
+                // loop all cards and add .visited if in localStorage visited
+                for (let i = 0; i < allCards.length; i++) {
+                    if (localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
+                        allCards[i].classList.add("visited");
+                    }
+                }
+
+            }, 1000);
+        },
         showCardIntro(event) {
-            // adds a sign to the card that is visited TODO: make it so that everything is clickable and results in a sign
-            event.target.closest("a").classList.add("visited");
+            // event.target.closest("a").classList.add("visited");
+
+            // https://stackoverflow.com/a/7680123
+            // localStorage can only be string
+            function appendToLocalStorage(name, data) {
+                var old = localStorage.getItem(name);
+
+                // create is not existing
+                if (old === null) old = "";
+
+                // only add if it is not already in the string
+                if (old.indexOf(data) === -1) localStorage.setItem(name, old + data + " ");
+            }
 
             // deal with CSS to open and close
             this.$store.commit("changeCssClassCardIntroState", "open");
@@ -91,6 +119,12 @@ export default {
             this.$router.push("/card/" + currentCard["Unique URL"]);
 
             if (localStorage.getItem("soundOn") === "true") whoosh2.play();
+
+            // add current card url to visited in localStorage
+            console.log('this.$store.state.currentCard["Unique URL"]: ', this.$store.state.currentCard["Unique URL"]);
+            appendToLocalStorage("visited", this.$store.state.currentCard["Unique URL"]);
+
+            this.addVisitedToCards();
 
         }
     }
