@@ -1,7 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import {cardGameName} from "../main";
-import {cardImage} from "../main";
+import {
+  cardGameName
+} from "../main";
+import {
+  cardImage
+} from "../main";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -109,6 +113,19 @@ export default new Vuex.Store({
       this.state.allCardsInChosenCategory = allCardsInChosenCategory;
 
       setTimeout(codrops, 1);
+
+      //TODO: duplicate code, see addVisitedToCards()
+      setTimeout(function () {
+        var allCards = document.querySelectorAll(".grid__item");
+        console.log('allCards: ', allCards);
+        // loop all cards and add .visited if in localStorage visited
+        for (let i = 0; i < allCards.length; i++) {
+          if (localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
+            allCards[i].classList.add("visited");
+          }
+        }
+      }, 1000);
+
 
       if (category !== undefined) {
         // Notifier.config.default_timeout = "2000";

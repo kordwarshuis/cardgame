@@ -683,17 +683,19 @@ input:checked+.slider:before {
 // }
 
 .visited .box__text:after {
-    content: "√";
+    content: "💡";
     color: $boxTextVisitedCheckmark;
-    text-shadow: 2px 2px 7px #000;
     position: absolute;
-    top: -0.1em;
-    left: -0.2em;
+    top: -0.4em;
+    left: -0.5em;
     margin: 0;
     padding: 0;
     line-height: 0.7;
-    font-size: 6em;
+    font-size: 4em;
     /* transform: rotate(323deg); */
+}
+.visited .box__text:hover:after {
+    text-shadow: 0 0 37px rgb(247, 233, 108);
 }
 
 .further-reading {

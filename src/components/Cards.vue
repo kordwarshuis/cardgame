@@ -76,7 +76,6 @@ export default {
     },
     methods: {
         addVisitedToCards() {
-
             setTimeout(function () {
                 var allCards = document.querySelectorAll(".grid__item");
                 console.log('allCards: ', allCards);
@@ -86,7 +85,6 @@ export default {
                         allCards[i].classList.add("visited");
                     }
                 }
-
             }, 1000);
         },
         showCardIntro(event) {
