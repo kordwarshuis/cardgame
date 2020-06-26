@@ -22,7 +22,7 @@ export default new Vuex.Store({
     numberofCards: 0, // not in use yet
     allCardsInChosenCategory: [],
     allPickedCards: [],
-    dataFetched: false,
+    dataFetched: false
   },
   getters: {
     getCard: (state) => (id) => {
@@ -117,7 +117,6 @@ export default new Vuex.Store({
       //TODO: duplicate code, see addVisitedToCards()
       setTimeout(function () {
         var allCards = document.querySelectorAll(".grid__item");
-        console.log('allCards: ', allCards);
         // loop all cards and add .visited if in localStorage visited
         for (let i = 0; i < allCards.length; i++) {
           if (localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {

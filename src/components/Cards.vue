@@ -3,7 +3,7 @@
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <BitcoinAnimation /> -->
     <!-- <h1>Bitcoin Misconceptions</h1> -->
-    <h1 class="pt-5">{{this.$store.state.gameName}} Cards</h1>
+    <h1 class="pt-5">{{this.$store.state.gameName}} Misconceptions</h1>
     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
         <li class="nav-item "><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a></li>
         <li class="nav-item" v-for="category in $store.state.categories" :key="category.name"><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name">{{ category.name }} ({{ category.numberOfItems }})</a></li>
@@ -78,7 +78,6 @@ export default {
         addVisitedToCards() {
             setTimeout(function () {
                 var allCards = document.querySelectorAll(".grid__item");
-                console.log('allCards: ', allCards);
                 // loop all cards and add .visited if in localStorage visited
                 for (let i = 0; i < allCards.length; i++) {
                     if (localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
@@ -132,6 +131,32 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
+
+// https://css-tricks.com/how-do-you-do-max-font-size-in-css/
+h1 {
+  font-size: 30px;
+}
+@media screen and (min-width: 320px) {
+  h1 {
+    font-size: calc(30px + 6 * ((100vw - 320px) / 680));
+  }
+}
+@media screen and (min-width: 1000px) {
+  h1 {
+    font-size: 50px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 .nav-link {
     cursor: pointer;
     font-variant: small-caps;

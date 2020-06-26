@@ -553,7 +553,7 @@ export default {
                     request.send();
                 }
                 // getScreenMessage();
-                setInterval(getScreenMessage, 4000);
+                // setInterval(getScreenMessage, 4000);
 
             }())
 
