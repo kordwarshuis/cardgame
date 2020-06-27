@@ -4,6 +4,7 @@
     <!-- <BitcoinAnimation /> -->
     <!-- <h1>Bitcoin Misconceptions</h1> -->
     <h1 class="pt-5">{{this.$store.state.gameName}} Misconceptions</h1>
+    <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
         <li class="nav-item "><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a></li>
         <li class="nav-item" v-for="category in $store.state.categories" :key="category.name"><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name">{{ category.name }} ({{ category.numberOfItems }})</a></li>
@@ -76,11 +77,12 @@ export default {
     },
     methods: {
         addVisitedToCards() {
+            //TODO: duplicate code, see addVisitedToCards()
             setTimeout(function () {
                 var allCards = document.querySelectorAll(".grid__item");
                 // loop all cards and add .visited if in localStorage visited
                 for (let i = 0; i < allCards.length; i++) {
-                    if (localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
+                    if (localStorage.getItem("visited") && localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
                         allCards[i].classList.add("visited");
                     }
                 }
@@ -118,7 +120,6 @@ export default {
             if (localStorage.getItem("soundOn") === "true") whoosh2.play();
 
             // add current card url to visited in localStorage
-            console.log('this.$store.state.currentCard["Unique URL"]: ', this.$store.state.currentCard["Unique URL"]);
             appendToLocalStorage("visited", this.$store.state.currentCard["Unique URL"]);
 
             this.addVisitedToCards();

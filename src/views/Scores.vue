@@ -42,7 +42,7 @@
                                 <tr class="border-bottom" v-for="item in userNamesCountedAndSorted" :key="item[0]">
                                     <td class="text-left pr-2">
                                         <!-- trick to get a numbering in the table -->
-                                        {{ userNamesCountedAndSorted.indexOf(item)+1}} 
+                                        {{ userNamesCountedAndSorted.indexOf(item)+1}}
                                     </td>
                                     <td class="text-left">
                                         <img class="mt-1 mr-2 mb-1" :src="item[2]" alt="" />
@@ -239,6 +239,10 @@ export default {
         //     return userNamesCountedAndSorted.slice(0, 5);
         // },
         userNamesCountedAndSorted2: function () {
+            var tweetersMostRecentWeek;
+            var tweetersMostRecentWeekMinusOne;
+            var tweetersMostRecentWeekMinusTwo;
+
             // we want to find the most recent weeks. So first we search for most recent year
             var mostRecentYear = Math.max.apply(Math, this.scores.map(function (o) {
                 return o.year;
@@ -266,10 +270,23 @@ export default {
                 }
             }
 
+            tweetersMostRecentWeek = this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek);
+            tweetersMostRecentWeekMinusOne = this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek - 1);
+            tweetersMostRecentWeekMinusTwo = this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek - 2);
+            
+            // this.$store.tweetersMostRecentWeek = tweetersMostRecentWeek;
+            // this.$store.tweetersMostRecentWeekMinusOne = tweetersMostRecentWeekMinusOne;
+            // this.$store.tweetersMostRecentWeekMinusTwo = tweetersMostRecentWeekMinusTwo;
+            // console.log('tweetersMostRecentWeek[0][0]: ', tweetersMostRecentWeek[0][0]);
+            // this.$store.state.topScorer = tweetersMostRecentWeek[0][0];
+            this.$store.commit("setTopScorer", tweetersMostRecentWeek[0][0]);
+
+
+
             return {
-                tweetersMostRecentWeek: this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek),
-                tweetersMostRecentWeekMinusOne: this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek - 1),
-                tweetersMostRecentWeekMinusTwo: this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek - 2),
+                tweetersMostRecentWeek: tweetersMostRecentWeek,
+                tweetersMostRecentWeekMinusOne: tweetersMostRecentWeekMinusOne,
+                tweetersMostRecentWeekMinusTwo: tweetersMostRecentWeekMinusTwo,
                 mostRecentWeek: mostRecentWeek
             };
         }
@@ -392,9 +409,8 @@ export default {
                     if (userNamesCountedAndSorted[i][0] === this.scores[j].user_name) {
                         userNamesCountedAndSorted[i][2] = this.scores[j].tweet_avatar
 
-                        
                         if (this.scores[j].retweets !== "") {
-                            userNamesCountedAndSorted[i][3] = userNamesCountedAndSorted[i][3] + parseInt(this.scores[j].retweets,10);
+                            userNamesCountedAndSorted[i][3] = userNamesCountedAndSorted[i][3] + parseInt(this.scores[j].retweets, 10);
                         }
                     }
 

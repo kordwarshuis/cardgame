@@ -22,7 +22,8 @@ export default new Vuex.Store({
     numberofCards: 0, // not in use yet
     allCardsInChosenCategory: [],
     allPickedCards: [],
-    dataFetched: false
+    dataFetched: false,
+    topScorer: ""
   },
   getters: {
     getCard: (state) => (id) => {
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setTopScorer(state, topScorer) {
+      state.topScorer = topScorer;
+    },
     setCardImage(state) {
       this.state.cardImage = cardImage;
     },
@@ -119,7 +123,7 @@ export default new Vuex.Store({
         var allCards = document.querySelectorAll(".grid__item");
         // loop all cards and add .visited if in localStorage visited
         for (let i = 0; i < allCards.length; i++) {
-          if (localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
+          if (localStorage.getItem("visited") && localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
             allCards[i].classList.add("visited");
           }
         }
