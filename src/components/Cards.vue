@@ -31,7 +31,8 @@
         <!-- <transition name="fade"> -->
 
         <a v-for="item in $store.state.allCardsInChosenCategory" data-shorttext="" :data-id="item['id']" :key="item.prejudice" class="grid__item" href="#" @click="showCardIntro">
-            <div class="box">
+            <!-- mouseenter and out does does not work on the enclosing "a" -->
+            <div class="box" @mouseenter="startElectricitySound">
                 <div class="box__shadow"></div>
                 <img class="box__img" :src="require('@/assets/img/icons/flat/' + $store.state.cardImage)" alt="" />
                 <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
@@ -88,6 +89,19 @@ export default {
                 }
             }, 1000);
         },
+        startElectricitySound(e) {
+            if (e.target.closest("a").classList.contains("visited")) {
+                if (localStorage.getItem("soundOn") === "true") {
+                    electricity.play();
+                    setTimeout(function() {electricity.stop()}, 1000);
+                }
+            }
+        },
+        // stopElectricitySound(e) {
+        //     if (e.target.closest("a").classList.contains("visited")) {
+        //         if (localStorage.getItem("soundOn") === "true") electricity.stop();
+        //     }
+        // },
         showCardIntro(event) {
             // event.target.closest("a").classList.add("visited");
 
@@ -132,31 +146,22 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-
 // https://css-tricks.com/how-do-you-do-max-font-size-in-css/
 h1 {
-  font-size: 30px;
+    font-size: 30px;
 }
+
 @media screen and (min-width: 320px) {
-  h1 {
-    font-size: calc(30px + 6 * ((100vw - 320px) / 680));
-  }
+    h1 {
+        font-size: calc(30px + 6 * ((100vw - 320px) / 680));
+    }
 }
+
 @media screen and (min-width: 1000px) {
-  h1 {
-    font-size: 50px;
-  }
+    h1 {
+        font-size: 50px;
+    }
 }
-
-
-
-
-
-
-
-
-
-
 
 .nav-link {
     cursor: pointer;

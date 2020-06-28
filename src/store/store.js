@@ -53,8 +53,7 @@ export default new Vuex.Store({
 
       //TODO: to stop video playing and avoind that scroll position is not top. Doesnt work
       // document.querySelector(".modal-content .videoWrapper").innerHTML = "";
-      youtubePlayer.stopVideo();
-
+      if (youtubePlayer.stopVideo) youtubePlayer.stopVideo();
     },
     changeCard(state, newCard) {
       state.currentCard = newCard;

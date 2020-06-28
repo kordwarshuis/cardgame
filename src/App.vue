@@ -116,6 +116,11 @@ export default {
                 volume: 0.1,
                 src: [require("./assets/audio/110390__soundscalpel-com__cartoon-siren-whistle-001.mp4")]
             });
+            electricity = new Howl({
+                volume: 0.4,
+                loop: true,
+                src: [require("./assets/audio/341609__pureaudioninja__electricity-1.mp4")]
+            });
             // pur = new Howl({
             //     volume: 1,
             //     // loop: true,
