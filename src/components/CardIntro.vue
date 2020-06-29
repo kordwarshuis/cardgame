@@ -7,7 +7,8 @@
                 <div class="card-body title-on-card center">
                     <h3 class="pt-5">Misconception:</h3>
                     <img class="title-on-card-background-image" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
-                    <h2 class="title-on-card-text animated infinite"><span class="quote">“</span>{{ this.$store.state.currentCard.Prejudice }}<span class="quote">”</span></h2>
+                    <!-- <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ this.$store.state.currentCard.Prejudice }}</span><span class="quote">”</span></h2> -->
+                    <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ this.textCopy }}</span><span class="quote">”</span></h2>
                 </div>
             </div>
         </div>
@@ -38,8 +39,16 @@ import RelatedCards from "@/components/RelatedCards.vue";
 // import Quiz from "@/components/Quiz.vue";
 export default {
     name: "CardIntro",
+    data() {
+        return {
+            // textCopy: this.$store.state.currentCard.Prejudice
+            textCopy: ""
+        }
+    },
     mounted: function () {
         this.handleCardIntro();
+        this.setTextCopy();
+
     },
     components: {
         SocialMedia,
@@ -47,6 +56,39 @@ export default {
         // Quiz
     },
     methods: {
+        setTextCopy() {
+            console.log('this.$store.state.currentCard.Prejudice: ', this.$store.state.currentCard.Prejudice);
+            this.textCopy = this.$store.state.currentCard.Prejudice;
+            // this.textCopy = "kees";
+        },
+        typeWriter(selector, interval) {
+            // Getting elements in the DOM
+            var text = document.querySelector(selector),
+                textCopy = "",
+                i = 0,
+                clear,
+                beginPauze = 3000;
+
+            // textCopy = text.innerHTML;
+            // textCopy = this.$store.state.currentCard.Prejudice;
+
+console.log('this.textCopy: ', this.textCopy);
+
+            function typeText() {
+                text.innerHTML += this.textCopy[i];
+                i++;
+                if (i === this.textCopy.length) {
+                    clearInterval(clear);
+                }
+            }
+
+            text.innerHTML = "";
+
+            // de beginpauze voor de eerste typed element inlassen
+            setTimeout(function () {
+                clear = setInterval(typeText, interval);
+            }, beginPauze);
+        },
         handleCardIntro() {
             var that = this;
             var container = document.querySelector('div.container'),
@@ -102,6 +144,11 @@ export default {
             // triggerBttn.addEventListener('click', toggleOverlayFullscreen);
             closeBttn.addEventListener('click', toggleOverlayFullscreen);
             closeBttn2.addEventListener('click', toggleOverlayFullscreen);
+
+            // setTimeout(function () {
+            //     that.typeWriter(".title-on-card-text .text", 200);
+            // }, 1000);
+            // that.typeWriter(".title-on-card-text .text",600);
         },
         showCardFull(event) {
             if (localStorage.getItem("soundOn") === "true") whoosh2.play();
