@@ -26,8 +26,20 @@ Vue.use(Howl, Howler);
 //   router
 // });
 
+// Vue.use(VueGtag, {
+//   config: { id: "G-N8VG5BGPSH" }
+// }, router);
+
 Vue.use(VueGtag, {
-  config: { id: "G-N8VG5BGPSH" }
+  config: { id: "G-N8VG5BGPSH" },
+  // pageTrackerScreenviewEnabled: true,
+  // appName: "Card game",
+  pageTrackerTemplate(to) {
+    return {
+      page_title: window.location.pathname
+      // page_path: to.path
+    }
+  }
 }, router);
 
 new Vue({
