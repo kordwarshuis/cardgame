@@ -36,7 +36,9 @@
                 <div class="box__shadow"></div>
                 <img class="box__img" :src="require('@/assets/img/icons/flat/' + $store.state.cardImage)" alt="" />
                 <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
-                <h4 class="box__text"><span class="box__text-inner"><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></span></h4>
+                <h4 class="box__text"><span class="box__text-inner"><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></span><span class="video-indicator" v-if="item['Youtube Video Id'] !== ''"><img  :src="require('@/assets/img/icons/flat/film.svg')" alt="contains video" /></span></h4>
+                
+                
             </div>
         </a>
 
@@ -103,6 +105,8 @@ export default {
         //     }
         // },
         showCardIntro(event) {
+
+            // console.log('this.$store.state.currentCard["Youtube Video Id"]: ', this.$store.state.currentCard["Youtube Video Id"]);
             // event.target.closest("a").classList.add("visited");
 
             // https://stackoverflow.com/a/7680123
@@ -173,5 +177,17 @@ h1 {
 .nav-link:hover {
     color: $linksText;
     background-color: $backgroundBCB;
+}
+
+.video-indicator {
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    font-size: 2em;
+    transform: rotate(-25deg);
+    // text-decoration: none !important;
+}
+.video-indicator img {
+    width: 1em;
 }
 </style>

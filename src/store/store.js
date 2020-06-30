@@ -92,7 +92,8 @@ export default new Vuex.Store({
           "id": b["Unique URL"],
           "prejudice": b.Prejudice,
           "category": b.Cat,
-          "prejudiceElaborate": b["Prejudice Elaborate"]
+          "prejudiceElaborate": b["Prejudice Elaborate"],
+          "Youtube Video Id":  b["Youtube Video Id"]
           // ,
           // "numberOfItems": 
         });

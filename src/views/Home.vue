@@ -24,7 +24,6 @@ export default {
     name: "Home",
     data() {
         return {
-            allCardsInChosenCategory: [] // TODO: remove?
         }
     },
     components: {

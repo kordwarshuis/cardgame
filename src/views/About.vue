@@ -65,6 +65,9 @@
                                 <li>
                                     Opening photo: <a href="https://unsplash.com/@wildbook" target="_blank" rel="noopener">Dmitry Demidko on Unsplash</a>
                                 </li>
+                                <li>
+                                    Film icon: <a href="https://www.flaticon.com/authors/srip" title="srip">srip</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+                                </li>
                             </ul>
 
                         </div>
