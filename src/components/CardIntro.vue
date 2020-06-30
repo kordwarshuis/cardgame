@@ -8,7 +8,8 @@
                     <h3 class="pt-5">Misconception:</h3>
                     <img class="title-on-card-background-image" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
                     <!-- <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ this.$store.state.currentCard.Prejudice }}</span><span class="quote">”</span></h2> -->
-                    <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ this.textCopy }}</span><span class="quote">”</span></h2>
+                    
+                    <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ getPrejudice }}</span><span class="quote">”</span></h2>
                 </div>
             </div>
         </div>
@@ -41,14 +42,20 @@ export default {
     name: "CardIntro",
     data() {
         return {
-            // textCopy: this.$store.state.currentCard.Prejudice
-            textCopy: ""
+        }
+    },
+    computed: {
+        getPrejudice: function () {
+            return this.$store.state.currentCard.Prejudice;
+        }
+    },
+    watch: {
+        getPrejudice(newValue, oldValue) {
+            this.typeWriter(".title-on-card-text .text", newValue, 20);
         }
     },
     mounted: function () {
         this.handleCardIntro();
-        this.setTextCopy();
-
     },
     components: {
         SocialMedia,
@@ -56,38 +63,40 @@ export default {
         // Quiz
     },
     methods: {
-        setTextCopy() {
-            console.log('this.$store.state.currentCard.Prejudice: ', this.$store.state.currentCard.Prejudice);
-            this.textCopy = this.$store.state.currentCard.Prejudice;
-            // this.textCopy = "kees";
-        },
-        typeWriter(selector, interval) {
-            // Getting elements in the DOM
+        typeWriter(selector, prejudice, interval) {
+            var audioPlaying = false;
             var text = document.querySelector(selector),
-                textCopy = "",
+                textCopy = prejudice,
                 i = 0,
                 clear,
-                beginPauze = 3000;
+                pauseBeforeStart = 600;
 
-            // textCopy = text.innerHTML;
-            // textCopy = this.$store.state.currentCard.Prejudice;
-
-console.log('this.textCopy: ', this.textCopy);
+            text.innerHTML = "";
 
             function typeText() {
-                text.innerHTML += this.textCopy[i];
+                if (audioPlaying === false) {
+                    if (localStorage.getItem("soundOn") === "true") typewriter.play();
+                    audioPlaying = true;
+                }
+                text.innerHTML += textCopy[i];
                 i++;
-                if (i === this.textCopy.length) {
+                if (i === textCopy.length) {
+                    if (localStorage.getItem("soundOn") === "true") typewriter.stop();
                     clearInterval(clear);
+                    setTimeout(function () {
+                        text.style.display = "none";
+                    }, 10);
+                    setTimeout(function () {
+                        text.style.display = "inline";
+                    }, 20);
                 }
             }
 
             text.innerHTML = "";
 
-            // de beginpauze voor de eerste typed element inlassen
             setTimeout(function () {
                 clear = setInterval(typeText, interval);
-            }, beginPauze);
+            }, pauseBeforeStart);
         },
         handleCardIntro() {
             var that = this;

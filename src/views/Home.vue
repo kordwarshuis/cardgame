@@ -33,7 +33,7 @@ export default {
         CardFull
     },
     watch: { //https://www.reddit.com/r/vuejs/comments/58g6u7/how_can_i_detect_the_browser_back_button_with_vue/
-        '$route'(to, from) {
+        '$route'(to, from) {// https://flaviocopes.com/vue-watchers/
             // if there is a card in the url -> card should be shown:
             if (to.params.card !== undefined) {
                 // deal with CSS to open and close
@@ -63,7 +63,7 @@ export default {
     // https://stackoverflow.com/a/44347195
     methods: {
         fetchData() {
-            // pnly fetch data 
+            // only fetch data
             if (this.$store.state.dataFetched === false) {
                 // return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
                 return axios.get(cardsContent.cardsContent)

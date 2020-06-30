@@ -117,9 +117,15 @@ export default {
                 src: [require("./assets/audio/110390__soundscalpel-com__cartoon-siren-whistle-001.mp4")]
             });
             electricity = new Howl({
-                volume: 0.4,
+                volume: 0.1,
                 loop: true,
                 src: [require("./assets/audio/341609__pureaudioninja__electricity-1.mp4")]
+            });
+            typewriter = new Howl({
+                volume: 0.6,
+                loop: true,
+                // src: [require("./assets/audio/love.mp4")]
+                src: [require("./assets/audio/331656__trollarch2__keyboard-typing.mp4")]
             });
             // pur = new Howl({
             //     volume: 1,
@@ -688,19 +694,20 @@ input:checked+.slider:before {
 // }
 
 .visited .box__text:after {
+    // lamp
     content: "💡";
     color: $boxTextVisitedCheckmark;
     position: absolute;
-    top: -0.4em;
-    left: -0.5em;
+    top: -0.9em;
+    left: -1em;
     margin: 0;
     padding: 0;
     line-height: 0.7;
-    font-size: 4em;
+    font-size: 2em;
     /* transform: rotate(323deg); */
 }
 .visited .box__text:hover:after {
-    text-shadow: 0 0 37px rgb(247, 233, 108);
+    text-shadow: 0 0 17px rgb(247, 140, 108);
 }
 
 .further-reading {

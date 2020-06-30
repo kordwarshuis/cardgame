@@ -110,7 +110,8 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard1', {
       if (localStorage.getItem("soundOn") === "true") go.play();
       document.querySelector("body").classList.add("person1");
       setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 1500);
-      return store.state.currentCard["short direct answer"] + " > " + window.location.href;
+      // return "“" + store.state.currentCard["Prejudice"] + "”\n" + store.state.currentCard["short direct answer"] + " 👉 " + window.location.href;
+      return "“" + store.state.currentCard["Prejudice"] + "”\n" + " 👉 " + window.location.href;
   }
 });
 var clipboard1 = new ClipboardJS('.copyURLtoClipboard2', {
@@ -119,7 +120,8 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard2', {
       if (localStorage.getItem("soundOn") === "true") go.play();
       document.querySelector("body").classList.add("person1");
       setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 1500);
-      return store.state.currentCard["short direct answer"] + " > " + window.location.href;
+      // return "“" + store.state.currentCard["Prejudice"] + "”\n" + store.state.currentCard["short direct answer"] + " 👉 " + window.location.href;
+      return "“" + store.state.currentCard["Prejudice"] + "”\n" + " 👉 " + window.location.href;
   }
 });
 var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
@@ -128,7 +130,8 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
       if (localStorage.getItem("soundOn") === "true") go.play();
       document.querySelector("body").classList.add("person1");
       setTimeout(function(){document.querySelector("body").classList.remove("person1");}, 1500);
-      return store.state.currentCard["short direct answer"] + " > " + window.location.href;
+      // return "“" + store.state.currentCard["Prejudice"] + "”\n" + store.state.currentCard["short direct answer"] + " 👉 " + window.location.href;
+      return "“" + store.state.currentCard["Prejudice"] + "”\n" + " 👉 " + window.location.href;
   }
 });
 
