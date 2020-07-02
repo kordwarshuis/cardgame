@@ -233,9 +233,13 @@ export default {
 .modal-content h3.longAnswer {
     background-image: url(../assets/img/animated-gif/mens38.gif);
 }
+.modal-content h3.quiz {
+    background-image: url(../assets/img/icons/flat/quiz.svg);
+    text-align: left;
+}
 
 .modal-content h3.video {
-    background-image: url(../assets/img/logo/blockchainbird-logo.png);
+    background-image: url(../assets/img/icons/flat/film.svg);
     text-align: left;
 }
 
