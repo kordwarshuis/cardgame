@@ -114,7 +114,7 @@ export default {
             function appendToLocalStorage(name, data) {
                 var old = localStorage.getItem(name);
 
-                // create is not existing
+                // create if not existing
                 if (old === null) old = "";
 
                 // only add if it is not already in the string

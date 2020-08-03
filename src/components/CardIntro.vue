@@ -372,7 +372,7 @@ a.md-trigger {
 
     // see also media query (two columns versus one column, determining how many vw it should be)
     min-height: 80vw;
-
+// border: 3px solid red;
 }
 
 .title-on-card img {
@@ -386,12 +386,13 @@ a.md-trigger {
     margin: 6% 1% 0% 22% !important;
     // padding: 3% 5% 0 16%;
 
-    // should be twice the value of the one inside the media query since this is a one column lay out and…
+    // should be twice the value of the one inside the media query since this is a one column lay out and…>
     font-size: 8vw;
 
     margin: 0;
     padding: 0;
     text-align: left;
+    min-height: 40%;
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -401,7 +402,7 @@ a.md-trigger {
     }
 
     .title-on-card h2 {
-        // … this is a two column lay out
+        // >… this is a two column lay out
         font-size: 4vw;
         margin: 0;
         padding: 0;
@@ -458,7 +459,7 @@ a.md-trigger {
     .title-on-card h2 {
         padding: 1em;
         margin: 0 !important;
-        font-size: 2.5rem;
+        font-size: 2rem;
 
     }
 

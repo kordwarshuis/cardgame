@@ -36,7 +36,7 @@
                                 <li><a href="https://www.youtube.com/user/aantonop/featured" target="_blank" rel="noopener">Andreas
                                         Antonopoulos</a>, <a href="https://twitter.com/aantonop" target="_blank" rel="noopener">@aantonop</a></li>
                                 <li><a href="https://www.unchained-capital.com/blog" target="_blank" rel="noopener">Parker Lewis</a>, <a href="https://twitter.com/parkeralewis" target="_blank" rel="noopener">@parkeralewis</a></li>
-                                <li>Christopher Allan, <a href="https://twitter.com/ChristopherA" target="_blank" rel="noopener">@ChristopherA</a></li>
+                                <li>Christopher Allen, <a href="https://twitter.com/ChristopherA" target="_blank" rel="noopener">@ChristopherA</a></li>
                             </ul>
                         </div>
                     </div>

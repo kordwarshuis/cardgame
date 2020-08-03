@@ -49,11 +49,6 @@ new Vue({
 }).$mount("#app");
 
 
-
-// console.log(window.location.href);
-
-
-
 // redirects
 if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Architecture&q=preview-7-transactions-per-second&title=Bitcoin%20has%20only%20seven%20transactions%20per%20second") {window.location.replace("https://blockchainbird.com/t/btc/card/7-transactions-per-second");}
 else if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Beliefs&q=preview-convince-me&title=You%20cannot%20convince%20me%20of%20the%20usefulness%20of%20bitcoin") {window.location.replace("https://blockchainbird.com/t/btc/card/convince-me");}
