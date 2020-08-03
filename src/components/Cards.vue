@@ -12,21 +12,6 @@
     <!-- <h2>{{ subtext }}</h2> -->
     <Search />
 
-    <!-- <div class="m-1 mt-5">
-        <h2>Cards of the Day</h2>
-        <div class="row mt-5 p-0 ">
-            <div v-for="item in $store.state.allPickedCards" data-shorttext="" :key="item.pickedPrejudice" class="col-md-4 mb-5">
-                <div class="p-3 card">
-                    <a :data-id="item['pickedId']" class="" href="#" @click="showCardIntro">
-                        <img style="float: left; width: 25%; margin-right: 1em;margin-bottom: 1em;" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
-                        <h3 class="">{{ item.pickedCategory }}</h3>
-                        <h4 class="">{{ item.pickedPrejudice }}</h4>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="grid">
         <!-- <transition name="fade"> -->
 

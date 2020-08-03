@@ -6,7 +6,7 @@
             <div class="card h-100 bg-transparent">
                 <div class="card-body title-on-card center">
                     <h3 class="pt-5">Misconception:</h3>
-                    <img class="title-on-card-background-image" src="@/assets/img/trivial-pursuit/TrivialPursuit2.png" alt="">
+                    <img class="title-on-card-background-image" src="@/assets/img/dummy.png" alt="">
                     <!-- <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ this.$store.state.currentCard.Prejudice }}</span><span class="quote">”</span></h2> -->
                     
                     <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ getPrejudice }}</span><span class="quote">”</span></h2>
@@ -410,7 +410,6 @@ a.md-trigger {
 }
 
 .closeCardIntro {
-    // background: transparent url(../assets/img/trivial-pursuit/TrivialPursuit2-stack.png) no-repeat center;
     background: transparent url(../assets/img/icons/flat/identity.svg) no-repeat center;
     background-size: contain;
     // padding: 3em 1.2em 3em 2em;

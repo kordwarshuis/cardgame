@@ -766,15 +766,6 @@ button,
     cursor: pointer;
 }
 
-// a.overlay__close:not(.overlay__close-cross) {
-//     background: transparent url(./assets/img/trivial-pursuit/TrivialPursuit2-stack.png) no-repeat center;
-//     background-size: contain;
-//     padding: 3em 1.2em 3em 2em;
-//     z-index: auto;
-//     transition: transform 0.3s;
-//         border: 10px solid #333;
-// }
-
 a.overlay__close:not(.overlay__close-cross):hover,
 .copyURLtoClipboard:hover {
     transform: rotate(360deg);
@@ -782,12 +773,10 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .copyURLtoClipboard:hover {
-    // background: transparent url(./assets/img/trivial-pursuit/TrivialPursuit-copy-link.png) no-repeat center;
     background-size: contain;
 }
 
 .copyURLtoClipboard {
-    // background: transparent url(./assets/img/trivial-pursuit/TrivialPursuit-copy-link.png) no-repeat center;
     background: transparent url(./assets/img/icons/flat/sheet.svg) no-repeat center;
     background-size: contain;
     // padding: 3em 1.2em 3em 2em;
