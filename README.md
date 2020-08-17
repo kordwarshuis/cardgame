@@ -19,7 +19,35 @@ All text is licensed CC-BY, and all code is licensed under the MIT License.
 
 Contributors: Kor Dwarshuis <@kordwarshuis>, Henk van Cann <@henkvancann>
 
+##General instructions
 
+* Copy .env-example to .env
+* Run `npm install` from commandline
+* Run `npm run serve` to start a server
+
+More info on https://vuejs.org
+
+
+##Instructions for pushing to live:
+
+The repository is a general repository from which you can create a BTC (Bitcoin) version and a BCB (Blockchain) version.
+
+Before pushing to live server three files have to be edited in order to make it the BTC or the BCB version:
+
+
+* Filename: /vue.config.js
+* Filename: /public/.htaccess
+* Filename: /.env
+
+
+###Filename: /vue.config.js
+Uncomment the relevant code in /vue.config.js
+
+###Filename: /public/.htaccess
+Uncomment the relevant code in /public/.htaccess
+
+###Filename: /.env
+Uncomment the relevant code in /.env
 
 ## Technical
 
