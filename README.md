@@ -22,8 +22,9 @@ Contributors: Kor Dwarshuis <@kordwarshuis>, Henk van Cann <@henkvancann>
 ## General instructions
 
 * Copy .env-example to .env
-* Run `npm install` from commandline
-* Run `npm run serve` to start a server
+* Run `npm install` from commandline to install dependencies
+* Run `npm run serve` to start a webserver
+* Run `npm run build` to create a /dist directory (live version)
 
 More info on https://vuejs.org
 
@@ -42,6 +43,8 @@ Before pushing to live server three files have to be edited in order to make it 
 
 ### Filename: /vue.config.js
 Uncomment the relevant code in /vue.config.js
+
+In vue.config.js you can define the subdirectory where you finally want to place the app.
 
 ### Filename: /public/.htaccess
 Uncomment the relevant code in /public/.htaccess
