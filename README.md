@@ -48,6 +48,7 @@ Uncomment the relevant code in /public/.htaccess
 
 ### Filename: /.env
 Uncomment the relevant code in /.env
+Please note: you have to restart local webserver to see changes in .env in effect.
 
 ## Technical
 
