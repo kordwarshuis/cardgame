@@ -1,0 +1,78 @@
+/***********************/
+/* BEGIN CONFIGURATION */
+/***********************/
+
+$zIndex: 1;
+$hamburgerPadding: 6px;
+$hamburgerWidth: 40px;
+$hamburgerHeight: 40px;
+$hamburgerLinesHeight: 2px;
+$hamburgerPositionTop: 10px;
+$hamburgerPositionLeft: 10px;
+$hamburgerLinesColor: #eee;
+$hamburgerBackgroundColor: rgba(143, 153, 245, 0.226);
+// $hamburgerBoxShadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+$hamburgerBoxShadow: 0px 0px 1px 0px #000000;
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.slide-menu-wrapper {
+  background: #bccdf0;
+}
+
+.content {
+  padding: 1.5em 0.5em 2em;
+  text-align: center;
+  max-width: 40em;
+  margin: 0 auto;
+  // border: 5px solid red;
+  // makes slide in menu vertical scrollable:
+}
+
+ul {
+  font-size: 0.9em;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  border: 3px solid rgba(231, 57, 57, 0.329);
+  display: inline-block;
+  margin: 0.2em;
+}
+
+li a {
+  padding: 0.5em;
+  color: #eee;
+}
+
+// li a:visited {
+//     border: 3px solid green !important;
+//     // color: red;
+// }
+
+/*********************/
+/* Added styles */
+/*********************/
+
+// menu items inside the slide in menu
+#nav {
+  a {
+      font-weight: bold;
+      // color: $generalLinksText;
+      padding: 1em;
+      display: inline-block;
+  }
+
+  a:hover {
+      background: rgb(165, 219, 240);
+  }
+}
+
+/*********************/
+/* END CONFIGURATION */
+/*********************/
