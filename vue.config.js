@@ -1,10 +1,18 @@
 module.exports = {
 
   // https://cli.vuejs.org/config/#publicpath
-  // publicPath: process.env.NODE_ENV === 'production' ? '/vue-cardgame/version2/' : '/',
-  
+
+  //=============
+  // BTC version
   // publicPath: process.env.NODE_ENV === 'production' ? '/t/btc/' : '/',
+  //=============
+
+  //=============
+  // BCB version
   publicPath: process.env.NODE_ENV === 'production' ? '/t/bcb/' : '/',
+  //=============
+
+
   
   lintOnSave: false,
   css: {

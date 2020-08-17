@@ -1,29 +1,29 @@
-# official vue documentation
-# <IfModule mod_rewrite.c>
-#   RewriteEngine On
-#   # RewriteBase /
-#   RewriteBase /vue-cardgame/
-#   RewriteRule ^index\.html$ - [L]
-#   RewriteCond %{REQUEST_FILENAME} !-f
-#   RewriteCond %{REQUEST_FILENAME} !-d
-#   RewriteRule . /index.html [L]
-# </IfModule>
-
-
-
-
 # https://stackoverflow.com/a/49661967
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /
-    # RewriteBase /t/btc/
-    # RewriteBase /t/bcb/
 
+    ####################
+    # Local version:
+    RewriteBase /
+    ####################
+
+    ####################
+    # BTC version:
+    RewriteBase /t/btc/
+    ####################
+
+    ####################
+    # BCB version:
+    # RewriteBase /t/bcb/
+    ####################
+    
+    
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule (.*) index.html [QSA,L]
 </IfModule>
 
 
+# example redirects:
 # Redirect 301 /publish https://blockchainbird.com/vue-cardgame/php/writeCSV.php
 # Redirect 301 /pub/ https://dwarshuis.com
