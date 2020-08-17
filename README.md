@@ -19,7 +19,7 @@ All text is licensed CC-BY, and all code is licensed under the MIT License.
 
 Contributors: Kor Dwarshuis <@kordwarshuis>, Henk van Cann <@henkvancann>
 
-##General instructions
+## General instructions
 
 * Copy .env-example to .env
 * Run `npm install` from commandline
@@ -28,7 +28,7 @@ Contributors: Kor Dwarshuis <@kordwarshuis>, Henk van Cann <@henkvancann>
 More info on https://vuejs.org
 
 
-##Instructions for pushing to live:
+## Instructions for pushing to live:
 
 The repository is a general repository from which you can create a BTC (Bitcoin) version and a BCB (Blockchain) version.
 
@@ -40,13 +40,13 @@ Before pushing to live server three files have to be edited in order to make it 
 * Filename: /.env
 
 
-###Filename: /vue.config.js
+### Filename: /vue.config.js
 Uncomment the relevant code in /vue.config.js
 
-###Filename: /public/.htaccess
+### Filename: /public/.htaccess
 Uncomment the relevant code in /public/.htaccess
 
-###Filename: /.env
+### Filename: /.env
 Uncomment the relevant code in /.env
 
 ## Technical
