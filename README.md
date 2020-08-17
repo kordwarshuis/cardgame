@@ -2,6 +2,12 @@
 
 This is a card game that aims to fight Bitcoin misconceptions and Blockchain over-promising gibberish.
 
+This app contains:
+* Card game with misconceptions
+* Realtime Twitter keyword monitor
+
+The monitor can be used to find misconceptions realtime.
+
 ## Public explanation about the Card game Prejudice: 
 https://github.com/blockchainbird/cards_prejudice/wiki
 
@@ -17,21 +23,18 @@ Contributors: Kor Dwarshuis <@kordwarshuis>, Henk van Cann <@henkvancann>
 
 ## Technical
 
-This project is built in old style JavaScript. The starting point was https://tympanus.net/codrops/2018/05/23/grid-layout-with-motion-hover/
+This app is built in Vue.js. 
 
 Libraries also used:
+
 * Phirehose (https://github.com/fennb/phirehose)
 
+The content is managed via Google Sheets, and then pulled to a .csv file via PHP
+De content is pulled from the .csv file via D3.js:
 
+Google Sheets -> data.csv -> card game
 
-This project does NOT use:
-* Webpack or related technologies
-* BabelJS or related technologies
-* AngularJS, ReactJS or VueJS frameworks
-
-The content is managed via Google Sheets and the data is pulled via Tabletop.js (https://github.com/jsoma/tabletop) and via D3.js:
-
-Tabletop.js --> published to a .CSV file --> .CSV file is pulled in via D3.js API
+The Google Sheets step is not necessary and can be removed from the working flow if desired.
 
 The .CSV step helps to speed the loading time, since Google Sheets tends to be slow at times.
 
