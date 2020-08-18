@@ -22,16 +22,16 @@ Vue.use(VueBootstrapToasts);
 Vue.use(Howl, Howler);
 
 // Vue.use(VueAnalytics, {
-//   id: "G-N8VG5BGPSH",
+//   id: "+ process.env.VUE_APP_GOOGLE_ANALYTICS_ID +",
 //   router
 // });
 
 // Vue.use(VueGtag, {
-//   config: { id: "G-N8VG5BGPSH" }
+//   config: { id: "+ process.env.VUE_APP_GOOGLE_ANALYTICS_ID +" }
 // }, router);
 
 Vue.use(VueGtag, {
-  config: { id: "G-N8VG5BGPSH" },
+  config: { id: "+ process.env.VUE_APP_GOOGLE_ANALYTICS_ID +" },
   // pageTrackerScreenviewEnabled: true,
   // appName: "Card game",
   pageTrackerTemplate(to) {
