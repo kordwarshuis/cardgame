@@ -218,7 +218,6 @@
 <script>
 import moment from "moment";
 import axios from "axios";
-import scoresJSON from "../../paths.config";
 // import DatePickers from "./components/JavascriptComponents/DatePickers";
 
 export default {
@@ -306,7 +305,7 @@ export default {
         //         " Dit is weeknr: " + moment(datePicked, "YYYY-MM-DD").week());
         // },
         fetchScores() {
-            return axios.get(scoresJSON.scoresJSON)
+            return axios.get(process.env.VUE_APP_CARDGAME_SCORES)
                 .then(response => {
                     this.scores = response.data.scores;
                     // this.calculateHighestTweet();
