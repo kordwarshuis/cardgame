@@ -43,12 +43,12 @@ Before pushing to live server **four** files have to be edited in order to make 
 
 
 ### 1: Filename: `/vue.config.js`
-Uncomment the relevant code in /vue.config.js
+Uncomment the relevant code in `/vue.config.js`
 
 In vue.config.js you can define the subdirectory where you finally want to place the app.
 
 ### 2: Filename: `/public/.htaccess`
-Uncomment the relevant code in /public/.htaccess
+Uncomment the relevant code in `/public/.htaccess`
 
 ### 3: Filename: `/.env`
 Uncomment the relevant code in `/.env`
