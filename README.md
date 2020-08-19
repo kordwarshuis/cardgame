@@ -33,25 +33,30 @@ More info on https://vuejs.org
 
 The repository is a general repository from which you can create a BTC (Bitcoin) version and a BCB (Blockchain) version.
 
-Before pushing to live server three files have to be edited in order to make it the BTC or the BCB version:
+Before pushing to live server **four** files have to be edited in order to make it the BTC or the BCB version:
 
 
-* Filename: /vue.config.js
-* Filename: /public/.htaccess
-* Filename: /.env
+1. Filename: /vue.config.js
+1. Filename: /public/.htaccess
+1. Filename: /.env
+1. Filename: /live.sh
 
 
-### Filename: /vue.config.js
+### 1: Filename: /vue.config.js
 Uncomment the relevant code in /vue.config.js
 
 In vue.config.js you can define the subdirectory where you finally want to place the app.
 
-### Filename: /public/.htaccess
+### 2: Filename: /public/.htaccess
 Uncomment the relevant code in /public/.htaccess
 
-### Filename: /.env
+### 3: Filename: /.env
 Uncomment the relevant code in /.env
 Please note: you have to restart local webserver to see changes in .env in effect.
+
+### 4: Filename: /live.sh
+Uncomment the relevant code in /live.sh
+This script can be used to push the build to the live web server.
 
 ## Technical
 
@@ -69,7 +74,6 @@ Google Sheets -> data.csv -> card game
 The Google Sheets step is not necessary and can be removed from the working flow if desired.
 
 The .CSV step helps to speed the loading time, since Google Sheets tends to be slow at times.
-
 
 
 ## Start and stop phirehose queries
