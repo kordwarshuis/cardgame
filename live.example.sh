@@ -17,13 +17,13 @@ npm run build
 
 ####################
 # BTC version:
-rsync -vurt --delete dist/* xxxxx@xxxxx.com:/xxx/xxx/xxxxx/t/btc/
+rsync -vurt --delete dist/. xxxxx@xxxxx.com:/xxx/xxx/xxxxx/t/btc/
 ####################
 
 
 ####################
 # BCB version:
-# rsync -vurt --delete dist/* xxxxx@xxxxx.com:/xxx/xxx/xxxxx/t/bcb/
+# rsync -vurt --delete dist/. xxxxx@xxxxx.com:/xxx/xxx/xxxxx/t/bcb/
 ####################
 
 
