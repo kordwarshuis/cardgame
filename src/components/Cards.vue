@@ -3,7 +3,7 @@
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <BitcoinAnimation /> -->
     <!-- <h1>Bitcoin Misconceptions</h1> -->
-    <h1 class="pt-5">{{this.$store.state.gameName}} Misconceptions</h1>
+    <h1 class="pt-5">{{this.$store.state.numberofCards}} {{this.$store.state.gameName}} Misconceptions</h1>
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
         <li class="nav-item "><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a></li>

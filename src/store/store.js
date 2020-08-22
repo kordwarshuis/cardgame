@@ -19,7 +19,7 @@ export default new Vuex.Store({
     categories: [], // [{name: xxx, numberOfItems: xxx}]
     activeCategory: "All",
     currentCard: {},
-    numberofCards: 0, // not in use yet
+    numberofCards: 0,
     allCardsInChosenCategory: [],
     allPickedCards: [],
     dataFetched: false,

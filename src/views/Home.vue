@@ -96,6 +96,8 @@ export default {
                         responseDataTemp.length = 0;
                         // now we only have items that are in the given stack
 
+                        this.$store.state.numberofCards = responseData.length;
+
                         // cleaning
                         for (let i = 0; i < responseData.length; i++) {
                             for (var k in responseData[i]) {
