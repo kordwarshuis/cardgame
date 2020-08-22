@@ -4,12 +4,12 @@ module.exports = {
 
   //=============
   // BTC version
-  publicPath: process.env.NODE_ENV === 'production' ? '/t/btc/' : '/',
+  // publicPath: process.env.NODE_ENV === 'production' ? '/t/btc/' : '/',
   //=============
 
   //=============
   // BCB version
-  // publicPath: process.env.NODE_ENV === 'production' ? '/t/bcb/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/t/bcb/' : '/',
   //=============
 
 

@@ -9,12 +9,12 @@
 
     ####################
     # BTC version:
-    RewriteBase /t/btc/
+    # RewriteBase /t/btc/
     ####################
 
     ####################
     # BCB version:
-    # RewriteBase /t/bcb/
+    RewriteBase /t/bcb/
     ####################
     
     

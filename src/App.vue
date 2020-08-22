@@ -755,7 +755,7 @@ button,
     border: none;
     background: $_background1BCB;
     padding: 0.1em;
-        border: 1px solid transparent;
+    border: 1px solid transparent;
     border-radius: 50%;
     padding: 0.2em;
 

@@ -6,13 +6,14 @@ $zIndex: 1;
 $hamburgerPadding: 6px;
 $hamburgerWidth: 40px;
 $hamburgerHeight: 40px;
-$hamburgerLinesHeight: 2px;
+$hamburgerLinesHeight: 3px;
 $hamburgerPositionTop: 10px;
 $hamburgerPositionLeft: 10px;
-$hamburgerLinesColor: #eee;
-$hamburgerBackgroundColor: rgba(143, 153, 245, 0.226);
+$hamburgerLinesColor: #2A3166;
+$hamburgerBackgroundColor: #cae7df60;
 // $hamburgerBoxShadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
-$hamburgerBoxShadow: 0px 0px 1px 0px #000000;
+// $hamburgerBoxShadow: 0px 0px 1px 0px #000000;
+$hamburgerBoxShadow: none;
 
 *,
 *:before,
