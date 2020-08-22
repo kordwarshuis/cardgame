@@ -38,6 +38,7 @@
 import NewsTicker from "@/components/NewsTicker.vue";
 import Search from "@/components/Search.vue";
 import SoundToggle from "@/components/SoundToggle.vue";
+import ICountUp from 'vue-countup-v2';
 // import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
 
 export default {
@@ -45,7 +46,8 @@ export default {
     components: {
         Search,
         NewsTicker,
-        SoundToggle
+        SoundToggle,
+        ICountUp
         // ,BitcoinAnimation
         // VueFuse
     },
