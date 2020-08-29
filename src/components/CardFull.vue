@@ -159,7 +159,7 @@ export default {
                     offset: 40
                 },
                 axisY: {
-                    offset: 140,
+                    offset: 40,
                     onlyInteger: true,
                     // ticks: [1, 10, 20, 30],
                     // position: 'end',
