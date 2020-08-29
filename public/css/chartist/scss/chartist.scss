@@ -1,4 +1,4 @@
-@import "settings/_chartist-settings";
+@import "settings/_chartist-settings.scss";
 
 @mixin ct-responsive-svg-container($width: 100%, $ratio: $ct-container-ratio) {
   display: block;
