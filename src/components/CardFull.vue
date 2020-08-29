@@ -179,6 +179,7 @@ export default {
             data.series = [];
             data.series[0] = series;
             var diagram = new Chartist.Bar('.ct-chart', data, options);
+            
             // https://stackoverflow.com/a/48299759
             diagram.on('draw', function (data) {
                 if (data.type == 'bar') {
@@ -1128,4 +1129,17 @@ perspective effects (not including the modals and the overlay).
 .ct-label {
     color: #111;
 }
+
+.ct-series-a .ct-bar {
+    /* Colour of your bars */
+    // stroke: rgb(25, 0, 255);
+    /* The width of your bars */
+    //   stroke-width: 20px;
+    stroke-width: 6%;
+    /* Yes! Dashed bars! */
+    // stroke-dasharray: 20px;
+    /* Maybe you like round corners on your bars? */
+    //   stroke-linecap: round;
+}
+
 </style>
