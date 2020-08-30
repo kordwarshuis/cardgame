@@ -91,13 +91,13 @@ The queries are in phirehose-collect.php
 
 phirehose-collect.php
 phirehose-consume.php
-tweets.json : This is where the query result is written to.
+`tweets.json` : This is where the query result is written to.
 
-Notice: the php scripts run in directory /twitter-phirehose
+Notice: the php scripts run in directory `./twitter-phirehose`
 
 ### Procedure
 
-#### Log in on blockchainbird via SSH
+#### Log in on your destination via SSH
 
 $ ssh xxxd@xxx.com
 
