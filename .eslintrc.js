@@ -6,7 +6,8 @@ module.exports = {
   extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
   parserOptions: {
     ecmaVersion: 6,
-    parser: "babel-eslint"
+    parser: "babel-eslint",
+    esnext: true
   },
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",

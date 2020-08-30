@@ -89,9 +89,7 @@
 <script>
 import moment from "moment";
 import momentDurationFormat from "moment-duration-format";
-import realTimeTwitterJSON from "../../paths.config";
 import { language } from "@/assets/js/Language.js";
-import realtimeTweetsScreenMessage from "../../paths.config";
 
 // import bootstrap;
 export default {
@@ -435,7 +433,7 @@ export default {
                 function getJSON() {
                     // AJAX GET
                     var request = new XMLHttpRequest();
-                    request.open("GET", realTimeTwitterJSON.realTimeTwitterJSON, true);
+                    request.open("GET", process.env.VUE_APP_REALTIME_TWITTER_JSON, true);
                     request.onload = function () {
                         if (this.status >= 200 && this.status < 400) {
                             // Success!
@@ -515,7 +513,7 @@ export default {
                 function getScreenMessage() {
                     // AJAX GET
                     var request = new XMLHttpRequest();
-                    var path = realtimeTweetsScreenMessage.realtimeTweetsScreenMessage + "?t=" + new Date().getTime();
+                    var path = process.env.VUE_APP_REALTIME_TWEETS_SCREEN_MESSAGE + "?t=" + new Date().getTime();
                     request.open("GET", path, true);
                     request.responseType = "text";
 

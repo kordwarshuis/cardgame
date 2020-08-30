@@ -15,7 +15,6 @@ import * as d3 from "d3-dsv";
 import Cards from "@/components/Cards.vue";
 import CardIntro from "@/components/CardIntro.vue";
 import CardFull from "@/components/CardFull.vue";
-import cardsContent from "../../paths.config";
 import {
     cardGameName
 } from "../main";
@@ -23,8 +22,7 @@ import {
 export default {
     name: "Home",
     data() {
-        return {
-        }
+        return {}
     },
     components: {
         Cards,
@@ -32,7 +30,7 @@ export default {
         CardFull
     },
     watch: { //https://www.reddit.com/r/vuejs/comments/58g6u7/how_can_i_detect_the_browser_back_button_with_vue/
-        '$route'(to, from) {// https://flaviocopes.com/vue-watchers/
+        '$route'(to, from) { // https://flaviocopes.com/vue-watchers/
             // if there is a card in the url -> card should be shown:
             if (to.params.card !== undefined) {
                 // deal with CSS to open and close
@@ -65,21 +63,18 @@ export default {
             // only fetch data
             if (this.$store.state.dataFetched === false) {
                 // return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
-                return axios.get(cardsContent.cardsContent)
-                    // return axios.get("../public/php/cards-csv-cors.php")
-
+                return axios.get(process.env.VUE_APP_CARDS_CONTENT)
                     .then(response => {
                         var responseData = d3.csvParse(response.data);
                         var responseDataTemp = [];
                         // prepare data
-
 
                         // select the stack
                         // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to Bitcoin, if a "2" is in the string, it belong to Blockchain. "12" means it belongs to both.
                         // TODO: move this to main.js
                         var stack = 0;
                         if (cardGameName === "Bitcoin") {
-                            stack = 1;    
+                            stack = 1;
                         } else if (cardGameName === "Blockchain") {
                             stack = 2;
                         }
@@ -101,6 +96,7 @@ export default {
                         responseDataTemp.length = 0;
                         // now we only have items that are in the given stack
 
+                        this.$store.state.numberofCards = responseData.length;
 
                         // cleaning
                         for (let i = 0; i < responseData.length; i++) {
