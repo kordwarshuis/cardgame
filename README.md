@@ -2,6 +2,10 @@
 
 This is a card game that aims to fight Bitcoin misconceptions and Blockchain over-promising gibberish.
 
+Here are the live versions of both cardsets:
+* [Bitcoin misconceptions](https://blockchainbird.com/t/btc/)
+* [Blockchain bullshit buster](https://blockchainbird.com/t/bcb/)
+
 This app contains:
 * Card game with misconceptions
 * Realtime Twitter keyword monitor
