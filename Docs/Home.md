@@ -3,10 +3,10 @@ Welcome to the cards_prejudice wiki!
 We have two interacting topics: **Prejudice about bitcoin** and **Blockchain Misconceptions** (or: blockchain bullshit) :)
 
 # Bitcoin Prejudice
-![Opening screen Cardgame Prejudice BTC](https://i.ibb.co/CbjXDbr/Opening-screen-Cardgame-BTC.png)
+![Opening screen Cardgame Prejudice BTC](../Images/Opening-screen-Cardgame-BTC.png)
 
 # Blockchain `Misconceptions`
-![Opening screen Cardgame Prejudice BCB](https://i.ibb.co/1r4KZpM/Opening-screen-Cardgame-BCB.png)
+![Opening screen Cardgame Prejudice BCB](../Images/Opening-screen-Cardgame-BCB.png)
 
 
 Here are the live versions:
@@ -79,7 +79,7 @@ Mainly to use the network-effect. Our main goal is to neutralise the misconcepti
 
 ### What's the "game"
 Periodically we count the number of likes, retweets and responses you get on the use of a card link. You score points relatively to the number of followers you have. Weekly we create **a high score list** that grants the players eternal fame. 
-![Grand score list all times](https://i.ibb.co/VC59Jwb/grand-champion.jpg)
+![Grand score list all times](../Images/grand-champion.jpg)
 
 ### Game rules
 The current rules of the game are here:
