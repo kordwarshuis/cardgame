@@ -14,6 +14,15 @@
                     <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
                 </div>
 
+                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
+
+                    <h3 class="diagram">Diagram</h3>
+                    <p>{{this.$store.state.currentCard["Diagram Description"]}}</p>
+
+                    <div class="ct-chart ct-golden-section " style=" max-width: 50em;margin: auto !important; ">
+                    </div>
+                </div>
+
                 <Quiz />
                 <Video />
 
@@ -117,13 +126,73 @@ export default {
             title: this.$store.state.currentTitle
         }
     },
+    computed: {
+        getPrejudice: function () {
+            return this.$store.state.currentCard.Prejudice;
+        }
+    },
+    watch: {
+        getPrejudice(newValue, oldValue) {
+            setTimeout(() => {
+                if (this.$store.state.currentCard['Diagram Data']) {
+                    this.createBarGraph();
+                }
+            }, 1000);
+
+        }
+    },
+
     mounted() {
         this.showPurringCat();
+
     },
     props: {
         msg: String
     },
     methods: {
+        createBarGraph() {
+            var options = {
+                seriesBarDistance: 1,
+                // divisor: 40,
+                // stackBars: true,
+                axisX: {
+                    offset: 40
+                },
+                axisY: {
+                    offset: 40,
+                    onlyInteger: true,
+                    // ticks: [1, 10, 20, 30],
+                    // position: 'end',
+                    labelInterpolationFnc: function (value) {
+                        return value;
+                    },
+                    scaleMinSpace: 15
+                }
+            };
+            var currentCardDiagram = this.$store.state.currentCard['Diagram Data'];
+            var data = {};
+            var labels = currentCardDiagram.split('|')[0];
+            var series = currentCardDiagram.split('|')[1];
+            labels = labels.split(',');
+            series = series.split(',');
+            data.labels = labels;
+            data.series = [];
+            data.series[0] = series;
+            var diagram = new Chartist.Bar('.ct-chart', data, options);
+            
+            // https://stackoverflow.com/a/48299759
+            diagram.on('draw', function (data) {
+                if (data.type == 'bar') {
+                    data.element.animate({
+                        y2: {
+                            dur: '2s',
+                            from: data.y1,
+                            to: data.y2
+                        }
+                    });
+                }
+            });
+        },
         showPurringCat() {
             // var inViewport = false;
             var isStarted = false;
@@ -233,6 +302,7 @@ export default {
 .modal-content h3.longAnswer {
     background-image: url(../assets/img/animated-gif/mens38.gif);
 }
+
 .modal-content h3.quiz {
     background-image: url(../assets/img/icons/flat/quiz.svg);
     text-align: left;
@@ -1054,4 +1124,22 @@ perspective effects (not including the modals and the overlay).
     -moz-transition: all 0.5s 0.1s;
     transition: all 0.5s 0.1s;
 }
+
+// Chartist diagrams
+.ct-label {
+    color: #111;
+}
+
+.ct-series-a .ct-bar {
+    /* Colour of your bars */
+    // stroke: rgb(25, 0, 255);
+    /* The width of your bars */
+    //   stroke-width: 20px;
+    stroke-width: 6%;
+    /* Yes! Dashed bars! */
+    // stroke-dasharray: 20px;
+    /* Maybe you like round corners on your bars? */
+    //   stroke-linecap: round;
+}
+
 </style>
