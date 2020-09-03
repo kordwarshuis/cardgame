@@ -46,13 +46,14 @@ Contributors: Kor Dwarshuis <@kordwarshuis>, Henk van Cann <@henkvancann>
 * Cd to cardgame main directory, find file `.ev.example` 
 * Copy file `.env-example` to `.env`, check that the file exists
 * Run `npm install` from commandline to install dependencies
+
+## Test on local machine
 * Run `npm run serve` to start a webserver
-* Run `npm run build` in a different terminal tab to create a `./dist` directory (live version)
 
-More info on https://vuejs.org
+## Stage to production server
 
 
-## Instructions for pushing to live:
+#### Instructions for pushing to live:
 
 The repository is a general repository from which you can create a BTC (Bitcoin) version and a BCB (Blockchain) version.
 
@@ -140,9 +141,14 @@ Please note: `/.env` is not in repository, use `/.env.example` and create `/.env
 ### 4: Filename: `/live.sh`
 Uncomment the relevant code in `./live.sh` and add your ssh login credentials to your hosting service.
 
+Run `npm run build` to create a `./dist` directory (production version)
+
 ##### Optional script provided
 This script can be used to push the build to the live web server.
 Please note: `/live.sh` is not in repository, use `/live.example.sh` and create `/live.sh`.
+
+More info on https://vuejs.org
+
 
 ## Technical information
 
