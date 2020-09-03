@@ -62,24 +62,46 @@ Before pushing to live server **four** files have to be edited in order to make 
 
 ### 1: Filename: `/vue.config.js`
 
-Open a text-editor, e.g. `nano`<br/>
+Open the file with a text-editor, e.g. `nano`<br/>
 `nano ./vue.config.js`<br/>
-Uncomment the relevant code in `./vue.config.js`
+Now you have a choice either to build a **Bitcoin** or **Blockchain** version. You can't build both a the same time. Uncomment the relevant code in `./vue.config.js`. 
 
+Example<br/>
+```
+ //=============
+  // BTC version
+  publicPath: process.env.NODE_ENV === 'production' ? '/t/btc/' : '/',
+  //=============
+
+  //=============
+  // BCB version
+  // publicPath: process.env.NODE_ENV === 'production' ? '/t/bcb/' : '/',
+  //=============
+
+```
 In vue.config.js you can define the subdirectory where you finally want to place the app.
 
 ### 2: Filename: `/public/.htaccess`
-Uncomment the relevant code in `./public/.htaccess`
+
+Open the file with a text-editor, e.g. `nano`<br/>
+`nano ./public/.htaccess`<br/>
+Now you have a choice either to build a **Bitcoin** or **Blockchain** version. You can't build both a the same time. Uncomment the relevant code in `./public/.htaccess`. 
 
 ### 3: Filename: `/.env`
-Uncomment the relevant code in `./.env`
+Open the file with a text-editor, e.g. `nano`<br/>
+`nano ./.env`<br/>
+Now you have a choice either to build a **Bitcoin** or **Blockchain** version. You can't build both a the same time. Uncomment the relevant code in `./.env`. 
+
 Please note: you have to restart local webserver to see changes in `.env` in effect.
-Please note: `/.env` is not in repository, use `/.env.example` and create `/.env`
+
+Please note: `/.env` is not in repository, use `/.env.example` and create `/.env`. See instructions [here](#General-instructions)
 
 ### 4: Filename: `/live.sh`
-Uncomment the relevant code in `./live.sh`
+Uncomment the relevant code in `./live.sh` and add your ssh login credentials to your hosting service.
+
+##### Optional script provided
 This script can be used to push the build to the live web server.
-Please note: `/live.sh` is not in repository, use `/live.example.sh` and create `/live.sh`
+Please note: `/live.sh` is not in repository, use `/live.example.sh` and create `/live.sh`.
 
 ## Technical information
 
