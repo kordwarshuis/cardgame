@@ -61,6 +61,9 @@ Before pushing to live server **four** files have to be edited in order to make 
 
 
 ### 1: Filename: `/vue.config.js`
+
+Open a text-editor, e.g. `nano`<br/>
+`nano ./vue.config.js`<br/>
 Uncomment the relevant code in `./vue.config.js`
 
 In vue.config.js you can define the subdirectory where you finally want to place the app.
