@@ -17,7 +17,8 @@ The monitor can be used to find misconceptions realtime.
 We need to get it right and it needs to be fair. The elaborate explanation is [here](https://github.com/blockchainbird/cards_prejudice/wiki)
 
 #### Who's right, who's wrong?
-The cardgame does not pretend to be right in everything at all times. Our objective has been to:
+
+The cardgame *does not pretend to be right in everything at all times*. Our objective has been to:
  - present a **nuanced and more complete** take on the matter
  - **substantiate the answers** with empirical data gathered from reknowned sources in the field
  - offer **a way to improve the answers** by anyone via the [Telegram-group](https://t.me/bcbird)
