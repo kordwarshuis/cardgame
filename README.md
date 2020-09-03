@@ -44,10 +44,10 @@ Contributors: Kor Dwarshuis <@kordwarshuis>, Henk van Cann <@henkvancann>
 ## General instructions
 
 * Cd to cardgame main directory, find file `.ev.example` 
-* Copy .env-example to .env
+* Copy file `.env-example` to `.env`, check that the file exists
 * Run `npm install` from commandline to install dependencies
 * Run `npm run serve` to start a webserver
-* Run `npm run build` to create a /dist directory (live version)
+* Run `npm run build` in a different terminal tab to create a `./dist` directory (live version)
 
 More info on https://vuejs.org
 
@@ -58,11 +58,6 @@ The repository is a general repository from which you can create a BTC (Bitcoin)
 
 Before pushing to live server **four** files have to be edited in order to make it the BTC or the BCB version:
 
-
-1. Filename: `/vue.config.js`
-1. Filename: `/public/.htaccess`
-1. Filename: `/.env`
-1. Filename: `/live.sh`
 
 
 ### 1: Filename: `/vue.config.js`
