@@ -48,7 +48,13 @@ Contributors: Kor Dwarshuis <@kordwarshuis>, Henk van Cann <@henkvancann>
 * Run `npm install` from commandline to install dependencies
 
 ## Test on local machine
-* Run `npm run serve` to start a webserver
+* Run `npm run serve` to start a webserver/ Click one of the links that will be provided, Example:
+```
+  App running at:
+  - Local:   http://localhost:8080/ 
+  - Network: http://192.168.178.68:8080/
+```
+
 
 ## Stage to production server
 
