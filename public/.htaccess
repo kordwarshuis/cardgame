@@ -2,18 +2,16 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    ####################
-    # Local version:
-    # RewriteBase /
-    ####################
 
     ####################
     # BTC version:
+    # (local development server ignores the RewriteBase)
     RewriteBase /t/btc/
     ####################
 
     ####################
     # BCB version:
+    # (local development server ignores the RewriteBase)
     # RewriteBase /t/bcb/
     ####################
     
