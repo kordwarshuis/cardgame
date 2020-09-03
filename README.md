@@ -23,6 +23,16 @@ The cardgame *does not pretend to be right in everything at all times*. Our obje
  - **substantiate the answers** with empirical data gathered from reknowned sources in the field
  - offer **a way to improve the answers** by anyone via the [Telegram-group](https://t.me/bcbird)
 
+
+## For who is the cardgame
+Somebody who
+- is socially concerned
+- knows how to use social media
+- knows a bit abouot bitcoin
+- eager to spread the correct message (missionary urge)
+
+Important to understand is that the cardgame is only secondairily meant for people who need to be trained about bitcoin and blockchain, those full of "misconceptions".
+
 ## Copyright & License
 
 All content in this repository is copyright by the contributors.
