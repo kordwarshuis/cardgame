@@ -87,12 +87,53 @@ Open the file with a text-editor, e.g. `nano`<br/>
 `nano ./public/.htaccess`<br/>
 Now you have a choice either to build a **Bitcoin** or **Blockchain** version. You can't build both a the same time. Uncomment the relevant code in `./public/.htaccess`. 
 
+Example: <br/>
+```
+    ####################
+    # BTC version:
+    RewriteBase /t/btc/
+    ####################
+
+    ####################
+    # BCB version:
+    # RewriteBase /t/bcb/
+    ####################
+
+```
 ### 3: Filename: `/.env`
 Open the file with a text-editor, e.g. `nano`<br/>
 `nano ./.env`<br/>
 Now you have a choice either to build a **Bitcoin** or **Blockchain** version. You can't build both a the same time. Uncomment the relevant code in `./.env`. 
 
 Please note: you have to restart local webserver to see changes in `.env` in effect.
+
+Example:<br/>
+```
+####################
+# BTC specific version:
+####################
+VUE_APP_TITLE="Bitcoin Misconceptions."
+VUE_APP_DESCRIPTION="Misconceptions about bitcoin hold back progress. Found a misconception? Lookup-Copy-Paste our permanent links with curated expert info!"
+VUE_APP_AUTHOR="Blockchain Bird"
+VUE_APP_SOCIAL_MEDIA_IMAGE=social-media-bitcoin4.jpg
+VUE_APP_SOCIAL_MEDIA_IMAGE_WIDTH=1200
+VUE_APP_SOCIAL_MEDIA_IMAGE_HEIGHT=628
+VUE_APP_GOOGLE_ANALYTICS_ID="XXXXXXXX"
+####################
+
+####################
+# BCB specific version:
+####################
+#VUE_APP_TITLE="Blockchain Misconceptions."
+#VUE_APP_DESCRIPTION="Misconceptions about blockchain hold back progress. Found a misconception? Lookup-Copy-Paste our permanent links with curated expert info!"
+#VUE_APP_AUTHOR="Blockchain Bird"
+#VUE_APP_SOCIAL_MEDIA_IMAGE=social-media-blockchain4.jpg
+#VUE_APP_SOCIAL_MEDIA_IMAGE_WIDTH=1200
+#VUE_APP_SOCIAL_MEDIA_IMAGE_HEIGHT=628
+#VUE_APP_GOOGLE_ANALYTICS_ID="XXXXXXXX"
+####################
+```
+
 
 Please note: `/.env` is not in repository, use `/.env.example` and create `/.env`. See instructions [here](#General-instructions)
 
