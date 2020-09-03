@@ -43,6 +43,7 @@ Contributors: Kor Dwarshuis <@kordwarshuis>, Henk van Cann <@henkvancann>
 
 ## General instructions
 
+* Cd to cardgame main directory, find file `.ev.example` 
 * Copy .env-example to .env
 * Run `npm install` from commandline to install dependencies
 * Run `npm run serve` to start a webserver
