@@ -410,7 +410,7 @@ a.md-trigger {
 }
 
 .closeCardIntro {
-    background: transparent url(../assets/img/icons/flat/identity.svg) no-repeat center;
+    background: transparent url(../assets/img/icons/flat/grid.svg) no-repeat center;
     background-size: contain;
     // padding: 3em 1.2em 3em 2em;
     padding: 0.7em;
