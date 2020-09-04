@@ -2,7 +2,7 @@
 <!-- <div id="app" class="container-fluid"> -->
 <div id="app" class="container-fluid design2">
     <Toasts :time-out="2000"></Toasts>
-    <Menu />
+    <slideInMenu />
     <!-- <CryptoRadio /> -->
     <router-view />
     <NewsTicker />
@@ -14,7 +14,7 @@
 
 <script>
 import publicPath from "../vue.config";
-import Menu from "@/components/Menu.vue";
+import slideInMenu from "@/components/slideInMenu.vue";
 import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
 import * as Hammer from "hammerjs";
@@ -25,7 +25,7 @@ import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 
 export default {
     components: {
-        Menu,
+        slideInMenu,
         CryptoRadio,
         NewsTicker,
         Hammer,
