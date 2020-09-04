@@ -3,7 +3,7 @@
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <BitcoinAnimation /> -->
     <!-- <h1>Bitcoin Misconceptions</h1> -->
-    <h1 class="pt-5">
+    <h1 class="pt-1">
         <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameName}} Misconceptions</h1>
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
@@ -22,7 +22,7 @@
                 <div class="box__shadow"></div>
                 <img class="box__img" :src="require('@/assets/img/icons/flat/' + $store.state.cardImage)" alt="" />
                 <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
-                <h4 class="box__text"><span class="box__text-inner"><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></span><span class="video-indicator" v-if="item['Youtube Video Id'] !== ''"><img :src="require('@/assets/img/icons/flat/film.svg')" alt="contains video" /></span></h4>
+                <h4 class="box__text"><span class="box__text-inner"><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></span><span class="video-indicator" v-if="item['Youtube Video Id'] !== ''"><img :src="require('@/assets/img/icons/flat/film.svg')" title="contains video" alt="piece of filmstrip" /></span></h4>
 
             </div>
         </a>
@@ -182,7 +182,7 @@ h1 {
     top: -0.5em;
     right: -0.5em;
     font-size: 2em;
-    transform: rotate(-25deg);
+    // transform: rotate(-25deg);
     // text-decoration: none !important;
 }
 
