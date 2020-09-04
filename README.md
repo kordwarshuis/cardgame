@@ -172,3 +172,5 @@ Google Sheets -> data.csv -> card game
 The Google Sheets step is not necessary and can be removed from the working flow if desired.
 
 The .CSV step helps to speed the loading time, since Google Sheets tends to be slow at times.
+
+end
