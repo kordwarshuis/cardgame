@@ -173,4 +173,6 @@ The Google Sheets step is not necessary and can be removed from the working flow
 
 The .CSV step helps to speed the loading time, since Google Sheets tends to be slow at times.
 
-end
+## UX design
+
+[Read more](./UX-design.md)
