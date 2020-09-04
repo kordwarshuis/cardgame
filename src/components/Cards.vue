@@ -182,7 +182,7 @@ h1 {
     top: -0.5em;
     right: -0.5em;
     font-size: 2em;
-    transform: rotate(-25deg);
+    // transform: rotate(-25deg);
     // text-decoration: none !important;
 }
 
