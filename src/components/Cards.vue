@@ -22,7 +22,7 @@
                 <div class="box__shadow"></div>
                 <img class="box__img" :src="require('@/assets/img/icons/flat/' + $store.state.cardImage)" alt="" />
                 <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
-                <h4 class="box__text"><span class="box__text-inner"><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></span><span class="video-indicator" v-if="item['Youtube Video Id'] !== ''"><img :src="require('@/assets/img/icons/flat/film.svg')" alt="contains video" /></span></h4>
+                <h4 class="box__text"><span class="box__text-inner"><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></span><span class="video-indicator" v-if="item['Youtube Video Id'] !== ''"><img :src="require('@/assets/img/icons/flat/film.svg')" title="contains video" alt="piece of filmstrip" /></span></h4>
 
             </div>
         </a>
