@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div id="socialMediaButtonsTemplate" class="border p-3 ">
+    <div id="socialMediaButtonsTemplate" class="p-3 ">
         <!-- Sharingbutton Facebook -->
         <a class="resp-sharing-button__link" :href="'https://facebook.com/sharer/sharer.php?u=' + this.windowLocationOrigin + this.publicPath + 'card/' + this.$store.state.currentCard['Unique URL']" target="_blank" rel="noopener" aria-label="Facebook">
             <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--medium">
