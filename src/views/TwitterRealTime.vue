@@ -1,6 +1,6 @@
 <template>
 <div class="container d-flex w-100 h-100 p-1 mx-auto flex-column">
-    <h1 class="cover-heading pt-5">Bitcoin Tweets Tracker</h1>
+    <h1 class="cover-heading pt-1">Bitcoin Tweets Tracker</h1>
     <header class="masthead mb-auto ">
         <div class="inner">
             <nav class="mb-1 mt-0 navbar navbar-dark bg-dark">

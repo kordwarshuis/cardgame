@@ -5,7 +5,7 @@
         <div class="col-lg-6 col-sm-6">
             <div class="card h-100 bg-transparent">
                 <div class="card-body title-on-card center">
-                    <h3 class="pt-5">Misconception:</h3>
+                    <h3 class="pt-5">Reply:</h3>
                     <img class="title-on-card-background-image" src="@/assets/img/dummy.png" alt="">
                     <!-- <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ this.$store.state.currentCard.Prejudice }}</span><span class="quote">”</span></h2> -->
                     
@@ -17,8 +17,8 @@
         <div class="col-lg-6 col-sm-6">
             <div class="card h-100 bg-transparent">
                 <div class="card-body text-center">
-                    <h3 class="">Reply:</h3>
-                    <p>{{ this.$store.state.currentCard["short direct answer"] }} …</p>
+                    <h3 class="pt-5">Misconception:</h3>
+                    <p>{{ this.$store.state.currentCard["Prejudice"] }} …</p>
                     <!-- TODO: make the <a> better accessible -->
                     <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></p>
                     <button class="closeCardIntro" title="All cards">All cards</button>
@@ -46,7 +46,7 @@ export default {
     },
     computed: {
         getPrejudice: function () {
-            return this.$store.state.currentCard.Prejudice;
+            return this.$store.state.currentCard["short direct answer"];
         }
     },
     watch: {
@@ -410,7 +410,7 @@ a.md-trigger {
 }
 
 .closeCardIntro {
-    background: transparent url(../assets/img/icons/flat/identity.svg) no-repeat center;
+    background: transparent url(../assets/img/icons/flat/grid.svg) no-repeat center;
     background-size: contain;
     // padding: 3em 1.2em 3em 2em;
     padding: 0.7em;
