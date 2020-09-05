@@ -1,6 +1,6 @@
 <template>
 <!-- <div id="app" class="container-fluid"> -->
-<div id="app" class="container-fluid design2">
+<div id="app" class="container-fluid">
     <Toasts :time-out="2000"></Toasts>
     <MainMenu />
     <!-- <CryptoRadio /> -->
@@ -254,10 +254,10 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.bcb {
-        background-color: $backgroundBCB;
-}
 
+.bcb {
+    background-color: $backgroundBCB;
+}
 
 h1,
 h2,
@@ -274,7 +274,7 @@ p {
 }
 
 // .quote {
-    // font-size: 2.5em;
+// font-size: 2.5em;
 // }
 
 // #app {
@@ -525,7 +525,7 @@ hr {
     pointer-events: none;
 }
 
-.design2 .box__img {
+.box__img {
     max-width: 60%;
 }
 
@@ -706,6 +706,7 @@ input:checked+.slider:before {
     font-size: 2em;
     /* transform: rotate(323deg); */
 }
+
 .visited .box__text:hover:after {
     text-shadow: 0 0 17px rgb(247, 140, 108);
 }
@@ -733,10 +734,11 @@ button,
 // related Items
 .relatedItems a,
 /* alle links in de tweede popup: */
-.modal-content a    
+.modal-content a
+
 /* het menu met alle categorieen */
 // .categoryLinks a 
-{
+    {
     // border: 3px solid $linksBorder;
     /* border-radius: 5px; */
     border: none;
@@ -759,7 +761,6 @@ button,
     border-radius: 50%;
     padding: 0.2em;
 
-    
     display: block;
     font-size: 2.5em;
     line-height: 0.6;
@@ -976,7 +977,6 @@ iframe {
 
 }
 
-
 // REPORT
 .report {
     border: 3px solid #1c343b;
@@ -1089,45 +1089,43 @@ Copyright (c) 2014 Daniel Eden
     // display: inline-block;
 }
 
-.design2 {
-    .grid .box__text-inner,
-    .handDrawnBorder {
-        // animation-name: animatedBorder;
-        // animation-duration: 0.8s;
-        // animation-iteration-count: infinite;
-        // animation-timing-function: ease-in-out;
-        // animation-fill-mode: both;
+.grid .box__text-inner,
+.handDrawnBorder {
+    // animation-name: animatedBorder;
+    // animation-duration: 0.8s;
+    // animation-iteration-count: infinite;
+    // animation-timing-function: ease-in-out;
+    // animation-fill-mode: both;
 
+    border: 2px solid $cardBorder;
+    background: $cardBackground;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+
+    &::before {
+        content: '';
         border: 2px solid $cardBorder;
-        background: $cardBackground;
-        border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
-
-        &::before {
-            content: '';
-            border: 2px solid $cardBorder;
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate3d(-50%, -50%, 0) scale(1.095) rotate(1.7deg);
-            border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
-        }
-
-        &::after {
-            content: '';
-            border: 2px solid $cardBorder;
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate3d(-50%, -50%, 0) scale(1.045) rotate(-0.7deg);
-            border-radius: 3% 4% 2% 4% / 4% 6% 1% 4%;
-        }
-
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(1.095) rotate(1.7deg);
+        border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
     }
+
+    &::after {
+        content: '';
+        border: 2px solid $cardBorder;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(1.045) rotate(-0.7deg);
+        border-radius: 3% 4% 2% 4% / 4% 6% 1% 4%;
+    }
+
 }
 </style>

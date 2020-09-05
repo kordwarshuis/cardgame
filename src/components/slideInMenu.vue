@@ -34,9 +34,6 @@
                         <p>A collection of misconceptions about {{this.$store.state.gameName}}.</p>
                         <p>Strike back and send a card.</p>
 
-                        <!-- <button class="btn btn-primary" @click="activateDefaultDesign">Default Design</button>
-                        <button class="btn btn-primary"  @click="activateDesign2">Design 2</button> -->
-
                         <!-- <h2>Crypto radio 24</h2>
                         <audio style="max-width: 300px;" src="http://n0b.radiojar.com/exrd1tp5mceuv.mp3?1590145895=&rj-tok=AAABcjwec6UAMPRNZZ4HZ8WfJw&rj-ttl=5" controls />
                         <p><a href="https://www.crypto24radio.com/" target="_blank" rel="noopener">Crypto radio 24 website.</a></p> -->

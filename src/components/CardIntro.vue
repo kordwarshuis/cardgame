@@ -8,7 +8,7 @@
                     <h3 class="pt-5">Reply:</h3>
                     <img class="title-on-card-background-image" src="@/assets/img/dummy.png" alt="">
                     <!-- <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ this.$store.state.currentCard.Prejudice }}</span><span class="quote">”</span></h2> -->
-                    
+
                     <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ getPrejudice }}</span><span class="quote">”</span></h2>
                 </div>
             </div>
@@ -41,8 +41,7 @@ import RelatedCards from "@/components/RelatedCards.vue";
 export default {
     name: "CardIntro",
     data() {
-        return {
-        }
+        return {}
     },
     computed: {
         getPrejudice: function () {
@@ -372,7 +371,7 @@ a.md-trigger {
 
     // see also media query (two columns versus one column, determining how many vw it should be)
     min-height: 80vw;
-// border: 3px solid red;
+    // border: 3px solid red;
 }
 
 .title-on-card img {
@@ -440,90 +439,86 @@ a.md-trigger {
     padding-left: 1rem !important
 }
 
-// alternative design
-.design2 {
-    .title-on-card {
-        // background: yellow;
-        padding: 0;
-    }
+.title-on-card {
+    // background: yellow;
+    padding: 0;
+}
 
-    .title-on-card img {
-        opacity: 0;
-        background: orange;
-        margin: 0;
-        padding: 0;
-    }
+.title-on-card img {
+    opacity: 0;
+    background: orange;
+    margin: 0;
+    padding: 0;
+}
 
-    // https://codepen.io/andybelldesign/pen/MPLzay
-    .title-on-card h2 {
-        padding: 1em;
-        margin: 0 !important;
-        font-size: 2rem;
-
-    }
-
-    .title-on-card h2 {
-        // animation-name: animatedBorder;
-        // animation-duration: 0.8s;
-        // animation-iteration-count: infinite;
-        // animation-timing-function: ease-in-out;
-        // animation-fill-mode: both;
-
-        border: 2px solid $cardBorder;
-        background: $cardBackground;
-        border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
-
-        &::before {
-            content: '';
-            border: 2px solid $cardBorder;
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.9deg);
-            border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
-        }
-
-        &::after {
-            content: '';
-            border: 2px solid $cardBorder;
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate3d(-50%, -50%, 0) scale(1.035) rotate(-0.7deg);
-            border-radius: 3% 4% 2% 4% / 4% 6% 1% 4%;
-        }
-
-    }
-
-    @keyframes animatedBorder {
-        0% {
-            border-radius: 3% 6% 5% 4% / 4% 7% 8% 4%;
-        }
-
-        14% {
-            border-radius: 5% 1% 5% 4% / 2% 1% 2% 4%;
-        }
-
-        28% {
-            border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
-        }
-
-        42% {
-            border-radius: 4% 12% 15% 7% / 4% 6% 9% 4%;
-        }
-
-        70% {
-            border-radius: 3% 6% 5% 4% / 4% 7% 8% 4%;
-        }
-    }
-
-    /* end animate.css */
+// https://codepen.io/andybelldesign/pen/MPLzay
+.title-on-card h2 {
+    padding: 1em;
+    margin: 0 !important;
+    font-size: 2rem;
 
 }
+
+.title-on-card h2 {
+    // animation-name: animatedBorder;
+    // animation-duration: 0.8s;
+    // animation-iteration-count: infinite;
+    // animation-timing-function: ease-in-out;
+    // animation-fill-mode: both;
+
+    border: 2px solid $cardBorder;
+    background: $cardBackground;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+
+    &::before {
+        content: '';
+        border: 2px solid $cardBorder;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.9deg);
+        border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+    }
+
+    &::after {
+        content: '';
+        border: 2px solid $cardBorder;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(1.035) rotate(-0.7deg);
+        border-radius: 3% 4% 2% 4% / 4% 6% 1% 4%;
+    }
+
+}
+
+@keyframes animatedBorder {
+    0% {
+        border-radius: 3% 6% 5% 4% / 4% 7% 8% 4%;
+    }
+
+    14% {
+        border-radius: 5% 1% 5% 4% / 2% 1% 2% 4%;
+    }
+
+    28% {
+        border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
+    }
+
+    42% {
+        border-radius: 4% 12% 15% 7% / 4% 6% 9% 4%;
+    }
+
+    70% {
+        border-radius: 3% 6% 5% 4% / 4% 7% 8% 4%;
+    }
+}
+
+/* end animate.css */
 </style>
