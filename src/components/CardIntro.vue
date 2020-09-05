@@ -2,7 +2,7 @@
 <!-- open/close -->
 <div class="overlay-fullscreen overlay-fullscreen-contentpush " :class="this.$store.state.cssClassCardIntroState">
     <div class="row">
-        <div class="col-lg-6 col-sm-6">
+        <div class="col-lg-6 col-sm-6 column1">
             <div class="card h-100 bg-transparent">
                 <div class="card-body title-on-card center">
                     <h3 class="pt-5">Reply:</h3>
@@ -14,18 +14,19 @@
             </div>
         </div>
 
-        <div class="col-lg-6 col-sm-6">
+        <div class="col-lg-6 col-sm-6 column2">
             <div class="card h-100 bg-transparent">
                 <div class="card-body text-center">
                     <h3 class="pt-5">Misconception:</h3>
-                    <p>{{ this.$store.state.currentCard["Prejudice"] }} …</p>
-                    <!-- TODO: make the <a> better accessible -->
-                    <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></p>
-                    <button class="closeCardIntro" title="All cards">All cards</button>
-                    <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
-                    <RelatedCards />
-
-                    <SocialMedia />
+                    <div class="p-3">
+                        <p>{{ this.$store.state.currentCard["Prejudice"] }} …</p>
+                        <!-- TODO: make the <a> better accessible -->
+                        <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></p>
+                        <button class="closeCardIntro" title="All cards">All cards</button>
+                        <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
+                        <RelatedCards />
+                        <SocialMedia />
+                    </div>
                 </div>
             </div>
         </div>
@@ -391,7 +392,6 @@ a.md-trigger {
     margin: 0;
     padding: 0;
     text-align: left;
-    min-height: 40%;
 }
 
 /* Small devices (landscape phones, 576px and up) */
@@ -460,6 +460,15 @@ a.md-trigger {
 }
 
 .title-on-card h2 {
+	min-height: 40%;
+}
+
+.column2 .card-body > div {
+	min-height: 40%;
+}
+
+
+.title-on-card h2 {
     // animation-name: animatedBorder;
     // animation-duration: 0.8s;
     // animation-iteration-count: infinite;
@@ -477,6 +486,7 @@ a.md-trigger {
         width: 100%;
         height: 100%;
         position: absolute;
+        z-index: -1;
         top: 50%;
         left: 50%;
         transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.9deg);
@@ -490,12 +500,48 @@ a.md-trigger {
         width: 100%;
         height: 100%;
         position: absolute;
+        z-index: -1;
         top: 50%;
         left: 50%;
         transform: translate3d(-50%, -50%, 0) scale(1.035) rotate(-0.7deg);
         border-radius: 3% 4% 2% 4% / 4% 6% 1% 4%;
     }
+}
 
+$column2Border: #2f4fe036;
+.column2 .card-body > div {
+    border: 2px solid $column2Border;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+    // display: inline-block;
+    position: relative;
+
+    &::before {
+        content: '';
+        border: 2px solid $column2Border;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.9deg);
+        border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+    }
+
+    &::after {
+        content: '';
+        border: 2px solid $column2Border;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(1.035) rotate(-0.7deg);
+        border-radius: 3% 4% 2% 4% / 4% 6% 1% 4%;
+    }
 }
 
 @keyframes animatedBorder {
@@ -519,6 +565,4 @@ a.md-trigger {
         border-radius: 3% 6% 5% 4% / 4% 7% 8% 4%;
     }
 }
-
-/* end animate.css */
 </style>
