@@ -1,7 +1,7 @@
 # Communication of the cardgame
 
 ## Why
-Because it won fly by itself
+Because it won't fly by itself
 
 ## What
 
@@ -30,6 +30,6 @@ We have an officer working on the cardgame content, the graphic design and UX. S
 4. Chart target groups and measure results in trying to address them. Mapping which target groups we distinguish and which we can best focus on
 
 ## Planning
-On a weekly basis trying to achieve results:
-1. week 
+On a weekly basis trying to achieve results.
 
+[Read more](https://github.com/henkvancann/flycardgame/) in the internal private repository
