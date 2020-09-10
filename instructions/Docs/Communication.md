@@ -19,10 +19,10 @@ Activist, socially involved and soc media aware, familiar with bitcoin to a cert
 - Report
 
 ## Goals 
-1. Make ./t/btc and ./t/bcb a success
-    a: when there are a lot of retweets, likes
-    b: as soon as the card game is mentioned on (influential) sites
-    c: when twitterers also spontaneously use it on other social media such as Facebook
+1. Make ./t/btc and ./t/bcb a success<br/>
+    a: when there are a lot of retweets, likes<br/>
+    b: as soon as the card game is mentioned on (influential) sites, telegram groups, podcasts, vodcasts<br/>
+    c: when twitterers also spontaneously use it on other social media such as Facebook<br/>
     d: when they come up with proposals for cards
 2. Preparatory: benchmark ./t/btc, deliver measurements and correct texts in a number of iterations
 3. Proof extended knowledge in the whole spectrum of open public blockchain field, focussed on bitcoin?
