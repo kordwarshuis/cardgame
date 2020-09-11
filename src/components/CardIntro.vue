@@ -2,6 +2,15 @@
 <!-- open/close -->
 <div class="overlay-fullscreen overlay-fullscreen-contentpush " :class="this.$store.state.cssClassCardIntroState">
     <div class="row">
+
+        <div class="col-lg-12 col-sm-12 ">
+            <div class="social-media-container">
+                <SocialMedia />
+            </div>
+            <button class="closeCardIntro" title="All cards">All cards</button>
+            <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
+        </div>
+
         <div class="col-lg-6 col-sm-6 column1">
             <div class="card h-100 bg-transparent">
                 <div class="card-body title-on-card center">
@@ -22,14 +31,24 @@
                         <p>{{ this.$store.state.currentCard["Prejudice"] }} …</p>
                         <!-- TODO: make the <a> better accessible -->
                         <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></p>
-                        <button class="closeCardIntro" title="All cards">All cards</button>
-                        <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
+                        
                         <RelatedCards />
-                        <SocialMedia />
+
                     </div>
                 </div>
             </div>
         </div>
+        
+
+        <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12">
+            <Video />
+        </div>
+        <div v-if="(this.$store.state.currentCard['Quiz'])" class="col-lg-12 col-sm-12">
+            <Quiz />
+        </div>
+
+
+
         <a class="overlay-fullscreen-close">×</a>
     </div>
 </div>
@@ -38,6 +57,9 @@
 <script>
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
+import Quiz from "@/components/Quiz.vue";
+import Video from "@/components/Video.vue";
+
 // import Quiz from "@/components/Quiz.vue";
 export default {
     name: "CardIntro",
@@ -59,8 +81,9 @@ export default {
     },
     components: {
         SocialMedia,
-        RelatedCards
-        // Quiz
+        RelatedCards,
+        Quiz,
+        Video
     },
     methods: {
         typeWriter(selector, prejudice, interval) {
@@ -460,13 +483,12 @@ a.md-trigger {
 }
 
 .title-on-card h2 {
-	min-height: 40%;
+    min-height: 40%;
 }
 
-.column2 .card-body > div {
-	min-height: 40%;
+.column2 .card-body>div {
+    min-height: 40%;
 }
-
 
 .title-on-card h2 {
     // animation-name: animatedBorder;
@@ -509,7 +531,8 @@ a.md-trigger {
 }
 
 $column2Border: #2f4fe036;
-.column2 .card-body > div {
+
+.column2 .card-body>div {
     border: 2px solid $column2Border;
     border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
     // display: inline-block;
@@ -564,5 +587,9 @@ $column2Border: #2f4fe036;
     70% {
         border-radius: 3% 6% 5% 4% / 4% 7% 8% 4%;
     }
+}
+
+.social-media-container {
+    display: inline-block;
 }
 </style>
