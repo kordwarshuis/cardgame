@@ -92,7 +92,7 @@ var cardImage = "";
 export {cardGameName};
 export {cardImage};
 
-// if "/btc/" in URL or "localhost" in URL then it's BTC, if not then BCB
+// if "/btc/" in URL or "localhost" or "cardgametest" in URL then it's BTC, if not then BCB
 if ((window.location.href.indexOf("\/btc\/") > -1) || (window.location.href.indexOf("localhost") > -1) || (window.location.href.indexOf("cardgametest") > -1)) {
   document.querySelector("body").classList.add("btc");
   cardGameName = "Bitcoin";
