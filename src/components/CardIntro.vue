@@ -11,18 +11,6 @@
             <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
         </div>
 
-        <div class="col-lg-6 col-sm-6 column1">
-            <div class="card h-100 bg-transparent">
-                <div class="card-body title-on-card center">
-                    <h3 class="pt-5">Reply:</h3>
-                    <img class="title-on-card-background-image" src="@/assets/img/dummy.png" alt="">
-                    <!-- <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ this.$store.state.currentCard.Prejudice }}</span><span class="quote">”</span></h2> -->
-
-                    <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ getPrejudice }}</span><span class="quote">”</span></h2>
-                </div>
-            </div>
-        </div>
-
         <div class="col-lg-6 col-sm-6 column2">
             <div class="card h-100 bg-transparent">
                 <div class="card-body text-center">
@@ -30,7 +18,7 @@
                     <div class="p-3">
                         <p>{{ this.$store.state.currentCard["Prejudice"] }} …</p>
                         <!-- TODO: make the <a> better accessible -->
-                        <p><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></p>
+                        
                         
                         <RelatedCards />
 
@@ -38,7 +26,17 @@
                 </div>
             </div>
         </div>
-        
+                <div class="col-lg-6 col-sm-6 column1">
+            <div class="card h-100 bg-transparent">
+                <div class="card-body title-on-card center">
+                    <h3 class="pt-5">Reply:</h3>
+                    <img class="title-on-card-background-image" src="@/assets/img/dummy.png" alt="">
+                    <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ getPrejudice }}</span><span class="quote">”</span><span style="display: block;"><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></span></h2>
+                    <!-- <p></p> -->
+                </div>
+            </div>
+        </div>
+
 
         <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12">
             <Video />
@@ -474,7 +472,6 @@ a.md-trigger {
     padding: 0;
 }
 
-// https://codepen.io/andybelldesign/pen/MPLzay
 .title-on-card h2 {
     padding: 1em;
     margin: 0 !important;
@@ -491,103 +488,17 @@ a.md-trigger {
 }
 
 .title-on-card h2 {
-    // animation-name: animatedBorder;
-    // animation-duration: 0.8s;
-    // animation-iteration-count: infinite;
-    // animation-timing-function: ease-in-out;
-    // animation-fill-mode: both;
-
     border: 2px solid $cardBorder;
     background: $cardBackground;
-    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
-
-    &::before {
-        content: '';
-        border: 2px solid $cardBorder;
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.9deg);
-        border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
-    }
-
-    &::after {
-        content: '';
-        border: 2px solid $cardBorder;
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate3d(-50%, -50%, 0) scale(1.035) rotate(-0.7deg);
-        border-radius: 3% 4% 2% 4% / 4% 6% 1% 4%;
-    }
 }
 
 $column2Border: #2f4fe036;
 
 .column2 .card-body>div {
     border: 2px solid $column2Border;
-    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
-    // display: inline-block;
     position: relative;
-
-    &::before {
-        content: '';
-        border: 2px solid $column2Border;
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.9deg);
-        border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
-    }
-
-    &::after {
-        content: '';
-        border: 2px solid $column2Border;
-        display: block;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate3d(-50%, -50%, 0) scale(1.035) rotate(-0.7deg);
-        border-radius: 3% 4% 2% 4% / 4% 6% 1% 4%;
-    }
 }
 
-@keyframes animatedBorder {
-    0% {
-        border-radius: 3% 6% 5% 4% / 4% 7% 8% 4%;
-    }
-
-    14% {
-        border-radius: 5% 1% 5% 4% / 2% 1% 2% 4%;
-    }
-
-    28% {
-        border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
-    }
-
-    42% {
-        border-radius: 4% 12% 15% 7% / 4% 6% 9% 4%;
-    }
-
-    70% {
-        border-radius: 3% 6% 5% 4% / 4% 7% 8% 4%;
-    }
-}
 
 .social-media-container {
     display: inline-block;
