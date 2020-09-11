@@ -1,9 +1,6 @@
 <template>
 <!-- negate doesnt seem to work -->
-<div v-if="(this.$store.state.currentCard['Youtube Video Id'] === '')"></div>
-
-<div class="border p-3 mb-3" v-else>
-
+<div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="border p-3 mb-3">
     <h3 class="video">Video</h3>
 
     <p>{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
@@ -11,11 +8,7 @@
     <div class="videoWrapper">
         <iframe id="youtubeVideo" class="youtube" :src="'https://www.youtube.com/embed/' + this.$store.state.currentCard['Youtube Video Id'] + '?start=' + this.$store.state.currentCard['Youtube Video Start'] + '&end=' + this.$store.state.currentCard['Youtube Video End'] + '&playsinline=1&enablejsapi=1'" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
         </iframe>
-    </div>
-
-    <!-- <div id="player"></div> -->
-
-    <!-- <button @click="this.stopIt">stop</button> -->
+    </div>π
 </div>
 </template>
 
