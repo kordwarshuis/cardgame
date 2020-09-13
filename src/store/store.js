@@ -154,9 +154,6 @@ export default new Vuex.Store({
 
       // copy the final array to the store
       this.state.allPickedCards = allPickedCards;
-
-      // setTimeout(codrops, 1);
-
     },
     setActiveMenuItem(item) {
       var selector = ".nav";
