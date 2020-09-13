@@ -115,9 +115,6 @@ export default new Vuex.Store({
 
       // copy the final array to the store
       this.state.allCardsInChosenCategory = allCardsInChosenCategory;
-
-      setTimeout(codrops, 1);
-
       //TODO: duplicate code, see addVisitedToCards()
       setTimeout(function () {
         var allCards = document.querySelectorAll(".grid__item");
