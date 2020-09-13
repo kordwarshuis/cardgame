@@ -27,10 +27,7 @@
 
         <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
             <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
-                <!-- <div class="" @mouseenter="startElectricitySound"> -->
-
                 <h4 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h4>
-                <!-- </div> -->
             </a>
             <div class="card-footer" style="background: #557AA3; text-align: left;">
                 <h3 class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
