@@ -269,17 +269,6 @@ h6 {
     font-family: roboto-light, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-small {
-    text-align: center;
-}
-
 p {
     font-size: 1.2em;
 }
