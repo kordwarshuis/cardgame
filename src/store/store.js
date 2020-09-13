@@ -73,19 +73,19 @@ export default new Vuex.Store({
       var currentCard = this.getters.getCard(uniqueIdFromUrl);
       this.commit("changeCard", currentCard);
     },
-    showItemsInSelectedCategory(state, category) {
+    showItemsInSelectedCategory(state, categoryName) {
       var allCardsInChosenCategory = [];
       if (localStorage.getItem("soundOn") === "true") whoosh2.play();
 
       // set active category name (TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the first <a>)
-      if (category === undefined) {
+      if (categoryName === undefined) {
         this.state.activeCategory = "All";
       } else {
-        this.state.activeCategory = category.name;
+        this.state.activeCategory = categoryName;
       }
 
       // first make the selected menu item stand out:
-      this.commit("setActiveMenuItem", category);
+      this.commit("setActiveMenuItem", categoryName);
 
       function makeArray(a, b) {
         a.push({
@@ -101,13 +101,13 @@ export default new Vuex.Store({
 
       // category === undefined runs when function is called without argument, which happens on the ajax callback. Should be the first, and not after the "||"
       // here we create the info for the cards per category page
-      if (category === undefined) {
+      if (categoryName === undefined) {
         for (let i = 0; i < this.state.theJSON.length; i++) {
           makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
         }
       } else {
         for (let i = 0; i < this.state.theJSON.length; i++) {
-          if (this.state.theJSON[i].Cat === category.name) {
+          if (this.state.theJSON[i].Cat === categoryName) {
             makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
           }
         }
@@ -126,7 +126,7 @@ export default new Vuex.Store({
         }
       }, 1000);
 
-      if (category !== undefined) {
+      if (categoryName !== undefined) {
         // this.commit("showToast", "You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
       }
     },
