@@ -30,7 +30,7 @@
                 <h4 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h4>
             </a>
             <div class="card-footer" style="background: #557AA3; text-align: left;">
-                <h3 class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
+                <h3 @click="$store.commit('showItemsInSelectedCategory',item.category)"  class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
             </div>
         </div>
 
