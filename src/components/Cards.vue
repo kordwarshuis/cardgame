@@ -158,6 +158,12 @@ h1 {
     font-size: 30px;
 }
 
+.nav-link {
+    color: #eee;
+    cursor: pointer;
+}
+
+
 @media screen and (min-width: 320px) {
     h1 {
         font-size: calc(30px + 6 * ((100vw - 320px) / 680));
