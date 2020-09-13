@@ -30,9 +30,7 @@
             <div class="card h-100 bg-transparent">
                 <div class="card-body title-on-card center">
                     <h3 class="pt-5">Reply:</h3>
-                    <img class="title-on-card-background-image" src="@/assets/img/dummy.png" alt="">
                     <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ getPrejudice }}</span><span class="quote">”</span><span style="display: block;"><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></span></h2>
-                    <!-- <p></p> -->
                 </div>
             </div>
         </div>
@@ -240,7 +238,7 @@ export default {
     cursor: pointer;
 }
 
-// de read more / plus sign on the intro card
+// read more / plus sign on the intro card
 a.md-trigger {
     border: 3px solid $menuItemsAndButtonsBorder;
     background: $background;
@@ -274,8 +272,8 @@ a.md-trigger {
     0% {
         /*letter-spacing: 1px;*/
         background-color: $background;
-        border-color: #ccc9c9;
-        color: #ccc9c9;
+        border-color: #c70606;
+        color: #c70606;
     }
 
     50% {
@@ -288,32 +286,11 @@ a.md-trigger {
     100% {
         /*letter-spacing: 1px;*/
         background-color: $background;
-        border-color: #ccc9c9;
-        color: #ccc9c9;
+        border-color: #c70606;
+        color: #c70606;
     }
 }
 
-// cant get this to work
-// .overlay-fullscreen .overlay-fullscreen-close:after {
-// 	content: "×";
-// 	position: fixed;
-// 	top: 0px; 
-// 	right: 0;
-// 	line-height: 1;
-// 	font-size: 3px;
-// 	padding: 0px;
-// 	margin: 0;
-// 	width: 40px;
-// 	height: 40px;
-// 	border: 1px solid red;
-// 	color: #222 !important;
-// }
-
-/* Effects */
-// html,
-// body {
-//   overflow-x: hidden;
-// }
 
 .container.overlay-fullscreen-open::after {
     visibility: visible;
@@ -322,42 +299,12 @@ a.md-trigger {
     transition: opacity 0.5s;
 }
 
-// .overlay-fullscreen-contentpush {
-//     visibility: hidden;
-//     -webkit-backface-visibility: hidden;
-//     backface-visibility: hidden;
-
-// }
-// .animationEnabled .overlay-fullscreen-contentpush {
-//     // slide in from the left
-//     -webkit-transform: translateX(-100%);
-//     transform: translateX(-100%);
-
-//     // slide in from the right
-//     -webkit-transform: translateX(100%);
-//     transform: translateX(100%);
-//     -webkit-transition: -webkit-transform 0.5s, visibility 0s 0.5s;
-//     transition: transform 0.5s, visibility 0s 0.5s;
-
-// }
-
-// .overlay-fullscreen-contentpush.open {
-//     visibility: visible;
-// }
-// .animationEnabled .overlay-fullscreen-contentpush.open {
-//     -webkit-transform: translateX(0%);
-//     transform: translateX(0%);
-//     -webkit-transition: -webkit-transform 0.5s;
-//     transition: transform 0.5s;
-
-// }
 
 // Show/Hide card intro
 // Opacity effect
 .overlay-fullscreen-contentpush {
     visibility: hidden;
     opacity: 0;
-    // transition: all 0.3s ease-in-out;
     transition: all 0.2s ease-out;
 }
 
@@ -367,59 +314,13 @@ a.md-trigger {
 }
 
 .overlay-fullscreen-contentpush.open {
-    // transition: all 0.3s ease-in-out;
     transition: all 0.2s ease-out;
 }
 
-.card {
-    border: none;
-}
-
-.title-on-card {
-    // margin-top should be set so it aligns with the right column (answer)
-    // margin: 1.25em 10% 0 0% !important;
-    margin: 1.25em 5% 0 0% !important;
-    color: $cardLink;
-
-    // https://stackoverflow.com/a/48830291
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    -ms-word-break: break-all;
-    word-break: break-word;
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-
-    // see also media query (two columns versus one column, determining how many vw it should be)
-    min-height: 80vw;
-    // border: 3px solid red;
-}
-
-.title-on-card img {
-    position: absolute;
-    margin: 0;
-    width: 90%;
-}
-
-.title-on-card h2 {
-    position: relative;
-    margin: 6% 1% 0% 22% !important;
-    // padding: 3% 5% 0 16%;
-
-    // should be twice the value of the one inside the media query since this is a one column lay out and…>
-    font-size: 8vw;
-
-    margin: 0;
-    padding: 0;
-    text-align: left;
-}
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-    .title-on-card {
-        min-height: 40vw;
-    }
+
 
     .title-on-card h2 {
         // >… this is a two column lay out
@@ -446,31 +347,11 @@ a.md-trigger {
     transition: transform 0.3s;
 }
 
-// positioning of the card
-.overlay-fullscreen,
-.overlay-fullscreen .row,
-.overlay-fullscreen .row>div,
-.overlay-fullscreen .card,
 .title-on-card {
-    margin: 0;
     padding: 0;
 }
 
-.title-on-card {
-    padding-left: 1rem !important
-}
 
-.title-on-card {
-    // background: yellow;
-    padding: 0;
-}
-
-.title-on-card img {
-    opacity: 0;
-    background: orange;
-    margin: 0;
-    padding: 0;
-}
 
 .title-on-card h2 {
     padding: 1em;
@@ -480,27 +361,18 @@ a.md-trigger {
 }
 
 .title-on-card h2 {
-    min-height: 40%;
-}
-
-.column2 .card-body>div {
-    min-height: 40%;
-}
-
-.title-on-card h2 {
     border: 2px solid $cardBorder;
     background: $cardBackground;
 }
 
 $column2Border: #2f4fe036;
 
-.column2 .card-body>div {
-    border: 2px solid $column2Border;
-    position: relative;
-}
-
-
 .social-media-container {
     display: inline-block;
 }
+
+.further-reading {
+    cursor: pointer;
+}
+
 </style>
