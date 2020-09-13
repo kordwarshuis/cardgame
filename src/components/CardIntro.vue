@@ -1,6 +1,6 @@
 <template>
 <!-- open/close -->
-<div class="overlay-fullscreen overlay-fullscreen-contentpush " :class="this.$store.state.cssClassCardIntroState">
+<div class="overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
     <div class="row">
 
         <div class="col-lg-12 col-sm-12 ">
@@ -11,30 +11,35 @@
             <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
         </div>
 
-        <div class="col-lg-6 col-sm-6 column2">
-            <div class="card h-100 bg-transparent">
-                <div class="card-body text-center">
+        <div class="col-lg-6 col-sm-6 column2 p-0" style="border-right: 1px solid #ddd;">
+            <div class="card h-100 bg-transparent" style="border:none;">
+                <div class="card-body">
                     <h3 class="pt-5">Misconception:</h3>
-                    <div class="p-3">
+                    <div class="p-3 mt-2" style="background-color: #2F3658; min-height: 13em; border-radius: 10px;">
                         <p>{{ this.$store.state.currentCard["Prejudice"] }} …</p>
-                        <!-- TODO: make the <a> better accessible -->
-
-                        <RelatedCards />
-
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-sm-6 column1">
-            <div class="card h-100 bg-transparent">
+        <div class="col-lg-6 col-sm-6 column1 p-0">
+            <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body title-on-card center">
                     <h3 class="pt-5">Reply:</h3>
-                    <h2 class="title-on-card-text animated infinite"><span class="quote">“</span><span class="text">{{ getPrejudice }}</span><span class="quote">”</span><span style="display: block;"><a data-modal='modal-1' class='md-trigger further-reading' @click="showCardFull">+</a><a style="cursor:pointer;" @click="showCardFull">Open full card</a></span></h2>
+                    <h2 class="title-on-card-text animated infinite mb-5">
+                        <span class="quote">“</span>
+                        <span class="text">{{ getPrejudice }}</span>
+                        <span class="quote">”</span>
+                    </h2>
+                    <button class="btn btn-info mt-5" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                 </div>
             </div>
         </div>
 
-        <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12">
+        <div class="col-lg-12 col-sm-12 mt-5">
+            <RelatedCards />
+        </div>
+
+        <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 mt-5">
             <Video />
         </div>
         <div v-if="(this.$store.state.currentCard['Quiz'])" class="col-lg-12 col-sm-12">
@@ -200,7 +205,8 @@ export default {
     transform: translate(-50%, -50%);
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
     color: $overlayItemText;
-    background: $overlayItemBackground;
+    // background: $overlayItemBackground;
+    background: #474E71;
     padding: 0em;
 }
 
@@ -317,8 +323,6 @@ a.md-trigger {
     .title-on-card h2 {
         // >… this is a two column lay out
         font-size: 4vw;
-        margin: 0;
-        padding: 0;
     }
 }
 
@@ -339,21 +343,21 @@ a.md-trigger {
     transition: transform 0.3s;
 }
 
-.title-on-card {
-    padding: 0;
-}
+// .title-on-card {
+//     padding: 0;
+// }
 
 .title-on-card h2 {
-    padding: 1em;
-    margin: 0 !important;
+    // padding: 1em;
+    // margin: 0 !important;
     font-size: 2rem;
 
 }
 
-.title-on-card h2 {
-    border: 2px solid $cardBorder;
-    background: $cardBackground;
-}
+// .title-on-card h2 {
+// border: 2px solid $cardBorder;
+// background: $cardBackground;
+// }
 
 $column2Border: #2f4fe036;
 
