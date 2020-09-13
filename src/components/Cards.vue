@@ -178,8 +178,11 @@ h1 {
 
 // https://css-tricks.com/piecing-together-approaches-for-a-css-masonry-layout/
 .masonry-with-columns {
-    columns: 5 200px;
+    // columns: 5 200px;
+    column-count: 5;
+    column-width: 200px;
     column-gap: 1rem;
+    // column-rule: 1px dotted #ddd;
 
     >div {
         cursor: pointer;
