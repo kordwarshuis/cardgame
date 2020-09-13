@@ -74,8 +74,8 @@ export default new Vuex.Store({
       this.commit("changeCard", currentCard);
     },
     showItemsInSelectedCategory(state, category) {
-      if (localStorage.getItem("soundOn") === "true") whoosh2.play();
       var allCardsInChosenCategory = [];
+      if (localStorage.getItem("soundOn") === "true") whoosh2.play();
 
       // set active category name (TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the first <a>)
       if (category === undefined) {
