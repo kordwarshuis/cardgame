@@ -186,7 +186,7 @@ h1 {
 
     >div {
         cursor: pointer;
-        background: $_background2 url(../assets/img/icons/flat/bitcoin.svg) no-repeat 5px 5px;
+        background: $_background2 url(../assets/img/icons/flat/bitcoin.svg) 5px 5px;
         background-size: 20px;
         border-radius: 10px;
         color: $_text1;
