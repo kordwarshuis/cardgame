@@ -126,10 +126,7 @@ export default new Vuex.Store({
         }
       }, 1000);
 
-
       if (category !== undefined) {
-        // Notifier.config.default_timeout = "2000";
-        // Notifier.info("You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
         // this.commit("showToast", "You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
       }
     },
