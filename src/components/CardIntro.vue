@@ -18,15 +18,14 @@
                     <div class="p-3">
                         <p>{{ this.$store.state.currentCard["Prejudice"] }} …</p>
                         <!-- TODO: make the <a> better accessible -->
-                        
-                        
+
                         <RelatedCards />
 
                     </div>
                 </div>
             </div>
         </div>
-                <div class="col-lg-6 col-sm-6 column1">
+        <div class="col-lg-6 col-sm-6 column1">
             <div class="card h-100 bg-transparent">
                 <div class="card-body title-on-card center">
                     <h3 class="pt-5">Reply:</h3>
@@ -35,15 +34,12 @@
             </div>
         </div>
 
-
         <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12">
             <Video />
         </div>
         <div v-if="(this.$store.state.currentCard['Quiz'])" class="col-lg-12 col-sm-12">
             <Quiz />
         </div>
-
-
 
         <a class="overlay-fullscreen-close">×</a>
     </div>
@@ -291,14 +287,12 @@ a.md-trigger {
     }
 }
 
-
 .container.overlay-fullscreen-open::after {
     visibility: visible;
     opacity: 1;
     -webkit-transition: opacity 0.5s;
     transition: opacity 0.5s;
 }
-
 
 // Show/Hide card intro
 // Opacity effect
@@ -317,10 +311,8 @@ a.md-trigger {
     transition: all 0.2s ease-out;
 }
 
-
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
-
 
     .title-on-card h2 {
         // >… this is a two column lay out
@@ -351,8 +343,6 @@ a.md-trigger {
     padding: 0;
 }
 
-
-
 .title-on-card h2 {
     padding: 1em;
     margin: 0 !important;
@@ -374,5 +364,4 @@ $column2Border: #2f4fe036;
 .further-reading {
     cursor: pointer;
 }
-
 </style>
