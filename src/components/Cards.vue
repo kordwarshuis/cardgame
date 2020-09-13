@@ -7,7 +7,10 @@
         <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameName}} Misconceptions</h1>
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
+        <!-- All categories at once -->
         <li class="nav-item "><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a></li>
+
+        <!-- Every category in a menu item -->
         <li class="nav-item" v-for="category in $store.state.categories" :key="category.name"><a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name">{{ category.name }} ({{ category.numberOfItems }})</a></li>
     </ul>
     <!-- <h2>{{ subtext }}</h2> -->
