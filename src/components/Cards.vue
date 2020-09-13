@@ -14,7 +14,7 @@
 
         <!-- Every category in a menu item -->
         <li class="nav-item" v-for="category in $store.state.categories" :key="category.name">
-            <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category)" :data-category="category.name">
+            <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category.name)" :data-category="category.name">
                 {{ category.name }} ({{ category.numberOfItems }})
             </a>
         </li>
