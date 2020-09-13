@@ -24,13 +24,13 @@
         <div class="col-lg-6 col-sm-6 column1 p-0">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body title-on-card center">
-                    <h3 class="pt-5">Reply:</h3>
-                    <h2 class="title-on-card-text animated infinite mb-5">
+                    <h3 class="pt-5" style="color: #5FE2FC;">Reply:</h3>
+                    <h2 class="title-on-card-text animated infinite">
                         <span class="quote">“</span>
                         <span class="text">{{ getPrejudice }}</span>
                         <span class="quote">”</span>
                     </h2>
-                    <button class="btn btn-info mt-5" style="cursor:pointer;" @click="showCardFull">Open full card</button>
+                    <button class="btn btn-info mt-3" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                 </div>
             </div>
         </div>
