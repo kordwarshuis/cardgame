@@ -13,19 +13,20 @@
     <!-- <h2>{{ subtext }}</h2> -->
     <Search />
 
-    <div class="grid">
+    <div class="masonry-with-columns m-5">
         <!-- <transition name="fade"> -->
 
-        <a v-for="item in $store.state.allCardsInChosenCategory" data-shorttext="" :data-id="item['id']" :key="item.prejudice" class="grid__item" href="#" @click="showCardIntro">
-            <!-- mouseenter and out does does not work on the enclosing "a" -->
-            <div class="box" @mouseenter="startElectricitySound">
-                <div class="box__shadow"></div>
-                <img class="box__img" :src="require('@/assets/img/icons/flat/' + $store.state.cardImage)" alt="" />
-                <h3 class="box__title"><span class="box__title-inner" data-hover="">{{ item.category }}</span></h3>
-                <h4 class="box__text"><span class="box__text-inner"><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></span><span class="video-indicator" v-if="item['Youtube Video Id'] !== ''"><img :src="require('@/assets/img/icons/flat/film.svg')" title="contains video" alt="piece of filmstrip" /></span></h4>
+        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
+            <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
+                <!-- <div class="" @mouseenter="startElectricitySound"> -->
 
+                <h4 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h4>
+                <!-- </div> -->
+            </a>
+            <div class="card-footer" style="background: #557AA3; text-align: left;">
+                <h3 class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
             </div>
-        </a>
+        </div>
 
         <!-- </transition> -->
     </div>
@@ -165,28 +166,59 @@ h1 {
     }
 }
 
-.nav-link {
-    cursor: pointer;
-    font-variant: small-caps;
-    font-size: 1.2em;
-}
+// https://css-tricks.com/piecing-together-approaches-for-a-css-masonry-layout/
+.masonry-with-columns {
+    columns: 5 200px;
+    column-gap: 1rem;
 
-.nav-link.active,
-.nav-link:hover {
-    color: $linksText;
-    background-color: $backgroundBCB;
-}
+    >div {
+        cursor: pointer;
+        background: $_background2 url(../assets/img/icons/flat/bitcoin.svg) no-repeat 5px 5px;
+        background-size: 20px;
+        border-radius: 10px;
+        color: $_text1;
+        // margin: 0 1rem 1rem 0;
+        display: inline-block;
+        width: 100%;
+        // text-align: left;
+        // font-family: system-ui;
+        // font-weight: 900;
+        // font-size: 2rem;
 
-.video-indicator {
-    position: absolute;
-    top: -0.5em;
-    right: -0.5em;
-    font-size: 2em;
-    // transform: rotate(-25deg);
-    // text-decoration: none !important;
-}
+        h3,
+        h4 {
+            color: $_text1;
+            font-size: 1.1em;
+            margin: 0.5em;
+        }
 
-.video-indicator img {
-    width: 1em;
+        .card-footer {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding: 0 0.5em 0 0.5em;
+
+        }
+    }
+
+    .category {
+        background: #1D807D;
+    }
+
+    .category.Architecture {
+        background: #1D807D;
+    }
+
+    .category.Crime {
+        background: #7a6d45;
+    }
+
+    .category.Use {
+        background: #604085;
+    }
+
+    .category.Environment {
+        background: #406685;
+    }
+
 }
 </style>
