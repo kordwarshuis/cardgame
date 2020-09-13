@@ -274,7 +274,8 @@ export default {
 }
 
 .modal-content>div {
-    color: $cardFullBlockText;
+    // color: $cardFullBlockText;
+    color: #eee;;
     background: $cardFullBlockBackground;
 }
 
