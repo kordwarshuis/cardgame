@@ -1,7 +1,7 @@
 <template>
 <!-- <div id="app" class="container-fluid"> -->
 <div id="app" class="container-fluid">
-    <Toasts :time-out="2000"></Toasts>
+
     <MainMenu />
     <!-- <CryptoRadio /> -->
     <router-view />
@@ -9,6 +9,7 @@
     <Person1 />
     <Person2 />
     <!-- <Person3 /> -->
+    <Toasts :time-out="2000"></Toasts>
 </div>
 </template>
 
@@ -273,7 +274,6 @@ p {
     font-size: 1.2em;
 }
 
-
 /*accessibility*/
 .visuallyhidden {
     border: 0;
@@ -289,7 +289,6 @@ p {
 .preview-open {
     overflow: hidden;
 }
-
 
 a {
     text-decoration: none;
@@ -320,27 +319,26 @@ a:focus {
 //     fill: currentColor;
 // }
 
-
 .border {
     border: 1px solid $_border1 !important;
 }
-
 
 // https://codepen.io/joeyhoer/pen/BmqIx
 hr {
     border: 1px solid #666;
     width: 50%;
 }
+
 .menu hr {
     margin: 0.35em auto;
     background-image: radial-gradient(closest-side, $hr1menu, 100%);
 }
+
 .menu hr:after {
     background-color: $hr1menu;
     border: 4px solid $hr1menu;
     box-shadow: -10px 10px 0, 10px -10px 0 $hr1menu;
 }
-
 
 // @media screen and (min-width: 55em) {
 //     .grid {
@@ -374,7 +372,6 @@ hr {
 //         margin: 6rem 4.5rem;
 //     }
 // }
-
 
 /* het sluiten van de eerste popup: */
 .overlay__close,
@@ -503,8 +500,6 @@ button:hover,
     min-height: 2em;
 }
 
-
-
 /*!
 Animate.css - http://daneden.github.io/animate.css/
 Licensed under the MIT license - http://opensource.org/licenses/MIT
@@ -559,4 +554,7 @@ Copyright (c) 2014 Daniel Eden
     // display: inline-block;
 }
 
+.toast-container {
+    color: #111;
+}
 </style>
