@@ -22,6 +22,9 @@ import * as Hammer from "hammerjs";
 import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
+import {
+    realTimeTweets
+} from "@/assets/js/realTimeTweets.js";
 // import Person3 from "@/components/AnimatedCharacters/Person3.vue";
 
 export default {
@@ -40,6 +43,10 @@ export default {
     mounted() {
         // this.soundSetting();
         this.initSound();
+        realTimeTweets.start({
+    source: process.env.VUE_APP_REALTIME_TWITTER_JSON
+});
+
     },
     methods: {
         //TODO: change 'of' to 'off'
