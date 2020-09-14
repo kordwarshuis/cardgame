@@ -557,4 +557,7 @@ Copyright (c) 2014 Daniel Eden
 .toast-container {
     color: #111;
 }
+.toast {
+    background-color: #eee;
+}
 </style>
