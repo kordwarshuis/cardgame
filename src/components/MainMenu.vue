@@ -20,6 +20,7 @@ export default {
 #nav a {
     display: inline-block;
     padding: 1em;
+    color: #eee;
 }
 
 </style>
