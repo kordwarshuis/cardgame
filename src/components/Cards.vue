@@ -3,7 +3,7 @@
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <BitcoinAnimation /> -->
     <!-- <h1>Bitcoin Misconceptions</h1> -->
-    <h1 class="pt-1">
+    <h1 class="pt-1 ml-1 mr-1 ml-md-5 mr-md-5 mt-0">
         <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameName}} Misconceptions</h1>
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
@@ -20,9 +20,10 @@
         </li>
     </ul>
     <!-- <h2>{{ subtext }}</h2> -->
+
     <Search />
 
-    <div class="masonry-with-columns m-5">
+    <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
         <!-- <transition name="fade"> -->
 
         <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
@@ -30,7 +31,7 @@
                 <h4 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h4>
             </a>
             <div class="card-footer" style="background: #557AA3; text-align: left;">
-                <h3 @click="$store.commit('showItemsInSelectedCategory',item.category)"  class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
+                <h3 @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
             </div>
         </div>
 
@@ -162,7 +163,6 @@ h1 {
     color: #eee;
     cursor: pointer;
 }
-
 
 @media screen and (min-width: 320px) {
     h1 {
