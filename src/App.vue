@@ -16,7 +16,7 @@
 <script>
 import publicPath from "../vue.config";
 import MainMenu from "@/components/MainMenu.vue";
-import CryptoRadio from "@/components/CryptoRadio.vue";
+// import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
 import * as Hammer from "hammerjs";
 import NewsTicker from "@/components/NewsTicker.vue";
@@ -27,7 +27,7 @@ import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 export default {
     components: {
         MainMenu,
-        CryptoRadio,
+        // CryptoRadio,
         NewsTicker,
         Hammer,
         Person1,
