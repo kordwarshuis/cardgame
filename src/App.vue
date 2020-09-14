@@ -3,7 +3,7 @@
 <div id="app" class="container-fluid">
 
     <MainMenu />
-    <slideInMenu />
+    <!-- <slideInMenu /> -->
     <!-- <CryptoRadio /> -->
     <router-view />
     <NewsTicker />
@@ -16,7 +16,7 @@
 
 <script>
 import publicPath from "../vue.config";
-import slideInMenu from "@/components/slideInMenu.vue";
+// import slideInMenu from "@/components/slideInMenu.vue";
 import MainMenu from "@/components/MainMenu.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
@@ -32,7 +32,7 @@ import {
 export default {
     components: {
         MainMenu,
-        slideInMenu,
+        // slideInMenu,
         // CryptoRadio,
         NewsTicker,
         Hammer,
