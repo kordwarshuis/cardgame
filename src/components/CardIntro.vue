@@ -11,17 +11,19 @@
             <button class="copyURLtoClipboard copyURLtoClipboard3 " title="Copy Link">Copy Link</button>
         </div>
 
-        <div class="col-lg-6 col-sm-6 column2 p-0" style="border-right: 1px solid #ddd;">
+        <div class="col-lg-6 col-sm-6 column2 p-0 pb-5" style="border-right: 1px solid #ddd;">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body">
                     <h3 class="pt-5">Misconception:</h3>
-                    <div class="p-3 mt-2" style="background-color: #2F3658; min-height: 13em; border-radius: 10px;">
+                    <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 13em; border-radius: 10px;">
                         <p>{{ this.$store.state.currentCard["Prejudice"] }} …</p>
+                        <button class="btn btn-outline-light mt-3" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                     </div>
+
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-sm-6 column1 p-0">
+        <div class="col-lg-6 col-sm-6 column1 p-0 ">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body title-on-card center">
                     <h3 class="pt-5" style="color: #5FE2FC;">Reply:</h3>
@@ -30,12 +32,12 @@
                         <span class="text">{{ getPrejudice }}</span>
                         <span class="quote">”</span>
                     </h2>
-                    <button class="btn btn-info mt-3" style="cursor:pointer;" @click="showCardFull">Open full card</button>
+
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-12 col-sm-12 mt-5">
+        <div class="col-lg-12 col-sm-12">
             <RelatedCards />
         </div>
 
