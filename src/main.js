@@ -7,7 +7,6 @@ import router from "./router/router";
 import VueGtag from "vue-gtag";
 import store from "./store/store";
 import * as d3 from 'd3-dsv';
-import './assets/js/TweenMax.min';
 import {Howl, Howler} from 'howler';
 import _ from "lodash";
 // import './assets/js/menu_sideslide';
