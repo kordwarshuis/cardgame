@@ -285,13 +285,13 @@ export var realTimeTweets = (function () {
                     if (keywordFound === true) {
 
                         domTemp = "<div class='tweet " + specialAccountHTMLcode +
-                            "inviesieble col-md-12'><div class='card mb-4 box-shadow'><div class='card-body'><div class='card-text'><img class='img-fluid float-left w-25 mr-3' src='" +
-                            data[i].user.profile_image_url_https + "' alt=''><p>Name: " + data[i].user.name + "<br>Verified: " +
-                            data[i].user.verified + "<br>Keyword: " + currentKeyword + "</p><p>" + twitterLinks(data[i].text) +
-                            "</p><p>Followers: " + data[i].user.followers_count +
-                            " | <a target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name +
+                            "inviesieble col-md-12'><div class='card mb-4 box-shadow'><div class='card-body'><div class='card-text'><p><a target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name +
                             "/status/" + data[i].id_str +
-                            "'>Go to tweet</a></p></div><div class='d-flex justify-content-between align-items-center'><small class='text-muted'><span class='tweetNumber'>#" +
+                            "'>Go to tweet</a> " + twitterLinks(data[i].text) +
+                            "</p><img class='img-fluid float-left w-25 mr-3' src='" +
+                            data[i].user.profile_image_url_https + "' alt=''><p>Name: " + data[i].user.name + "<br>Verified: " +
+                            data[i].user.verified + "<br>Keyword: " + currentKeyword + "</p><p>Followers: " + data[i].user.followers_count +
+                            " | </p></div><div class='d-flex justify-content-between align-items-center'><small class='text-muted'><span class='tweetNumber'>#" +
                             tweetNumber + "</span> <span class='tweetTimeStamp'>&#x1f550; " + timestampNow() +
                             "</span></small></div></div></div></div>" + domTemp;
 
