@@ -24,34 +24,25 @@
 
     <Search />
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
-                    <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
-                        <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
-                            <h4 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h4>
-                        </a>
-                        <div class="card-footer" style="background: #557AA3; text-align: left;">
-                            <h3 @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div style="max-width: 300px; font-size: 0.6em;color: #333;" id="tweets" class="row">xxx</div>
+    <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
+        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
+            <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
+                <h4 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h4>
+            </a>
+            <div class="card-footer" style="background: #557AA3; text-align: left;">
+                <h3 @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
             </div>
         </div>
     </div>
 
-    <NewsTicker />
+    <!-- <NewsTicker /> -->
     <SoundToggle />
     <!-- </transition> -->
 </div>
 </template>
 
 <script>
-import NewsTicker from "@/components/NewsTicker.vue";
+// import NewsTicker from "@/components/NewsTicker.vue";
 import Search from "@/components/Search.vue";
 import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
@@ -61,7 +52,7 @@ export default {
     name: "Index",
     components: {
         Search,
-        NewsTicker,
+        // NewsTicker,
         SoundToggle,
         ICountUp
         // ,BitcoinAnimation
