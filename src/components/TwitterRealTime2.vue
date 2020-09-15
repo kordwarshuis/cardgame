@@ -2,76 +2,15 @@
 <div class="tweets-container">
     <div style="" id="tweets">
 
-        <!-- <div class="tweet col-md-12">
-                <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                        <div class="card-text"><img class="img-fluid float-left w-25 mr-3" src="https://pbs.twimg.com/profile_images/1126510995763949568/TIkkcWm1_normal.jpg" alt="">
-                            <p>Name: Dirt Adventure 🔴<br>Verified: false<br>Keyword: the</p>
-                            <p>RT <a href="http://twitter.com/function(e,t){return new E.fn.init(e,t)}" title="Follow ChainPeople" target="_blank">@ChainPeople</a>: DigiByte claims to have a proven and tested solution that is faster and safer than blockchains like Bitcoin and Ethereum.…</p>
-                            <p>Followers: 1022 | <a target="_blank" rel="noopener" href="https://twitter.com/dirt_adventure/status/1305791212029239296">Go to tweet</a></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center"><small class="text-muted"><span class="tweetNumber">#0</span> <span class="tweetTimeStamp">🕐 10:51:12</span></small></div>
-                    </div>
-                </div>
-            </div>
+        <div class="tweet col-md-12"><div class="card mb-4 box-shadow"><div class="card-body"><div class="card-text"><span class="tweetNumber">#-1</span><p><a target="_blank" rel="noopener" href="https://twitter.com/DragonShadowLV/status/1305951637127618560">Go to tweet</a> Why has <a href="http://twitter.com/search?q=#Bitcoin" title="Search tag: Bitcoin" target="_blank">#Bitcoin</a> inventor Satoshi Nakamoto remained anonymous? (via <a href="http://twitter.com/function(e,t){return new E.fn.init(e,t)}" title="Follow decryptmedia" target="_blank">@decryptmedia</a>) <a href="https://t.co/ntUilFO033" target="_blank">https://t.co/ntUilFO033</a> <a href="http://twitter.com/search?q=#crypto" title="Search tag: crypto" target="_blank">#crypto</a></p><img class="img-fluid float-left w-25 mr-3" src="https://pbs.twimg.com/profile_images/616454622501187588/LjvscJJa_normal.jpg" alt=""><p>Name: Berkley R. Bruce<br>Verified: false<br>Keyword:  anonymous</p><p>Followers: 6397 | </p></div><div class="d-flex justify-content-between align-items-center"><small class="text-muted"> <span class="tweetTimeStamp">🕐 21:28:45</span></small><button type="button" class="btn btn-primary">Select</button></div></div></div></div>
 
-            <div class="tweet col-md-12">
-                <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                        <div class="card-text"><img class="img-fluid float-left w-25 mr-3" src="https://pbs.twimg.com/profile_images/1126510995763949568/TIkkcWm1_normal.jpg" alt="">
-                            <p>Name: Dirt Adventure 🔴<br>Verified: false<br>Keyword: the</p>
-                            <p>RT <a href="http://twitter.com/function(e,t){return new E.fn.init(e,t)}" title="Follow ChainPeople" target="_blank">@ChainPeople</a>: DigiByte claims to have a proven and tested solution that is faster and safer than blockchains like Bitcoin and Ethereum.…</p>
-                            <p>Followers: 1022 | <a target="_blank" rel="noopener" href="https://twitter.com/dirt_adventure/status/1305791212029239296">Go to tweet</a></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center"><small class="text-muted"><span class="tweetNumber">#0</span> <span class="tweetTimeStamp">🕐 10:51:12</span></small></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tweet col-md-12">
-                <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                        <div class="card-text"><img class="img-fluid float-left w-25 mr-3" src="https://pbs.twimg.com/profile_images/1126510995763949568/TIkkcWm1_normal.jpg" alt="">
-                            <p>Name: Dirt Adventure 🔴<br>Verified: false<br>Keyword: the</p>
-                            <p>RT <a href="http://twitter.com/function(e,t){return new E.fn.init(e,t)}" title="Follow ChainPeople" target="_blank">@ChainPeople</a>: DigiByte claims to have a proven and tested solution that is faster and safer than blockchains like Bitcoin and Ethereum.…</p>
-                            <p>Followers: 1022 | <a target="_blank" rel="noopener" href="https://twitter.com/dirt_adventure/status/1305791212029239296">Go to tweet</a></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center"><small class="text-muted"><span class="tweetNumber">#0</span> <span class="tweetTimeStamp">🕐 10:51:12</span></small></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tweet col-md-12">
-                <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                        <div class="card-text"><img class="img-fluid float-left w-25 mr-3" src="https://pbs.twimg.com/profile_images/1126510995763949568/TIkkcWm1_normal.jpg" alt="">
-                            <p>Name: Dirt Adventure 🔴<br>Verified: false<br>Keyword: the</p>
-                            <p>RT <a href="http://twitter.com/function(e,t){return new E.fn.init(e,t)}" title="Follow ChainPeople" target="_blank">@ChainPeople</a>: DigiByte claims to have a proven and tested solution that is faster and safer than blockchains like Bitcoin and Ethereum.…</p>
-                            <p>Followers: 1022 | <a target="_blank" rel="noopener" href="https://twitter.com/dirt_adventure/status/1305791212029239296">Go to tweet</a></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center"><small class="text-muted"><span class="tweetNumber">#0</span> <span class="tweetTimeStamp">🕐 10:51:12</span></small></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tweet col-md-12">
-                <div class="card mb-4 box-shadow">
-                    <div class="card-body">
-                        <div class="card-text"><img class="img-fluid float-left w-25 mr-3" src="https://pbs.twimg.com/profile_images/1126510995763949568/TIkkcWm1_normal.jpg" alt="">
-                            <p>Name: Dirt Adventure 🔴<br>Verified: false<br>Keyword: the</p>
-                            <p>RT <a href="http://twitter.com/function(e,t){return new E.fn.init(e,t)}" title="Follow ChainPeople" target="_blank">@ChainPeople</a>: DigiByte claims to have a proven and tested solution that is faster and safer than blockchains like Bitcoin and Ethereum.…</p>
-                            <p>Followers: 1022 | <a target="_blank" rel="noopener" href="https://twitter.com/dirt_adventure/status/1305791212029239296">Go to tweet</a></p>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center"><small class="text-muted"><span class="tweetNumber">#0</span> <span class="tweetTimeStamp">🕐 10:51:12</span></small></div>
-                    </div>
-                </div>
-            </div> -->
 
     </div>
 </div>
 </template>
 
 <script>
+import store from "../store/store";
 import {
     realTimeTweets
 } from "@/assets/js/realTimeTweets.js";
@@ -82,7 +21,52 @@ export default {
         realTimeTweets.start({
             source: process.env.VUE_APP_REALTIME_TWITTER_JSON
         });
+        this.copyTweet();
     },
+    methods: {
+        copyTweet() {
+            alert("Hi Isabel en Henk, onderin verschijnen tweets, als je er overheen muist of op mobiel op tikt komen ze omhoog, als je er op klikt komt de tweet links te staan, nu heb je hem gesaved en kan je een kaart gaan zoeke en kopieeren.")
+            var tweetCopyContainer = document.createElement("div");
+            tweetCopyContainer.classList.add("tweetCopyContainer", "tweets");
+            document.querySelector("body").appendChild(tweetCopyContainer);
+
+            document.addEventListener("click", function (event) {
+                if (event.target.matches(".tweets-container .tweet .card-body button")) {
+                    tweetCopyContainer.innerHTML = "";
+                    var tweet = document.createElement("div");
+                    tweet.classList.add("tweet", "col-md-12");
+                    var card = document.createElement("div");
+                    card.classList.add("card", "mb-4", "box-shadow");
+
+                    // tweetCopyContainer.appendChild(card);
+                    tweetCopyContainer.appendChild(tweet);
+                    
+                    tweet.appendChild(card);
+                    var toBeAdded = event.target.closest(".card-body");
+                    
+                    card.appendChild(toBeAdded);
+                    card.querySelector("button").remove();
+                    tweetCopyContainer.querySelector(".card-body").insertAdjacentHTML("afterbegin", "<div class='alert alert-info' role='alert'>Find a card and come back to this tweet.</div>");
+                    console.log('tweetCopyContainer.querySelector(".card-body"): ', tweetCopyContainer.querySelector(".card-body"));
+
+                    setTimeout(function(){tweetCopyContainer.classList.add('tweetCopyContainerVisible');}, 500);
+                    setTimeout(function(){tweetCopyContainer.classList.remove('tweetCopyContainerVisible');}, 2000);
+
+
+                    // store.commit("showToast", "Select an appropriate card and go to the card at the left.");
+                }
+                // if (event.target.matches(".close")) {
+                //     // Run your code to close a modal
+                // }
+            }, false);
+
+            // tweets.forEach(function () {
+            //     this.ad
+            //     console.log("woopie");
+            // })
+
+        }
+    }
 }
 </script>
 
@@ -93,14 +77,13 @@ export default {
     position: fixed;
     left: 0;
     bottom: 0;
-    height: 100px;
+    height: 50px;
     width: 100%;
     margin: 0;
     overflow: scroll;
-
     font-size: 0.6em;
     color: #000;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.6s ease-in-out;
 }
 
 .tweets-container:hover {
@@ -113,7 +96,7 @@ export default {
 }
 
 .tweet {
-    max-width: 300px;
+    max-width: 300px !important; // overrule bootstrap
     min-height: 400px;
     float: left;
     display: block;
@@ -129,5 +112,25 @@ export default {
     left: -0.01em;
     font-size: 2em;
     color: #222;
+}
+
+.tweetCopyContainer {
+    // border: 3px solid red;
+    position: fixed;
+    top: 20px;
+    left: -270px;
+    width: 300px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+    font-size: 0.7em;
+    color: #222;
+    transition: all 0.9s ease-in-out;
+}
+
+.tweetCopyContainer:hover,
+.tweetCopyContainerVisible {
+    left: -10px;
+    transition: all 0.3s ease-in-out;
 }
 </style>
