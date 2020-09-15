@@ -2,16 +2,8 @@ import {
     language
 } from '@/assets/js/Language.js';
 
-// import {$store} from '@/store/store.js';
 import store from '@/store/store.js';
 import moment from "moment";
-
-/*
-args = {
-    source: process.env.VUE_APP_REALTIME_TWITTER_JSON
-}
-
-*/
 
 export var realTimeTweets = (function () {
     var refreshInterval = 10000;
@@ -36,7 +28,7 @@ export var realTimeTweets = (function () {
     var status = document.querySelector("#status span");
     var lastDataSet;
     // var keyWords = [];
-    var keyWords = ["the","criminals","slow","laundering","energy","complicated","unfair","quantum","tax evaders","unsustainable","intrinsic value","shut down","scammers","roulette","only 21","not safe","black market","terrorists","tulip","greater fool","not scalable","anarchists","distribution unfair","hacked"," anonymous","unsustainable","useless","ponzi","no backing","will die","forbidden","shut down","scammers","not gdpr","price down","terrorists","privacy breach","volatile","useless","deflation","chinese"];
+    var keyWords = ["the", "criminals", "slow", "laundering", "energy", "complicated", "unfair", "quantum", "tax evaders", "unsustainable", "intrinsic value", "shut down", "scammers", "roulette", "only 21", "not safe", "black market", "terrorists", "tulip", "greater fool", "not scalable", "anarchists", "distribution unfair", "hacked", " anonymous", "unsustainable", "useless", "ponzi", "no backing", "will die", "forbidden", "shut down", "scammers", "not gdpr", "price down", "terrorists", "privacy breach", "volatile", "useless", "deflation", "chinese"];
 
 
 
@@ -187,6 +179,12 @@ export var realTimeTweets = (function () {
         // status.innerHTML = language.status.appStopped;
     }
 
+    /*
+        example:
+        args = {
+            source: process.env.VUE_APP_REALTIME_TWITTER_JSON
+        }
+    */
     function startStream(args) {
         var tweets = document.querySelector("#tweets");
         var stopNow = false;
@@ -285,14 +283,14 @@ export var realTimeTweets = (function () {
                     if (keywordFound === true) {
 
                         domTemp = "<div class='tweet " + specialAccountHTMLcode +
-                            "inviesieble col-md-12'><div class='card mb-4 box-shadow'><div class='card-body'><div class='card-text'><p><a target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name +
+                            "inviesieble col-md-12'><div class='card mb-4 box-shadow'><div class='card-body'><div class='card-text'><span class='tweetNumber'>#" +
+                            tweetNumber + "</span><p><a target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name +
                             "/status/" + data[i].id_str +
                             "'>Go to tweet</a> " + twitterLinks(data[i].text) +
                             "</p><img class='img-fluid float-left w-25 mr-3' src='" +
                             data[i].user.profile_image_url_https + "' alt=''><p>Name: " + data[i].user.name + "<br>Verified: " +
                             data[i].user.verified + "<br>Keyword: " + currentKeyword + "</p><p>Followers: " + data[i].user.followers_count +
-                            " | </p></div><div class='d-flex justify-content-between align-items-center'><small class='text-muted'><span class='tweetNumber'>#" +
-                            tweetNumber + "</span> <span class='tweetTimeStamp'>&#x1f550; " + timestampNow() +
+                            " | </p></div><div class='d-flex justify-content-between align-items-center'><small class='text-muted'> <span class='tweetTimeStamp'>&#x1f550; " + timestampNow() +
                             "</span></small></div></div></div></div>" + domTemp;
 
                         tweetNumber++;
