@@ -271,6 +271,19 @@ export default {
     // transition: opacity 0.3s ease-in-out;
 }
 
+.card {
+    min-height: 270px;
+}
+
+.tweetNumber {
+    position: absolute;
+    top: -0.1em;
+    left: -0.01em;
+    font-size: 2em;
+    color: #222;
+}
+
+
 // @font-face {
 //     font-family: 'League Gothic';
 //     src: url("./assets/fonts/league_gothic-webfont.eot");
