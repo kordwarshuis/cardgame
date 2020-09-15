@@ -13,7 +13,7 @@
     <div class="tweets-container">
         <div style="" id="tweets">
 
-            <div class="tweet col-md-12">
+            <!-- <div class="tweet col-md-12">
                 <div class="card mb-4 box-shadow">
                     <div class="card-body">
                         <div class="card-text"><img class="img-fluid float-left w-25 mr-3" src="https://pbs.twimg.com/profile_images/1126510995763949568/TIkkcWm1_normal.jpg" alt="">
@@ -76,7 +76,7 @@
                         <div class="d-flex justify-content-between align-items-center"><small class="text-muted"><span class="tweetNumber">#0</span> <span class="tweetTimeStamp">🕐 10:51:12</span></small></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>
