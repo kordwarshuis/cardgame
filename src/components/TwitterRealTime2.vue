@@ -86,7 +86,6 @@ export default {
 }
 </script>
 
-
 <style lang="scss">
 /* // scoped does not work here */
 // @import "~bootstrap/dist/css/bootstrap.min.css";
