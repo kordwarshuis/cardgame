@@ -6,7 +6,7 @@
     <!-- <slideInMenu /> -->
     <!-- <CryptoRadio /> -->
     <router-view />
-    <NewsTicker />
+    <!-- <NewsTicker /> -->
     <Person1 />
     <Person2 />
     <!-- <Person3 /> -->
@@ -21,7 +21,7 @@ import MainMenu from "@/components/MainMenu.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
 import * as Hammer from "hammerjs";
-import NewsTicker from "@/components/NewsTicker.vue";
+// import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 import {
@@ -34,7 +34,7 @@ export default {
         MainMenu,
         // slideInMenu,
         // CryptoRadio,
-        NewsTicker,
+        // NewsTicker,
         Hammer,
         Person1,
         Person2
