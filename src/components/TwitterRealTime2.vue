@@ -1,10 +1,8 @@
 <template>
 <div class="tweets-container">
     <div style="" id="tweets">
-
-        <div class="tweet col-md-12"><div class="card mb-4 box-shadow"><div class="card-body"><div class="card-text"><span class="tweetNumber">#-1</span><p><a target="_blank" rel="noopener" href="https://twitter.com/DragonShadowLV/status/1305951637127618560">Go to tweet</a> Why has <a href="http://twitter.com/search?q=#Bitcoin" title="Search tag: Bitcoin" target="_blank">#Bitcoin</a> inventor Satoshi Nakamoto remained anonymous? (via <a href="http://twitter.com/function(e,t){return new E.fn.init(e,t)}" title="Follow decryptmedia" target="_blank">@decryptmedia</a>) <a href="https://t.co/ntUilFO033" target="_blank">https://t.co/ntUilFO033</a> <a href="http://twitter.com/search?q=#crypto" title="Search tag: crypto" target="_blank">#crypto</a></p><img class="img-fluid float-left w-25 mr-3" src="https://pbs.twimg.com/profile_images/616454622501187588/LjvscJJa_normal.jpg" alt=""><p>Name: Berkley R. Bruce<br>Verified: false<br>Keyword:  anonymous</p><p>Followers: 6397 | </p></div><div class="d-flex justify-content-between align-items-center"><small class="text-muted"> <span class="tweetTimeStamp">🕐 21:28:45</span></small><button type="button" class="btn btn-primary">Select</button></div></div></div></div>
-
-
+        <!-- example tweet -->
+        <div class="tweet col-md-12"><div class="card mb-4 box-shadow"><div class="card-body"><div class="card-text"><span class="tweetNumber">#-1</span><p><a class='go-to-tweet' target="_blank" rel="noopener" href="https://twitter.com/DragonShadowLV/status/1305951637127618560">Go to tweet</a> Why has <a href="http://twitter.com/search?q=#Bitcoin" title="Search tag: Bitcoin" target="_blank">#Bitcoin</a> inventor Satoshi Nakamoto remained anonymous? (via <a href="http://twitter.com/function(e,t){return new E.fn.init(e,t)}" title="Follow decryptmedia" target="_blank">@decryptmedia</a>) <a href="https://t.co/ntUilFO033" target="_blank">https://t.co/ntUilFO033</a> <a href="http://twitter.com/search?q=#crypto" title="Search tag: crypto" target="_blank">#crypto</a></p><img class="img-fluid float-left w-25 mr-3" src="https://pbs.twimg.com/profile_images/616454622501187588/LjvscJJa_normal.jpg" alt=""><p>Name: Berkley R. Bruce<br>Verified: false<br>Keyword:  anonymous</p><p>Followers: 6397 | </p></div><div class="d-flex justify-content-between align-items-center"><small class="text-muted"> <span class="tweetTimeStamp">🕐 21:28:45</span></small><button type="button" class="btn btn-primary">Select</button></div></div></div></div>
     </div>
 </div>
 </template>
@@ -46,11 +44,11 @@ export default {
                     
                     card.appendChild(toBeAdded);
                     card.querySelector("button").remove();
-                    tweetCopyContainer.querySelector(".card-body").insertAdjacentHTML("afterbegin", "<div class='alert alert-info' role='alert'>Find a card and come back to this tweet.</div>");
+                    tweetCopyContainer.querySelector(".card-body").insertAdjacentHTML("afterbegin", "<div class='alert alert-info' role='alert'>First find a card, copy and come back to this tweet.</div>");
                     console.log('tweetCopyContainer.querySelector(".card-body"): ', tweetCopyContainer.querySelector(".card-body"));
 
                     setTimeout(function(){tweetCopyContainer.classList.add('tweetCopyContainerVisible');}, 500);
-                    setTimeout(function(){tweetCopyContainer.classList.remove('tweetCopyContainerVisible');}, 2000);
+                    setTimeout(function(){tweetCopyContainer.classList.remove('tweetCopyContainerVisible');}, 3500);
 
 
                     // store.commit("showToast", "Select an appropriate card and go to the card at the left.");
@@ -132,5 +130,15 @@ export default {
 .tweetCopyContainerVisible {
     left: -10px;
     transition: all 0.3s ease-in-out;
+}
+
+.tweetCopyContainer .go-to-tweet {
+    border: 1px solid #222;
+    border-radius: 7px;
+    padding: 0.3em;
+    background: gainsboro;
+}
+.tweetCopyContainer .go-to-tweet:hover {
+        background: rgb(197, 194, 194);
 }
 </style>
