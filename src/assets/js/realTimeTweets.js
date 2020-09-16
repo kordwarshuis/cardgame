@@ -283,10 +283,10 @@ export var realTimeTweets = (function () {
                     if (keywordFound === true) {
 
                         domTemp = "<div class='tweet " + specialAccountHTMLcode +
-                            "inviesieble col-md-12'><div class='card mb-4 box-shadow'><div class='card-body'><div class='card-text'><span class='tweetNumber'>#" +
+                            "inviesieble col-md-12'><div class='card mb-4 pt-2 box-shadow'><div class='card-body'><div class='card-text'><span class='tweetNumber'>#" +
                             tweetNumber + "</span><p><a class='go-to-tweet' target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name +
                             "/status/" + data[i].id_str +
-                            "'>Go to tweet</a> " + twitterLinks(data[i].text) +
+                            "'>Go to tweet and reply with card</a> " + twitterLinks(data[i].text) +
                             "</p><img class='img-fluid float-left w-25 mr-3' src='" +
                             data[i].user.profile_image_url_https + "' alt=''><p>Name: " + data[i].user.name + "<br>Verified: " +
                             data[i].user.verified + "<br>Keyword: " + currentKeyword + "</p><p>Followers: " + data[i].user.followers_count +
