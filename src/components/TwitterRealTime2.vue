@@ -55,15 +55,22 @@ export default {
 
                     card.appendChild(toBeAdded);
                     card.querySelector("button").remove();
-                    tweetCopyContainer.querySelector(".card-body").insertAdjacentHTML("afterbegin", "<div class='alert alert-info' role='alert'>First find a card, copy and come back to this tweet.</div>");
-                    console.log('tweetCopyContainer.querySelector(".card-body"): ', tweetCopyContainer.querySelector(".card-body"));
+                    tweetCopyContainer.querySelector(".card-body").insertAdjacentHTML("afterbegin", "<div class='alert alert-info' role='alert'>First find a card, copy and come back to this tweet.</div><button class='open-and-close-tweet'><span class='visuallyhidden'>Open and close</span></button>");
+
+                    if (document.querySelector('.open-and-close-tweet') !== undefined) {
+                        console.log("hio");
+                        document.querySelector('.open-and-close-tweet').addEventListener('click', function () {
+                            document.querySelector('.tweetCopyContainer').classList.toggle('tweetCopyContainerVisible');
+                        }, false);
+
+                    }
 
                     setTimeout(function () {
                         tweetCopyContainer.classList.add('tweetCopyContainerVisible');
                     }, 500);
                     setTimeout(function () {
                         tweetCopyContainer.classList.remove('tweetCopyContainerVisible');
-                    }, 3500);
+                    }, 1000);
 
                     // store.commit("showToast", "Select an appropriate card and go to the card at the left.");
                 }
@@ -77,6 +84,17 @@ export default {
             //     console.log("woopie");
             // })
 
+            document.querySelector('.tweets-container').addEventListener('click', function () {
+                document.querySelector('.tweets-container').classList.toggle('tweets-container-visible');
+            }, false);
+
+            // document.querySelector('body').addEventListener('click', function () {
+            //     document.querySelector('.tweets-container').classList.remove('tweets-container-visible');
+            // }, false);
+
+
+
+
         }
     }
 }
@@ -89,7 +107,7 @@ export default {
     position: fixed;
     left: 0;
     bottom: 0;
-    height: 50px;
+    height: 30px;
     width: 100%;
     margin: 0;
     overflow: scroll;
@@ -98,7 +116,8 @@ export default {
     transition: all 0.6s ease-in-out;
 }
 
-.tweets-container:hover {
+// .tweets-container:hover,
+.tweets-container-visible {
     height: 300px;
     transition: all 0.3s ease-in-out;
 }
@@ -116,6 +135,13 @@ export default {
 
 .card {
     min-height: 270px;
+    // background-image: url(../assets/img/twitter/Twitter_Logo_Blue.svg);
+    // background-repeat: no-repeat;
+    // background-position: top right;
+    // background-size: 30px;
+
+}
+.tweets-container .card {
     background-image: url(../assets/img/twitter/Twitter_Logo_Blue.svg);
     background-repeat: no-repeat;
     background-position: top right;
@@ -133,8 +159,9 @@ export default {
 .tweetCopyContainer {
     // border: 3px solid red;
     position: fixed;
-    top: 20px;
-    left: -255px;
+    top: 10px;
+    left: -286px;
+    // left: -200px;
     width: 300px;
     height: 400px;
     margin: 0;
@@ -146,11 +173,12 @@ export default {
 .tweetCopyContainer .card {
     padding: 1em 1em 0 0;
     background-color: #c6defa;
+    border-top-right-radius: 0px;
 }
 
-.tweetCopyContainer:hover,
+// .tweetCopyContainer:hover,
 .tweetCopyContainerVisible {
-    left: -10px;
+    left: -1.5em;
     transition: all 0.3s ease-in-out;
 }
 
@@ -170,5 +198,25 @@ export default {
 
 .tweetCopyContainer .go-to-tweet:hover {
     background: rgb(197, 194, 194);
+}
+
+.open-and-close-tweet {
+    position: absolute;
+    top: -4px;
+    right: -38px;
+    width: 35px;
+    height: 35px;
+    background-image: url(../assets/img/twitter/Twitter_Logo_Blue.svg);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #c6defa;
+}
+
+.open-and-close-tweet:focus {
+    outline: 0;
+}
+
+.open-and-close-tweet:hover {
+    background-color: #c6defa;
 }
 </style>
