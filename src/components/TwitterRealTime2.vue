@@ -1,5 +1,6 @@
 <template>
 <div class="tweets-container">
+    <button class="button-open-close-tweets-container"><span class="visuallyhidden">Open / close tweetstream</span></button>
     <div style="" id="tweets">
         <!-- example tweet -->
         <div class="tweet col-md-12">
@@ -34,7 +35,6 @@ export default {
     },
     methods: {
         copyTweet() {
-            // alert("Hi Isabel en Henk, onderin verschijnen tweets, als je er overheen muist of op mobiel op tikt komen ze omhoog, als je er op klikt komt de tweet links te staan, nu heb je hem gesaved en kan je een kaart gaan zoeke en kopieeren.")
             var tweetCopyContainer = document.createElement("div");
             tweetCopyContainer.classList.add("tweetCopyContainer", "tweets");
             document.querySelector("body").appendChild(tweetCopyContainer);
@@ -84,16 +84,14 @@ export default {
             //     console.log("woopie");
             // })
 
-            document.querySelector('.tweets-container').addEventListener('click', function () {
+            document.querySelector('.button-open-close-tweets-container').addEventListener('click', function () {
                 document.querySelector('.tweets-container').classList.toggle('tweets-container-visible');
+                document.querySelector('.button-open-close-tweets-container').classList.toggle('button-open-close-tweets-container-visible');
             }, false);
 
             // document.querySelector('body').addEventListener('click', function () {
             //     document.querySelector('.tweets-container').classList.remove('tweets-container-visible');
             // }, false);
-
-
-
 
         }
     }
@@ -104,13 +102,18 @@ export default {
 /* // scoped does not work here */
 // @import "~bootstrap/dist/css/bootstrap.min.css";
 .tweets-container {
+    background: #222;
+    // border-top: 1px solid #eee;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 1);
     position: fixed;
     left: 0;
     bottom: 0;
-    height: 30px;
+    height: 60px;
     width: 100%;
     margin: 0;
-    overflow: scroll;
+    padding: 10px 0 0 40px;
+    overflow-y: hidden;
+    overflow-x: scroll;
     font-size: 0.6em;
     color: #000;
     transition: all 0.6s ease-in-out;
@@ -118,7 +121,31 @@ export default {
 
 // .tweets-container:hover,
 .tweets-container-visible {
-    height: 300px;
+    height: 410px;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-open-close-tweets-container {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    // transform: translateX(-100%);
+    width: 40px;
+    height: 40px;
+    background: rgba(34, 34, 34, 0.575) url("../assets/img/icons/flat/dots-menu.svg") center center no-repeat;
+    background-size: 15px;
+    padding: 0;
+    transition: all 0.6s ease-in-out;
+    z-index: 1;
+}
+
+.button-open-close-tweets-container:focus {
+    outline: none;
+
+}
+
+.button-open-close-tweets-container-visible {
+    bottom: 360px;
     transition: all 0.3s ease-in-out;
 }
 
@@ -141,6 +168,7 @@ export default {
     // background-size: 30px;
 
 }
+
 .tweets-container .card {
     background-image: url(../assets/img/twitter/Twitter_Logo_Blue.svg);
     background-repeat: no-repeat;
