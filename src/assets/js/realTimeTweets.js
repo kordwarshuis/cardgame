@@ -186,7 +186,7 @@ export var realTimeTweets = (function () {
         }
     */
     function startStream(args) {
-        var tweets = document.querySelector("#tweets");
+        var tweets = document.querySelector(args.tweetHook);
         var stopNow = false;
         var isSpecialAccount = false;
         var specialAccountHTMLcode = "";
@@ -284,14 +284,14 @@ export var realTimeTweets = (function () {
 
                         domTemp = "<div class='tweet " + specialAccountHTMLcode +
                             "inviesieble col-md-12'><div class='card mb-4 pt-2 box-shadow'><div class='card-body'><div class='card-text'><span class='tweetNumber'>#" +
-                            tweetNumber + "</span><p><a class='go-to-tweet' target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name +
+                            tweetNumber + "</span><button type='button' class='btn btn-primary select-tweet'>Select</button><p><a class='go-to-tweet' target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name +
                             "/status/" + data[i].id_str +
                             "'>Go to tweet and reply with card</a> " + twitterLinks(data[i].text) +
                             "</p><img class='img-fluid float-left w-25 mr-3' src='" +
                             data[i].user.profile_image_url_https + "' alt=''><p>Name: " + data[i].user.name + "<br>Verified: " +
                             data[i].user.verified + "<br>Keyword: " + currentKeyword + "</p><p>Followers: " + data[i].user.followers_count +
                             " | </p></div><div class='d-flex justify-content-between align-items-center'><small class='text-muted'> <span class='tweetTimeStamp'>&#x1f550; " + timestampNow() +
-                            "</span></small><button type='button' class='btn btn-primary'>Select</button></div></div></div></div>" + domTemp;
+                            "</span></small></div></div></div></div>" + domTemp;
 
                         tweetNumber++;
                         keywordFound = false;
@@ -539,6 +539,7 @@ export var realTimeTweets = (function () {
 
 
     return {
-        start: startStream
+        start: startStream,
+        stop: stopLoop
     };
 }());
