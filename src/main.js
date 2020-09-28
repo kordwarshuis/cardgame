@@ -12,7 +12,7 @@ import {
   Howler
 } from 'howler';
 import _ from "lodash";
-import interact from 'interactjs';
+// import interact from 'interactjs';
 
 // import './assets/js/menu_sideslide';
 // import bootstrap from 'bootstrap';
@@ -24,87 +24,7 @@ Vue.use(d3);
 Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
 Vue.use(Howl, Howler);
-Vue.use(interact);
-
-
-
-// target elements with the "draggable" class
-interact('.tweet')
-  .draggable({
-    // enable inertial throwing
-    inertia: false,
-    // keep the element within the area of it's parent
-    modifiers: [
-      interact.modifiers.restrictRect({
-        // restriction: 'parent',
-        // endOnly: false
-      })
-    ],
-    // enable autoScroll
-    autoScroll: true,
-
-    listeners: {
-      // call this function on every dragmove event
-      move: dragMoveListener,
-
-      // call this function on every dragend event
-      end (event) {
-        var textEl = event.target.querySelector('h4');
-
-        textEl && (textEl.textContent =
-          'moved a distance of ' +
-          (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-                     Math.pow(event.pageY - event.y0, 2) | 0))
-            .toFixed(2) + 'px');
-      },
-      start ( event ) {
-        var target = event.target;
-        target.style.zIndex = "100000000";
-        target.style.position = "fixed";
-        target.style.top = target.getBoundingClientRect().top + "px";
-        target.style.left = target.getBoundingClientRect().left + "px";
-        console.log('de x positie": ', target.getBoundingClientRect().left + "px");
-        // var detekst = target;
-        // var detekst = target.querySelector("p").innerText;
-        // console.log('detekst: ', detekst);
-        
-        // console.log('target.style.left: ', target.style.left);
-        // target.style.float = "none";
-      
-      }
-    }
-  });
-
-function dragMoveListener (event) {
-  var target = event.target;
-  // keep the dragged position in the data-x/data-y attributes
-  var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-  var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-  // translate the element
-  target.style.webkitTransform =
-    target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)';
-
-  // update the posiion attributes
-  target.setAttribute('data-x', x);
-  target.setAttribute('data-y', y);
-}
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Vue.use(interact);
 
 
 // Vue.use(VueAnalytics, {
