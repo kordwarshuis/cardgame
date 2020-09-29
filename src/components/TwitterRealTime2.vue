@@ -40,6 +40,7 @@ export default {
             tweetHook: ".tweets-realtime .tweets"
         });
         this.copyTweet();
+        this.startStopTweetStream();
     },
     methods: {
         copyTweet() {
@@ -97,10 +98,18 @@ export default {
                 document.querySelector('.button-open-close-tweets-container').classList.toggle('button-open-close-tweets-container-visible');
             }, false);
 
-            // document.querySelector('body').addEventListener('click', function () {
-            //     document.querySelector('.tweets-container').classList.remove('tweets-container-visible');
-            // }, false);
-
+        },
+        // stop tweetstream when mouse over tweetstream, to avoid user confusion
+        startStopTweetStream() {
+            document.querySelector('.tweets-realtime').addEventListener('mouseenter', function () {
+                realTimeTweets.stop();
+            }, false);
+            document.querySelector('.tweets-realtime').addEventListener('mouseleave', function () {
+                realTimeTweets.start({
+                    source: process.env.VUE_APP_REALTIME_TWITTER_JSON,
+                    tweetHook: ".tweets-realtime .tweets"
+                });
+            }, false);
         }
     }
 }
