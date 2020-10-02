@@ -10,7 +10,7 @@
     <Person1 />
     <Person2 />
     <!-- <Person3 /> -->
-    <TwitterRealTime2 />
+    <!-- <TwitterRealTime2 /> -->
 
     <Toasts :time-out="2000"></Toasts>
 </div>
