@@ -1,6 +1,6 @@
 <template>
 <!-- negate doesnt seem to work -->
-<div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="border p-3 mb-3">
+<div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="mt-5">
     <h3 class="video">Video</h3>
 
     <p>{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
