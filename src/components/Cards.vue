@@ -32,7 +32,7 @@
             <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
                 <h4 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h4>
             </a>
-            <div class="card-footer" style="background: #557AA3; text-align: left;">
+            <div class="card-footer" style="background: #1D2448; text-align: left;">
                 <h3 @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
             </div>
         </div>
@@ -188,17 +188,15 @@ h1 {
 
     >div {
         cursor: pointer;
-        background: $_background2 url(../assets/img/icons/flat/bitcoin.svg) 5px 5px;
-        background-size: 40px;
+        background-image: url(../assets/img/icons/flat/bitcoin.svg), linear-gradient(#272f52, #3a4275);
+        background-repeat: repeat,no-repeat;
+        background-size: 30px 30px, 100% 100%;
+        text-align: center;
+        font-variant: small-caps;
         border-radius: 10px;
         color: $_text1;
-        // margin: 0 1rem 1rem 0;
         display: inline-block;
         width: 100%;
-        // text-align: left;
-        // font-family: system-ui;
-        // font-weight: 900;
-        // font-size: 2rem;
 
         h3,
         h4 {
@@ -234,6 +232,5 @@ h1 {
     .category.Environment {
         background: #406685;
     }
-
 }
 </style>
