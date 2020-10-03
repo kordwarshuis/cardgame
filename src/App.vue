@@ -441,7 +441,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
     // padding: 3em 1.2em 3em 2em;
     // padding: 1.5em 0.6em 1.5em 1em;
     padding: 0.7em;
-    margin-bottom: 1em;
+    // margin-bottom: 1em;
     z-index: auto;
     transition: transform 0.3s;
     color: transparent;
