@@ -1,5 +1,5 @@
 <template>
-<div class="miniQuizContainer modalbox-iconbackground border p-3 mb-3" v-if="this.$store.state.currentCard['Quiz']">
+<div class="content-item miniQuizContainer modalbox-iconbackground border p-3 mb-3" v-if="this.$store.state.currentCard['Quiz']">
     <h3 class="quiz">Quiz</h3>
     <form class="miniquiz">
         <fieldset>
