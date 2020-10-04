@@ -278,6 +278,8 @@ h5,
 h6 {
     // font-family: caviar_dreamsregular, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-family: roboto-light, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 p {
@@ -577,4 +579,24 @@ Copyright (c) 2014 Daniel Eden
 .toast {
     background-color: #eee;
 }
+
+
+
+
+// realtime tweets
+.select-tweet,
+.go-to-tweet {
+    background: linear-gradient(to right, #5C34A7, #2376D6);
+}
+.tweets-selected .select-tweet {
+    display: none;
+}
+.tweets-realtime .go-to-tweet {
+    display: none;
+}
+.tweets-realtime .tweet-instruction {
+    display: none;
+}
+
+
 </style>
