@@ -12,7 +12,6 @@
     <Person2 />
     <!-- <Person3 /> -->
     <!-- <TwitterRealTime2 /> -->
-    
 
     <Toasts :time-out="2000"></Toasts>
 </div>
@@ -163,7 +162,6 @@ export default {
 <style lang="scss">
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-
 // @font-face {
 //     font-family: 'League Gothic';
 //     src: url("./assets/fonts/league_gothic-webfont.eot");
@@ -221,17 +219,17 @@ export default {
  *
  */
 
-@font-face {
-    font-family: 'museo300';
-    src: url('./assets/fonts/Museo300-Regular-webfont.eot');
-    src: url('./assets/fonts/Museo300-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-        url('./assets/fonts/Museo300-Regular-webfont.woff2') format('woff2'),
-        url('./assets/fonts/Museo300-Regular-webfont.woff') format('woff'),
-        url('./assets/fonts/Museo300-Regular-webfont.ttf') format('truetype'),
-        url('./assets/fonts/Museo300-Regular-webfont.svg#museo300') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+// @font-face {
+//     font-family: 'museo300';
+//     src: url('./assets/fonts/Museo300-Regular-webfont.eot');
+//     src: url('./assets/fonts/Museo300-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+//         url('./assets/fonts/Museo300-Regular-webfont.woff2') format('woff2'),
+//         url('./assets/fonts/Museo300-Regular-webfont.woff') format('woff'),
+//         url('./assets/fonts/Museo300-Regular-webfont.ttf') format('truetype'),
+//         url('./assets/fonts/Museo300-Regular-webfont.svg#museo300') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
 
 @font-face {
     font-family: 'roboto-light';
@@ -260,7 +258,7 @@ export default {
 body {
     // font-family: 'Buenard', serif;
     // font-size: 100%;
-    font-family: museo300, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    // font-family: museo300, "Helvetica Neue", Helvetica, Arial, sans-serif;
     min-height: 100%;
     color: $text;
     background-color: $background;
@@ -442,7 +440,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
     // padding: 1.5em 0.6em 1.5em 1em;
     // padding: 0.7em;
     // margin-bottom: 1em;
-    
+
     border: 1px solid green;
     line-height: 0.7;
     width: 1.5em;
