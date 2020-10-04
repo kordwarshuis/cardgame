@@ -4,12 +4,18 @@
     <router-link to="/about">About</router-link>
     <router-link v-if="this.$store.state.gameName === 'Bitcoin'" to="/twitter-real-time">Realtime</router-link>
     <router-link v-if="this.$store.state.gameName === 'Bitcoin'" to="/scores">Scores</router-link>
+    <SoundToggle />
 </div>
 </template>
 
 <script>
+import SoundToggle from "@/components/SoundToggle.vue";
+
 export default {
-    name: "MainMenu"
+    name: "MainMenu",
+    components: {
+        SoundToggle
+    }
 }
 </script>
 
