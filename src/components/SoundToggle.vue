@@ -19,19 +19,19 @@ export default {
             // check if sound-localStorage is set (can be null, or true or false):
             if (localStorage.getItem("soundOn") !== null) {
                 // if localStorage is set, get the value and set the toggle:
-                
+
                 // https://stackoverflow.com/a/264037 LocalStorage is storing string not boolean
                 soundToggleInput.checked = (localStorage.getItem("soundOn") === "true");
             } else {
                 // sound off after first time loading
                 // localStorage.setItem("soundOn", "false");
-                
+
                 // sound on after first time loading
                 localStorage.setItem("soundOn", "true");
             }
             // set localStorage on toggle change:
             soundToggleInput.addEventListener('change', function () {
-                
+
                 // the boolean is converted to a string
                 localStorage.setItem("soundOn", this.checked);
             });
@@ -52,26 +52,40 @@ export default {
 <style lang="scss" scoped>
 // https://css-tricks.com/the-checkbox-hack/
 
+$size: 40px;
+
 .soundToggle {
-    position: fixed;
+    position: relative;
     left: 0;
     top: 0;
+
+    padding: 10px;
+
+    width: $size;
+    height: $size;
 }
 
 .control-me {
-    position: absolute;
-    right: 0;
-    top: 0;
+    // border: 1px solid purple;
 }
 
 .control-me::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    // border: 1px solid yellow;
     content: "";
-    margin: 10px 10px 0 0;
-    width: 40px;
-    height: 40px;
+
+    width: $size;
+    height: $size;
     background: transparent url("../assets/img/icons/flat/soundOff.svg") no-repeat;
     background-size: contain;
     display: inline-block;
+}
+
+#soundToggleInput {
+    // border: 1px solid green;
 }
 
 #soundToggleInput:checked~.control-me::after {
@@ -79,15 +93,14 @@ export default {
 }
 
 label {
-    // border: 1px solid #333;
-    position: relative;
-    right: 0;
+    // border: 1px solid red;
+    position: absolute;
+    left: 0;
     top: 0;
-    font-size: 20px;
-    line-height: 3;
+
+    width: $size;
+    height: $size;
     color: transparent;
-    // display: block;
-    // z-index: 2;
     cursor: pointer;
 }
 
