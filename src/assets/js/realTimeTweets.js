@@ -283,15 +283,28 @@ export var realTimeTweets = (function () {
                     if (keywordFound === true) {
 
                         domTemp = "<div class='tweet " + specialAccountHTMLcode +
-                            "inviesieble col-md-12'><div class='card mb-4 pt-2 box-shadow'><div class='card-body'><div class='card-text'><span class='tweetNumber'>#" +
-                            tweetNumber + "</span><button type='button' class='btn btn-primary select-tweet'>Select</button><p><a class='go-to-tweet' target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name +
+                            "inviesieble col-md-12'><div class='card mb-4 pt-2 box-shadow'><div class='card-body'><div class='card-text'>" + 
+                            "<span class='tweetNumber extra-info1'>#" +
+                            tweetNumber + 
+                            "</span> | " + 
+                            "<small class='text-muted extra-info2'> <span class='extra-info3 tweetTimeStamp'>&#x1f550; " + 
+                            timestampNow() +
+                            "</span></small>" + 
+                            "<p><img class='img-thumbnail float-left mr-3' src='" +
+                            data[i].user.profile_image_url_https + "' alt=''> " + twitterLinks(data[i].text) +
+                            "</p><p class='extra-info'>Name: " + data[i].user.name + 
+                            // "<br>Verified: " +
+                            // data[i].user.verified + 
+                            // "<br>Keyword: " + 
+                            // currentKeyword + 
+                            // "</p>" + 
+                            // "<p>" + 
+                            " | Followers: " + data[i].user.followers_count +
+                            " <button type='button' class='btn btn-primary select-tweet'>Select</button></p></div><div class='d-flex justify-content-between align-items-center'><a class='go-to-tweet btn btn-primary' target='_blank' rel='noopener' href='https://twitter.com/" + 
+                            data[i].user.screen_name +
                             "/status/" + data[i].id_str +
-                            "'>Go to tweet and reply with card</a> " + twitterLinks(data[i].text) +
-                            "</p><img class='img-fluid float-left w-25 mr-3' src='" +
-                            data[i].user.profile_image_url_https + "' alt=''><p>Name: " + data[i].user.name + "<br>Verified: " +
-                            data[i].user.verified + "<br>Keyword: " + currentKeyword + "</p><p>Followers: " + data[i].user.followers_count +
-                            " | </p></div><div class='d-flex justify-content-between align-items-center'><small class='text-muted'> <span class='tweetTimeStamp'>&#x1f550; " + timestampNow() +
-                            "</span></small></div></div></div></div>" + domTemp;
+                            "'><span class='tweet-instruction'>Go to tweet</a> now copy a suitable card and go to tweet</span>" + 
+                            "</div></div></div></div>" + domTemp;
 
                         tweetNumber++;
                         keywordFound = false;
