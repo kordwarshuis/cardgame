@@ -440,8 +440,14 @@ a.overlay__close:not(.overlay__close-cross):hover,
     background-size: contain;
     // padding: 3em 1.2em 3em 2em;
     // padding: 1.5em 0.6em 1.5em 1em;
-    padding: 0.7em;
+    // padding: 0.7em;
     // margin-bottom: 1em;
+    
+    border: 1px solid green;
+    line-height: 0.7;
+    width: 1.5em;
+    padding: 0 !important;
+    margin: 0 !important;
     z-index: auto;
     transition: transform 0.3s;
     color: transparent;
