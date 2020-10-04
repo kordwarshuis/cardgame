@@ -169,9 +169,12 @@ export default {
 <style lang="scss" scoped>
 // https://css-tricks.com/how-do-you-do-max-font-size-in-css/
 h1 {
-    font-size: 30px;
+    font-size: 20px;
 }
 
+h1 {
+    font-weight: normal;
+}
 h1 span {
     font-weight: bold;
 }
@@ -183,13 +186,13 @@ h1 span {
 
 @media screen and (min-width: 320px) {
     h1 {
-        font-size: calc(30px + 6 * ((100vw - 320px) / 680));
+        font-size: calc(20px + 6 * ((100vw - 320px) / 680));
     }
 }
 
 @media screen and (min-width: 1000px) {
     h1 {
-        font-size: 50px;
+        font-size: 40px;
     }
 }
 
