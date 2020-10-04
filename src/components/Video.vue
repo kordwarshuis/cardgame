@@ -1,7 +1,7 @@
 <template>
 <!-- negate doesnt seem to work -->
-<div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="mt-5">
-    <h3 class="video">Video</h3>
+<div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="content-item p-3">
+    <!-- <h3 class="video">Video</h3> -->
 
     <p class="video-description">{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
 
