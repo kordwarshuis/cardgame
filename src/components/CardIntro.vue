@@ -39,7 +39,7 @@
             <div style="display: inline-block;">
                 <SocialMedia />
             </div>
-            <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block;" title="Copy Link">Copy Link</button>
+            <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block; padding: 0.3em;" title="Copy Link">Copy Link</button>
         </div>
         <a class="overlay-fullscreen-close">×</a>
     </div>
