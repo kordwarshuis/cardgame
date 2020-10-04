@@ -5,12 +5,12 @@
 
     </div>
 
-    <div v-for="book in results" :key="book.Prejudice" @click="$store.commit('showCardIntroFromURL', book['Unique URL'])">
+    <div class="search-results" v-for="book in results" :key="book.Prejudice" @click="$store.commit('showCardIntroFromURL', book['Unique URL'])">
         <router-link :to="'/card/' + book['Unique URL']">
             <h3 style="cursor: pointer" class="w-1/4">{{ book.Prejudice }}</h3>
             <p style="cursor: pointer" class="ml-4 w-3/4">{{ book['Prejudice Elaborate'] }}</p>
         </router-link>
-
+        <hr>
     </div>
 </div>
 </template>
@@ -41,12 +41,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+.search-results a {
+    color: #eee;
+}
 
 input {
     background: #393D4E;
     border-radius: 7px;
 }
-
-
 </style>
