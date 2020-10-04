@@ -4,17 +4,20 @@
         <!-- <h3 class="modal-header"></h3> -->
         <div>
             <div class="modal-content p-3 pt-5">
-                <h2 class="title text-center"><span class="quote">“</span>{{ this.$store.state.currentCard.Prejudice }}<span class="quote">”</span></h2>
-                <p class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}<span class="quote">”</span></p>
-                <button class="copyURLtoClipboard copyURLtoClipboard1" title="Copy Link">Copy Link</button>
+                <div class="misconception-short-and-elaborate">
+                    <h2 class="title text-center"><span class="quote">“</span>{{ this.$store.state.currentCard.Prejudice }}<span class="quote">”</span></h2>
+                    <p class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}<span class="quote">”</span></p>
+                </div>
 
-                <div class="border p-2 mb-3 mt-3" v-if="this.$store.state.currentCard['long answer+facts']">
+                <!-- <button class="copyURLtoClipboard copyURLtoClipboard1" title="Copy Link">Copy Link</button> -->
+
+                <div class="content-item border p-2 mb-3 mt-3" v-if="this.$store.state.currentCard['long answer+facts']">
 
                     <h3 class="longAnswer">Answer</h3>
                     <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
                 </div>
 
-                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
+                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
 
                     <h3 class="diagram">Diagram</h3>
                     <p>{{this.$store.state.currentCard["Diagram Description"]}}</p>
@@ -24,57 +27,64 @@
                 </div>
 
                 <Quiz />
-                <Video />
 
-                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
+                <div class="row">
+                    <div class="col-md-4">
+                        <Video />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
 
-                    <h3 class="readOn">Read More</h3>
-                    <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
-                    <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
+                            <h3 class="readOn">Read More</h3>
+                            <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                            <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
+                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
 
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">Read on</a></p>
                 </div>
 
-                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
+                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
                     <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
                 </div>
 
-                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['wiki - Myths']">
+                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['wiki - Myths']">
                     <h3 class="WikiMyths">Wiki Myths</h3>
                     <p>This bitcoin misconception cleared up by the bitcoin wiki community: <a target="_blank" rel="noopener" :href="this.$store.state.currentCard['wiki - Myths']">Read</a></p>
                 </div>
 
-                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Eric Voskuil']">
+                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Eric Voskuil']">
                     <h3 class="EricVoskuil">Eric Voskuil</h3>
                     <p>{{ this.$store.state.currentCard['Eric Voskuil'] }}</p>
                 </div>
 
-                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
+                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
 
                     <h3 class="counterQuestion">Counter-questions</h3>
                     <p>{{this.$store.state.currentCard["Counter-questions"]}}</p>
                 </div>
 
-                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['analogy']">
+                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['analogy']">
 
                     <h3 class="">Analogy</h3>
                     <p>{{this.$store.state.currentCard["analogy"]}}</p>
                 </div>
 
-                <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
+                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
 
                     <h3 class="flowerPower">Flower Power</h3>
                     <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
                 </div>
 
-                <!-- <div class="border p-2 mb-3" v-if="this.$store.state.currentCard['Related']">
+                <!-- <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Related']">
                     <h3 class="related">Related</h3>
                     <p>
                         <span v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
@@ -84,7 +94,7 @@
                 </div> -->
                 <RelatedCards />
 
-                <div class="border p-2 mb-3">
+                <div class="content-item border p-2 mb-3">
                     <p><a target="_blank" rel="noopener" href="https://web.telegram.org/#/im?p=@bcbird">Comment in our Telegram group</a></p>
                 </div>
 
@@ -179,7 +189,7 @@ export default {
             data.series = [];
             data.series[0] = series;
             var diagram = new Chartist.Bar('.ct-chart', data, options);
-            
+
             // https://stackoverflow.com/a/48299759
             diagram.on('draw', function (data) {
                 if (data.type == 'bar') {
@@ -269,19 +279,32 @@ export default {
 //     border-bottom: none;
 // }
 
-.modal-content {
-    background: $cardFullBackground;
+.misconception-short-and-elaborate {
+    margin: 1em 0;
+    padding: 1em 0;
+    border-top: 3px dotted #666;
+    border-bottom: 3px dotted #666;
 }
 
-.modal-content>div {
-    // color: $cardFullBlockText;
-    color: #eee;;
-    background: $cardFullBlockBackground;
+.content-item {
+    background: #eee;
+    color: #222;
+    border-radius: 10px;
 }
 
-.modal-content>div a {
+.content-item p {
+    margin-left: 3em;
+}
+
+.content-item a {
     color: $cardFullBlockLink;
     background: $cardFullBlockBackground;
+
+}
+
+.modal-content {
+    // background: $cardFullBackground;
+    background: #2F3558;
 }
 
 .modal-content h3 {
@@ -1142,5 +1165,4 @@ perspective effects (not including the modals and the overlay).
     /* Maybe you like round corners on your bars? */
     //   stroke-linecap: round;
 }
-
 </style>
