@@ -6,9 +6,9 @@
     <!-- <h1>Bitcoin Misconceptions</h1> -->
     <h1 class="pt-1 ml-1 mr-1 ml-md-5 mr-md-5 mt-0">
         <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameName}} Misconceptions</h1>
-    <div class="alert alert-info ml-1 mr-1 ml-md-5 mr-md-5 mt-0" role="alert">
+    <!-- <div class="alert alert-info ml-1 mr-1 ml-md-5 mr-md-5 mt-0" role="alert">
             1: Select a tweet – 2: Select and Copy a card – 3: Paste card in reply to tweet
-    </div>
+    </div> -->
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
         <!-- All = All categories at once -->
@@ -39,7 +39,7 @@
     </div>
 
     <!-- <NewsTicker /> -->
-    <SoundToggle />
+    <!-- <SoundToggle /> -->
     <!-- </transition> -->
 </div>
 </template>
