@@ -4,6 +4,7 @@
 
     <MainMenu />
     <!-- <slideInMenu /> -->
+    <twitterRealtime3 />
     <!-- <CryptoRadio /> -->
     <router-view />
     <!-- <NewsTicker /> -->
@@ -11,6 +12,7 @@
     <Person2 />
     <!-- <Person3 /> -->
     <!-- <TwitterRealTime2 /> -->
+    
 
     <Toasts :time-out="2000"></Toasts>
 </div>
@@ -19,27 +21,25 @@
 <script>
 import publicPath from "../vue.config";
 // import slideInMenu from "@/components/slideInMenu.vue";
+import twitterRealtime3 from "@/components/twitterRealtime3.vue";
 import MainMenu from "@/components/MainMenu.vue";
-import TwitterRealTime2 from "@/components/TwitterRealTime2.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
 import * as Hammer from "hammerjs";
 // import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
-// import Person3 from "@/components/AnimatedCharacters/Person3.vue";
 
 export default {
     components: {
         MainMenu,
         // slideInMenu,
+        twitterRealtime3,
         // CryptoRadio,
         // NewsTicker,
         Hammer,
         Person1,
-        Person2,
-        TwitterRealTime2
-        // Person3
+        Person2
     },
     data: function () {
         return {}
