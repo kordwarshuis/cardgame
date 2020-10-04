@@ -23,9 +23,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="tweets-selected">
-                    <h3 class="ml-3 header-tweets-selected">Selected tweets</h3>
-                    <div class="tweets"></div>
+                <div class="tweets-selected pt-3">
+                    <h3 class="ml-3 header-tweets-selected">Selected tweet</h3>
+                    <div class="tweets">
+                        <p>No tweet selected yet.</p>
+                    </div>
                 </div>
             </div>
             <!-- END own content -->
@@ -103,8 +105,13 @@ export default {
 
                     console.log("bingo");
                     var selectedTweet = event.target.closest(".tweet");
-
+                    document.querySelector(".tweets-selected .tweets").innerHTML = "";
                     document.querySelector(".tweets-selected .tweets").insertAdjacentElement('afterbegin', selectedTweet);
+                    document.querySelector(".tweets-selected .tweets").querySelector(".extra-info").innerHTML = "";
+                    document.querySelector(".tweets-selected .tweets").querySelector(".extra-info1").innerHTML = "";
+                    document.querySelector(".tweets-selected .tweets").querySelector(".extra-info2").innerHTML = "";
+                    document.querySelector(".tweets-selected .tweets").querySelector(".extra-info3").innerHTML = "";
+
 
                     // selectedTweet.style.position = "absolute";
                     // selectedTweet.style.left = "0";
@@ -359,6 +366,18 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     right: 0;
 }
 
+.tweets-realtime {
+    padding-bottom: 150%;
+}
+
+.tweets-selected {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #1da1f2;
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+}
+
 .header-tweets-realtime,
 .header-tweets-selected {
     color: #eee;
@@ -368,5 +387,11 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 .select-tweet {
     background: linear-gradient(to right, #5C34A7, #2376D6);
 
+}
+
+// .tweets-selected .select-tweet,
+.tweets-selected img,
+.tweets-selected .extra-info {
+    display: none;
 }
 </style>
