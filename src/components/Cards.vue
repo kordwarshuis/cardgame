@@ -1,5 +1,5 @@
 <template>
-<div class="">
+<div class="cards">
     <!-- <transition name="fade"> -->
     <!-- <h1>{{ msg }}</h1> -->
     <!-- <BitcoinAnimation /> -->
@@ -167,6 +167,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
+.cards {
+    padding-top: 60px;
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .cards {
+        padding-top: 0;
+    }
+}
+
 // https://css-tricks.com/how-do-you-do-max-font-size-in-css/
 h1 {
     font-size: 20px;
@@ -175,6 +186,7 @@ h1 {
 h1 {
     font-weight: normal;
 }
+
 h1 span {
     font-weight: bold;
 }
