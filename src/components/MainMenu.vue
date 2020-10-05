@@ -39,13 +39,33 @@ export default {
 // scrollable menu, more or less copied from https://getbootstrap.com/docs/4.5/assets/css/docs.min.css
 
 .navbar-nav-scroll {
+    position: fixed;
     color: #ddd;
     background: #191F3A;
     padding-right: 2em;
 
-    margin-right: -1em;
+    margin-right: -13em;
     margin-bottom: 1em;
     margin-left: -1em;
+    z-index: 5;
+
+    max-width: calc(100%);
+    overflow: hidden;
+
+}
+
+.navbar-nav-scroll .navbar-nav {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .navbar-nav-scroll {
+        position: relative;
+    }
+
 }
 
 .navbar-nav-scroll li {
@@ -55,18 +75,5 @@ export default {
 
 .navbar-nav-scroll a {
     color: #ddd;
-}
-
-@media (max-width: 992px) {
-    .navbar-nav-scroll {
-        max-width: calc(100%+2em);
-        overflow: hidden;
-    }
-
-    .navbar-nav-scroll .navbar-nav {
-        overflow-x: auto;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch
-    }
 }
 </style>
