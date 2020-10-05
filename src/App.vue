@@ -375,23 +375,6 @@ button,
     cursor: pointer;
 }
 
-.md-close.md-close-cross {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    border: none;
-    background: $_background1BCB;
-    padding: 0.1em;
-    border: 1px solid transparent;
-    border-radius: 50%;
-    padding: 0.2em;
-
-    display: block;
-    font-size: 2.5em;
-    line-height: 0.6;
-    cursor: pointer;
-}
-
 a.overlay__close:not(.overlay__close-cross):hover,
 .copyURLtoClipboard:hover {
     transform: rotate(360deg);
