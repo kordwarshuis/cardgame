@@ -352,39 +352,6 @@ hr {
     box-shadow: -10px 10px 0, 10px -10px 0 $hr1menu;
 }
 
-// @media screen and (min-width: 55em) {
-//     .grid {
-//         display: grid;
-//         align-items: center;
-//         padding: 3rem 3rem 1rem 3rem;
-//         grid-row-gap: 2rem;
-//         grid-template-columns: repeat(3, calc(100% / 3));
-//     }
-
-//     .grid__item {
-//         margin: 0;
-//     }
-// }
-
-// @media screen and (min-width: 80em) {
-//     .grid {
-//         grid-template-columns: repeat(4, 25%);
-//     }
-
-//     .grid__item:nth-child(4n-2) {
-//         margin-top: -8rem;
-//         margin-bottom: 8rem;
-//     }
-
-//     .grid__item:nth-child(4n) {
-//         margin-top: -5rem;
-//     }
-
-//     .box {
-//         margin: 6rem 4.5rem;
-//     }
-// }
-
 /* het sluiten van de eerste popup: */
 .overlay__close,
 /* het sluiten van de tweede popup: */
