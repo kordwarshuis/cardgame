@@ -205,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // for instructions on how to have menu opened onload see comment in slideInMenu.vue JS part
 
-$zIndex: 1;
+$zIndex: 5;
 $hamburgerPadding: 6px;
 $hamburgerWidth: 40px;
 $hamburgerHeight: 40px;
