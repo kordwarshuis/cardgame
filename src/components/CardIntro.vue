@@ -2,9 +2,9 @@
 <!-- open/close -->
 <div class="overlay-fullscreen overlay-fullscreen-contentpush p-0" :class="this.$store.state.cssClassCardIntroState">
     <div class="row m-0 pb-5">
-        <div class="col-lg-6 col-sm-6">
+        <div class="col-lg-6 col-sm-6 column1">
             <div class="card h-100 bg-transparent" style="border:none;">
-                <div class="card-body" style="border-right: 1px solid #666666;">
+                <div class="card-body">
                     <h3 class="pt-5">Misconception:</h3>
                     <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 13em; border-radius: 10px;">
                         <p class="typed mb-5">{{ getPrejudice }} …</p>
@@ -14,11 +14,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 col-sm-6 ">
+        <div class="col-lg-6 col-sm-6 column2">
             <div class="card h-100 bg-transparent" style="border:none;">
-                <div class="card-body title-on-card center" style="">
+                <div class="card-body center" style="">
                     <h3 class="pt-5" style="color: #5FE2FC;">Reply:</h3>
-                    <h2 class="title-on-card-text">
+                    <h2 class="">
                         <span class="quote">“</span>
                         <span class="text" style="font-size: 0.6em;">{{ this.$store.state.currentCard["short direct answer"] }}</span>
                         <span class="quote">”</span>
@@ -168,11 +168,6 @@ export default {
             // triggerBttn.addEventListener('click', toggleOverlayFullscreen);
             closeBttn.addEventListener('click', toggleOverlayFullscreen);
             closeBttn2.addEventListener('click', toggleOverlayFullscreen);
-
-            // setTimeout(function () {
-            //     that.typeWriter(".title-on-card-text .text", 200);
-            // }, 1000);
-            // that.typeWriter(".title-on-card-text .text",600);
         },
         showCardFull(event) {
             if (localStorage.getItem("soundOn") === "true") whoosh2.play();
@@ -203,16 +198,6 @@ export default {
     outline: 2000px solid rgba(34, 34, 34, 0.8);
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {}
-
-/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-@media (min-width: 768px) {
-    #app .overlay-fullscreen {
-        height: 70%;
-    }
-}
-
 .overlay-fullscreen>div {
     overflow: scroll;
     height: 100%;
@@ -221,12 +206,13 @@ export default {
 /* Overlay closing cross */
 .overlay-fullscreen .overlay-fullscreen-close {
     position: fixed;
-    top: 10px;
+    top: 1.5em;
     right: 20px;
     border: none;
-    background: $_background1BCB;
-    border: 1px solid transparent;
-    border-radius: 50%;
+    // background: $_background1BCB;
+    // border: 1px solid transparent;
+    // border-radius: 50%;
+    color: #eee;
     padding: 0.2em;
     display: block;
     font-size: 2.5em;
@@ -258,26 +244,30 @@ export default {
     transition: all 0.2s ease-out;
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-    .title-on-card h2 {
-        // >… this is a two column lay out
-        font-size: 4vw;
-    }
-}
-
-.title-on-card h2 {
-    // padding: 1em;
-    // margin: 0 !important;
-    font-size: 2rem;
-
-}
-
 .social-media-container {
     display: inline-block;
 }
 
 .further-reading {
     cursor: pointer;
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    #app .overlay-fullscreen {
+        height: 70%;
+    }
+
+    .overlay-fullscreen .overlay-fullscreen-close {
+        top: 10px;
+    }
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .column1 .card-body {
+        border-right: 1px solid #666666;
+    }
 }
 </style>
