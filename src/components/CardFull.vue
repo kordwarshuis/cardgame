@@ -1,5 +1,6 @@
 <template>
-<div class="popup md-modal md-effect-2 mt-3 mb-3" :class="this.$store.state.cssClassCardFullState" id="modal-6">
+<div class="popup md-modal md-effect-2 mt-3 mb-3 m-0" :class="this.$store.state.cssClassCardFullState" id="modal-6">
+    <a @click="$store.commit('hideModal')" class="md-close md-close-cross"><span class="cross">×</span><span class="back">‹ back</span></a>
     <div class="md-content">
         <!-- <h3 class="modal-header"></h3> -->
         <div>
@@ -111,7 +112,6 @@
         </div>
 
     </div>
-    <a @click="$store.commit('hideModal')" class="md-close md-close-cross">×</a>
 </div>
 </template>
 
@@ -279,6 +279,60 @@ export default {
 //     border-bottom: none;
 // }
 
+.md-close.md-close-cross {
+    position: static;
+    // top: 80px;
+    // right: 10px;
+    border: none;
+    background: linear-gradient(#0745A8, #015DF4);
+    border: 1px solid transparent;
+    // padding: 0.2em;
+    margin-top: 40px;
+    display: block;
+    font-size: 2.5em;
+    line-height: 0.6;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 1.0em;
+    padding: 1em 0.2em;
+    color: #eee;
+}
+
+.md-close .cross {
+    display: none;
+}
+
+.md-close .back {}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .md-close.md-close-cross {
+        position: fixed;
+        top: 60px;
+        right: 10px;
+        border: none;
+        background: none;
+        // border: 1px solid transparent;
+        // border-radius: 50%;
+        color: #eee;
+        padding: 0.2em;
+        margin-top: 0;
+        display: block;
+        font-size: 2.5em;
+        line-height: 0.6;
+        cursor: pointer;
+        
+    }
+
+    .md-close .cross {
+        display: block;
+    }
+
+    .md-close .back {
+        display: none;
+    }
+}
+
 .misconception-short-and-elaborate {
     margin: 1em 0;
     padding: 1em 0;
@@ -425,9 +479,7 @@ perspective effects (not including the modals and the overlay).
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 50%;
-    width: 95%;
-    // max-width: 630px;
+    width: 100%;
     max-width: 50em;
     // min-width: 320px;
     // height: auto;
