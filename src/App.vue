@@ -530,23 +530,21 @@ Copyright (c) 2014 Daniel Eden
     background-color: #eee;
 }
 
-
-
-
 // realtime tweets
 .select-tweet,
 .go-to-tweet {
     background: linear-gradient(to right, #5C34A7, #2376D6);
 }
+
 .tweets-selected .select-tweet {
     display: none;
 }
+
 .tweets-realtime .go-to-tweet {
     display: none;
 }
+
 .tweets-realtime .tweet-instruction {
     display: none;
 }
-
-
 </style>
