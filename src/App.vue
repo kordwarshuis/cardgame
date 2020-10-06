@@ -24,7 +24,7 @@ import twitterRealtime3 from "@/components/twitterRealtime3.vue";
 import MainMenu from "@/components/MainMenu.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
-import * as Hammer from "hammerjs";
+// import * as Hammer from "hammerjs";
 // import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
@@ -36,7 +36,7 @@ export default {
         twitterRealtime3,
         // CryptoRadio,
         // NewsTicker,
-        Hammer,
+        // Hammer,
         Person1,
         Person2
     },
