@@ -168,7 +168,7 @@ export default {
 
 <style lang="scss" scoped>
 .cards {
-    padding-top: 60px;
+    padding-top: 30px;
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
