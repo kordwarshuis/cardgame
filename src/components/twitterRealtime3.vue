@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // for instructions on how to have menu opened onload see comment in slideInMenu.vue JS part
 
-$zIndex: 5;
+$zIndex: 1021; // bootstrap sticky menu is 1020
 $hamburgerPadding: 6px;
 $hamburgerWidth: 40px;
 $hamburgerHeight: 40px;
@@ -351,8 +351,8 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     background: url(../assets/img/twitter/Twitter_Logo_Blue.svg);
     box-shadow: $hamburgerBoxShadow;
     position: fixed;
-    top: 0;
-    left: -40px;
+    top: 3px;
+    left: -120px;
     display: block;
     cursor: pointer;
     height: $hamburgerHeight;
