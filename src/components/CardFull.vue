@@ -1,6 +1,6 @@
 <template>
 <div class="popup md-modal md-effect-2 mt-3 mb-3 m-0" :class="this.$store.state.cssClassCardFullState" id="modal-6">
-    <a @click="$store.commit('hideModal')" class="md-close md-close-cross"><span class="cross">×</span><span class="back">‹ back</span></a>
+    <a @click="$store.commit('hideModal')" class="md-close md-close-cross"><span class="cross">×</span><span class="back"><span class="back-sign">‹</span> back</span></a>
     <div class="md-content">
         <!-- <h3 class="modal-header"></h3> -->
         <div>
@@ -121,9 +121,13 @@ import Video from "@/components/Video.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
 import Person3 from "@/components/AnimatedCharacters/Person3.vue";
+import {
+    disableBodyScrollMixin
+} from "./mixins/disableBodyScroll";
 
 export default {
     name: "CardFull",
+    mixins: [disableBodyScrollMixin],
     components: {
         Quiz,
         Video,
@@ -154,7 +158,7 @@ export default {
 
     mounted() {
         this.showPurringCat();
-
+        this.disableBodyScroll(".md-content"); //mixin
     },
     props: {
         msg: String
@@ -279,37 +283,55 @@ export default {
 //     border-bottom: none;
 // }
 
+.md-content {
+    -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
+}
+
 .md-close.md-close-cross {
-    position: static;
-    // top: 80px;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    margin-top: 40px;
     // right: 10px;
+    left: 0;
+    width: 100%;
     border: none;
     background: linear-gradient(#0745A8, #015DF4);
     border: 1px solid transparent;
-    // padding: 0.2em;
-    margin-top: 40px;
+    color: #eee;
     display: block;
     font-size: 2.5em;
-    line-height: 0.6;
-    cursor: pointer;
+    line-height: 1.2;
     z-index: 1;
     font-size: 1.0em;
-    padding: 1em 0.2em;
-    color: #eee;
+    padding: 0 0.2em;
+}
+.md-close:hover {
+    text-decoration: none;
 }
 
 .md-close .cross {
     display: none;
 }
 
-.md-close .back {}
+.md-close .back {
+
+}
+
+.md-close .back-sign {
+    font-size: 2em;
+    margin-right: 0.3em;
+}
+
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     .md-close.md-close-cross {
-        position: fixed;
-        top: 60px;
-        right: 10px;
+        // position: fixed;
+        // top: 60px;
+        // right: 10px;
+        width: auto;
+        position: static;
         border: none;
         background: none;
         // border: 1px solid transparent;
@@ -321,7 +343,7 @@ export default {
         font-size: 2.5em;
         line-height: 0.6;
         cursor: pointer;
-        
+        // z-index: 5;
     }
 
     .md-close .cross {
