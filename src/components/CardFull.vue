@@ -297,7 +297,6 @@ export default {
     width: 100%;
     border: none;
     background: linear-gradient(#0745A8, #015DF4);
-    border: 1px solid transparent;
     color: #eee;
     display: block;
     font-size: 2.5em;
@@ -327,19 +326,19 @@ export default {
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     .md-close.md-close-cross {
-        // position: fixed;
-        // top: 60px;
-        // right: 10px;
-        width: auto;
-        position: static;
+        position: fixed;
+        top: 20px;
+        right: 10px;
+        left: auto;
+        width: 40px;
         border: none;
         background: none;
-        // border: 1px solid transparent;
+        // border: 1px solid red;
         // border-radius: 50%;
         color: #eee;
         padding: 0.2em;
         margin-top: 0;
-        display: block;
+        display: inline-block;
         font-size: 2.5em;
         line-height: 0.6;
         cursor: pointer;
