@@ -7,7 +7,9 @@
                 <div class="card-body">
                     <h3 class="pt-5">Misconception:</h3>
                     <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 13em; border-radius: 10px;">
+                        <span class="quote">“</span>
                         <p class="typed mb-5">{{ getPrejudice }} …</p>
+                        <span class="quote">”</span>
                         <button class="btn btn-outline-light mt-5 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                     </div>
                     <RelatedCards />
@@ -19,9 +21,7 @@
                 <div class="card-body center" style="">
                     <h3 class="pt-5" style="color: #5FE2FC;">Reply:</h3>
                     <h2 class="">
-                        <span class="quote">“</span>
                         <span class="text" style="font-size: 0.6em;">{{ this.$store.state.currentCard["short direct answer"] }}</span>
-                        <span class="quote">”</span>
                     </h2>
                     <hr>
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
@@ -52,9 +52,11 @@ import RelatedCards from "@/components/RelatedCards.vue";
 import Quiz from "@/components/Quiz.vue";
 import VideoBare from "@/components/VideoBare.vue";
 // import Quiz from "@/components/Quiz.vue";
+import { disableBodyScrollMixin } from "./mixins/disableBodyScroll";
 
 export default {
     name: "CardIntro",
+    mixins: [disableBodyScrollMixin],
     components: {
         SocialMedia,
         RelatedCards,
@@ -76,6 +78,7 @@ export default {
     },
     mounted: function () {
         this.handleCardIntro();
+        this.disableBodyScroll(".overlay-fullscreen>div");//mixin
     },
     methods: {
         typeWriter(selector, prejudice, interval) {
@@ -119,7 +122,7 @@ export default {
                 triggerBttn = document.getElementById('trigger-overlay-fullscreen'),
                 overlayFullscreen = document.querySelector('div.overlay-fullscreen'),
                 closeBttn = document.querySelector('.overlay-fullscreen-close'),
-                closeBttn2 = overlayFullscreen.querySelector('button.closeCardIntro'),
+                // closeBttn2 = overlayFullscreen.querySelector('button.closeCardIntro'),
                 transEndEventNames = {
                     'WebkitTransition': 'webkitTransitionEnd',
                     'MozTransition': 'transitionend',
@@ -167,7 +170,7 @@ export default {
 
             // triggerBttn.addEventListener('click', toggleOverlayFullscreen);
             closeBttn.addEventListener('click', toggleOverlayFullscreen);
-            closeBttn2.addEventListener('click', toggleOverlayFullscreen);
+            // closeBttn2.addEventListener('click', toggleOverlayFullscreen);
         },
         showCardFull(event) {
             if (localStorage.getItem("soundOn") === "true") whoosh2.play();
@@ -201,6 +204,7 @@ export default {
 .overlay-fullscreen>div {
     overflow: scroll;
     height: 100%;
+    -webkit-overflow-scrolling: touch;//https://stackoverflow.com/a/41601290
 }
 
 /* Overlay closing cross */
