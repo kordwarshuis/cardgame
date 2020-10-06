@@ -47,12 +47,16 @@ import store from "../store/store";
 import {
     realTimeTweets
 } from "@/assets/js/realTimeTweets.js";
+import {
+    disableBodyScrollMixin
+} from "./mixins/disableBodyScroll";
 
 export default {
     name: "twitterRealtime3",
     data() {
         return {};
     },
+    mixins: [disableBodyScrollMixin],
     components: {},
     mounted() {
         realTimeTweets.start({
@@ -61,7 +65,7 @@ export default {
         });
         this.copyTweet();
         this.startStopTweetStream();
-
+        this.disableBodyScroll(".content"); //mixin
     },
     methods: {
         copyTweet() {
@@ -111,7 +115,6 @@ export default {
                     document.querySelector(".tweets-selected .tweets").querySelector(".extra-info1").innerHTML = "";
                     document.querySelector(".tweets-selected .tweets").querySelector(".extra-info2").innerHTML = "";
                     document.querySelector(".tweets-selected .tweets").querySelector(".extra-info3").innerHTML = "";
-
 
                     // selectedTweet.style.position = "absolute";
                     // selectedTweet.style.left = "0";
@@ -230,7 +233,7 @@ $menuWidth: 300px;
 
 #slide-menu-and-buttons-wrapper {
     color: #222;
-    
+
 }
 
 .slide-menu-wrapper {
@@ -275,7 +278,6 @@ li a {
 /* Added styles */
 /*********************/
 
-
 /*********************/
 /* END CONFIGURATION */
 /*********************/
@@ -311,7 +313,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 .content {
     height: 100%;
     overflow: scroll;
-        font-size: 0.8em;
+    font-size: 0.8em;
 }
 
 // .menu-button {
@@ -361,7 +363,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 
 .show-menu .menu-icon {
     background: url(../assets/img/twitter/Twitter_Logo_WhiteOnBlue.svg);
-    
+
     left: auto;
     right: 0;
 }
