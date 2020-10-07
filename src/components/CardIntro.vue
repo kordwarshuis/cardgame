@@ -5,6 +5,7 @@
         <div class="col-lg-6 col-sm-6 column1">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body">
+
                     <h3 class="pt-5">Misconception:</h3>
                     <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 13em; border-radius: 10px;">
                         <span class="quote">“</span>
@@ -12,10 +13,11 @@
                         <span class="quote">”</span>
                         <button class="btn btn-outline-light mt-5 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                     </div>
-                    <!-- <RelatedCards /> -->
+
                 </div>
             </div>
         </div>
+
         <div class="col-lg-6 col-sm-6 column2">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body center" style="">
@@ -27,11 +29,27 @@
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <VideoBare />
                     </div>
-                    <RelatedCards />
+
                     <!-- <div v-if="(this.$store.state.currentCard['Quiz'])" class="col-lg-12 col-sm-12">
                         <Quiz />
                     </div> -->
 
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6">
+            <div class="card h-100 bg-transparent" style="border:none;">
+                <div class="card-body center" style="">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-6">
+            <div class="card h-100 bg-transparent" style="border:none;">
+                <div class="card-body">
+                    <RelatedCards />
                 </div>
             </div>
         </div>
@@ -245,7 +263,6 @@ export default {
     font-size: 2em;
     margin-right: 0.3em;
 }
-
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
