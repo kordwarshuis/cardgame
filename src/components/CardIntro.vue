@@ -7,11 +7,11 @@
                 <div class="card-body">
 
                     <h3 class="pt-5">Misconception:</h3>
-                    <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 13em; border-radius: 10px;">
+                    <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 9em; border-radius: 10px;">
                         <span class="quote">“</span>
-                        <p class="typed mb-5">{{ getPrejudice }} …</p>
+                        <p class="typed mb-3">{{ getPrejudice }} …</p>
                         <span class="quote">”</span>
-                        <button class="btn btn-outline-light mt-5 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
+                        <button class="btn btn-outline-light mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                     </div>
 
                 </div>
@@ -21,10 +21,10 @@
         <div class="col-lg-6 col-sm-6 column2">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body center" style="">
-                    <h3 class="pt-5" style="color: #5FE2FC;">Reply:</h3>
-                    <h2 class="">
-                        <span class="text" style="font-size: 0.6em;">{{ this.$store.state.currentCard["short direct answer"] }}</span>
-                    </h2>
+                    <h3 class="pt-2" style="color: #5FE2FC;">Reply:</h3>
+                    <p class="">
+                        <span class="text" style="">{{ this.$store.state.currentCard["short direct answer"] }}</span>
+                    </p>
                     <hr>
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <VideoBare />
