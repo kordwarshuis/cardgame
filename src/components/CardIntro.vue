@@ -40,7 +40,7 @@
 
         <div class="col-lg-6 col-sm-6">
             <div class="card h-100 bg-transparent" style="border:none;">
-                <div class="card-body center" style="">
+                <div class="card-body p-0" style="">
 
                 </div>
             </div>
@@ -48,7 +48,7 @@
 
         <div class="col-lg-6 col-sm-6">
             <div class="card h-100 bg-transparent" style="border:none;">
-                <div class="card-body">
+                <div class="card-body p-0">
                     <RelatedCards />
                 </div>
             </div>
