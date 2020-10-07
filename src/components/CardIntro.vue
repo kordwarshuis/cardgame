@@ -1,6 +1,6 @@
 <template>
 <!-- open/close -->
-<div class="overlay-fullscreen overlay-fullscreen-contentpush p-0" :class="this.$store.state.cssClassCardIntroState">
+<div class="overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
     <div class="row m-0 pb-5">
         <div class="col-lg-6 col-sm-6 column1">
             <div class="card h-100 bg-transparent" style="border:none;">
@@ -12,7 +12,7 @@
                         <span class="quote">”</span>
                         <button class="btn btn-outline-light mt-5 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                     </div>
-                    <RelatedCards />
+                    <!-- <RelatedCards /> -->
                 </div>
             </div>
         </div>
@@ -27,6 +27,7 @@
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <VideoBare />
                     </div>
+                    <RelatedCards />
                     <!-- <div v-if="(this.$store.state.currentCard['Quiz'])" class="col-lg-12 col-sm-12">
                         <Quiz />
                     </div> -->
@@ -41,7 +42,7 @@
             </div>
             <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block; padding: 0.3em;" title="Copy Link">Copy Link</button>
         </div>
-        <a class="overlay-fullscreen-close">×</a>
+        <a class="overlay-fullscreen-close"><span class="cross">×</span><span class="back"><span class="back-sign">‹</span> Back to cards</span></a>
     </div>
 </div>
 </template>
@@ -52,7 +53,9 @@ import RelatedCards from "@/components/RelatedCards.vue";
 import Quiz from "@/components/Quiz.vue";
 import VideoBare from "@/components/VideoBare.vue";
 // import Quiz from "@/components/Quiz.vue";
-import { disableBodyScrollMixin } from "./mixins/disableBodyScroll";
+import {
+    disableBodyScrollMixin
+} from "./mixins/disableBodyScroll";
 
 export default {
     name: "CardIntro",
@@ -78,7 +81,7 @@ export default {
     },
     mounted: function () {
         this.handleCardIntro();
-        this.disableBodyScroll(".overlay-fullscreen>div");//mixin
+        this.disableBodyScroll(".overlay-fullscreen>div"); //mixin
     },
     methods: {
         typeWriter(selector, prejudice, interval) {
@@ -186,6 +189,7 @@ export default {
 <style lang="scss" scoped>
 /*! https://tympanus.net/Development/FullscreenOverlayStyles/index7.html# */
 /* Overlay style */
+
 #app .overlay-fullscreen {
     position: fixed;
     width: 100%;
@@ -193,6 +197,7 @@ export default {
     height: 100%;
     top: 50%;
     left: 50%;
+    padding-top: 60px;
     transform: translate(-50%, -50%);
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
     color: $overlayItemText;
@@ -204,24 +209,86 @@ export default {
 .overlay-fullscreen>div {
     overflow: scroll;
     height: 100%;
-    -webkit-overflow-scrolling: touch;//https://stackoverflow.com/a/41601290
+    -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
 }
 
-/* Overlay closing cross */
 .overlay-fullscreen .overlay-fullscreen-close {
+    cursor: pointer;
     position: fixed;
-    top: 1.5em;
-    right: 20px;
+    top: 0;
+    margin-top: 50px;
+    // right: 10px;
+    left: 0;
+    width: 100%;
     border: none;
-    // background: $_background1BCB;
-    // border: 1px solid transparent;
-    // border-radius: 50%;
+    background: linear-gradient(#2F3762, #343C6B);
     color: #eee;
-    padding: 0.2em;
     display: block;
     font-size: 2.5em;
-    line-height: 0.6;
-    cursor: pointer;
+    line-height: 1.2;
+    z-index: 1;
+    font-size: 1.0em;
+    padding: 0.6em 0.2em;
+}
+
+.overlay-fullscreen .overlay-fullscreen-close:hover {
+    text-decoration: none;
+}
+
+.overlay-fullscreen .overlay-fullscreen-close .cross {
+    display: none;
+}
+
+.overlay-fullscreen .overlay-fullscreen-close .back {}
+
+.overlay-fullscreen .overlay-fullscreen-close .back-sign {
+    font-size: 2em;
+    margin-right: 0.3em;
+}
+
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .overlay-fullscreen .overlay-fullscreen-close {
+        position: fixed;
+        top: 20px;
+        right: 10px;
+        left: auto;
+        width: 40px;
+        border: none;
+        background: none;
+        // border: 1px solid red;
+        // border-radius: 50%;
+        color: #eee;
+        padding: 0.2em;
+        margin-top: 0;
+        display: inline-block;
+        font-size: 2.5em;
+        line-height: 0.6;
+        cursor: pointer;
+        // z-index: 5;
+    }
+
+    .overlay-fullscreen .overlay-fullscreen-close .cross {
+        display: block;
+    }
+
+    .overlay-fullscreen .overlay-fullscreen-close .back {
+        display: none;
+    }
+
+    .overlay-fullscreen {
+        padding-top: 0;
+    }
+
+    #app .overlay-fullscreen {
+        height: 70%;
+    }
+
+    .overlay-fullscreen .overlay-fullscreen-close {
+        top: 10px;
+    }
+
 }
 
 .container.overlay-fullscreen-open::after {
@@ -254,18 +321,6 @@ export default {
 
 .further-reading {
     cursor: pointer;
-}
-
-/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-@media (min-width: 768px) {
-    #app .overlay-fullscreen {
-        height: 70%;
-    }
-
-    .overlay-fullscreen .overlay-fullscreen-close {
-        top: 10px;
-    }
-
 }
 
 /* Small devices (landscape phones, 576px and up) */
