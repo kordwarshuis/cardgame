@@ -291,7 +291,7 @@ export default {
     cursor: pointer;
     position: fixed;
     top: 0;
-    margin-top: 40px;
+    margin-top: 33px;
     // right: 10px;
     left: 0;
     width: 100%;
