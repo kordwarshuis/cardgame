@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="nav justify-content-center">
             <li class="nav-item">
                 <!-- https://stackoverflow.com/a/42401686 -->
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/">Cards</router-link>
@@ -18,6 +18,9 @@
             </li>
             <li class="nav-item" v-if="this.$store.state.gameName === 'Bitcoin'">
                 <router-link class="nav-link" v-if="this.$store.state.gameName === 'Bitcoin'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">Scores</router-link>
+            </li>
+            <li class="nav-item" style="border-right: none;">
+                <SoundToggle />
             </li>
         </ul>
     </div>
