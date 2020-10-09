@@ -4,9 +4,10 @@
         <div class="content">
             <!-- BEGIN own content -->
             <div class="tweets-container">
+                <h1 class="visuallyhidden">Tweets</h1>
                 <!-- <button class="button-open-close-tweets-container"><span class="visuallyhidden">Open / close tweetstream</span></button> -->
                 <div class="tweets-realtime">
-                    <h3 class="ml-3 header-tweets-realtime">Realtime tweets</h3>
+                    <h2 class="ml-3 header-tweets-realtime">Realtime tweets</h2>
                     <div class="tweets">
                         <!-- example tweet -->
                         <div class="tweet col-md-12">
@@ -24,7 +25,7 @@
                     </div>
                 </div>
                 <div class="tweets-selected pt-3">
-                    <h3 class="ml-3 header-tweets-selected">Selected tweet</h3>
+                    <h2 class="ml-3 header-tweets-selected">Selected tweet</h2>
                     <div class="tweets">
                         <p>No tweet selected yet.</p>
                     </div>
