@@ -18,7 +18,7 @@
             <h1 class="mb-0"><span>
                     <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameName}}
                 </span> answers to Bitcoin Misconceptions</h1>
-            <small class="mt-0">Spread bitcoin expertise and earn respect</small>
+            <small class="mt-0">Spread bitcoin expertise</small>
 
         </div>
 
