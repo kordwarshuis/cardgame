@@ -55,10 +55,12 @@
         </div>
 
         <div class="col-lg-12 col-sm-12 m-0" style="position: fixed; bottom: 0; left: 0;background: linear-gradient(to right, #5C34A7, #2376D6);">
-            <div style="display: inline-block;">
-                <SocialMedia />
+            <div class="mx-auto" style="width: 20em;">
+                <div style="display: inline-block;">
+                    <SocialMedia />
+                </div>
+                <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block; padding: 0.3em;" title="Copy Link">Copy Link</button>
             </div>
-            <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block; padding: 0.3em;" title="Copy Link">Copy Link</button>
         </div>
         <a class="overlay-fullscreen-close"><span class="cross">×</span><span class="back"><span class="back-sign">‹</span> Back to cards</span></a>
     </div>
