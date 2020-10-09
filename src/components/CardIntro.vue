@@ -6,7 +6,7 @@
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body">
 
-                    <h3 class="pt-5">Misconception:</h3>
+                    <h3 class="pt-5">Misconception</h3>
                     <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 9em; border-radius: 10px;">
                         <span class="quote">“</span>
                         <p class="typed mb-3">{{ getPrejudice }} …</p>
@@ -21,7 +21,7 @@
         <div class="col-lg-6 col-sm-6 column2">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body center" style="">
-                    <h3 class="pt-2" style="color: #5FE2FC;">Reply:</h3>
+                    <h3 class="pt-2" style="color: #5FE2FC;">Reply</h3>
                     <p class="">
                         <span class="text" style="">{{ this.$store.state.currentCard["short direct answer"] }}</span>
                     </p>
