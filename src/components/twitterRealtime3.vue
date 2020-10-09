@@ -33,7 +33,7 @@
             <!-- END own content -->
         </div>
         <input type="checkbox" id="open-button" />
-        <label class="menu-icon" for="open-button">
+        <label class="menu-icon animate__animated" for="open-button">
             <span></span>
             <span class="visuallyhidden">Open/Close Menu</span>
         </label>
@@ -66,8 +66,30 @@ export default {
         this.copyTweet();
         this.startStopTweetStream();
         this.disableBodyScroll(".content"); //mixin
+        this.drawAttentionToTwitter();
     },
     methods: {
+        drawAttentionToTwitter() {
+            var button = document.querySelector(".menu-icon");
+            var effectInterval = 0 // to be used for clearing setInterval
+            var interval = 3000;
+            var animationLength = 2000; // waiting time before class is removed after adding (to start animation)
+            function startEffect() {
+                var type = "animate__heartBeat";
+                button.classList.add(type);
+                setTimeout(function() {document.querySelector(".menu-icon").classList.remove(type);}, animationLength);
+                interval += 5000;// simple way to increase intervals to avoid annoyed users
+                clearInterval(effectInterval);
+                effectInterval = setInterval(startEffect, interval);
+            }
+
+            effectInterval = setInterval(startEffect, interval);
+
+            // stop the effect after the first time the realtime tweets button is clicked
+            button.addEventListener("click", function(){
+                clearInterval(effectInterval);
+            }, false);
+        },
         copyTweet() {
             // var tweetCopyContainer = document.createElement("div");
             // tweetCopyContainer.classList.add("tweetCopyContainer", "tweets");
