@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-sm sticky-top p-0 pl-2 pr-2">
+<nav class="navbar navbar-expand-sm sticky-top p-0 pl-2 pr-2 ">
     <router-link class="navbar-brand" to="/"><img src="@/assets/img/logo/cropped-header_bcb.png" alt=""></router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -53,6 +53,20 @@ export default {
 a {
     color: #eee;
 }
+
+.nav {
+    padding-bottom: 2em;
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+.nav {
+    padding-bottom: 0;
+}
+
+
+}
+
 
 .navbar .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(89,213,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
