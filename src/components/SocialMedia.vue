@@ -2,7 +2,9 @@
 <div>
     
     <div>
-<p style="float: left;margin-top: 0.4em;">Share:</p>
+<p style="float: left;margin-top: 0.4em;">
+    <!-- Share: -->
+    </p>
         <!-- Sharingbutton Facebook -->
         <a class="resp-sharing-button__link" :href="'https://facebook.com/sharer/sharer.php?u=' + this.windowLocationOrigin + this.publicPath + 'card/' + this.$store.state.currentCard['Unique URL']" target="_blank" rel="noopener" aria-label="">
             <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small">
