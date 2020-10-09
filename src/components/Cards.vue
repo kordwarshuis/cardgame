@@ -6,15 +6,54 @@
     <!-- <h1>Bitcoin Misconceptions</h1> -->
 
     <div class="row">
-        <div class="col-md-8">
-            <h1 class="pt-1 ml-1 mr-1 ml-md-5 mr-md-5 mt-0">
+        <!-- NAME -->
+        <div class="col-md-6">
+            <!-- <h1 class="">
                 <span>
-                    <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameName}}</span> Misconceptions
-            </h1>
+                    <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameName}}
+                </span>
+                Misconceptions
+            </h1> -->
+
+            <h1 class="mb-0"><span>
+                    <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameName}}
+                </span> answers to Bitcoin Misconceptions</h1>
+            <small class="mt-0">Spread bitcoin expertise and earn respect</small>
 
         </div>
-        <div class="col-md-4">
-            <Search />
+
+        <div class="col-md-6">
+            <div class="row">
+                <!-- SEARCH -->
+                <div class="col-6 text-right">
+                    <Search />
+                </div>
+
+                <!-- CATEGORIES DROPDOWN -->
+                <div class="col-6 text-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle button-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Filter By
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
+                                <!-- All = All categories at once -->
+                                <li class="nav-item ">
+                                    <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
+                                </li>
+
+                                <!-- Every category in a menu item -->
+                                <li class="nav-item" v-for="category in $store.state.categories" :key="category.name">
+                                    <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category.name)" :data-category="category.name">
+                                        {{ category.name }}
+                                        <!-- ({{ category.numberOfItems }}) -->
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -22,22 +61,10 @@
             1: Select a tweet – 2: Select and Copy a card – 3: Paste card in reply to tweet
     </div> -->
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
-    <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
-        <!-- All = All categories at once -->
-        <li class="nav-item ">
-            <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
-        </li>
 
-        <!-- Every category in a menu item -->
-        <li class="nav-item" v-for="category in $store.state.categories" :key="category.name">
-            <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category.name)" :data-category="category.name">
-                {{ category.name }}
-                <!-- ({{ category.numberOfItems }}) -->
-            </a>
-        </li>
-    </ul>
     <!-- <h2>{{ subtext }}</h2> -->
 
+    <!-- THE CARDS -->
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
         <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
             <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
@@ -174,7 +201,7 @@ export default {
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     .cards {
-        padding-top: 0;
+        padding-top: 50px;
     }
 }
 
@@ -191,9 +218,14 @@ h1 span {
     font-weight: bold;
 }
 
-.nav-link {
-    color: #eee;
-    cursor: pointer;
+// .nav-link {
+//     color: #eee;
+//     cursor: pointer;
+// }
+
+.button-categories {
+    background: #5965F9;
+    border: none;
 }
 
 @media screen and (min-width: 320px) {
