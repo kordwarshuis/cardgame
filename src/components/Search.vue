@@ -1,6 +1,6 @@
 <template>
 <div class="">
-    <div class=" pt-8 m-1 mt-2 mb-4 text-center">
+    <div class="m-0 p-0 pt-2">
         <VueFuse placeholder="Search" event-name="results" :list="this.$store.state.theJSON" :keys="['Prejudice', 'Prejudice Elaborate']" :defaultAll="false" class="border " />
 
     </div>
