@@ -13,11 +13,11 @@
             <li class="nav-item">
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about">About</router-link>
             </li>
-            <li class="nav-item" v-if="this.$store.state.gameName === 'Bitcoin'">
-                <router-link class="nav-link" v-if="this.$store.state.gameName === 'Bitcoin'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/twitter-real-time">Realtime</router-link>
+            <li class="nav-item" v-if="this.$store.state.gameTitle === 'Bitcoin'">
+                <router-link class="nav-link" v-if="this.$store.state.gameTitle === 'Bitcoin'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/twitter-real-time">Realtime</router-link>
             </li>
-            <li class="nav-item" v-if="this.$store.state.gameName === 'Bitcoin'">
-                <router-link class="nav-link" v-if="this.$store.state.gameName === 'Bitcoin'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">Scores</router-link>
+            <li class="nav-item" v-if="this.$store.state.gameTitle === 'Bitcoin'">
+                <router-link class="nav-link" v-if="this.$store.state.gameTitle === 'Bitcoin'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">Scores</router-link>
             </li>
             <li class="nav-item" style="border-right: none;">
                 <SoundToggle />

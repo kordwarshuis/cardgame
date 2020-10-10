@@ -10,13 +10,13 @@
         <div class="col-md-6">
             <!-- <h1 class="">
                 <span>
-                    <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameName}}
+                    <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameTitle}}
                 </span>
                 Misconceptions
             </h1> -->
 
             <h1 class="mb-0"><span>
-                    <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameName}}
+                    <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameTitle}}
                 </span></h1>
             <small class="mt-0">Spread bitcoin expertise</small>
 

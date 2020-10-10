@@ -60,7 +60,7 @@ new Vue({
 
 // set which game
 document.querySelector("body").classList.add(process.env.VUE_APP_ID);
-store.commit("setGameName", process.env.VUE_APP_TITLE);
+store.commit("setgameTitle", process.env.VUE_APP_TITLE);
 store.commit("setCardImage", process.env.VUE_APP_IMAGE);
 
 
