@@ -12,7 +12,7 @@
 
             <div class="row justify-content-center ">
                 <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
-                    <div class="card border-primary m-0 p-0 mb-3">
+                    <div class="card border-primary m-0 p-0 mb-3"  style="background: #474E71; color: #FFFFFF;">
                         <div class="card-header">
                             <h2 class="">All Time Tweeps</h2>
                             <hr>
@@ -21,7 +21,7 @@
                             <small>Scroll to the right if not everything is in view.</small>
                         </div>
                         <div class="card-body m-0 p-0">
-                            <table class="table table-responsive m-0 p-0" style="width: 100%;">
+                            <table class="table table-responsive m-0 p-0" style="width: 100%;background: #474E71; color: #FFFFFF;" >
                                 <tr>
                                     <th class="text-left pr-2">
                                         #
@@ -440,7 +440,9 @@ export default {
 };
 </script>
 
-<style>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+
+<style lang="scss" scoped>
 ol {
     list-style-position: inside;
     padding-left: 0;
