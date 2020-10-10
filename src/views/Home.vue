@@ -70,9 +70,9 @@ export default {
                         // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to Bitcoin, if a "2" is in the string, it belong to Blockchain. "12" means it belongs to both.
                         // TODO: move this to main.js
                         var stack = 0;
-                        if (process.env.VUE_APP_ID === "btc") {
+                        if (this.$store.state.gameId === "btc") {
                             stack = 1;
-                        } else if (process.env.VUE_APP_ID === "bcb") {
+                        } else if (this.$store.state.gameId === "bcb") {
                             stack = 2;
                         }
 
