@@ -76,10 +76,12 @@ export default {
             var interval = 3000;
             var animationLength = 2000; // waiting time before class is removed after adding (to start animation)
             function startEffect() {
-                var type = "animate__heartBeat";
+                var type = "animate__slideInRight";
                 button.classList.add(type);
-                setTimeout(function() {document.querySelector(".menu-icon").classList.remove(type);}, animationLength);
-                interval += 5000;// simple way to increase intervals to avoid annoyed users
+                setTimeout(function () {
+                    document.querySelector(".menu-icon").classList.remove(type);
+                }, animationLength);
+                interval += 5000; // simple way to increase intervals to avoid annoyed users
                 clearInterval(effectInterval);
                 effectInterval = setInterval(startEffect, interval);
             }
@@ -87,7 +89,7 @@ export default {
             effectInterval = setInterval(startEffect, interval);
 
             // stop the effect after the first time the realtime tweets button is clicked
-            button.addEventListener("click", function(){
+            button.addEventListener("click", function () {
                 clearInterval(effectInterval);
             }, false);
         },
