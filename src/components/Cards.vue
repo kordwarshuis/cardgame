@@ -68,7 +68,7 @@
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
         <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
             <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
-                <h4 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h4>
+                <h2 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h2>
             </a>
             <div class="card-footer" style="background: #1D2448; text-align: left;">
                 <h3 @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
@@ -260,8 +260,8 @@ h1 span {
         display: inline-block;
         width: 100%;
 
-        h3,
-        h4 {
+        h2,
+        h3 {
             color: $_text1;
             font-size: 1.1em;
             margin: 0.5em;
