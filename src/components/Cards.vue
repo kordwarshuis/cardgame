@@ -18,7 +18,7 @@
             <h1 class="mb-0"><span>
                     <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameTitle}}
                 </span></h1>
-            <small class="mt-0">Spread bitcoin expertise</small>
+            <small class="mt-0">{{this.$store.state.gameSubTitle}}</small>
 
         </div>
 
