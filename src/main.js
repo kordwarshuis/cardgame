@@ -58,6 +58,11 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
+// set which game
+document.querySelector("body").classList.add(process.env.VUE_APP_ID);
+store.commit("setGameName", process.env.VUE_APP_TITLE);
+store.commit("setCardImage", process.env.VUE_APP_IMAGE);
+
 
 // redirects
 if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Architecture&q=preview-7-transactions-per-second&title=Bitcoin%20has%20only%20seven%20transactions%20per%20second") {
@@ -127,35 +132,6 @@ if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Architecture
 } else if (window.location.href === "https://www.blockchainbird.com/t/btc/?cat=Environment&q=preview-proof-of-stake&title=Proof-of-stake%20coins%20are%20far%20more%20sustainable%20than%20mining%20bitcoin") {
   window.location.replace("https://blockchainbird.com/t/btc/card/proof-of-stake");
 }
-
-
-
-// find out what version of the cardgame is active. Based on URL.
-var cardGameName = "";
-var cardImage = "";
-export {
-  cardGameName
-};
-export {
-  cardImage
-};
-
-// if "/btc/" in URL or "localhost" or "cardgametest" in URL then it's BTC, if not then BCB
-if ((window.location.href.indexOf("\/btc\/") > -1) || (window.location.href.indexOf("localhost") > -1) || (window.location.href.indexOf("cardgametest") > -1)) {
-  document.querySelector("body").classList.add("btc");
-  cardGameName = "Bitcoin";
-  cardImage = "bitcoin.svg";
-  store.commit("setGameName", cardGameName);
-  store.commit("setCardImage", cardImage);
-} else {
-  document.querySelector("body").classList.add("bcb");
-  cardGameName = "Blockchain";
-  cardImage = "blockchain.svg";
-  store.commit("setGameName", cardGameName);
-  store.commit("setCardImage", cardImage);
-}
-
-
 
 // copy URL into clipboard via click on button
 // Note: here it is not: "this.$store.commit" but "store.commit" (https://stackoverflow.com/q/51348936)
