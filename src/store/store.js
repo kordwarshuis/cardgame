@@ -4,7 +4,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    gameId: "",
     gameTitle: "",
+    gameSubTitle: "",
     cardImage: "",
     cssClassCardOverviewState: "",
     cssClassCardIntroState: "",
@@ -32,11 +34,17 @@ export default new Vuex.Store({
     setTopScorer(state, topScorer) {
       state.topScorer = topScorer;
     },
+    setGameId(state, id) {
+      this.state.gameId = id;
+    },
+    setGameTitle(state, name) {
+      this.state.gameTitle = name;
+    },
+    setGameSubTitle(state, name) {
+      this.state.gameSubTitle = name;
+    },
     setCardImage(state, image) {
       this.state.cardImage = image;
-    },
-    setgameTitle(state, name) {
-      this.state.gameTitle = name;
     },
     hideModal(state) {
       //TODO: is this the way to change a store value? Seems not.
