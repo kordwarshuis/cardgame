@@ -41,8 +41,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-// scrollable menu, more or less copied from https://getbootstrap.com/docs/4.5/assets/css/docs.min.css
-
 .navbar {
     background: #191F3A;
     // https://forum.freecodecamp.org/t/bootsrap-4-5-navbar-full-width/233369 :
@@ -50,7 +48,16 @@ export default {
     margin-left: -15px;
 }
 
-a {
+// a:link {}
+// a:visited {}
+// a:focus, a:hover {}
+// a:active {}
+
+a:link,
+a:visited,
+a:focus,
+a:hover,
+a:active {
     color: #eee;
 }
 
@@ -60,13 +67,10 @@ a {
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
-.nav {
-    padding-bottom: 0;
+    .nav {
+        padding-bottom: 0;
+    }
 }
-
-
-}
-
 
 .navbar .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(89,213,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
@@ -79,50 +83,5 @@ a {
 .navbar-brand img {
     max-height: 30px;
     margin: 0;
-    // border: 1px solid red;
 }
-
-// .navbar {
-//     position: relative;
-//     width: 100%;
-// }
-
-// .navbar-nav-scroll {
-//     position: fixed;
-//     color: #ddd;
-//     background: #191F3A;
-//     padding-right: 2em;
-
-//     margin-right: -13em;
-//     margin-bottom: 1em;
-//     margin-left: -1em;
-//     z-index: 5;
-
-//     max-width: calc(100%);
-//     overflow: hidden;
-
-// }
-
-// .navbar-nav-scroll .navbar-nav {
-//     overflow-x: auto;
-//     white-space: nowrap;
-//     -webkit-overflow-scrolling: touch
-// }
-
-// /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-// @media (min-width: 768px) {
-//     .navbar-nav-scroll {
-//         position: relative;
-//     }
-
-// }
-
-// .navbar-nav-scroll li {
-//     border-right: 1px solid #444;
-//     padding: 0.5em 1em;
-// }
-
-// .navbar-nav-scroll a {
-//     color: #ddd;
-// }
 </style>
