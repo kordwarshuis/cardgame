@@ -368,7 +368,7 @@ export default {
 }
 
 .content-item p {
-    margin-left: 3em;
+    margin-left: 2em;
 }
 
 .content-item a {
@@ -386,7 +386,7 @@ export default {
     background-repeat: no-repeat;
     background-size: 1.2em;
     // padding: 0.4em;
-    padding-left: 2em;
+    padding-left: 1.5em;
     // padding-bottom: 1em;
     // margin-top: 1em;
 }
