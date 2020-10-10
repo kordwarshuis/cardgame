@@ -1,11 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import {
-  cardGameName
-} from "../main";
-import {
-  cardImage
-} from "../main";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -38,11 +32,11 @@ export default new Vuex.Store({
     setTopScorer(state, topScorer) {
       state.topScorer = topScorer;
     },
-    setCardImage(state) {
-      this.state.cardImage = cardImage;
+    setCardImage(state, image) {
+      this.state.cardImage = image;
     },
-    setGameName(state) {
-      this.state.gameName = cardGameName;
+    setGameName(state, name) {
+      this.state.gameName = name;
     },
     hideModal(state) {
       //TODO: is this the way to change a store value? Seems not.
