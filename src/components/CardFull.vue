@@ -12,13 +12,13 @@
 
                 <!-- <button class="copyURLtoClipboard copyURLtoClipboard1" title="Copy Link">Copy Link</button> -->
 
-                <div class="content-item border p-2 mb-3 mt-3" v-if="this.$store.state.currentCard['long answer+facts']">
+                <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['long answer+facts']">
 
                     <h3 class="longAnswer">Answer</h3>
                     <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
                 </div>
 
-                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
 
                     <h3 class="diagram">Diagram</h3>
                     <p>{{this.$store.state.currentCard["Diagram Description"]}}</p>
@@ -34,58 +34,58 @@
                         <Video />
                     </div>
                     <div class="col-md-8">
-                        <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
+                        <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
 
                             <h3 class="readOn">Read More</h3>
                             <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
-                            <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
+                            <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
                         </div>
 
                     </div>
                 </div>
 
-                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
 
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
-                    <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">Read on</a></p>
+                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">Read on</a></p>
                 </div>
 
-                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
                     <h3 class="readOn">Read More</h3>
                     <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
-                    <p><a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
+                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
                 </div>
 
-                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['wiki - Myths']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['wiki - Myths']">
                     <h3 class="WikiMyths">Wiki Myths</h3>
                     <p>This bitcoin misconception cleared up by the bitcoin wiki community: <a target="_blank" rel="noopener" :href="this.$store.state.currentCard['wiki - Myths']">Read</a></p>
                 </div>
 
-                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Eric Voskuil']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Eric Voskuil']">
                     <h3 class="EricVoskuil">Eric Voskuil</h3>
                     <p>{{ this.$store.state.currentCard['Eric Voskuil'] }}</p>
                 </div>
 
-                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
 
                     <h3 class="counterQuestion">Counter-questions</h3>
                     <p>{{this.$store.state.currentCard["Counter-questions"]}}</p>
                 </div>
 
-                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['analogy']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['analogy']">
 
                     <h3 class="">Analogy</h3>
                     <p>{{this.$store.state.currentCard["analogy"]}}</p>
                 </div>
 
-                <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
 
                     <h3 class="flowerPower">Flower Power</h3>
                     <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
                 </div>
 
-                <!-- <div class="content-item border p-2 mb-3" v-if="this.$store.state.currentCard['Related']">
+                <!-- <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Related']">
                     <h3 class="related">Related</h3>
                     <p>
                         <span v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
@@ -94,15 +94,22 @@
                     </p>
                 </div> -->
                 <RelatedCards />
-
-                <div class="content-item border p-2 mb-3">
-                    <p><a target="_blank" rel="noopener" href="https://web.telegram.org/#/im?p=@bcbird">Comment in our Telegram group</a></p>
+                <button class="md-close mt-5 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button>
+                <div class="center m-4 mb-0 p-3 " style="border-top: 1px dashed #eee;">
+                    <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" href="https://web.telegram.org/#/im?p=@bcbird">Comment in our Telegram group</a></p>
                 </div>
 
-                <SocialMedia />
+                <div class="col-lg-12 col-sm-12 m-0" style="background: linear-gradient(to right, #5C34A7, #2376D6);border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+                    <div class="mx-auto" style="width: 20em;">
+                        <div style="display: inline-block;">
+                            <SocialMedia />
+                        </div>
+                        <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block; padding: 0.3em;" title="Copy Link">Copy Link</button>
+                    </div>
+                </div>
+
                 <Person3 />
-                <button class="md-close mt-5" @click="$store.commit('hideModal')">Close</button>
-                <button class="copyURLtoClipboard copyURLtoClipboard2">Copy Link</button>
+
                 <!-- <div class=" p-2 mb-3" style="background: none;"> -->
 
                 <!-- </div> -->
@@ -254,7 +261,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
-<style lang="scss" scoped>
+<style lang="scss">
 /*! https://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/ */
 
 // MODAL
@@ -305,23 +312,21 @@ export default {
     font-size: 1.0em;
     padding: 0 0.2em;
 }
-.md-close:hover {
-    text-decoration: none;
-}
+
+// .md-close:hover {
+//     text-decoration: none;
+// }
 
 .md-close .cross {
     display: none;
 }
 
-.md-close .back {
-
-}
+.md-close .back {}
 
 .md-close .back-sign {
     font-size: 2em;
     margin-right: 0.3em;
 }
-
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
@@ -363,7 +368,7 @@ export default {
 
 .content-item {
     background: #eee;
-    color: #222;
+    color: #0B364D;
     border-radius: 10px;
 }
 
@@ -371,11 +376,11 @@ export default {
     margin-left: 2em;
 }
 
-.content-item a {
-    color: $cardFullBlockLink;
-    background: $cardFullBlockBackground;
+// .content-item a {
+//     color: $cardFullBlockLink;
+//     background: $cardFullBlockBackground;
 
-}
+// }
 
 .modal-content {
     // background: $cardFullBackground;
@@ -399,11 +404,11 @@ export default {
 // }
 
 .modal-content h3.longAnswer {
-    background-image: url(../assets/img/animated-gif/mens38.gif);
+    background-image: url(../assets/img/icons/jv-creative/answer.svg);
 }
 
 .modal-content h3.quiz {
-    background-image: url(../assets/img/icons/flat/quiz.svg);
+    background-image: url(../assets/img/icons/jv-creative/quiz.svg);
     text-align: left;
 }
 
@@ -417,11 +422,13 @@ export default {
 }
 
 .modal-content h3.readOn {
-    background-image: url(../assets/img/animated-gif/guestbk2.gif);
+    background-image: url(../assets/img/icons/jv-creative/read-more.svg);
+
 }
 
 .modal-content h3.counterQuestion {
-    background-image: url(../assets/img/animated-gif/insects15.gif);
+    // background-image: url(../assets/img/animated-gif/insects15.gif);
+    background-image: url(../assets/img/icons/jv-creative/counter-questions.svg);
 }
 
 .modal-content h3.related {
