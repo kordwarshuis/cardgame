@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+  <defs/>
+  <defs>
+    <linearGradient id="b" x1=".5" x2=".5" y1="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#a93aff"/>
+      <stop offset="1" stop-color="#ff81ff"/>
+    </linearGradient>
+    <linearGradient id="c" x1=".5" x2=".5" y1="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffbef9"/>
+      <stop offset="1" stop-color="#fff1ff"/>
+    </linearGradient>
+    <clipPath id="a">
+      <path fill="#fff" stroke="#707070" d="M0 0h28v28H0z" data-name="Rectangle 12" transform="translate(1507.458 4551.458)"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#a)" data-name="Mask Group 5" transform="translate(-1507.458 -4551.458)">
+    <g data-name="Group 133">
+      <g data-name="Group 132">
+        <path fill="url(#b)" d="M9.018 13.547a1.448 1.448 0 101.448 1.448 1.433 1.433 0 00-1.448-1.448zm4.343 1.448a1.448 1.448 0 10-1.448 1.448 1.433 1.433 0 001.449-1.448zm1.448 1.448a1.448 1.448 0 10-1.448-1.448 1.433 1.433 0 001.448 1.447zm13.4 13.879a1.993 1.993 0 01-.665-2.687 7.841 7.841 0 001.066-3.952 8.014 8.014 0 00-8.01-7.964 7.54 7.54 0 00-1.811.209.727.727 0 00-.53.539 6.56 6.56 0 01-4.874 4.874.725.725 0 00-.539.53 7.521 7.521 0 00-.209 1.811 8.014 8.014 0 007.963 8.011h7.287a.724.724 0 00.324-1.371z" data-name="Path 487" transform="translate(1505.201 4546.12)"/>
+      </g>
+    </g>
+    <g data-name="Group 135">
+      <g data-name="Group 134">
+        <path fill="url(#c)" d="M8.011 0A8.06 8.06 0 000 8.011a7.7 7.7 0 001.057 3.923 1.987 1.987 0 01-.695 2.693.7.7 0 00-.333.811.713.713 0 00.695.536h7.287a7.741 7.741 0 001.8-.2 8.029 8.029 0 005.965-5.95 7.867 7.867 0 00.2-1.81A8.018 8.018 0 008.011 0zm-2.9 8.735a.724.724 0 11.724-.724.717.717 0 01-.719.724zm2.9 0a.724.724 0 11.724-.724.717.717 0 01-.724.724zm2.9 0a.724.724 0 11.724-.724.717.717 0 01-.728.724zm2.9 7.239a.724.724 0 10.724.724.724.724 0 00-.735-.724zm2.9 0a.724.724 0 10.724.724.724.724 0 00-.735-.724zm2.9 0a.724.724 0 10.724.724.724.724 0 00-.741-.724z" data-name="Path 488" transform="translate(1509.103 4553.104)"/>
+      </g>
+    </g>
+  </g>
+</svg>
