@@ -7,7 +7,7 @@
 
     <div class="row">
         <!-- NAME -->
-        <div class="col-md-6">
+        <div class="col-md-8">
             <h1 class="mb-0"><span>
                     <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameTitle}}
                 </span></h1>
@@ -15,38 +15,29 @@
 
         </div>
 
-        <div class="col-md-6">
-            <div class="row">
-                <!-- SEARCH -->
-                <div class="col-6 text-right">
-                    <Search />
-                </div>
+        <div class="col-md-4">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle button-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter By
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
+                        <!-- All = All categories at once -->
+                        <li class="nav-item ">
+                            <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
+                        </li>
 
-                <!-- CATEGORIES DROPDOWN -->
-                <div class="col-6 text-right">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle button-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Filter By
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
-                                <!-- All = All categories at once -->
-                                <li class="nav-item ">
-                                    <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
-                                </li>
-
-                                <!-- Every category in a menu item -->
-                                <li class="nav-item" v-for="category in $store.state.categories" :key="category.name">
-                                    <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category.name)" :data-category="category.name">
-                                        {{ category.name }}
-                                        <!-- ({{ category.numberOfItems }}) -->
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                        <!-- Every category in a menu item -->
+                        <li class="nav-item" v-for="category in $store.state.categories" :key="category.name">
+                            <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category.name)" :data-category="category.name">
+                                {{ category.name }}
+                                <!-- ({{ category.numberOfItems }}) -->
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -77,7 +68,7 @@
 
 <script>
 // import NewsTicker from "@/components/NewsTicker.vue";
-import Search from "@/components/Search.vue";
+// import Search from "@/components/Search.vue";
 import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
 // import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
@@ -85,7 +76,7 @@ import ICountUp from 'vue-countup-v2';
 export default {
     name: "Index",
     components: {
-        Search,
+        // Search,
         // NewsTicker,
         SoundToggle,
         ICountUp
