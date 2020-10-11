@@ -34,7 +34,7 @@
             <!-- END own content -->
         </div>
         <input type="checkbox" id="open-button" />
-        <label class="menu-icon animate__animated" for="open-button">
+        <label class="menu-icon" for="open-button">
             <span></span>
             <span class="visuallyhidden">Open/Close Menu</span>
         </label>
@@ -76,7 +76,7 @@ export default {
             var interval = 3000;
             var animationLength = 2000; // waiting time before class is removed after adding (to start animation)
             function startEffect() {
-                var type = "animate__slideInRight";
+                var type = "highlighter";
                 button.classList.add(type);
                 setTimeout(function () {
                     document.querySelector(".menu-icon").classList.remove(type);
@@ -376,14 +376,16 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     background: url(../assets/img/twitter/Twitter_Logo_Blue.svg);
     box-shadow: $hamburgerBoxShadow;
     position: fixed;
-    top: 3px;
-    left: -120px;
+    top: 5px;
+    left: -140px;
     display: block;
     cursor: pointer;
     height: $hamburgerHeight;
     width: $hamburgerWidth;
     padding: $hamburgerPadding;
     z-index: $zIndex;
+
+    border-radius: 50%;
 }
 
 .show-menu .menu-icon {
@@ -420,5 +422,28 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 .tweets-selected img,
 .tweets-selected .extra-info {
     display: none;
+}
+
+// https://codepen.io/etreacy/pen/ZJYoRV
+.highlighter {
+    animation-name: highlighter;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes highlighter {
+    0% {
+        background-color: transparent;
+    }
+
+    10% {
+        background-color: #be4a06;
+    }
+
+    100% {
+        background-color: transparent;
+    }
 }
 </style>
