@@ -3,7 +3,7 @@
     <h3 class="related">Related</h3>
     <p>
         <span v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
-            <router-link style="color: #eee;" :to="'/card/' + item">{{ item }}</router-link>
+            <router-link class="btn btn-primary mr-2" style="border: none; background: #373E65;" :to="'/card/' + item">{{ item }}</router-link>
         </span>
     </p>
 </div>
