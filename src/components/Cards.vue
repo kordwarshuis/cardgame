@@ -8,13 +8,6 @@
     <div class="row">
         <!-- NAME -->
         <div class="col-md-6">
-            <!-- <h1 class="">
-                <span>
-                    <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameTitle}}
-                </span>
-                Misconceptions
-            </h1> -->
-
             <h1 class="mb-0"><span>
                     <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameTitle}}
                 </span></h1>
@@ -292,7 +285,44 @@ h1 span {
     }
 
     .category.Environment {
-        background: #406685;
+        background: #5F543A;
     }
+
+    .category.Media {
+        background: #624457;
+    }
+
+    .category.Beliefs {
+        background: #574881;
+    }
+
+    .category.Skills {
+        background: #2A5437;
+    }
+
+    .category.Control {
+        background: #77ce92;
+    }
+
+    .category.Existential {
+        background: #905438;
+    }
+
+    .category.Legal {
+        background: #E15438;
+    }
+
+    .category.Price {
+        background: #169DE0;
+    }
+
+    .category.Society {
+        background: #B99DE0;
+    }
+
+    .category.Supply {
+        background: #EA9DE0;
+    }
+
 }
 </style>
