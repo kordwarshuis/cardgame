@@ -69,6 +69,7 @@ export default {
 
 <style lang="scss">
 // scoped doesnt work for the styling of the green checkmark and the cross
+
 /*
  * MINI QUIZ
  */
@@ -253,7 +254,8 @@ form.miniquiz p {
 .quizExplanation {
     margin: 0.5em 0;
     padding: 1em;
-    background: #b1eca9;
+    border-top: 1px dashed #0B364D;
+    color: #366F0C;
 
 }
 
