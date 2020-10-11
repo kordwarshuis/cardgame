@@ -419,18 +419,18 @@ Animate.css - http://daneden.github.io/animate.css/
 Licensed under the MIT license - http://opensource.org/licenses/MIT
 Copyright (c) 2014 Daniel Eden
 */
-.animated {
-    animation-duration: 1s;
-    animation-fill-mode: both;
-}
+// .animated {
+//     animation-duration: 1s;
+//     animation-fill-mode: both;
+// }
 
-.animated.infinite {
-    animation-iteration-count: infinite;
-}
+// .animated.infinite {
+//     animation-iteration-count: infinite;
+// }
 
-.animated.threeTimes {
-    animation-iteration-count: 3;
-}
+// .animated.threeTimes {
+//     animation-iteration-count: 3;
+// }
 
 /* end animate.css */
 
