@@ -307,12 +307,11 @@ hr {
 /* het sluiten van de eerste popup: */
 .overlay__close,
 /* het sluiten van de tweede popup: */
-button,
+button
 // related Items
-.relatedItems a,
+// .relatedItems a,
 /* alle links in de tweede popup: */
-.modal-content a
-
+// .modal-content a
 /* het menu met alle categorieen */
 // .categoryLinks a 
     {
@@ -380,15 +379,10 @@ a.overlay__close:not(.overlay__close-cross):hover,
 /* het sluiten van de eerste popup: */
 .overlay__close:hover,
 /* het sluiten van de tweede popup: */
-button:hover,
+// button:hover,
 /* alle links in de tweede popup: */
-.modal-content a:hover,
+// .modal-content a:hover,
 /* het menu met alle categorieen */
-// .categoryLinks a:hover {
-//     background: $linksHoverBackground;
-//     transition: background 0.3s ease-in-out;
-// }
-
 /* het sluiten van de eerste popup: */
 .overlay__close:hover {
     background-color: transparent;
