@@ -212,6 +212,7 @@ export default {
 
 body {
     font-family: poppinsregular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 0.9rem;
     min-height: 100%;
     color: $text;
     background-color: $background;
@@ -414,25 +415,6 @@ a.overlay__close:not(.overlay__close-cross):hover,
     min-height: 2em;
 }
 
-/*!
-Animate.css - http://daneden.github.io/animate.css/
-Licensed under the MIT license - http://opensource.org/licenses/MIT
-Copyright (c) 2014 Daniel Eden
-*/
-// .animated {
-//     animation-duration: 1s;
-//     animation-fill-mode: both;
-// }
-
-// .animated.infinite {
-//     animation-iteration-count: infinite;
-// }
-
-// .animated.threeTimes {
-//     animation-iteration-count: 3;
-// }
-
-/* end animate.css */
 
 #attentionSeeker {
     display: none;
