@@ -28,19 +28,28 @@
                 </div>
 
                 <Quiz />
-
-                <div class="row">
-                    <div class="col-md-4">
+                <!-- if there is video -->
+                <div class="row" v-if="(this.$store.state.currentCard['Youtube Video Id'])">
+                    <div class="col-md-4 mb-3">
                         <Video />
                     </div>
-                    <div class="col-md-8">
-                        <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
-
+                    <div class="col-md-8 mb-3">
+                        <div class="content-item border p-3 " v-if="this.$store.state.currentCard['Read On 1 Text']">
                             <h3 class="readOn">Read More</h3>
                             <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
                             <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
                         </div>
+                    </div>
+                </div>
 
+                <!-- if there is NO video -->
+                <div class="row" v-else>
+                    <div class="col-md-12 mb-3">
+                        <div class="content-item border p-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
+                            <h3 class="readOn">Read More</h3>
+                            <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                            <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
+                        </div>
                     </div>
                 </div>
 
@@ -483,6 +492,4 @@ export default {
     margin: 0 auto;
     font-size: 1em;
 }
-
-
 </style>
