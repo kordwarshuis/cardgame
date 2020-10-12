@@ -463,30 +463,6 @@ export default {
 
 }
 
-// .md-content div {
-//     background: transparent;
-//     border: none;
-// }
-
-// .md-content>div {
-//     padding: 15px 40px 30px;
-//     margin: 0;
-// }
-
-// .md-content>div p {
-//     margin: 0;
-//     padding: 10px 0;
-// }
-
-// .md-content>div ul {
-//     margin: 0;
-//     padding: 0 0 30px 20px;
-// }
-
-// .md-content>div ul li {
-//     padding: 5px 0;
-// }
-
 .md-content button {
     display: block;
     margin: 0 auto;
