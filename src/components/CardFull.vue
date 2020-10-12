@@ -112,11 +112,11 @@
             </div>
         </div>
         <div class="bottom-bar">
-            <div class="mx-auto" style="width: 20em;">
+            <div class="mx-auto" style="width: 30em;">
                 <div style="display: inline-block;">
                     <SocialMedia />
                 </div>
-                <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block; padding: 0.3em;" title="Copy Link">Copy Link</button>
+                <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
             </div>
         </div>
     </div>
@@ -450,7 +450,7 @@ export default {
 }
 
 .bottom-bar {
-    margin-bottom: 1em;// to make the bottom bar fully visible
+    margin-bottom: 1em; // to make the bottom bar fully visible
     background: linear-gradient(to right, #5C34A7, #2376D6);
 }
 </style>
