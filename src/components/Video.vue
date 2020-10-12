@@ -3,9 +3,9 @@
 <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="content-item p-3">
     <!-- <h3 class="video">Video</h3> -->
 
-    <p class="video-description">{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
-
     <VideoBare />
+    <p class="video-description ml-0">{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
+
 </div>
 </template>
 
