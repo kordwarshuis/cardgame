@@ -52,7 +52,7 @@ export default {
 <style lang="scss" scoped>
 // https://css-tricks.com/the-checkbox-hack/
 
-$size: 40px;
+$size: 30px;
 $padding: 70%;
 
 .soundToggle {
