@@ -1,6 +1,6 @@
 <template>
 <div class="popup md-modal md-effect-2 mt-3 mb-3 m-0" :class="this.$store.state.cssClassCardFullState" id="modal-6">
-    <a @click="$store.commit('hideModal')" class="md-close md-close-cross"><span class="cross">×</span><span class="back"><span class="back-sign">‹</span> back</span></a>
+    <a @click="$store.commit('hideModal')" class="md-close md-close-cross"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text">Back</span></a>
     <div class="md-content">
         <!-- <h3 class="modal-header"></h3> -->
         <div>
@@ -118,15 +118,8 @@
                 </div>
 
                 <Person3 />
-
-                <!-- <div class=" p-2 mb-3" style="background: none;"> -->
-
-                <!-- </div> -->
-
             </div>
-
         </div>
-
     </div>
 </div>
 </template>
@@ -274,16 +267,20 @@ export default {
 /*! https://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/ */
 @import "../assets/css/card-full-open-close.scss";
 
+.title {
+    font-size: 1em;
+}
 
 .md-content {
     -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
 }
 
+// TERTIARY MENU
 .md-close.md-close-cross {
     cursor: pointer;
     position: fixed;
     top: 0;
-    margin-top: 33px;
+    margin-top: calc(#{$subMenuOffsetTopOnSmallScreen - 16px});
     // right: 10px;
     left: 0;
     width: 100%;
@@ -291,11 +288,12 @@ export default {
     background: linear-gradient(#0745A8, #015DF4);
     color: #eee;
     display: block;
-    font-size: 2.5em;
-    line-height: 1.2;
     z-index: 1;
+
+    // height of tertiary menu bar
+    line-height: 1.2;
     font-size: 1.0em;
-    padding: 0 0.2em;
+    padding: 0.2em 0.2em;
 }
 
 .md-close.md-close-cross {
@@ -306,11 +304,23 @@ export default {
     display: none;
 }
 
-.md-close .back {}
+.md-close .back-text {
+    font-family: 'poppinsbold';
+    font-size: 1.2em;
+    vertical-align: middle;
+    line-height: 0;
+    padding: 0;
+    margin: 0;
+    // border: 1px solid red;
+}
 
 .md-close .back-sign {
-    font-size: 2em;
-    margin-right: 0.3em;
+    font-size: 3.0em;
+    line-height: 0.9; // use this to set height of bar
+    vertical-align: middle;
+    margin: 0 0.1em 0 0.2em;
+    padding: 0 0 0 0;
+    // border: 1px solid red;
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -339,13 +349,16 @@ export default {
         display: block;
     }
 
-    .md-close .back {
+    .md-close .back-sign,
+    .md-close .back-text {
         display: none;
     }
 }
 
+// END TERTIARY MENU
+
 .misconception-short-and-elaborate {
-    margin: 1em 0;
+    margin: 3em 0 1em; // to keep distance from sec / tert menu
     padding: 1em 0;
     border-top: 3px dotted #666;
     border-bottom: 3px dotted #666;
