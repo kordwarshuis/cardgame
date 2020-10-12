@@ -17,15 +17,13 @@ export default {
     name: "Quiz",
     methods: {
         quizMultipleChoice(e) {
-            var isChecked = this.checked; // TODO: remove?
-            var value = this.value; // TODO: remove?
             var domCorrectAnswer;
 
             // rigth answer chosen
             if (e.target.value === "true") {
                 // add class after innerHTML not possible as node is changed by innerHTML?
                 e.target.parentNode.insertAdjacentHTML("beforeend", "<span class='antw antw-vinkje'>√</span>");
-                
+
                 if (localStorage.getItem("soundOn") === "true") go.play();
                 document.querySelector("body").classList.add("person1");
                 setTimeout(function () {
@@ -33,13 +31,11 @@ export default {
                 }, 4000);
                 console.log(publicPath.publicPath);
 
-            } else
-
-            // wrong answer chosen
-            {
+            } else {
+                // wrong answer chosen
                 // if you have more than one 'correct' then you end up here, no need for more code
                 domCorrectAnswer = e.target.parentNode.parentNode.querySelector("input[value='true']").parentNode;
-                
+
                 if (localStorage.getItem("soundOn") === "true") whistle.play();
                 setTimeout(
                     function () {
