@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-sm sticky-top pt-0 pb-0 pl-2 pr-2 ">
+<nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2 ">
     <router-link class="navbar-brand" to="/"><img src="@/assets/img/logo/blockchainbird-logo.png" alt=""></router-link>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,6 +67,7 @@ a:active {
 
 #navbarNav {
     padding-bottom: 2em;
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
