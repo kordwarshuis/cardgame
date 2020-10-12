@@ -112,7 +112,7 @@
             </div>
         </div>
         <div class="bottom-bar">
-            <div class="mx-auto" style="width: 30em;">
+            <div>
                 <div style="display: inline-block;">
                     <SocialMedia />
                 </div>

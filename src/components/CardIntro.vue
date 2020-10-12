@@ -55,7 +55,7 @@
         </div>
 
         <div class="col-lg-12 col-sm-12 m-0" style="position: fixed; bottom: 0; left: 0;background: linear-gradient(to right, #5C34A7, #2376D6);">
-            <div class="mx-auto" style="width: 30em;">
+            <div>
                 <div style="display: inline-block;">
                     <SocialMedia />
                 </div>
@@ -233,15 +233,15 @@ export default {
 }
 
 // hr {
-    
-// }
 
+// }
 
 // SECONDARY MENU
 
-    .column1 h3 {
-        padding-top: 2em;
-    }
+.column1 h3 {
+    padding-top: 2em;
+}
+
 .overlay-fullscreen .overlay-fullscreen-close {
     cursor: pointer;
     position: fixed;
