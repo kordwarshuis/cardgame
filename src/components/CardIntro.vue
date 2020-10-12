@@ -55,11 +55,11 @@
         </div>
 
         <div class="col-lg-12 col-sm-12 m-0" style="position: fixed; bottom: 0; left: 0;background: linear-gradient(to right, #5C34A7, #2376D6);">
-            <div class="mx-auto" style="width: 20em;">
+            <div class="mx-auto" style="width: 30em;">
                 <div style="display: inline-block;">
                     <SocialMedia />
                 </div>
-                <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block; padding: 0.3em;" title="Copy Link">Copy Link</button>
+                <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
             </div>
         </div>
     </div>
@@ -232,6 +232,11 @@ export default {
     -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
 }
 
+// hr {
+    
+// }
+
+
 // SECONDARY MENU
 .overlay-fullscreen .overlay-fullscreen-close {
     cursor: pointer;
@@ -355,7 +360,7 @@ export default {
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
     .column1 .card-body {
-        border-right: 1px solid #666666;
+        border-right: 1px dashed #A3A8B7;
     }
 }
 </style>
