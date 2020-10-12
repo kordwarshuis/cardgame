@@ -2,7 +2,7 @@
 <!-- open/close -->
 <div class="overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
     <div class="row m-0 pb-5">
-        <div class="col-lg-6 col-sm-6 column1">
+        <div class="col-lg-6 col-sm-6 column1 p-0">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body">
 
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="col-lg-6 col-sm-6 column2">
+        <div class="col-lg-6 col-sm-6 column2 p-0">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body center" style="">
                     <h3 class="pt-2" style="color: #5FE2FC;">Reply</h3>
