@@ -1,7 +1,7 @@
 <template>
 <div class="">
     <div class="">
-        <VueFuse placeholder="Search" event-name="results" :list="this.$store.state.theJSON" :keys="['Prejudice', 'Prejudice Elaborate']" :defaultAll="false" class="searchBar border form-control m-0 ml-sm-5" />
+        <VueFuse placeholder="Search" event-name="results" :list="this.$store.state.theJSON" :keys="['Prejudice', 'Prejudice Elaborate']" :defaultAll="false" class="searchBar border form-control m-0" />
 
     </div>
     <div class="search-results-container hideSearchResults">
@@ -67,6 +67,9 @@ export default {
 .searchBar {
     background: #393E4D;
     color: #eee;
+    width: 12em;
+    margin: 0 auto !important;
+    // display: block;
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -74,6 +77,8 @@ export default {
     .searchBar {
         background: #393E4D;
         height: 1.5em;
+        width: 8em;
+        margin-left: 1.5em !important;
     }
 }
 
