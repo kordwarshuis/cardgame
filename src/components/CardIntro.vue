@@ -6,7 +6,7 @@
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body">
 
-                    <h3 class="pt-5">Misconception</h3>
+                    <h3 class="pt-sm-2">Misconception</h3>
                     <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 9em; border-radius: 10px;">
                         <span class="quote">“</span>
                         <p class="typed mb-3">{{ getPrejudice }} …</p>
@@ -238,6 +238,10 @@ export default {
 
 
 // SECONDARY MENU
+
+    .column1 h3 {
+        padding-top: 2em;
+    }
 .overlay-fullscreen .overlay-fullscreen-close {
     cursor: pointer;
     position: fixed;
@@ -287,7 +291,7 @@ export default {
 @media (min-width: 768px) {
     .overlay-fullscreen .overlay-fullscreen-close {
         position: fixed;
-        top: 20px;
+        top: -30px;
         right: 10px;
         left: auto;
         width: 40px;
