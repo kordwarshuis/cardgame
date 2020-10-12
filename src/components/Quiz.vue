@@ -82,8 +82,11 @@ form.miniquiz {
     margin-bottom: 2em;
 }
 
-form.miniquiz input {
-    /*font-size: 3em;*/
+form.miniquiz legend {
+    font-size: 1.3em;
+}
+form.miniquiz label {
+    font-size: 1.2em;
 }
 
 form.miniquiz .antw {
