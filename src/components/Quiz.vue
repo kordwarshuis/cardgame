@@ -88,6 +88,10 @@ form.miniquiz legend {
 form.miniquiz label {
     font-size: 1.2em;
 }
+form.miniquiz legend,
+form.miniquiz label {
+    margin-left: $cardFullTextIndent;
+}
 
 form.miniquiz .antw {
     position: absolute;
