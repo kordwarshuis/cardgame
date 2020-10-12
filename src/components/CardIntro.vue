@@ -62,8 +62,8 @@
                 <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block; padding: 0.3em;" title="Copy Link">Copy Link</button>
             </div>
         </div>
-        <a class="overlay-fullscreen-close"><span class="cross">×</span><span class="back"><span class="back-sign">‹</span> Back to cards</span></a>
     </div>
+    <a class="overlay-fullscreen-close"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text"> Back to cards</span></a>
 </div>
 </template>
 
@@ -232,21 +232,21 @@ export default {
     -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
 }
 
+// SECONDARY MENU
 .overlay-fullscreen .overlay-fullscreen-close {
     cursor: pointer;
     position: fixed;
     top: 0;
-    margin-top: 50px;
-    // right: 10px;
     left: 0;
+    transform: translate(0, $subMenuOffsetTopOnSmallScreen);
     width: 100%;
     border: none;
     background: linear-gradient(#2F3762, #343C6B);
     color: #eee;
     display: block;
-    font-size: 2.5em;
-    line-height: 1.2;
-    z-index: 1;
+
+    // height of secondary menu bar
+    line-height: 1.0;
     font-size: 1.0em;
     padding: 0.6em 0.2em;
 }
@@ -259,11 +259,23 @@ export default {
     display: none;
 }
 
-.overlay-fullscreen .overlay-fullscreen-close .back {}
+.overlay-fullscreen .overlay-fullscreen-close .back-text {
+    font-family: 'poppinsbold';
+    font-size: 1.2em;
+    vertical-align: middle;
+    line-height: 0;
+    padding: 0;
+    margin: 0;
+    // border: 1px solid red;
+}
 
 .overlay-fullscreen .overlay-fullscreen-close .back-sign {
-    font-size: 2em;
-    margin-right: 0.3em;
+    font-size: 3.0em;
+    line-height: 0.7; // use this to set height of bar
+    vertical-align: middle;
+    margin: 0 0.1em 0 0.2em;
+    padding: 0;
+    // border: 1px solid red;
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -292,7 +304,8 @@ export default {
         display: block;
     }
 
-    .overlay-fullscreen .overlay-fullscreen-close .back {
+    .overlay-fullscreen .overlay-fullscreen-close .back-sign,
+    .overlay-fullscreen .overlay-fullscreen-close .back-text {
         display: none;
     }
 
@@ -303,12 +316,9 @@ export default {
     #app .overlay-fullscreen {
         height: 70%;
     }
-
-    .overlay-fullscreen .overlay-fullscreen-close {
-        top: 10px;
-    }
-
 }
+
+// END SECONDARY MENU
 
 .container.overlay-fullscreen-open::after {
     visibility: visible;
