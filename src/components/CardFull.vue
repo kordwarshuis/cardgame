@@ -108,16 +108,15 @@
                     <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" href="https://web.telegram.org/#/im?p=@bcbird">Comment in our Telegram group</a></p>
                 </div>
 
-                <div class="col-lg-12 col-sm-12 m-0" style="background: linear-gradient(to right, #5C34A7, #2376D6);border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
-                    <div class="mx-auto" style="width: 20em;">
-                        <div style="display: inline-block;">
-                            <SocialMedia />
-                        </div>
-                        <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block; padding: 0.3em;" title="Copy Link">Copy Link</button>
-                    </div>
-                </div>
-
                 <Person3 />
+            </div>
+        </div>
+        <div class="bottom-bar">
+            <div class="mx-auto" style="width: 20em;">
+                <div style="display: inline-block;">
+                    <SocialMedia />
+                </div>
+                <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block; padding: 0.3em;" title="Copy Link">Copy Link</button>
             </div>
         </div>
     </div>
@@ -268,7 +267,7 @@ export default {
 @import "../assets/css/card-full-open-close.scss";
 
 .title {
-    font-size: 1em;
+    font-size: 1.2em;
 }
 
 .md-content {
@@ -370,8 +369,8 @@ export default {
     border-radius: 10px;
 }
 
-.content-item p {
-    margin-left: 2em;
+.content-item>p {
+    margin-left: $cardFullTextIndent;
 }
 
 // .content-item a {
@@ -387,9 +386,9 @@ export default {
 
 .modal-content h3 {
     background-repeat: no-repeat;
-    background-size: 1.2em;
+    background-size: 0.8em;
     // padding: 0.4em;
-    padding-left: 1.5em;
+    padding-left: 1.1em;
     // padding-bottom: 1em;
     // margin-top: 1em;
 }
@@ -448,5 +447,10 @@ export default {
     display: block;
     margin: 0 auto;
     font-size: 1em;
+}
+
+.bottom-bar {
+    margin-bottom: 1em;// to make the bottom bar fully visible
+    background: linear-gradient(to right, #5C34A7, #2376D6);
 }
 </style>
