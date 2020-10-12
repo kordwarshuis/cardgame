@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-sm sticky-top pt-0 pl-2 pr-2 ">
+<nav class="navbar navbar-expand-sm sticky-top pt-0 pb-0 pl-2 pr-2 ">
     <router-link class="navbar-brand" to="/"><img src="@/assets/img/logo/blockchainbird-logo.png" alt=""></router-link>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,7 @@
                 <SoundToggle />
             </li>
         </ul>
-    <Search />
+        <Search />
     </div>
 </nav>
 </template>
@@ -68,6 +68,7 @@ a:active {
 #navbarNav {
     padding-bottom: 2em;
 }
+
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     #navbarNav {
