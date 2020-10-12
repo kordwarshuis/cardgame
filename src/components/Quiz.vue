@@ -21,11 +21,9 @@ export default {
             var value = this.value; // TODO: remove?
             var domCorrectAnswer;
 
-            // totaalAantalVragenBeantwoord++;
-            // goede antwoord gekozen
+            // rigth answer chosen
             if (e.target.value === "true") {
-                // class toevoegen na innerHTML gaat niet blijkbaar omdat de node door innerHTLM veranderd wordt?
-                // this.parentNode.innerHTML += "<span class='antw antw-vinkje'>√</span>";
+                // add class after innerHTML not possible as node is changed by innerHTML?
                 e.target.parentNode.insertAdjacentHTML("beforeend", "<span class='antw antw-vinkje'>√</span>");
                 
                 if (localStorage.getItem("soundOn") === "true") go.play();
@@ -37,9 +35,9 @@ export default {
 
             } else
 
-            // foute antwoord gekozen
+            // wrong answer chosen
             {
-                // stel je hebt meerdere "correct", zoals bij een miniquiz waarin je vraagt om een beoordeling, dan kom je hier, in deze "else"  niet terecht, dus hoef ik verder niks te regelen
+                // if you have more than one 'correct' then you end up here, no need for more code
                 domCorrectAnswer = e.target.parentNode.parentNode.querySelector("input[value='true']").parentNode;
                 
                 if (localStorage.getItem("soundOn") === "true") whistle.play();
@@ -160,93 +158,6 @@ form.miniquiz p {
     margin-left: -128px;
     margin-top: -128px;
     display: block;
-}
-
-/* fadeIen en FadeOet gebruikt bij de images die in en outfaden bij beantwoorden miniquiz*/
-
-/*TODO: uiteindelijk verwijderen, wordt niet meer gebruikt, vermoedelijk*/
-.animated {
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-}
-
-/*end todo*/
-
-/* fadeIen en FadeOet gebruikt bij de images die in en outfaden bij beantwoorden miniquiz*/
-/* let op. dit bepaald hoe snel de afbeelding wegfade, niet HOE LANG HET DUURT voordat dat begint, dus hoe lang het in beeld blijft, ga daarvoor naar JS */
-.miniquizanimated {
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-}
-
-/*
- @-webkit-keyframes fadeOet {
-     0% {
-         opacity: 1;
-         */
-/*visibility: hidden;*/
-/*
- 
-     }
-     100% {
-         opacity: 0;
-         visibility: hidden;
-     }
- }
- */
-
-@keyframes fadeOet {
-    0% {
-        opacity: 1;
-        /*visibility: hidden;*/
-    }
-
-    100% {
-        opacity: 0;
-        visibility: hidden;
-        /* nodig omdat ze over de pagina heenliggen en je wilt toch op links kunnen klikken */
-    }
-}
-
-/*
- @-webkit-keyframes fadeIen {
-     0% {
-         visibility: visible;
-         opacity: 0;
-     }
- 
-     100% {
-         visibility: visible;
-         opacity: 1;
-     }
- }
- */
-
-@keyframes fadeIen {
-    0% {
-        visibility: visible;
-        opacity: 0;
-    }
-
-    100% {
-        visibility: visible;
-        opacity: 1;
-    }
-}
-
-.fadeOet {
-    /*-webkit-animation-name: fadeOet;*/
-    animation-name: fadeOet;
-    display: none;
-}
-
-.fadeIen {
-    /*-webkit-animation-name: fadeIen;*/
-    animation-name: fadeIen;
-    display: block;
-    /* TODO: noodgreep, nu werkt het maar de fade out werkt niet, dit moet beter geregeld worden,
-      als ik dit niet doe, kun je alleen eerste modal scrollen en de rest zit er onder en kun je niet bij
-      */
 }
 
 .miniQuizContainer {}
