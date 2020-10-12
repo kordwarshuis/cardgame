@@ -68,8 +68,15 @@ export default {
         this.startStopTweetStream();
         this.disableBodyScroll(".content"); //mixin
         this.drawAttentionToTwitter();
+        this.removeNewTweetsSign();
     },
     methods: {
+        removeNewTweetsSign() {
+            console.log("ploink");
+            document.querySelector(".menu-icon").addEventListener('click', function () {
+                this.classList.remove('new-tweets');
+            }, false);
+        },
         drawAttentionToTwitter() {
             var button = document.querySelector(".menu-icon");
             var effectInterval = 0 // to be used for clearing setInterval
@@ -384,8 +391,18 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     width: $hamburgerWidth;
     padding: $hamburgerPadding;
     z-index: $zIndex;
-
     border-radius: 50%;
+}
+
+.menu-icon.new-tweets:after {
+    content: ".";
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: red;
 }
 
 .show-menu .menu-icon {

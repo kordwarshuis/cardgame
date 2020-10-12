@@ -16,7 +16,7 @@ export var realTimeTweets = (function () {
     var domRestoreTweetAccounts = document.querySelector("#restoreTweetAccounts");
     var domEmptyTweetAccounts = document.querySelector("#emptyTweetAccounts");
     var domTestTweetAccountsSound = document.querySelector("#testTweetAccountsSound");
-
+    
     var domTemp = "";
     var domTempOld = "x";
 
@@ -233,7 +233,7 @@ export var realTimeTweets = (function () {
         }
 
         function processTwitters(data) {
-
+            var domMenuIcon = document.querySelector(".menu-icon");
             // console.log('data: ', data);
             somethingFound = false;
 
@@ -318,7 +318,8 @@ export var realTimeTweets = (function () {
 
             if (somethingFound) {
                 if (localStorage.getItem("soundOn") === "true") alert.play();
-
+                console.log('domMenuIcon: ', domMenuIcon);
+                domMenuIcon.classList.add('new-tweets');
                 // console.log('domTemp: ', domTemp);
                 // console.log('domTempOld: ', domTempOld);
 
