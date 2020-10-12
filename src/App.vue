@@ -290,7 +290,7 @@ a:focus {
 
 // https://codepen.io/joeyhoer/pen/BmqIx
 hr {
-    border: 1px solid #666;
+    border: 1px dashed #A3A8B7;
     width: 50%;
 }
 
