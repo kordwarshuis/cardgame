@@ -24,9 +24,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="tweets-selected pt-3">
+                <div class="tweets-selected p-3">
                     <h2 class="ml-3 header-tweets-selected">Selected tweet</h2>
-                    <div class="tweets">
+                    <div class="tweets pl-3 pr-3">
                         <p>No tweet selected yet.</p>
                     </div>
                 </div>
