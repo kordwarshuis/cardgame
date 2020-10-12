@@ -274,31 +274,6 @@ export default {
 /*! https://tympanus.net/codrops/2013/06/25/nifty-modal-window-effects/ */
 @import "../assets/css/card-full-open-close.scss";
 
-// MODAL
-/* General styles for the modal */
-// .modal-content {
-//     position: absolute;
-// }
-// div.popup.md-modal>div.md-content>div>.modal-content>div {
-//     width: 100%;
-//     border: 3px solid green;
-
-// }
-
-// /* Small devices (landscape phones, 576px and up) */
-// @media (min-width: 576px) {
-
-//     div.popup.md-modal>div.md-content>div>.modal-content>div {
-//         width: 33%;
-//         // position: static;
-//         float: left !important;
-//         // display: block;
-//     }
-// }
-
-// .modal-header {
-//     border-bottom: none;
-// }
 
 .md-content {
     -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
@@ -405,13 +380,6 @@ export default {
     // padding-bottom: 1em;
     // margin-top: 1em;
 }
-
-// .modal-content h3.title {
-//     // background-image: url(../assets/img/logo/blockchainbird-logo.png);
-//     padding: 0.4em;
-//     padding-left: 0;
-//     padding-bottom: 0;
-// }
 
 .modal-content h3.longAnswer {
     background-image: url(../assets/img/icons/jv-creative/answer.svg);
