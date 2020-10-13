@@ -230,9 +230,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: poppinsmedium, "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
-    font-weight: bold;
+    font-family: poppinsbold;
 }
 
 p {
