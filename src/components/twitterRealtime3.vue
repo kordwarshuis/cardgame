@@ -8,6 +8,7 @@
                 <!-- <button class="button-open-close-tweets-container"><span class="visuallyhidden">Open / close tweetstream</span></button> -->
                 <div class="tweets-realtime">
                     <h2 class="ml-3 header-tweets-realtime">Realtime tweets</h2>
+                    <TwitterRealTimeStartStopToggle />
                     <div class="tweets">
                         <!-- example tweet -->
                         <div class="tweet col-md-12">
@@ -45,6 +46,7 @@
 
 <script>
 import store from "../store/store";
+import TwitterRealTimeStartStopToggle from "@/components/TwitterRealTimeStartStopToggle.vue";
 import {
     realTimeTweets
 } from "@/assets/js/realTimeTweets.js";
@@ -58,7 +60,9 @@ export default {
         return {};
     },
     mixins: [disableBodyScrollMixin],
-    components: {},
+    components: {
+        TwitterRealTimeStartStopToggle
+    },
     mounted() {
         realTimeTweets.start({
             source: process.env.VUE_APP_REALTIME_TWITTER_JSON,
