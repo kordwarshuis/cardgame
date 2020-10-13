@@ -1,6 +1,6 @@
 <template>
 <div class="twitterRealTimeToggle">
-    <input type="checkbox" id="twitterRealTimeToggleInput" class="visually-hidden" checked>
+    <input type="checkbox" id="twitterRealTimeToggleInput" class="visuallyhidden" checked>
     <div class="control-me"></div>
     <label for="twitterRealTimeToggleInput">Toggle</label>
 </div>
@@ -40,22 +40,16 @@ export default {
 <style lang="scss" scoped>
 // https://css-tricks.com/the-checkbox-hack/
 
-$size: 30px;
-$padding: 70%;
+$size: 35px;
+$background-size: 100%;
 
 .twitterRealTimeToggle {
     position: relative;
     left: 0;
     top: 0;
-
-    // padding: 10px;
-
+    display: inline-block;
     width: $size;
     height: $size;
-}
-
-.control-me {
-    // border: 1px solid purple;
 }
 
 .control-me::after {
@@ -69,7 +63,7 @@ $padding: 70%;
     width: $size;
     height: $size;
     background: transparent url("../assets/img/icons/ui/013-play.svg") no-repeat center center;
-    background-size: $padding;
+    background-size: $background-size;
     display: inline-block;
 }
 
@@ -79,7 +73,7 @@ $padding: 70%;
 
 #twitterRealTimeToggleInput:checked~.control-me::after {
     background: transparent url("../assets/img/icons/ui/003-stop.svg") no-repeat center center;
-    background-size: $padding;
+    background-size: $background-size;
 }
 
 label {
