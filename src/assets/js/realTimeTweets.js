@@ -16,7 +16,7 @@ export var realTimeTweets = (function () {
     var domRestoreTweetAccounts = document.querySelector("#restoreTweetAccounts");
     var domEmptyTweetAccounts = document.querySelector("#emptyTweetAccounts");
     var domTestTweetAccountsSound = document.querySelector("#testTweetAccountsSound");
-    
+
     var domTemp = "";
     var domTempOld = "x";
 
@@ -234,7 +234,6 @@ export var realTimeTweets = (function () {
 
         function processTwitters(data) {
             var domMenuIcon = document.querySelector(".menu-icon");
-            // console.log('data: ', data);
             somethingFound = false;
 
             // if (data !== lastDataSet) {
@@ -283,16 +282,16 @@ export var realTimeTweets = (function () {
                     if (keywordFound === true) {
 
                         domTemp = "<div class='tweet " + specialAccountHTMLcode +
-                            "inviesieble col-md-12'><div class='card mb-4 pt-2 box-shadow'><div class='card-body'><div class='card-text'>" + 
+                            "inviesieble col-md-12'><div class='card mb-4 pt-2 box-shadow'><div class='card-body'><div class='card-text'>" +
                             "<span class='tweetNumber extra-info1'>#" +
-                            tweetNumber + 
-                            "</span> | " + 
-                            "<small class='text-muted extra-info2'> <span class='extra-info3 tweetTimeStamp'>&#x1f550; " + 
+                            tweetNumber +
+                            "</span> | " +
+                            "<small class='text-muted extra-info2'> <span class='extra-info3 tweetTimeStamp'>&#x1f550; " +
                             timestampNow() +
-                            "</span></small>" + 
+                            "</span></small>" +
                             "<p><img class='img-thumbnail float-left mr-3' src='" +
                             data[i].user.profile_image_url_https + "' alt=''> " + twitterLinks(data[i].text) +
-                            "</p><p class='extra-info'>Name: " + data[i].user.name + 
+                            "</p><p class='extra-info'>Name: " + data[i].user.name +
                             // "<br>Verified: " +
                             // data[i].user.verified + 
                             // "<br>Keyword: " + 
@@ -300,10 +299,10 @@ export var realTimeTweets = (function () {
                             // "</p>" + 
                             // "<p>" + 
                             " | Followers: " + data[i].user.followers_count +
-                            " <button type='button' class='btn btn-primary select-tweet'>Select</button></p></div><div class='d-flex justify-content-between align-items-center'><a class='go-to-tweet btn btn-primary' target='_blank' rel='noopener' href='https://twitter.com/" + 
+                            " <button type='button' class='btn btn-primary select-tweet'>Select</button></p></div><div class='d-flex justify-content-between align-items-center'><a class='go-to-tweet btn btn-primary' target='_blank' rel='noopener' href='https://twitter.com/" +
                             data[i].user.screen_name +
                             "/status/" + data[i].id_str +
-                            "'><span class='tweet-instruction'>Go to tweet</a> now copy a suitable card and go to tweet</span>" + 
+                            "'><span class='tweet-instruction'>Go to tweet</a> now copy a suitable card and go to tweet</span>" +
                             "</div></div></div></div>" + domTemp;
 
                         tweetNumber++;
@@ -318,7 +317,6 @@ export var realTimeTweets = (function () {
 
             if (somethingFound) {
                 if (localStorage.getItem("soundOn") === "true") alert.play();
-                console.log('domMenuIcon: ', domMenuIcon);
                 domMenuIcon.classList.add('new-tweets');
                 // console.log('domTemp: ', domTemp);
                 // console.log('domTempOld: ', domTempOld);
