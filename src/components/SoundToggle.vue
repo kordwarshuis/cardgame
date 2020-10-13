@@ -53,7 +53,7 @@ export default {
 // https://css-tricks.com/the-checkbox-hack/
 
 $size: 30px;
-$padding: 70%;
+$background-size: 70%;
 
 .soundToggle {
     position: relative;
@@ -81,7 +81,7 @@ $padding: 70%;
     width: $size;
     height: $size;
     background: transparent url("../assets/img/icons/flat/soundOff.svg") no-repeat center center;
-    background-size: $padding;
+    background-size: $background-size;
     display: inline-block;
 }
 
@@ -91,7 +91,7 @@ $padding: 70%;
 
 #soundToggleInput:checked~.control-me::after {
     background: transparent url("../assets/img/icons/flat/soundOn.svg") no-repeat center center;
-    background-size: $padding;
+    background-size: $background-size;
 }
 
 label {
