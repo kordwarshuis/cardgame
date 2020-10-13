@@ -7,8 +7,8 @@
                 <h1 class="visuallyhidden">Tweets</h1>
                 <!-- <button class="button-open-close-tweets-container"><span class="visuallyhidden">Open / close tweetstream</span></button> -->
                 <div class="tweets-realtime">
-                    <h2 class="ml-3 header-tweets-realtime">Realtime tweets</h2>
-                    <TwitterRealTimeStartStopToggle />
+                    <h2 class="ml-3 header-tweets-realtime" >Realtime tweets <TwitterRealTimeStartStopToggle class="" style="transform: translateY(0.2em);" /></h2>
+                    
                     <div class="tweets">
                         <!-- example tweet -->
                         <div class="tweet col-md-12">
