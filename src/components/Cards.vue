@@ -217,10 +217,22 @@ h1 {
     border: none;
 }
 
+.dropdown-menu-categories {
+    background: #5965FA;
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+    padding: 0.2em;
+    font-size: 0.9em;
+}
+
 .dropdown-menu-categories a {
+    font-family: poppinsbold;
     border: 1px solid #333;
     margin: 0.3em;
     cursor: pointer;
+}
+.dropdown-menu-categories a:hover {
+    background: #323A66;
+    color: #eee;
 }
 
 @media screen and (min-width: 320px) {
@@ -278,55 +290,55 @@ h1 {
     }
 
     .category.Architecture {
-        background: #1D807D;
+        background: #148868;
     }
 
     .category.Crime {
-        background: #7a6d45;
+        background: #7C2929;
     }
 
     .category.Use {
-        background: #604085;
+        background: #3E2D2D;
     }
 
     .category.Environment {
-        background: #5F543A;
+        background: #7B610E;
     }
 
     .category.Media {
-        background: #624457;
+        background: #5D3D50;
     }
 
     .category.Beliefs {
-        background: #574881;
+        background: #6C297C;
     }
 
     .category.Skills {
-        background: #2A5437;
+        background: #535353;
     }
 
     .category.Control {
-        background: #77ce92;
+        background: #294F7C;
     }
 
     .category.Existential {
-        background: #905438;
+        background: #1B7B76;
     }
 
     .category.Legal {
-        background: #E15438;
+        background: #40672C;
     }
 
     .category.Price {
-        background: #169DE0;
+        background: #3D515D;
     }
 
     .category.Society {
-        background: #B99DE0;
+        background: #061545;
     }
 
     .category.Supply {
-        background: #EA9DE0;
+        background: #063333;
     }
 
 }
