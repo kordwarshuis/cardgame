@@ -143,11 +143,6 @@ export default {
         RelatedCards,
         Person3
     },
-    data: function () {
-        return {
-            title: this.$store.state.currentTitle
-        }
-    },
     computed: {
         getPrejudice: function () {
             return this.$store.state.currentCard.Prejudice;

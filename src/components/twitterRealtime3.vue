@@ -72,7 +72,6 @@ export default {
     },
     methods: {
         removeNewTweetsSign() {
-            console.log("ploink");
             document.querySelector(".menu-icon").addEventListener('click', function () {
                 this.classList.remove('new-tweets');
             }, false);
