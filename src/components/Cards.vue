@@ -10,8 +10,11 @@
         <div class="col-md-8">
             <h1 class="mb-0">
                 <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" />
-                <span class="game-title">
+                <span class="game-title-1">
                     {{this.$store.state.gameTitle}}
+                </span>
+                <span class="game-title-2">
+                    {{this.$store.state.gameTitle2}}
                 </span>
             </h1>
             <small class="mt-0">{{this.$store.state.gameSubTitle}}</small>
@@ -23,7 +26,7 @@
                 <button type="button" class="btn btn-primary dropdown-toggle button-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Filter By
                 </button>
-                <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-categories">
                     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
                         <!-- All = All categories at once -->
                         <li class="nav-item ">
@@ -103,21 +106,8 @@ export default {
     },
     mounted() {
         this.addVisitedToCards();
-        // this.addSpanToLastWordInTitle();
     },
     methods: {
-        addSpanToLastWordInTitle() {
-            var gameTitle = document.querySelector('.game-title');
-            var gameTitle2 = gameTitle.innerHTML;
-            console.log('gameTitle: ', gameTitle2);
-            // for some reason cannot get innerText
-            // https://stackoverflow.com/a/20883492
-            function findLastWord(words) {
-                var n = words.split(" ");
-                return n[n.length - 1];
-            }
-            console.log(findLastWord(gameTitle2));
-        },
         addVisitedToCards() {
             //TODO: duplicate code, see addVisitedToCards()
             setTimeout(function () {
@@ -209,12 +199,12 @@ h1 {
     font-weight: normal;
 }
 
-h1 {
+.game-title-1 {
     font-family: poppinsbold;
 }
 
-h1 span {
-    font-family: poppinsbold;
+.game-title-2 {
+    font-family: poppinsregular;
 }
 
 // .nav-link {
@@ -225,6 +215,12 @@ h1 span {
 .button-categories {
     background: #5965F9;
     border: none;
+}
+
+.dropdown-menu-categories a {
+    border: 1px solid #333;
+    margin: 0.3em;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 320px) {
@@ -251,7 +247,8 @@ h1 span {
         cursor: pointer;
         background-image: url(../assets/img/icons/flat/bitcoin.svg), linear-gradient(#272f52, #3a4275);
         background-repeat: repeat, no-repeat;
-        background-size: 30px 30px, 100% 100%;
+        background-size: 25px 25px, 100% 100%;
+        background-position: center center, center center;
         text-align: center;
         font-variant: small-caps;
         border-radius: 10px;
@@ -275,7 +272,9 @@ h1 span {
     }
 
     .category {
+        border-radius: 4px;
         background: #1D807D;
+        margin: 0.8em;
     }
 
     .category.Architecture {
