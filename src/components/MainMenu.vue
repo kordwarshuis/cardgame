@@ -57,18 +57,29 @@ export default {
 // a:focus, a:hover {}
 // a:active {}
 
-a:link,
-a:visited,
-a:focus,
-a:hover,
-a:active {
-    color: #eee;
-}
-
 #navbarNav {
     padding-bottom: 2em;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+
+    li.nav-item  {
+        border-right: red !important;
+    }
+
+    a:link,
+    a:visited,
+    a:focus,
+    a:hover,
+    a:active {
+        color: #eee;
+
+    }
+
+    .router-link-exact-active {
+        background: #252B44;
+    }
+
 }
+
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
