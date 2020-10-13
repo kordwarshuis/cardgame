@@ -7,11 +7,13 @@
                 <h1 class="visuallyhidden">Tweets</h1>
                 <!-- <button class="button-open-close-tweets-container"><span class="visuallyhidden">Open / close tweetstream</span></button> -->
                 <div class="tweets-realtime">
-                    <h2 class="ml-3 header-tweets-realtime" >Realtime tweets <TwitterRealTimeStartStopToggle class="" style="transform: translateY(0.2em);" /></h2>
-                    
-                    <div class="tweets">
+                    <h2 class="ml-3 header-tweets-realtime">Realtime tweets
+                        <TwitterRealTimeStartStopToggle class="" style="transform: translateY(0.4em);" />
+                    </h2>
+
+                    <div class="tweets p-0 row">
                         <!-- example tweet -->
-                        <div class="tweet col-md-12">
+                        <div class="tweet col-md-12 p-0">
                             <div class="card mb-4 box-shadow">
                                 <div class="card-body">
                                     <div class="card-text"><span class="tweetNumber">#-1</span>
@@ -25,9 +27,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="tweets-selected p-3">
+                <div class="tweets-selected p-1">
                     <h2 class="ml-3 header-tweets-selected">Selected tweet</h2>
-                    <div class="tweets pl-3 pr-3">
+                    <div class="tweets pl-1 pr-1">
                         <p>No tweet selected yet.</p>
                     </div>
                 </div>
@@ -91,7 +93,7 @@ export default {
                 setTimeout(function () {
                     document.querySelector(".menu-icon").classList.remove(type);
                 }, animationLength);
-                interval += 5000; // simple way to increase intervals to avoid annoyed users
+                interval += 9000; // simple way to increase intervals to avoid annoyed users
                 clearInterval(effectInterval);
                 effectInterval = setInterval(startEffect, interval);
             }
@@ -278,6 +280,10 @@ $menuWidth: 300px;
 
 }
 
+h2 {
+    text-transform: none;
+}
+
 .content {
     padding: 1.5em 0.5em 2em;
     text-align: left;
@@ -423,14 +429,15 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     position: fixed;
     bottom: 0;
     left: 0;
-    background: #1da1f2;
+    background: #005B81;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
 }
 
 .header-tweets-realtime,
 .header-tweets-selected {
     color: #eee;
-    font-weight: bold;
+    font-family: poppinsbold;
+    font-size: 2em;
 }
 
 .select-tweet {
@@ -449,7 +456,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     animation-name: highlighter;
     animation-duration: 3s;
     animation-fill-mode: forwards;
-    animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+    // animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
     animation-timing-function: ease-in-out;
 }
 
