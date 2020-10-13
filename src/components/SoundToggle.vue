@@ -1,6 +1,6 @@
 <template>
 <div class="soundToggle">
-    <input type="checkbox" id="soundToggleInput" class="visually-hidden" checked>
+    <input type="checkbox" id="soundToggleInput" class="visuallyhidden" checked>
     <div class="control-me"></div>
     <label for="soundToggleInput">Toggle</label>
 </div>
