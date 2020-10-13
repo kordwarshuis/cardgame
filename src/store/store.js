@@ -6,6 +6,7 @@ export default new Vuex.Store({
   state: {
     gameId: "",
     gameTitle: "",
+    gameTitle2: "",
     gameSubTitle: "",
     cardImage: "",
     cssClassCardOverviewState: "",
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     },
     setGameTitle(state, name) {
       this.state.gameTitle = name;
+    },
+    setGameTitle2(state, name) {
+      this.state.gameTitle2 = name;
     },
     setGameSubTitle(state, name) {
       this.state.gameSubTitle = name;
