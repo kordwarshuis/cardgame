@@ -8,9 +8,12 @@
     <div class="row">
         <!-- NAME -->
         <div class="col-md-8">
-            <h1 class="mb-0"><span>
-                    <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" /> {{this.$store.state.gameTitle}}
-                </span></h1>
+            <h1 class="mb-0">
+                <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" />
+                <span class="game-title">
+                    {{this.$store.state.gameTitle}}
+                </span>
+            </h1>
             <small class="mt-0">{{this.$store.state.gameSubTitle}}</small>
 
         </div>
@@ -45,8 +48,6 @@
             1: Select a tweet – 2: Select and Copy a card – 3: Paste card in reply to tweet
     </div> -->
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
-
-    <!-- <h2>{{ subtext }}</h2> -->
 
     <!-- THE CARDS -->
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
@@ -89,9 +90,6 @@ export default {
     },
     data() {
         return {
-            subtext: "Help us get it right and send a card",
-            // results: [],
-            fuseSearchKeys: ["Prejudice"],
             ICountUpDelay: 2000, //msec
             ICountUpOptions: {
                 useEasing: true,
@@ -105,8 +103,21 @@ export default {
     },
     mounted() {
         this.addVisitedToCards();
+        // this.addSpanToLastWordInTitle();
     },
     methods: {
+        addSpanToLastWordInTitle() {
+            var gameTitle = document.querySelector('.game-title');
+            var gameTitle2 = gameTitle.innerHTML;
+            console.log('gameTitle: ', gameTitle2);
+            // for some reason cannot get innerText
+            // https://stackoverflow.com/a/20883492
+            function findLastWord(words) {
+                var n = words.split(" ");
+                return n[n.length - 1];
+            }
+            console.log(findLastWord(gameTitle2));
+        },
         addVisitedToCards() {
             //TODO: duplicate code, see addVisitedToCards()
             setTimeout(function () {
@@ -198,8 +209,12 @@ h1 {
     font-weight: normal;
 }
 
+h1 {
+    font-family: poppinsbold;
+}
+
 h1 span {
-    font-weight: bold;
+    font-family: poppinsbold;
 }
 
 // .nav-link {
