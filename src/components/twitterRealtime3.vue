@@ -1,33 +1,20 @@
 <template>
 <div id="slide-menu-and-buttons-wrapper">
     <div class="slide-menu-wrapper">
-        <div class="content">
+        <div class="content container-fluid">
             <!-- BEGIN own content -->
-            <div class="tweets-container">
+            <div class="tweets-container row">
                 <h1 class="visuallyhidden">Tweets</h1>
                 <!-- <button class="button-open-close-tweets-container"><span class="visuallyhidden">Open / close tweetstream</span></button> -->
-                <div class="tweets-realtime">
+                <div class="tweets-realtime col-md-12">
                     <h2 class="ml-3 header-tweets-realtime">Realtime tweets
                         <TwitterRealTimeStartStopToggle class="" style="transform: translateY(0.4em);" />
                     </h2>
 
-                    <div class="tweets p-0 row">
-                        <!-- example tweet -->
-                        <div class="tweet col-md-12 p-0">
-                            <div class="card mb-4 box-shadow">
-                                <div class="card-body">
-                                    <div class="card-text"><span class="tweetNumber">#-1</span>
-                                        <p><a class='go-to-tweet' target="_blank" rel="noopener" href="https://twitter.com/DragonShadowLV/status/1305951637127618560">Go to tweet and reply with card</a> Why has <a href="http://twitter.com/search?q=#Bitcoin" title="Search tag: Bitcoin" target="_blank">#Bitcoin</a> inventor Satoshi Nakamoto remained anonymous? (via <a href="http://twitter.com/function(e,t){return new E.fn.init(e,t)}" title="Follow decryptmedia" target="_blank">@decryptmedia</a>) <a href="https://t.co/ntUilFO033" target="_blank">https://t.co/ntUilFO033</a> <a href="http://twitter.com/search?q=#crypto" title="Search tag: crypto" target="_blank">#crypto</a></p><img class="img-fluid float-left w-25 mr-3" src="https://pbs.twimg.com/profile_images/616454622501187588/LjvscJJa_normal.jpg" alt="">
-                                        <p>Name: Berkley R. Bruce<br>Verified: false<br>Keyword: anonymous</p>
-                                        <p>Followers: 6397 | </p>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center"><small class="text-muted"> <span class="tweetTimeStamp">🕐 21:28:45</span></small><button type="button" class="btn btn-primary select-tweet">Select</button></div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="tweets p-0">
                     </div>
                 </div>
-                <div class="tweets-selected p-1">
+                <div class="tweets-selected col-md-12 p-1">
                     <h2 class="ml-3 header-tweets-selected">Selected tweet</h2>
                     <div class="tweets pl-1 pr-1">
                         <p>No tweet selected yet.</p>
@@ -50,8 +37,8 @@
 import store from "../store/store";
 import TwitterRealTimeStartStopToggle from "@/components/TwitterRealTimeStartStopToggle.vue";
 import {
-    realTimeTweets
-} from "@/assets/js/realTimeTweets.js";
+    getJSON
+} from "@/assets/js/getJSON.js";
 import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
@@ -66,12 +53,9 @@ export default {
         TwitterRealTimeStartStopToggle
     },
     mounted() {
-        realTimeTweets.start({
-            source: process.env.VUE_APP_REALTIME_TWITTER_JSON,
-            tweetHook: ".tweets-realtime .tweets"
-        });
+        getJSON.start();
         this.copyTweet();
-        this.startStopTweetStream();
+        // this.startStopTweetStream();
         this.disableBodyScroll(".content"); //mixin
         this.drawAttentionToTwitter();
         this.removeNewTweetsSign();
@@ -165,18 +149,6 @@ export default {
             // }, false);
 
         },
-        // stop tweetstream when mouse over tweetstream, to avoid user confusion
-        startStopTweetStream() {
-            document.querySelector('.tweets-realtime').addEventListener('mouseenter', function () {
-                realTimeTweets.stop();
-            }, false);
-            document.querySelector('.tweets-realtime').addEventListener('mouseleave', function () {
-                realTimeTweets.start({
-                    source: process.env.VUE_APP_REALTIME_TWITTER_JSON,
-                    tweetHook: ".tweets-realtime .tweets"
-                });
-            }, false);
-        }
     }
 };
 
