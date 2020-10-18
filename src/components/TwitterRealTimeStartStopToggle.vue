@@ -8,8 +8,8 @@
 
 <script>
 import {
-    realTimeTweets
-} from "@/assets/js/realTimeTweets.js";
+    getJSON
+} from "@/assets/js/getJSON.js";
 export default {
     name: "TwitterRealTimeStartStopToggle",
     mounted: function () {
@@ -23,11 +23,8 @@ export default {
             // toggle between stream is on and stream is off
             twitterRealTimeToggleInput.addEventListener('change', function () {
                 streamOn ?
-                    realTimeTweets.stop() :
-                    realTimeTweets.start({
-                        source: process.env.VUE_APP_REALTIME_TWITTER_JSON,
-                        tweetHook: ".tweets-realtime .tweets"
-                    });
+                    getJSON.stop() :
+                    getJSON.start(getJSON.start(process.env.VUE_APP_REALTIME_TWITTER_JSON));
                 streamOn = !streamOn;
             });
         }
