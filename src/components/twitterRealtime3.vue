@@ -10,6 +10,10 @@
                     <h2 class="ml-3 header-tweets-realtime">Realtime tweets
                         <TwitterRealTimeStartStopToggle class="" style="transform: translateY(0.4em);" />
                     </h2>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="showAllTweets">
+                        <label style="color: #eee;" class="form-check-label" for="showAllTweets">Show all tweets</label>
+                    </div>
 
                     <div class="tweets p-0">
                     </div>
@@ -40,6 +44,9 @@ import {
     getJSON
 } from "@/assets/js/getJSON.js";
 import {
+    realTimeTweets
+} from "@/assets/js/realTimeTweets.js";
+import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
 
@@ -59,8 +66,14 @@ export default {
         this.disableBodyScroll(".content"); //mixin
         this.drawAttentionToTwitter();
         this.removeNewTweetsSign();
+        this.showAllTweets();
     },
     methods: {
+        showAllTweets() {
+            document.querySelector('#showAllTweets').addEventListener('change', function () {
+                realTimeTweets.toggleAllTweets();
+            }, false);
+        },
         removeNewTweetsSign() {
             document.querySelector(".menu-icon").addEventListener('click', function () {
                 this.classList.remove('new-tweets');
