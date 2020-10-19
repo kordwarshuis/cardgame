@@ -477,14 +477,14 @@ a.overlay__close:not(.overlay__close-cross):hover,
 .tweet.curated .card {
     background-color: gold !important;
 }
-.tweet.curated .card:after {
-    content: "★";
-    color: red;
-    font-size: 3em;
-    position: absolute;
-    right: -0.5em;
-    top: -0.5em;
-}
+// .tweet.curated .card:after {
+//     content: "★";
+//     color: red;
+//     font-size: 3em;
+//     position: absolute;
+//     right: -0.5em;
+//     top: -0.5em;
+// }
 
 
 
