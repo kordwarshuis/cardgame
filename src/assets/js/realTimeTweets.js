@@ -46,10 +46,8 @@ export var realTimeTweets = (function () {
 
     var anyOfTheseWords = anyOfTheseWordsBackup;
     var anyOfTheseWordsUsersChoice = [];
-
-
     var noneOfTheseWords = ["airdrop", "earn", "giveaway"];
-
+    var noneOfTheseWordsUsersChoice = [];
 
 
 
@@ -131,6 +129,11 @@ export var realTimeTweets = (function () {
         // join the hardcoded keywords with the users choice
         if (anyOfTheseWordsUsersChoice.length > 0) {
             anyOfTheseWords = arrayUnique(anyOfTheseWords.concat(anyOfTheseWordsUsersChoice));
+        }
+
+        // join the hardcoded keywords with the users choice
+        if (noneOfTheseWordsUsersChoice.length > 0) {
+            noneOfTheseWords = arrayUnique(noneOfTheseWords.concat(noneOfTheseWordsUsersChoice));
         }
 
 
@@ -304,10 +307,15 @@ export var realTimeTweets = (function () {
         anyOfTheseWordsUsersChoice = a;
     }
 
+    function setNoneOfTheseWordsUsersChoice(a) {
+        noneOfTheseWordsUsersChoice = a;
+    }
+
     return {
         start: startStream,
         toggleAllTweets: toggleAllTweets,
         setFollowersNumber: setFollowersNumber,
-        setAnyOfTheseWordsUsersChoice: setAnyOfTheseWordsUsersChoice
+        setAnyOfTheseWordsUsersChoice: setAnyOfTheseWordsUsersChoice,
+        setNoneOfTheseWordsUsersChoice: setNoneOfTheseWordsUsersChoice
     };
 }());
