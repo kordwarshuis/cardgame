@@ -37,7 +37,8 @@ export default {
 <style lang="scss" scoped>
 // https://css-tricks.com/the-checkbox-hack/
 
-$size: 35px;
+// $size: 35px;
+$size: 100%;
 $background-size: 100%;
 
 .twitterRealTimeToggle {
