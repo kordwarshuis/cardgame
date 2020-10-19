@@ -1,22 +1,33 @@
 <template>
 <div id="slide-menu-and-buttons-wrapper">
     <div class="slide-menu-wrapper">
-        <div class="content container-fluid">
+        <div class="content container-fluid pt-0">
             <!-- BEGIN own content -->
-            <div class="tweets-container row">
+            <div class="tweets-container row m-0 p-0">
                 <h1 class="visuallyhidden">Tweets</h1>
                 <!-- <button class="button-open-close-tweets-container"><span class="visuallyhidden">Open / close tweetstream</span></button> -->
-                <div class="tweets-realtime col-md-12">
-                    <h2 class="ml-3 header-tweets-realtime">Realtime tweets
-                        <TwitterRealTimeStartStopToggle class="" style="transform: translateY(0.4em);" />
-                    </h2>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="showAllTweets">
-                        <label style="color: #eee;" class="form-check-label" for="showAllTweets">Show all tweets</label>
+                <div class="tweets-realtime col-md-12 m-0 p-0">
+
+                    <!-- <div class="row m-0 p-0" style="position: fixed;top: 0; left: 0;"> -->
+                    <!-- <div class="row m-0 p-0"> -->
+                    <nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2 " style="background: #1FA1F2;">
+                        <div class="col-md-12 m-0 p-0">
+                            <h2 class="header-tweets-realtime">Realtime tweets
+                                <TwitterRealTimeStartStopToggle class="" style="transform: translateY(0.4em);" />
+                            </h2>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input mt-0" id="showAllTweets">
+                                <label style="color: #eee;" class="form-check-label" for="showAllTweets">Show all tweets</label>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                    </nav>
+
+                    <div class="row m-0 p-0">
+                        <div class="tweets col-md-12 m-0 p-0">
+                        </div>
                     </div>
 
-                    <div class="tweets p-0">
-                    </div>
                 </div>
                 <div class="tweets-selected col-md-12 p-1">
                     <h2 class="ml-3 header-tweets-selected">Selected tweet</h2>
@@ -25,6 +36,8 @@
                     </div>
                 </div>
             </div>
+
+
             <!-- END own content -->
         </div>
         <input type="checkbox" id="open-button" />
