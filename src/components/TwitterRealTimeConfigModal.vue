@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tweetStreamConfigurationModalLabel">Tweetstream configuration</h5>
+                <h1 class="modal-title" id="tweetStreamConfigurationModalLabel">Tweetstream configuration</h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,10 +12,12 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="alert alert-info mt-3 col-md-12" role="alert">
-                            All changes work immediately.
-                        </div>
                         <div class="col-md-12">
+                            <div class="alert alert-info mt-3 col-md-12" role="alert">
+                                All changes work immediately.
+                            </div>
+
+                            <h2 class="mt-3">Followers</h2>
                             <label class="" for="followers" id="labelFollowers">Poster has </label>
                             <select name="followers" id="followers">
                                 <option value="0">0</option>
@@ -33,10 +35,19 @@
 
                         <div class="col-md-12 mt-3">
                             <div class="form-group">
-                                <label class="" for="followers" id="labelAnyOfTheseWordsUsersChoice">Words that should be in the tweet (spaces matter, “action” will also find “traction”, “ action” wont.) </label>
+                                <h2 class="mt-3">Any of these words</h2>
+                                <label class="" for="anyOfTheseWordsUsersChoice" id="labelAnyOfTheseWordsUsersChoice">Words that should be in the tweet (spaces matter, “action” will also find “traction”, “ action” wont.) </label>
                                 <textarea id="anyOfTheseWordsUsersChoice" name="anyOfTheseWordsUsersChoice" rows="5" class="form-control block p-3"></textarea>
                                 <!-- <button id="restoreKeyWords" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyKeyWords" type="button" class="btn btn-light">Empty</button> -->
                             </div>
+
+                            <div class="form-group">
+                                <h2 class="mt-3">None of these words</h2>
+                                <label class="" for="noneOfTheseWordsUsersChoice" id="labelNoneOfTheseWordsUsersChoice">Words that should NOT be in the tweet (spaces matter, “action” will also find “traction”, “ action” wont.) </label>
+                                <textarea id="noneOfTheseWordsUsersChoice" name="noneOfTheseWordsUsersChoice" rows="5" class="form-control block p-3"></textarea>
+                                <!-- <button id="restoreKeyWords" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyKeyWords" type="button" class="btn btn-light">Empty</button> -->
+                            </div>
+
                         </div>
 
                         <!-- <div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div> -->
@@ -101,7 +112,17 @@ export default {
 
                 realTimeTweets.setAnyOfTheseWordsUsersChoice(keyWordsInTextarea);
             }, false);
+        },
+        setNoneOfTheseWordsUsersChoice() {
+            var noneOfTheseWordsUsersChoice = document.querySelector("#noneOfTheseWordsUsersChoice");
 
+            noneOfTheseWordsUsersChoice.addEventListener("input", function () {
+                // var that = this;
+                var keyWordsInTextarea = this.value.split(",");
+                console.log('keyWordsInTextarea: ', keyWordsInTextarea);
+
+                realTimeTweets.setNoneOfTheseWordsUsersChoice(keyWordsInTextarea);
+            }, false);
         }
 
     }
@@ -114,5 +135,10 @@ export default {
 // https://github.com/jquery/jquery-mobile/issues/2069
 select {
     font-size: 18px;
+}
+
+h1,
+h2 {
+    font-size: 1rem;
 }
 </style>
