@@ -1,7 +1,7 @@
 <template>
 <!-- <div id="app" class="container-fluid"> -->
 <div id="app" class="container-fluid">
-
+    <TwitterRealTimeConfigModal />
     <MainMenu />
     <!-- <slideInMenu /> -->
     <twitterRealtime3 />
@@ -21,6 +21,7 @@
 import publicPath from "../vue.config";
 // import slideInMenu from "@/components/slideInMenu.vue";
 import twitterRealtime3 from "@/components/twitterRealtime3.vue";
+import TwitterRealTimeConfigModal from "@/components/TwitterRealTimeConfigModal.vue";
 import MainMenu from "@/components/MainMenu.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
@@ -31,6 +32,7 @@ import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 
 export default {
     components: {
+        TwitterRealTimeConfigModal,
         MainMenu,
         // slideInMenu,
         twitterRealtime3,
@@ -307,8 +309,8 @@ hr {
 /* het sluiten van de eerste popup: */
 .overlay__close,
 /* het sluiten van de tweede popup: */
-button
-// related Items
+button // related Items
+
 // .relatedItems a,
 /* alle links in de tweede popup: */
 // .modal-content a
@@ -414,7 +416,6 @@ a.overlay__close:not(.overlay__close-cross):hover,
     min-height: 2em;
 }
 
-
 #attentionSeeker {
     display: none;
     // display: block;
@@ -474,9 +475,11 @@ a.overlay__close:not(.overlay__close-cross):hover,
 .tweets-realtime .tweet-instruction {
     display: none;
 }
+
 .tweet.curated .card {
     background-color: gold !important;
 }
+
 // .tweet.curated .card:after {
 //     content: "★";
 //     color: red;
@@ -485,9 +488,4 @@ a.overlay__close:not(.overlay__close-cross):hover,
 //     right: -0.5em;
 //     top: -0.5em;
 // }
-
-
-
-
-
 </style>
