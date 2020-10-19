@@ -31,12 +31,24 @@ export var realTimeTweets = (function () {
 
     // criteria
 
-    var numberOfFollowers = 750;
+    var numberOfFollowersBackup = 750;
+    var numberOfFollowers = numberOfFollowersBackup;
 
-    var anyOfTheseWords = ["criminals", "slow", "laundering", "energy", "complicated", "unfair", "quantum", "tax evaders", "unsustainable", "intrinsic value", "shut down", "scammers", "roulette", "only 21", "not safe", "black market", "terrorists", "tulip", "greater fool", "not scalable", "anarchists", "distribution unfair", "hacked", " anonymous", "unsustainable", "useless", "ponzi", "no backing", "will die", "forbidden", "shut down", "scammers", "not gdpr", "price down", "terrorists", "privacy breach", "volatile", "useless", "deflation", "chinese"];
 
-    var noneOfTheseWords = ["airdrop", "earn"];
+    var anyOfTheseWordsBackup = [
+        "bitcoin will never",
+        "bitcoin can never",
+        "bitcoin just is not",
+        "bitcoin is one big",
 
+        "criminals", "slow", "laundering", "energy", "complicated", "unfair", "quantum", "tax evaders", "unsustainable", "intrinsic value", "shut down", "scammers", "roulette", "only 21", "not safe", "black market", "terrorists", "tulip", "greater fool", "not scalable", "anarchists", "distribution unfair", "hacked", " anonymous", "unsustainable", "useless", "ponzi", "no backing", "will die", "forbidden", "shut down", "scammers", "not gdpr", "price down", "terrorists", "privacy breach", "volatile", "useless", "deflation", "chinese"
+    ];
+
+    var anyOfTheseWords = anyOfTheseWordsBackup;
+    var anyOfTheseWordsUsersChoice = [];
+
+
+    var noneOfTheseWords = ["airdrop", "earn", "giveaway"];
 
 
 
@@ -70,15 +82,26 @@ export var realTimeTweets = (function () {
         return moment().format("HH:mm:ss");
     }
 
+    // https://stackoverflow.com/a/1584377
+    function arrayUnique(array) {
+        var a = array.concat();
+        for (var i = 0; i < a.length; ++i) {
+            for (var j = i + 1; j < a.length; ++j) {
+                if (a[i] === a[j])
+                    a.splice(j--, 1);
+            }
+        }
+
+        return a;
+    }
 
 
     function processTwitters(data) {
         var tweets = document.querySelector(".tweets-realtime .tweets");
+        // var tweets = document.querySelector(".tweets-realtime");
         var domMenuIcon = document.querySelector(".menu-icon");
         var somethingFound = false;
         var curatedClass = "";
-
-    
 
         // if we dont remove tweets the DOM will be overpopulated and the browser will not keep up
         function removeOldestTweets() {
@@ -105,15 +128,19 @@ export var realTimeTweets = (function () {
             data[0] = selectedRandomTweet;
         }
 
+        // join the hardcoded keywords with the users choice
+        if (anyOfTheseWordsUsersChoice.length > 0) {
+            anyOfTheseWords = arrayUnique(anyOfTheseWords.concat(anyOfTheseWordsUsersChoice));
+        }
 
 
-        function loopThroughAllTweets(data) {    
+        function loopThroughAllTweets(data) {
             // loop through all tweets:
             for (var i = 0; i < data.length; i++) {
                 var numberOfFollowersCriterium = false;
                 var anyOfTheseWordsCriterium = false;
                 var noneOfTheseWordsCriterium = false;
-    
+
                 if (data[i].curatedTweet === true) {
                     curatedClass = " curated ";
                 } else {
@@ -127,39 +154,44 @@ export var realTimeTweets = (function () {
                 }
 
                 // loop through all anyOfTheseWords:
-                for (var j = 0; j < anyOfTheseWords.length; j++) {
-                    // if anyOfTheseWords found, only last anyOfTheseWords, if there are more, will be remembered:
-                    if (data[i].text.indexOf(anyOfTheseWords[j]) > -1) {
-                        anyOfTheseWordsCriterium = true;
-                        // somethingFound = keywordFound;
-                        currentKeyword = anyOfTheseWords[j];
-                    } else {
-                        // anyOfTheseWordsCriterium = false;
-                    }
-                } // end anyOfTheseWords loop
 
-                // loop through all noneOfTheseWords:
-                for (var j = 0; j < noneOfTheseWords.length; j++) {
-                    // if noneOfTheseWords found, only last keyword, if there are more, will be remembered:
-                    if (data[i].text.indexOf(noneOfTheseWords[j]) > -1) {
-                        noneOfTheseWordsCriterium = false;
-                    } else {
-                        noneOfTheseWordsCriterium = true;
-                    }
-                } // end noneOfTheseWords loop
+                if (anyOfTheseWords.length === 0) {
+                    anyOfTheseWordsCriterium = true;
+                } else {
+                    for (let j = 0; j < anyOfTheseWords.length; j++) {
+                        // if anyOfTheseWords found, only last anyOfTheseWords, if there are more, will be remembered:
+                        if (data[i].text.indexOf(anyOfTheseWords[j]) > -1) {
+                            anyOfTheseWordsCriterium = true;
+                            // somethingFound = keywordFound;
+                            currentKeyword = anyOfTheseWords[j];
+                        }
+                    } // end anyOfTheseWords loop
+                }
 
+                if (noneOfTheseWords.length === 0) {
+                    noneOfTheseWords = true; // there are now restrictions so tweet can be shown
+                } else {
+                    // loop through all noneOfTheseWords:
+                    for (let j = 0; j < noneOfTheseWords.length; j++) {
+                        // if noneOfTheseWords found, only last keyword, if there are more, will be remembered:
+                        if (data[i].text.indexOf(noneOfTheseWords[j]) > -1) { //words are found
+                            noneOfTheseWordsCriterium = false; // that means the criterium has NOT been met, and the tweet will not be shown
+                        } else {
+                            noneOfTheseWordsCriterium = true; // if no word has been found, then the tweet can be shown
+                        }
+                    } // end noneOfTheseWords loop
+                }
 
-
-                console.log("===");
-                console.log('noneOfTheseWordsCriterium: ', noneOfTheseWordsCriterium);
-                console.log('anyOfTheseWordsCriterium: ', anyOfTheseWordsCriterium);
-                console.log('numberOfFollowersCriterium: ', numberOfFollowersCriterium);
-                console.log('data[i].curatedTweet: ', data[i].curatedTweet);
+                // console.log("===");
+                // console.log('noneOfTheseWordsCriterium: ', noneOfTheseWordsCriterium);
+                // console.log('anyOfTheseWordsCriterium: ', anyOfTheseWordsCriterium);
+                // console.log('numberOfFollowersCriterium: ', numberOfFollowersCriterium);
+                // console.log('data[i].curatedTweet: ', data[i].curatedTweet);
 
                 if ((numberOfFollowersCriterium && anyOfTheseWordsCriterium && noneOfTheseWordsCriterium) || data[i].curatedTweet === true) {
                     somethingFound = true;
-                    domTemp = "<div class='tweet " + curatedClass + specialAccountHTMLcode +
-                        "inviesieble col-md-12'><div class='card mb-4 pt-2 box-shadow'><div class='card-body'><div class='card-text'>" +
+                    domTemp = "<div class='tweet " + curatedClass + specialAccountHTMLcode + "inviesieble col-md-12 p-0'>" +
+                        "<div class='card mb-4 pt-2 box-shadow'><div class='card-body'><div class='card-text'>" +
                         "<span class='tweetNumber extra-info1'>#" +
                         tweetNumber +
                         "</span> | " +
@@ -181,6 +213,16 @@ export var realTimeTweets = (function () {
                         "/status/" + data[i].id_str +
                         "'>Go to tweet</a> <span class='tweet-instruction'>now copy a suitable card and go to tweet</span>" +
                         "</div></div></div></div>" + domTemp;
+
+
+
+                    // domTemp = "<div class='tweet>xxxxx</div>" + domTemp;
+
+
+                    // domTemp = "<div class=' " + curatedClass + specialAccountHTMLcode + " '>" + 
+                    // "<div class='card box-shadow'>x</div></div>" + domTemp;
+
+
 
                     tweetNumber++;
                     keywordFound = false;
@@ -240,7 +282,32 @@ export var realTimeTweets = (function () {
         processTwitters(data);
     }
 
+    function toggleAllTweets() {
+        if (anyOfTheseWords.length !== 0) {
+            anyOfTheseWords = []; // don't do anyOfTheseWords.length = 0, that will affect anyOfTheseWordsBackup
+        } else {
+            anyOfTheseWords = anyOfTheseWordsBackup;
+        }
+
+        if (numberOfFollowers !== 0) {
+            numberOfFollowers = 0;
+        } else {
+            numberOfFollowers = numberOfFollowersBackup;
+        }
+    }
+
+    function setFollowersNumber(a) {
+        numberOfFollowers = a;
+    }
+
+    function setAnyOfTheseWordsUsersChoice(a) {
+        anyOfTheseWordsUsersChoice = a;
+    }
+
     return {
-        start: startStream
+        start: startStream,
+        toggleAllTweets: toggleAllTweets,
+        setFollowersNumber: setFollowersNumber,
+        setAnyOfTheseWordsUsersChoice: setAnyOfTheseWordsUsersChoice
     };
 }());
