@@ -1,5 +1,6 @@
 <template>
 <div id="slide-menu-and-buttons-wrapper">
+
     <div class="slide-menu-wrapper">
         <div class="content container-fluid pt-0">
             <!-- BEGIN own content -->
@@ -11,16 +12,38 @@
                     <!-- <div class="row m-0 p-0" style="position: fixed;top: 0; left: 0;"> -->
                     <!-- <div class="row m-0 p-0"> -->
                     <nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2 " style="background: #1FA1F2;">
-                        <div class="col-md-12 m-0 p-0">
-                            <h2 class="header-tweets-realtime">Realtime tweets
-                                <TwitterRealTimeStartStopToggle class="" style="transform: translateY(0.4em);" />
-                            </h2>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input mt-0" id="showAllTweets">
-                                <label style="color: #eee;" class="form-check-label" for="showAllTweets">Show all tweets</label>
+
+                        <div class="row m-0 p-0" style="width: 100%;">
+                            <div class="col-md-12 m-0 p-0 mr-2">
+                                <h2 class="header-tweets-realtime " style="display: inline;">Realtime</h2>
+                                <button type="button" class="btn btn-outline-dark align-middle inline" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
+                                    <span class="visuallyhidden">Tweetstream configuration</span>
+                                    <img style="width: 20px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
+                                </button>
+                                <TwitterRealTimeStartStopToggle class="align-middle inline" style="width: 20px; height: 20px;transform: translateY(0em);" />
+                                <div class="form-check ml-3 m-0 " style="display: inline;">
+                                    <input type="checkbox" class="form-check-input mt-3" id="showAllTweets">
+                                    <label style="color: #eee;" class="form-check-label align-middle inline" for="showAllTweets">all tweets</label>
+                                </div>
+
                             </div>
+                            <div class="col-md-12 m-0 p-0">
+                                <div class="row">
+
+                                    <div class="col-md-12 m-0 p-0">
+
+                                    </div>
+
+                                    <!-- <div class="col-md-4 m-0 p-0">
+
+                                    </div>
+                                    <div class="col-md-4 m-0 p-0">
+                                    </div> -->
+
+                                </div>
+                            </div>
+
                         </div>
-                        <!-- </div> -->
                     </nav>
 
                     <div class="row m-0 p-0">
@@ -37,14 +60,15 @@
                 </div>
             </div>
 
-
             <!-- END own content -->
         </div>
+
         <input type="checkbox" id="open-button" />
         <label class="menu-icon" for="open-button">
             <span></span>
             <span class="visuallyhidden">Open/Close Menu</span>
         </label>
+
     </div>
 
 </div>
