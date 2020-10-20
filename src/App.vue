@@ -104,7 +104,7 @@ export default {
 
             // see index.html for declaration of vars
             alert = new Howl({
-                src: [require("./assets/audio/330070__paulmorek__beep-05-single-2015-06-21.mp4")]
+                src: [require("./assets/audio/330050__paulmorek__beep-03-single.mp4")]
             });
             alertSpecialAccount = new Howl({
                 src: [require("./assets/audio/175893__toiletrolltube__110923-02-falling-metal-10.mp4")]
@@ -468,9 +468,9 @@ a.overlay__close:not(.overlay__close-cross):hover,
     display: none;
 }
 
-.tweets-realtime .go-to-tweet {
-    display: none;
-}
+// .tweets-realtime .go-to-tweet {
+//     display: none;
+// }
 
 .tweets-realtime .tweet-instruction {
     display: none;
@@ -480,6 +480,12 @@ a.overlay__close:not(.overlay__close-cross):hover,
     background-color: gold !important;
 }
 
+.curatedTweetIndication {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+}
 // .tweet.curated .card:after {
 //     content: "★";
 //     color: red;
