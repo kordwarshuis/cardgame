@@ -31,9 +31,10 @@
                                 <option value="1000000">1 million</option>
                             </select>
                             or more followers.
-                        </div>
+                            <h2 class="mt-3">Verified</h2>
+                            <input class="mr-3" type="checkbox" id="onlyVerifiedAccounts" name="onlyVerifiedAccounts">
+                            <label for="onlyVerifiedAccounts">Show only verified accounts.</label>
 
-                        <div class="col-md-12 mt-3">
                             <div class="form-group">
                                 <h2 class="mt-3">Any of these words</h2>
                                 <label class="" for="anyOfTheseWordsUsersChoice" id="labelAnyOfTheseWordsUsersChoice">Words that should be in the tweet (spaces matter, “action” will also find “traction”, “ action” wont.) </label>
@@ -91,6 +92,7 @@ export default {
     mounted: function () {
         this.setFollowersNumber();
         this.setAnyOfTheseWordsUsersChoice();
+        this.setOnlyVerifiedAccountsUsersChoice();
     },
     methods: {
         setFollowersNumber() {
@@ -106,7 +108,6 @@ export default {
             var anyOfTheseWordsUsersChoice = document.querySelector("#anyOfTheseWordsUsersChoice");
 
             anyOfTheseWordsUsersChoice.addEventListener("input", function () {
-                // var that = this;
                 var keyWordsInTextarea = this.value.split(",");
                 console.log('keyWordsInTextarea: ', keyWordsInTextarea);
 
@@ -117,11 +118,28 @@ export default {
             var noneOfTheseWordsUsersChoice = document.querySelector("#noneOfTheseWordsUsersChoice");
 
             noneOfTheseWordsUsersChoice.addEventListener("input", function () {
-                // var that = this;
                 var keyWordsInTextarea = this.value.split(",");
                 console.log('keyWordsInTextarea: ', keyWordsInTextarea);
 
                 realTimeTweets.setNoneOfTheseWordsUsersChoice(keyWordsInTextarea);
+            }, false);
+        },
+        setOnlyVerifiedAccountsUsersChoice() {
+            var onlyVerifiedAccountsUsersChoice = document.querySelector("#onlyVerifiedAccounts");
+
+            onlyVerifiedAccountsUsersChoice.addEventListener("change", function () {
+                var verified = false;
+
+                if (this.checked === true) {
+                    verified = true;
+                } else {
+                    verified = false;
+                }
+
+                // var verified = this.value;
+                console.log('verified: ', verified);
+
+                realTimeTweets.setOnlyVerifiedAccountsUsersChoice(verified);
             }, false);
         }
 
