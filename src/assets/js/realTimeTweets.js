@@ -25,6 +25,7 @@ export var realTimeTweets = (function () {
     var currentKeyword = "";
 
     var tweetNumber = 0;
+    var curatedTweetText = "";
     var status = document.querySelector("#status span");
     var lastDataSet;
 
@@ -36,14 +37,11 @@ export var realTimeTweets = (function () {
 
 
     var anyOfTheseWordsBackup = [
-        "bitcoin will never",
-        "bitcoin can never",
-        "bitcoin just is not",
-        "bitcoin is one big",
-
-        "criminals", "slow", "laundering", "energy", "complicated", "unfair", "quantum", "tax evaders", "unsustainable", "intrinsic value", "shut down", "scammers", "roulette", "only 21", "not safe", "black market", "terrorists", "tulip", "greater fool", "not scalable", "anarchists", "distribution unfair", "hacked", " anonymous", "unsustainable", "useless", "ponzi", "no backing", "will die", "forbidden", "shut down", "scammers", "not gdpr", "price down", "terrorists", "privacy breach", "volatile", "useless", "deflation", "chinese"
+        "bitcoin will never","bitcoin can never","bitcoin just is not","bitcoin is one big","criminals", "slow", "laundering", "energy", "complicated", "unfair", "quantum", "tax evaders", "unsustainable", "intrinsic value", "shut down", "scammers", "roulette", "only 21", "not safe", "black market", "terrorists", "tulip", "greater fool", "not scalable", "anarchists", "distribution unfair", "hacked", " anonymous", "unsustainable", "useless", "ponzi", "no backing", "will die", "forbidden", "shut down", "scammers", "not gdpr", "price down", "terrorists", "privacy breach", "volatile", "useless", "deflation", "chinese"
     ];
 
+
+    var onlyVerifiedAccountsUsersChoice = false;
     var anyOfTheseWords = anyOfTheseWordsBackup;
     var anyOfTheseWordsUsersChoice = [];
     var noneOfTheseWords = ["airdrop", "earn", "giveaway"];
@@ -57,7 +55,7 @@ export var realTimeTweets = (function () {
 
     // var domKeywords = document.querySelector("#keywords");
     // var domTweetAccounts = document.querySelector("#tweetAccounts");
-    var onlyVerifiedAccounts = false;
+    // var onlyVerifiedAccounts = false;
     // var domOnlyVerifiedAccounts = document.querySelector("#onlyVerifiedAccounts");
     // domOnlyVerifiedAccounts.addEventListener("change", function () {
     //     if (domOnlyVerifiedAccounts.checked === true) {
@@ -140,14 +138,17 @@ export var realTimeTweets = (function () {
         function loopThroughAllTweets(data) {
             // loop through all tweets:
             for (var i = 0; i < data.length; i++) {
+                var onlyVerifiedAccountsUsersChoiceCriterium = false;
                 var numberOfFollowersCriterium = false;
                 var anyOfTheseWordsCriterium = false;
                 var noneOfTheseWordsCriterium = false;
 
                 if (data[i].curatedTweet === true) {
                     curatedClass = " curated ";
+                    curatedTweetText = "<span class='curatedTweetIndication'>Handpicked</span>";
                 } else {
                     curatedClass = "";
+                    curatedTweetText = "";
                 }
 
                 if (data[i].user.followers_count >= numberOfFollowers) {
@@ -157,6 +158,13 @@ export var realTimeTweets = (function () {
                 }
 
                 // loop through all anyOfTheseWords:
+
+
+                if (data[i].user.verified === onlyVerifiedAccountsUsersChoice) {
+                    onlyVerifiedAccountsUsersChoiceCriterium = true;
+                } else {
+                    onlyVerifiedAccountsUsersChoiceCriterium = false;
+                }
 
                 if (anyOfTheseWords.length === 0) {
                     anyOfTheseWordsCriterium = true;
@@ -191,7 +199,11 @@ export var realTimeTweets = (function () {
                 // console.log('numberOfFollowersCriterium: ', numberOfFollowersCriterium);
                 // console.log('data[i].curatedTweet: ', data[i].curatedTweet);
 
-                if ((numberOfFollowersCriterium && anyOfTheseWordsCriterium && noneOfTheseWordsCriterium) || data[i].curatedTweet === true) {
+                if ((numberOfFollowersCriterium &&
+                        onlyVerifiedAccountsUsersChoiceCriterium && 
+                        anyOfTheseWordsCriterium &&
+                        noneOfTheseWordsCriterium) ||
+                         data[i].curatedTweet === true) {
                     somethingFound = true;
                     domTemp = "<div class='tweet " + curatedClass + specialAccountHTMLcode + "inviesieble col-md-12 p-0'>" +
                         "<div class='card mb-4 pt-2 box-shadow'><div class='card-body'><div class='card-text'>" +
@@ -201,6 +213,7 @@ export var realTimeTweets = (function () {
                         "<small class='text-muted extra-info2'> <span class='extra-info3 tweetTimeStamp'>&#x1f550; " +
                         timestampNow() +
                         "</span></small>" +
+                        curatedTweetText +
                         "<p><img class='img-thumbnail float-left mr-3' src='" +
                         data[i].user.profile_image_url_https + "' alt=''> " + twitterLinks(data[i].text) +
                         "</p><p class='extra-info'>Name: " + data[i].user.name +
@@ -311,11 +324,16 @@ export var realTimeTweets = (function () {
         noneOfTheseWordsUsersChoice = a;
     }
 
+    function setOnlyVerifiedAccountsUsersChoice(a) {
+        onlyVerifiedAccountsUsersChoice = a;
+    }
+
     return {
         start: startStream,
         toggleAllTweets: toggleAllTweets,
         setFollowersNumber: setFollowersNumber,
         setAnyOfTheseWordsUsersChoice: setAnyOfTheseWordsUsersChoice,
-        setNoneOfTheseWordsUsersChoice: setNoneOfTheseWordsUsersChoice
+        setNoneOfTheseWordsUsersChoice: setNoneOfTheseWordsUsersChoice,
+        setOnlyVerifiedAccountsUsersChoice: setOnlyVerifiedAccountsUsersChoice
     };
 }());

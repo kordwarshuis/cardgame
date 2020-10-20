@@ -14,9 +14,9 @@
             <li class="nav-item">
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about">About</router-link>
             </li>
-            <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
+            <!-- <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
                 <router-link class="nav-link" v-if="this.$store.state.gameId === 'btc'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/twitter-real-time">Realtime</router-link>
-            </li>
+            </li> -->
             <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
                 <router-link class="nav-link" v-if="this.$store.state.gameId === 'btc'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">Scores</router-link>
             </li>
