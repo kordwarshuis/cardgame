@@ -15,7 +15,7 @@
                         <div class="row m-0 p-0" style="width: 100%;">
                             <div class="col-md-12 m-0 p-0 mr-2">
                                 <h2 class="header-tweets-realtime " style="display: inline;">Realtime</h2>
-                                <button type="button" class="btn btn-outline-dark align-middle inline" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
+                                <button type="button" class="tweet-stream-configuration btn btn-outline-dark align-middle inline" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
                                     <span class="visuallyhidden">Tweetstream configuration</span>
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
                                 </button>
@@ -129,7 +129,10 @@ export default {
         },
         showAllTweets() {
             document.querySelector('#showAllTweets').addEventListener('change', function () {
+                var tweetStreamConfiguration = document.querySelector('.tweet-stream-configuration');
                 realTimeTweets.toggleAllTweets();
+                // when 'show all tweets' is clicked the configuration option is disabled
+                tweetStreamConfiguration.disabled = !tweetStreamConfiguration.disabled;
             }, false);
         },
         removeNewTweetsSign() {
