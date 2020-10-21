@@ -37,7 +37,7 @@ export var realTimeTweets = (function () {
 
 
     var anyOfTheseWordsBackup = [
-        "bitcoin will never","bitcoin can never","bitcoin just is not","bitcoin is one big","criminals", "slow", "laundering", "energy", "complicated", "unfair", "quantum", "tax evaders", "unsustainable", "intrinsic value", "shut down", "scammers", "roulette", "only 21", "not safe", "black market", "terrorists", "tulip", "greater fool", "not scalable", "anarchists", "distribution unfair", "hacked", " anonymous", "unsustainable", "useless", "ponzi", "no backing", "will die", "forbidden", "shut down", "scammers", "not gdpr", "price down", "terrorists", "privacy breach", "volatile", "useless", "deflation", "chinese"
+        "bitcoin will never", "bitcoin can never", "bitcoin just is not", "bitcoin is one big", "criminals", "slow", "laundering", "energy", "complicated", "unfair", "quantum", "tax evaders", "unsustainable", "intrinsic value", "shut down", "scammers", "roulette", "only 21", "not safe", "black market", "terrorists", "tulip", "greater fool", "not scalable", "anarchists", "distribution unfair", "hacked", " anonymous", "unsustainable", "useless", "ponzi", "no backing", "will die", "forbidden", "shut down", "scammers", "not gdpr", "price down", "terrorists", "privacy breach", "volatile", "useless", "deflation", "chinese"
     ];
 
 
@@ -145,7 +145,7 @@ export var realTimeTweets = (function () {
 
                 if (data[i].curatedTweet === true) {
                     curatedClass = " curated ";
-                    curatedTweetText = "<span class='curatedTweetIndication'>Handpicked</span>";
+                    curatedTweetText = "Handpicked";
                 } else {
                     curatedClass = "";
                     curatedTweetText = "";
@@ -200,20 +200,24 @@ export var realTimeTweets = (function () {
                 // console.log('data[i].curatedTweet: ', data[i].curatedTweet);
 
                 if ((numberOfFollowersCriterium &&
-                        onlyVerifiedAccountsUsersChoiceCriterium && 
+                        onlyVerifiedAccountsUsersChoiceCriterium &&
                         anyOfTheseWordsCriterium &&
                         noneOfTheseWordsCriterium) ||
-                         data[i].curatedTweet === true) {
+                    data[i].curatedTweet === true) {
                     somethingFound = true;
-                    domTemp = "<div class='tweet " + curatedClass + specialAccountHTMLcode + "inviesieble col-md-12 p-0'>" +
-                        "<div class='card mb-4 pt-2 box-shadow'><div class='card-body'><div class='card-text'>" +
-                        "<span class='tweetNumber extra-info1'>#" +
-                        tweetNumber +
-                        "</span> | " +
-                        "<small class='text-muted extra-info2'> <span class='extra-info3 tweetTimeStamp'>&#x1f550; " +
+                    domTemp =
+
+                        "<div class='tweet " + curatedClass + specialAccountHTMLcode + "inviesieble col-md-12 p-0'>" +
+                        "<div class='card mb-4 pt-2'>" +
+                        "<div class='card-body'>"+
+                        "<div class='card-text'>" +
+                        "<span class='tweetNumber extra-info1'>#" + tweetNumber + "</span> | " +
+                        "<small class='text-muted extra-info2'> " +
+                        "<span class='extra-info3 tweetTimeStamp'>&#x1f550; " +
                         timestampNow() +
-                        "</span></small>" +
-                        curatedTweetText +
+                        "</span>" +
+                        "</small>" +
+                        "<span class='curatedTweetIndication'>" + curatedTweetText + "</span>" +
                         "<p><img class='img-thumbnail float-left mr-3' src='" +
                         data[i].user.profile_image_url_https + "' alt=''> " + twitterLinks(data[i].text) +
                         "</p><p class='extra-info'>Name: " + data[i].user.name +
@@ -224,11 +228,18 @@ export var realTimeTweets = (function () {
                         // "</p>" + 
                         // "<p>" + 
                         " | Followers: " + data[i].user.followers_count +
-                        " <button type='button' class='btn btn-primary select-tweet'>Select</button></p></div><div class='d-flex justify-content-between align-items-center'><a class='go-to-tweet btn btn-primary' target='_blank' rel='noopener' href='https://twitter.com/" +
-                        data[i].user.screen_name +
-                        "/status/" + data[i].id_str +
-                        "'>Go to tweet</a> <span class='tweet-instruction'>now copy a suitable card and go to tweet</span>" +
-                        "</div></div></div></div>" + domTemp;
+                        " <button type='button' class='btn btn-primary select-tweet'>Select</button>" +
+                        "</p></div><div class='d-flex justify-content-between align-items-center'>" +
+                        "<a class='go-to-tweet btn btn-primary' target='_blank' rel='noopener' href='https://twitter.com/" +
+                        data[i].user.screen_name + "/status/" + data[i].id_str + "'>" +
+                        "Go to tweet" +
+                        "</a> " +
+                        "<span class='tweet-instruction'>now copy a suitable card and go to tweet</span>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        domTemp;
 
 
 
