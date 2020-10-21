@@ -15,7 +15,7 @@
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['long answer+facts']">
 
                     <h3 class="longAnswer">Answer</h3>
-                    <p v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
+                    <p v-linkified v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
@@ -36,7 +36,7 @@
                     <div class="col-md-8 mb-3">
                         <div class="content-item border p-3 " v-if="this.$store.state.currentCard['Read On 1 Text']">
                             <h3 class="readOn">Read More</h3>
-                            <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                            <p v-linkified>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
                             <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                     <div class="col-md-12 mb-3">
                         <div class="content-item border p-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
                             <h3 class="readOn">Read More</h3>
-                            <p>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                            <p v-linkified>{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
                             <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
                         </div>
                     </div>
@@ -56,13 +56,13 @@
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
 
                     <h3 class="readOn">Read More</h3>
-                    <p>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
+                    <p v-linkified>{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
                     <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">Read on</a></p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
                     <h3 class="readOn">Read More</h3>
-                    <p>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
+                    <p v-linkified>{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
                     <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
                 </div>
 
@@ -73,25 +73,25 @@
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Eric Voskuil']">
                     <h3 class="EricVoskuil">Eric Voskuil</h3>
-                    <p>{{ this.$store.state.currentCard['Eric Voskuil'] }}</p>
+                    <p v-linkified>{{ this.$store.state.currentCard['Eric Voskuil'] }}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
 
                     <h3 class="counterQuestion">Counter-questions</h3>
-                    <p>{{this.$store.state.currentCard["Counter-questions"]}}</p>
+                    <p v-linkified>{{this.$store.state.currentCard["Counter-questions"]}}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['analogy']">
 
                     <h3 class="">Analogy</h3>
-                    <p>{{this.$store.state.currentCard["analogy"]}}</p>
+                    <p v-linkified>{{this.$store.state.currentCard["analogy"]}}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
 
                     <h3 class="flowerPower">Flower Power</h3>
-                    <p>{{this.$store.state.currentCard["FlowerPower"]}}</p>
+                    <p v-linkified>{{this.$store.state.currentCard["FlowerPower"]}}</p>
                 </div>
 
                 <!-- <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Related']">
