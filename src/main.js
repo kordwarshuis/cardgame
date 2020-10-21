@@ -18,13 +18,15 @@ import _ from "lodash";
 
 //https://github.com/rakk7/vue-bootstrap-toasts
 import VueBootstrapToasts from "vue-bootstrap-toasts";
-
+import linkify from 'vue-linkify';
 // import animated from 'animate.css';
 
 Vue.use(d3);
 Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
 Vue.use(Howl, Howler);
+
+Vue.directive('linkified', linkify);
 // Vue.use(animated);
 // Vue.use(interact);
 
