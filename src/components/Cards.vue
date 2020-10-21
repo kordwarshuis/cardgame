@@ -297,12 +297,13 @@ h1 {
     color: #eee;
 }
 .nav-item a.All {
+    background: #eee;
     color: #111;
 }
 
 .category.Architecture,
 .nav-item.Architecture a {
-    background: #148868 !important;
+    background: #148868;
 }
 
 .category.Crime,
