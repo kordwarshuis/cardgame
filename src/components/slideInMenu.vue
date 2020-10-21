@@ -4,48 +4,6 @@
         <div class="content text-center">
             <!-- BEGIN own content -->
 
-            <div id="nav" class="text-center">
-                <router-link to="/">Cards</router-link>
-                <router-link to="/about">About</router-link>
-                <router-link v-if="this.$store.state.gameName === 'Bitcoin'" to="/twitter-real-time">Realtime</router-link>
-                <router-link v-if="this.$store.state.gameName === 'Bitcoin'" to="/scores">Scores</router-link>
-            </div>
-            <!-- <Gallery /> -->
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <!-- <form role="form" class="border m-3 p-2 pb-0 d-inline-block">
-                        <label class="mr-3 mb-0 d-inline-block">
-                            <input type="radio" name="soundOnOf" id="soundOnOf1" value="on" checked="" /> on
-                        </label>
-                        <p class="d-inline-block mr-3 m-0">
-                            Sound
-                        </p>
-                        <label class="mb-0 d-inline-block">
-                            <input type="radio" name="soundOnOf" id="soundOnOf2" value="of" /> off
-                        </label>
-                    </form> -->
-                    <a href>
-                        <img class="logo" alt="logo" src="../assets/img/logo/blockchainbird-logo.png" />
-                    </a>
-
-                    <nav class="menu">
-                        <!-- <div style="position: relative;"> -->
-                        <h1>{{this.$store.state.gameName}} Mis&shy;con&shy;cep&shy;tions</h1>
-                        <p>A collection of misconceptions about {{this.$store.state.gameName}}.</p>
-                        <p>Strike back and send a card.</p>
-
-                        <!-- <button class="btn btn-primary" @click="activateDefaultDesign">Default Design</button>
-                        <button class="btn btn-primary"  @click="activateDesign2">Design 2</button> -->
-
-                        <!-- <h2>Crypto radio 24</h2>
-                        <audio style="max-width: 300px;" src="http://n0b.radiojar.com/exrd1tp5mceuv.mp3?1590145895=&rj-tok=AAABcjwec6UAMPRNZZ4HZ8WfJw&rj-ttl=5" controls />
-                        <p><a href="https://www.crypto24radio.com/" target="_blank" rel="noopener">Crypto radio 24 website.</a></p> -->
-
-                    </nav>
-                </div>
-                <!-- <button class="close-button" id="close-button">Close Menu</button> -->
-            </div>
-
 
             <!-- END own content -->
         </div>
@@ -88,7 +46,7 @@ function slideInMenu() {
     "use strict";
     var bodyEl = document.body,
         openbtn = document.getElementById("open-button"),
-        isOpen = false,
+        isOpen = true,
         clickableItems = document.querySelectorAll(".content a");
 
     function init() {
@@ -97,6 +55,11 @@ function slideInMenu() {
 
     function initEvents() {
         openbtn.addEventListener("click", toggleMenu);
+
+        if (isOpen === true) {
+            document.querySelector("#open-button").setAttribute("checked", "checked");
+        }
+
     }
 
     // after click on clickable item, menu should disappear:
@@ -162,6 +125,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     left: 0;
     height: 100%;
     width: 100%;
+    max-width: $menuWidth;
     text-align: left;
     margin: 0 !important;
     padding: 0 !important;

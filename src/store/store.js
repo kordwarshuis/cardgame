@@ -1,16 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import {
-  cardGameName
-} from "../main";
-import {
-  cardImage
-} from "../main";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    gameName: "",
+    gameId: "",
+    gameTitle: "",
+    gameTitle2: "",
+    gameSubTitle: "",
     cardImage: "",
     cssClassCardOverviewState: "",
     cssClassCardIntroState: "",
@@ -38,11 +35,20 @@ export default new Vuex.Store({
     setTopScorer(state, topScorer) {
       state.topScorer = topScorer;
     },
-    setCardImage(state) {
-      this.state.cardImage = cardImage;
+    setGameId(state, id) {
+      this.state.gameId = id;
     },
-    setGameName(state) {
-      this.state.gameName = cardGameName;
+    setGameTitle(state, name) {
+      this.state.gameTitle = name;
+    },
+    setGameTitle2(state, name) {
+      this.state.gameTitle2 = name;
+    },
+    setGameSubTitle(state, name) {
+      this.state.gameSubTitle = name;
+    },
+    setCardImage(state, image) {
+      this.state.cardImage = image;
     },
     hideModal(state) {
       //TODO: is this the way to change a store value? Seems not.
@@ -73,19 +79,19 @@ export default new Vuex.Store({
       var currentCard = this.getters.getCard(uniqueIdFromUrl);
       this.commit("changeCard", currentCard);
     },
-    showItemsInSelectedCategory(state, category) {
-      if (localStorage.getItem("soundOn") === "true") whoosh2.play();
+    showItemsInSelectedCategory(state, categoryName) {
       var allCardsInChosenCategory = [];
+      if (localStorage.getItem("soundOn") === "true") whoosh2.play();
 
       // set active category name (TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the first <a>)
-      if (category === undefined) {
+      if (categoryName === undefined) {
         this.state.activeCategory = "All";
       } else {
-        this.state.activeCategory = category.name;
+        this.state.activeCategory = categoryName;
       }
 
       // first make the selected menu item stand out:
-      this.commit("setActiveMenuItem", category);
+      this.commit("setActiveMenuItem", categoryName);
 
       function makeArray(a, b) {
         a.push({
@@ -101,13 +107,13 @@ export default new Vuex.Store({
 
       // category === undefined runs when function is called without argument, which happens on the ajax callback. Should be the first, and not after the "||"
       // here we create the info for the cards per category page
-      if (category === undefined) {
+      if (categoryName === undefined) {
         for (let i = 0; i < this.state.theJSON.length; i++) {
           makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
         }
       } else {
         for (let i = 0; i < this.state.theJSON.length; i++) {
-          if (this.state.theJSON[i].Cat === category.name) {
+          if (this.state.theJSON[i].Cat === categoryName) {
             makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
           }
         }
@@ -115,9 +121,6 @@ export default new Vuex.Store({
 
       // copy the final array to the store
       this.state.allCardsInChosenCategory = allCardsInChosenCategory;
-
-      setTimeout(codrops, 1);
-
       //TODO: duplicate code, see addVisitedToCards()
       setTimeout(function () {
         var allCards = document.querySelectorAll(".grid__item");
@@ -129,10 +132,7 @@ export default new Vuex.Store({
         }
       }, 1000);
 
-
-      if (category !== undefined) {
-        // Notifier.config.default_timeout = "2000";
-        // Notifier.info("You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
+      if (categoryName !== undefined) {
         // this.commit("showToast", "You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
       }
     },
@@ -160,9 +160,6 @@ export default new Vuex.Store({
 
       // copy the final array to the store
       this.state.allPickedCards = allPickedCards;
-
-      // setTimeout(codrops, 1);
-
     },
     setActiveMenuItem(item) {
       var selector = ".nav";

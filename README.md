@@ -28,7 +28,7 @@ The cardgame *does not pretend to be right in everything at all times*. Our obje
 Somebody who
 - is socially concerned
 - knows how to use social media
-- knows a bit abouot bitcoin
+- knows a bit about bitcoin
 - eager to spread the correct message (missionary urge)
 
 Important to understand is that the cardgame is only secondairily meant for people who need to be trained about bitcoin and blockchain, those full of "misconceptions".
