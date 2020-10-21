@@ -30,11 +30,11 @@
                     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
                         <!-- All = All categories at once -->
                         <li class="nav-item ">
-                            <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
+                            <a class="nav-link p-1 All" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
                         </li>
 
                         <!-- Every category in a menu item -->
-                        <li class="nav-item" v-for="category in $store.state.categories" :key="category.name">
+                        <li class="nav-item" :class="category.name" v-for="category in $store.state.categories" :key="category.name">
                             <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category.name)" :data-category="category.name">
                                 {{ category.name }}
                                 <!-- ({{ category.numberOfItems }}) -->
@@ -230,6 +230,7 @@ h1 {
     margin: 0.3em;
     cursor: pointer;
 }
+
 .dropdown-menu-categories a:hover {
     background: #323A66;
     color: #eee;
@@ -289,57 +290,78 @@ h1 {
         margin: 0.8em;
     }
 
-    .category.Architecture {
-        background: #148868;
-    }
+}
 
-    .category.Crime {
-        background: #7C2929;
-    }
 
-    .category.Use {
-        background: #3E2D2D;
-    }
+.nav-item a {
+    color: #eee;
+}
+.nav-item a.All {
+    color: #111;
+}
 
-    .category.Environment {
-        background: #7B610E;
-    }
+.category.Architecture,
+.nav-item.Architecture a {
+    background: #148868 !important;
+}
 
-    .category.Media {
-        background: #5D3D50;
-    }
+.category.Crime,
+.nav-item.Crime a {
+    background: #7C2929;
+}
 
-    .category.Beliefs {
-        background: #6C297C;
-    }
+.category.Use,
+.nav-item.Use a {
+    background: #3E2D2D;
+}
 
-    .category.Skills {
-        background: #535353;
-    }
+.category.Environment,
+.nav-item.Environment a {
+    background: #7B610E;
+}
 
-    .category.Control {
-        background: #294F7C;
-    }
+.category.Media,
+.nav-item.Media a {
+    background: #5D3D50;
+}
 
-    .category.Existential {
-        background: #1B7B76;
-    }
+.category.Beliefs,
+.nav-item.Beliefs a {
+    background: #6C297C;
+}
 
-    .category.Legal {
-        background: #40672C;
-    }
+.category.Skills,
+.nav-item.Skills a {
+    background: #535353;
+}
 
-    .category.Price {
-        background: #3D515D;
-    }
+.category.Control,
+.nav-item.Control a {
+    background: #294F7C;
+}
 
-    .category.Society {
-        background: #061545;
-    }
+.category.Existential,
+.nav-item.Existential a {
+    background: #1B7B76;
+}
 
-    .category.Supply {
-        background: #063333;
-    }
+.category.Legal,
+.nav-item.Legal a {
+    background: #40672C;
+}
 
+.category.Price,
+.nav-item.Price a {
+    background: #3D515D;
+}
+
+.category.Society,
+.nav-item.Society a {
+    background: #061545;
+}
+
+.category.Supply,
+.nav-item.Supply a {
+    background: #063333;
 }
 </style>
