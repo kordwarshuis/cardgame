@@ -13,14 +13,19 @@
                 <div class="tweets-realtime col-md-12 m-0 p-0">
                     <nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2 " style="background: #1FA1F2;">
                         <div class="row m-0 p-0" style="width: 100%;">
-                            <div class="col-md-12 m-0 p-0 mr-2">
+                            <div class="col-md-12 m-0 p-0 mr-2 mt-1">
                                 <h2 class="header-tweets-realtime " style="display: inline;">Realtime</h2>
+                            </div>
+
+                            <div class="col-md-12 m-0 p-0 mr-2">
+                                <TwitterRealTimeStartStopToggle class="align-middle inline" style="width: 20px; height: 20px;transform: translateY(-0.2em);" />
+
                                 <button type="button" class="tweet-stream-configuration btn btn-outline-dark align-middle inline" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
                                     <span class="visuallyhidden">Tweetstream configuration</span>
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
                                 </button>
-                                <TwitterRealTimeStartStopToggle class="align-middle inline" style="width: 20px; height: 20px;transform: translateY(0em);" />
-                                <div class="form-check ml-3 m-0 " style="display: inline;">
+
+                                <div class="form-check ml-0 m-0 " style="display: inline;">
                                     <input type="checkbox" class="form-check-input mt-3" id="showAllTweets">
                                     <label style="color: #eee;" class="form-check-label align-middle inline" for="showAllTweets">all tweets</label>
                                 </div>
@@ -107,14 +112,14 @@ export default {
         clearTweetStream() {
             var button = document.querySelector('.clear-tweet-stream-button');
             var tweets = document.querySelector('.tweets-realtime .tweets');
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 tweets.innerHTML = "";
             }, false);
         },
         clearSelectedTweets() {
             var button = document.querySelector('.clear-selected-tweets-button');
             var tweets = document.querySelector('.tweets-selected .tweets');
-            button.addEventListener('click', function() {
+            button.addEventListener('click', function () {
                 tweets.innerHTML = "";
             }, false);
         },
