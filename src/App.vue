@@ -222,6 +222,17 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    body {
+        background-image: url(./assets/img/background-blocks.svg);
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        background-attachment: fixed;
+        background-size: 40%;
+    }
+}
+
 .bcb {
     background-color: $backgroundBCB;
 }
@@ -459,6 +470,10 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 // realtime tweets
+.card {
+    border-radius: 10px;
+}
+
 .select-tweet,
 .go-to-tweet {
     background: linear-gradient(to right, #5C34A7, #2376D6);
@@ -477,7 +492,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .tweet.curated .card {
-    background-color: gold !important;
+    background-color: rgb(250, 239, 202) !important;
 }
 
 .curatedTweetIndication {
@@ -486,6 +501,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
     right: 10px;
 
 }
+
 // .tweet.curated .card:after {
 //     content: "★";
 //     color: red;
