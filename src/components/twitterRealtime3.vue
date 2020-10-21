@@ -2,17 +2,16 @@
 <div id="slide-menu-and-buttons-wrapper">
 
     <div class="slide-menu-wrapper">
+        <div class="twitter-open-close-handle"></div>
         <div class="content container-fluid pt-0">
             <!-- BEGIN own content -->
             <div class="tweets-container row m-0 p-0">
                 <h1 class="visuallyhidden">Tweets</h1>
                 <!-- <button class="button-open-close-tweets-container"><span class="visuallyhidden">Open / close tweetstream</span></button> -->
+
+                <!-- REALTIME TWEETS -->
                 <div class="tweets-realtime col-md-12 m-0 p-0">
-
-                    <!-- <div class="row m-0 p-0" style="position: fixed;top: 0; left: 0;"> -->
-                    <!-- <div class="row m-0 p-0"> -->
                     <nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2 " style="background: #1FA1F2;">
-
                         <div class="row m-0 p-0" style="width: 100%;">
                             <div class="col-md-12 m-0 p-0 mr-2">
                                 <h2 class="header-tweets-realtime " style="display: inline;">Realtime</h2>
@@ -25,37 +24,33 @@
                                     <input type="checkbox" class="form-check-input mt-3" id="showAllTweets">
                                     <label style="color: #eee;" class="form-check-label align-middle inline" for="showAllTweets">all tweets</label>
                                 </div>
-
+                                <button class="btn btn-sm btn-outline-light ml-3 clear-tweet-stream-button">Clear</button>
                             </div>
-                            <div class="col-md-12 m-0 p-0">
-                                <div class="row">
-
-                                    <div class="col-md-12 m-0 p-0">
-
-                                    </div>
-
-                                    <!-- <div class="col-md-4 m-0 p-0">
-
-                                    </div>
-                                    <div class="col-md-4 m-0 p-0">
-                                    </div> -->
-
-                                </div>
-                            </div>
-
                         </div>
                     </nav>
 
                     <div class="row m-0 p-0">
-                        <div class="tweets col-md-12 m-0 p-0">
+                        <div class=" col-md-12 m-0 p-0">
+                            <div class="tweets row m-0 p-0"></div>
                         </div>
                     </div>
-
                 </div>
-                <div class="tweets-selected col-md-12 p-1">
-                    <h2 class="ml-3 header-tweets-selected">Selected tweet</h2>
-                    <div class="tweets pl-1 pr-1">
-                        <p>No tweet selected yet.</p>
+
+                <!-- SELECTED TWEETS -->
+                <div class="tweets-selected col-md-12 m-0 p-0" style="overflow: scroll;">
+                    <nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2 " style="background: #005B81;">
+                        <div class="row m-0 p-0" style="width: 100%;">
+                            <div class="col-md-12 m-0 p-0 mr-2">
+                                <h2 class="ml-3 header-tweets-selected inline">Selected tweets <button class="tweets-selected-open-close-button"><span class="visuallyhidden">open / close selected tweets panel</span></button></h2>
+                                <button class="btn btn-sm btn-outline-light ml-3 inline clear-selected-tweets-button">Clear</button>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <div class="row m-0 ml-4 mr-4 p-0">
+                        <div class="col-md-12 m-0 p-0">
+                            <div class="tweets row m-0 p-0"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,8 +99,34 @@ export default {
         this.drawAttentionToTwitter();
         this.removeNewTweetsSign();
         this.showAllTweets();
+        this.toggleSelectedTweetsPanel();
+        this.clearTweetStream();
+        this.clearSelectedTweets();
     },
     methods: {
+        clearTweetStream() {
+            var button = document.querySelector('.clear-tweet-stream-button');
+            var tweets = document.querySelector('.tweets-realtime .tweets');
+            button.addEventListener('click', function() {
+                tweets.innerHTML = "";
+            }, false);
+        },
+        clearSelectedTweets() {
+            var button = document.querySelector('.clear-selected-tweets-button');
+            var tweets = document.querySelector('.tweets-selected .tweets');
+            button.addEventListener('click', function() {
+                tweets.innerHTML = "";
+            }, false);
+        },
+        toggleSelectedTweetsPanel() {
+            var panel = document.querySelector('.tweets-selected');
+            var trigger = document.querySelector('.tweets-selected-open-close-button');
+
+            trigger.addEventListener('click', function () {
+                panel.classList.toggle('open');
+            }, false);
+
+        },
         showAllTweets() {
             document.querySelector('#showAllTweets').addEventListener('change', function () {
                 realTimeTweets.toggleAllTweets();
@@ -143,7 +164,6 @@ export default {
             // var tweetCopyContainer = document.createElement("div");
             // tweetCopyContainer.classList.add("tweetCopyContainer", "tweets");
             // document.querySelector("body").appendChild(tweetCopyContainer);
-
             document.addEventListener("click", function (event) {
                 if (event.target.matches(".tweets-container .tweet .card-body button.select-tweet")) {
                     // tweetCopyContainer.innerHTML = "";
@@ -180,7 +200,7 @@ export default {
 
                     console.log("bingo");
                     var selectedTweet = event.target.closest(".tweet");
-                    document.querySelector(".tweets-selected .tweets").innerHTML = "";
+                    // document.querySelector(".tweets-selected .tweets").innerHTML = "";
                     document.querySelector(".tweets-selected .tweets").insertAdjacentElement('afterbegin', selectedTweet);
                     document.querySelector(".tweets-selected .tweets").querySelector(".extra-info").innerHTML = "";
                     document.querySelector(".tweets-selected .tweets").querySelector(".extra-info1").innerHTML = "";
@@ -207,6 +227,7 @@ function slideInMenu() {
     "use strict";
     var bodyEl = document.body,
         openbtn = document.getElementById("open-button"),
+        openbtn2 = document.querySelector(".twitter-open-close-handle"),
         isOpen = false, // see above
         clickableItems = document.querySelectorAll(".content a");
 
@@ -216,6 +237,7 @@ function slideInMenu() {
 
     function initEvents() {
         openbtn.addEventListener("click", toggleMenu);
+        openbtn2.addEventListener("click", toggleMenu);
 
         if (isOpen === true) {
             document.querySelector("#open-button").setAttribute("checked", "checked");
@@ -453,6 +475,27 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     left: 0;
     background: #005B81;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+    height: 75%;
+    transform: translate3d(0, 85%, 0);
+    transition: transform 0.4s;
+    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.tweets-selected.open {
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.4s;
+    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+
+}
+
+.tweets-selected-open-close-button {
+    background: url(../assets/img/icons/jv-creative/tweets-selected-open.svg) no-repeat center;
+    width: 30px;
+    height: 30px;
+}
+
+.open .tweets-selected-open-close-button {
+    background: url(../assets/img/icons/jv-creative/tweets-selected-close.svg) no-repeat center;
 }
 
 .header-tweets-realtime,
@@ -480,6 +523,26 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     animation-fill-mode: forwards;
     // animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
     animation-timing-function: ease-in-out;
+}
+
+.twitter-open-close-handle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-76px*0.8));
+    left: calc(-36px*0.8);
+    background: url(../assets/img/icons/jv-creative/twitter-open-close-handle.svg) no-repeat;
+    background-size: contain;
+    width: calc(36px*0.8);
+    height: calc(76px*0.8);
+    cursor: pointer;
+    display: none;
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .twitter-open-close-handle {
+        display: block;
+    }
 }
 
 @keyframes highlighter {
