@@ -37,17 +37,19 @@
 
                             <div class="form-group">
                                 <h2 class="mt-3">Any of these words</h2>
-                                <label class="" for="anyOfTheseWordsUsersChoice" id="labelAnyOfTheseWordsUsersChoice">Words that should be in the tweet (spaces matter, “action” will also find “traction”, “ action” wont.) </label>
+                                <label class="" for="anyOfTheseWordsUsersChoice" id="labelAnyOfTheseWordsUsersChoice">Any of these words</label>
                                 <textarea id="anyOfTheseWordsUsersChoice" name="anyOfTheseWordsUsersChoice" rows="5" class="form-control block p-3"></textarea>
                                 <!-- <button id="restoreKeyWords" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyKeyWords" type="button" class="btn btn-light">Empty</button> -->
                             </div>
 
                             <div class="form-group">
                                 <h2 class="mt-3">None of these words</h2>
-                                <label class="" for="noneOfTheseWordsUsersChoice" id="labelNoneOfTheseWordsUsersChoice">Words that should NOT be in the tweet (spaces matter, “action” will also find “traction”, “ action” wont.) </label>
+                                <label class="" for="noneOfTheseWordsUsersChoice" id="labelNoneOfTheseWordsUsersChoice">None of these words</label>
                                 <textarea id="noneOfTheseWordsUsersChoice" name="noneOfTheseWordsUsersChoice" rows="5" class="form-control block p-3"></textarea>
                                 <!-- <button id="restoreKeyWords" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyKeyWords" type="button" class="btn btn-light">Empty</button> -->
                             </div>
+
+                            <p>Separate the words with a comma. Spaces matter, “action” will also find “traction”, “ action” wont.</p>
 
                         </div>
 
