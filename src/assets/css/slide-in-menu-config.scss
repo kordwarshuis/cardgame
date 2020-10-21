@@ -2,6 +2,8 @@
 /* BEGIN CONFIGURATION */
 /***********************/
 
+// for instructions on how to have menu opened onload see comment in slideInMenu.vue JS part
+
 $zIndex: 1;
 $hamburgerPadding: 6px;
 $hamburgerWidth: 40px;
@@ -15,6 +17,10 @@ $hamburgerBackgroundColor: #cae7df60;
 // $hamburgerBoxShadow: 0px 0px 1px 0px #000000;
 $hamburgerBoxShadow: none;
 
+// how wide should the menu be. 100% covers whole screen
+$menuWidth: 300px;
+// $menuWidth: 100%;
+
 *,
 *:before,
 *:after {
@@ -23,6 +29,11 @@ $hamburgerBoxShadow: none;
 
 .slide-menu-wrapper {
   background: #bccdf0;
+
+  // width of the menu:
+  
+
+
 }
 
 .content {
@@ -63,7 +74,7 @@ li a {
 // menu items inside the slide in menu
 #nav {
   a {
-      font-weight: bold;
+      font-family: poppinsbold;
       // color: $generalLinksText;
       padding: 1em;
       display: inline-block;

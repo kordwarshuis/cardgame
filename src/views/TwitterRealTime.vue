@@ -51,7 +51,7 @@
                     <button id="restoreKeyWords" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyKeyWords" type="button" class="btn btn-light">Empty</button>
 
                     <hr>
-                    
+
                     <label for="tweetAccounts">The tweeps here will give an extra notification, visually and audibly <button id="testTweetAccountsSound" type="button" class="btn btn-light btn-sm mr-2">Listen</button> Add your
                         favorite tweeps.</label>
 
@@ -89,7 +89,9 @@
 <script>
 import moment from "moment";
 import momentDurationFormat from "moment-duration-format";
-import { language } from "@/assets/js/Language.js";
+import {
+    language
+} from "@/assets/js/Language.js";
 
 // import bootstrap;
 export default {
@@ -391,7 +393,7 @@ export default {
 
                     if (somethingFound) {
                         if (localStorage.getItem("soundOn") === "true") alert.play();
-                        
+
                         // console.log('domTemp: ', domTemp);
                         // console.log('domTempOld: ', domTempOld);
 

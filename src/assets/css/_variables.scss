@@ -1,61 +1,8 @@
-// @import url('https://fonts.googleapis.com/css?family=Anton|Buenard:400,700');
-// @import url('https://fonts.googleapis.com/css?family=Anton:400,700');
+$mainMenuHightWhenOpen: 15em;
+$subMenuOffsetTopOnSmallScreen: 50px;
+$cardFullTextIndent: 1.8em;
 
 
-// #A2285E,#EA1F79,#42A530,#70EF5A,#6B29BA,#A2285E,#EA1F79,#42A530
-// #051622 #1BA098 #DEB992
-// #06396B #419583 #66DB94 #8DE4AF #EDF5E0
-
-
-// https://codepen.io/overdrivemachines/pen/oaBgwr
-//#E277A5 #29306E #8BEAA9 #E1BA75 #0C0E27
-
-
-
-// Qvartz
-// #FDD935 #111111
-
-
-
-
-
-
-// https://flatuicolors.com/palette/fr
-// //================
-// $_text1: #fad390;
-// $_border1: #82ccdd;
-// $_background1: #4a69bd;
-// $_link1: #0a3d62;
-// $_linkHover1: #0a3d62;
-// //================
-// $_text2: #b71540;
-// $_border2: #82ccdd;
-// $_background2: #fad390;
-// $_link2: #0a3d62;
-// $_linkHover2: #0a3d62;
-// //================
-// $___boxTextVisitedCheckmark: #87e67a;
-// $a14: #222;
-// //================
-
-
-
-// https://www.instagram.com/p/B7Q1JQal1p_/
-// $_text1: #2C2627;
-// $_border1: #BE2B3E;
-// $_background1: #F9F2E8;
-// $_link1: #463c3e;
-// $_linkHover1: #463c3e;
-// //================
-// $_text2: #2C2627;
-// $_border2: #BE2B3E;
-// $_background2: #EFD1BC;
-// $_link2: #463c3e;
-// $_linkHover2: #463c3e;
-// //================
-// $___boxTextVisitedCheckmark: #87e67a;
-// $a14: #222;
-//================
 
 
 // IN USE
@@ -63,9 +10,9 @@
 // #EE7879 #2A3166 #F4ABAA #CAE7DF #3A457D
 
 //================
-$_text1: #2A3166;
+$_text1: #eee;
 $_border1: #3A457D;
-$_background1: #bccdf0;
+$_background1: #0D1227;
 $_background1BCB: #cae7df60;
 $_link1: #2A3166;
 $_linkHover1: #2A3166;
@@ -73,7 +20,7 @@ $_linkHover1: #2A3166;
 $_text2: #2A3166;
 $_border2: #3A457D;
 // $_background2: rgb(187, 233, 220);
-$_background2: rgb(187, 219, 233);
+$_background2: #39446D;
 $_link2: #0a3d62;
 $_linkHover2: #0a3d62;
 //================

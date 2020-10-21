@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-4 ">
-                        <div class="m-3 border">
+                        <div class="m-0 mb-3 p-3 border">
                             <h2>General</h2>
                             <ul>
                                 <li>
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 ">
-                        <div class="m-3 border">
+                        <div class="m-0 mb-3 p-3 border">
                             <h2>References</h2>
                             <ul>
                                 <li><a href="https://en.bitcoin.it/wiki/Myths" target="_blank">Bitcoin Myths</a></li>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 ">
-                        <div class="m-3 border">
+                        <div class="m-0 mb-3 p-3 border">
                             <h2>Card sets</h2>
                             <ul>
                                 <li>
@@ -94,3 +94,16 @@
 
 </div>
 </template>
+
+<style lang="scss" scoped>
+a {
+    color: #eee;
+}
+
+.row > div > div > div > div {
+    border: 1px dashed #eee !important;
+    border-radius: 15px;
+    // border-style: dashed !important;
+}
+
+</style>

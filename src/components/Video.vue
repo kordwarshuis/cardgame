@@ -1,72 +1,28 @@
 <template>
 <!-- negate doesnt seem to work -->
-<div v-if="(this.$store.state.currentCard['Youtube Video Id'] === '')"></div>
+<div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="content-item p-3">
+    <!-- <h3 class="video">Video</h3> -->
 
-<div class="border p-3 mb-3" v-else>
+    <VideoBare />
+    <p class="video-description ml-0">{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
 
-    <h3 class="video">Video</h3>
-
-    <p>{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
-
-    <div class="videoWrapper">
-        <iframe id="youtubeVideo" class="youtube" :src="'https://www.youtube.com/embed/' + this.$store.state.currentCard['Youtube Video Id'] + '?start=' + this.$store.state.currentCard['Youtube Video Start'] + '&end=' + this.$store.state.currentCard['Youtube Video End'] + '&playsinline=1&enablejsapi=1'" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
-        </iframe>
-    </div>
-
-    <!-- <div id="player"></div> -->
-
-    <!-- <button @click="this.stopIt">stop</button> -->
 </div>
 </template>
 
 <script>
+import VideoBare from "@/components/VideoBare.vue";
 export default {
     name: "Video",
-    mounted: function () {
-        // console.log("mounted");
-        this.youtubeVideo();
-
-    },
-    methods: {
-        youtubeVideo() {
-            // https://developers.google.com/youtube/iframe_api_reference#Examples
-            // inserting script tag calling youtube iframe api. This is done after this component is mounted. Only then onYouTubeIframeAPIReady() in index.html is run. In the store this is run: youtubePlayer.stopVideo();
-            var tag = document.createElement('script');
-
-            tag.src = "https://www.youtube.com/iframe_api";
-            var firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        }
-    },
-    beforeUpdate() {
-        // console.log('beforeUpdate')
-    },
-    beforeDestroy() {
-        // console.log('beforeDestroy')
+    components: {
+        VideoBare
     }
-
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-/* https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
-.videoWrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-    margin-bottom: 3em;
-}
-
-.videoWrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
+.video-description {
+    font-size: 0.7em;;
 }
 </style>

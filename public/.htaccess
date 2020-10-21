@@ -15,6 +15,12 @@
     # RewriteBase /t/bcb/
     ####################
     
+    ####################
+    # Test version:
+    # (local development server ignores the RewriteBase)
+    # RewriteBase /t/cardgametest/
+    ####################
+    
     
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

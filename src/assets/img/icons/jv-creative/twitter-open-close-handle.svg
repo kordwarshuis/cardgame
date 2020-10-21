@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="76">
+  <defs/>
+  <g data-name="Group 364">
+    <path fill="#005b81" d="M10 0h26v76H10A10 10 0 010 66V10A10 10 0 0110 0z" data-name="Rectangle 95"/>
+    <g fill="#00b3ff" data-name="Group 354">
+      <path d="M13 24h2v29h-2z" data-name="Rectangle 92"/>
+      <path d="M20 24h2v29h-2z" data-name="Rectangle 93"/>
+      <path d="M26 24h2v29h-2z" data-name="Rectangle 94"/>
+    </g>
+  </g>
+</svg>

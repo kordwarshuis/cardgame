@@ -1,5 +1,5 @@
 <template>
-<div class="miniQuizContainer modalbox-iconbackground border p-3 mb-3" v-if="this.$store.state.currentCard['Quiz']">
+<div class="content-item miniQuizContainer modalbox-iconbackground border p-3 mb-3" v-if="this.$store.state.currentCard['Quiz']">
     <h3 class="quiz">Quiz</h3>
     <form class="miniquiz">
         <fieldset>
@@ -7,7 +7,7 @@
             <label v-for="answer in this.$store.state.currentCard['Quiz'][1].answers" v-bind:key="answer[0]">{{ answer[0] }}<input @change="quizMultipleChoice" type="radio" class="miniQuizVraag" name="miniQuizVraag" :value="answer[1]"></label>
         </fieldset>
     </form>
-    <div class="quizExplanation displayNone">{{ this.$store.state.currentCard["Quiz"][2].explanation }}</div>
+    <div v-linkified class="quizExplanation displayNone">{{ this.$store.state.currentCard["Quiz"][2].explanation }}</div>
 </div>
 </template>
 
@@ -17,17 +17,13 @@ export default {
     name: "Quiz",
     methods: {
         quizMultipleChoice(e) {
-            var isChecked = this.checked; // TODO: remove?
-            var value = this.value; // TODO: remove?
             var domCorrectAnswer;
 
-            // totaalAantalVragenBeantwoord++;
-            // goede antwoord gekozen
+            // rigth answer chosen
             if (e.target.value === "true") {
-                // class toevoegen na innerHTML gaat niet blijkbaar omdat de node door innerHTLM veranderd wordt?
-                // this.parentNode.innerHTML += "<span class='antw antw-vinkje'>√</span>";
+                // add class after innerHTML not possible as node is changed by innerHTML?
                 e.target.parentNode.insertAdjacentHTML("beforeend", "<span class='antw antw-vinkje'>√</span>");
-                
+
                 if (localStorage.getItem("soundOn") === "true") go.play();
                 document.querySelector("body").classList.add("person1");
                 setTimeout(function () {
@@ -35,13 +31,11 @@ export default {
                 }, 4000);
                 console.log(publicPath.publicPath);
 
-            } else
-
-            // foute antwoord gekozen
-            {
-                // stel je hebt meerdere "correct", zoals bij een miniquiz waarin je vraagt om een beoordeling, dan kom je hier, in deze "else"  niet terecht, dus hoef ik verder niks te regelen
+            } else {
+                // wrong answer chosen
+                // if you have more than one 'correct' then you end up here, no need for more code
                 domCorrectAnswer = e.target.parentNode.parentNode.querySelector("input[value='true']").parentNode;
-                
+
                 if (localStorage.getItem("soundOn") === "true") whistle.play();
                 setTimeout(
                     function () {
@@ -69,6 +63,7 @@ export default {
 
 <style lang="scss">
 // scoped doesnt work for the styling of the green checkmark and the cross
+
 /*
  * MINI QUIZ
  */
@@ -87,8 +82,15 @@ form.miniquiz {
     margin-bottom: 2em;
 }
 
-form.miniquiz input {
-    /*font-size: 3em;*/
+form.miniquiz legend {
+    font-size: 1.3em;
+}
+form.miniquiz label {
+    font-size: 1.2em;
+}
+form.miniquiz legend,
+form.miniquiz label {
+    margin-left: $cardFullTextIndent;
 }
 
 form.miniquiz .antw {
@@ -161,99 +163,13 @@ form.miniquiz p {
     display: block;
 }
 
-/* fadeIen en FadeOet gebruikt bij de images die in en outfaden bij beantwoorden miniquiz*/
-
-/*TODO: uiteindelijk verwijderen, wordt niet meer gebruikt, vermoedelijk*/
-.animated {
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-}
-
-/*end todo*/
-
-/* fadeIen en FadeOet gebruikt bij de images die in en outfaden bij beantwoorden miniquiz*/
-/* let op. dit bepaald hoe snel de afbeelding wegfade, niet HOE LANG HET DUURT voordat dat begint, dus hoe lang het in beeld blijft, ga daarvoor naar JS */
-.miniquizanimated {
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
-}
-
-/*
- @-webkit-keyframes fadeOet {
-     0% {
-         opacity: 1;
-         */
-/*visibility: hidden;*/
-/*
- 
-     }
-     100% {
-         opacity: 0;
-         visibility: hidden;
-     }
- }
- */
-
-@keyframes fadeOet {
-    0% {
-        opacity: 1;
-        /*visibility: hidden;*/
-    }
-
-    100% {
-        opacity: 0;
-        visibility: hidden;
-        /* nodig omdat ze over de pagina heenliggen en je wilt toch op links kunnen klikken */
-    }
-}
-
-/*
- @-webkit-keyframes fadeIen {
-     0% {
-         visibility: visible;
-         opacity: 0;
-     }
- 
-     100% {
-         visibility: visible;
-         opacity: 1;
-     }
- }
- */
-
-@keyframes fadeIen {
-    0% {
-        visibility: visible;
-        opacity: 0;
-    }
-
-    100% {
-        visibility: visible;
-        opacity: 1;
-    }
-}
-
-.fadeOet {
-    /*-webkit-animation-name: fadeOet;*/
-    animation-name: fadeOet;
-    display: none;
-}
-
-.fadeIen {
-    /*-webkit-animation-name: fadeIen;*/
-    animation-name: fadeIen;
-    display: block;
-    /* TODO: noodgreep, nu werkt het maar de fade out werkt niet, dit moet beter geregeld worden,
-      als ik dit niet doe, kun je alleen eerste modal scrollen en de rest zit er onder en kun je niet bij
-      */
-}
-
 .miniQuizContainer {}
 
 .quizExplanation {
     margin: 0.5em 0;
     padding: 1em;
-    background: #b1eca9;
+    border-top: 1px dashed #0B364D;
+    color: #366F0C;
 
 }
 

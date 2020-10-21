@@ -39,7 +39,7 @@ li a {
 /* Added styles */
 /*********************/
 #nav a {
-  font-weight: bold;
+  font-family: poppinsbold;
   padding: 1em;
   display: inline-block;
 }

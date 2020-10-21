@@ -15,9 +15,6 @@ import * as d3 from "d3-dsv";
 import Cards from "@/components/Cards.vue";
 import CardIntro from "@/components/CardIntro.vue";
 import CardFull from "@/components/CardFull.vue";
-import {
-    cardGameName
-} from "../main";
 
 export default {
     name: "Home",
@@ -73,9 +70,9 @@ export default {
                         // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to Bitcoin, if a "2" is in the string, it belong to Blockchain. "12" means it belongs to both.
                         // TODO: move this to main.js
                         var stack = 0;
-                        if (cardGameName === "Bitcoin") {
+                        if (this.$store.state.gameId === "btc") {
                             stack = 1;
-                        } else if (cardGameName === "Blockchain") {
+                        } else if (this.$store.state.gameId === "bcb") {
                             stack = 2;
                         }
 
