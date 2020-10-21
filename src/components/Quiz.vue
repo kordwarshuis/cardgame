@@ -7,7 +7,7 @@
             <label v-for="answer in this.$store.state.currentCard['Quiz'][1].answers" v-bind:key="answer[0]">{{ answer[0] }}<input @change="quizMultipleChoice" type="radio" class="miniQuizVraag" name="miniQuizVraag" :value="answer[1]"></label>
         </fieldset>
     </form>
-    <div class="quizExplanation displayNone">{{ this.$store.state.currentCard["Quiz"][2].explanation }}</div>
+    <div v-linkified class="quizExplanation displayNone">{{ this.$store.state.currentCard["Quiz"][2].explanation }}</div>
 </div>
 </template>
 
