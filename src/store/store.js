@@ -86,8 +86,12 @@ export default new Vuex.Store({
       // set active category name (TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the first <a>)
       if (categoryName === undefined) {
         this.state.activeCategory = "All";
+
+        // After clicking on a category in a card, a subselection shows. To go back, click on ‘All’. This is only visible when selection is active. This is achieved via CSS. 
+        document.querySelector('.cards').classList.remove('selection');
       } else {
         this.state.activeCategory = categoryName;
+        document.querySelector('.cards').classList.add('selection');
       }
 
       // first make the selected menu item stand out:
@@ -99,7 +103,7 @@ export default new Vuex.Store({
           "prejudice": b.Prejudice,
           "category": b.Cat,
           "prejudiceElaborate": b["Prejudice Elaborate"],
-          "Youtube Video Id":  b["Youtube Video Id"]
+          "Youtube Video Id": b["Youtube Video Id"]
           // ,
           // "numberOfItems": 
         });
