@@ -8,9 +8,9 @@
 
                     <h3 class="pt-sm-2">Misconception</h3>
                     <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 9em; border-radius: 10px;">
-                        <span class="quote">“</span>
+                        <!-- <span class="quote">“</span> -->
                         <p class="typed mb-3">{{ getPrejudice }} …</p>
-                        <span class="quote">”</span>
+                        <!-- <span class="quote">”</span> -->
                         <button class="btn btn-outline-light mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                     </div>
 
