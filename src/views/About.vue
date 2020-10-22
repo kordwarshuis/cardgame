@@ -61,9 +61,9 @@
                         </li>
                     </ul>
 
-                    <h2>References</h2>
+                    <h2>Reference List</h2>
                     <ul>
-                        <li><a href="https://en.bitcoin.it/wiki/Myths" target="_blank">Bitcoin Myths</a></li>
+                        <li><a href="https://en.bitcoin.it/wiki/Myths" target="_blank">Bitcoin Myths Wiki</a></li>
                         <li><a href="https://elaineou.com/" target="_blank" rel="noopener">Elaine Ou</a>, <a href="https://twitter.com/eiaine" target="_blank" rel="noopener">@eiaine</a></li>
                         <li><a href="https://github.com/libbitcoin/libbitcoin-system/wiki" target="_blank" rel="noopener">Eric
                                 Voskuil</a>, <a href="https://twitter.com/evoskuil" target="_blank" rel="noopener">@evoskuil</a></li>
@@ -73,6 +73,11 @@
                                 Antonopoulos</a>, <a href="https://twitter.com/aantonop" target="_blank" rel="noopener">@aantonop</a></li>
                         <li><a href="https://www.unchained-capital.com/blog" target="_blank" rel="noopener">Parker Lewis</a>, <a href="https://twitter.com/parkeralewis" target="_blank" rel="noopener">@parkeralewis</a></li>
                         <li>Christopher Allen, <a href="https://twitter.com/ChristopherA" target="_blank" rel="noopener">@ChristopherA</a></li>
+                    </ul>
+
+                    <h2>Acknowledgements</h2>
+                    <ul>
+                        <li>SW</li>
                     </ul>
                 </div>
             </div>
