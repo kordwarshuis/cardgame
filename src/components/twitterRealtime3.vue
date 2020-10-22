@@ -45,9 +45,12 @@
                 <div class="tweets-selected col-md-12 m-0 p-0" style="overflow: scroll;">
                     <nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2 " style="background: #005B81;">
                         <div class="row m-0 p-0" style="width: 100%;">
-                            <div class="col-md-12 m-0 p-0 mr-2">
-                                <h2 class="ml-3 header-tweets-selected inline">Selected tweets <button class="tweets-selected-open-close-button"><span class="visuallyhidden">open / close selected tweets panel</span></button></h2>
-                                <button class="btn btn-sm btn-outline-light ml-3 inline clear-selected-tweets-button">Clear</button>
+                            <div class="col-xs-6 m-0 p-0 mr-2">
+                                <h2 class="ml-1 mt-2 header-tweets-selected">Selected <button style="transform: translateY(-0.2em);" class="m-0 tweets-selected-open-close-button"><span class="visuallyhidden">open / close selected tweets panel</span></button></h2>
+                            </div>
+
+                            <div class="col-xs-6 m-0 p-0 mt-1 ">
+                                <button class="btn btn-sm btn-outline-light ml-3 float-right inline clear-selected-tweets-button">Clear</button>
                             </div>
                         </div>
                     </nav>
