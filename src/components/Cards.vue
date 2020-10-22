@@ -59,7 +59,10 @@
                 <h2 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h2>
             </a>
             <div class="card-footer" style="background: #1D2448; text-align: left;">
-                <h3 @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
+                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em; margin: 0.5em 0 ;">{{ item.category }}</a>
+
+                // Show all cards:
+                <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
             </div>
         </div>
     </div>
@@ -366,4 +369,13 @@ h1 {
 .nav-item.Supply a {
     background: #063333;
 }
+
+// Show All button only if in selection
+.category-all-shown-in-cards {
+    display: none;
+}
+div.cards.selection .category-all-shown-in-cards {
+    display: inline;
+}
+
 </style>
