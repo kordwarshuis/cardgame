@@ -1,5 +1,4 @@
 <template>
-<!-- <div id="app" class="container-fluid"> -->
 <div id="app" class="container-fluid">
     <TwitterRealTimeConfigModal />
     <MainMenu />
@@ -14,6 +13,13 @@
     <!-- <TwitterRealTime2 /> -->
 
     <Toasts :time-out="2000"></Toasts>
+
+    <footer class="footer mt-auto py-2">
+        <div class="container-fluid text-center">
+            <small><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/cc_icon_white_x2.png" alt="Two C's next to each other"><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/attribution_icon_white_x2.png" alt="A symbol of a person">Except where otherwise noted, content on this site is licensed under a <a class="light" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</small>
+        </div>
+    </footer>
+
 </div>
 </template>
 
@@ -212,6 +218,11 @@ export default {
     font-style: normal;
 }
 
+html {
+    // https://css-tricks.com/almanac/properties/s/scroll-behavior/
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: poppinsregular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 0.9rem;
@@ -271,6 +282,11 @@ a {
     text-decoration: none;
     color: $generalLinksText;
     outline: none;
+}
+
+a.light {
+    color: #ccc;
+    text-decoration: underline;
 }
 
 a:hover,
@@ -502,12 +518,20 @@ a.overlay__close:not(.overlay__close-cross):hover,
 
 }
 
-// .tweet.curated .card:after {
-//     content: "★";
-//     color: red;
-//     font-size: 3em;
-//     position: absolute;
-//     right: -0.5em;
-//     top: -0.5em;
-// }
+
+footer {
+    background: #191F3A;
+    width: 100%; 
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+
+}
 </style>
