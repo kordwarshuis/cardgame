@@ -17,7 +17,7 @@
                     {{this.$store.state.gameTitle2}}
                 </span>
             </h1>
-            <small class="mt-0">{{this.$store.state.gameSubTitle}}</small>
+            <p class="mt-0">{{this.$store.state.gameSubTitle}}</p>
 
         </div>
 
@@ -37,7 +37,7 @@
                         <li class="nav-item" :class="category.name" v-for="category in $store.state.categories" :key="category.name">
                             <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category.name)" :data-category="category.name">
                                 {{ category.name }}
-                                <!-- ({{ category.numberOfItems }}) -->
+                                ({{ category.numberOfItems }})
                             </a>
                         </li>
                     </ul>
@@ -67,6 +67,7 @@
     <!-- <NewsTicker /> -->
     <!-- <SoundToggle /> -->
     <!-- </transition> -->
+
 </div>
 </template>
 
