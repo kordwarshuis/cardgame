@@ -46,7 +46,7 @@
                     <nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2 " style="background: #005B81;">
                         <div class="row m-0 p-0" style="width: 100%;">
                             <div class="col-xs-6 m-0 p-0 mr-2">
-                                <h2 class="ml-1 mt-2 header-tweets-selected">Selected <button style="transform: translateY(-0.2em);" class="m-0 tweets-selected-open-close-button"><span class="visuallyhidden">open / close selected tweets panel</span></button></h2>
+                                <h2 class="ml-1 mt-2 header-tweets-selected">Bookmarked <button style="transform: translateY(-0.2em);" class="m-0 tweets-selected-open-close-button"><span class="visuallyhidden">open / close selected tweets panel</span></button></h2>
                             </div>
 
                             <div class="col-xs-6 m-0 p-0 mt-1 ">
@@ -55,7 +55,7 @@
                         </div>
                     </nav>
 
-                    <div class="row m-0 ml-4 mr-4 p-0">
+                    <div class="row m-0 ml-2 mr-2 p-0">
                         <div class="col-md-12 m-0 p-0">
                             <div class="tweets row m-0 p-0"></div>
                         </div>
@@ -486,10 +486,11 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     left: 0;
     background: #005B81;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
-    height: 75%;
+    height: 95%;
     transform: translate3d(0, 85%, 0);
     transition: transform 0.4s;
     transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    z-index: 1021; // one higher than the bootstrap nav
 }
 
 .tweets-selected.open {
@@ -506,7 +507,9 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 }
 
 .open .tweets-selected-open-close-button {
-    background: url(../assets/img/icons/jv-creative/tweets-selected-close.svg) no-repeat center;
+    background: url(../assets/img/icons/jv-creative/tweets-selected-close.svg) no-repeat center !important;
+    width: 30px;
+    height: 30px;
 }
 
 .header-tweets-realtime,
