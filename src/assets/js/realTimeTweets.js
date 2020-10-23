@@ -78,10 +78,20 @@ export var realTimeTweets = (function () {
         return moment().format("HH:mm:ss");
     }
 
-
     function timestampTweet(time) {
         return moment.utc(time, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow();
     }
+
+    function reCalculateTimestamp() {        
+        setInterval(function() {
+            var allTimestamps = document.querySelectorAll('.timestamp');
+            allTimestamps.forEach(function(a) {
+                a.innerHTML = timestampTweet(a.dataset.createdat);
+            });
+        }, 60000);
+    }
+    reCalculateTimestamp();
+
 
     // https://stackoverflow.com/a/1584377
     function arrayUnique(array) {
@@ -210,7 +220,6 @@ export var realTimeTweets = (function () {
                         noneOfTheseWordsCriterium) ||
                     data[i].curatedTweet === true) {
                     somethingFound = true;
-                    console.log('timestampTweet(data[i].created_at): ', timestampTweet(data[i].created_at));
                     domTemp =
                     "<div class='card mb-3 tweet inviesieble "+ curatedClass +"'>" +
                         "<div class='card-body p-2'>" +
@@ -240,14 +249,8 @@ export var realTimeTweets = (function () {
                                 "<div class='col-6 mb-3'>Followers: "+ data[i].user.followers_count +"</div>" +
 
                                 "<div class='col-6'></div>" +
-                                "<div class='col-6'>"+ timestampTweet(data[i].created_at) +"</div>" +
+                                "<div data-createdat='" + data[i].created_at + "' class='col-6 timestamp'>"+ timestampTweet(data[i].created_at) +"</div>" +
                             "</div>" +
-
-
-
-
-
-
 
                             "<div class='row'>" +
                                 "<div class='col-6'><a class='go-to-tweet btn btn-primary m-1' target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name + "/status/" + data[i].id_str + "'>" + "Go to tweet</a></div>" +
