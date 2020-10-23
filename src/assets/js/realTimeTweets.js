@@ -78,6 +78,11 @@ export var realTimeTweets = (function () {
         return moment().format("HH:mm:ss");
     }
 
+
+    function timestampTweet(time) {
+        return moment.utc(time, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow();
+    }
+
     // https://stackoverflow.com/a/1584377
     function arrayUnique(array) {
         var a = array.concat();
@@ -145,7 +150,7 @@ export var realTimeTweets = (function () {
 
                 if (data[i].curatedTweet === true) {
                     curatedClass = " curated ";
-                    curatedTweetText = "Handpicked";
+                    curatedTweetText = "<div class='col-12 mb-2 curated-tweet-text text-center'><small class='m-0'>~~Handpicked~~</small></div>";
                 } else {
                     curatedClass = "";
                     curatedTweetText = "";
@@ -205,52 +210,52 @@ export var realTimeTweets = (function () {
                         noneOfTheseWordsCriterium) ||
                     data[i].curatedTweet === true) {
                     somethingFound = true;
+                    console.log('timestampTweet(data[i].created_at): ', timestampTweet(data[i].created_at));
                     domTemp =
+                    "<div class='card mb-3 tweet inviesieble "+ curatedClass +"'>" +
+                        "<div class='card-body p-2'>" +
+                            "<div class='row'>" +
+                                curatedTweetText +
+                                //IMAGE
+                                "<div class='col-auto' >" +
+                                    "<img class='img-thumbnail float-left' src='" + data[i].user.profile_image_url_https + "' alt=''></img>" +
+                                "</div>" +
 
-                        "<div class='tweet " + curatedClass + specialAccountHTMLcode + "inviesieble col-md-12 p-0'>" +
-                        "<div class='card mb-4 pt-2'>" +
-                        "<div class='card-body'>"+
-                        "<div class='card-text'>" +
-                        "<span class='tweetNumber extra-info1'>#" + tweetNumber + "</span> | " +
-                        "<small class='text-muted extra-info2'> " +
-                        "<span class='extra-info3 tweetTimeStamp'>&#x1f550; " +
-                        timestampNow() +
-                        "</span>" +
-                        "</small>" +
-                        "<span class='curatedTweetIndication'>" + curatedTweetText + "</span>" +
-                        "<p><img class='img-thumbnail float-left mr-3' src='" +
-                        data[i].user.profile_image_url_https + "' alt=''> " + twitterLinks(data[i].text) +
-                        "</p><p class='extra-info'>Name: " + data[i].user.name +
-                        // "<br>Verified: " +
-                        // data[i].user.verified + 
-                        // "<br>Keyword: " + 
-                        // currentKeyword + 
-                        // "</p>" + 
-                        // "<p>" + 
-                        " | Followers: " + data[i].user.followers_count +
-                        " <button type='button' class='btn btn-primary select-tweet'>Select</button>" +
-                        "</p></div><div class='d-flex justify-content-between align-items-center'>" +
-                        "<a class='go-to-tweet btn btn-primary' target='_blank' rel='noopener' href='https://twitter.com/" +
-                        data[i].user.screen_name + "/status/" + data[i].id_str + "'>" +
-                        "Go to tweet" +
-                        "</a> " +
-                        "<span class='tweet-instruction'>now copy a suitable card and go to tweet</span>" +
+                                // TEXT
+                                "<div class='col pl-0'>" +
+                                    "<div class='row'>" +
+                                        // TWEET
+                                        "<div class='col-12'>" +
+                                            "<p>" + twitterLinks(data[i].text) + "</p>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>" +
+
+                            "<div class='row mb-3'>" +
+                                "<div class='col-6'>Name: "+ data[i].user.name +"</div>" +
+                                "<div class='col-6'>Keyword</div>" +
+
+                                "<div class='col-6 mb-3'>Verified: "+data[i].user.verified+"</div>" +
+                                "<div class='col-6 mb-3'>Followers: "+ data[i].user.followers_count +"</div>" +
+
+                                "<div class='col-6'></div>" +
+                                "<div class='col-6'>"+ timestampTweet(data[i].created_at) +"</div>" +
+                            "</div>" +
+
+
+
+
+
+
+
+                            "<div class='row'>" +
+                                "<div class='col-6'><a class='go-to-tweet btn btn-primary m-1' target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name + "/status/" + data[i].id_str + "'>" + "Go to tweet</a></div>" +
+                                "<div class='col-6 text-right'><button type='button' class='btn btn-primary mt-1 mr-1 ml-0 select-tweet'>Bookmark</button></div>" +
+                            "</div>" +
                         "</div>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>" +
+                    "</div>" +
                         domTemp;
-
-
-
-                    // domTemp = "<div class='tweet>xxxxx</div>" + domTemp;
-
-
-                    // domTemp = "<div class=' " + curatedClass + specialAccountHTMLcode + " '>" + 
-                    // "<div class='card box-shadow'>x</div></div>" + domTemp;
-
-
-
                     tweetNumber++;
                     keywordFound = false;
                 } else {
