@@ -490,7 +490,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
     border-radius: 10px;
 }
 
-.select-tweet,
+// .select-tweet,
 .go-to-tweet {
     background: linear-gradient(to right, #5C34A7, #2376D6);
 }
@@ -507,7 +507,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
     display: none;
 }
 
-.tweet.curated .card {
+.card.curated {
     background-color: rgb(250, 239, 202) !important;
 }
 
@@ -524,6 +524,16 @@ footer {
     width: 100%; 
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
 }
+
+.tweet small {
+    font-size: 1.1em;
+    
+}
+
+.curated-tweet-text small {
+    background: rgb(247, 229, 130);
+}
+
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
