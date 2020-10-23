@@ -1,10 +1,10 @@
 <template>
-<div class="about">
-    <div class="container">
+<div class="about pb-5">
+    <div class="container ">
         <h1 class="text-center pt-1">About</h1>
         <div class="row">
             <div class="col-md-6">
-                <div class="card p-3 mb-3">
+                <div class="card p-3 ">
                     <h2>Blockchain Bird</h2>
                     <p>
                         Blockchain Bird is a non-profit organization with the goal of spreading the message and elaborating more on topics such as blockchain and cryptocurrency. Their goal is to inform the uninformed and debunk myths and misconceptions.
@@ -76,9 +76,9 @@
                     </ul>
 
                     <h2>Acknowledgements</h2>
-                    <ul>
-                        <li>SW</li>
-                    </ul>
+                    <p>
+                        We've had many contributors to the answers in the cards. Thank you all. Special thanks to the experts in the reference list, other experts and volunteers:<br>Seb Walker, <a target="_blank" rel="noopener" href="https://twitter.com/SDWouters">@SDWouters</a> and last but not least our team members from 2018.
+                    </p>
                 </div>
             </div>
         </div>
@@ -87,6 +87,16 @@
 </template>
 
 <style lang="scss" scoped>
+h1,
+h2,
+h3 {
+    font-size: 1.2rem;
+}
+
+p {
+    font-size: 0.98em;
+}
+
 a {
     color: #eee;
 }
