@@ -61,7 +61,7 @@
             <div class="card-footer" style="background: #1D2448; text-align: left;">
                 <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em; margin: 0.5em 0 ;">{{ item.category }}</a>
 
-                // Show all cards:
+                <!-- Show all cards: -->
                 <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
             </div>
         </div>
