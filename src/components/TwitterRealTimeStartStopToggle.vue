@@ -24,7 +24,7 @@ export default {
             twitterRealTimeToggleInput.addEventListener('change', function () {
                 streamOn ?
                     getJSON.stop() :
-                    getJSON.start(getJSON.start(process.env.VUE_APP_REALTIME_TWITTER_JSON));
+                    getJSON.start(process.env.VUE_APP_REALTIME_TWITTER_JSON);
                 streamOn = !streamOn;
             });
         }
