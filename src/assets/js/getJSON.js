@@ -1,3 +1,4 @@
+import store from "../../store/store";
 import {
     fixJSON
 } from "./fixJSON";
@@ -11,6 +12,7 @@ export var getJSON = (function () {
 
     function start(source) {
         console.log("start");
+        store.commit("showToast", "Tweet stream is running.");
         var resp;
         var refreshInterval = 10000;
 
@@ -91,6 +93,7 @@ export var getJSON = (function () {
     }
 
     function stop() {
+        store.commit("showToast", "Tweet stream is paused.");
         console.log("stop");
         clearInterval(fetchTweetsLoop);
         console.log('fetchTweetsLoop: ', fetchTweetsLoop);
