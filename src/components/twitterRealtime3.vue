@@ -10,14 +10,14 @@
                 <!-- <button class="button-open-close-tweets-container"><span class="visuallyhidden">Open / close tweetstream</span></button> -->
 
                 <!-- REALTIME TWEETS -->
-                <div class="tweets-realtime col-md-12 m-0 p-0">
-                    <nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2 " style="background: #1FA1F2;">
+                <div class="tweets-realtime col-md-12 m-0 p-0" style="padding-bottom: 10em !important;">
+                    <nav class="navbar navbar-expand-md sticky-top p-0 " style="background: #1FA1F2;">
                         <div class="row m-0 p-0" style="width: 100%;">
                             <div class="col-md-12 m-0 p-0 mr-2 mt-1">
                                 <h2 class="header-tweets-realtime " style="display: inline;">Realtime</h2>
                             </div>
 
-                            <div class="col-md-12 m-0 p-0 mr-2">
+                            <div class="col-md-12 m-0 p-0 ">
                                 <TwitterRealTimeStartStopToggle class="align-middle inline" style="width: 20px; height: 20px;transform: translateY(-0.2em);" />
 
                                 <button type="button" class="tweet-stream-configuration btn btn-outline-dark align-middle inline" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
@@ -30,6 +30,15 @@
                                     <label style="color: #eee;" class="form-check-label align-middle inline" for="showAllTweets">all tweets</label>
                                 </div>
                                 <button class="btn btn-sm btn-outline-light ml-3 clear-tweet-stream-button">Clear</button>
+                                <!-- <input style="max-width: 3em;" class="form-control filterTweets" id='filterTweets' type="text" value="Filter" /> -->
+
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Filter tweets</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="filterTweets" value="Tip: stop stream first" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                </div>
+
                             </div>
                         </div>
                     </nav>
@@ -110,8 +119,69 @@ export default {
         this.toggleSelectedTweetsPanel();
         this.clearTweetStream();
         this.clearSelectedTweets();
+        this.filterTweets();
     },
     methods: {
+        filterTweets() {
+            // https://schier.co/blog/2014/12/08/wait-for-user-to-stop-typing-using-javascript.html
+            var domTextInput = document.querySelector("#filterTweets");
+            var domBody = document.querySelector("body");
+            var tweets = document.querySelectorAll(".tweet");
+            // Init a timeout variable to be used below
+            var timeout = null;
+
+            function showResults(searchString) {
+                console.log('searchString: ', searchString);
+                showAllEntries();
+
+                if (searchString !== "") { // als er iets in het zoekveld staat
+                    tweets = document.querySelectorAll(".tweet");
+                    for (var i = 0; i < tweets.length; i++) {
+                        // first hide all
+                        tweets[i].classList.add("hideSearchResult");
+
+                        // if searchstring is found then remove class that hides result
+                        if (
+                            tweets[i].innerHTML.toLowerCase().indexOf(searchString.toLowerCase()) > -1
+                        ) {
+                            tweets[i].classList.remove("hideSearchResult");
+                        }
+                    }
+                } else { // when nothing in search field (anymore) all tweets should be shown again
+                    showAllEntries();
+                    domBody.classList.remove("condensedLayout");
+                }
+            }
+
+            function showAllEntries() {
+                for (var i = 0; i < tweets.length; i++) {
+                    tweets[i].classList.remove("hideSearchResult");
+                }
+            }
+
+            function undoSearchResults() {
+                showAllEntries();
+            }
+
+            domTextInput.addEventListener("click", function () {
+                undoSearchResults();
+                this.value = "";
+            }, false);
+
+            // Listen for keystroke events
+            domTextInput.addEventListener("keyup", function () {
+                // textInput.onchange = function (e) {
+                // Clear the timeout if it has already been set.
+                // This will prevent the previous task from executing
+                // if it has been less than <MILLISECONDS>
+                clearTimeout(timeout);
+
+                // Make a new timeout set to go off in 800ms
+                timeout = setTimeout(function () {
+                    showResults(domTextInput.value);
+                }, 500);
+            }, false);
+        },
         clearTweetStream() {
             var button = document.querySelector('.clear-tweet-stream-button');
             var tweets = document.querySelector('.tweets-realtime .tweets');
@@ -139,7 +209,6 @@ export default {
             document.querySelector('#showAllTweets').addEventListener('change', function () {
                 var tweetStreamConfiguration = document.querySelector('.tweet-stream-configuration');
                 realTimeTweets.toggleAllTweets();
-                // when 'show all tweets' is clicked the configuration option is disabled
                 tweetStreamConfiguration.disabled = !tweetStreamConfiguration.disabled;
             }, false);
         },
@@ -213,22 +282,8 @@ export default {
                     var selectedTweet = event.target.closest(".tweet");
                     // document.querySelector(".tweets-selected .tweets").innerHTML = "";
                     document.querySelector(".tweets-selected .tweets").insertAdjacentElement('afterbegin', selectedTweet);
-                    document.querySelector(".tweets-selected .tweets").querySelector(".extra-info").innerHTML = "";
-                    document.querySelector(".tweets-selected .tweets").querySelector(".extra-info1").innerHTML = "";
-                    document.querySelector(".tweets-selected .tweets").querySelector(".extra-info2").innerHTML = "";
-                    document.querySelector(".tweets-selected .tweets").querySelector(".extra-info3").innerHTML = "";
-
-                    // selectedTweet.style.position = "absolute";
-                    // selectedTweet.style.left = "0";
-                    // selectedTweet.style.bottom = "0";
                 }
             }, false);
-
-            // document.querySelector('.button-open-close-tweets-container').addEventListener('click', function () {
-            //     document.querySelector('.tweets-container').classList.toggle('tweets-container-visible');
-            //     document.querySelector('.button-open-close-tweets-container').classList.toggle('button-open-close-tweets-container-visible');
-            // }, false);
-
         },
     }
 };
@@ -557,6 +612,10 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     .twitter-open-close-handle {
         display: block;
     }
+}
+
+#filterTweets {
+    font-size: 18px;
 }
 
 @keyframes highlighter {
