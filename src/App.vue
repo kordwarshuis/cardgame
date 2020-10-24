@@ -482,7 +482,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
     min-width: 250px !important;
 }
 
-.toast-container > div > div {
+.toast-container>div>div {
     color: #111;
     background-color: #eee;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
@@ -491,6 +491,16 @@ a.overlay__close:not(.overlay__close-cross):hover,
 // realtime tweets
 .card {
     border-radius: 10px;
+}
+
+// this is for give tweets a little fade in so you can see there is something new. “visible” is a reserved word in Bootstrap
+.tweet.invisibleTweet {
+    opacity: 0;
+}
+
+.tweet.invisibleTweet.makeVisible {
+    opacity: 1 !important;
+    transition: opacity 0.2s ease-in-out;
 }
 
 // .select-tweet,
@@ -521,16 +531,15 @@ a.overlay__close:not(.overlay__close-cross):hover,
 
 }
 
-
 footer {
     background: #191F3A;
-    width: 100%; 
+    width: 100%;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
 }
 
 .tweet small {
     font-size: 1.1em;
-    
+
 }
 
 .curated-tweet-text small {
@@ -538,16 +547,13 @@ footer {
 }
 
 .hideSearchResult {
-	margin: 0 !important;
-	display: none !important;
-	visibility: hidden;
-	height: 0;
-	line-height: 0;
-	padding: 0;
+    margin: 0 !important;
+    display: none !important;
+    visibility: hidden;
+    height: 0;
+    line-height: 0;
+    padding: 0;
 }
-
-
-
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     footer {
