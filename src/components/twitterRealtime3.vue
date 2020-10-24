@@ -120,8 +120,21 @@ export default {
         this.clearTweetStream();
         this.clearSelectedTweets();
         this.filterTweets();
+        this.getBookmarkedTweetsFromLocalStorage();
     },
     methods: {
+        getBookmarkedTweetsFromLocalStorage() {
+            var selectedTweets = document.querySelector('.tweets-selected .tweets');
+            var val;
+            if (localStorage.getItem("bookmarkedTweets") !== null) {
+                val = localStorage.getItem("bookmarkedTweets");
+                selectedTweets.insertAdjacentHTML("afterbegin", val);
+            }
+        },
+        setBookmarkedTweetsToLocalStorage() {
+            var selectedTweets = document.querySelector('.tweets-selected .tweets');
+            localStorage.setItem("bookmarkedTweets", selectedTweets.innerHTML);
+        },
         filterTweets() {
             // https://schier.co/blog/2014/12/08/wait-for-user-to-stop-typing-using-javascript.html
             var domTextInput = document.querySelector("#filterTweets");
@@ -190,10 +203,12 @@ export default {
             }, false);
         },
         clearSelectedTweets() {
+            var that = this;
             var button = document.querySelector('.clear-selected-tweets-button');
             var tweets = document.querySelector('.tweets-selected .tweets');
             button.addEventListener('click', function () {
                 tweets.innerHTML = "";
+                that.setBookmarkedTweetsToLocalStorage();
             }, false);
         },
         toggleSelectedTweetsPanel() {
@@ -241,47 +256,18 @@ export default {
             }, false);
         },
         copyTweet() {
+            var that = this;
             // var tweetCopyContainer = document.createElement("div");
             // tweetCopyContainer.classList.add("tweetCopyContainer", "tweets");
             // document.querySelector("body").appendChild(tweetCopyContainer);
             document.addEventListener("click", function (event) {
                 if (event.target.matches(".tweets-container .tweet .card-body button.select-tweet")) {
-                    // tweetCopyContainer.innerHTML = "";
-                    // var tweet = document.createElement("div");
-                    // tweet.classList.add("tweet", "col-md-12");
-                    // var card = document.createElement("div");
-                    // card.classList.add("card", "mb-4", "box-shadow");
-
-                    // tweetCopyContainer.appendChild(tweet);
-
-                    // tweet.appendChild(card);
-                    // var toBeAdded = event.target.closest(".card-body");
-
-                    // card.appendChild(toBeAdded);
-                    // card.querySelector("button").remove();
-                    // tweetCopyContainer.querySelector(".card-body").insertAdjacentHTML("afterbegin", "<div class='alert alert-info' role='alert'>First find a card, copy and come back to this tweet.</div><button class='open-and-close-tweet'><span class='visuallyhidden'>Open and close</span></button>");
-
-                    // if (document.querySelector('.open-and-close-tweet') !== undefined) {
-                    //     console.log("hio");
-                    //     document.querySelector('.open-and-close-tweet').addEventListener('click', function () {
-                    //         document.querySelector('.tweetCopyContainer').classList.toggle('tweetCopyContainerVisible');
-                    //     }, false);
-
-                    // }
-
-                    // setTimeout(function () {
-                    //     tweetCopyContainer.classList.add('tweetCopyContainerVisible');
-                    // }, 500);
-                    // setTimeout(function () {
-                    //     tweetCopyContainer.classList.remove('tweetCopyContainerVisible');
-                    // }, 1000);
-
-                    // // store.commit("showToast", "Select an appropriate card and go to the card at the left.");
-
                     console.log("bingo");
                     var selectedTweet = event.target.closest(".tweet");
                     // document.querySelector(".tweets-selected .tweets").innerHTML = "";
                     document.querySelector(".tweets-selected .tweets").insertAdjacentElement('afterbegin', selectedTweet);
+
+                    that.setBookmarkedTweetsToLocalStorage();
                 }
             }, false);
         },
