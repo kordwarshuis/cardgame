@@ -12,7 +12,7 @@
     <!-- <Person3 /> -->
     <!-- <TwitterRealTime2 /> -->
 
-    <Toasts :time-out="2000"></Toasts>
+    <Toasts :show-progress="false" :time-out="2500"></Toasts>
 
     <footer class="footer mt-auto py-2">
         <div class="container-fluid text-center">
@@ -478,11 +478,14 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .toast-container {
-    color: #111;
+    max-width: 100%;
+    min-width: 250px !important;
 }
 
-.toast {
+.toast-container > div > div {
+    color: #111;
     background-color: #eee;
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
 }
 
 // realtime tweets
@@ -533,6 +536,16 @@ footer {
 .curated-tweet-text small {
     background: rgb(247, 229, 130);
 }
+
+.hideSearchResult {
+	margin: 0 !important;
+	display: none !important;
+	visibility: hidden;
+	height: 0;
+	line-height: 0;
+	padding: 0;
+}
+
 
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
