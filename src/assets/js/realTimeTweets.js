@@ -222,7 +222,7 @@ export var realTimeTweets = (function () {
                     data[i].curatedTweet === true) {
                     somethingFound = true;
                     domTemp =
-                    "<div class='card mb-3 tweet inviesieble "+ curatedClass +"'>" +
+                    "<div class='card mb-3 tweet invisibleTweet "+ curatedClass +"'>" +
                         "<div class='card-body p-2'>" +
                             "<div class='row'>" +
                                 curatedTweetText +
@@ -289,7 +289,7 @@ export var realTimeTweets = (function () {
 
                 tweets.insertAdjacentHTML("afterbegin", domTemp);
 
-                var invisibleTweets = document.querySelectorAll(".tweet.inviesieble");
+                var invisibleTweets = document.querySelectorAll(".tweet.invisibleTweet");
                 // for (var i=0;i<invisibleTweets.length;i++) {
                 for (var i = invisibleTweets.length - 1; i > -1; i--) {
                     // this is for give tweets a little fade in so you can see there is something new. “visible” is a reserved word in Bootstrap
@@ -298,11 +298,11 @@ export var realTimeTweets = (function () {
                             invisibleTweets[i].classList.add("makeVisible");
                             setTimeout(function () {
                                 invisibleTweets[i].classList.remove("makeVisible");
-                                invisibleTweets[i].classList.remove("inviesieble");
+                                invisibleTweets[i].classList.remove("invisibleTweet");
                             }, 1000);
 
                         }, k);
-                        k = k + 100;
+                        k = k + 10;
                     }(i));
                 }
             }
