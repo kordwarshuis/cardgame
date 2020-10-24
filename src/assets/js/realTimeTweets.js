@@ -1,3 +1,4 @@
+import store from "../../store/store";
 import moment from "moment";
 import {
     twitterLinks
@@ -320,7 +321,9 @@ export var realTimeTweets = (function () {
     function toggleAllTweets() {
         if (anyOfTheseWords.length !== 0) {
             anyOfTheseWords = []; // don't do anyOfTheseWords.length = 0, that will affect anyOfTheseWordsBackup
+            store.commit("showToast", "All tweets with ‘bitcoin’ in it will show here.");
         } else {
+            store.commit("showToast", "Mostly relevant tweets about bitcoin will show here.");
             anyOfTheseWords = anyOfTheseWordsBackup;
         }
 
