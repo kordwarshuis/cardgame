@@ -121,7 +121,7 @@ export var realTimeTweets = (function () {
 
             for (let i = 0; i < allTweets.length; i++) {
                 // i determines how many tweets will stay, the rest will be deleted
-                if (i > 99) {
+                if (i > 999) {
                     allTweets[i].parentNode.removeChild(allTweets[i]);
                 }
             }
