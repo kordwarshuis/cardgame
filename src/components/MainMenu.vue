@@ -1,6 +1,7 @@
 <template>
 <nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2">
-    <router-link class="navbar-brand" to="/"><img src="@/assets/img/logo/blockchainbird-logo.png" alt=""></router-link>
+    <!-- https://dev.to/yossiabramov/the-native-event-modifier-in-vue-js-bpb -->
+    <router-link @click.native="$store.commit('showItemsInSelectedCategory')" class="navbar-brand" to="/"><img src="@/assets/img/logo/blockchainbird-logo.png" alt=""></router-link>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,7 +10,7 @@
         <ul class="nav justify-content-center ">
             <li class="nav-item">
                 <!-- https://stackoverflow.com/a/42401686 -->
-                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/">Cards</router-link>
+                <router-link @click.native="$store.commit('showItemsInSelectedCategory')" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/">Cards</router-link>
             </li>
             <li class="nav-item">
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about">About</router-link>
