@@ -6,7 +6,6 @@
     <twitterRealtime3 />
     <!-- <CryptoRadio /> -->
     <router-view />
-    <!-- <NewsTicker /> -->
     <Person1 />
     <Person2 />
     <!-- <Person3 /> -->
@@ -16,10 +15,10 @@
 
     <footer class="footer mt-auto py-2">
         <div class="container-fluid text-center">
-            <small><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/cc_icon_white_x2.png" alt="Two C's next to each other"><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/attribution_icon_white_x2.png" alt="A symbol of a person">Except where otherwise noted, content on this site is licensed under a <a class="light" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</small>
+            <small><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/cc_icon_white_x2.png" alt="Two C's next to each other"><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/attribution_icon_white_x2.png" alt="A symbol of a person">Except where otherwise noted, content on this site is licensed under a <a target="_blank" rel="noopener" class="light" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</small>
         </div>
     </footer>
-
+    <NewsTicker />
 </div>
 </template>
 
@@ -32,7 +31,7 @@ import MainMenu from "@/components/MainMenu.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
 // import * as Hammer from "hammerjs";
-// import NewsTicker from "@/components/NewsTicker.vue";
+import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 
@@ -43,7 +42,7 @@ export default {
         // slideInMenu,
         twitterRealtime3,
         // CryptoRadio,
-        // NewsTicker,
+        NewsTicker,
         // Hammer,
         Person1,
         Person2
