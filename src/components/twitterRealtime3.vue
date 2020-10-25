@@ -1,6 +1,5 @@
 <template>
 <div id="slide-menu-and-buttons-wrapper">
-
     <div class="slide-menu-wrapper">
         <div class="twitter-open-close-handle"></div>
         <div class="content container-fluid pt-0">
@@ -18,7 +17,7 @@
                             </div>
 
                             <div class="col-md-12 m-0 p-0 ">
-                                <TwitterRealTimeStartStopToggle class="align-middle inline" style="width: 20px; height: 20px;transform: translateY(-0.2em);" />
+                                <TwitterRealTimeStartStopToggle class="align-middle inline" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
 
                                 <button type="button" class="tweet-stream-configuration btn btn-outline-dark align-middle inline" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
                                     <span class="visuallyhidden">Tweetstream configuration</span>
@@ -113,6 +112,8 @@ export default {
         this.copyTweet();
         // this.startStopTweetStream();
         this.disableBodyScroll(".content"); //mixin
+        // this.disableBodyScroll(".tweets-realtime"); //mixin
+        // this.disableBodyScroll(".tweets-selected"); //mixin
         this.drawAttentionToTwitter();
         this.removeNewTweetsSign();
         this.showAllTweets();
@@ -524,7 +525,6 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     width: 12px;
     height: 12px;
 }
-
 
 .show-menu .menu-icon {
     background: url(../assets/img/twitter/Twitter_Logo_WhiteOnBlue.svg);
