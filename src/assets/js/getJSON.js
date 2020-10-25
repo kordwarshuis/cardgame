@@ -18,6 +18,7 @@ export var getJSON = (function () {
 
         function fetchData(source, curated) {
             // console.log('curated: ', curated);
+            var connectionSymbol = document.querySelector('.menu-icon');
             fetch(source)
                 // 1 json
                 // .then(response => response.json())
@@ -26,6 +27,7 @@ export var getJSON = (function () {
                 .then(response => response.text())
 
                 .then(data => {
+                    connectionSymbol.classList.remove('disconnected');
                     // 1: we need what is insides statuses
                     // resp = data.statuses;
 
@@ -73,9 +75,10 @@ export var getJSON = (function () {
                     realTimeTweets.start(resp);
                 })
                 .catch(error => {
+                    connectionSymbol.classList.add('disconnected');
                     console.log('error: ', error);
                     // handle the error
-                });;
+                });
         }
 
         fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
