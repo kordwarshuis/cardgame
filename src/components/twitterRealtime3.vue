@@ -510,6 +510,22 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     background: red;
 }
 
+.menu-icon:before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 0;
+    border-radius: 50%;
+}
+
+.menu-icon.disconnected:before {
+    background: url(../assets/img/icons/ui/no-entry.svg) no-repeat;
+    background-size: contain;
+    width: 12px;
+    height: 12px;
+}
+
+
 .show-menu .menu-icon {
     background: url(../assets/img/twitter/Twitter_Logo_WhiteOnBlue.svg);
 
