@@ -59,7 +59,7 @@ export default new Vuex.Store({
 
       //TODO: to stop video playing and avoind that scroll position is not top. Doesnt work
       // document.querySelector(".modal-content .videoWrapper").innerHTML = "";
-      if (youtubePlayer.stopVideo) youtubePlayer.stopVideo();
+      if (youtubePlayer) youtubePlayer.stopVideo();
     },
     changeCard(state, newCard) {
       state.currentCard = newCard;
@@ -111,14 +111,16 @@ export default new Vuex.Store({
 
       // category === undefined runs when function is called without argument, which happens on the ajax callback. Should be the first, and not after the "||"
       // here we create the info for the cards per category page
-      if (categoryName === undefined) {
-        for (let i = 0; i < this.state.theJSON.length; i++) {
-          makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
-        }
-      } else {
-        for (let i = 0; i < this.state.theJSON.length; i++) {
-          if (this.state.theJSON[i].Cat === categoryName) {
+      if (this.state.theJSON) {
+        if (categoryName === undefined) {
+          for (let i = 0; i < this.state.theJSON.length; i++) {
             makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
+          }
+        } else {
+          for (let i = 0; i < this.state.theJSON.length; i++) {
+            if (this.state.theJSON[i].Cat === categoryName) {
+              makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
+            }
           }
         }
       }
