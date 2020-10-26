@@ -39,10 +39,18 @@ const router = new VueRouter({
   mode: 'history',
   routes,
   scrollBehavior() { //https://stackoverflow.com/a/57212309, TODO: https://router.vuejs.org/guide/advanced/scroll-behavior.html#async-scrolling
+    var a = document.querySelector(".modal-content");
+    var b = document.querySelector(".overlay-fullscreen .card-body");
     // setTimeout(function(){document.getElementById('app').scrollIntoView();}, 3000);
+
     document.getElementById("app").scrollIntoView();
-    document.querySelector(".modal-content").scrollIntoView();
-    document.querySelector(".overlay-fullscreen .card-body").scrollIntoView();
+
+    if (a) {
+      a.scrollIntoView();
+    }
+    if (b) {
+      b.scrollIntoView();
+    }
   }
 });
 
