@@ -37,13 +37,13 @@ export var realTimeTweets = (function () {
     var numberOfFollowers = numberOfFollowersBackup;
 
 
-    var anyOfTheseWordsBackup = [
-        "bitcoin will never", "bitcoin can never", "bitcoin just is not", "bitcoin is one big", "criminals", "slow", "laundering", "energy", "complicated", "unfair", "quantum", "tax evaders", "unsustainable", "intrinsic value", "shut down", "scammers", "roulette", "only 21", "not safe", "black market", "terrorists", "tulip", "greater fool", "not scalable", "anarchists", "distribution unfair", "hacked", " anonymous", "unsustainable", "useless", "ponzi", "no backing", "will die", "forbidden", "shut down", "scammers", "not gdpr", "price down", "terrorists", "privacy breach", "volatile", "useless", "deflation", "chinese"
-    ];
+
 
 
     var onlyVerifiedAccountsUsersChoice = false;
-    var anyOfTheseWords = anyOfTheseWordsBackup;
+    var anyOfTheseStringsDefault = [];
+    var anyOfTheseStrings = [];
+
     var anyOfTheseWordsUsersChoice = [];
     var noneOfTheseWords = ["airdrop", "earn", "giveaway"];
     var noneOfTheseWordsUsersChoice = [];
@@ -83,10 +83,10 @@ export var realTimeTweets = (function () {
         return moment.utc(time, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow();
     }
 
-    function reCalculateTimestamp() {        
-        setInterval(function() {
+    function reCalculateTimestamp() {
+        setInterval(function () {
             var allTimestamps = document.querySelectorAll('.timestamp');
-            allTimestamps.forEach(function(a) {
+            allTimestamps.forEach(function (a) {
                 a.innerHTML = timestampTweet(a.dataset.createdat);
             });
         }, 60000);
@@ -110,7 +110,6 @@ export var realTimeTweets = (function () {
 
     function processTwitters(data) {
         var tweets = document.querySelector(".tweets-realtime .tweets");
-        // var tweets = document.querySelector(".tweets-realtime");
         var domMenuIcon = document.querySelector(".menu-icon");
         var somethingFound = false;
         var curatedClass = "";
@@ -141,11 +140,6 @@ export var realTimeTweets = (function () {
         }
 
         // join the hardcoded keywords with the users choice
-        if (anyOfTheseWordsUsersChoice.length > 0) {
-            anyOfTheseWords = arrayUnique(anyOfTheseWords.concat(anyOfTheseWordsUsersChoice));
-        }
-
-        // join the hardcoded keywords with the users choice
         if (noneOfTheseWordsUsersChoice.length > 0) {
             noneOfTheseWords = arrayUnique(noneOfTheseWords.concat(noneOfTheseWordsUsersChoice));
         }
@@ -156,7 +150,7 @@ export var realTimeTweets = (function () {
             for (var i = 0; i < data.length; i++) {
                 var onlyVerifiedAccountsUsersChoiceCriterium = false;
                 var numberOfFollowersCriterium = false;
-                var anyOfTheseWordsCriterium = false;
+                var anyOfTheseStringsCriterium = false;
                 var noneOfTheseWordsCriterium = false;
 
                 if (data[i].curatedTweet === true) {
@@ -173,7 +167,7 @@ export var realTimeTweets = (function () {
                     numberOfFollowersCriterium = false;
                 }
 
-                // loop through all anyOfTheseWords:
+                // loop through all anyOfTheseStrings:
 
 
                 if (data[i].user.verified === onlyVerifiedAccountsUsersChoice) {
@@ -182,17 +176,20 @@ export var realTimeTweets = (function () {
                     onlyVerifiedAccountsUsersChoiceCriterium = false;
                 }
 
-                if (anyOfTheseWords.length === 0) {
-                    anyOfTheseWordsCriterium = true;
+                if (anyOfTheseStrings.length === 0) {
+                    // console.log('anyOfTheseStrings.length: ', anyOfTheseStrings.length);
+                    anyOfTheseStringsCriterium = true;
                 } else {
-                    for (let j = 0; j < anyOfTheseWords.length; j++) {
-                        // if anyOfTheseWords found, only last anyOfTheseWords, if there are more, will be remembered:
-                        if (data[i].text.indexOf(anyOfTheseWords[j]) > -1) {
-                            anyOfTheseWordsCriterium = true;
+                    for (let j = 0; j < anyOfTheseStrings.length; j++) {
+
+                        // console.log('anyOfTheseStrings[j]: ', anyOfTheseStrings[j]);
+                        // if anyOfTheseStrings found, only last anyOfTheseStrings, if there are more, will be remembered:
+                        if (data[i].text.indexOf(anyOfTheseStrings[j]) > -1) {
+                            anyOfTheseStringsCriterium = true;
                             // somethingFound = keywordFound;
-                            currentKeyword = anyOfTheseWords[j];
+                            currentKeyword = anyOfTheseStrings[j];
                         }
-                    } // end anyOfTheseWords loop
+                    } // end anyOfTheseStrings loop
                 }
 
                 if (noneOfTheseWords.length === 0) {
@@ -209,56 +206,50 @@ export var realTimeTweets = (function () {
                     } // end noneOfTheseWords loop
                 }
 
-                // console.log("===");
-                // console.log('noneOfTheseWordsCriterium: ', noneOfTheseWordsCriterium);
-                // console.log('anyOfTheseWordsCriterium: ', anyOfTheseWordsCriterium);
-                // console.log('numberOfFollowersCriterium: ', numberOfFollowersCriterium);
-                // console.log('data[i].curatedTweet: ', data[i].curatedTweet);
-
                 if ((numberOfFollowersCriterium &&
                         onlyVerifiedAccountsUsersChoiceCriterium &&
-                        anyOfTheseWordsCriterium &&
+                        anyOfTheseStringsCriterium &&
                         noneOfTheseWordsCriterium) ||
                     data[i].curatedTweet === true) {
                     somethingFound = true;
                     domTemp =
-                    "<div class='card mb-3 tweet invisibleTweet "+ curatedClass +"'>" +
+                        "<div class='card mb-3 tweet invisibleTweet " + curatedClass + "'>" +
                         "<div class='card-body p-2'>" +
-                            "<div class='row'>" +
-                                curatedTweetText +
-                                //IMAGE
-                                "<div class='col-auto' >" +
-                                    "<img class='img-thumbnail float-left' src='" + data[i].user.profile_image_url_https + "' alt=''></img>" +
-                                "</div>" +
-
-                                // TEXT
-                                "<div class='col pl-0'>" +
-                                    "<div class='row'>" +
-                                        // TWEET
-                                        "<div class='col-12'>" +
-                                            "<p>" + twitterLinks(data[i].text) + "</p>" +
-                                        "</div>" +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>" +
-
-                            "<div class='row mb-3'>" +
-                                "<div class='col-6'>Name: "+ data[i].user.name +"</div>" +
-                                "<div class='col-6'>Keyword</div>" +
-
-                                "<div class='col-6 mb-3'>Verified: "+data[i].user.verified+"</div>" +
-                                "<div class='col-6 mb-3'>Followers: "+ data[i].user.followers_count +"</div>" +
-
-                                "<div class='col-6'></div>" +
-                                "<div data-createdat='" + data[i].created_at + "' class='col-6 timestamp'>"+ timestampTweet(data[i].created_at) +"</div>" +
-                            "</div>" +
-
-                            "<div class='row'>" +
-                                "<div class='col-6'><a class='go-to-tweet btn btn-primary m-1' target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name + "/status/" + data[i].id_str + "'>" + "Go to tweet</a></div>" +
-                                "<div class='col-6 text-right'><button type='button' class='btn btn-primary mt-1 mr-1 ml-0 select-tweet'>Bookmark</button></div>" +
-                            "</div>" +
+                        "<div class='row'>" +
+                        curatedTweetText +
+                        //IMAGE
+                        "<div class='col-auto' >" +
+                        "<img class='img-thumbnail float-left' src='" + data[i].user.profile_image_url_https + "' alt=''></img>" +
                         "</div>" +
-                    "</div>" +
+
+                        // TEXT
+                        "<div class='col pl-0'>" +
+                        "<div class='row'>" +
+                        // TWEET
+                        "<div class='col-12'>" +
+                        "<p>" + twitterLinks(data[i].text) + "</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+
+                        "<div class='row mb-3'>" +
+                        "<div class='col-6'>Name: " + data[i].user.name + "</div>" +
+                        "<div class='col-6'>Keyword</div>" +
+
+                        "<div class='col-6 mb-3'>Verified: " + data[i].user.verified + "</div>" +
+                        "<div class='col-6 mb-3'>Followers: " + data[i].user.followers_count + "</div>" +
+
+                        "<div class='col-6'></div>" +
+                        "<div data-createdat='" + data[i].created_at + "' class='col-6 timestamp'>" + timestampTweet(data[i].created_at) + "</div>" +
+                        "</div>" +
+
+                        "<div class='row'>" +
+                        "<div class='col-6'><a class='go-to-tweet btn btn-primary m-1' target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name + "/status/" + data[i].id_str + "'>" + "Go to tweet</a></div>" +
+                        "<div class='col-6 text-right'><button type='button' class='btn btn-primary mt-1 mr-1 ml-0 select-tweet'>Bookmark</button></div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
                         domTemp;
                     tweetNumber++;
                     keywordFound = false;
@@ -292,7 +283,7 @@ export var realTimeTweets = (function () {
                 var invisibleTweets = document.querySelectorAll(".tweet.invisibleTweet");
                 // for (var i=0;i<invisibleTweets.length;i++) {
                 for (var i = invisibleTweets.length - 1; i > -1; i--) {
-                    // this is for give tweets a little fade in so you can see there is something new. “visible” is a reserved word in Bootstrap
+                    // this is for give tweets a little fade in so you can see there is something new.
                     (function (i) {
                         setTimeout(function () {
                             invisibleTweets[i].classList.add("makeVisible");
@@ -314,17 +305,13 @@ export var realTimeTweets = (function () {
         removeOldestTweets();
     }
 
-    function startStream(data) {
-        processTwitters(data);
-    }
-
     function toggleAllTweets() {
-        if (anyOfTheseWords.length !== 0) {
-            anyOfTheseWords = []; // don't do anyOfTheseWords.length = 0, that will affect anyOfTheseWordsBackup
+        if (anyOfTheseStrings.length !== 0) {
+            anyOfTheseStrings = []; // don't do anyOfTheseStrings.length = 0, that will affect anyOfTheseStringsDefault
             store.commit("showToast", "All tweets with ‘bitcoin’ in it will show here.");
         } else {
             store.commit("showToast", "Mostly relevant tweets about bitcoin will show here.");
-            anyOfTheseWords = anyOfTheseWordsBackup;
+            anyOfTheseStrings = anyOfTheseStringsDefault;
         }
 
         if (numberOfFollowers !== 0) {
@@ -338,10 +325,6 @@ export var realTimeTweets = (function () {
         numberOfFollowers = a;
     }
 
-    function setAnyOfTheseWordsUsersChoice(a) {
-        anyOfTheseWordsUsersChoice = a;
-    }
-
     function setNoneOfTheseWordsUsersChoice(a) {
         noneOfTheseWordsUsersChoice = a;
     }
@@ -350,11 +333,16 @@ export var realTimeTweets = (function () {
         onlyVerifiedAccountsUsersChoice = a;
     }
 
+    function setAnyOfTheseStrings(a) {
+        anyOfTheseStrings = a;
+    }
+
     return {
-        start: startStream,
+        start: processTwitters,
         toggleAllTweets: toggleAllTweets,
         setFollowersNumber: setFollowersNumber,
-        setAnyOfTheseWordsUsersChoice: setAnyOfTheseWordsUsersChoice,
+        setAnyOfTheseStrings: setAnyOfTheseStrings,
+        anyOfTheseStringsDefault: anyOfTheseStringsDefault,
         setNoneOfTheseWordsUsersChoice: setNoneOfTheseWordsUsersChoice,
         setOnlyVerifiedAccountsUsersChoice: setOnlyVerifiedAccountsUsersChoice
     };
