@@ -17,9 +17,9 @@
                             </div>
 
                             <div class="col-md-12 m-0 p-0 ">
-                                <TwitterRealTimeStartStopToggle class="align-middle inline" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
+                                <TwitterRealTimeStartStopToggle class="align-middle inline mr-2" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
 
-                                <button type="button" class="tweet-stream-configuration btn btn-outline-dark align-middle inline" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
+                                <button type="button" class="tweet-stream-configuration btn btn-outline-dark align-middle inline ml-2" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
                                     <span class="visuallyhidden">Tweetstream configuration</span>
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
                                 </button>
