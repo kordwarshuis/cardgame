@@ -54,6 +54,10 @@
 
     <!-- THE CARDS -->
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
+        <div class="mb-4 p-0" style="background: transparent;">
+            <video class="" style="width: 100%;border-radius: 10px;" src="video/instructions.mp4" muted autoplay controls playsinline></video>
+        </div>
+
         <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
             <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
                 <h2 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h2>
@@ -296,10 +300,10 @@ h1 {
 
 }
 
-
 .nav-item a {
     color: #eee;
 }
+
 .nav-item a.All {
     background: #eee;
     color: #111;
@@ -374,8 +378,8 @@ h1 {
 .category-all-shown-in-cards {
     display: none;
 }
+
 div.cards.selection .category-all-shown-in-cards {
     display: inline;
 }
-
 </style>
