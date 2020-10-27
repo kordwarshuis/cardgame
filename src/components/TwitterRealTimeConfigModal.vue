@@ -134,7 +134,6 @@ export default {
 
             // get default string from array
             function restoreAnyOfTheseStringsDefault() {
-                console.log(" hey hoi");
                 domAnyOfTheseStrings.value = realTimeTweets.getAnyOfTheseStringsDefault().toString();
                 realTimeTweets.setAnyOfTheseStrings(realTimeTweets.getAnyOfTheseStringsDefault());
                 localStorage.setItem("defaultSearchStrings", realTimeTweets.getAnyOfTheseStringsDefault().toString());
