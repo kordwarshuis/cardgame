@@ -495,9 +495,12 @@ a.overlay__close:not(.overlay__close-cross):hover,
 // this is for give tweets a little fade in so you can see there is something new. “visible” is a reserved word in Bootstrap
 .tweet.invisibleTweet {
     opacity: 0;
+    display: none;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .tweet.invisibleTweet.makeVisible {
+    display: block;
     opacity: 1 !important;
     transition: opacity 0.2s ease-in-out;
 }
@@ -553,6 +556,7 @@ footer {
     line-height: 0;
     padding: 0;
 }
+
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     footer {
