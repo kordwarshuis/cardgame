@@ -2,12 +2,13 @@
 <div class="about pb-5">
     <div class="container ">
         <div class="row">
-            <div class="col-md-12">
-                <video class="mb-4 mt-4" style="width: 100%;border-radius: 10px;" src="video/instructions.mp4" muted autoplay controls playsinline></video>
-                <h1 class="text-center pt-1">About</h1>
-            </div>
+            <!-- <div class="col-md-12">
+            </div> -->
             <div class="col-md-6">
                 <div class="card p-3 ">
+                    <h1 class="text-center pt-1">About</h1>
+                    <video class="mb-4 mt-4" style="width: 100%;border-radius: 10px;" src="video/instructions.mp4" muted autoplay controls playsinline></video>
+
                     <h2>Blockchain Bird</h2>
                     <p>
                         Blockchain Bird is a non-profit organization with the goal of spreading the message and elaborating more on topics such as blockchain and cryptocurrency. Their goal is to inform the uninformed and debunk myths and misconceptions.
@@ -82,6 +83,9 @@
                     <p>
                         We've had many contributors to the answers in the cards. Thank you all. Special thanks to the experts in the reference list, other experts and volunteers:<br>Seb Walker, <a target="_blank" rel="noopener" href="https://twitter.com/SDWouters">@SDWouters</a> and last but not least our team members from 2018.
                     </p>
+                    <h2>Privacy Statement</h2>
+                    <p>Everything you save is written to the localStorage of your computer and keeps on your computer.</p>
+                    <p>We use Google Analytics.</p>
                 </div>
             </div>
         </div>
