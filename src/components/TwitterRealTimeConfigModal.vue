@@ -16,6 +16,8 @@
                             <div class="alert alert-info mt-3 col-md-12" role="alert">
                                 All changes work immediately.
                             </div>
+
+                            <!-- <button id="show-all">Show all tweets</button> -->
                             <hr class="mt-5">
                             <h2 class="mt-3">Followers</h2>
                             <label class="" for="followers" id="labelFollowers">Poster has </label>
@@ -42,7 +44,7 @@
                                     All changes work immediately.
                                 </div>
 
-                                <label class="" for="anyOfTheseStrings" id="labelAnyOfTheseStrings">Any of these strings of words, separated by a comma. Add your own:</label>
+                                <label class="" for="anyOfTheseStrings" id="labelAnyOfTheseStrings">Any of these strings of words, separated by a comma. Empty field shows all tweets containing “bitcoin”. Add your own:</label>
                                 <textarea id="anyOfTheseStrings" name="anyOfTheseStrings" rows="5" class="form-control block p-3">bitcoin will never, bitcoin can never, bitcoin just is not, bitcoin is one big, criminals, slow, laundering, energy, complicated, unfair, quantum, tax evaders, unsustainable, intrinsic value, shut down, scammers, roulette, only 21, not safe, black market, terrorists, tulip, greater fool, not scalable, anarchists, distribution unfair, hacked, anonymous, unsustainable, useless, ponzi, no backing, will die, forbidden, shut down, scammers, not gdpr, price down, terrorists, privacy breach, volatile, useless, deflation, chinese</textarea>
                                 <button id="restoreAnyOfTheseStringsDefault" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyAnyOfTheseStrings" type="button" class="btn btn-light">Empty</button>
                             </div>
@@ -100,8 +102,15 @@ export default {
         this.setFollowersNumber();
         this.handleAnyOfTheseStrings();
         this.setOnlyVerifiedAccountsUsersChoice();
+        // this.showAllTweets();
     },
     methods: {
+        // showAllTweets() {
+        //     var button = document.querySelector('#show-all');
+        //     button.addEventListener('click', function () {
+        //         document.querySelector('#followers').value = 0;
+        //     }, false);
+        // },
         setFollowersNumber() {
             var followers = document.querySelector("#followers");
 
@@ -109,7 +118,6 @@ export default {
                 console.log(followers.value);
                 realTimeTweets.setFollowersNumber(followers.value);
             }, false);
-
         },
 
         handleAnyOfTheseStrings() {
@@ -117,37 +125,53 @@ export default {
             var domRestoreAnyOfTheseStringsDefault = document.querySelector("#restoreAnyOfTheseStringsDefault");
             var domEmptyAnyOfTheseStrings = document.querySelector("#emptyAnyOfTheseStrings");
 
-            function storeDefaultKeywordsInLocalStorage(stringsInTextarea) {
-                localStorage.setItem("defaultSearchStrings", stringsInTextarea);
-            }
-
             function emptyAnyOfTheseStrings() {
+                console.log("empty");
                 domAnyOfTheseStrings.value = "";
+                realTimeTweets.setAnyOfTheseStrings([]);
+                localStorage.setItem("defaultSearchStrings", "");
             }
 
             // get default string from array
             function restoreAnyOfTheseStringsDefault() {
-                domAnyOfTheseStrings.value = realTimeTweets.anyOfTheseStringsDefault.toString();
+                console.log(" hey hoi");
+                domAnyOfTheseStrings.value = realTimeTweets.getAnyOfTheseStringsDefault().toString();
+                realTimeTweets.setAnyOfTheseStrings(realTimeTweets.getAnyOfTheseStringsDefault());
+                localStorage.setItem("defaultSearchStrings", realTimeTweets.getAnyOfTheseStringsDefault().toString());
             }
 
             // first save default search strings to a backup array
-            realTimeTweets.anyOfTheseStringsDefault = domAnyOfTheseStrings.value.split(",");
+            realTimeTweets.setAnyOfTheseStringsDefault(domAnyOfTheseStrings.value.split(","));
+            console.log(realTimeTweets.getAnyOfTheseStringsDefault);
+
             // then save it to the working array 
             realTimeTweets.setAnyOfTheseStrings(domAnyOfTheseStrings.value.split(","));
 
+            // then save it to localStorage
+            // localStorage.setItem("defaultSearchStrings", domAnyOfTheseStrings.value);
+
+            // localStorage.getItem("defaultSearchStrings") exists…
             if (localStorage.getItem("defaultSearchStrings") !== null) {
-                // then replace default string with what is in local storage, if there is any
-                domAnyOfTheseStrings.value = localStorage.getItem("defaultSearchStrings");
-                // and pass it to the working array
-                console.log('and pass it to the working array: ');
-                realTimeTweets.setAnyOfTheseStrings(localStorage.getItem("defaultSearchStrings").split(","));
+                // …it can be an empty string…
+                if (localStorage.getItem("defaultSearchStrings") === "") {
+                    // then text area should also be empty:
+                    domAnyOfTheseStrings.value = "";
+                    // and working array should be empty:
+                    realTimeTweets.setAnyOfTheseStrings([]);
+                } else
+                // … or filled
+                {
+                    // then replace default string with what is in local storage, if there is any
+                    domAnyOfTheseStrings.value = localStorage.getItem("defaultSearchStrings");
+                    // and working array should be empty:
+                    realTimeTweets.setAnyOfTheseStrings(localStorage.getItem("defaultSearchStrings").split(","));
+                }
             }
 
             domAnyOfTheseStrings.addEventListener("input", function () {
-                var stringsInTextarea = this.value.split(",");
                 // save default search strings to array
-                realTimeTweets.setAnyOfTheseStrings(stringsInTextarea);
-                storeDefaultKeywordsInLocalStorage(stringsInTextarea);
+                realTimeTweets.setAnyOfTheseStrings(this.value.split(","));
+                localStorage.setItem("defaultSearchStrings", this.value);
             }, false);
 
             domRestoreAnyOfTheseStringsDefault.addEventListener("click", restoreAnyOfTheseStringsDefault, false);
