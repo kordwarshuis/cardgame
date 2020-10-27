@@ -24,10 +24,10 @@
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
                                 </button>
 
-                                <div class="form-check ml-0 m-0 " style="display: inline;">
+                                <!-- <div class="form-check ml-0 m-0 " style="display: inline;">
                                     <input type="checkbox" class="form-check-input mt-3" id="showAllTweets">
                                     <label style="color: #eee;" class="form-check-label align-middle inline" for="showAllTweets">all tweets</label>
-                                </div>
+                                </div> -->
                                 <button class="btn btn-sm btn-outline-light ml-3 clear-tweet-stream-button">Clear</button>
                                 <!-- <input style="max-width: 3em;" class="form-control filterTweets" id='filterTweets' type="text" value="Filter" /> -->
 
@@ -116,7 +116,7 @@ export default {
         // this.disableBodyScroll(".tweets-selected"); //mixin
         this.drawAttentionToTwitter();
         this.removeNewTweetsSign();
-        this.showAllTweets();
+        // this.showAllTweets();
         this.toggleSelectedTweetsPanel();
         this.clearTweetStream();
         this.clearSelectedTweets();
