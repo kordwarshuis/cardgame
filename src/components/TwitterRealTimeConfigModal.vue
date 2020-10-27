@@ -181,10 +181,8 @@ export default {
             var noneOfTheseWordsUsersChoice = document.querySelector("#noneOfTheseWordsUsersChoice");
 
             noneOfTheseWordsUsersChoice.addEventListener("input", function () {
-                var stringsInTextarea = this.value.split(",");
-                console.log('stringsInTextarea: ', stringsInTextarea);
-
-                realTimeTweets.setNoneOfTheseWordsUsersChoice(stringsInTextarea);
+                var a = this.value.split(",");
+                realTimeTweets.setNoneOfTheseWordsUsersChoice(a);
             }, false);
         },
         setOnlyVerifiedAccountsUsersChoice() {
