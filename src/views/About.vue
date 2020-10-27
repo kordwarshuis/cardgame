@@ -84,7 +84,7 @@
                         We've had many contributors to the answers in the cards. Thank you all. Special thanks to the experts in the reference list, other experts and volunteers:<br>Seb Walker, <a target="_blank" rel="noopener" href="https://twitter.com/SDWouters">@SDWouters</a> and last but not least our team members from 2018.
                     </p>
                     <h2>Privacy Statement</h2>
-                    <p>Everything you save is written to the localStorage of your computer and keeps on your computer.</p>
+                    <p>Everything you save is written to the localStorage of your computer and stays on your computer.</p>
                     <p>We use Google Analytics.</p>
                 </div>
             </div>
