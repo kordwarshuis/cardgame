@@ -53,7 +53,7 @@
 
     <!-- THE CARDS -->
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
-        <div class="mb-4 p-0" style="background: transparent;">
+        <div class="video-container mb-4 p-0" style="background: transparent;">
             <video class="" style="width: 100%;border-radius: 10px;" src="video/instructions.mp4" muted autoplay controls playsinline></video>
         </div>
 
@@ -381,4 +381,9 @@ h1 {
 div.cards.selection .category-all-shown-in-cards {
     display: inline;
 }
+
+.selection .video-container {
+    display: none;
+}
+
 </style>
