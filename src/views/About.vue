@@ -1,8 +1,11 @@
 <template>
 <div class="about pb-5">
     <div class="container ">
-        <h1 class="text-center pt-1">About</h1>
         <div class="row">
+            <div class="col-md-12">
+                <video class="mb-4 mt-4" style="width: 100%;border-radius: 10px;" src="video/instructions.mp4" muted autoplay controls playsinline></video>
+                <h1 class="text-center pt-1">About</h1>
+            </div>
             <div class="col-md-6">
                 <div class="card p-3 ">
                     <h2>Blockchain Bird</h2>
