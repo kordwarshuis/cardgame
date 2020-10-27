@@ -83,14 +83,14 @@ export var getJSON = (function () {
 
         fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         fetchTweetsLoop2 = setInterval(function () {
-            console.log('fetchTweetsLoop2: ', fetchTweetsLoop2);
+            console.log('Fetch curated tweets');
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 58000);
 
 
         fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
         fetchTweetsLoop = setInterval(function () {
-            console.log('fetchTweetsLoop: ', fetchTweetsLoop);
+            console.log('Fetch new tweets');
             fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
         }, refreshInterval);
     }
