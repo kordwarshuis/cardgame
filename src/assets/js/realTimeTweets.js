@@ -144,7 +144,6 @@ export var realTimeTweets = (function () {
             noneOfTheseWords = arrayUnique(noneOfTheseWords.concat(noneOfTheseWordsUsersChoice));
         }
 
-
         function loopThroughAllTweets(data) {
             // loop through all tweets:
             for (var i = 0; i < data.length; i++) {
@@ -263,20 +262,13 @@ export var realTimeTweets = (function () {
 
         loopThroughAllTweets(data);
 
-
-
-
-
-
-
-
         if (somethingFound) {
             if (localStorage.getItem("soundOn") === "true") alert.play();
             domMenuIcon.classList.add('new-tweets');
             // console.log('domTemp: ', domTemp);
             // console.log('domTempOld: ', domTempOld);
             if (domTempOld !== domTemp) {
-                var k = 1;
+                var k = 0;
 
                 tweets.insertAdjacentHTML("afterbegin", domTemp);
 
@@ -291,9 +283,11 @@ export var realTimeTweets = (function () {
                                 invisibleTweets[i].classList.remove("makeVisible");
                                 invisibleTweets[i].classList.remove("invisibleTweet");
                             }, 1000);
-
                         }, k);
+                        // k = Math.floor(k + ((10000 / invisibleTweets.length) -100  ));
                         k = k + 10;
+                        // console.log('invisibleTweets.length: ', invisibleTweets.length);
+                        // console.log('k: ', k);
                     }(i));
                 }
             }
@@ -336,13 +330,26 @@ export var realTimeTweets = (function () {
     function setAnyOfTheseStrings(a) {
         anyOfTheseStrings = a;
     }
+    function setAnyOfTheseStringsDefault(a) {
+        anyOfTheseStringsDefault = a;
+    }
+    function getAnyOfTheseStrings() {
+        return anyOfTheseStrings;
+    }
+    function getAnyOfTheseStringsDefault() {
+        return anyOfTheseStringsDefault;
+    }
+
+
 
     return {
         start: processTwitters,
         toggleAllTweets: toggleAllTweets,
         setFollowersNumber: setFollowersNumber,
         setAnyOfTheseStrings: setAnyOfTheseStrings,
-        anyOfTheseStringsDefault: anyOfTheseStringsDefault,
+        setAnyOfTheseStringsDefault: setAnyOfTheseStringsDefault,
+        getAnyOfTheseStrings: getAnyOfTheseStrings,
+        getAnyOfTheseStringsDefault: getAnyOfTheseStringsDefault,
         setNoneOfTheseWordsUsersChoice: setNoneOfTheseWordsUsersChoice,
         setOnlyVerifiedAccountsUsersChoice: setOnlyVerifiedAccountsUsersChoice
     };
