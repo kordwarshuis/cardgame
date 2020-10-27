@@ -21,12 +21,12 @@
 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 text-right">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle button-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Filter By
                 </button>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-categories">
+                <div style="z-index: 1021;" class="dropdown-menu dropdown-menu-right dropdown-menu-categories">
                     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
                         <!-- All = All categories at once -->
                         <li class="nav-item ">
@@ -43,7 +43,6 @@
                     </ul>
                 </div>
             </div>
-
         </div>
     </div>
 
