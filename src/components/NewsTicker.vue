@@ -56,6 +56,11 @@ export default {
     white-space: nowrap;
     margin: 0 1em;
 }
+.news-ticker p span{
+    background: linear-gradient(to right, #5C34A7, #2376D6);
+    color: #111;
+    padding: 0 2em;
+}
 
 .news-ticker img {
     vertical-align: baseline;
