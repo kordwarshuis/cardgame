@@ -1,6 +1,7 @@
 <template>
 <div id="app" class="container-fluid">
     <TwitterRealTimeConfigModal />
+    <TwitterRealTimeInfoModal />
     <MainMenu />
     <!-- <slideInMenu /> -->
     <twitterRealtime3 />
@@ -27,6 +28,7 @@ import publicPath from "../vue.config";
 // import slideInMenu from "@/components/slideInMenu.vue";
 import twitterRealtime3 from "@/components/twitterRealtime3.vue";
 import TwitterRealTimeConfigModal from "@/components/TwitterRealTimeConfigModal.vue";
+import TwitterRealTimeInfoModal from "@/components/TwitterRealTimeInfoModal.vue";
 import MainMenu from "@/components/MainMenu.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
@@ -38,6 +40,7 @@ import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 export default {
     components: {
         TwitterRealTimeConfigModal,
+        TwitterRealTimeInfoModal,
         MainMenu,
         // slideInMenu,
         twitterRealtime3,
@@ -568,6 +571,5 @@ footer {
         bottom: 0;
         left: 0;
     }
-
 }
 </style>
