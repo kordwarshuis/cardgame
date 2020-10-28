@@ -9,6 +9,7 @@ Here are the live versions of both cardsets:
 This app contains:
 * Card game with misconceptions
 * Realtime Twitter keyword monitor
+* the scores calculated for the game
 
 The monitor can be used to find misconceptions realtime.
 
@@ -25,13 +26,27 @@ The cardgame *does not pretend to be right in everything at all times*. Our obje
 
 
 ## For who is the cardgame
-Somebody who
+
+Our target group likes to observe discussions on social media from a distance. If they'd like to react and spread a balanced neutral message, then it would be without having to take responsibility there (“I think it's an interesting discussion" and "Here I offer some info from respected experts" 
+
+It's somebody who
 - is socially concerned
 - knows how to use social media
 - knows a bit about bitcoin
-- eager to spread the correct message (missionary urge)
+- neutral and eager to spread the correct message (neutral abritrary urge)
 
 Important to understand is that the cardgame is only secondairily meant for people who need to be trained about bitcoin and blockchain, those full of "misconceptions".
+
+## What do we offer?
+
+Fixed URLs to cards, questions, answers, related video, podcast, opinions of experts, and further reading.
+
+We provide the tools in order to individualize your responses with the fixed URLS in social media:
+1. Add your own tailor-made text
+2. Snippets selection
+3. Add pre-defined texts (neutral and for ease of use)
+4. Send fixed urls of cards and fixed catergories of cards
+
 
 ## Copyright & License
 
