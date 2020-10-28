@@ -20,7 +20,7 @@
     "howler": "^2.2.1",
     "interactjs": "^1.9.22",
     "jquery": "^3.5.1",
-    "moment": "^2.29.0",
+    "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.31",
     "pizzicato": "^0.6.4",
