@@ -5,6 +5,12 @@ import {
 } from "./twitterLinks";
 
 export var realTimeTweets = (function () {
+    // console showing messages to user
+    var konsole;
+    document.addEventListener("DOMContentLoaded", function (event) {
+        konsole = document.querySelector('.console .message');
+    });
+
     var stopNow = false;
     var isSpecialAccount = false;
     var specialAccountHTMLcode = "";
@@ -145,6 +151,8 @@ export var realTimeTweets = (function () {
         }
 
         function loopThroughAllTweets(data) {
+            konsole.innerHTML = data.length + ' incoming tweets';
+
             // loop through all tweets:
             for (var i = 0; i < data.length; i++) {
                 var onlyVerifiedAccountsUsersChoiceCriterium = false;
@@ -330,18 +338,19 @@ export var realTimeTweets = (function () {
     function setAnyOfTheseStrings(a) {
         anyOfTheseStrings = a;
     }
+
     function setAnyOfTheseStringsDefault(a) {
         anyOfTheseStringsDefault = a;
     }
+
     function getAnyOfTheseStrings() {
         return anyOfTheseStrings;
     }
+
     function getAnyOfTheseStringsDefault() {
         return anyOfTheseStringsDefault;
     }
-
-
-
+    
     return {
         start: processTwitters,
         toggleAllTweets: toggleAllTweets,
