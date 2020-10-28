@@ -2,17 +2,18 @@
 <div class="">
     <div class="">
         <VueFuse placeholder="Search" event-name="results" :list="this.$store.state.theJSON" :keys="['Prejudice', 'Prejudice Elaborate']" :defaultAll="false" class="searchBar border form-control m-0" />
-
     </div>
     <div class="search-results-container hideSearchResults">
-        <span style="font-size: 2em;position: absolute; right: 10px; top: 10px;">×</span>
-        <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Search Results</h1>
-        <div class="search-results" v-for="book in results" :key="book.Prejudice" @click="$store.commit('showCardIntroFromURL', book['Unique URL'])">
-            <router-link :to="'/card/' + book['Unique URL']">
-                <h2 style="cursor: pointer" class="w-1/4">{{ book.Prejudice }}</h2>
-                <p style="cursor: pointer" class="ml-4 w-3/4">{{ book['Prejudice Elaborate'] }}</p>
-            </router-link>
-            <!-- <hr> -->
+        <div>
+            <span style="font-size: 2em;position: absolute; right: 10px; top: 10px;cursor: pointer;">×</span>
+            <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Search Results</h1>
+            <div class="search-results" v-for="book in results" :key="book.Prejudice" @click="$store.commit('showCardIntroFromURL', book['Unique URL'])">
+                <router-link :to="'/card/' + book['Unique URL']">
+                    <h2 style="cursor: pointer" class="w-1/4">{{ book.Prejudice }}</h2>
+                    <p style="cursor: pointer" class="ml-4 w-3/4">{{ book['Prejudice Elaborate'] }}</p>
+                </router-link>
+                <!-- <hr> -->
+            </div>
         </div>
     </div>
 
@@ -24,9 +25,13 @@ import {
     language
 } from "@/assets/js/Language.js";
 import VueFuse from "vue-fuse";
+import {
+    disableBodyScrollMixin
+} from "./mixins/disableBodyScroll";
 
 export default {
     name: "Search",
+    mixins: [disableBodyScrollMixin],
     components: {
         VueFuse
     },
@@ -41,6 +46,7 @@ export default {
         });
         this.hideSearchResults();
         this.showSearchResults();
+        this.disableBodyScroll(".search-results-container"); //mixin
     },
     methods: {
         hideSearchResults() {
@@ -96,13 +102,21 @@ export default {
 
 .search-results-container {
     position: fixed;
-    top: $mainMenuHightWhenOpen;
+    top: 10em;
+    padding-bottom: 12em;
     left: 0;
     font-size: 1em;
     background: #222;
     overflow: scroll;
-    height: calc(100% - #{$mainMenuHightWhenOpen});
+    height: 100%;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .search-results-container {
+        top: 3em;
+    }
 }
 
 .search-results-container h2 {

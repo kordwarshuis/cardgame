@@ -371,7 +371,7 @@ export default {
                             if (keywordFound === true) {
 
                                 domTemp = "<div class='tweet " + specialAccountHTMLcode +
-                                    "inviesieble col-md-12'><div class='card mb-4 box-shadow'><div class='card-body'><div class='card-text'><img class='img-fluid float-left w-25 mr-3' src='" +
+                                    "invisibleTweet col-md-12'><div class='card mb-4 box-shadow'><div class='card-body'><div class='card-text'><img class='img-fluid float-left w-25 mr-3' src='" +
                                     data[i].user.profile_image_url_https + "' alt=''><p>Name: " + data[i].user.name + "<br>Verified: " +
                                     data[i].user.verified + "<br>Keyword: " + currentKeyword + "</p><p>" + twitterLinks(data[i].text) +
                                     "</p><p>Followers: " + data[i].user.followers_count +
@@ -401,7 +401,7 @@ export default {
                             var k = 1;
                             tweets.insertAdjacentHTML("afterbegin", domTemp);
 
-                            var invisibleTweets = document.querySelectorAll(".tweet.inviesieble");
+                            var invisibleTweets = document.querySelectorAll(".tweet.invisibleTweet");
                             // for (var i=0;i<invisibleTweets.length;i++) {
                             for (var i = invisibleTweets.length - 1; i > -1; i--) {
                                 // this is for give tweets a little fade in so you can see there is something new. “visible” is a reserved word in Bootstrap
@@ -410,7 +410,7 @@ export default {
                                         invisibleTweets[i].classList.add("makeVisible");
                                         setTimeout(function () {
                                             invisibleTweets[i].classList.remove("makeVisible");
-                                            invisibleTweets[i].classList.remove("inviesieble");
+                                            invisibleTweets[i].classList.remove("invisibleTweet");
                                         }, 1000);
 
                                     }, k);

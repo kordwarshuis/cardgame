@@ -17,16 +17,16 @@
                     {{this.$store.state.gameTitle2}}
                 </span>
             </h1>
-            <small class="mt-0">{{this.$store.state.gameSubTitle}}</small>
+            <p class="mt-0">{{this.$store.state.gameSubTitle}}</p>
 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 text-right">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle button-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Filter By
                 </button>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-categories">
+                <div style="z-index: 1021;" class="dropdown-menu dropdown-menu-right dropdown-menu-categories">
                     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
                         <!-- All = All categories at once -->
                         <li class="nav-item ">
@@ -37,13 +37,12 @@
                         <li class="nav-item" :class="category.name" v-for="category in $store.state.categories" :key="category.name">
                             <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category.name)" :data-category="category.name">
                                 {{ category.name }}
-                                <!-- ({{ category.numberOfItems }}) -->
+                                ({{ category.numberOfItems }})
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -54,12 +53,19 @@
 
     <!-- THE CARDS -->
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
+        <div class="video-container mb-4 p-0" style="background: transparent;">
+            <video class="" style="width: 100%;border-radius: 10px;" src="video/instructions.mp4" muted autoplay controls playsinline></video>
+        </div>
+
         <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
             <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
                 <h2 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h2>
             </a>
             <div class="card-footer" style="background: #1D2448; text-align: left;">
-                <h3 @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="text-align: left;display: inline-block;font-size: 0.7em; padding: 0.5em">{{ item.category }}</h3>
+                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em; margin: 0.5em 0 ;">{{ item.category }}</a>
+
+                <!-- Show all cards: -->
+                <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
             </div>
         </div>
     </div>
@@ -67,6 +73,7 @@
     <!-- <NewsTicker /> -->
     <!-- <SoundToggle /> -->
     <!-- </transition> -->
+
 </div>
 </template>
 
@@ -292,17 +299,18 @@ h1 {
 
 }
 
-
 .nav-item a {
     color: #eee;
 }
+
 .nav-item a.All {
+    background: #eee;
     color: #111;
 }
 
 .category.Architecture,
 .nav-item.Architecture a {
-    background: #148868 !important;
+    background: #148868;
 }
 
 .category.Crime,
@@ -364,4 +372,18 @@ h1 {
 .nav-item.Supply a {
     background: #063333;
 }
+
+// Show All button only if in selection
+.category-all-shown-in-cards {
+    display: none;
+}
+
+div.cards.selection .category-all-shown-in-cards {
+    display: inline;
+}
+
+.selection .video-container {
+    display: none;
+}
+
 </style>

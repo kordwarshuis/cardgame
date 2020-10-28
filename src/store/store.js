@@ -53,13 +53,15 @@ export default new Vuex.Store({
     hideModal(state) {
       //TODO: is this the way to change a store value? Seems not.
       this.state.cssClassCardFullState = "";
+
       if (localStorage.getItem("soundOn") === "true") whoosh2.play();
+
       // document.querySelector(".videoWrapper").innerHTML = "";
       // console.log('document.querySelector(".videoWrapper"): ', document.querySelector(".youtube"));
 
       //TODO: to stop video playing and avoind that scroll position is not top. Doesnt work
       // document.querySelector(".modal-content .videoWrapper").innerHTML = "";
-      if (youtubePlayer.stopVideo) youtubePlayer.stopVideo();
+      if (youtubePlayer) youtubePlayer.stopVideo();
     },
     changeCard(state, newCard) {
       state.currentCard = newCard;
@@ -81,13 +83,19 @@ export default new Vuex.Store({
     },
     showItemsInSelectedCategory(state, categoryName) {
       var allCardsInChosenCategory = [];
-      if (localStorage.getItem("soundOn") === "true") whoosh2.play();
+
+      // gives error, why?
+      // if (localStorage.getItem("soundOn") === "true") whoosh2.play();
 
       // set active category name (TODO: refactor so undefined check is not necesary. Instead the string “All” should be set on the first <a>)
       if (categoryName === undefined) {
         this.state.activeCategory = "All";
+
+        // After clicking on a category in a card, a subselection shows. To go back, click on ‘All’. This is only visible when selection is active. This is achieved via CSS. 
+        document.querySelector('.cards').classList.remove('selection');
       } else {
         this.state.activeCategory = categoryName;
+        document.querySelector('.cards').classList.add('selection');
       }
 
       // first make the selected menu item stand out:
@@ -99,7 +107,7 @@ export default new Vuex.Store({
           "prejudice": b.Prejudice,
           "category": b.Cat,
           "prejudiceElaborate": b["Prejudice Elaborate"],
-          "Youtube Video Id":  b["Youtube Video Id"]
+          "Youtube Video Id": b["Youtube Video Id"]
           // ,
           // "numberOfItems": 
         });
@@ -107,14 +115,16 @@ export default new Vuex.Store({
 
       // category === undefined runs when function is called without argument, which happens on the ajax callback. Should be the first, and not after the "||"
       // here we create the info for the cards per category page
-      if (categoryName === undefined) {
-        for (let i = 0; i < this.state.theJSON.length; i++) {
-          makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
-        }
-      } else {
-        for (let i = 0; i < this.state.theJSON.length; i++) {
-          if (this.state.theJSON[i].Cat === categoryName) {
+      if (this.state.theJSON) {
+        if (categoryName === undefined) {
+          for (let i = 0; i < this.state.theJSON.length; i++) {
             makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
+          }
+        } else {
+          for (let i = 0; i < this.state.theJSON.length; i++) {
+            if (this.state.theJSON[i].Cat === categoryName) {
+              makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
+            }
           }
         }
       }

@@ -1,15 +1,16 @@
 <template>
-<nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2 ">
-    <router-link class="navbar-brand" to="/"><img src="@/assets/img/logo/blockchainbird-logo.png" alt=""></router-link>
+<nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2">
+    <!-- https://dev.to/yossiabramov/the-native-event-modifier-in-vue-js-bpb -->
+    <router-link @click.native="$store.commit('showItemsInSelectedCategory')" class="navbar-brand" to="/"><img src="@/assets/img/logo/blockchainbird-logo.png" alt=""></router-link>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="nav justify-content-center">
+    <div class="collapse navbar-collapse " id="navbarNav">
+        <ul class="nav justify-content-center ">
             <li class="nav-item">
                 <!-- https://stackoverflow.com/a/42401686 -->
-                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/">Cards</router-link>
+                <router-link @click.native="$store.commit('showItemsInSelectedCategory')" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/">Cards</router-link>
             </li>
             <li class="nav-item">
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about">About</router-link>
@@ -61,7 +62,7 @@ export default {
     padding-bottom: 2em;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
 
-    li.nav-item  {
+    li.nav-item {
         border-right: red !important;
     }
 
@@ -79,7 +80,6 @@ export default {
     }
 
 }
-
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {

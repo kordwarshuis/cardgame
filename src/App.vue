@@ -1,19 +1,25 @@
 <template>
-<!-- <div id="app" class="container-fluid"> -->
 <div id="app" class="container-fluid">
     <TwitterRealTimeConfigModal />
+    <TwitterRealTimeInfoModal />
     <MainMenu />
     <!-- <slideInMenu /> -->
     <twitterRealtime3 />
     <!-- <CryptoRadio /> -->
     <router-view />
-    <!-- <NewsTicker /> -->
     <Person1 />
     <Person2 />
     <!-- <Person3 /> -->
     <!-- <TwitterRealTime2 /> -->
 
-    <Toasts :time-out="2000"></Toasts>
+    <Toasts :show-progress="false" :time-out="2500"></Toasts>
+
+    <footer class="footer mt-auto py-2">
+        <div class="container-fluid text-center">
+            <small><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/cc_icon_white_x2.png" alt="Two C's next to each other"><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/attribution_icon_white_x2.png" alt="A symbol of a person">Except where otherwise noted, content on this site is licensed under a <a target="_blank" rel="noopener" class="light" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</small>
+        </div>
+    </footer>
+    <NewsTicker />
 </div>
 </template>
 
@@ -22,22 +28,24 @@ import publicPath from "../vue.config";
 // import slideInMenu from "@/components/slideInMenu.vue";
 import twitterRealtime3 from "@/components/twitterRealtime3.vue";
 import TwitterRealTimeConfigModal from "@/components/TwitterRealTimeConfigModal.vue";
+import TwitterRealTimeInfoModal from "@/components/TwitterRealTimeInfoModal.vue";
 import MainMenu from "@/components/MainMenu.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
 // import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
 // import * as Hammer from "hammerjs";
-// import NewsTicker from "@/components/NewsTicker.vue";
+import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 
 export default {
     components: {
         TwitterRealTimeConfigModal,
+        TwitterRealTimeInfoModal,
         MainMenu,
         // slideInMenu,
         twitterRealtime3,
         // CryptoRadio,
-        // NewsTicker,
+        NewsTicker,
         // Hammer,
         Person1,
         Person2
@@ -212,6 +220,11 @@ export default {
     font-style: normal;
 }
 
+html {
+    // https://css-tricks.com/almanac/properties/s/scroll-behavior/
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: poppinsregular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 0.9rem;
@@ -271,6 +284,11 @@ a {
     text-decoration: none;
     color: $generalLinksText;
     outline: none;
+}
+
+a.light {
+    color: #ccc;
+    text-decoration: underline;
 }
 
 a:hover,
@@ -462,11 +480,18 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .toast-container {
-    color: #111;
+    max-width: 100%;
+    min-width: 250px !important;
 }
 
-.toast {
+.toast-container>div>div {
+    color: #111;
     background-color: #eee;
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+}
+// the information icon is confusing since it is not clickable
+.toast-icon {
+    background-image: none !important;
 }
 
 // realtime tweets
@@ -474,7 +499,20 @@ a.overlay__close:not(.overlay__close-cross):hover,
     border-radius: 10px;
 }
 
-.select-tweet,
+// this is for give tweets a little fade in so you can see there is something new. “visible” is a reserved word in Bootstrap
+.tweet.invisibleTweet {
+    opacity: 0;
+    display: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.tweet.invisibleTweet.makeVisible {
+    display: block;
+    opacity: 1 !important;
+    transition: opacity 0.2s ease-in-out;
+}
+
+// .select-tweet,
 .go-to-tweet {
     background: linear-gradient(to right, #5C34A7, #2376D6);
 }
@@ -491,7 +529,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
     display: none;
 }
 
-.tweet.curated .card {
+.card.curated {
     background-color: rgb(250, 239, 202) !important;
 }
 
@@ -502,12 +540,36 @@ a.overlay__close:not(.overlay__close-cross):hover,
 
 }
 
-// .tweet.curated .card:after {
-//     content: "★";
-//     color: red;
-//     font-size: 3em;
-//     position: absolute;
-//     right: -0.5em;
-//     top: -0.5em;
-// }
+footer {
+    background: #191F3A;
+    width: 100%;
+    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+}
+
+.tweet small {
+    font-size: 1.1em;
+
+}
+
+.curated-tweet-text small {
+    background: rgb(247, 229, 130);
+}
+
+.hideSearchResult {
+    margin: 0 !important;
+    display: none !important;
+    visibility: hidden;
+    height: 0;
+    line-height: 0;
+    padding: 0;
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+}
 </style>

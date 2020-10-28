@@ -10,6 +10,7 @@
 
 <script>
 // @ is an alias to /src
+import store from "../store/store";
 import axios from "axios";
 import * as d3 from "d3-dsv";
 import Cards from "@/components/Cards.vue";
@@ -52,10 +53,14 @@ export default {
     },
     mounted: function () {
         this.fetchData();
+        this.undoCategorySelection();
     },
 
     // https://stackoverflow.com/a/44347195
     methods: {
+        undoCategorySelection() {
+            this.$store.commit('showItemsInSelectedCategory');
+        },
         fetchData() {
             // only fetch data
             if (this.$store.state.dataFetched === false) {
