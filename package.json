@@ -30,7 +30,7 @@
     "vue-bootstrap-toasts": "^1.0.7",
     "vue-countup-v2": "^4.0.0",
     "vue-fuse": "^2.2.1",
-    "vue-gtag": "^1.9.1",
+    "vue-gtag": "^1.10.0",
     "vue-linkify": "^1.0.1",
     "vue-router": "^3.4.8",
     "vuex": "^3.5.1"
