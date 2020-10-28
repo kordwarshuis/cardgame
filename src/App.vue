@@ -486,6 +486,10 @@ a.overlay__close:not(.overlay__close-cross):hover,
     background-color: #eee;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
 }
+// the information icon is confusing since it is not clickable
+.toast-icon {
+    background-image: none !important;
+}
 
 // realtime tweets
 .card {
