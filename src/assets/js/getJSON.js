@@ -10,6 +10,12 @@ export var getJSON = (function () {
     var fetchTweetsLoop;
     var fetchTweetsLoop2;
 
+    // console showing messages to user
+    var konsole;
+    document.addEventListener("DOMContentLoaded", function (event) {
+        konsole = document.querySelector('.console .message');
+    });
+
     function start(source) {
         console.log("start");
         store.commit("showToast", "Tweet stream is running.");
@@ -77,6 +83,7 @@ export var getJSON = (function () {
                 .catch(error => {
                     connectionSymbol.classList.add('disconnected');
                     console.log('error: ', error);
+                    konsole.innerHTML = 'No tweets or invalid data.';
                     // handle the error
                 });
         }
@@ -84,13 +91,15 @@ export var getJSON = (function () {
         fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         fetchTweetsLoop2 = setInterval(function () {
             console.log('Fetch curated tweets');
+            konsole.innerHTML = 'Fetch handpicked tweets.';
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 58000);
 
 
         fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
         fetchTweetsLoop = setInterval(function () {
-            console.log('Fetch new tweets');
+            console.log('Fetch new tweets.');
+            konsole.innerHTML = 'Fetch new tweets.'
             fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
         }, refreshInterval);
     }
