@@ -18,20 +18,32 @@
                             </div>
 
                             <div class="col-md-12 m-0 p-0 ">
+
+                                <!-- START STOP -->
                                 <TwitterRealTimeStartStopToggle class="align-middle inline mr-2" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
 
+                                <!-- CONFIGURATION -->
                                 <button type="button" class="tweet-stream-configuration btn btn-outline-dark align-middle inline ml-2" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
                                     <span class="visuallyhidden">Tweetstream configuration</span>
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
                                 </button>
 
+                                <!-- ALL TWEETS -->
                                 <!-- <div class="form-check ml-0 m-0 " style="display: inline;">
                                     <input type="checkbox" class="form-check-input mt-3" id="showAllTweets">
                                     <label style="color: #eee;" class="form-check-label align-middle inline" for="showAllTweets">all tweets</label>
                                 </div> -->
-                                <button class="btn btn-sm btn-outline-light ml-3 clear-tweet-stream-button">Clear</button>
-                                <!-- <input style="max-width: 3em;" class="form-control filterTweets" id='filterTweets' type="text" value="Filter" /> -->
 
+                                <!-- CLEAR -->
+                                <button class="btn btn-sm btn-outline-light ml-2 clear-tweet-stream-button">Clear</button>
+
+                                <!-- INFO -->
+                                <button type="button" class="tweet-stream-info btn btn-outline-dark align-middle inline ml-2" style="border: none;" data-toggle="modal" data-target="#tweetStreamInfoModal">
+                                    <span class="visuallyhidden">Tweetstream info</span>
+                                    <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
+                                </button>
+
+                                <!-- FILTER TWEETS -->
                                 <div class="input-group input-group-sm mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Filter tweets</span>
@@ -129,9 +141,9 @@ export default {
     methods: {
         clock() {
             var clock = document.querySelector('.console .timestamp');
-            
-            setInterval(function() {
-                clock.innerHTML = moment().format('h:mm:ss');    
+
+            setInterval(function () {
+                clock.innerHTML = moment().format('h:mm:ss');
             }, 1000);
         },
         getBookmarkedTweetsFromLocalStorage() {
