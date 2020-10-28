@@ -13,7 +13,8 @@
                     <nav class="navbar navbar-expand-md sticky-top p-0 " style="background: #1FA1F2;">
                         <div class="row m-0 p-0" style="width: 100%;">
                             <div class="col-md-12 m-0 p-0 mr-2 mt-1">
-                                <h2 class="header-tweets-realtime " style="display: inline;">Realtime</h2>
+                                <div style="font-family: courier; font-weight: bold;font-size: 1.3em; color: #eee;" class="console"><span class="timestamp">-</span>: <span class="message">-</span></div>
+                                <!-- <h2 class="header-tweets-realtime " style="display: inline;">Realtime</h2> -->
                             </div>
 
                             <div class="col-md-12 m-0 p-0 ">
@@ -97,6 +98,7 @@ import {
 import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
+import moment from "moment";
 
 export default {
     name: "twitterRealtime3",
@@ -122,8 +124,16 @@ export default {
         this.clearSelectedTweets();
         this.filterTweets();
         this.getBookmarkedTweetsFromLocalStorage();
+        this.clock();
     },
     methods: {
+        clock() {
+            var clock = document.querySelector('.console .timestamp');
+            
+            setInterval(function() {
+                clock.innerHTML = moment().format('h:mm:ss');    
+            }, 1000);
+        },
         getBookmarkedTweetsFromLocalStorage() {
             var selectedTweets = document.querySelector('.tweets-selected .tweets');
             var val;
