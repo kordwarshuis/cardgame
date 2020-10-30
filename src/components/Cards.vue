@@ -54,11 +54,11 @@
     <!-- THE CARDS -->
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
         <div class="video-container mb-4 p-0" style="background: transparent;">
-            <video class="" style="width: 100%;border-radius: 10px;" src="video/instructions.mp4" muted autoplay controls playsinline></video>
+            <video class="" style="width: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
         </div>
 
         <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
-            <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
+            <a :data-id="item['id']" :key="item.prejudice" @click="showCardIntro" class="p-2">
                 <h2 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h2>
             </a>
             <div class="card-footer" style="background: #1D2448; text-align: left;">
@@ -83,6 +83,7 @@
 import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
 // import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
+import publicPath from "../../vue.config";
 
 export default {
     name: "Index",
