@@ -29,7 +29,6 @@ export default {
                 setTimeout(function () {
                     document.querySelector("body").classList.remove("person1");
                 }, 4000);
-                console.log(publicPath.publicPath);
 
             } else {
                 // wrong answer chosen
