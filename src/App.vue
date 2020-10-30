@@ -484,6 +484,10 @@ a.overlay__close:not(.overlay__close-cross):hover,
     min-width: 250px !important;
 }
 
+.toast-header {
+    background: linear-gradient(to right, #5C34A7, #2376D6);
+}
+
 .toast-container>div>div {
     color: #111;
     background-color: #eee;
