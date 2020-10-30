@@ -12,16 +12,27 @@
 
                 <!-- <button class="copyURLtoClipboard copyURLtoClipboard1" title="Copy Link">Copy Link</button> -->
 
+                <!-- <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['short direct answer']">
+
+                    <h3 class="longAnswer">Short Answer</h3>
+                    <p  v-for="item in this.$store.state.currentCard['short direct answer']" v-bind:key="item">{{ item }}</p>
+                </div> -->
+
+                <div class=" border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['short direct answer']">
+                    <h3>In short</h3>
+                    <p class="text" style="">{{ this.$store.state.currentCard["short direct answer"] }}</p>
+                </div>
+
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['long answer+facts']">
 
-                    <h3 class="longAnswer">Answer</h3>
+                    <h3 class="longAnswer">Longer Answer</h3>
                     <p v-linkified v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
 
                     <h3 class="diagram">Diagram</h3>
-                    <p>{{this.$store.state.currentCard["Diagram Description"]}}</p>
+                    <p v-linkified:options="{ className: 'linkified' }">{{this.$store.state.currentCard["Diagram Description"]}}</p>
 
                     <div class="ct-chart ct-golden-section " style=" max-width: 50em;margin: auto !important; ">
                     </div>
