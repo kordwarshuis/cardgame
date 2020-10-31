@@ -1,49 +1,77 @@
 <template>
+<!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
-    <div class="">
-        <VueFuse placeholder="Search" event-name="results" :list="this.$store.state.theJSON" :keys="['Prejudice', 'Prejudice Elaborate']" :defaultAll="false" class="searchBar border form-control m-0" />
+    <div class="input-group ml-3 align-center" style="width: 80% !important;">
+        <input v-model="search" class="searchBar  border form-control" />
     </div>
+
     <div class="search-results-container hideSearchResults">
         <div>
             <span style="font-size: 2em;position: absolute; right: 10px; top: 10px;cursor: pointer;">×</span>
             <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Search Results</h1>
-            <div class="search-results" v-for="book in results" :key="book.Prejudice" @click="$store.commit('showCardIntroFromURL', book['Unique URL'])">
-                <router-link :to="'/card/' + book['Unique URL']">
-                    <h2 style="cursor: pointer" class="w-1/4">{{ book.Prejudice }}</h2>
-                    <p style="cursor: pointer" class="ml-4 w-3/4">{{ book['Prejudice Elaborate'] }}</p>
+
+            <div class="search-results" v-for="card in filteredList" :key="card.Prejudice" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
+                <router-link :to="'/card/' + card['Unique URL']">
+                    <h2 style="cursor: pointer" class="w-1/4">{{ card.Prejudice }}</h2>
+                    <p style="cursor: pointer" class="ml-4 w-3/4">{{ card['Prejudice Elaborate'] }}</p>
                 </router-link>
-                <!-- <hr> -->
             </div>
         </div>
     </div>
-
 </div>
 </template>
 
 <script>
+import store from "../store/store";
 import {
     language
 } from "@/assets/js/Language.js";
-import VueFuse from "vue-fuse";
 import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
 
 export default {
-    name: "Search",
+    name: "Search2",
     mixins: [disableBodyScrollMixin],
-    components: {
-        VueFuse
-    },
+    components: {},
     data() {
         return {
-            results: []
+            search: '',
+            cards: []
+        }
+    },
+    computed: {
+        getCards: function () {
+            return this.$store.state.theJSON;
+        },
+        filteredList() {
+            var allKeys = [];
+
+            for (var k in this.cards[0]) {
+                if (this.cards[0].hasOwnProperty(k)) {
+                    // console.log("Key is " + k + ", value is: " + this.cards[0][k]);
+                    allKeys.push(k);
+                }
+            }
+
+            return this.cards.filter(card => {
+                var results = false;
+                    for (let i = 0; i < allKeys.length; i++) {
+                        // NOTE: the search is done in almost all columns, except the ones where there is created an array out of strings separated by commas
+                        if (typeof card[allKeys[i]] === "string" && card[allKeys[i]].toLowerCase().includes(this.search.toLowerCase()) === true) {
+                            results = true;
+                        }
+                    }
+                return results;
+            })
+        }
+    },
+    watch: {
+        getCards(newValue, oldValue) {
+            this.cards = newValue;
         }
     },
     mounted: function () {
-        this.$on('results', results => {
-            this.results = results
-        });
         this.hideSearchResults();
         this.showSearchResults();
         this.disableBodyScroll(".search-results-container"); //mixin
@@ -58,7 +86,7 @@ export default {
             }, false);
         },
         showSearchResults() {
-            document.querySelector('.searchBar').addEventListener('input', function () {
+            document.querySelector('.searchBar').addEventListener('keydown', function () {
                 document.querySelector(".search-results-container").classList.remove('hideSearchResults');
                 document.querySelector(".search-results-container h1").classList.remove('hideSearchResults');
             }, false);
@@ -82,9 +110,9 @@ export default {
 @media (min-width: 768px) {
     .searchBar {
         background: #393E4D;
-        height: 1.5em;
-        width: 8em;
-        margin-left: 1.5em !important;
+        // height: 1.5em;
+        // width: 8em;
+        // margin-left: 1.5em !important;
     }
 }
 
