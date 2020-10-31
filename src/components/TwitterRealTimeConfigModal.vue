@@ -141,7 +141,6 @@ export default {
 
             // first save default search strings to a backup array
             realTimeTweets.setAnyOfTheseStringsDefault(domAnyOfTheseStrings.value.split(","));
-            console.log(realTimeTweets.getAnyOfTheseStringsDefault);
 
             // then save it to the working array 
             realTimeTweets.setAnyOfTheseStrings(domAnyOfTheseStrings.value.split(","));
