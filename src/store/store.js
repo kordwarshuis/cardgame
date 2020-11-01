@@ -26,6 +26,7 @@ export default new Vuex.Store({
       format: function (value, type) {
         var longerThan = 20;
         if (type === 'url' && value.length > longerThan) {
+          // https://stackoverflow.com/a/41942787
           value = value.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0];
           value = value.slice(0, longerThan) + '…';
         }
