@@ -1,16 +1,16 @@
 <template>
 <!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
-    <div class="input-group ml-3 align-center" style="width: 80% !important;">
+    <div class="input-group ml-3 align-center" style="width: 10em !important;">
         <input v-model="search" class="searchBar  border form-control" />
     </div>
 
     <div class="search-results-container hideSearchResults">
         <div>
             <span style="font-size: 2em;position: absolute; right: 10px; top: 10px;cursor: pointer;">×</span>
-            <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Search Results</h1>
+            <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Everything about “{{search}}”</h1>
 
-            <div class="search-results" v-for="card in filteredList" :key="card.Prejudice" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
+            <div class="search-results" v-for="card in computedFilteredList" :key="card.Prejudice" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
                 <router-link :to="'/card/' + card['Unique URL']">
                     <h2 style="cursor: pointer" class="w-1/4">{{ card.Prejudice }}</h2>
                     <p style="cursor: pointer" class="ml-4 w-3/4">{{ card['Prejudice Elaborate'] }}</p>
@@ -31,7 +31,7 @@ import {
 } from "./mixins/disableBodyScroll";
 
 export default {
-    name: "Search2",
+    name: "Search",
     mixins: [disableBodyScrollMixin],
     components: {},
     data() {
@@ -44,27 +44,9 @@ export default {
         getCards: function () {
             return this.$store.state.theJSON;
         },
-        filteredList() {
-            var allKeys = [];
-
-            for (var k in this.cards[0]) {
-                if (this.cards[0].hasOwnProperty(k)) {
-                    // console.log("Key is " + k + ", value is: " + this.cards[0][k]);
-                    allKeys.push(k);
-                }
-            }
-
-            return this.cards.filter(card => {
-                var results = false;
-                    for (let i = 0; i < allKeys.length; i++) {
-                        // NOTE: the search is done in almost all columns, except the ones where there is created an array out of strings separated by commas
-                        if (typeof card[allKeys[i]] === "string" && card[allKeys[i]].toLowerCase().includes(this.search.toLowerCase()) === true) {
-                            results = true;
-                        }
-                    }
-                return results;
-            })
-        }
+        computedFilteredList: function () {
+            return this.filteredList();
+        },
     },
     watch: {
         getCards(newValue, oldValue) {
@@ -73,10 +55,83 @@ export default {
     },
     mounted: function () {
         this.hideSearchResults();
-        this.showSearchResults();
+        this.showSearchResultsEvents();
         this.disableBodyScroll(".search-results-container"); //mixin
+        this.processQueryParams();
     },
     methods: {
+        filteredList() {
+            var allKeys = [];
+
+            // create array with all columns
+            for (var k in this.cards[0]) {
+                if (this.cards[0].hasOwnProperty(k)) {
+                    allKeys.push(k);
+                }
+            }
+
+            // this updates the URL with what is entered in search field
+            // this runs onload, and router should only push when search is not empty, to avoid a redirect to /search
+            console.log('this.search: ', this.search);
+            // this.search !== undefined
+            if (this.search !== undefined) {
+                if (this.search !== "") {
+                    this.$router.push({
+                        // path: '/',
+                        query: {
+                            search: this.search.toLowerCase()
+                        }
+                    }).catch(err => {}) //https://stackoverflow.com/a/58747480
+                }
+            }
+
+            return this.cards.filter(card => {
+                var results = false;
+
+                // go through all columns, Prejudice, Prejudice Elaborate, Short Answer etc
+                for (let i = 0; i < allKeys.length; i++) {
+                    if (this.search !== undefined) {
+                        if (typeof card[allKeys[i]] === "string") {
+
+                            // NOTE: the search is done in almost all columns, except the ones where there is created an array out of strings separated by commas
+                            if (card[allKeys[i]].toLowerCase().includes(this.search.toLowerCase()) === true) {
+                                // if a match is found, then this entry should be shown
+                                results = true;
+                            }
+                        }
+                    }
+                }
+                return results;
+            })
+        },
+        processQueryParams() {
+            // https://stackoverflow.com/a/21903119
+            var getUrlParameter = function getUrlParameter(sParam) {
+                var sPageURL = window.location.search.substring(1),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                    }
+                }
+            };
+
+            // console.log('getUrlParameter(search): ', getUrlParameter('search'));
+            // document.querySelector('.searchBar').value = getUrlParameter('search');
+            this.search = getUrlParameter('search');
+            console.log('this.search: ', this.search);
+
+            if (this.search !== undefined) {
+                this.filteredList();
+                document.querySelector('.navbar-toggler').click();
+                this.showSearchResults();
+            }
+        },
         hideSearchResults() {
             document.querySelector(".search-results-container").addEventListener("click", function () {
                 this.classList.add('hideSearchResults');
@@ -86,10 +141,12 @@ export default {
             }, false);
         },
         showSearchResults() {
-            document.querySelector('.searchBar').addEventListener('keydown', function () {
-                document.querySelector(".search-results-container").classList.remove('hideSearchResults');
-                document.querySelector(".search-results-container h1").classList.remove('hideSearchResults');
-            }, false);
+            document.querySelector(".search-results-container").classList.remove('hideSearchResults');
+            document.querySelector(".search-results-container h1").classList.remove('hideSearchResults');
+        },
+        showSearchResultsEvents() {
+            document.querySelector('.searchBar').addEventListener('keydown', this.showSearchResults, false);
+            document.querySelector('.searchBar').addEventListener('change', this.showSearchResults, false);
         }
     }
 };
