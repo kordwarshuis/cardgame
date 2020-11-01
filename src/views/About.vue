@@ -50,7 +50,7 @@
 
                     <p>See <a target="_blank" rel="noopener" href="https://github.com/blockchainbird/cardgame">Github repo</a>.</p>
                     <p>
-                        <strong>What is is for?</strong> Education and self conviction.
+                        <strong>What is it for?</strong> Education and self conviction.
                     </p>
                     <p><strong>What can you do with the tool?</strong><br>
                         You can copy and paste the URL of a card, or simply click on the social media icon to respond to people on various social media platforms, to educate them. Furthermore you could also use the tool to learn more about Bitcoin yourself.</p>
