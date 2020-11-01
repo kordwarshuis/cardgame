@@ -32,7 +32,7 @@ export var realTimeTweets = (function () {
     var currentKeyword = "";
 
     var tweetNumber = 0;
-    var curatedTweetText = "";
+    var tweetTypeText = "";
     var status = document.querySelector("#status span");
     var lastDataSet;
 
@@ -162,10 +162,10 @@ export var realTimeTweets = (function () {
 
                 if (data[i].curatedTweet === true) {
                     curatedClass = " curated ";
-                    curatedTweetText = "<div class='col-12 mb-2 curated-tweet-text text-center'><small class='m-0'>~~Handpicked~~</small></div>";
+                    tweetTypeText = "<div class='col-12 mb-2 curated-tweet-text text-center'><small class='m-0'>~~Handpicked~~</small></div>";
                 } else {
                     curatedClass = "";
-                    curatedTweetText = "";
+                    tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>~~Real Time~~</small></div>";
                 }
 
                 if (data[i].user.followers_count >= numberOfFollowers) {
@@ -223,7 +223,7 @@ export var realTimeTweets = (function () {
                         "<div class='card mb-3 tweet invisibleTweet " + curatedClass + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
-                        curatedTweetText +
+                        tweetTypeText +
                         //IMAGE
                         "<div class='col-auto' >" +
                         "<img class='img-thumbnail float-left' src='" + data[i].user.profile_image_url_https + "' alt=''></img>" +
