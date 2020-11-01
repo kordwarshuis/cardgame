@@ -734,6 +734,11 @@ footer {
 .curated-tweet-text small {
     background: rgb(247, 229, 130);
 }
+.realtime-tweet-text small {
+    background: rgb(247, 229, 130);
+}
+
+
 
 .hideSearchResult {
     margin: 0 !important;
