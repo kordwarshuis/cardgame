@@ -568,6 +568,21 @@ footer {
     padding: 0;
 }
 
+.search-results > a {
+    text-decoration: none;
+}
+
+.search-results-container em {
+    background: rgba(240, 224, 131, 0.904);
+    // border: 3px dashed #eee;
+    color: #222;
+    font-style: normal;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    border-radius: 10px;
+
+}
+
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     footer {
