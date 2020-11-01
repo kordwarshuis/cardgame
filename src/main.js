@@ -30,26 +30,17 @@ Vue.directive('linkified', linkify);
 // Vue.use(animated);
 // Vue.use(interact);
 
-
-// Vue.use(VueAnalytics, {
-//   id: "+ process.env.VUE_APP_GOOGLE_ANALYTICS_ID +",
-//   router
-// });
-
-// Vue.use(VueGtag, {
-//   config: { id: "+ process.env.VUE_APP_GOOGLE_ANALYTICS_ID +" }
-// }, router);
-
+// appName: "Card game",
+// 
 Vue.use(VueGtag, {
   config: {
-    id: "+ process.env.VUE_APP_GOOGLE_ANALYTICS_ID +"
+    id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID
   },
-  // pageTrackerScreenviewEnabled: true,
-  // appName: "Card game",
+  pageTrackerScreenviewEnabled: true,
   pageTrackerTemplate(to) {
     return {
-      page_title: window.location.pathname
-      // page_path: to.path
+      page_title: window.location.pathname,
+      page_path: window.location.pathname
     }
   }
 }, router);
