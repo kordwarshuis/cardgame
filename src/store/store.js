@@ -20,7 +20,18 @@ export default new Vuex.Store({
     allCardsInChosenCategory: [],
     allPickedCards: [],
     dataFetched: false,
-    topScorer: ""
+    topScorer: "",
+    linkifyOptions: {
+      className: 'linkified',
+      format: function (value, type) {
+        var longerThan = 20;
+        if (type === 'url' && value.length > longerThan) {
+          value = value.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0];
+          value = value.slice(0, longerThan) + '…';
+        }
+        return value;
+      }
+    }
   },
   getters: {
     getCard: (state) => (id) => {
