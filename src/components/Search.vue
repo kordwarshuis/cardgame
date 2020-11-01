@@ -14,6 +14,7 @@
                 <router-link :to="'/card/' + card['Unique URL']">
                     <h2 style="cursor: pointer" class="w-1/4">{{ card.Prejudice }}</h2>
                     <p style="cursor: pointer" class="ml-4 w-3/4">{{ card['Prejudice Elaborate'] }}</p>
+                    <p v-html="card.searchResultSnippet">{{card.searchResultSnippet}}</p>
                 </router-link>
             </div>
         </div>
@@ -37,7 +38,8 @@ export default {
     data() {
         return {
             search: '',
-            cards: []
+            cards: [],
+            searchResultSnippet: ""
         }
     },
     computed: {
@@ -72,8 +74,6 @@ export default {
 
             // this updates the URL with what is entered in search field
             // this runs onload, and router should only push when search is not empty, to avoid a redirect to /search
-            console.log('this.search: ', this.search);
-            // this.search !== undefined
             if (this.search !== undefined) {
                 if (this.search !== "") {
                     this.$router.push({
@@ -92,10 +92,16 @@ export default {
                 for (let i = 0; i < allKeys.length; i++) {
                     if (this.search !== undefined) {
                         if (typeof card[allKeys[i]] === "string") {
-
                             // NOTE: the search is done in almost all columns, except the ones where there is created an array out of strings separated by commas
                             if (card[allKeys[i]].toLowerCase().includes(this.search.toLowerCase()) === true) {
                                 // if a match is found, then this entry should be shown
+                                // https://stackoverflow.com/a/494046
+                                // card.searchResultSnippet = "";
+                                var replace = this.search;
+                                var re = new RegExp((replace), "gi");
+                                card.searchResultSnippet = card[allKeys[i]].replace(re, "<em>" + replace + "</em>");
+                                console.log('card.searchResultSnippet: ', card.searchResultSnippet);
+                                console.log('replace: ', replace);
                                 results = true;
                             }
                         }
@@ -121,10 +127,7 @@ export default {
                 }
             };
 
-            // console.log('getUrlParameter(search): ', getUrlParameter('search'));
-            // document.querySelector('.searchBar').value = getUrlParameter('search');
             this.search = getUrlParameter('search');
-            console.log('this.search: ', this.search);
 
             if (this.search !== undefined) {
                 this.filteredList();
@@ -202,6 +205,10 @@ export default {
     .search-results-container {
         top: 3em;
     }
+}
+
+.search-results-container h1 {
+    font-size: 1.7em;
 }
 
 .search-results-container h2 {
