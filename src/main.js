@@ -25,13 +25,7 @@ Vue.use(d3);
 Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
 Vue.use(Howl, Howler);
-
 Vue.directive('linkified', linkify);
-// Vue.use(animated);
-// Vue.use(interact);
-
-// appName: "Card game",
-// 
 Vue.use(VueGtag, {
   config: {
     id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID
