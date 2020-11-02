@@ -66,9 +66,15 @@
 
                 <!-- Show all cards: -->
                 <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
-                
+
+
                 <!-- check allCardsInChosenCategory in store for what is in array, this should be made easier -->
                 <button :data-prejudice="item.prejudice" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" style="margin-top: 0.7em !important;" title="Copy Link">Copy Link</button>
+
+                <!-- Sharingbutton Twitter -->
+                <a class="resp-sharing-button__link float-right mr-3" :href="'https://twitter.com/intent/tweet/?text=' + item.prejudice + '&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label="">
+                    <img src="../assets/img/icons/social-media-buttons/twitter.svg" alt="twitter logo" />
+                </a>
             </div>
         </div>
     </div>
@@ -112,7 +118,9 @@ export default {
                 decimal: '.',
                 prefix: '',
                 duration: 4 //sec
-            }
+            },
+            publicPath: publicPath.publicPath,
+            windowLocationOrigin: window.location.origin
         }
     },
     mounted() {
@@ -389,4 +397,10 @@ div.cards.selection .category-all-shown-in-cards {
 .selection .video-container {
     display: none;
 }
+
+.resp-sharing-button__link img {
+    width: 20px;
+    margin-top: 0.8em;
+}
+
 </style>
