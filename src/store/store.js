@@ -14,7 +14,8 @@ export default new Vuex.Store({
     cssClassCardIntroState: "",
     cssClassCardFullState: "popup md-modal md-effect-1",
     theJSON: null,
-    categories: [], // [{name: xxx, numberOfItems: xxx}]
+    categories: [], // [{name: xxx, numberOfItems: xxx}],
+    allKeys: [],
     activeCategory: "All",
     currentCard: {},
     numberofCards: 0,
