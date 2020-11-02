@@ -66,6 +66,8 @@
 
                 <!-- Show all cards: -->
                 <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
+                <!-- check allCardsInChosenCategory in store for what is in array, this should be made easier -->
+                <button  :data-prejudice="item.prejudice" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" style="margin-top: 0.7em !important;" title="Copy Link">Copy Link</button>
             </div>
         </div>
     </div>
@@ -386,5 +388,4 @@ div.cards.selection .category-all-shown-in-cards {
 .selection .video-container {
     display: none;
 }
-
 </style>
