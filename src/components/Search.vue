@@ -14,7 +14,8 @@
                 <router-link :to="'/card/' + card['Unique URL']">
                     <h2 style="cursor: pointer" class="w-1/4">{{ card.Prejudice }}</h2>
                     <p style="cursor: pointer" class="ml-4 w-3/4">{{ card['Prejudice Elaborate'] }}</p>
-                    <p v-html="card.searchResultSnippet">{{card.searchResultSnippet}}</p>
+                    <p class="category mb-3 pt-1 pl-2 pr-2 pb-0" :class="card.Cat" style="display: inline-block; border-radius: 10px;">{{card.Cat}}</p>
+                    <p style="font-size: 1em;" v-html="card.searchResultSnippet">{{card.searchResultSnippet}}</p>
                 </router-link>
             </div>
         </div>
