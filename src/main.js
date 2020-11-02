@@ -177,6 +177,24 @@ clipboardOverviewScreen.on('success', function (e) {
   }, 1500);
 });
 
+
+var clipboardCategory = new ClipboardJS('.copyURLtoClipboard5', {
+  text: function (trigger) {
+    return window.location.href;
+  }
+});
+
+clipboardCategory.on('success', function (e) {
+  store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+  if (localStorage.getItem("soundOn") === "true") go.play();
+  document.querySelector("body").classList.add("person1");
+  setTimeout(function () {
+    document.querySelector("body").classList.remove("person1");
+  }, 1500);
+});
+
+
+
 // clipboardOverviewScreen.destroy();
 // clipboardOverviewScreen.on('error', function (e) {
 //   console.error('Action:', e.action);
