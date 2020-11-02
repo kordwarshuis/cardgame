@@ -138,6 +138,13 @@ export default {
                         this.$store.state.theJSON = responseData;
                         this.createCategoriesArray(this.$store.state.theJSON);
 
+                        // create array with all columns / keys
+                        for (var k in responseData[0]) {
+                            if (responseData[0].hasOwnProperty(k)) {
+                                this.$store.state.allKeys.push(k);
+                            }
+                        }
+
                         this.$store.commit("showPickedItems");
 
                         // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
