@@ -51,6 +51,12 @@
     </div> -->
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
 
+    <div v-if="(this.$store.state.activeCategory !== 'All')" >
+        <h3>
+            {{this.$store.state.activeCategory}}
+        </h3>
+    </div>
+
     <!-- THE CARDS -->
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
         <div class="video-container mb-4 p-0" style="background: transparent;">
@@ -341,13 +347,14 @@ div.cards.selection .category-all-shown-in-cards {
     width: 20px;
     margin-top: 0.8em;
 }
+
 .resp-sharing-button__link,
 .copyURLtoClipboard4 {
     opacity: 0.5;
 }
+
 .resp-sharing-button__link:hover,
 .copyURLtoClipboard4:hover {
     opacity: 1;
 }
-
 </style>
