@@ -387,7 +387,7 @@ export default {
 
 .modal-content {
     // background: $cardFullBackground;
-    background: #2F3558;
+    background: #2F3558 !important; //Suddenly needs important, can't explain why
 }
 
 .modal-content h3 {
