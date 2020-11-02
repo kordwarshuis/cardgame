@@ -63,14 +63,7 @@ export default {
     },
     methods: {
         filteredList() {
-            var allKeys = [];
-
-            // create array with all columns
-            for (var k in this.cards[0]) {
-                if (this.cards[0].hasOwnProperty(k)) {
-                    allKeys.push(k);
-                }
-            }
+            var allKeys = this.$store.state.allKeys;
 
             // this updates the URL with what is entered in search field
             // this runs onload, and router should only push when search is not empty, to avoid a redirect to /search
@@ -82,33 +75,33 @@ export default {
                             search: this.search.toLowerCase()
                         }
                     }).catch(err => {}) //https://stackoverflow.com/a/58747480
+
+                    return this.cards.filter(card => {
+                        var results = false;
+
+                        // go through all columns, Prejudice, Prejudice Elaborate, Short Answer etc
+                        for (let i = 0; i < allKeys.length; i++) {
+                            if (this.search !== undefined) {
+                                // if (typeof card[allKeys[i]] === "string" && card[allKeys[i]] !== "") {
+                                if (card[allKeys[i]] !== undefined) {
+
+                                    // NOTE: the search is done in almost all columns, except the ones where there is created an array out of strings separated by commas
+                                    if (card[allKeys[i]].toString().toLowerCase().includes(this.search.toLowerCase()) === true) {
+                                        // if a match is found, then this entry should be shown
+                                        // https://stackoverflow.com/a/494046
+                                        var replace = this.search;
+                                        var re = new RegExp((replace), "gi");
+                                        card.searchResultSnippet = card[allKeys[i]].toString().replace(re, "<em>" + replace + "</em>");
+                                        results = true;
+                                    }
+                                }
+                            }
+                        }
+                        return results;
+                    })
                 }
             }
 
-            return this.cards.filter(card => {
-                var results = false;
-
-                // go through all columns, Prejudice, Prejudice Elaborate, Short Answer etc
-                for (let i = 0; i < allKeys.length; i++) {
-                    if (this.search !== undefined) {
-                        if (typeof card[allKeys[i]] === "string") {
-                            // NOTE: the search is done in almost all columns, except the ones where there is created an array out of strings separated by commas
-                            if (card[allKeys[i]].toLowerCase().includes(this.search.toLowerCase()) === true) {
-                                // if a match is found, then this entry should be shown
-                                // https://stackoverflow.com/a/494046
-                                // card.searchResultSnippet = "";
-                                var replace = this.search;
-                                var re = new RegExp((replace), "gi");
-                                card.searchResultSnippet = card[allKeys[i]].replace(re, "<em>" + replace + "</em>");
-                                console.log('card.searchResultSnippet: ', card.searchResultSnippet);
-                                console.log('replace: ', replace);
-                                results = true;
-                            }
-                        }
-                    }
-                }
-                return results;
-            })
         },
         processQueryParams() {
             // https://stackoverflow.com/a/21903119
