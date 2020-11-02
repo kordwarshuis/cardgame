@@ -553,7 +553,6 @@ a.overlay__close:not(.overlay__close-cross):hover,
     // padding: 0.7em;
     // margin-bottom: 1em;
 
-    border: 1px solid green;
     line-height: 0.7;
     width: 1.5em;
     padding: 0 !important;
