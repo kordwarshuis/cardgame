@@ -138,19 +138,22 @@ export default {
                         this.$store.state.theJSON = responseData;
                         this.createCategoriesArray(this.$store.state.theJSON);
 
-                        // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
-
                         this.$store.commit("showPickedItems");
+
+                        // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
                         this.$store.commit("showItemsInSelectedCategory");
 
                         this.$store.state.dataFetched = true;
-                        // deal with URL. We now have an overview of all the cards. Should we show a card intro? If no card param then stop…
-                        if (this.$route.params.card === undefined) {
-                            return;
 
-                            // if there is a specific url / card param, the do following:
-                        } else if (this.$route.params.card !== "") {
+                        // deal with URL. We now have an overview of all the cards. Should we show a card intro? Or a category?
+
+                        // if there is a specific url / card param, the do following:
+                        if (this.$route.params.card !== "" && this.$route.params.card !== undefined) {
                             this.$store.commit("showCardIntroFromURL", this.$route.params.card);
+                        }
+                        // if there is a specific url / category param, the do following:
+                        if (this.$route.params.category !== "" && this.$route.params.category !== undefined) {
+                            this.$store.commit("showItemsInSelectedCategory", this.$route.params.category);
                         }
                     });
             }
@@ -734,12 +737,12 @@ footer {
 .curated-tweet-text small {
     background: rgb(247, 229, 130);
 }
+
 .realtime-tweet-text small {
     background: rgb(247, 229, 130);
 }
 
-
-
+//
 .hideSearchResult {
     margin: 0 !important;
     display: none !important;
