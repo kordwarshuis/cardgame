@@ -53,8 +53,8 @@
 
     <div v-if="(this.$store.state.activeCategory !== 'All')" >
         <h3>
-            {{this.$store.state.activeCategory}}
-        </h3>
+            {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboard5 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+        </h3    >
     </div>
 
     <!-- THE CARDS -->
