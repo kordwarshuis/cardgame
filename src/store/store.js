@@ -114,6 +114,7 @@ export default new Vuex.Store({
       // first make the selected menu item stand out:
       // this.commit("setActiveMenuItem", categoryName);
 
+      //TODO: this is unnecessary complicated
       function makeArray(a, b) {
         a.push({
           "id": b["Unique URL"],
@@ -155,13 +156,17 @@ export default new Vuex.Store({
         }
       }, 1000);
 
+      // TODO: needs more work
+      if (categoryName === undefined) {
+        // set URL
+        // router.push("/");
+      }
       if (categoryName !== undefined) {
         // this.commit("showToast", "You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
-        
+
         // set URL
         router.push("/category/" + categoryName);
       }
-
     },
     showToast(state, a) {
       // https://stackoverflow.com/a/57448058
