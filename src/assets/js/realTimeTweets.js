@@ -162,10 +162,10 @@ export var realTimeTweets = (function () {
 
                 if (data[i].curatedTweet === true) {
                     curatedClass = " curated ";
-                    tweetTypeText = "<div class='col-12 mb-2 curated-tweet-text text-center'><small class='m-0'>~~Handpicked~~</small></div>";
+                    tweetTypeText = "<div class='col-12 mb-2 curated-tweet-text text-center'><small class='m-0'>– Handpicked –</small></div>";
                 } else {
                     curatedClass = "";
-                    tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>~~Real Time~~</small></div>";
+                    tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>– Real Time –</small></div>";
                 }
 
                 if (data[i].user.followers_count >= numberOfFollowers) {
