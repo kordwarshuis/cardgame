@@ -19,6 +19,18 @@ export var getJSON = (function () {
     function start(source) {
         console.log("start");
         store.commit("showToast", "Tweet stream is running.");
+        
+        setTimeout(function() {
+            store.commit("showToast", "Open Tweet panel to see tweet stream");
+        }, 6000);
+        setTimeout(function() {
+            store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
+        }, 12000);
+
+        setTimeout(function() {
+            store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
+        }, 180000);
+
         var resp;
         var refreshInterval = 10000;
 
@@ -89,8 +101,27 @@ export var getJSON = (function () {
         }
 
         fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
-        fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
-        fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+
+
+        // simple way of showing some handpicked tweets
+        setTimeout(function() {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 6000);
+        setTimeout(function() {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 12000);
+        setTimeout(function() {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 25000);
+        setTimeout(function() {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 45000);
+        setTimeout(function() {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 80000);
+        setTimeout(function() {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 190000);
         fetchTweetsLoop2 = setInterval(function () {
             console.log('Fetch curated tweets');
             konsole.innerHTML = 'Fetch handpicked tweets.';
