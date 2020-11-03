@@ -782,70 +782,73 @@ footer {
     }
 }
 
+.search-results-container,
+.masonry-with-columns {
 
-.category.Architecture,
-.nav-item.Architecture a {
-    background: #148868;
+    .category.Architecture,
+    .nav-item.Architecture a {
+        background: #148868;
+    }
+
+    .category.Crime,
+    .nav-item.Crime a {
+        background: #7C2929;
+    }
+
+    .category.Use,
+    .nav-item.Use a {
+        background: #3E2D2D;
+    }
+
+    .category.Environment,
+    .nav-item.Environment a {
+        background: #7B610E;
+    }
+
+    .category.Media,
+    .nav-item.Media a {
+        background: #5D3D50;
+    }
+
+    .category.Beliefs,
+    .nav-item.Beliefs a {
+        background: #6C297C;
+    }
+
+    .category.Skills,
+    .nav-item.Skills a {
+        background: #535353;
+    }
+
+    .category.Control,
+    .nav-item.Control a {
+        background: #294F7C;
+    }
+
+    .category.Existential,
+    .nav-item.Existential a {
+        background: #1B7B76;
+    }
+
+    .category.Legal,
+    .nav-item.Legal a {
+        background: #40672C;
+    }
+
+    .category.Price,
+    .nav-item.Price a {
+        background: #3D515D;
+    }
+
+    .category.Society,
+    .nav-item.Society a {
+        background: #061545;
+    }
+
+    .category.Supply,
+    .nav-item.Supply a {
+        background: #063333;
+    }
+
 }
-
-.category.Crime,
-.nav-item.Crime a {
-    background: #7C2929;
-}
-
-.category.Use,
-.nav-item.Use a {
-    background: #3E2D2D;
-}
-
-.category.Environment,
-.nav-item.Environment a {
-    background: #7B610E;
-}
-
-.category.Media,
-.nav-item.Media a {
-    background: #5D3D50;
-}
-
-.category.Beliefs,
-.nav-item.Beliefs a {
-    background: #6C297C;
-}
-
-.category.Skills,
-.nav-item.Skills a {
-    background: #535353;
-}
-
-.category.Control,
-.nav-item.Control a {
-    background: #294F7C;
-}
-
-.category.Existential,
-.nav-item.Existential a {
-    background: #1B7B76;
-}
-
-.category.Legal,
-.nav-item.Legal a {
-    background: #40672C;
-}
-
-.category.Price,
-.nav-item.Price a {
-    background: #3D515D;
-}
-
-.category.Society,
-.nav-item.Society a {
-    background: #061545;
-}
-
-.category.Supply,
-.nav-item.Supply a {
-    background: #063333;
-}
-
 </style>
