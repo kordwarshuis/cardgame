@@ -17,12 +17,16 @@ export var getJSON = (function () {
     });
 
     function start(source) {
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
         console.log("start");
         store.commit("showToast", "Tweet stream is running.");
         
-        setTimeout(function() {
-            store.commit("showToast", "Open Tweet panel to see tweet stream");
-        }, 6000);
+        // show message only on smaller screens where tweet stream does not open initially
+        if (mediaQuery.matches) {
+            setTimeout(function () {
+                store.commit("showToast", "Open Tweet panel to see tweet stream");
+            }, 6000);
+        }
         setTimeout(function() {
             store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
         }, 12000);
