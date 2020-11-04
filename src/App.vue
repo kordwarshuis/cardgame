@@ -25,6 +25,8 @@
 
 <script>
 import publicPath from "../vue.config";
+import axios from "axios";
+import * as d3 from "d3-dsv";
 // import slideInMenu from "@/components/slideInMenu.vue";
 import twitterRealtime3 from "@/components/twitterRealtime3.vue";
 import TwitterRealTimeConfigModal from "@/components/TwitterRealTimeConfigModal.vue";
@@ -54,14 +56,197 @@ export default {
         return {}
     },
     mounted() {
+        this.fetchData();
         // this.soundSetting();
         this.initSound();
-        // realTimeTweets.start({
-        //     source: process.env.VUE_APP_REALTIME_TWITTER_JSON
-        // });
-
     },
     methods: {
+        fetchData() {
+            // only fetch data
+            if (this.$store.state.dataFetched === false) {
+                // return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
+                return axios.get(process.env.VUE_APP_CARDS_CONTENT)
+                    .then(response => {
+                        var responseData = d3.csvParse(response.data);
+                        var responseDataTemp = [];
+                        // prepare data
+
+                        // select the stack
+                        // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to Bitcoin, if a "2" is in the string, it belong to Blockchain. "12" means it belongs to both.
+                        // TODO: move this to main.js
+                        var stack = 0;
+                        if (this.$store.state.gameId === "btc") {
+                            stack = 1;
+                        } else if (this.$store.state.gameId === "bcb") {
+                            stack = 2;
+                        }
+
+                        // select only the items that are in the selected stack
+                        // avoid working on a changing array by using a temp array
+                        for (let i = 0; i < responseData.length; i++) {
+                            if (responseData[i].Stack.indexOf(stack) > -1) {
+                                responseDataTemp.push(responseData[i]);
+                            }
+                        }
+                        // just to be sure that it's empty…:
+                        responseData = [];
+                        responseData.length = 0;
+                        // …and fill array again:
+                        responseData = responseDataTemp;
+                        // and empty the temp just to be sure, probably not necessary:
+                        responseDataTemp = [];
+                        responseDataTemp.length = 0;
+                        // now we only have items that are in the given stack
+
+                        this.$store.state.numberofCards = responseData.length;
+
+                        // cleaning
+                        for (let i = 0; i < responseData.length; i++) {
+                            for (var k in responseData[i]) {
+                                if (responseData[i].hasOwnProperty(k)) {
+                                    // console.log("Key is " + k + ", value is: " + dataLayer1[i][k]);
+                                    // the csv source from google introduces \' so we remove the backslash:
+                                    responseData[i][k] = responseData[i][k].replace(/\\'/g, "‘");
+                                    //experimental:
+                                    responseData[i][k] = responseData[i][k].replace(/'/g, "‘");
+                                    // responseData[i][k] = responseData[i][k].replace(/(\n\n)/gm, "</p><p>");
+                                    responseData[i][k] = responseData[i][k].trim();
+                                    // console.log('responseData[i][k]: ', responseData[i][k]);
+                                }
+                            }
+                        }
+
+                        // split strings into arrays
+                        for (let i = 0; i < responseData.length; i++) {
+                            // format quiz data
+                            responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
+
+                            // split string on \n\n, so we can make paragraphs later, or separate links for example
+                            responseData[i]["long answer+facts"] = this.splitString(responseData[i]["long answer+facts"], "\n\n");
+
+                            responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
+
+                            // trim spaces (for example when source is: word1, word2) TODO: do this for everything
+                            if (responseData[i]["Related"] !== undefined) {
+                                for (let k = 0; k < responseData[i]["Related"].length; k++) {
+                                    responseData[i]["Related"][k] = responseData[i]["Related"][k].trim();
+                                }
+                            }
+                        }
+
+                        // save data to store, probably not necessary, can be done via data and props
+                        this.$store.state.theJSON = responseData;
+                        this.createCategoriesArray(this.$store.state.theJSON);
+
+                        // create array with all columns / keys
+                        for (var k in responseData[0]) {
+                            if (responseData[0].hasOwnProperty(k)) {
+                                this.$store.state.allKeys.push(k);
+                            }
+                        }
+
+                        this.$store.commit("showPickedItems");
+
+                        // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
+                        this.$store.commit("showItemsInSelectedCategory");
+
+                        this.$store.state.dataFetched = true;
+
+                        // deal with URL. We now have an overview of all the cards. Should we show a card intro? Or a category?
+
+                        // if there is a specific url / card param, the do following:
+                        if (this.$route.params.card !== "" && this.$route.params.card !== undefined) {
+                            this.$store.commit("showCardIntroFromURL", this.$route.params.card);
+                        }
+                        // if there is a specific url / category param, the do following:
+                        if (this.$route.params.category !== "" && this.$route.params.category !== undefined) {
+                            this.$store.commit("showItemsInSelectedCategory", this.$route.params.category);
+                        }
+                    });
+            }
+        },
+        prepareQuiz(quiz) {
+            var temp = [];
+
+            function splitString(string, splitter) {
+                if (string !== "") {
+                    // https://stackoverflow.com/a/5963202
+                    return string.split(splitter);
+                }
+            }
+
+            if (quiz !== "") {
+                // split quiz, make array
+                quiz = splitString(quiz, "|");
+                //put question in first item, first string item is always question
+                temp[0] = {
+                    "question": quiz[0]
+                }
+
+                // put answers in second item
+                temp[1] = {
+                    "answers": []
+                };
+                for (let i = 1; i < quiz.length - 1; i++) {
+                    let isQuizItemAnswerRight = false;
+
+                    if (quiz[i].charAt(0) === "+") {
+                        isQuizItemAnswerRight = true;
+                        quiz[i] = quiz[i].substr(1);
+                    }
+
+                    temp[1].answers.push([quiz[i], isQuizItemAnswerRight]);
+                }
+                // put explanation in third item, last string item is always answer
+                temp[2] = {
+                    "explanation": quiz[quiz.length - 1]
+                };
+
+                quiz = [];
+                quiz = temp;
+                return quiz;
+            }
+        },
+        splitString(string, splitter) {
+            if (string !== "") {
+                return string.split(splitter);
+            }
+        },
+        createCategoriesArray(theJSON) {
+            // temporary store category names in array
+            var categoriesArray = [];
+
+            // https://stackoverflow.com/a/14438954
+            function onlyUnique(value, index, self) {
+                return self.indexOf(value) === index;
+            }
+
+            // create array with all categories (to create a menu with all categories):
+            for (var i = 0; i < theJSON.length; i++) {
+                categoriesArray.push(theJSON[i].Cat);
+            }
+
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+            // var newArray = arr.filter(callback(element[, index[, array]])[, thisArg])
+            // remove duplicate entries
+            categoriesArray = categoriesArray.filter(onlyUnique);
+
+            // now we have an array with categories. Now create final array in the store containing object with name, and number of items in that category:
+            for (let i = 0; i < categoriesArray.length; i++) {
+                var counter = 0;
+                for (let j = 0; j < theJSON.length; j++) {
+                    if (theJSON[j].Cat === categoriesArray[i]) {
+                        //TODO: number of items in category is sometimes wrong
+                        counter++;
+                    }
+                }
+
+                this.$store.state.categories.push({
+                    "name": categoriesArray[i],
+                    "numberOfItems": counter
+                });
+            }
+        },
         //TODO: change 'of' to 'off'
         // soundSetting() {
         //     // radio buttons for sound on off:
@@ -375,7 +560,6 @@ a.overlay__close:not(.overlay__close-cross):hover,
     // padding: 0.7em;
     // margin-bottom: 1em;
 
-    border: 1px solid green;
     line-height: 0.7;
     width: 1.5em;
     padding: 0 !important;
@@ -484,11 +668,16 @@ a.overlay__close:not(.overlay__close-cross):hover,
     min-width: 250px !important;
 }
 
+.toast-header {
+    background: linear-gradient(to right, #5C34A7, #2376D6);
+}
+
 .toast-container>div>div {
     color: #111;
     background-color: #eee;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
 }
+
 // the information icon is confusing since it is not clickable
 .toast-icon {
     background-image: none !important;
@@ -555,6 +744,11 @@ footer {
     background: rgb(247, 229, 130);
 }
 
+.realtime-tweet-text small {
+    background: rgb(247, 229, 130);
+}
+
+//
 .hideSearchResult {
     margin: 0 !important;
     display: none !important;
@@ -564,6 +758,21 @@ footer {
     padding: 0;
 }
 
+.search-results>a {
+    text-decoration: none;
+}
+
+.search-results-container em {
+    background: rgba(240, 224, 131, 0.904);
+    // border: 3px dashed #eee;
+    color: #222;
+    font-style: normal;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    border-radius: 10px;
+
+}
+
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     footer {
@@ -571,5 +780,75 @@ footer {
         bottom: 0;
         left: 0;
     }
+}
+
+.search-results-container,
+.masonry-with-columns {
+
+    .category.Architecture,
+    .nav-item.Architecture a {
+        background: #148868;
+    }
+
+    .category.Crime,
+    .nav-item.Crime a {
+        background: #7C2929;
+    }
+
+    .category.Use,
+    .nav-item.Use a {
+        background: #3E2D2D;
+    }
+
+    .category.Environment,
+    .nav-item.Environment a {
+        background: #7B610E;
+    }
+
+    .category.Media,
+    .nav-item.Media a {
+        background: #5D3D50;
+    }
+
+    .category.Beliefs,
+    .nav-item.Beliefs a {
+        background: #6C297C;
+    }
+
+    .category.Skills,
+    .nav-item.Skills a {
+        background: #535353;
+    }
+
+    .category.Control,
+    .nav-item.Control a {
+        background: #294F7C;
+    }
+
+    .category.Existential,
+    .nav-item.Existential a {
+        background: #1B7B76;
+    }
+
+    .category.Legal,
+    .nav-item.Legal a {
+        background: #40672C;
+    }
+
+    .category.Price,
+    .nav-item.Price a {
+        background: #3D515D;
+    }
+
+    .category.Society,
+    .nav-item.Society a {
+        background: #061545;
+    }
+
+    .category.Supply,
+    .nav-item.Supply a {
+        background: #063333;
+    }
+
 }
 </style>

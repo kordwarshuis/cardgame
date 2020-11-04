@@ -25,31 +25,16 @@ Vue.use(d3);
 Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
 Vue.use(Howl, Howler);
-
 Vue.directive('linkified', linkify);
-// Vue.use(animated);
-// Vue.use(interact);
-
-
-// Vue.use(VueAnalytics, {
-//   id: "+ process.env.VUE_APP_GOOGLE_ANALYTICS_ID +",
-//   router
-// });
-
-// Vue.use(VueGtag, {
-//   config: { id: "+ process.env.VUE_APP_GOOGLE_ANALYTICS_ID +" }
-// }, router);
-
 Vue.use(VueGtag, {
   config: {
-    id: "+ process.env.VUE_APP_GOOGLE_ANALYTICS_ID +"
+    id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID
   },
-  // pageTrackerScreenviewEnabled: true,
-  // appName: "Card game",
+  pageTrackerScreenviewEnabled: true,
   pageTrackerTemplate(to) {
     return {
-      page_title: window.location.pathname
-      // page_path: to.path
+      page_title: window.location.pathname,
+      page_path: window.location.pathname
     }
   }
 }, router);
@@ -140,7 +125,7 @@ if (window.location.href === "https://blockchainbird.com/t/btc/?cat=Architecture
 
 // copy URL into clipboard via click on button
 // Note: here it is not: "this.$store.commit" but "store.commit" (https://stackoverflow.com/q/51348936)
-var clipboard1 = new ClipboardJS('.copyURLtoClipboard1', {
+new ClipboardJS('.copyURLtoClipboard1', {
   text: function () {
     store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
     if (localStorage.getItem("soundOn") === "true") go.play();
@@ -152,7 +137,7 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard1', {
     return "“" + store.state.currentCard["Prejudice"] + "”\n" + " 👉 " + window.location.href;
   }
 });
-var clipboard1 = new ClipboardJS('.copyURLtoClipboard2', {
+new ClipboardJS('.copyURLtoClipboard2', {
   text: function () {
     store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
     if (localStorage.getItem("soundOn") === "true") go.play();
@@ -164,7 +149,7 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard2', {
     return "“" + store.state.currentCard["Prejudice"] + "”\n" + " 👉 " + window.location.href;
   }
 });
-var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
+new ClipboardJS('.copyURLtoClipboard3', {
   text: function () {
     store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
     if (localStorage.getItem("soundOn") === "true") go.play();
@@ -176,6 +161,49 @@ var clipboard1 = new ClipboardJS('.copyURLtoClipboard3', {
     return "“" + store.state.currentCard["Prejudice"] + "”\n" + " 👉 " + window.location.href;
   }
 });
+
+var clipboardOverviewScreen = new ClipboardJS('.copyURLtoClipboard4', {
+  text: function (trigger) {
+    return "“" + trigger.dataset.prejudice + "”\n" + " 👉 " + trigger.baseURI + "card/" + trigger.dataset.url;
+  }
+});
+
+clipboardOverviewScreen.on('success', function (e) {
+  store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+  if (localStorage.getItem("soundOn") === "true") go.play();
+  document.querySelector("body").classList.add("person1");
+  setTimeout(function () {
+    document.querySelector("body").classList.remove("person1");
+  }, 1500);
+});
+
+
+var clipboardCategory = new ClipboardJS('.copyURLtoClipboard5', {
+  text: function (trigger) {
+    return window.location.href;
+  }
+});
+
+clipboardCategory.on('success', function (e) {
+  store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+  if (localStorage.getItem("soundOn") === "true") go.play();
+  document.querySelector("body").classList.add("person1");
+  setTimeout(function () {
+    document.querySelector("body").classList.remove("person1");
+  }, 1500);
+});
+
+
+
+// clipboardOverviewScreen.destroy();
+// clipboardOverviewScreen.on('error', function (e) {
+//   console.error('Action:', e.action);
+//   console.error('Trigger:', e.trigger);
+// });
+
+
+
+
 
 // I keep this for reference although I am not sure what it is for
 // clipboard1.on('success', textCopiedFeedback);

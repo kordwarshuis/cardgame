@@ -15,6 +15,10 @@
                         <div class="col-md-12">
                             <p>This is the place where real time tweets will stream. All tweets with keyword “bitcoin” will be loaded but which tweets are shown depends on your configuration.</p>
 
+                            <p>The top of the screen shows the number of incoming tweets every ten seconds.</p>
+
+                            <p>Also the stream will show handpicked tweets every now and then. It may take a while before a realtime tweet that meets your configuration settings </p>
+
                             <p>The default configuration will not show many tweets.</p>
 
                             <p>The “clear” button will remove all tweets that are shown and wait for new tweets.</p>

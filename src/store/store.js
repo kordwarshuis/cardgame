@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import router from '../router/router';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -13,14 +14,27 @@ export default new Vuex.Store({
     cssClassCardIntroState: "",
     cssClassCardFullState: "popup md-modal md-effect-1",
     theJSON: null,
-    categories: [], // [{name: xxx, numberOfItems: xxx}]
+    categories: [], // [{name: xxx, numberOfItems: xxx}],
+    allKeys: [],
     activeCategory: "All",
     currentCard: {},
     numberofCards: 0,
     allCardsInChosenCategory: [],
     allPickedCards: [],
     dataFetched: false,
-    topScorer: ""
+    topScorer: "",
+    linkifyOptions: {
+      className: 'linkified',
+      format: function (value, type) {
+        var longerThan = 20;
+        if (type === 'url' && value.length > longerThan) {
+          // https://stackoverflow.com/a/41942787
+          value = value.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split('/')[0];
+          value = value.slice(0, longerThan) + '…';
+        }
+        return value;
+      }
+    }
   },
   getters: {
     getCard: (state) => (id) => {
@@ -99,8 +113,9 @@ export default new Vuex.Store({
       }
 
       // first make the selected menu item stand out:
-      this.commit("setActiveMenuItem", categoryName);
+      // this.commit("setActiveMenuItem", categoryName);
 
+      //TODO: this is unnecessary complicated
       function makeArray(a, b) {
         a.push({
           "id": b["Unique URL"],
@@ -142,8 +157,16 @@ export default new Vuex.Store({
         }
       }, 1000);
 
+      // TODO: needs more work
+      if (categoryName === undefined) {
+        // set URL
+        // router.push("/");
+      }
       if (categoryName !== undefined) {
         // this.commit("showToast", "You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
+
+        // set URL
+        router.push("/category/" + categoryName);
       }
     },
     showToast(state, a) {
@@ -171,23 +194,25 @@ export default new Vuex.Store({
       // copy the final array to the store
       this.state.allPickedCards = allPickedCards;
     },
-    setActiveMenuItem(item) {
-      var selector = ".nav";
-      var allMenuItems = document.querySelectorAll(".nav a");
+    // TODO: does not work as expected, check
+    // setActiveMenuItem(item) {
+    //   var selector = ".nav";
+    //   var allMenuItems = document.querySelectorAll(".nav a");
 
-      // first remove class .active from all elements
-      for (let i = 0; i < allMenuItems.length; i++) {
-        allMenuItems[i].classList.remove("active");
-      }
-      for (let i = 0; i < this.state.categories.length; i++) {
-        if (item === undefined) {
-          document.querySelector(selector + " a[data-category='All']").classList.add("active");
-        } else
-        if (this.state.activeCategory === this.state.categories[i].name) {
-          document.querySelector(selector + " a[data-category='" + this.state.categories[i].name + "']").classList.add("active");
-        }
-      }
-    }
+    //   // first remove class .active from all elements
+    //   for (let i = 0; i < allMenuItems.length; i++) {
+    //     allMenuItems[i].classList.remove("active");
+    //   }
+
+    //   for (let i = 0; i < this.state.categories.length; i++) {
+    //     if (item === undefined) {
+    //       document.querySelector(selector + " a[data-category='All']").classList.add("active");
+    //     } else
+    //     if (this.state.activeCategory === this.state.categories[i].name) {
+    //       document.querySelector(selector + " a[data-category='" + this.state.categories[i].name + "']").classList.add("active");
+    //     }
+    //   }
+    // }
   },
   actions: {},
   modules: {}
