@@ -29,12 +29,12 @@ const routes = [{
     component: () =>
       import("../views/Scores.vue")
   },
-  {
-    path: "/twitter-real-time",
-    name: "TwitterRealTime",
-    component: () =>
-      import("../views/TwitterRealTime.vue")
-  }
+  // {
+  //   path: "/twitter-real-time",
+  //   name: "TwitterRealTime",
+  //   component: () =>
+  //     import("../views/TwitterRealTime.vue")
+  // }
 ];
 
 const router = new VueRouter({
