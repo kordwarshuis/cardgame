@@ -128,7 +128,6 @@ export var realTimeTweets = (function () {
         // 
         // Only for curated tweets; if the first element is true then all is true
         if (data[0].curatedTweet === true) {
-            console.log("curated");
             // here we take one random tweet from an array, so the tweet stream is not flooded with curated tweets
             // pick random tweet from curated tweets:
             let selectedRandomTweet = randomValue(data);
@@ -177,12 +176,10 @@ export var realTimeTweets = (function () {
                 }
 
                 if (anyOfTheseStrings.length === 0) {
-                    // console.log('anyOfTheseStrings.length: ', anyOfTheseStrings.length);
                     anyOfTheseStringsCriterium = true;
                 } else {
                     for (let j = 0; j < anyOfTheseStrings.length; j++) {
 
-                        // console.log('anyOfTheseStrings[j]: ', anyOfTheseStrings[j]);
                         // if anyOfTheseStrings found, only last anyOfTheseStrings, if there are more, will be remembered:
                         if (data[i].text.indexOf(anyOfTheseStrings[j]) > -1) {
                             anyOfTheseStringsCriterium = true;
@@ -266,8 +263,6 @@ export var realTimeTweets = (function () {
         if (somethingFound) {
             if (localStorage.getItem("soundOn") === "true") alert.play();
             domMenuIcon.classList.add('new-tweets');
-            // console.log('domTemp: ', domTemp);
-            // console.log('domTempOld: ', domTempOld);
             if (domTempOld !== domTemp) {
                 var k = 0;
 
@@ -287,8 +282,6 @@ export var realTimeTweets = (function () {
                         }, k);
                         // k = Math.floor(k + ((10000 / invisibleTweets.length) -100  ));
                         k = k + 10;
-                        // console.log('invisibleTweets.length: ', invisibleTweets.length);
-                        // console.log('k: ', k);
                     }(i));
                 }
             }
