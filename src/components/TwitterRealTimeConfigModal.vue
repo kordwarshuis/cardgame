@@ -140,7 +140,6 @@ export default {
             var domEmptyAnyOfTheseStrings = document.querySelector("#emptyAnyOfTheseStrings");
 
             function emptyAnyOfTheseStrings() {
-                console.log("empty");
                 domAnyOfTheseStrings.value = "";
                 realTimeTweets.setAnyOfTheseStrings([]);
                 localStorage.setItem("defaultSearchStrings", "");
@@ -200,22 +199,27 @@ export default {
         setOnlyVerifiedAccountsUsersChoice() {
             var onlyVerifiedAccountsUsersChoice = document.querySelector("#onlyVerifiedAccounts");
 
-            onlyVerifiedAccountsUsersChoice.addEventListener("change", function () {
-                var verified = false;
-
-                if (this.checked === true) {
-                    verified = true;
-                } else {
-                    verified = false;
+            if (localStorage.getItem("onlyVerifiedAccounts") !== null) {
+                if (localStorage.getItem("onlyVerifiedAccounts") === 'true') {
+                    onlyVerifiedAccountsUsersChoice.checked = true;
+                    realTimeTweets.setOnlyVerifiedAccountsUsersChoice(true);
                 }
+                if (localStorage.getItem("onlyVerifiedAccounts") === 'false') {
+                    onlyVerifiedAccountsUsersChoice.checked = false;
+                    realTimeTweets.setOnlyVerifiedAccountsUsersChoice(false);
+                }
+            }
 
-                // var verified = this.value;
-                console.log('verified: ', verified);
-
-                realTimeTweets.setOnlyVerifiedAccountsUsersChoice(verified);
+            onlyVerifiedAccountsUsersChoice.addEventListener("change", function () {
+                if (this.checked === true) {
+                    localStorage.setItem("onlyVerifiedAccounts", 'true');
+                    realTimeTweets.setOnlyVerifiedAccountsUsersChoice(true);
+                } else {
+                    localStorage.setItem("onlyVerifiedAccounts", 'false');
+                    realTimeTweets.setOnlyVerifiedAccountsUsersChoice(false);
+                }
             }, false);
-        },
-
+        }
     }
 };
 </script>
