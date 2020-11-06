@@ -27,25 +27,18 @@ export var realTimeTweets = (function () {
     var domTemp = "";
     var domTempOld = "x";
 
-    var fetchTweetsLoop;
     var keywordFound = false;
     var currentKeyword = "";
 
     var tweetNumber = 0;
     var tweetTypeText = "";
-    var status = document.querySelector("#status span");
-    var lastDataSet;
 
 
     // criteria
 
-    var numberOfFollowersBackup = 750;
+    var numberOfFollowersBackup = 0;
     var numberOfFollowers = numberOfFollowersBackup;
-
-
-
-
-
+    
     var onlyVerifiedAccountsUsersChoice = false;
     var anyOfTheseStringsDefault = [];
     var anyOfTheseStrings = [];
