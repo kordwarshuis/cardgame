@@ -22,9 +22,9 @@
                             <h2 class="mt-3">Followers</h2>
                             <label class="" for="followers" id="labelFollowers">Poster has </label>
                             <select name="followers" id="followers">
-                                <option value="0">0</option>
+                                <option value="0" selected>0</option>
                                 <option value="500">500</option>
-                                <option value="750" selected>750</option>
+                                <option value="750">750</option>
                                 <option value="1000">1000</option>
                                 <option value="2000">2000</option>
                                 <option value="5000">5000</option>
@@ -114,9 +114,23 @@ export default {
         setFollowersNumber() {
             var followers = document.querySelector("#followers");
 
-            followers.addEventListener("change", function () {
-                console.log(followers.value);
+            // set initially
+            // if a value is set in localStorage earlier…
+            if (localStorage.getItem("followersNumber") !== null) {
+                // …use this value
+                // for the real time tweets
+                realTimeTweets.setFollowersNumber(localStorage.getItem("followersNumber"));
+                // and also set the dropdown to new number
+                followers.value = localStorage.getItem("followersNumber");
+
+            } else {
                 realTimeTweets.setFollowersNumber(followers.value);
+            }
+
+            // set on change
+            followers.addEventListener("change", function () {
+                realTimeTweets.setFollowersNumber(followers.value);
+                localStorage.setItem("followersNumber", followers.value);
             }, false);
         },
 
