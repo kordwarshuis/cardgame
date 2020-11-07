@@ -723,6 +723,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 
 .tweet-stream-messages h2 {
     font-size: 1.5em;
+    margin-bottom: 0;
 }
 
 .tweet-stream-messages ul {
