@@ -706,8 +706,29 @@ a.overlay__close:not(.overlay__close-cross):hover,
     font-size: 2em;
     text-align: center;
 }
+
 .tweet-stream-info-in-stream.hidden {
     display: none;
+}
+
+.tweet-stream-messages {
+    background: linear-gradient(to right, #5C34A7, #2376D6);
+    border-radius: 10px;
+    color: #eee;
+    padding: 1em;
+    width: 100%;
+    margin: 0 0 1em;
+    text-align: center;
+}
+
+.tweet-stream-messages h2 {
+    font-size: 1.5em;
+}
+
+.tweet-stream-messages ul {
+    margin-bottom: 0;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 // .select-tweet,
