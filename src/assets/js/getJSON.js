@@ -8,7 +8,7 @@ import {
 
 export var getJSON = (function () {
     var fetchTweetsLoop;
-    var fetchTweetsLoop2;
+    var fetchTweetsLoopHandpicked;
     var handpicked1;
     var handpicked2;
     var handpicked3;
@@ -22,7 +22,6 @@ export var getJSON = (function () {
     document.addEventListener("DOMContentLoaded", function (event) {
         konsole = document.querySelector('.console .message');
         tweets = document.querySelector(".tweets-realtime .tweets");
-        console.log('tweets: ', tweets);
     });
 
     function start(source) {
@@ -136,7 +135,7 @@ export var getJSON = (function () {
         handpicked6 = setTimeout(function () {
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 190000);
-        fetchTweetsLoop2 = setInterval(function () {
+        fetchTweetsLoopHandpicked = setInterval(function () {
             console.log('Fetch handpicked tweets');
             konsole.innerHTML = 'Fetch handpicked tweets.';
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
@@ -165,8 +164,8 @@ export var getJSON = (function () {
 
         clearInterval(fetchTweetsLoop);
         console.log('fetchTweetsLoop: ', fetchTweetsLoop);
-        clearInterval(fetchTweetsLoop2);
-        console.log('fetchTweetsLoop2: ', fetchTweetsLoop2);
+        clearInterval(fetchTweetsLoopHandpicked);
+        console.log('fetchTweetsLoopHandpicked: ', fetchTweetsLoopHandpicked);
     }
 
     return {
