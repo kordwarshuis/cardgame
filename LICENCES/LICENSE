@@ -1,11 +1,13 @@
 Apache 2.0 License for the code
 CC-BY for the content
 
-MIT License
+Apache 2.0 License
 
 Plaintext of the Apache License, Version 2.0 from [www.apache.org](http://www.apache.org/)
 
-https://www.npmjs.com/packages/apache-2.0
+[Markdown](./apache-2.0.md)
+[Plaintext](./apache-2.0)
+
 
 The package exports a string with Unix-style line breaks.
 
