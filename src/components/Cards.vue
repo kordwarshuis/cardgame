@@ -51,14 +51,20 @@
     </div> -->
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
 
+    <div v-if="(this.$store.state.activeCategory !== 'All')" >
+        <h3>
+            {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboard5 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+        </h3    >
+    </div>
+
     <!-- THE CARDS -->
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
         <div class="video-container mb-4 p-0" style="background: transparent;">
-            <video class="" style="width: 100%;border-radius: 10px;" src="video/instructions.mp4" muted autoplay controls playsinline></video>
+            <video class="" style="width: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
         </div>
 
         <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
-            <a :data-id="item['id']" :key="item.prejudice" href="#" @click="showCardIntro" class="p-2">
+            <a :data-id="item['id']" :key="item.prejudice" @click="showCardIntro" class="p-2">
                 <h2 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h2>
             </a>
             <div class="card-footer" style="background: #1D2448; text-align: left;">
@@ -66,6 +72,19 @@
 
                 <!-- Show all cards: -->
                 <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
+
+                <!-- check allCardsInChosenCategory in store for what is in array, this should be made easier -->
+                <button :data-prejudice="item.prejudice" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" style="margin-top: 0.7em !important;" title="Copy Link">Copy Link</button>
+
+                <!-- Sharingbutton Twitter -->
+                <a class="resp-sharing-button__link float-right mr-2" :href="'https://twitter.com/intent/tweet/?text=' + item.prejudice + '&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on Twitter</span>
+                    <img src="../assets/img/icons/social-media-buttons/twitter.svg" alt="twitter logo" />
+                </a>
+
+                <!-- Sharingbutton LinkedIn -->
+                <a class="resp-sharing-button__link float-right mr-2" :href="'https://www.linkedin.com/shareArticle?mini=true&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id + '&amp;title=' + item.prejudice + '&amp;summary=' + item.prejudice + '&amp;source=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on LinkedIn</span>
+                    <img src="../assets/img/icons/social-media-buttons/linked-in.svg" alt="linkedin logo" />
+                </a>
             </div>
         </div>
     </div>
@@ -83,6 +102,7 @@
 import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
 // import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
+import publicPath from "../../vue.config";
 
 export default {
     name: "Index",
@@ -108,7 +128,9 @@ export default {
                 decimal: '.',
                 prefix: '',
                 duration: 4 //sec
-            }
+            },
+            publicPath: publicPath.publicPath,
+            windowLocationOrigin: window.location.origin
         }
     },
     mounted() {
@@ -308,71 +330,6 @@ h1 {
     color: #111;
 }
 
-.category.Architecture,
-.nav-item.Architecture a {
-    background: #148868;
-}
-
-.category.Crime,
-.nav-item.Crime a {
-    background: #7C2929;
-}
-
-.category.Use,
-.nav-item.Use a {
-    background: #3E2D2D;
-}
-
-.category.Environment,
-.nav-item.Environment a {
-    background: #7B610E;
-}
-
-.category.Media,
-.nav-item.Media a {
-    background: #5D3D50;
-}
-
-.category.Beliefs,
-.nav-item.Beliefs a {
-    background: #6C297C;
-}
-
-.category.Skills,
-.nav-item.Skills a {
-    background: #535353;
-}
-
-.category.Control,
-.nav-item.Control a {
-    background: #294F7C;
-}
-
-.category.Existential,
-.nav-item.Existential a {
-    background: #1B7B76;
-}
-
-.category.Legal,
-.nav-item.Legal a {
-    background: #40672C;
-}
-
-.category.Price,
-.nav-item.Price a {
-    background: #3D515D;
-}
-
-.category.Society,
-.nav-item.Society a {
-    background: #061545;
-}
-
-.category.Supply,
-.nav-item.Supply a {
-    background: #063333;
-}
-
 // Show All button only if in selection
 .category-all-shown-in-cards {
     display: none;
@@ -386,4 +343,18 @@ div.cards.selection .category-all-shown-in-cards {
     display: none;
 }
 
+.resp-sharing-button__link img {
+    width: 20px;
+    margin-top: 0.8em;
+}
+
+.resp-sharing-button__link,
+.copyURLtoClipboard4 {
+    opacity: 0.5;
+}
+
+.resp-sharing-button__link:hover,
+.copyURLtoClipboard4:hover {
+    opacity: 1;
+}
 </style>

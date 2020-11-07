@@ -166,6 +166,31 @@ export default {
             // Init a timeout variable to be used below
             var timeout = null;
 
+            // THROTTLING
+            // https://remysharp.com/2010/07/21/throttling-function-calls
+            function throttle(fn, threshhold, scope) {
+                threshhold || (threshhold = 250);
+                var last,
+                    deferTimer;
+                return function () {
+                    var context = scope || this;
+
+                    var now = +new Date,
+                        args = arguments;
+                    if (last && now < last + threshhold) {
+                        // hold on to it
+                        clearTimeout(deferTimer);
+                        deferTimer = setTimeout(function () {
+                            last = now;
+                            fn.apply(context, args);
+                        }, threshhold);
+                    } else {
+                        last = now;
+                        fn.apply(context, args);
+                    }
+                };
+            }
+
             function showResults(searchString) {
                 console.log('searchString: ', searchString);
                 showAllEntries();
@@ -205,18 +230,9 @@ export default {
             }, false);
 
             // Listen for keystroke events
-            domTextInput.addEventListener("keyup", function () {
-                // textInput.onchange = function (e) {
-                // Clear the timeout if it has already been set.
-                // This will prevent the previous task from executing
-                // if it has been less than <MILLISECONDS>
-                clearTimeout(timeout);
-
-                // Make a new timeout set to go off in 800ms
-                timeout = setTimeout(function () {
-                    showResults(domTextInput.value);
-                }, 500);
-            }, false);
+            domTextInput.addEventListener("keyup", throttle(function () {
+                showResults(domTextInput.value);
+            }, 1000), false);
         },
         clearTweetStream() {
             var button = document.querySelector('.clear-tweet-stream-button');
@@ -580,13 +596,15 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 }
 
 .tweets-selected-open-close-button {
-    background: url(../assets/img/icons/jv-creative/tweets-selected-open.svg) no-repeat center;
+    background: url("../assets/img/icons/jv-creative/tweets-selected-open.png") no-repeat center;
+    background-size: cover;
     width: 30px;
     height: 30px;
 }
 
 .open .tweets-selected-open-close-button {
-    background: url(../assets/img/icons/jv-creative/tweets-selected-close.svg) no-repeat center !important;
+    background: url("../assets/img/icons/jv-creative/tweets-selected-close.png") no-repeat center !important;
+    background-size: cover;
     width: 30px;
     height: 30px;
 }
