@@ -29,9 +29,7 @@ export var getJSON = (function () {
         const mediaQuery = window.matchMedia('(max-width: 767px)');
         console.log("start");
         store.commit("showToast", "Tweet stream is running.");
-        document.addEventListener('DOMContentLoaded', function () {
-            tweets.insertAdjacentHTML("afterbegin", "<h2 class='tweet-stream-info'>Tweet stream is running.</h2>");
-        });
+        document.querySelector('.tweet-stream-info-in-stream').classList.add('hidden');
 
         // show message only on smaller screens where tweet stream does not open initially
         if (mediaQuery.matches) {
@@ -155,10 +153,7 @@ export var getJSON = (function () {
 
     function stop() {
         store.commit("showToast", "Tweet stream is paused.");
-
-        // document.addEventListener('DOMContentLoaded', function () {
-            tweets.insertAdjacentHTML("afterbegin", "<h2 class='tweet-stream-info'>Tweet stream is paused.</h2>");
-        // });
+        document.querySelector('.tweet-stream-info-in-stream').classList.remove('hidden');
         console.log("stop");
 
         clearTimeout(handpicked1);
