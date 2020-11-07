@@ -98,7 +98,7 @@ export var realTimeTweets = (function () {
         var tweets = document.querySelector(".tweets-realtime .tweets");
         var domMenuIcon = document.querySelector(".menu-icon");
         var somethingFound = false;
-        var curatedClass = "";
+        var handpickedClass = "";
 
         // if we dont remove tweets the DOM will be overpopulated and the browser will not keep up
         function removeOldestTweets() {
@@ -113,12 +113,12 @@ export var realTimeTweets = (function () {
         }
 
         // 
-        // Only for curated tweets; if the first element is true then all is true
-        if (data[0].curatedTweet === true) {
-            // here we take one random tweet from an array, so the tweet stream is not flooded with curated tweets
-            // pick random tweet from curated tweets:
+        // Only for handpicked tweets; if the first element is true then all is true
+        if (data[0].handpickedTweet === true) {
+            // here we take one random tweet from an array, so the tweet stream is not flooded with handpicked tweets
+            // pick random tweet from handpicked tweets:
             let selectedRandomTweet = randomValue(data);
-            // empty the curated tweets array
+            // empty the handpicked tweets array
             data = [];
             // create array with selected element
             data[0] = selectedRandomTweet;
@@ -135,11 +135,11 @@ export var realTimeTweets = (function () {
                 var noneOfTheseStringsCriterium = false;
 
                 // HANDPICKED TWEETS
-                if (data[i].curatedTweet === true) {
-                    curatedClass = " curated ";
-                    tweetTypeText = "<div class='col-12 mb-2 curated-tweet-text text-center'><small class='m-0'>– Handpicked –</small></div>";
+                if (data[i].handpickedTweet === true) {
+                    handpickedClass = " handpicked ";
+                    tweetTypeText = "<div class='col-12 mb-2 handpicked-tweet-text text-center'><small class='m-0'>– Handpicked –</small></div>";
                 } else {
-                    curatedClass = "";
+                    handpickedClass = "";
                     tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>– Real Time –</small></div>";
                 }
 
@@ -194,10 +194,10 @@ export var realTimeTweets = (function () {
                         noneOfTheseStringsCriterium
                         ) 
                         ||
-                    data[i].curatedTweet === true) {
+                    data[i].handpickedTweet === true) {
                     somethingFound = true;
                     domTemp =
-                        "<div class='card mb-3 tweet invisibleTweet " + curatedClass + "'>" +
+                        "<div class='card mb-3 tweet invisibleTweet " + handpickedClass + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
                         tweetTypeText +

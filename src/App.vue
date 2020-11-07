@@ -727,11 +727,11 @@ a.overlay__close:not(.overlay__close-cross):hover,
     display: none;
 }
 
-.card.curated {
+.card.handpicked {
     background-color: rgb(250, 239, 202) !important;
 }
 
-.curatedTweetIndication {
+.handpickedTweetIndication {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -749,7 +749,7 @@ footer {
 
 }
 
-.curated-tweet-text small {
+.handpicked-tweet-text small {
     background: rgb(247, 229, 130);
 }
 

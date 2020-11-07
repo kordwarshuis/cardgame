@@ -48,8 +48,8 @@ export var getJSON = (function () {
         var resp;
         var refreshInterval = 10000;
 
-        function fetchData(source, curated) {
-            // console.log('curated: ', curated);
+        function fetchData(source, handpicked) {
+            // console.log('handpicked: ', handpicked);
             var connectionSymbol = document.querySelector('.menu-icon');
             fetch(source)
                 // 1 json
@@ -92,14 +92,14 @@ export var getJSON = (function () {
                     // we need what is insides statuses
                     resp = resp.statuses;
 
-                    // if the json is taken from the curated source, then give each array element a property named curatedTweet
-                    if (curated === true) {
+                    // if the json is taken from the handpicked source, then give each array element a property named handpickedTweet
+                    if (handpicked === true) {
                         resp.forEach(element => {
-                            element.curatedTweet = true;
+                            element.handpickedTweet = true;
                         });
                     } else {
                         resp.forEach(element => {
-                            element.curatedTweet = false;
+                            element.handpickedTweet = false;
                         });
                     }
 
@@ -137,7 +137,7 @@ export var getJSON = (function () {
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 190000);
         fetchTweetsLoop2 = setInterval(function () {
-            console.log('Fetch curated tweets');
+            console.log('Fetch handpicked tweets');
             konsole.innerHTML = 'Fetch handpicked tweets.';
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 580000);
