@@ -112,6 +112,9 @@ import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
 import moment from "moment";
+import {
+    language
+} from "@/assets/js/language.js";
 
 export default {
     name: "twitterRealtime3",
@@ -138,6 +141,7 @@ export default {
         this.filterTweets();
         this.getBookmarkedTweetsFromLocalStorage();
         this.clock();
+        this.addMessagesToTweetStream();
     },
     methods: {
         clock() {
@@ -311,6 +315,31 @@ export default {
                 }
             }, false);
         },
+        addMessagesToTweetStream() {
+            function insertMessage(a) {
+                document.querySelector(".tweets-realtime .tweets").insertAdjacentHTML("afterbegin", a);
+            }
+
+            setTimeout(function () {
+                insertMessage(language.tweetStream.message1);
+            }, 1000);
+            setTimeout(function () {
+                insertMessage(language.tweetStream.message2);
+            }, 23000);
+            setTimeout(function () {
+                insertMessage(language.tweetStream.message3);
+            }, 45000);
+            setTimeout(function () {
+                insertMessage(language.tweetStream.message1);
+            }, 130000);
+
+            setInterval(function () {
+                insertMessage(language.tweetStream.message1);
+            }, 180000);
+            setInterval(function () {
+                insertMessage(language.tweetStream.message2);
+            }, 230000);
+        }
     }
 };
 
