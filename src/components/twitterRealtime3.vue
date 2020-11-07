@@ -50,6 +50,7 @@
                                     </div>
                                     <input type="text" class="form-control" id="filterTweets" value="Tip: stop stream first" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                                 </div>
+                                <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
 
                             </div>
                         </div>
