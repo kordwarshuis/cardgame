@@ -25,9 +25,9 @@
 
 <script>
 import store from "../store/store";
-import {
-    language
-} from "@/assets/js/Language.js";
+// import {
+//     language
+// } from "@/assets/js/Language.js";
 import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
