@@ -95,8 +95,6 @@ export var realTimeTweets = (function () {
 
 
     function processTwitters(data) {
-
-        console.log('noneOfTheseStrings: ', noneOfTheseStrings);
         var tweets = document.querySelector(".tweets-realtime .tweets");
         var domMenuIcon = document.querySelector(".menu-icon");
         var somethingFound = false;
@@ -136,6 +134,7 @@ export var realTimeTweets = (function () {
                 var anyOfTheseStringsCriterium = false;
                 var noneOfTheseStringsCriterium = false;
 
+                // HANDPICKED TWEETS
                 if (data[i].curatedTweet === true) {
                     curatedClass = " curated ";
                     tweetTypeText = "<div class='col-12 mb-2 curated-tweet-text text-center'><small class='m-0'>– Handpicked –</small></div>";
@@ -144,41 +143,42 @@ export var realTimeTweets = (function () {
                     tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>– Real Time –</small></div>";
                 }
 
+                // NUMBER OF FOLLOWERS
                 if (data[i].user.followers_count >= numberOfFollowers) {
                     numberOfFollowersCriterium = true;
                 } else {
                     numberOfFollowersCriterium = false;
                 }
 
-                // loop through all anyOfTheseStrings:
-
-
+                // VERIFIED USERS
                 if (data[i].user.verified === onlyVerifiedAccountsUsersChoice) {
                     onlyVerifiedAccountsUsersChoiceCriterium = true;
                 } else {
                     onlyVerifiedAccountsUsersChoiceCriterium = false;
                 }
 
+                // STRINGS THAT SHOULD EXIST IN TWEET TEXT
                 if (anyOfTheseStrings.length === 0) {
                     anyOfTheseStringsCriterium = true;
                 } else {
                     for (let j = 0; j < anyOfTheseStrings.length; j++) {
 
                         // if anyOfTheseStrings found, only last anyOfTheseStrings, if there are more, will be remembered:
-                        if (data[i].text.indexOf(anyOfTheseStrings[j]) > -1) {
+                        if (data[i].text.toLowerCase().indexOf(anyOfTheseStrings[j].toLowerCase()) > -1) {
                             anyOfTheseStringsCriterium = true;
                             currentKeyword = anyOfTheseStrings[j];
                         }
                     } // end anyOfTheseStrings loop
                 }
 
+                // STRINGS THAT SHOULD NOT EXIST IN TWEET TEXT
                 if (noneOfTheseStrings.length === 0) {
-                    noneOfTheseStrings = true; // there are now restrictions so tweet can be shown
+                    noneOfTheseStringsCriterium = true; // there are now restrictions so tweet can be shown
                 } else {
                     // loop through all noneOfTheseStrings:
                     for (let j = 0; j < noneOfTheseStrings.length; j++) {
                         // if noneOfTheseStrings found, only last keyword, if there are more, will be remembered:
-                        if (data[i].text.indexOf(noneOfTheseStrings[j]) > -1) { //words are found
+                        if (data[i].text.toLowerCase().indexOf(noneOfTheseStrings[j].toLowerCase()) > -1) { //strings are found
                             noneOfTheseStringsCriterium = false; // that means the criterium has NOT been met, and the tweet will not be shown
                         } else {
                             noneOfTheseStringsCriterium = true; // if no word has been found, then the tweet can be shown
@@ -187,9 +187,13 @@ export var realTimeTweets = (function () {
                 }
 
                 if ((numberOfFollowersCriterium &&
-                        onlyVerifiedAccountsUsersChoiceCriterium &&
-                        anyOfTheseStringsCriterium &&
-                        noneOfTheseStringsCriterium) ||
+                        onlyVerifiedAccountsUsersChoiceCriterium 
+                        &&
+                        anyOfTheseStringsCriterium 
+                        &&
+                        noneOfTheseStringsCriterium
+                        ) 
+                        ||
                     data[i].curatedTweet === true) {
                     somethingFound = true;
                     domTemp =
