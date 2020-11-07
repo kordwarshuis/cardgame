@@ -9,25 +9,39 @@ import {
 export var getJSON = (function () {
     var fetchTweetsLoop;
     var fetchTweetsLoop2;
+    var handpicked1;
+    var handpicked2;
+    var handpicked3;
+    var handpicked4;
+    var handpicked5;
+    var handpicked6;
 
     // console showing messages to user
     var konsole;
+    var tweets
     document.addEventListener("DOMContentLoaded", function (event) {
         konsole = document.querySelector('.console .message');
+        tweets = document.querySelector(".tweets-realtime .tweets");
+        console.log('tweets: ', tweets);
     });
 
     function start(source) {
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
         console.log("start");
         store.commit("showToast", "Tweet stream is running.");
-        
-        setTimeout(function() {
-            store.commit("showToast", "Open Tweet panel to see tweet stream");
-        }, 6000);
-        setTimeout(function() {
+        document.querySelector('.tweet-stream-info-in-stream').classList.add('hidden');
+
+        // show message only on smaller screens where tweet stream does not open initially
+        if (mediaQuery.matches) {
+            setTimeout(function () {
+                store.commit("showToast", "Open Tweet panel to see tweet stream");
+            }, 6000);
+        }
+        setTimeout(function () {
             store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
         }, 12000);
 
-        setTimeout(function() {
+        setTimeout(function () {
             store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
         }, 180000);
 
@@ -104,22 +118,22 @@ export var getJSON = (function () {
 
 
         // simple way of showing some handpicked tweets
-        setTimeout(function() {
+        handpicked1 = setTimeout(function () {
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 6000);
-        setTimeout(function() {
+        handpicked2 = setTimeout(function () {
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 12000);
-        setTimeout(function() {
+        handpicked3 = setTimeout(function () {
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 25000);
-        setTimeout(function() {
+        handpicked4 = setTimeout(function () {
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 45000);
-        setTimeout(function() {
+        handpicked5 = setTimeout(function () {
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 80000);
-        setTimeout(function() {
+        handpicked6 = setTimeout(function () {
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 190000);
         fetchTweetsLoop2 = setInterval(function () {
@@ -139,7 +153,16 @@ export var getJSON = (function () {
 
     function stop() {
         store.commit("showToast", "Tweet stream is paused.");
+        document.querySelector('.tweet-stream-info-in-stream').classList.remove('hidden');
         console.log("stop");
+
+        clearTimeout(handpicked1);
+        clearTimeout(handpicked2);
+        clearTimeout(handpicked3);
+        clearTimeout(handpicked4);
+        clearTimeout(handpicked5);
+        clearTimeout(handpicked6);
+
         clearInterval(fetchTweetsLoop);
         console.log('fetchTweetsLoop: ', fetchTweetsLoop);
         clearInterval(fetchTweetsLoop2);

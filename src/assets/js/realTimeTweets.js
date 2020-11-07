@@ -13,48 +13,28 @@ export var realTimeTweets = (function () {
 
     var stopNow = false;
     var isSpecialAccount = false;
-    var specialAccountHTMLcode = "";
-
-
-    var domStart = document.querySelector("#start");
-    var domStop = document.querySelector("#stop");
-    var domRestoreKeyWords = document.querySelector("#restoreKeyWords");
-    var domEmptyKeyWords = document.querySelector("#emptyKeyWords");
-    var domRestoreTweetAccounts = document.querySelector("#restoreTweetAccounts");
-    var domEmptyTweetAccounts = document.querySelector("#emptyTweetAccounts");
-    var domTestTweetAccountsSound = document.querySelector("#testTweetAccountsSound");
 
     var domTemp = "";
     var domTempOld = "x";
 
-    var fetchTweetsLoop;
-    var keywordFound = false;
     var currentKeyword = "";
 
     var tweetNumber = 0;
     var tweetTypeText = "";
-    var status = document.querySelector("#status span");
-    var lastDataSet;
 
 
     // criteria
 
-    var numberOfFollowersBackup = 750;
+    var numberOfFollowersBackup = 0;
     var numberOfFollowers = numberOfFollowersBackup;
-
-
-
-
-
+    
     var onlyVerifiedAccountsUsersChoice = false;
+
     var anyOfTheseStringsDefault = [];
     var anyOfTheseStrings = [];
 
-    var anyOfTheseWordsUsersChoice = [];
-    var noneOfTheseWords = ["airdrop", "earn", "giveaway"];
-    var noneOfTheseWordsUsersChoice = [];
-
-
+    var noneOfTheseStringsDefault = [];
+    var noneOfTheseStrings = [];
 
     var tweetAccounts = [];
     // var followersSelect = document.querySelector("#followers");
@@ -135,7 +115,6 @@ export var realTimeTweets = (function () {
         // 
         // Only for curated tweets; if the first element is true then all is true
         if (data[0].curatedTweet === true) {
-            console.log("curated");
             // here we take one random tweet from an array, so the tweet stream is not flooded with curated tweets
             // pick random tweet from curated tweets:
             let selectedRandomTweet = randomValue(data);
@@ -143,11 +122,6 @@ export var realTimeTweets = (function () {
             data = [];
             // create array with selected element
             data[0] = selectedRandomTweet;
-        }
-
-        // join the hardcoded keywords with the users choice
-        if (noneOfTheseWordsUsersChoice.length > 0) {
-            noneOfTheseWords = arrayUnique(noneOfTheseWords.concat(noneOfTheseWordsUsersChoice));
         }
 
         function loopThroughAllTweets(data) {
@@ -158,8 +132,9 @@ export var realTimeTweets = (function () {
                 var onlyVerifiedAccountsUsersChoiceCriterium = false;
                 var numberOfFollowersCriterium = false;
                 var anyOfTheseStringsCriterium = false;
-                var noneOfTheseWordsCriterium = false;
+                var noneOfTheseStringsCriterium = false;
 
+                // HANDPICKED TWEETS
                 if (data[i].curatedTweet === true) {
                     curatedClass = " curated ";
                     tweetTypeText = "<div class='col-12 mb-2 curated-tweet-text text-center'><small class='m-0'>– Handpicked –</small></div>";
@@ -168,55 +143,57 @@ export var realTimeTweets = (function () {
                     tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>– Real Time –</small></div>";
                 }
 
+                // NUMBER OF FOLLOWERS
                 if (data[i].user.followers_count >= numberOfFollowers) {
                     numberOfFollowersCriterium = true;
                 } else {
                     numberOfFollowersCriterium = false;
                 }
 
-                // loop through all anyOfTheseStrings:
-
-
+                // VERIFIED USERS
                 if (data[i].user.verified === onlyVerifiedAccountsUsersChoice) {
                     onlyVerifiedAccountsUsersChoiceCriterium = true;
                 } else {
                     onlyVerifiedAccountsUsersChoiceCriterium = false;
                 }
 
+                // STRINGS THAT SHOULD EXIST IN TWEET TEXT
                 if (anyOfTheseStrings.length === 0) {
-                    // console.log('anyOfTheseStrings.length: ', anyOfTheseStrings.length);
                     anyOfTheseStringsCriterium = true;
                 } else {
                     for (let j = 0; j < anyOfTheseStrings.length; j++) {
 
-                        // console.log('anyOfTheseStrings[j]: ', anyOfTheseStrings[j]);
                         // if anyOfTheseStrings found, only last anyOfTheseStrings, if there are more, will be remembered:
-                        if (data[i].text.indexOf(anyOfTheseStrings[j]) > -1) {
+                        if (data[i].text.toLowerCase().indexOf(anyOfTheseStrings[j].toLowerCase()) > -1) {
                             anyOfTheseStringsCriterium = true;
-                            // somethingFound = keywordFound;
                             currentKeyword = anyOfTheseStrings[j];
                         }
                     } // end anyOfTheseStrings loop
                 }
 
-                if (noneOfTheseWords.length === 0) {
-                    noneOfTheseWords = true; // there are now restrictions so tweet can be shown
+                // STRINGS THAT SHOULD NOT EXIST IN TWEET TEXT
+                if (noneOfTheseStrings.length === 0) {
+                    noneOfTheseStringsCriterium = true; // there are now restrictions so tweet can be shown
                 } else {
-                    // loop through all noneOfTheseWords:
-                    for (let j = 0; j < noneOfTheseWords.length; j++) {
-                        // if noneOfTheseWords found, only last keyword, if there are more, will be remembered:
-                        if (data[i].text.indexOf(noneOfTheseWords[j]) > -1) { //words are found
-                            noneOfTheseWordsCriterium = false; // that means the criterium has NOT been met, and the tweet will not be shown
+                    // loop through all noneOfTheseStrings:
+                    for (let j = 0; j < noneOfTheseStrings.length; j++) {
+                        // if noneOfTheseStrings found, only last keyword, if there are more, will be remembered:
+                        if (data[i].text.toLowerCase().indexOf(noneOfTheseStrings[j].toLowerCase()) > -1) { //strings are found
+                            noneOfTheseStringsCriterium = false; // that means the criterium has NOT been met, and the tweet will not be shown
                         } else {
-                            noneOfTheseWordsCriterium = true; // if no word has been found, then the tweet can be shown
+                            noneOfTheseStringsCriterium = true; // if no word has been found, then the tweet can be shown
                         }
-                    } // end noneOfTheseWords loop
+                    } // end noneOfTheseStrings loop
                 }
 
                 if ((numberOfFollowersCriterium &&
-                        onlyVerifiedAccountsUsersChoiceCriterium &&
-                        anyOfTheseStringsCriterium &&
-                        noneOfTheseWordsCriterium) ||
+                        onlyVerifiedAccountsUsersChoiceCriterium 
+                        &&
+                        anyOfTheseStringsCriterium 
+                        &&
+                        noneOfTheseStringsCriterium
+                        ) 
+                        ||
                     data[i].curatedTweet === true) {
                     somethingFound = true;
                     domTemp =
@@ -259,7 +236,6 @@ export var realTimeTweets = (function () {
                         "</div>" +
                         domTemp;
                     tweetNumber++;
-                    keywordFound = false;
                 } else {
                     somethingFound = false;
                 }
@@ -273,8 +249,6 @@ export var realTimeTweets = (function () {
         if (somethingFound) {
             if (localStorage.getItem("soundOn") === "true") alert.play();
             domMenuIcon.classList.add('new-tweets');
-            // console.log('domTemp: ', domTemp);
-            // console.log('domTempOld: ', domTempOld);
             if (domTempOld !== domTemp) {
                 var k = 0;
 
@@ -294,8 +268,6 @@ export var realTimeTweets = (function () {
                         }, k);
                         // k = Math.floor(k + ((10000 / invisibleTweets.length) -100  ));
                         k = k + 10;
-                        // console.log('invisibleTweets.length: ', invisibleTweets.length);
-                        // console.log('k: ', k);
                     }(i));
                 }
             }
@@ -327,12 +299,17 @@ export var realTimeTweets = (function () {
         numberOfFollowers = a;
     }
 
-    function setNoneOfTheseWordsUsersChoice(a) {
-        noneOfTheseWordsUsersChoice = a;
-    }
-
     function setOnlyVerifiedAccountsUsersChoice(a) {
         onlyVerifiedAccountsUsersChoice = a;
+    }
+
+
+    function getAnyOfTheseStrings() {
+        return anyOfTheseStrings;
+    }
+
+    function getAnyOfTheseStringsDefault() {
+        return anyOfTheseStringsDefault;
     }
 
     function setAnyOfTheseStrings(a) {
@@ -343,23 +320,43 @@ export var realTimeTweets = (function () {
         anyOfTheseStringsDefault = a;
     }
 
-    function getAnyOfTheseStrings() {
-        return anyOfTheseStrings;
+
+
+
+
+
+
+
+    function getNoneOfTheseStrings() {
+        return noneOfTheseStrings;
     }
 
-    function getAnyOfTheseStringsDefault() {
-        return anyOfTheseStringsDefault;
+    function getNoneOfTheseStringsDefault() {
+        return noneOfTheseStringsDefault;
+    }
+
+    function setNoneOfTheseStrings(a) {
+        noneOfTheseStrings = a;
+    }
+
+    function setNoneOfTheseStringsDefault(a) {
+        noneOfTheseStringsDefault = a;
     }
     
     return {
         start: processTwitters,
         toggleAllTweets: toggleAllTweets,
         setFollowersNumber: setFollowersNumber,
+        setOnlyVerifiedAccountsUsersChoice: setOnlyVerifiedAccountsUsersChoice,
+
         setAnyOfTheseStrings: setAnyOfTheseStrings,
         setAnyOfTheseStringsDefault: setAnyOfTheseStringsDefault,
         getAnyOfTheseStrings: getAnyOfTheseStrings,
         getAnyOfTheseStringsDefault: getAnyOfTheseStringsDefault,
-        setNoneOfTheseWordsUsersChoice: setNoneOfTheseWordsUsersChoice,
-        setOnlyVerifiedAccountsUsersChoice: setOnlyVerifiedAccountsUsersChoice
+
+        setNoneOfTheseStrings: setNoneOfTheseStrings,
+        setNoneOfTheseStringsDefault: setNoneOfTheseStringsDefault,
+        getNoneOfTheseStrings: getNoneOfTheseStrings,
+        getNoneOfTheseStringsDefault: getNoneOfTheseStringsDefault,
     };
 }());

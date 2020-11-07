@@ -22,9 +22,9 @@
                             <h2 class="mt-3">Followers</h2>
                             <label class="" for="followers" id="labelFollowers">Poster has </label>
                             <select name="followers" id="followers">
-                                <option value="0">0</option>
+                                <option value="0" selected>0</option>
                                 <option value="500">500</option>
-                                <option value="750" selected>750</option>
+                                <option value="750">750</option>
                                 <option value="1000">1000</option>
                                 <option value="2000">2000</option>
                                 <option value="5000">5000</option>
@@ -39,7 +39,7 @@
                             <label for="onlyVerifiedAccounts">Show only verified accounts.</label>
                             <hr class="mt-5">
                             <div class="form-group">
-                                <h2 class="mt-3">Any of these strings of words</h2>
+                                <h2 class="mt-3">Any of these strings or words</h2>
                                 <div class="alert alert-info mt-3 col-md-12" role="alert">
                                     All changes work immediately.
                                 </div>
@@ -49,39 +49,17 @@
                                 <button id="restoreAnyOfTheseStringsDefault" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyAnyOfTheseStrings" type="button" class="btn btn-light">Empty</button>
                             </div>
                             <hr class="mt-5">
+
                             <div class="form-group">
-                                <h2 class="mt-3">None of these words</h2>
-                                <label class="" for="noneOfTheseWordsUsersChoice" id="labelNoneOfTheseWordsUsersChoice">None of these words</label>
-                                <textarea id="noneOfTheseWordsUsersChoice" name="noneOfTheseWordsUsersChoice" rows="5" class="form-control block p-3"></textarea>
-                                <!-- <button id="restoreAnyOfTheseStringsDefault" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyAnyOfTheseStrings" type="button" class="btn btn-light">Empty</button> -->
+                                <h2 class="mt-3">None of these strings or words</h2>
+                                <label class="" for="noneOfTheseStrings" id="labelNoneOfTheseStrings">None of these words</label>
+                                <textarea id="noneOfTheseStrings" name="noneOfTheseStrings" rows="5" class="form-control block p-3">Airdrop</textarea>
+                                <button id="restoreNoneOfTheseStringsDefault" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyNoneOfTheseStrings" type="button" class="btn btn-light">Empty</button>
                             </div>
 
                             <p>Separate the words with a comma. Spaces matter, “action” will also find “traction”, “ action” wont.</p>
-
                         </div>
-
-                        <!-- <div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div> -->
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-md-3 ml-auto">.col-md-3 .ml-auto</div>
-                        <div class="col-md-2 ml-auto">.col-md-2 .ml-auto</div>
-                    </div> -->
-                    <!-- <div class="row">
-                        <div class="col-md-6 ml-auto">.col-md-6 .ml-auto</div>
-                    </div> -->
-                    <!-- <div class="row">
-                        <div class="col-sm-9">
-                            Level 1: .col-sm-9
-                            <div class="row">
-                                <div class="col-8 col-sm-6">
-                                    Level 2: .col-8 .col-sm-6
-                                </div>
-                                <div class="col-4 col-sm-6">
-                                    Level 2: .col-4 .col-sm-6
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <div class="modal-footer">
@@ -101,6 +79,7 @@ export default {
     mounted: function () {
         this.setFollowersNumber();
         this.handleAnyOfTheseStrings();
+        this.handleNoneOfTheseStrings();
         this.setOnlyVerifiedAccountsUsersChoice();
         // this.showAllTweets();
     },
@@ -114,9 +93,23 @@ export default {
         setFollowersNumber() {
             var followers = document.querySelector("#followers");
 
-            followers.addEventListener("change", function () {
-                console.log(followers.value);
+            // set initially
+            // if a value is set in localStorage earlier…
+            if (localStorage.getItem("followersNumber") !== null) {
+                // …use this value
+                // for the real time tweets
+                realTimeTweets.setFollowersNumber(localStorage.getItem("followersNumber"));
+                // and also set the dropdown to new number
+                followers.value = localStorage.getItem("followersNumber");
+
+            } else {
                 realTimeTweets.setFollowersNumber(followers.value);
+            }
+
+            // set on change
+            followers.addEventListener("change", function () {
+                realTimeTweets.setFollowersNumber(followers.value);
+                localStorage.setItem("followersNumber", followers.value);
             }, false);
         },
 
@@ -126,17 +119,16 @@ export default {
             var domEmptyAnyOfTheseStrings = document.querySelector("#emptyAnyOfTheseStrings");
 
             function emptyAnyOfTheseStrings() {
-                console.log("empty");
                 domAnyOfTheseStrings.value = "";
                 realTimeTweets.setAnyOfTheseStrings([]);
-                localStorage.setItem("defaultSearchStrings", "");
+                localStorage.setItem("anyOfTheseStrings", "");
             }
 
             // get default string from array
             function restoreAnyOfTheseStringsDefault() {
                 domAnyOfTheseStrings.value = realTimeTweets.getAnyOfTheseStringsDefault().toString();
                 realTimeTweets.setAnyOfTheseStrings(realTimeTweets.getAnyOfTheseStringsDefault());
-                localStorage.setItem("defaultSearchStrings", realTimeTweets.getAnyOfTheseStringsDefault().toString());
+                localStorage.setItem("anyOfTheseStrings", realTimeTweets.getAnyOfTheseStringsDefault().toString());
             }
 
             // first save default search strings to a backup array
@@ -146,12 +138,12 @@ export default {
             realTimeTweets.setAnyOfTheseStrings(domAnyOfTheseStrings.value.split(","));
 
             // then save it to localStorage
-            // localStorage.setItem("defaultSearchStrings", domAnyOfTheseStrings.value);
+            // localStorage.setItem("anyOfTheseStrings", domAnyOfTheseStrings.value);
 
-            // localStorage.getItem("defaultSearchStrings") exists…
-            if (localStorage.getItem("defaultSearchStrings") !== null) {
+            // localStorage.getItem("anyOfTheseStrings") exists…
+            if (localStorage.getItem("anyOfTheseStrings") !== null) {
                 // …it can be an empty string…
-                if (localStorage.getItem("defaultSearchStrings") === "") {
+                if (localStorage.getItem("anyOfTheseStrings") === "") {
                     // then text area should also be empty:
                     domAnyOfTheseStrings.value = "";
                     // and working array should be empty:
@@ -160,48 +152,106 @@ export default {
                 // … or filled
                 {
                     // then replace default string with what is in local storage, if there is any
-                    domAnyOfTheseStrings.value = localStorage.getItem("defaultSearchStrings");
+                    domAnyOfTheseStrings.value = localStorage.getItem("anyOfTheseStrings");
                     // and working array should be empty:
-                    realTimeTweets.setAnyOfTheseStrings(localStorage.getItem("defaultSearchStrings").split(","));
+                    realTimeTweets.setAnyOfTheseStrings(localStorage.getItem("anyOfTheseStrings").split(","));
                 }
             }
 
             domAnyOfTheseStrings.addEventListener("input", function () {
                 // save default search strings to array
                 realTimeTweets.setAnyOfTheseStrings(this.value.split(","));
-                localStorage.setItem("defaultSearchStrings", this.value);
+                localStorage.setItem("anyOfTheseStrings", this.value);
             }, false);
 
             domRestoreAnyOfTheseStringsDefault.addEventListener("click", restoreAnyOfTheseStringsDefault, false);
             domEmptyAnyOfTheseStrings.addEventListener("click", emptyAnyOfTheseStrings, false);
         },
-        setNoneOfTheseWordsUsersChoice() {
-            var noneOfTheseWordsUsersChoice = document.querySelector("#noneOfTheseWordsUsersChoice");
+        handleNoneOfTheseStrings() {
 
-            noneOfTheseWordsUsersChoice.addEventListener("input", function () {
-                var a = this.value.split(",");
-                realTimeTweets.setNoneOfTheseWordsUsersChoice(a);
+            var domNoneOfTheseStrings = document.querySelector("#noneOfTheseStrings");
+            var domRestoreNoneOfTheseStringsDefault = document.querySelector("#restoreNoneOfTheseStringsDefault");
+            var domEmptyNoneOfTheseStrings = document.querySelector("#emptyNoneOfTheseStrings");
+
+            function emptyNoneOfTheseStrings() {
+                domNoneOfTheseStrings.value = "";
+                realTimeTweets.setNoneOfTheseStrings([]);
+                localStorage.setItem("noneOfTheseStrings", "");
+            }
+
+            // get default string from array
+            function restoreNoneOfTheseStringsDefault() {
+                domNoneOfTheseStrings.value = realTimeTweets.getNoneOfTheseStringsDefault().toString();
+                realTimeTweets.setNoneOfTheseStrings(realTimeTweets.getNoneOfTheseStringsDefault());
+                localStorage.setItem("noneOfTheseStrings", realTimeTweets.getNoneOfTheseStringsDefault().toString());
+            }
+
+            // first save default search strings to a backup array
+            realTimeTweets.setNoneOfTheseStringsDefault(domNoneOfTheseStrings.value.split(","));
+
+            // then save it to the working array 
+            realTimeTweets.setNoneOfTheseStrings(domNoneOfTheseStrings.value.split(","));
+
+            // localStorage.getItem("noneOfTheseStrings") exists…
+            if (localStorage.getItem("noneOfTheseStrings") !== null) {
+                // …it can be an empty string…
+                if (localStorage.getItem("noneOfTheseStrings") === "") {
+                    // then text area should also be empty:
+                    domNoneOfTheseStrings.value = "";
+                    // and working array should be empty:
+                    realTimeTweets.setNoneOfTheseStrings([]);
+                } else
+                // … or filled
+                {
+                    // then replace default string with what is in local storage, if there is any
+                    domNoneOfTheseStrings.value = localStorage.getItem("noneOfTheseStrings");
+                    // and working array should be empty:
+                    realTimeTweets.setNoneOfTheseStrings(localStorage.getItem("noneOfTheseStrings").split(","));
+                }
+            }
+
+            domNoneOfTheseStrings.addEventListener("input", function () {
+                // save default search strings to array
+                realTimeTweets.setNoneOfTheseStrings(this.value.split(","));
+                localStorage.setItem("noneOfTheseStrings", this.value);
             }, false);
+
+            domRestoreNoneOfTheseStringsDefault.addEventListener("click", restoreNoneOfTheseStringsDefault, false);
+            domEmptyNoneOfTheseStrings.addEventListener("click", emptyNoneOfTheseStrings, false);
         },
+
+        // setNoneOfTheseWordsUsersChoice() {
+        //     var noneOfTheseWordsUsersChoice = document.querySelector("#noneOfTheseWordsUsersChoice");
+
+        //     noneOfTheseWordsUsersChoice.addEventListener("input", function () {
+        //         var a = this.value.split(",");
+        //         realTimeTweets.setNoneOfTheseWordsUsersChoice(a);
+        //     }, false);
+        // },
         setOnlyVerifiedAccountsUsersChoice() {
             var onlyVerifiedAccountsUsersChoice = document.querySelector("#onlyVerifiedAccounts");
 
-            onlyVerifiedAccountsUsersChoice.addEventListener("change", function () {
-                var verified = false;
-
-                if (this.checked === true) {
-                    verified = true;
-                } else {
-                    verified = false;
+            if (localStorage.getItem("onlyVerifiedAccounts") !== null) {
+                if (localStorage.getItem("onlyVerifiedAccounts") === 'true') {
+                    onlyVerifiedAccountsUsersChoice.checked = true;
+                    realTimeTweets.setOnlyVerifiedAccountsUsersChoice(true);
                 }
+                if (localStorage.getItem("onlyVerifiedAccounts") === 'false') {
+                    onlyVerifiedAccountsUsersChoice.checked = false;
+                    realTimeTweets.setOnlyVerifiedAccountsUsersChoice(false);
+                }
+            }
 
-                // var verified = this.value;
-                console.log('verified: ', verified);
-
-                realTimeTweets.setOnlyVerifiedAccountsUsersChoice(verified);
+            onlyVerifiedAccountsUsersChoice.addEventListener("change", function () {
+                if (this.checked === true) {
+                    localStorage.setItem("onlyVerifiedAccounts", 'true');
+                    realTimeTweets.setOnlyVerifiedAccountsUsersChoice(true);
+                } else {
+                    localStorage.setItem("onlyVerifiedAccounts", 'false');
+                    realTimeTweets.setOnlyVerifiedAccountsUsersChoice(false);
+                }
             }, false);
-        },
-
+        }
     }
 };
 </script>

@@ -701,6 +701,15 @@ a.overlay__close:not(.overlay__close-cross):hover,
     transition: opacity 0.2s ease-in-out;
 }
 
+.tweet-stream-info-in-stream {
+    color: #eee;
+    font-size: 2em;
+    text-align: center;
+}
+.tweet-stream-info-in-stream.hidden {
+    display: none;
+}
+
 // .select-tweet,
 .go-to-tweet {
     background: linear-gradient(to right, #5C34A7, #2376D6);

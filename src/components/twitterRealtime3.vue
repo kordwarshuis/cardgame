@@ -50,6 +50,7 @@
                                     </div>
                                     <input type="text" class="form-control" id="filterTweets" value="Tip: stop stream first" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                                 </div>
+                                <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
 
                             </div>
                         </div>
@@ -327,8 +328,16 @@ function slideInMenu() {
     }
 
     function initEvents() {
+        const mediaQuery = window.matchMedia('(min-width: 768px)');
         openbtn.addEventListener("click", toggleMenu);
         openbtn2.addEventListener("click", toggleMenu);
+
+        // Create a media condition that targets viewports at least 768px wide
+        // Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint
+        // Toggle menu to show tweet stream initially only on bigger screens
+        if (mediaQuery.matches) {
+            toggleMenu();
+        }
 
         if (isOpen === true) {
             document.querySelector("#open-button").setAttribute("checked", "checked");
