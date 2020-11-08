@@ -316,29 +316,73 @@ export default {
             }, false);
         },
         addMessagesToTweetStream() {
+            // array that will contain all keys in language.tweetStream
+            var allTweetStreamMessages = [];
+
             function insertMessage(a) {
                 document.querySelector(".tweets-realtime .tweets").insertAdjacentHTML("afterbegin", a);
             }
 
+            //How to randomize (shuffle) a JavaScript array?
+            //https://stackoverflow.com/a/2450976
+            function shuffle(array) {
+                var currentIndex = array.length,
+                    temporaryValue, randomIndex;
+
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+
+                return array;
+            }
+
+            // push all keys in language.tweetStream into array that we can shuffle
+            for (var k in language.tweetStream) {
+                if (language.tweetStream.hasOwnProperty(k)) {
+                    allTweetStreamMessages.push(k);
+                }
+            }
+
+            shuffle(allTweetStreamMessages);
+
+            // insert a message from the shuffled array. Array will be re-shuffled
+            (function () {
+                var i = 0;
+                setInterval(function () {
+                    if (i >= allTweetStreamMessages.length) {
+                        i = 0;
+                        shuffle(allTweetStreamMessages);
+                    }
+                    // allTweetStreamMessages as key for language.tweetStream
+                    insertMessage(language.tweetStream[allTweetStreamMessages[i]]);
+                    i++;
+                }, 180000);
+            }())
+
             setTimeout(function () {
                 insertMessage(language.tweetStream.message1);
             }, 1000);
+
             setTimeout(function () {
-                insertMessage(language.tweetStream.message2);
-            }, 23000);
+                insertMessage(language.tweetStream.message1);
+            }, 16000);
+
             setTimeout(function () {
-                insertMessage(language.tweetStream.message3);
+                insertMessage(language.tweetStream.message1);
             }, 45000);
+
             setTimeout(function () {
                 insertMessage(language.tweetStream.message1);
             }, 130000);
-
-            setInterval(function () {
-                insertMessage(language.tweetStream.message1);
-            }, 180000);
-            setInterval(function () {
-                insertMessage(language.tweetStream.message2);
-            }, 230000);
         }
     }
 };
