@@ -51,10 +51,10 @@
     </div> -->
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
 
-    <div v-if="(this.$store.state.activeCategory !== 'All')" >
+    <div v-if="(this.$store.state.activeCategory !== 'All')">
         <h3>
             {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboard5 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
-        </h3    >
+        </h3>
     </div>
 
     <!-- THE CARDS -->
