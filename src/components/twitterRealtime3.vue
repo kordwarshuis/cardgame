@@ -679,14 +679,14 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 
 .tweets-selected-open-close-button {
     background: url("../assets/img/icons/jv-creative/tweets-selected-open.png") no-repeat center;
-    background-size: cover;
+    background-size: 20px;
     width: 30px;
     height: 30px;
 }
 
 .open .tweets-selected-open-close-button {
-    background: url("../assets/img/icons/jv-creative/tweets-selected-close.png") no-repeat center !important;
-    background-size: cover;
+    background: url("../assets/img/icons/jv-creative/tweets-selected-close.png") no-repeat center;
+    background-size: 20px;
     width: 30px;
     height: 30px;
 }
