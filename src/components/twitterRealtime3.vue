@@ -114,7 +114,7 @@ import {
 import moment from "moment";
 import {
     language
-} from "@/assets/js/language.js";
+} from "@/assets/js/language1.js";
 
 export default {
     name: "twitterRealtime3",
@@ -373,6 +373,14 @@ export default {
             }, 1000);
 
             setTimeout(function () {
+                insertMessage(language.tweetStream.message5);
+            }, 8000);
+
+            setTimeout(function () {
+                insertMessage(language.tweetStream.message6);
+            }, 12000);
+
+            setTimeout(function () {
                 insertMessage(language.tweetStream.message1);
             }, 16000);
 
@@ -383,6 +391,7 @@ export default {
             setTimeout(function () {
                 insertMessage(language.tweetStream.message1);
             }, 130000);
+                
         }
     }
 };
