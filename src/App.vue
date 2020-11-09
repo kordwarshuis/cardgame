@@ -343,6 +343,75 @@ export default {
                 src: [require("./assets/audio/click.mp4")]
             });
 
+            quizPlop = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/348493__jalastram__gui-sound-effects-031.mp4")]
+            });
+            whawhaTrumpet = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/wha-wha-trumpet.mp4")]
+            });
+            laughManiacal = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/laugh-maniacal.mp4")]
+            });
+            cannedLaughter = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/canned-laughter.mp4")]
+            });
+            blur = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/blur.mp4")]
+            });
+            bouncing3 = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/bouncing-3.mp4")]
+            });
+            gasp = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/gasp.mp4")]
+            });
+            drumCrash1 = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/drum-crash-1.mp4")]
+            });
+            surprisedGasp = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/surprised-gasp.mp4")]
+            });
+            fanfare = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/fanfare.mp4")]
+            });
+            epiphany = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/epiphany.mp4")]
+            });
+            quizEnd = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/370294__mrthenoronha__tribal-game-theme-loop.mp4")]
+            });
+            dragging = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/171043__st303__mechanical-alarm-clock-is-ticking-slava.mp4")]
+            });
+            draggingEnd = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/179055__robinhood76__04148-a-circus-jump-with-clarinet-part2.mp4")]
+            });
+            quizCorrectDragging = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/394485__gameloops__gamepack1-mystery-failed.mp4")]
+            });
+            quizCorrectAnswer = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/29543__bennychico11__wink.mp4")]
+            });
+            quizWrongAnswer = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/348477__jalastram__gui-sound-effects-044.mp4")]
+            });
+
             // document.querySelectorAll("a").forEach(item => item.addEventListener('click', function () {
             //     click.play()
             // }, false));
@@ -741,10 +810,6 @@ a.overlay__close:not(.overlay__close-cross):hover,
     display: none;
 }
 
-// .tweets-realtime .go-to-tweet {
-//     display: none;
-// }
-
 .tweets-realtime .tweet-instruction {
     display: none;
 }
@@ -779,7 +844,6 @@ footer {
     background: rgb(247, 229, 130);
 }
 
-//
 .hideSearchResult {
     margin: 0 !important;
     display: none !important;
@@ -882,4 +946,47 @@ footer {
     }
 
 }
+
+// QUIZ
+.nummering,
+.nummering2
+{
+    font-size: 1em;
+    line-height: 0.5em;
+    margin-bottom: 3em;
+    text-align: center;
+}
+
+.nummering span,
+.nummering2 span
+{
+    border-radius: 50%;
+    /* = 15%, almost gives us viewport width unit (15vw) */
+    text-align: center;
+    /* this way we should have 1px gap between circles */
+    /* margin: 35px .5px; */
+    margin: 1em auto 0.5em;
+    // background: $numbering-background;
+    // color: $numbering-text;
+    
+    display: block;
+    /* circle to the middle, so that... [1] */
+    
+    /* to use viewport based units we can safely override the old units in this way */
+    /* padding-bottom: 0vw;
+    font-size: 5vw;
+    line-height: 7vw;
+    width: 7vw;
+    height: 7vw; */
+
+    padding-bottom: 0;
+    font-size: 2em;
+    line-height: 2em;
+    width: 2em;
+    height: 2em;
+}
+.nummering + h3 {
+    text-align: center;
+}
+// END QUIZ
 </style>
