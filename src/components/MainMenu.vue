@@ -21,6 +21,9 @@
             <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
                 <router-link class="nav-link" v-if="this.$store.state.gameId === 'btc'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">Scores</router-link>
             </li>
+            <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
+                <router-link class="nav-link" v-if="this.$store.state.gameId === 'btc'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/quiz">Quiz</router-link>
+            </li>
             <li class="nav-item" style="border-right: none;">
                 <SoundToggle />
             </li>
