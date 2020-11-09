@@ -29,6 +29,12 @@ const routes = [{
     component: () =>
       import("../views/Scores.vue")
   },
+  {
+    path: "/quiz",
+    name: "Quiz",
+    component: () =>
+      import("../views/Quiz.vue")
+  },
   // {
   //   path: "/twitter-real-time",
   //   name: "TwitterRealTime",
