@@ -1,469 +1,24 @@
 <template>
-<div class="container-sm">
-    <!-- <section id="startscherm">
-        <div class="tekst clearfix">
-            <div class="">
-                <div class="mainblock">
-                    <h1>The Bitcoin Quiz</h1>
-                    <img style="width: 70px; margin: auto; margin-bottom: 0.5em;" src="img/bitcoin-geel.svg" alt="">
-                    <h2><span class="weergaveaantalvragen"></span> questions about bitcoin
-                    </h2>
-                </div>
-                <button id="startGame">Start quiz!</button>
-            </div>
-        </div>
-    </section> -->
+<div class="container-sm" style="max-width: 540px;">
+    <QGox />
+    <QPonzi />
+    <QLaundering />
+    <QLightning />
+    <QPatents />
+    <QSmallestUnit />
+    <QForks />
 
-    <!-- Criminals -->
-    <section id='v1flsnyhkbjwetpojn' class='snelleovergang clearfix'>
-        <div class='tekst clearfix'>
-            <div class='w30em displayinlineblock'>
-                <!-- <p class="categorie">Category: Basics</p> -->
-                <hr>
-                <h1>Important:</h1>
-                <p>You can always scroll back to read an answer or answer a question later.</p>
-                <hr>
-
-                <h2 class="nummering">–</h2>
-                <h3>Is Bitcoin used by criminals?</h3>
-                <!-- <p>-</p> -->
-                <form class='maxiquiz'>
-                    <fieldset>
-                        <legend>Choose the right answer:</legend>
-                        <label>Yes.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" value="goud" /></label>
-                        <label>No.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="tekst clearfix toelichting displayNone almost-visible" style="">
-            <video class="" src="@/assets/video/quiz/bitcoin-crime-andreas-antonopoulos.mp4" preload="metadata" poster="@/assets/video/quiz/bitcoin-crime-andreas-antonopoulos.jpg" controls playsinline></video>
-            <p>Transcript will follow. Link to source at the end.</p>
-            <p>Bitcoin is indeed used by criminals.</p>
-            <p>To put things in perspective: the dollar, euro, cars and supermarkets are also used by criminals.</p>
-            <!-- <hr> -->
-            <p class="volgende-pijl">↓</p>
-            <p class="volgende-tekst">scroll down</p>
-            <p class="score"></p>
-        </div>
-    </section>
-
-    <!-- Government money -->
-    <section id='v1fjaeoeghflnwzmvbeiugohlqjhjfjhjh' class='snelleovergang clearfix'>
-        <div class='tekst clearfix'>
-            <div class='w30em displayinlineblock'>
-                <!-- <p class="categorie">Category: Basics</p> -->
-                <h2 class="nummering">–</h2>
-                <h3>The euro and dollar are examples of:</h3>
-                <!-- <p>-</p> -->
-                <form class='maxiquiz'>
-                    <fieldset>
-                        <legend>Choose the right answer:</legend>
-                        <label>Ford money.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                        <label>Fiat money.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" value="goud" /></label>
-                        <label>Porsche money.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="tekst clearfix toelichting displayNone almost-visible" style="">
-            <p>Wikipedia: “Fiat money is a currency without intrinsic value that has been established as money, often by
-                government regulation. Fiat money does not have use value, and has value only because a government maintains
-                its value, or because parties engaging in exchange agree on its value.”</p>
-            <!-- <hr> -->
-            <p class="volgende-pijl">↓</p>
-            <p class="volgende-tekst">scroll down</p>
-            <p class="score"></p>
-        </div>
-    </section>
-
-    <!-- properties and functions of money -->
-    <section id='v1fjaeonwz42038mvbeiugohlqjhjfjhjh' class='snelleovergang clearfix'>
-        <div class='tekst clearfix'>
-            <div class='w30em displayinlineblock'>
-                <!-- <p class="categorie">Category: Basics</p> -->
-                <h2 class="nummering">–</h2>
-                <h3>About properties and functions of money:</h3>
-                <!-- <p>-</p> -->
-                <form class='maxiquiz'>
-                    <fieldset>
-                        <legend>Choose the best answer:</legend>
-                        <label>An important property of money is its <em>salability</em>: the ease with which a good can be
-                            sold on the market whenever its holder desires, with the least loss in its price.<br>An
-                            important function of money is its <em>store of value</em>: the ability to hold value into the
-                            future, allowing the holder to store wealth in it.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" value="goud" /></label>
-                        <label>An important property of money is its convenience: the ease with which a good can be hold in
-                            ones pocket.<br>An important function of money is its <em>store of value</em>: the ability to
-                            hold value into the future, allowing the holder to store wealth in it.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                        <label>An important property of money is its <em>smell</em>: money should not smell bad, that would
-                            be very impractical.<br>An important function of money is that it's <em>multi-purpose</em>: you
-                            can use paper money bills for all kind of things.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="tekst clearfix toelichting displayNone almost-visible" style="">
-            <p>Excerpt From “The Bitcoin Standard” by Saifedean Ammous:</p>
-            <p>“Carl Menger, the father of the Austrian school of economics and founder of marginal analysis in economics,
-                came up with an understanding of the key property that leads to a good being adopted freely as money on the
-                market, and that is salability—the ease with which a good can be sold on the market whenever its holder
-                desires, with the least loss in its price.”</p>
-
-            <p>“A good's salability across time refers to its ability to hold value into the future, allowing the holder to
-                store wealth in it, which is the second function of money: store of value. For a good to be salable across
-                time it has to be immune to rot, corrosion, and other types of deterioration. It is safe to say anyone who
-                thought he could store his wealth for the long term in fish, apples, or oranges learned the lesson the hard
-                way, and likely had very little reason to worry about storing wealth for a while.”</p>
-
-            <!-- <hr> -->
-            <p class="volgende-pijl">↓</p>
-            <p class="volgende-tekst">scroll down</p>
-            <p class="score"></p>
-        </div>
-    </section>
-
-    <!-- Hacked? -->
-    <section id='v1fjakfhhhfjhjh' class='snelleovergang clearfix'>
-        <div class='tekst clearfix'>
-            <div class='w30em displayinlineblock'>
-                <!-- <p class="categorie">Category: Basics</p> -->
-                <h2 class="nummering">–</h2>
-                <h3>Has Bitcoin ever been hacked?</h3>
-                <!-- <p>-</p> -->
-                <form class='maxiquiz'>
-                    <fieldset>
-                        <legend>Choose the right answer:</legend>
-                        <label>Yes.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                        <label>No.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" value="goud" /></label>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="tekst clearfix toelichting displayNone almost-visible" style="">
-            <p>Bitcoin has never been hacked but exchanges have.</p>
-            <p>Compare it to for example the Euro: banks are sometimes robbed but this doesn't say anything about the Euro.
-            </p>
-            <p>Mind you, centralized service parties around bitcoin have been hacked on a regular basis, but not the bitcoin protocol itself nor its blockchain.</p>
-            <!-- <hr> -->
-            <p class="volgende-pijl">↓</p>
-            <p class="volgende-tekst">scroll downn</p>
-            <p class="score"></p>
-        </div>
-    </section>
-
-    <!-- What is Bitcoin? -->
-    <section id='v1' class='snelleovergang clearfix'>
-        <div class='tekst clearfix'>
-            <div class='w30em displayinlineblock'>
-                <!-- <p class="categorie">Category: Basics</p> -->
-                <h2 class="nummering">–</h2>
-                <h3>Which description of Bitcoin is the best?</h3>
-                <!-- <p>-</p> -->
-                <form class='maxiquiz'>
-                    <fieldset>
-                        <legend>Choose the best answer:</legend>
-                        <label>It's an international coin made of gold, but you can't pay with it yet.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                        <label>It works like a credit card but the difference is that it is a coin.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                        <label>It's a form of money that only exists in a digital form, it can be send and
-                            received just like an e-mail.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" value="goud" /></label>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="tekst clearfix toelichting displayNone almost-visible" style="">
-            <iframe class="youtube" id="fysuwiuwheg" src="https://www.youtube.com/embed/1wDwb36GNxw?start=45&end=63&playsinline=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
-
-            <p>“Bitcoin and cryptocurrencies are a form of money invented recently and introduced on the internet This is a
-                form of money that only exists in a digital form. It can be send and received just like an e-mail.”</p>
-            <!-- <hr> -->
-            <p class="volgende-pijl">↓</p>
-            <p class="volgende-tekst">scroll down</p>
-            <p class="score"></p>
-        </div>
-    </section>
-
-    <!-- Bitcoin Headquarters -->
-    <section id='v1a' class='snelleovergang clearfix'>
-        <div class='tekst clearfix'>
-            <div class='w30em displayinlineblock'>
-                <!-- <p class="categorie">Category: Basics</p> -->
-                <h2 class="nummering">–</h2>
-                <h3>Where is Bitcoin headquarters?</h3>
-                <form class='maxiquiz'>
-                    <fieldset>
-                        <legend>Choose the best answer:</legend>
-                        <label>In the City of London.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                        <label>There is no Bitcoin headquarters.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" value="goud" /></label>
-                        <label>In Beijing, China.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="tekst clearfix toelichting displayNone almost-visible" style="">
-            <p>Bitcoin is a decentralized form of money. There is no CEO and no country that is in charge.</p>
-            <hr>
-            <p class="volgende-pijl">↓</p>
-            <p class="volgende-tekst">scroll down</p>
-            <p class="score"></p>
-        </div>
-    </section>
-
-    <!-- What do mainstream economists say about Bitcoin -->
-    <section id='cpdowhgnm' class='snelleovergang clearfix'>
-        <div class='tekst clearfix'>
-            <div class='w30em displayinlineblock'>
-                <!-- <p class="categorie">Category: Basics</p> -->
-                <h2 class="nummering">–</h2>
-                <h3>Mainstream economists on Bitcoin.</h3>
-                <p>Mainstream economists ususally have strong opinions about Bitcoin.</p>
-                <p>What is one of the most common opinions?</p>
-                <form class='maxiquiz'>
-                    <fieldset>
-                        <legend>Pick the best answer:</legend>
-                        <label>Bitcoin has no real value.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" value="goud" /></label>
-                        <label>The name “bitcoin” is misleading.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                        <label>Bitcoin is digital, so you need a computer. This means that poor people will never have
-                            access to bitcoins.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="tekst clearfix toelichting displayNone almost-visible" style="">
-            <!-- <p>A lot of economist will say that gold for example has also a value because you can use it for jewelery. Bitcoin does not have a value at all.</p>
-        <p>If this is a strong argument remains to be seen. Others say that this is an advantage.</p>
-        <p>Some “Bitcoiners” say that intrinsic value is subjective,</p> -->
-            <blockquote>
-                <p>Intrinsic Value. Bitcoin skeptics love to talk about it. Their argument is typically as follows: “Bitcoin
-                    cannot be used as a money because it does not have any intrinsic value as a commodity. For something to
-                    be a viable money, it must first be accepted and used for some other commodity purpose intrinsic to the
-                    item then slowly become a money over time. For example: because gold can be used in jewelry and
-                    electronics, people naturally stockpile it to store value.”</p>
-                <p>Previously, Bitcoiners have made several compelling arguments against this on the grounds that 1)
-                    intrinsic value is subjective and 2) Bitcoin does have intrinsic value as a good for censorship
-                    resistant payments. Here I will argue that Bitcoin skeptics are right. Bitcoin has no “intrinsic value”
-                    as a commodity, but that’s a great thing for Bitcoin (and the rest of the world).</p>
-                <cite>Conner Brown</cite>
-            </blockquote>
-            <p>Link to source at the end of the quiz.</p>
-            <hr>
-            <p class="volgende-pijl">↓</p>
-            <p class="volgende-tekst">scroll down</p>
-            <p class="score"></p>
-        </div>
-    </section>
-
-    <!-- Omvang: Bitcoin versus other electricity use. -->
-    <section class="bitcoinVersusOtherELectricityUSe vertikaal container-inschattingsvraag">
-        <div class="tekst clearfix" style="">
-            <!-- <p class="categorie">Category: Energy Use</p> -->
-            <h2 class="nummering">–</h2>
-
-            <h2>Energy use compared.</h2>
-            <p>“Bitcoin is going to boil the oceans” is what you can read in the papers. What's the point with Bitcoin and Energy?
-            </p>
-            <p>Let's compare Bitcoin's energy consumption with the electricity used by:</p>
-
-            <ul>
-                <li>
-                    A: <em>all data centres in the world.</em>
-                </li>
-                <li>
-                    B: <em>transport worldwide.</em>
-                </li>
-            </ul>
-            <!-- <p></p> -->
-            <hr>
-            <p class="volgende-pijl">↓</p>
-        </div>
-        <div style="font-size: 0.8em;">
-            <p>Diagram: Electricity Use per Year (TWh).</p>
-
-            <p>
-                Bar A: data centre worldwide (2018).<br>
-                Bar B: transport worldwide (2018).<br>
-                Drag right bar to what you think is the correct value of Bitcoin energy use per year in 2019:<br>
-            </p>
-        </div>
-
-        <div class="speciaalvoorvertikaal">
-            <div class="schaalhouder ">
-                <div style="height: calc(100% / 10);"><span>1000</span></div>
-                <div style="height: calc(100% / 10);"><span>900</span></div>
-                <div style="height: calc(100% / 10);"><span>800</span></div>
-                <div style="height: calc(100% / 10);"><span>700</span></div>
-                <div style="height: calc(100% / 10);"><span>600</span></div>
-                <div style="height: calc(100% / 10);"><span>500</span></div>
-                <div style="height: calc(100% / 10);"><span>400</span></div>
-                <div style="height: calc(100% / 10);"><span>300</span></div>
-                <div style="height: calc(100% / 10);"><span>200</span></div>
-                <div style="height: calc(100% / 10);"><span>100</span><span>0</span></div>
-            </div>
-
-            <div class="chart chartleft" style="
-    grid-template-columns: repeat(2, 1fr);
-    width: calc(100% / 9 * 2);
-    left: calc(100% / 3);
-    font-size: 18px;
-    line-height: 1;
-    ">
-                <div class="bar-20" style="color: #222; font-size: 2em; text-align: center;">A</div>
-                <div class="bar-40" style="color: #222; font-size: 2em; text-align: center;">B</div>
-            </div>
-            <div class="chart chartright" style="
-    grid-template-columns: repeat(1, 1fr);
-    width: calc(100% / 9 * 1 - 15px);
-    right: calc(100% / 3);
-    font-size: 1.2vw;
-    ">
-                <div class="bar-10 instelbareBalk">Your choice</div>
-
-            </div>
-
-            <div class="aanwijspijl animatedSlow infinite pulse" style="
-            background: transparent !important;
-            position: absolute;
-            right: 37%;
-            bottom: 30%;
-            /* width: 20vw; */
-            width: 50%;
-            /* min-width: 30em; */
-            font-size: 16px;
-            ">
-                <p>Drag this bar up or down.</p>
-                <img style="width: 20%; float: right;" src="/img/korQuiz/redo-arrow-black1.png" alt="">
-            </div>
-        </div>
-        <div class="tekst clearfix toelichting displayNone almost-visible" style="">
-            <p class="legenda"><span class="legenda-gekozen-antwoord"></span> = chosen answer <span class="legenda-juiste-antwoord"></span> = correct answer</p>
-
-            <ul>
-                <li>Bitcoin, estimated: <strong>73 TWh per year</strong> (Source: Digiconomist)</li>
-                <li>Data centre Worldwide: <strong>200 TWh per year</strong> (Source: Nature)</li>
-                <li>Transport Worldwide: <strong>400 TWh per year</strong> (Source: Nature)</li>
-            </ul>
-            <p>Links to sources at the end of the quiz.</p>
-
-            <hr>
-            <p class="volgende-pijl">↓</p>
-            <p class="volgende-tekst">scroll down</p>
-            <p class="score"></p>
-        </div>
-    </section>
-
-    <!-- biggest problem Bitcoin solves -->
-    <section id='v2' class='snelleovergang clearfix'>
-        <div class='tekst clearfix'>
-            <div class='w30em displayinlineblock'>
-                <!-- <p class="categorie">Solve</p> -->
-                <h2 class="nummering">–</h2>
-                <h3>What does Bitcoin solve?</h3>
-                <p>What is the biggest problem that Bitcoin solves?</p>
-                <form class='maxiquiz'>
-                    <fieldset>
-                        <legend>Bitcoin solves…</legend>
-                        <label>…the complexity of maintaining the currency rates between countries.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                        <label>…the double spending problem without the need for a central authority.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" value="goud" /></label>
-                        <label>…excess waiting times of money transfers.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="tekst clearfix toelichting displayNone almost-visible" style="">
-
-            <blockquote>
-                <p>
-                    “Bitcoin offerts an alternative to centrally controlled digital money with a system that gives us back
-                    the person to person nature of cash, but in digital form.”
-                    <cite>Inventing Bitcoin by Yan Pritzker (link at the end of quiz).</cite>
-                </p>
-
-            </blockquote>
-
-            <blockquote>
-                <p>
-                    “Bitcoin was born the day in 2008 […] that made something remarkable possible: It could generate a
-                    string of zeros and ones that was unique, ensuring that, before it could be transferred from one
-                    computer or device to another, a minimum number of other users had to trace its transfer and verify that
-                    it left the device of the seller (of some good or service) before moving to the device of the buyer.”
-                </p>
-                <cite>Source: Yanis Varoufakis (link at the end of quiz).</cite>
-            </blockquote>
-
-            <hr>
-            <p class="volgende-pijl">↓</p>
-            <p class="volgende-tekst">scroll down</p>
-            <p class="score"></p>
-        </div>
-    </section>
-
-    <!-- What if you lose your bitcoins? -->
-    <section id='v3' class='snelleovergang clearfix'>
-        <div class='tekst clearfix'>
-            <div class='w30em displayinlineblock'>
-                <!-- <p class="categorie">xxx</p> -->
-                <h2 class="nummering">–</h2>
-                <h3>What if you lose your bitcoins?</h3>
-
-                <form class='maxiquiz'>
-                    <fieldset>
-                        <legend>If you lose your wallet with bitcoins, what can you do?</legend>
-                        <label>There is nothing you can do. You are the one and only owner and this comes with great
-                            responsibility. Compare it to keeping a bar of gold at home.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" value="goud" /></label>
-                        <label>Go to TOBF (The Online Bitcoin Foundation), and file a RFbC (Request For bitcoin
-                            Compensation), if you have a valid reason you will be compensated for 70% of the original value.
-                            Every bitcoin owner has insurance that comes with your first bitcoin transfer.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                        <label>Get in contact with the computer programmers the same day. If you are lucky they can roll
-                            back the history and put most of the bitcoins on a new wallet which you have to proof you own.
-                            <input type="radio" class="maxiQuizVraag" name="maxiQuizVraag" /></label>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="tekst clearfix toelichting displayNone almost-visible" style="">
-            <p>Owning bitcoins is like owning cash in a way. Or a bar of gold with no insurance. You are the only one who has responsibility. This comes with positive and negative sides.</p>
-            <hr>
-            <p class="volgende-pijl">↓</p>
-            <p class="volgende-tekst">scroll down</p>
-            <p class="score"></p>
-        </div>
-    </section>
-
+    <hr>
     <!-- Delen en Bronnen-->
     <section class="coda">
-        <div class="tekst">
+        <div class="tekst p-3">
             <p>End of questions</p>
             <h2>Share your results</h2>
             <h2 class="nummering2"><span>
                     A
                 </span></h2>
-            <!-- <h2>Tekst om te delen:</h2> -->
             <!-- Target -->
-            <textarea id="socialMediaTekst">You have not answered any question yet.</textarea>
-            <!-- <p>Gebruik deze tekst om te delen.</p> -->
+            <textarea style="color: #111;" id="socialMediaTekst">You have not answered any question yet.</textarea>
 
             <!-- Trigger -->
             <button class="btn kopieertekst" data-clipboard-target="#socialMediaTekst">
@@ -472,23 +27,13 @@
 
             <h2 class="nummering2"><span>B</span></h2>
             <p>Go to your Facebook, Twitter, email, etc. and paste and share this text.</p>
+            <!-- <SocialMedia /> -->
 
-            <div style="position: relative;">
+            <div>
 
                 <h2 class="nummering2"><span>C</span></h2>
                 <p>Thank you for taking the quiz!</p>
-                <p><a href="/">Home</a>
-                    <!-- | <a href="xxx">xxx</a> -->
-                </p>
             </div>
-            <h2>Sources:</h2>
-            <p><a href="/">Home</a>
-                <!-- | <a href="xxx">xxx</a> -->
-            </p>
-            <h2>Credits:</h2>
-            <!-- <p>Flipping Coin Animation: <a target="_blank" rel="noopener"
-                            href="https://codepen.io/banik/pen/KGvQLy">Tony Banik on Codepen</a></p> -->
-            <p>Icons made by <a href="https://www.flaticon.com/authors/dmitri13" title="dmitri13">dmitri13</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
         </div>
     </section>
 
@@ -505,6 +50,15 @@
 </template>
 
 <script>
+import QForks from "@/components/MaxiQuizQuestions/QForks.vue";
+import QGox from "@/components/MaxiQuizQuestions/QGox.vue";
+import QLaundering from "@/components/MaxiQuizQuestions/QLaundering.vue";
+import QLightning from "@/components/MaxiQuizQuestions/QLightning.vue";
+import QPatents from "@/components/MaxiQuizQuestions/QPatents.vue";
+import QPonzi from "@/components/MaxiQuizQuestions/QPonzi.vue";
+import QSmallestUnit from "@/components/MaxiQuizQuestions/QSmallestUnit.vue";
+// import SocialMedia from "@/components/SocialMedia.vue";
+
 import store from "../store/store";
 import {
     languageEn
@@ -513,6 +67,17 @@ import interact from 'interactjs';
 
 export default {
     name: "Quiz",
+    components: {
+        QForks,
+        QGox,
+        QLaundering,
+        QLightning,
+        QPatents,
+        QPonzi,
+        QSmallestUnit,
+        // SocialMedia
+
+    },
     data() {
         return {}
     },
@@ -919,7 +484,6 @@ export default {
                     }
                 }
 
-
                 // domStartGame.addEventListener("click", function startGame() {
                 //     document.dispatchEvent(korStartGame);
                 //     domStartGame.innerHTML = tekstGameIsGestart;
@@ -935,7 +499,6 @@ export default {
                 //         allSections[i].style.display = "block";
                 //     }
                 // }, true);
-
 
                 // dit blokje is hier naar toe verplaatst. Voorheen werd het onload gerund, en dan kon ik de secties niet op display: none zetten omdat dat offsetWidth en offsetHeight nul worden en dan krijg je een infinity bij een deling
                 if (qS(".horizontaal .schaalhouder")) {
@@ -1299,7 +862,7 @@ export default {
                         var antwFout = qS("#geluidAntwFout");
                         var goedeInput;
                         var deSectieId = this.closest("section").id;
-                        var deSectie = this.closest("section");
+                        var deSectie = this.closest("section .tekst");
 
                         var deToelichting = qS("#" + deSectieId + " .toelichting");
 
