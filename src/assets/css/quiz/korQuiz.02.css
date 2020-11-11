@@ -66,7 +66,7 @@
     position: relative;
     
     /* extra, naast de :before, nodig voor IE11 */
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 .almost-visible
 {
