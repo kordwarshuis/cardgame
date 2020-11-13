@@ -10,7 +10,7 @@
     <MainMenu />
     <!-- <slideInMenu /> -->
     <template v-if="realTimeTweets === 'true'">
-        <twitterRealtime3 />
+        <twitterRealtime />
     </template>
     <!-- <CryptoRadio /> -->
     <router-view />
@@ -37,7 +37,7 @@ import publicPath from "../vue.config";
 import axios from "axios";
 import * as d3 from "d3-dsv";
 // import slideInMenu from "@/components/slideInMenu.vue";
-import twitterRealtime3 from "@/components/twitterRealtime3.vue";
+import twitterRealtime from "@/components/twitterRealtime.vue";
 import TwitterRealTimeConfigModal from "@/components/TwitterRealTimeConfigModal.vue";
 import TwitterRealTimeInfoModal from "@/components/TwitterRealTimeInfoModal.vue";
 import MainMenu from "@/components/MainMenu.vue";
@@ -52,10 +52,10 @@ export default {
     components: {
         TwitterRealTimeConfigModal: () => import( /* webpackChunkName: "TwitterRealTimeConfigModal" */ './components/TwitterRealTimeConfigModal.vue'),
         TwitterRealTimeInfoModal: () => import( /* webpackChunkName: "TwitterRealTimeInfoModal" */ './components/TwitterRealTimeConfigModal.vue'),
-        twitterRealtime3: () => import( /* webpackChunkName: "Realtimetweets" */ './components/twitterRealtime3.vue'),
+        twitterRealtime: () => import( /* webpackChunkName: "Realtimetweets" */ './components/twitterRealtime.vue'),
         MainMenu,
         // slideInMenu,
-        // twitterRealtime3,
+        // twitterRealtime,
         // CryptoRadio,
         NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
         // NewsTicker,
