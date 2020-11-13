@@ -28,7 +28,10 @@ export var getJSON = (function () {
         const mediaQuery = window.matchMedia('(max-width: 767px)');
         console.log("start");
         store.commit("showToast", "Tweet stream is running.");
-        document.querySelector('.tweet-stream-info-in-stream').classList.add('hidden');
+        
+        if (document.querySelector('.tweet-stream-info-in-stream')) {
+            document.querySelector('.tweet-stream-info-in-stream').classList.add('hidden');
+        }
 
         // show message only on smaller screens where tweet stream does not open initially
         if (mediaQuery.matches) {
