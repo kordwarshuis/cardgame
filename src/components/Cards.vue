@@ -59,7 +59,7 @@
 
     <!-- THE CARDS -->
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
-        <div class="video-container mb-4 p-0" style="background: transparent;">
+        <div v-if="this.$store.state.gameId === 'btc'" class="video-container mb-4 p-0" style="background: transparent;">
             <video class="" style="width: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
         </div>
 
