@@ -8,22 +8,39 @@
     </button>
     <div class="collapse navbar-collapse " id="navbarNav">
         <ul class="nav justify-content-center ">
+
+            <!-- CARDS -->
             <li class="nav-item">
                 <!-- https://stackoverflow.com/a/42401686 -->
                 <router-link @click.native="$store.commit('showItemsInSelectedCategory')" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/">Cards</router-link>
             </li>
-            <li class="nav-item">
+
+            <!-- ABOUT BTC -->
+            <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about">About</router-link>
             </li>
-            <!-- <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
-                <router-link class="nav-link" v-if="this.$store.state.gameId === 'btc'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/twitter-real-time">Realtime</router-link>
-            </li> -->
+
+            <!-- ABOUT BCB -->
+            <li class="nav-item" v-if="this.$store.state.gameId === 'bcb'">
+                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about-bcb">About</router-link>
+            </li>
+
+            <!-- ABOUT SSI -->
+            <li class="nav-item" v-if="this.$store.state.gameId === 'ssi'">
+                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about-ssi">About</router-link>
+            </li>
+
+            <!-- SCORES -->
             <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
                 <router-link class="nav-link" v-if="this.$store.state.gameId === 'btc'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">Scores</router-link>
             </li>
+
+            <!-- QUIZ -->
             <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
                 <router-link class="nav-link" v-if="this.$store.state.gameId === 'btc'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/quiz">Quiz</router-link>
             </li>
+
+            <!-- SOUND ON OFF -->
             <li class="nav-item" style="border-right: none;">
                 <SoundToggle />
             </li>
