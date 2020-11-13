@@ -4,8 +4,9 @@ node_modules
 
 # .env*
 .env
-.env-bcb
-.env-btc
+.env.bcb.env
+.env.btc.env
+.env.ssi.env
 
 
 # local env files
@@ -39,6 +40,19 @@ yarn-error.log*
 
 # Bash script
 live.sh
+live.bcb.sh
+live.btc.sh
+live.ssi.sh
+
+# Vue source config files
+vue.config.bcb.js
+vue.config.btc.js
+vue.config.ssi.js
+
+# source htaccess files
+.bcb.htaccess
+.btc.htaccess
+.ssi.htaccess
 
 #video
 video/
