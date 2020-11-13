@@ -43,6 +43,7 @@ live.sh
 live.bcb.sh
 live.btc.sh
 live.ssi.sh
+local.btc.sh
 
 # Vue source config files
 vue.config.bcb.js
