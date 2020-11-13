@@ -21,7 +21,7 @@ const routes = [{
     path: "/about",
     name: "About",
     component: () =>
-      import("../views/About.vue")
+      import("../views/AboutBTC.vue")
   },
   {
     path: "/about-ssi",
