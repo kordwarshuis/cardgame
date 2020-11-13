@@ -18,7 +18,6 @@
                             </div>
 
                             <div class="col-md-12 m-0 p-0 ">
-
                                 <!-- START STOP -->
                                 <TwitterRealTimeStartStopToggle class="align-middle inline mr-2" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
 
@@ -102,6 +101,7 @@
 <script>
 import store from "../store/store";
 import TwitterRealTimeStartStopToggle from "@/components/TwitterRealTimeStartStopToggle.vue";
+
 import {
     getJSON
 } from "@/assets/js/getJSON.js";
@@ -391,7 +391,7 @@ export default {
             setTimeout(function () {
                 insertMessage(language.tweetStream.message1);
             }, 130000);
-                
+
         }
     }
 };
@@ -411,8 +411,8 @@ function slideInMenu() {
 
     function initEvents() {
         const mediaQuery = window.matchMedia('(min-width: 768px)');
-        openbtn.addEventListener("click", toggleMenu);
-        openbtn2.addEventListener("click", toggleMenu);
+        if (openbtn) openbtn.addEventListener("click", toggleMenu);
+        if (openbtn2) openbtn2.addEventListener("click", toggleMenu);
 
         // Create a media condition that targets viewports at least 768px wide
         // Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint
@@ -421,10 +421,9 @@ function slideInMenu() {
             toggleMenu();
         }
 
-        if (isOpen === true) {
+        if (isOpen === true && document.querySelector("#open-button")) {
             document.querySelector("#open-button").setAttribute("checked", "checked");
         }
-
     }
 
     // after click on clickable item, menu should disappear:
