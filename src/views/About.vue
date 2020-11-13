@@ -58,10 +58,13 @@
                     <h2>All Card sets</h2>
                     <ul>
                         <li>
-                            <a href="../btc/">Bitcoin Prejudice</a>
+                            <a href="../btc/">Bitcoin misconceptions</a>
                         </li>
                         <li>
-                            <a href="../bcb/">Blockchain Prejudice</a>
+                            <a href="../bcb/">Blockchain misconceptions</a>
+                        </li>
+                        <li>
+                            <a href="../ssi/">Self Sovereign Identity misconceptions</a>
                         </li>
                     </ul>
 
