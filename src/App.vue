@@ -1,10 +1,17 @@
 <template>
 <div id="app" class="container-fluid">
-    <TwitterRealTimeConfigModal />
-    <TwitterRealTimeInfoModal />
+    <!-- true and false are strings not booleans -->
+    <template v-if="realTimeTweets === 'true'">
+        <TwitterRealTimeConfigModal />
+    </template>
+    <template v-if="realTimeTweets === 'true'">
+        <TwitterRealTimeInfoModal />
+    </template>
     <MainMenu />
     <!-- <slideInMenu /> -->
-    <twitterRealtime3 />
+    <template v-if="realTimeTweets === 'true'">
+        <twitterRealtime3 />
+    </template>
     <!-- <CryptoRadio /> -->
     <router-view />
     <Person1 />
@@ -19,7 +26,9 @@
             <small><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/cc_icon_white_x2.png" alt="Two C's next to each other"><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/attribution_icon_white_x2.png" alt="A symbol of a person">Except where otherwise noted, content on this site is licensed under a <a target="_blank" rel="noopener" class="light" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</small>
         </div>
     </footer>
-    <NewsTicker />
+    <template v-if="this.$store.state.gameId === 'btc'">
+        <NewsTicker />
+    </template>
 </div>
 </template>
 
@@ -41,19 +50,24 @@ import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 
 export default {
     components: {
-        TwitterRealTimeConfigModal,
-        TwitterRealTimeInfoModal,
+        TwitterRealTimeConfigModal: () => import( /* webpackChunkName: "TwitterRealTimeConfigModal" */ './components/TwitterRealTimeConfigModal.vue'),
+        TwitterRealTimeInfoModal: () => import( /* webpackChunkName: "TwitterRealTimeInfoModal" */ './components/TwitterRealTimeConfigModal.vue'),
+        twitterRealtime3: () => import( /* webpackChunkName: "Realtimetweets" */ './components/twitterRealtime3.vue'),
         MainMenu,
         // slideInMenu,
-        twitterRealtime3,
+        // twitterRealtime3,
         // CryptoRadio,
-        NewsTicker,
+        NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
+        // NewsTicker,
         // Hammer,
         Person1,
         Person2
     },
     data: function () {
-        return {}
+        return {
+            realTimeTweets: process.env.VUE_APP_REALTIME_TWEETS
+            // realTimeTweets: false
+        }
     },
     mounted() {
         this.fetchData();
@@ -79,6 +93,8 @@ export default {
                             stack = 1;
                         } else if (this.$store.state.gameId === "bcb") {
                             stack = 2;
+                        } else if (this.$store.state.gameId === "ssi") {
+                            stack = 3;
                         }
 
                         // select only the items that are in the selected stack
@@ -502,6 +518,10 @@ body {
 
 .bcb {
     background-color: $backgroundBCB;
+}
+
+.ssi {
+    background-color: $backgroundSSI;
 }
 
 h1,
@@ -949,8 +969,7 @@ footer {
 
 // QUIZ
 .nummering,
-.nummering2
-{
+.nummering2 {
     font-size: 1em;
     line-height: 0.5em;
     margin-bottom: 3em;
@@ -958,8 +977,7 @@ footer {
 }
 
 .nummering span,
-.nummering2 span
-{
+.nummering2 span {
     border-radius: 50%;
     /* = 15%, almost gives us viewport width unit (15vw) */
     text-align: center;
@@ -968,10 +986,10 @@ footer {
     margin: 1em auto 0.5em;
     // background: $numbering-background;
     // color: $numbering-text;
-    
+
     display: block;
     /* circle to the middle, so that... [1] */
-    
+
     /* to use viewport based units we can safely override the old units in this way */
     /* padding-bottom: 0vw;
     font-size: 5vw;
@@ -985,8 +1003,10 @@ footer {
     width: 2em;
     height: 2em;
 }
-.nummering + h3 {
+
+.nummering+h3 {
     text-align: center;
 }
+
 // END QUIZ
 </style>
