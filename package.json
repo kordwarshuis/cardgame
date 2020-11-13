@@ -23,7 +23,6 @@
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.31",
-    "pizzicato": "^0.6.4",
     "snapsvg": "^0.5.1",
     "vue": "^2.6.12",
     "vue-analytics": "^5.22.1",
