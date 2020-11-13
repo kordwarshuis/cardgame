@@ -117,7 +117,7 @@ import {
 } from "@/assets/js/language1.js";
 
 export default {
-    name: "twitterRealtime3",
+    name: "twitterRealtime",
     data() {
         return {};
     },
