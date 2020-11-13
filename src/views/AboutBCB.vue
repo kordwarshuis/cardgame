@@ -7,7 +7,7 @@
             <div class="col-md-6">
                 <div class="card p-3 ">
                     <h1 class="text-center pt-1">About Blockchain</h1>
-                    <!-- <video class="mb-4 mt-4" style="width: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video> -->
+                    <video class="mb-4 mt-4" style="width: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
 
                     <h2>Blockchain Bird</h2>
                     <p>
