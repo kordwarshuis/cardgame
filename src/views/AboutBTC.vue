@@ -51,9 +51,10 @@
                     <p>See <a target="_blank" rel="noopener" href="https://github.com/blockchainbird/cardgame">Github repo</a>.</p>
                     <h3>What is it for?</h3>
                     <p>Spread your bitcoin knowledge safely and easily. Recipients might study your gift and then improve their expertise and balance their opinion.</p>
+
                     <h3>What can you do with the tool?</h3>
-                    <p>Play the game! Share balanced views per topic, substantiated by recognized experts. Optionally add your own twist to the message. The likes, reactions, and shares you get will result in scores. High scores give you perpetual respect that you can show off with. Who wouldn't?</p>
-                    <p>The tool consists of a stack of cards. Each card contains a specific misconception or topic. You can copy and paste the URL of a card, or simply click on the social media icon. You can easily and safely respond to people and offer them substantiation regarding the discussed topic. The whole stack of cards is a great source of information about bitcoin.</p>
+                    <p>Play the game! Share the balanced views supported by recognized experts and optionally add your twist to the message. Likes, reactions, and shares you get will result in scores. High scores give you never-ending recognition from a respected community that you can show off. Why wouldn't you?</p>
+                    <p>The tool consists of a stack of cards, and each card contains a specific misconception or topic. Copy and paste the URL of a card or click on the social media icon. You can smoothly and safely respond to people and offer them a verified argument regarding the discussed topic. The whole stack of cards is a reliable source of information about Bitcoin.</p>
 
                     <h2>All Card sets</h2>
                     <ul>
