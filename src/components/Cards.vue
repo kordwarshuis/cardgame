@@ -6,7 +6,7 @@
     <!-- <h1>Bitcoin Misconceptions</h1> -->
 
     <div class="row">
-        <!-- NAME -->
+        <!-- TITLE AND SUBTITLE -->
         <div class="col-md-8">
             <h1 class="mb-0">
                 <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" />
@@ -21,6 +21,7 @@
 
         </div>
 
+        <!-- FILTER -->
         <div class="col-md-4 text-right">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle button-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,9 +52,16 @@
     </div> -->
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
 
+    <!-- CATEGORY NAME AND COPY BUTTON WHEN IN CATEGORY -->
     <div v-if="(this.$store.state.activeCategory !== 'All')">
-        <h3>
+        <h3 class="text-center">
             {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboard5 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+        </h3>
+    </div>
+
+    <div v-else>
+        <h3 v-if="(this.$store.state.gameId === 'btc')" class="game-instructions text-center">
+            <span>1</span> Find A Tweet <span>2</span> Find A Card <span>3</span> Reply With Card
         </h3>
     </div>
 
@@ -234,6 +242,21 @@ h1 {
 
 .game-title-2 {
     font-family: poppinsregular;
+}
+.game-instructions {
+    text-transform: none;
+    font-size: 1.1em;
+    margin-bottom: 2em;
+}
+.game-instructions span {
+    background: #1D5C81;
+    border-radius: 50%;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    line-height: 1;
+    padding: 0.6em;
+    margin-left: 1em;
 }
 
 // .nav-link {
