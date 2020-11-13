@@ -24,6 +24,18 @@ const routes = [{
       import("../views/About.vue")
   },
   {
+    path: "/about-ssi",
+    name: "AboutSSI",
+    component: () =>
+      import("../views/AboutSSI.vue")
+  },
+  {
+    path: "/about-bcb",
+    name: "AboutBCB",
+    component: () =>
+      import("../views/AboutBCB.vue")
+  },
+  {
     path: "/scores",
     name: "Scores",
     component: () =>
