@@ -72,6 +72,8 @@
 
                             <div class="col-xs-6 m-0 p-0 mt-1 ">
                                 <button class="btn btn-sm btn-outline-light ml-3 float-right inline clear-selected-tweets-button">Clear</button>
+
+                                <button class="copyBookmarkedURLsToClipboard btn btn-sm btn-outline-light" style="" title="Copy Link">Copy all Links</button>
                             </div>
                         </div>
                     </nav>
@@ -422,7 +424,7 @@ function slideInMenu() {
         if (mediaQuery.matches) {
             toggleMenu();
 
-            if (realTimeTweetsOn === "true") {
+            if (process.env.VUE_APP_REALTIME_TWEETS === "true") {
                 setTimeout(function () {
                     store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
                 }, 12000);
