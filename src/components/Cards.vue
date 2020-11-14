@@ -1,10 +1,5 @@
 <template>
 <div class="cards">
-    <!-- <transition name="fade"> -->
-    <!-- <h1>{{ msg }}</h1> -->
-    <!-- <BitcoinAnimation /> -->
-    <!-- <h1>Bitcoin Misconceptions</h1> -->
-
     <div class="row">
         <!-- TITLE AND SUBTITLE -->
         <div class="col-md-8">
@@ -17,8 +12,11 @@
                     {{this.$store.state.gameTitle2}}
                 </span>
             </h1>
-            <p class="mt-0">{{this.$store.state.gameSubTitle}}</p>
-
+            <p class="mt-0">{{this.$store.state.gameSubTitle}} 
+                <template v-if="appId === 'btc'">
+                    <GameInstructionsCarousel />
+                </template>
+            </p>
         </div>
 
         <!-- FILTER -->
@@ -47,9 +45,6 @@
         </div>
     </div>
 
-    <!-- <div class="alert alert-info ml-1 mr-1 ml-md-5 mr-md-5 mt-0" role="alert">
-            1: Select a tweet – 2: Select and Copy a card – 3: Paste card in reply to tweet
-    </div> -->
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
 
     <!-- CATEGORY NAME AND COPY BUTTON WHEN IN CATEGORY -->
@@ -60,9 +55,9 @@
     </div>
 
     <div v-else>
-        <h3 v-if="(this.$store.state.gameId === 'btc')" class="game-instructions text-center">
+        <!-- <h3 v-if="(this.$store.state.gameId === 'btc')" class="game-instructions text-center">
             <span>1</span> Find A Tweet <span>2</span> Find A Card <span>3</span> Reply With Card
-        </h3>
+        </h3> -->
     </div>
 
     <!-- THE CARDS -->
@@ -111,6 +106,7 @@ import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
 // import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
 import publicPath from "../../vue.config";
+import GameInstructionsCarousel from "./GameInstructionsCarousel.vue";
 
 export default {
     name: "Index",
@@ -118,7 +114,8 @@ export default {
         // Search,
         // NewsTicker,
         SoundToggle,
-        ICountUp
+        ICountUp,
+        GameInstructionsCarousel
         // ,BitcoinAnimation
         // VueFuse
     },
@@ -138,7 +135,8 @@ export default {
                 duration: 4 //sec
             },
             publicPath: publicPath.publicPath,
-            windowLocationOrigin: window.location.origin
+            windowLocationOrigin: window.location.origin,
+            appId: process.env.VUE_APP_ID
         }
     },
     mounted() {
@@ -248,21 +246,7 @@ h1 {
     font-size: 1.1em;
     margin-bottom: 2em;
 }
-.game-instructions span {
-    background: #1D5C81;
-    border-radius: 50%;
-    display: inline-block;
-    width: 2em;
-    height: 2em;
-    line-height: 1;
-    padding: 0.6em;
-    margin-left: 1em;
-}
 
-// .nav-link {
-//     color: #eee;
-//     cursor: pointer;
-// }
 
 .button-categories {
     background: #5965F9;
