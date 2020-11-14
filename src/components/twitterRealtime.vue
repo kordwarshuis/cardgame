@@ -119,7 +119,9 @@ import {
 export default {
     name: "twitterRealtime",
     data() {
-        return {};
+        return {
+            realTimeTweetsOn: process.env.VUE_APP_REALTIME_TWEETS
+        };
     },
     mixins: [disableBodyScrollMixin],
     components: {
@@ -419,13 +421,16 @@ function slideInMenu() {
         // Toggle menu to show tweet stream initially only on bigger screens
         if (mediaQuery.matches) {
             toggleMenu();
-            setTimeout(function () {
-                store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
-            }, 12000);
 
-            setTimeout(function () {
-                store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
-            }, 180000);
+            if (realTimeTweetsOn === "true") {
+                setTimeout(function () {
+                    store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
+                }, 12000);
+
+                setTimeout(function () {
+                    store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
+                }, 180000);
+            }
         }
 
         if (isOpen === true && document.querySelector("#open-button")) {
