@@ -39,13 +39,6 @@ export var getJSON = (function () {
                 store.commit("showToast", "Open Tweet panel to see tweet stream");
             }, 6000);
         }
-        setTimeout(function () {
-            store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
-        }, 12000);
-
-        setTimeout(function () {
-            store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
-        }, 180000);
 
         var resp;
         var refreshInterval = 10000;
