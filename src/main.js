@@ -191,7 +191,26 @@ clipboardCategory.on('success', function (e) {
   }, 1500);
 });
 
+// copies all URLs of bookmarked tweets to clipboard
+var clipboardBookmarkedURLs = new ClipboardJS('.copyBookmarkedURLsToClipboard', {
+  text: function (trigger) {
+    var urls = [];
+    var anchors = document.querySelectorAll('.tweets-selected .tweets .tweet .go-to-tweet');
+    anchors.forEach(function (a) {
+      urls.push(a.getAttribute('href'));
+    });
+    return urls.toString();
+  }
+});
 
+clipboardBookmarkedURLs.on('success', function (e) {
+  store.commit("showToast", "You can now paste the bookmarked links in an e-mail etc");
+  if (localStorage.getItem("soundOn") === "true") go.play();
+  document.querySelector("body").classList.add("person1");
+  setTimeout(function () {
+    document.querySelector("body").classList.remove("person1");
+  }, 1500);
+});
 
 // clipboardOverviewScreen.destroy();
 // clipboardOverviewScreen.on('error', function (e) {
