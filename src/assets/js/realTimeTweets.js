@@ -4,6 +4,10 @@ import {
     twitterLinks
 } from "./twitterLinks";
 
+// https://www.npmjs.com/package/platform-detect
+import platform from 'platform-detect';
+// import {ios, android, tizen} from 'platform-detect/os.mjs';
+
 export var realTimeTweets = (function () {
     // console showing messages to user
     var konsole;
@@ -27,7 +31,7 @@ export var realTimeTweets = (function () {
 
     var numberOfFollowersBackup = 0;
     var numberOfFollowers = numberOfFollowersBackup;
-    
+
     var onlyVerifiedAccountsUsersChoice = false;
 
     var anyOfTheseStringsDefault = [];
@@ -106,8 +110,15 @@ export var realTimeTweets = (function () {
 
             for (let i = 0; i < allTweets.length; i++) {
                 // i determines how many tweets will stay, the rest will be deleted
-                if (i > 999) {
-                    allTweets[i].parentNode.removeChild(allTweets[i]);
+                // make a distinction between operating systems
+                if (platform.android || platform.ios || platform.tizen) {
+                    if (i > 99) {
+                        allTweets[i].parentNode.removeChild(allTweets[i]);
+                    }
+                } else {
+                    if (i > 999) {
+                        allTweets[i].parentNode.removeChild(allTweets[i]);
+                    }
                 }
             }
         }
@@ -187,13 +198,10 @@ export var realTimeTweets = (function () {
                 }
 
                 if ((numberOfFollowersCriterium &&
-                        onlyVerifiedAccountsUsersChoiceCriterium 
-                        &&
-                        anyOfTheseStringsCriterium 
-                        &&
+                        onlyVerifiedAccountsUsersChoiceCriterium &&
+                        anyOfTheseStringsCriterium &&
                         noneOfTheseStringsCriterium
-                        ) 
-                        ||
+                    ) ||
                     data[i].handpickedTweet === true) {
                     somethingFound = true;
                     domTemp =
@@ -342,7 +350,7 @@ export var realTimeTweets = (function () {
     function setNoneOfTheseStringsDefault(a) {
         noneOfTheseStringsDefault = a;
     }
-    
+
     return {
         start: processTwitters,
         toggleAllTweets: toggleAllTweets,
