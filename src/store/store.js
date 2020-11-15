@@ -108,7 +108,6 @@ export default new Vuex.Store({
 
           // After clicking on a category in a card, a subselection shows. To go back, click on ‘All’. This is only visible when selection is active. This is achieved via CSS. 
           document.querySelector('.cards').classList.remove('selection');
-          router.push("/");
         } else {
           this.state.activeCategory = categoryName;
           document.querySelector('.cards').classList.add('selection');
