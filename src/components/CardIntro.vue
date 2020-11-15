@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        <div class="col-lg-12 col-sm-12 m-0" style="position: fixed; bottom: 0; left: 0;background: linear-gradient(to right, #5C34A7, #2376D6);">
+        <div class="footer col-lg-12 col-sm-12 m-0">
             <div>
                 <div style="display: inline-block;">
                     <SocialMedia />
@@ -232,6 +232,13 @@ export default {
     -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to right, #5C34A7, #2376D6);
+}
+
 // hr {
 
 // }
@@ -323,7 +330,9 @@ export default {
     }
 
     #app .overlay-fullscreen {
-        height: 70%;
+        // height: 70%;
+        min-height: 70% !important;
+        max-height: 90%;
     }
 }
 
