@@ -7,18 +7,6 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/t/btc/' : '/',
   //=============
 
-  //=============
-  // BCB version
-  // publicPath: process.env.NODE_ENV === 'production' ? '/t/bcb/' : '/',
-  //=============
-
-  //=============
-  // Test version
-  // publicPath: process.env.NODE_ENV === 'production' ? '/t/cardgametest/' : '/',
-  //=============
-
-
-  
   lintOnSave: false,
   css: {
     loaderOptions: {
