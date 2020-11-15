@@ -23,6 +23,7 @@
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.31",
+    "platform-detect": "^3.0.1",
     "snapsvg": "^0.5.1",
     "vue": "^2.6.12",
     "vue-analytics": "^5.22.1",
