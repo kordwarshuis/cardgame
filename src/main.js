@@ -216,18 +216,18 @@ clipboardBookmarkedURLs.on('success', function (e) {
   }, 1500);
 });
 
-// clipboardOverviewScreen.destroy();
-// clipboardOverviewScreen.on('error', function (e) {
-//   console.error('Action:', e.action);
-//   console.error('Trigger:', e.trigger);
+
+// var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
+//   text: function (trigger) {
+//     return window.location.protocol + "//" + window.location.hostname + trigger.dataset.url;
+//   }
 // });
 
-
-
-
-
-// I keep this for reference although I am not sure what it is for
-// clipboard1.on('success', textCopiedFeedback);
-// clipboard2.on('success', textCopiedFeedback);
-// document.querySelector(".copyURLtoClipboard3").addEventListener("click", textCopiedFeedback, false);
-// clipboard3.on('success', textCopiedFeedback);
+// clipboardSearchResults.on('success', function (e) {
+//   store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+//   if (localStorage.getItem("soundOn") === "true") go.play();
+//   document.querySelector("body").classList.add("person1");
+//   setTimeout(function () {
+//     document.querySelector("body").classList.remove("person1");
+//   }, 1500);
+// });
