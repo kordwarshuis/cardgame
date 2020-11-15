@@ -12,12 +12,6 @@
     <template v-if="realTimeTweets === 'true'">
         <twitterRealtime />
     </template>
-    <footer class="footer mt-auto py-2">
-        <div class="container-fluid text-center">
-            <small><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/cc_icon_white_x2.png" alt="Two C's next to each other"><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/attribution_icon_white_x2.png" alt="A symbol of a person">Except where otherwise noted, content on this site is licensed under a <a target="_blank" rel="noopener" class="light" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</small>
-        </div>
-    </footer>
-
     <!-- <CryptoRadio /> -->
     <router-view />
     <Person1 />
@@ -26,6 +20,11 @@
 
     <Toasts :show-progress="false" :time-out="2500"></Toasts>
 
+    <footer class="footer mt-auto py-2">
+        <div class="container-fluid text-center">
+            <small><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/cc_icon_white_x2.png" alt="Two C's next to each other"><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/attribution_icon_white_x2.png" alt="A symbol of a person">Except where otherwise noted, content on this site is licensed under a <a target="_blank" rel="noopener" class="light" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</small>
+        </div>
+    </footer>
     <!-- <template v-if="this.$store.state.gameId === 'btc'"> -->
     <NewsTicker />
     <!-- </template> -->
