@@ -24,7 +24,7 @@
                     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
                         <!-- All = All categories at once -->
                         <li class="nav-item ">
-                            <a class="nav-link p-1 All" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
+                            <a class="nav-link p-1 All" @click="showAllCategories" data-category="All">All</a>
                         </li>
 
                         <!-- Every category in a menu item -->
@@ -78,7 +78,7 @@
                 <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em; margin: 0.5em 0 ;">{{ item.category }}</a>
 
                 <!-- Show all cards: -->
-                <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
+                <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
 
                 <!-- check allCardsInChosenCategory in store for what is in array, this should be made easier -->
                 <button :data-prejudice="item.prejudice" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" style="margin-top: 0.7em !important;" title="Copy Link">Copy Link</button>
@@ -147,6 +147,11 @@ export default {
         this.addVisitedToCards();
     },
     methods: {
+        showAllCategories() {
+            // console.log("ttttt");
+            this.$store.commit('showItemsInSelectedCategory');
+            this.$router.push("/");
+        },
         addVisitedToCards() {
             //TODO: duplicate code, see addVisitedToCards()
             setTimeout(function () {
