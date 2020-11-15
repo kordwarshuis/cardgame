@@ -2,7 +2,7 @@
 <div class="cards">
     <div class="row">
         <!-- TITLE AND SUBTITLE -->
-        <div class="col-md-8">
+        <div class="col-8">
             <h1 class="mb-0">
                 <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" />
                 <span class="game-title-1">
@@ -12,18 +12,13 @@
                     {{this.$store.state.gameTitle2}}
                 </span>
             </h1>
-            <p class="mt-0">{{this.$store.state.gameSubTitle}} 
-                <template v-if="appId === 'btc'">
-                    <GameInstructionsCarousel />
-                </template>
-            </p>
         </div>
 
         <!-- FILTER -->
-        <div class="col-md-4 text-right">
+        <div class="col-4 text-right">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle button-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Filter By
+                <button type="button" class="btn btn-primary dropdown-toggle button-categories mt-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter
                 </button>
                 <div style="z-index: 1021;" class="dropdown-menu dropdown-menu-right dropdown-menu-categories">
                     <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
@@ -42,6 +37,15 @@
                     </ul>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-12">
+            <p class="mt-0">{{this.$store.state.gameSubTitle}}
+                <template v-if="appId === 'btc'">
+                    <GameInstructionsCarousel />
+                </template>
+            </p>
+
         </div>
     </div>
 
@@ -241,12 +245,12 @@ h1 {
 .game-title-2 {
     font-family: poppinsregular;
 }
+
 .game-instructions {
     text-transform: none;
     font-size: 1.1em;
     margin-bottom: 2em;
 }
-
 
 .button-categories {
     background: #5965F9;
