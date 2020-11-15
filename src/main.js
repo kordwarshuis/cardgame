@@ -196,10 +196,14 @@ var clipboardBookmarkedURLs = new ClipboardJS('.copyBookmarkedURLsToClipboard', 
   text: function (trigger) {
     var urls = [];
     var anchors = document.querySelectorAll('.tweets-selected .tweets .tweet .go-to-tweet');
+    var regex = /,/gi;
     anchors.forEach(function (a) {
       urls.push(a.getAttribute('href'));
     });
-    return urls.toString();
+    urls = urls.toString();
+
+    urls = urls.replace(regex, '\n');
+    return urls;
   }
 });
 
