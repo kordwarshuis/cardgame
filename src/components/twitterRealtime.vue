@@ -422,7 +422,15 @@ function slideInMenu() {
         // Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint
         // Toggle menu to show tweet stream initially only on bigger screens
         if (mediaQuery.matches) {
-            toggleMenu();
+            // open the tweetstream only once
+            if (localStorage.getItem("tweetStreamOpenedOnce") !== "true") {
+                toggleMenu();
+                setTimeout(function () {
+                    toggleMenu();
+                }, 4000);
+
+                localStorage.setItem("tweetStreamOpenedOnce", "true");
+            }
 
             if (process.env.VUE_APP_REALTIME_TWEETS === "true") {
                 setTimeout(function () {
