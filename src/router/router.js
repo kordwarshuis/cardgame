@@ -45,7 +45,7 @@ const routes = [{
     path: "/quiz",
     name: "Quiz",
     component: () =>
-      import("../views/Quiz.vue")
+      import("../views/MaxiQuiz.vue")
   },
   // {
   //   path: "/twitter-real-time",
