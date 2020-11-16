@@ -2,26 +2,26 @@
 <!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
     <div class="input-group ml-3 align-center" style="width: 10em !important;">
-        <input @keydown="showSearchResults" @change="showSearchResults" v-model="search" class="searchBar  border form-control" />
+        <input @keydown="onInputChangeOrKeyDown" @change="onInputChangeOrKeyDown" v-model="search" class="searchBar  border form-control" />
     </div>
 
     <div class="search-results-container hideSearchResults">
         <div>
-            <button class="buttonHideSearchResults" @click="hideSearchResults"><span class="visuallyhidden">Close search results</span>×</button>
+            <button class="buttonHideSearchResults" @click="hideSearchResultsContainerAndRemoveSearchStringFromURL"><span class="visuallyhidden">Close search results</span>×</button>
             <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Everything about “{{search}}”</h1>
 
             <div class="search-results" v-for="card in computedFilteredList" :key="card.Prejudice" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
-                <h2 @click="hideSearchResults" style="cursor: pointer" class="w-1/4">
+                <h2 @click="hideSearchResultsContainer" style="cursor: pointer" class="w-1/4">
                     <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{ card.Prejudice }}</router-link>
                 </h2>
                 <button onclick="return false;" :data-url="'/card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
-                <p @click="hideSearchResults" class="search-result ml-4 w-3/4" style="cursor: pointer">
+                <p @click="hideSearchResultsContainer" class="search-result ml-4 w-3/4" style="cursor: pointer">
                     {{ card['Prejudice Elaborate'] }}
                 </p>
-                <p @click="hideSearchResults" class="search-result category mb-3 pt-1 pl-2 pr-2 pb-0" :class="card.Cat" style="display: inline-block; border-radius: 10px;">
+                <p @click="hideSearchResultsContainer" class="search-result category mb-3 pt-1 pl-2 pr-2 pb-0" :class="card.Cat" style="display: inline-block; border-radius: 10px;">
                     <router-link :to="'/card/' + card['Unique URL']">{{card.Cat}}</router-link>
                 </p>
-                <p @click="hideSearchResults" class="search-result" style="font-size: 1em;" v-html="card.searchResultSnippet">
+                <p @click="hideSearchResultsContainer" class="search-result" style="font-size: 1em;" v-html="card.searchResultSnippet">
                     <router-link :to="'/card/' + card['Unique URL']">{{card.searchResultSnippet}}</router-link>
                 </p>
             </div>
@@ -32,9 +32,6 @@
 
 <script>
 import store from "../store/store";
-// import {
-//     language
-// } from "@/assets/js/Language.js";
 import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
@@ -64,7 +61,6 @@ export default {
         }
     },
     mounted: function () {
-        this.hideSearchResults();
         this.disableBodyScroll(".search-results-container"); //mixin
         this.processQueryParams();
 
@@ -72,7 +68,7 @@ export default {
         this._keyListener = function (e) {
             if (e.key === "Escape") {
                 e.preventDefault();
-                this.hideSearchResults();
+                this.hideSearchResultsContainerAndRemoveSearchStringFromURL();
             }
         };
         document.addEventListener('keydown', this._keyListener.bind(this));
@@ -81,6 +77,15 @@ export default {
         document.removeEventListener('keydown', this._keyListener);
     },
     methods: {
+        hideSearchResultsContainerAndRemoveSearchStringFromURL() {
+            this.hideSearchResultsContainer();
+            // the router push should not run inside hideSearchResultsContainer because it does not play well with the URL handling when opening a card
+            this.$router.push("/");
+        },
+        onInputChangeOrKeyDown() {
+            this.filteredList();
+            this.showSearchResultsContainer();
+        },
         filteredList() {
             var allKeys = this.$store.state.allKeys;
 
@@ -91,7 +96,7 @@ export default {
                     this.$router.push({
                         // path: '/',
                         query: {
-                            search: this.search.toLowerCase()
+                            search: this.search.toLowerCase() // https://forum.vuejs.org/t/how-to-remove-one-query-string-from-url/39176/3
                         }
                     }).catch(err => {}) //https://stackoverflow.com/a/58747480
 
@@ -145,10 +150,10 @@ export default {
             if (this.search !== undefined) {
                 this.filteredList();
                 document.querySelector('.navbar-toggler').click();
-                this.showSearchResults();
+                this.showSearchResultsContainer();
             }
         },
-        hideSearchResults() {
+        hideSearchResultsContainer() {
             var searchResultsContainer = document.querySelector(".search-results-container");
             var searchResultsContainerH1 = document.querySelector(".search-results-container h1");
 
@@ -159,7 +164,7 @@ export default {
                 searchResultsContainerH1.classList.add('hideSearchResults');
             }
         },
-        showSearchResults() {
+        showSearchResultsContainer() {
             document.querySelector(".search-results-container").classList.remove('hideSearchResults');
             document.querySelector(".search-results-container h1").classList.remove('hideSearchResults');
         }
