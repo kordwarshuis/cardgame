@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import publicPath from '../vue.config';
+import VueConfig from "../vue.config";
 import App from './App.vue';
 import router from './router/router';
 import VueGtag from 'vue-gtag';
@@ -223,7 +223,6 @@ var clipboardBookmarkedURLs = new ClipboardJS('.copyBookmarkedURLsToClipboard', 
       urls.push(a.getAttribute('href'));
     });
     urls = urls.toString();
-
     urls = urls.replace(regex, '\n');
     return urls;
   }
@@ -239,17 +238,18 @@ clipboardBookmarkedURLs.on('success', function (e) {
 });
 
 
-// var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
-//   text: function (trigger) {
-//     return window.location.protocol + "//" + window.location.hostname + trigger.dataset.url;
-//   }
-// });
+var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
+  text: function (trigger) {
+    // console.log('VueConfig.publicPath: ', VueConfig.publicPath);
+    return window.location.protocol + "//" + window.location.hostname + VueConfig.publicPath + trigger.dataset.url;
+  }
+});
 
-// clipboardSearchResults.on('success', function (e) {
-//   store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
-//   if (localStorage.getItem("soundOn") === "true") go.play();
-//   document.querySelector("body").classList.add("person1");
-//   setTimeout(function () {
-//     document.querySelector("body").classList.remove("person1");
-//   }, 1500);
-// });
+clipboardSearchResults.on('success', function (e) {
+  store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+  if (localStorage.getItem("soundOn") === "true") go.play();
+  document.querySelector("body").classList.add("person1");
+  setTimeout(function () {
+    document.querySelector("body").classList.remove("person1");
+  }, 1500);
+});
