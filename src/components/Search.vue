@@ -2,7 +2,7 @@
 <!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
     <div class="input-group ml-3 align-center" style="width: 10em !important;">
-        <input v-model="search" class="searchBar  border form-control" />
+        <input @keydown="showSearchResults" @change="showSearchResults" v-model="search" class="searchBar  border form-control" />
     </div>
 
     <div class="search-results-container hideSearchResults">
@@ -58,7 +58,6 @@ export default {
     },
     mounted: function () {
         this.hideSearchResults();
-        this.showSearchResultsEvents();
         this.disableBodyScroll(".search-results-container"); //mixin
         this.processQueryParams();
     },
@@ -140,10 +139,6 @@ export default {
         showSearchResults() {
             document.querySelector(".search-results-container").classList.remove('hideSearchResults');
             document.querySelector(".search-results-container h1").classList.remove('hideSearchResults');
-        },
-        showSearchResultsEvents() {
-            document.querySelector('.searchBar').addEventListener('keydown', this.showSearchResults, false);
-            document.querySelector('.searchBar').addEventListener('change', this.showSearchResults, false);
         }
     }
 };
