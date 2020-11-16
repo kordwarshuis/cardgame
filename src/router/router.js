@@ -11,6 +11,7 @@ const routes = [{
   },
   {
     path: "/card/:card",
+    name: "/card/:card",
     component: Home
   },
   {
