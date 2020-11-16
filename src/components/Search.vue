@@ -122,6 +122,7 @@ export default {
             }
 
         },
+        // Routing: dealing with query parameters in URL on page load. This will send the query parameter value to the search input field
         processQueryParams() {
             // https://stackoverflow.com/a/21903119
             var getUrlParameter = function getUrlParameter(sParam) {
