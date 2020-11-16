@@ -7,7 +7,7 @@
 
     <div class="search-results-container hideSearchResults">
         <div>
-            <span style="font-size: 2em;position: absolute; right: 10px; top: 10px;cursor: pointer;">×</span>
+            <span @click="hideSearchResults" style="font-size: 2em;position: absolute; right: 10px; top: 10px;cursor: pointer;">×</span>
             <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Everything about “{{search}}”</h1>
 
             <div class="search-results" v-for="card in computedFilteredList" :key="card.Prejudice" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
@@ -60,6 +60,18 @@ export default {
         this.hideSearchResults();
         this.disableBodyScroll(".search-results-container"); //mixin
         this.processQueryParams();
+
+        // https://shubhamjain.co/til/vue-shortcuts/
+        this._keyListener = function (e) {
+            if (e.key === "Escape") {
+                e.preventDefault();
+                this.hideSearchResults();
+            }
+        };
+        document.addEventListener('keydown', this._keyListener.bind(this));
+    },
+    beforeDestroy() {
+        document.removeEventListener('keydown', this._keyListener);
     },
     methods: {
         filteredList() {
@@ -129,12 +141,15 @@ export default {
             }
         },
         hideSearchResults() {
-            document.querySelector(".search-results-container").addEventListener("click", function () {
-                this.classList.add('hideSearchResults');
-            }, false);
-            document.querySelector(".search-results-container h1").addEventListener("click", function () {
-                this.classList.add('hideSearchResults');
-            }, false);
+            var searchResultsContainer = document.querySelector(".search-results-container");
+            var searchResultsContainerH1 = document.querySelector(".search-results-container h1");
+
+            if (searchResultsContainer !== null) {
+                searchResultsContainer.classList.add('hideSearchResults');
+            }
+            if (searchResultsContainerH1 !== null) {
+                searchResultsContainerH1.classList.add('hideSearchResults');
+            }
         },
         showSearchResults() {
             document.querySelector(".search-results-container").classList.remove('hideSearchResults');
