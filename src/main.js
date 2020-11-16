@@ -3,6 +3,7 @@ import publicPath from '../vue.config';
 import App from './App.vue';
 import router from './router/router';
 import VueGtag from 'vue-gtag';
+// import VueAnalytics from 'vue-ua';
 import store from './store/store';
 import * as d3 from 'd3-dsv';
 import {
@@ -24,24 +25,45 @@ Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
 Vue.use(Howl, Howler);
 Vue.directive('linkified', linkify);
-Vue.use(VueGtag, {
-  config: {
-    id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID
-  },
-  pageTrackerScreenviewEnabled: true,
-  pageTrackerTemplate(to) {
-    return {
-      page_title: window.location.pathname,
-      page_path: window.location.pathname
-    }
-  }
-}, router);
 
 new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app');
+
+Vue.use(VueGtag, {
+  config: {
+    id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID,
+    params: {
+      send_page_view: true
+    }
+  },
+  bootstrap: true,
+  pageTrackerTemplate(to) {
+    console.log('to: ', to);
+    return {
+      page_title: to.path,
+      page_path: to.path
+    };
+  }
+}, router);
+
+
+// https://www.digitalocean.com/community/tutorials/vuejs-google-analytics
+// https://github.com/ScreamZ/vue-analytics
+// Vue.use(VueAnalytics, {
+//   // [Required] The name of your app as specified in Google Analytics.
+//   appName: 'Card game',
+//   // [Required] The version of your app.
+//   appVersion: '0',
+//   // [Required] Your Google Analytics tracking ID.
+//   trackingId: process.env.VUE_APP_GOOGLE_ANALYTICS_ID,
+//   // If you're using vue-router, pass the router instance here.
+//   vueRouter: router,
+//   trackPage: true
+// });
+
 
 // set which game
 document.querySelector('body').classList.add(process.env.VUE_APP_ID);
