@@ -14,7 +14,9 @@
                 <h2 @click="hideSearchResultsContainer" style="cursor: pointer" class="w-1/4">
                     <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{ card.Prejudice }}</router-link>
                 </h2>
-                <button onclick="return false;" :data-url="'/card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+
+                <!-- copy card URL to clipboard -->
+                <button onclick="return false;" :data-url="'card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
                 <p @click="hideSearchResultsContainer" class="search-result ml-4 w-3/4" style="cursor: pointer">
                     {{ card['Prejudice Elaborate'] }}
                 </p>
