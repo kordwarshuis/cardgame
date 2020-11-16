@@ -11,12 +11,19 @@
             <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Everything about “{{search}}”</h1>
 
             <div class="search-results" v-for="card in computedFilteredList" :key="card.Prejudice" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
-                <router-link :to="'/card/' + card['Unique URL']">
-                    <h2 style="cursor: pointer" class="w-1/4">{{ card.Prejudice }}</h2>
-                    <p v-linkified:options="$store.state.linkifyOptions" style="cursor: pointer" class="ml-4 w-3/4">{{ card['Prejudice Elaborate'] }}</p>
-                    <p v-linkified:options="$store.state.linkifyOptions" class="category mb-3 pt-1 pl-2 pr-2 pb-0" :class="card.Cat" style="display: inline-block; border-radius: 10px;">{{card.Cat}}</p>
-                    <p v-linkified:options="$store.state.linkifyOptions" style="font-size: 1em;" v-html="card.searchResultSnippet">{{card.searchResultSnippet}}</p>
-                </router-link>
+                <h2 @click="hideSearchResults" style="cursor: pointer" class="w-1/4">
+                    <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{ card.Prejudice }}</router-link>
+                </h2>
+                <button onclick="return false;" :data-url="'/card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+                <p @click="hideSearchResults" class="search-result ml-4 w-3/4" style="cursor: pointer">
+                    {{ card['Prejudice Elaborate'] }}
+                </p>
+                <p @click="hideSearchResults" class="search-result category mb-3 pt-1 pl-2 pr-2 pb-0" :class="card.Cat" style="display: inline-block; border-radius: 10px;">
+                    <router-link :to="'/card/' + card['Unique URL']">{{card.Cat}}</router-link>
+                </p>
+                <p @click="hideSearchResults" class="search-result" style="font-size: 1em;" v-html="card.searchResultSnippet">
+                    <router-link :to="'/card/' + card['Unique URL']">{{card.searchResultSnippet}}</router-link>
+                </p>
             </div>
         </div>
     </div>
@@ -189,7 +196,6 @@ export default {
 
 .search-results a {
     color: #eee;
-    // text-decoration: underline;
 }
 
 .search-results-container {
