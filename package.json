@@ -26,7 +26,6 @@
     "platform-detect": "^3.0.1",
     "snapsvg": "^0.5.1",
     "vue": "^2.6.12",
-    "vue-analytics": "^5.22.1",
     "vue-bootstrap-toasts": "^1.0.7",
     "vue-countup-v2": "^4.0.0",
     "vue-fuse": "^2.2.1",
