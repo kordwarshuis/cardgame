@@ -7,7 +7,7 @@
 
     <div class="search-results-container hideSearchResults">
         <div>
-            <span @click="hideSearchResults" style="font-size: 2em;position: absolute; right: 10px; top: 10px;cursor: pointer;">×</span>
+            <button class="buttonHideSearchResults" @click="hideSearchResults"><span class="visuallyhidden">Close search results</span>×</button>
             <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Everything about “{{search}}”</h1>
 
             <div class="search-results" v-for="card in computedFilteredList" :key="card.Prejudice" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
@@ -185,7 +185,6 @@ export default {
     border: 1px dashed #eee;
     border-radius: 10px;
     margin: 2em;
-
 }
 
 .search-results a {
@@ -222,5 +221,15 @@ export default {
 
 .hideSearchResults {
     display: none;
+}
+
+.buttonHideSearchResults {
+    font-size: 2em;
+    position: fixed;
+    right: 10px;
+    top: 2em;
+    cursor: pointer;
+    background: transparent;
+    color: #eee;
 }
 </style>
