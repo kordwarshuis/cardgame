@@ -827,6 +827,7 @@ footer {
     background: rgb(247, 229, 130);
 }
 
+// SEARCH
 .hideSearchResult {
     margin: 0 !important;
     display: none !important;
@@ -836,7 +837,7 @@ footer {
     padding: 0;
 }
 
-.search-results>a {
+.search-results-container>a {
     text-decoration: none;
 }
 
