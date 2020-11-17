@@ -124,6 +124,15 @@ export default {
                                         var replace = this.search;
                                         var re = new RegExp((replace), "gi");
                                         card.searchResultSnippet = card[allKeys[i]].toString().replace(re, "<em>" + replace + "</em>");
+
+                                        // remove links
+                                        // https://stackoverflow.com/a/960178
+                                        card.searchResultSnippet = card.searchResultSnippet.replace(/<a\b[^>]*>(.*?)<\/a>/i, "");
+
+                                        // remove URLs
+                                        // https://stackoverflow.com/a/23571059
+                                        card.searchResultSnippet = card.searchResultSnippet.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
+
                                         results = true;
                                     }
                                 }
