@@ -12,13 +12,15 @@
 
             <div class="search-results" v-for="card in computedFilteredList" :key="card.Prejudice" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
 
-                <!-- heading -->
+                <!-- misconception -->
                 <h2 @click="hideSearchResultsContainer" style="cursor: pointer" class="w-1/4">
                     <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{ card.Prejudice }}</router-link>
                 </h2>
 
                 <!-- copy card URL to clipboard -->
                 <button onclick="return false;" :data-url="'card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+
+                <!-- misconception longer -->
                 <p @click="hideSearchResultsContainer" class="search-result ml-4 w-3/4" style="cursor: pointer">
                     {{ card['Prejudice Elaborate'] }}
                 </p>
@@ -28,7 +30,7 @@
                     <router-link :to="'/card/' + card['Unique URL']">{{card.Cat}}</router-link>
                 </p>
 
-                <!-- result in snippet -->
+                <!-- result snippet -->
                 <p @click="hideSearchResultsContainer" class="search-result" style="font-size: 1em;" v-html="card.searchResultSnippet">
                     <router-link :to="'/card/' + card['Unique URL']">{{card.searchResultSnippet}}</router-link>
                 </p>
