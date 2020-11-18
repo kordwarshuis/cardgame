@@ -546,6 +546,21 @@ a:focus {
     outline: none;
 }
 
+.cards a:focus {
+    outline: none !important;
+}
+.cards a:focus h2,
+a:focus {
+    outline: 3px solid #eee;
+}
+.nav a:focus {
+    background: #666;
+    outline: none;
+}
+
+
+
+
 .hidden {
     position: absolute;
     overflow: hidden;
