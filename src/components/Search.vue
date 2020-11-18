@@ -237,6 +237,7 @@ export default {
     background: #222;
     overflow: scroll;
     height: 100%;
+    width: 100%;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
 }
 
