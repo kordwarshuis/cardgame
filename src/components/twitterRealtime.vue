@@ -147,8 +147,14 @@ export default {
     methods: {
         hideThisTweet() {
             document.addEventListener("click", function (event) {
+                // tweets
                 if (event.target.matches(".tweets-container .tweet .card-body button.close")) {
                     var selectedTweet = event.target.closest(".tweet");
+                    selectedTweet.style.display = 'none';
+                }
+                // messages in between tweets
+                if (event.target.matches(".tweets-container .tweet-stream-messages button.close")) {
+                    var selectedTweet = event.target.closest(".tweet-stream-messages");
                     selectedTweet.style.display = 'none';
                 }
             }, false);
