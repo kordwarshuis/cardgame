@@ -743,6 +743,12 @@ a.overlay__close:not(.overlay__close-cross):hover,
     border-radius: 10px;
 }
 
+.tweet .close {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
 .tweet.invisibleTweet {
     opacity: 0;
     display: none;
