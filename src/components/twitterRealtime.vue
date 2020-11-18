@@ -50,7 +50,6 @@
                                     <input type="text" class="form-control" id="filterTweets" value="Tip: stop stream first" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                                 </div>
                                 <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
-
                             </div>
                         </div>
                     </nav>
@@ -85,7 +84,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- END own content -->
         </div>
 
@@ -94,9 +92,7 @@
             <span></span>
             <span class="visuallyhidden">Open/Close Menu</span>
         </label>
-
     </div>
-
 </div>
 </template>
 
@@ -131,6 +127,7 @@ export default {
     },
     mounted() {
         getJSON.start();
+        this.hideThisTweet();
         this.copyTweet();
         // this.startStopTweetStream();
         this.disableBodyScroll(".content"); //mixin
@@ -148,6 +145,14 @@ export default {
         this.addMessagesToTweetStream();
     },
     methods: {
+        hideThisTweet() {
+            document.addEventListener("click", function (event) {
+                if (event.target.matches(".tweets-container .tweet .card-body button.close")) {
+                    var selectedTweet = event.target.closest(".tweet");
+                    selectedTweet.style.display = 'none';
+                }
+            }, false);
+        },
         clock() {
             var clock = document.querySelector('.console .timestamp');
 
@@ -305,12 +310,8 @@ export default {
         },
         copyTweet() {
             var that = this;
-            // var tweetCopyContainer = document.createElement("div");
-            // tweetCopyContainer.classList.add("tweetCopyContainer", "tweets");
-            // document.querySelector("body").appendChild(tweetCopyContainer);
             document.addEventListener("click", function (event) {
                 if (event.target.matches(".tweets-container .tweet .card-body button.select-tweet")) {
-                    console.log("bingo");
                     var selectedTweet = event.target.closest(".tweet");
                     // document.querySelector(".tweets-selected .tweets").innerHTML = "";
                     document.querySelector(".tweets-selected .tweets").insertAdjacentElement('afterbegin', selectedTweet);
