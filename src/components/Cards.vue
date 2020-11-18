@@ -71,7 +71,7 @@
         </div>
 
         <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
-            <a :data-id="item['id']" :key="item.prejudice" @click="showCardIntro" class="p-2">
+            <a href="" :data-id="item['id']" :key="item.prejudice" @click="showCardIntro" class="p-2">
                 <h2 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h2>
             </a>
             <div class="card-footer" style="background: #1D2448; text-align: left;">
