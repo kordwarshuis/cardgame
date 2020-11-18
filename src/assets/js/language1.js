@@ -10,7 +10,7 @@ export var language = {
         message3: "<div class='tweet-stream-messages'><button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button><h2>Step forward, spread bitcoin expertise</h2></div>",
         message4: "<div class='tweet-stream-messages'><button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button><h2>Get recognition, spread bitcoin expertise</h2></div>",
         message5: "<div class='tweet-stream-messages'><button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button><p>Play withthe configuration options to change the keywords, number of followers etc.</p></div>",
-        message6: "<div class='tweet-stream-messages'><button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button><p>There are real time tweets and handpicked tweets. Depending on your search configurations it can take a while before real time tweets show.</p></div>"
+        message6: "<div class='tweet-stream-messages'><button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button><p>Depending on your search configurations it can take a while before real time tweets show.</p></div>"
         // message7: "<div class='tweet-stream-messages'><button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button><p>Play withthe configuration options to change the keywords, number of followers etc.</p></div>"
     }
 
