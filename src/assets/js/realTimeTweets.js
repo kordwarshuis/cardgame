@@ -209,6 +209,7 @@ export var realTimeTweets = (function () {
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
                         tweetTypeText +
+                        "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>" +
                         //IMAGE
                         "<div class='col-auto' >" +
                         "<img class='img-thumbnail float-left' src='" + data[i].user.profile_image_url_https + "' alt=''></img>" +
