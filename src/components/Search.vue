@@ -2,7 +2,7 @@
 <!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
     <div class="input-group ml-3 align-center" style="width: 10em !important;">
-        <input @keydown="onInputChangeOrKeyDown" @change="onInputChangeOrKeyDown" v-model="search" class="searchBar  border form-control" />
+        <input @keydown="onInputChangeOrKeyDown" @change="onInputChangeOrKeyDown" v-model="search" class="searchBar  border form-control" placeholder="Search" />
     </div>
 
     <div class="search-results-container hideSearchResults">
