@@ -439,15 +439,15 @@ function slideInMenu() {
                 localStorage.setItem("tweetStreamOpenedOnce", "true");
             }
 
-            if (process.env.VUE_APP_REALTIME_TWEETS === "true") {
-                setTimeout(function () {
-                    store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
-                }, 12000);
+            // if (process.env.VUE_APP_REALTIME_TWEETS === "true") {
+            //     setTimeout(function () {
+            //         store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
+            //     }, 12000);
 
-                setTimeout(function () {
-                    store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
-                }, 180000);
-            }
+            //     setTimeout(function () {
+            //         store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
+            //     }, 180000);
+            // }
         }
 
         if (isOpen === true && document.querySelector("#open-button")) {
