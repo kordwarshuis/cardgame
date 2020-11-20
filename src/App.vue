@@ -764,6 +764,12 @@ a.overlay__close:not(.overlay__close-cross):hover,
     top: 0px;
 }
 
+.tweet-stream-messages .close {
+    position: absolute;
+    right: -2px;
+    top: -2px;
+}
+
 .tweet.invisibleTweet {
     opacity: 0;
     display: none;
