@@ -142,7 +142,7 @@ export default {
         this.filterTweets();
         this.getBookmarkedTweetsFromLocalStorage();
         this.clock();
-        this.addMessagesToTweetStream();
+        this.insertAndRemoveMessageToTweetStream();
     },
     methods: {
         hideThisTweet() {
@@ -326,12 +326,27 @@ export default {
                 }
             }, false);
         },
-        addMessagesToTweetStream() {
+        insertAndRemoveMessageToTweetStream() {
+            var container = document.querySelector(".tweets-realtime .tweets");
+
             // array that will contain all keys in language.tweetStream
             var allTweetStreamMessages = [];
 
-            function insertMessage(a) {
-                document.querySelector(".tweets-realtime .tweets").insertAdjacentHTML("afterbegin", a);
+            function insertAndRemoveMessage(a) {
+                var string = "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>";
+                var div = document.createElement("div");
+                div.classList.add('tweet-stream-messages');
+                div.classList.add('card');
+                div.insertAdjacentHTML("afterbegin", string);
+                div.insertAdjacentHTML("beforeend", a);
+
+                // add
+                container.insertAdjacentElement("afterbegin", div);
+
+                // remove
+                setTimeout(function () {
+                    container.removeChild(div);
+                }, 60000);
             }
 
             //How to randomize (shuffle) a JavaScript array?
@@ -374,35 +389,35 @@ export default {
                         shuffle(allTweetStreamMessages);
                     }
                     // allTweetStreamMessages as key for language.tweetStream
-                    insertMessage(language.tweetStream[allTweetStreamMessages[i]]);
+                    insertAndRemoveMessage(language.tweetStream[allTweetStreamMessages[i]]);
                     i++;
                 }, 180000);
             }())
 
             setTimeout(function () {
-                insertMessage(language.tweetStream.message1);
+                console.log("go");
+                insertAndRemoveMessage(language.tweetStream.message1);
             }, 1000);
 
             setTimeout(function () {
-                insertMessage(language.tweetStream.message5);
+                insertAndRemoveMessage(language.tweetStream.message5);
             }, 8000);
 
             setTimeout(function () {
-                insertMessage(language.tweetStream.message6);
+                insertAndRemoveMessage(language.tweetStream.message6);
             }, 12000);
 
             setTimeout(function () {
-                insertMessage(language.tweetStream.message1);
+                insertAndRemoveMessage(language.tweetStream.message1);
             }, 16000);
 
             setTimeout(function () {
-                insertMessage(language.tweetStream.message1);
+                insertAndRemoveMessage(language.tweetStream.message1);
             }, 45000);
 
             setTimeout(function () {
-                insertMessage(language.tweetStream.message1);
+                insertAndRemoveMessage(language.tweetStream.message1);
             }, 130000);
-
         }
     }
 };
