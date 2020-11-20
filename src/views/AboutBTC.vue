@@ -53,8 +53,12 @@
                     <p>Spread your bitcoin knowledge safely and easily. Recipients might study your gift and then improve their expertise and balance their opinion.</p>
 
                     <h3>What can you do with the tool?</h3>
-                    <p>Play the game! Share the balanced views supported by recognized experts and optionally add your twist to the message. Likes, reactions, and shares you get will result in scores. High scores give you never-ending recognition from a respected community that you can show off. Why wouldn't you?</p>
-                    <p>The tool consists of a stack of cards, and each card contains a specific misconception or topic. Copy and paste the URL of a card or click on the social media icon. You can smoothly and safely respond to people and offer them a verified argument regarding the discussed topic. The whole stack of cards is a reliable source of information about Bitcoin.</p>
+
+                    <p>Share the balanced views supported by recognized experts and optionally add your twist to the message.</p>
+
+                    <p>It’s a slow game too! Likes, reactions, and shares you get, will result in individual scores. High scores give you never-ending recognition from a respected community.</p>
+
+                    <p>The tool consists of a stack of cards. Each card contains a specific misconception or topic. Copy and paste the URL of a card or click on the social media icon. You can smoothly and safely respond to people and offer them verified arguments, regarding the discussed topic. The whole stack of cards is a shareable source of information about Bitcoin.</p>
 
                     <h2>All Card sets</h2>
                     <ul>
