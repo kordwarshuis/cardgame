@@ -132,7 +132,11 @@ export default {
             }
 
             // first save default search strings to a backup array
-            realTimeTweets.setAnyOfTheseStringsDefault(domAnyOfTheseStrings.value.split(","));
+            // apparently this runs twice. The first time the backup array is filled with what is hardcoded in the input field, the second time this should not run since the input might be empty by then
+            //TODO: find out why this runs twice
+            if (realTimeTweets.getAnyOfTheseStringsDefault().length === 0) {
+                realTimeTweets.setAnyOfTheseStringsDefault(domAnyOfTheseStrings.value.split(","));
+            }
 
             // then save it to the working array 
             realTimeTweets.setAnyOfTheseStrings(domAnyOfTheseStrings.value.split(","));
@@ -187,7 +191,11 @@ export default {
             }
 
             // first save default search strings to a backup array
-            realTimeTweets.setNoneOfTheseStringsDefault(domNoneOfTheseStrings.value.split(","));
+            // apparently this runs twice. The first time the backup array is filled with what is hardcoded in the input field, the second time this should not run since the input might be empty by then
+            //TODO: find out why this runs twice
+            if (realTimeTweets.getNoneOfTheseStringsDefault().length === 0) {
+                realTimeTweets.setNoneOfTheseStringsDefault(domNoneOfTheseStrings.value.split(","));
+            }
 
             // then save it to the working array 
             realTimeTweets.setNoneOfTheseStrings(domNoneOfTheseStrings.value.split(","));
