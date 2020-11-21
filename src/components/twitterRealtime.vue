@@ -47,7 +47,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Filter tweets</span>
                                     </div>
-                                    <input type="text" class="form-control" id="filterTweets" value="Tip: stop stream first" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    <input type="text" class="form-control" id="filterTweets" value="" aria-label="filter tweet stream" aria-describedby="filter tweet stream">
                                 </div>
                                 <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
                             </div>
