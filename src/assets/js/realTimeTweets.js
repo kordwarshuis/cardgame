@@ -275,8 +275,9 @@ export var realTimeTweets = (function () {
                                 invisibleTweets[i].classList.remove("invisibleTweet");
                             }, 1000);
                         }, k);
-                        // k = Math.floor(k + ((10000 / invisibleTweets.length) -100  ));
-                        k = k + 10;
+                        // k = k + 10;
+                        // spread available tweets, every 10 sec new tweet set arrives, tweets spread over 9 secs, 1 sec pause
+                        k = k + (Math.floor(9000/invisibleTweets.length));
                     }(i));
                 }
             }
