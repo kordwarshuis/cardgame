@@ -205,7 +205,7 @@ export var realTimeTweets = (function () {
                     data[i].handpickedTweet === true) {
                     somethingFound = true;
                     domTemp =
-                        "<div class='card mb-3 tweet invisibleTweet " + handpickedClass + "'>" +
+                        "<div class='card mb-3 tweet newTweet" + handpickedClass + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
                         tweetTypeText +
@@ -263,21 +263,18 @@ export var realTimeTweets = (function () {
 
                 tweets.insertAdjacentHTML("afterbegin", domTemp);
 
-                var invisibleTweets = document.querySelectorAll(".tweet.invisibleTweet");
-                // for (var i=0;i<invisibleTweets.length;i++) {
-                for (var i = invisibleTweets.length - 1; i > -1; i--) {
-                    // this is for give tweets a little fade in so you can see there is something new.
+                var newTweets = document.querySelectorAll(".newTweet");
+                for (var i = newTweets.length - 1; i > -1; i--) {
                     (function (i) {
                         setTimeout(function () {
-                            invisibleTweets[i].classList.add("makeVisible");
+                            newTweets[i].classList.add("displayBlokTweet");
                             setTimeout(function () {
-                                invisibleTweets[i].classList.remove("makeVisible");
-                                invisibleTweets[i].classList.remove("invisibleTweet");
-                            }, 1000);
+                                newTweets[i].classList.remove("newTweet");
+                            }, 100);
                         }, k);
                         // k = k + 10;
                         // spread available tweets, every 10 sec new tweet set arrives, tweets spread over 9 secs, 1 sec pause
-                        k = k + (Math.floor(9000/invisibleTweets.length));
+                        k = k + (Math.floor(9500/newTweets.length));
                     }(i));
                 }
             }
