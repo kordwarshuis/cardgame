@@ -141,6 +141,8 @@ export default {
         this.clearSelectedTweets();
         this.filterTweets();
         this.getBookmarkedTweetsFromLocalStorage();
+        this.getRealtimeTweetsFromLocalStorage();
+        this.setRealtimeTweetsToLocalStorageBeforeUnload();
         this.clock();
         this.insertAndRemoveMessageToTweetStream();
     },
@@ -177,6 +179,33 @@ export default {
         setBookmarkedTweetsToLocalStorage() {
             var selectedTweets = document.querySelector('.tweets-selected .tweets');
             localStorage.setItem("bookmarkedTweets", selectedTweets.innerHTML);
+        },
+        getRealtimeTweetsFromLocalStorage() {
+            var realtimeTweets = document.querySelector('.tweets-realtime .tweets');
+            var val;
+            if (localStorage.getItem("realtimeTweets") !== null) {
+                val = localStorage.getItem("realtimeTweets");
+                realtimeTweets.insertAdjacentHTML("afterbegin", val);
+            }
+        },
+        setRealtimeTweetsToLocalStorage() {
+            console.log("testtt");
+            var realtimeTweets = document.querySelector('.tweets-realtime .tweets');
+            console.log('realtimeTweets: ', realtimeTweets);
+            localStorage.setItem("realtimeTweets", realtimeTweets.innerHTML);
+        },
+        setRealtimeTweetsToLocalStorageBeforeUnload() {
+            var that = this;
+
+            // new tweets are deliverd every 10 sec, hence 10000
+            setInterval(function() {
+                that.setRealtimeTweetsToLocalStorage();
+            }, 10000);
+
+            // doesn't seem to work
+            document.addEventListener('beforeunload', function () {
+                that.setRealtimeTweetsToLocalStorage();
+            }, false);
         },
         filterTweets() {
             // https://schier.co/blog/2014/12/08/wait-for-user-to-stop-typing-using-javascript.html
@@ -255,10 +284,12 @@ export default {
             }, 1000), false);
         },
         clearTweetStream() {
+            var that = this;
             var button = document.querySelector('.clear-tweet-stream-button');
             var tweets = document.querySelector('.tweets-realtime .tweets');
             button.addEventListener('click', function () {
                 tweets.innerHTML = "";
+                that.setRealtimeTweetsToLocalStorage();
             }, false);
         },
         clearSelectedTweets() {
@@ -395,7 +426,6 @@ export default {
             }())
 
             setTimeout(function () {
-                console.log("go");
                 insertAndRemoveMessage(language.tweetStream.message1);
             }, 1000);
 
