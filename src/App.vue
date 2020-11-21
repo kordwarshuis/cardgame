@@ -549,17 +549,16 @@ a:focus {
 .cards a:focus {
     outline: none !important;
 }
+
 .cards a:focus h2,
 a:focus {
     outline: 3px solid #eee;
 }
+
 .nav a:focus {
     background: #666;
     outline: none;
 }
-
-
-
 
 .hidden {
     position: absolute;
@@ -770,16 +769,12 @@ a.overlay__close:not(.overlay__close-cross):hover,
     top: -2px;
 }
 
-.tweet.invisibleTweet {
-    opacity: 0;
+.tweet {
     display: none;
-    transition: opacity 0.2s ease-in-out;
 }
 
-.tweet.invisibleTweet.makeVisible {
+.tweet.displayBlokTweet {
     display: block;
-    opacity: 1 !important;
-    transition: opacity 0.2s ease-in-out;
 }
 
 .tweet-stream-info-in-stream {
@@ -876,7 +871,6 @@ footer {
     padding-left: 0.3em;
     padding-right: 0.3em;
     border-radius: 10px;
-
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -957,7 +951,6 @@ footer {
     .nav-item.Supply a {
         background: #063333;
     }
-
 }
 
 // QUIZ
