@@ -34,11 +34,11 @@ export var getJSON = (function () {
         }
 
         // show message only on smaller screens where tweet stream does not open initially
-        if (mediaQuery.matches) {
-            setTimeout(function () {
-                store.commit("showToast", "Open Tweet panel to see tweet stream");
-            }, 6000);
-        }
+        // if (mediaQuery.matches) {
+        //     setTimeout(function () {
+        //         store.commit("showToast", "Open Tweet panel to see tweet stream");
+        //     }, 6000);
+        // }
 
         var resp;
         var refreshInterval = 10000;
