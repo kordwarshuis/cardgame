@@ -70,9 +70,9 @@
                             </div>
 
                             <div class="col-xs-6 m-0 p-0 mt-1 ">
-                                <button class="btn btn-sm btn-outline-light ml-3 float-right inline clear-selected-tweets-button">Clear</button>
-
-                                <button class="copyBookmarkedURLsToClipboard btn btn-sm btn-outline-light" style="" title="Copy Link">Copy all Links</button>
+                                <button class="btn btn-sm btn-outline-light float-right inline clear-selected-tweets-button">Clear</button>
+                                <button class="copyBookmarkedURLsToClipboard btn btn-sm btn-outline-light" style="" title="Copy Links">Copy Links</button>
+                                <button class="copyBookmarkedURLsToEmail btn btn-sm btn-outline-light" style="" title="Copy to email">e-mail</button>
                             </div>
                         </div>
                     </nav>
@@ -189,16 +189,14 @@ export default {
             }
         },
         setRealtimeTweetsToLocalStorage() {
-            console.log("testtt");
             var realtimeTweets = document.querySelector('.tweets-realtime .tweets');
-            console.log('realtimeTweets: ', realtimeTweets);
             localStorage.setItem("realtimeTweets", realtimeTweets.innerHTML);
         },
         setRealtimeTweetsToLocalStorageBeforeUnload() {
             var that = this;
 
             // new tweets are deliverd every 10 sec, hence 10000
-            setInterval(function() {
+            setInterval(function () {
                 that.setRealtimeTweetsToLocalStorage();
             }, 10000);
 
@@ -241,7 +239,6 @@ export default {
             }
 
             function showResults(searchString) {
-                console.log('searchString: ', searchString);
                 showAllEntries();
 
                 if (searchString !== "") { // als er iets in het zoekveld staat
@@ -777,7 +774,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 .header-tweets-selected {
     color: #eee;
     font-family: poppinsbold;
-    font-size: 2em;
+    font-size: 1.3em;
 }
 
 .select-tweet {
