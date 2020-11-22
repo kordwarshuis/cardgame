@@ -237,6 +237,35 @@ clipboardBookmarkedURLs.on('success', function (e) {
   }, 1500);
 });
 
+// copies all URLs of bookmarked tweets to email
+var clipboardBookmarkedURLsToEmail = new ClipboardJS('.copyBookmarkedURLsToEmail', {
+  text: function (trigger) {
+    var urls = [];
+    var anchors = document.querySelectorAll('.tweets-selected .tweets .tweet .go-to-tweet');
+    var regex = /,/gi;
+    anchors.forEach(function (a) {
+      urls.push(a.getAttribute('href'));
+    });
+    urls = urls.toString();
+    urls = urls.replace(regex, '\r\n\r\n');
+    // https://stackoverflow.com/a/10220953
+    urls = encodeURIComponent(urls);
+    window.open('mailto:test@example.com?subject=subject&body=' + urls);
+    return urls;
+
+  }
+});
+
+clipboardBookmarkedURLsToEmail.on('success', function (e) {
+  store.commit("showToast", "You can now paste the bookmarked links in an e-mail etc");
+  if (localStorage.getItem("soundOn") === "true") go.play();
+  document.querySelector("body").classList.add("person1");
+  setTimeout(function () {
+    document.querySelector("body").classList.remove("person1");
+  }, 1500);
+});
+
+
 
 var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
   text: function (trigger) {
