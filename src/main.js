@@ -250,7 +250,7 @@ var clipboardBookmarkedURLsToEmail = new ClipboardJS('.copyBookmarkedURLsToEmail
     urls = urls.replace(regex, '\r\n\r\n');
     // https://stackoverflow.com/a/10220953
     urls = encodeURIComponent(urls);
-    window.open('mailto:test@example.com?subject=bookmarked%20tweets&body=' + urls);
+    window.open('mailto:?subject=Bookmarked%20Tweets%20Blockchain%20Bird&body=' + urls);
     return urls;
 
   }
