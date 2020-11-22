@@ -71,8 +71,8 @@
 
                             <div class="col-xs-6 m-0 p-0 mt-1 ">
                                 <button class="btn btn-sm btn-outline-light float-right inline clear-selected-tweets-button">Clear</button>
-                                <button class="copyBookmarkedURLsToClipboard btn btn-sm btn-outline-light" style="" title="Copy Links">Copy Links</button>
-                                <button class="copyBookmarkedURLsToEmail btn btn-sm btn-outline-light" style="" title="Copy to email">e-mail</button>
+                                <button class="copyBookmarkedURLsToClipboard btn btn-sm btn-outline-light" style="" title="Copy Links">Copy All</button>
+                                <button class="copyBookmarkedURLsToEmail btn btn-sm btn-outline-light" style="" title="Copy to email">Email</button>
                             </div>
                         </div>
                     </nav>
