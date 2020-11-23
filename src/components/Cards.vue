@@ -68,7 +68,7 @@
     <div class="card-columns">
         <div v-if="this.$store.state.gameId === 'btc'" class="card  mb-4 p-0" style="background: transparent;">
             <div class="card-body p-0 justify-content-center align-items-center d-flex">
-                <video class="p-1" style="max-width: 85%;max-height: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
+                <video class="p-1" style="max-width: 55%;max-height: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
             </div>
             <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
             </div>
@@ -81,7 +81,7 @@
                 </a>
             </div>
             <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
-                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em; margin: 0.5em 0 ;">{{ item.category }}</a>
+                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="text-transform: uppercase;color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em; margin: 0.5em 0 ;">{{ item.category }}</a>
 
                 <!-- Show all cards: -->
                 <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
