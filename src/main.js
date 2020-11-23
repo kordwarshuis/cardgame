@@ -41,7 +41,6 @@ Vue.use(VueGtag, {
   },
   bootstrap: true,
   pageTrackerTemplate(to) {
-    console.log('to: ', to);
     return {
       page_title: to.path,
       page_path: to.path
