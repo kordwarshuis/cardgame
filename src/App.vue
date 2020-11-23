@@ -157,8 +157,6 @@ export default {
                             }
                         }
 
-                        this.$store.commit("showPickedItems");
-
                         // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
                         this.$store.commit("showItemsInSelectedCategory");
 
