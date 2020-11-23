@@ -66,17 +66,21 @@
 
     <!-- THE CARDS -->
     <div class="card-columns">
-        <div v-if="this.$store.state.gameId === 'btc'" class="card video-container mb-4 p-0" style="background: transparent;max-height: 60px;">
-            <video class="" style="width: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
+        <div v-if="this.$store.state.gameId === 'btc'" class="card  mb-4 p-0" style="background: transparent;">
+            <div class="card-body p-0 justify-content-center align-items-center d-flex">
+                <video class="p-1" style="max-width: 85%;max-height: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
+            </div>
+            <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
+            </div>
         </div>
 
-        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="card mb-4">
-            <div class="card-body">
-                <a :data-id="item['id']" :key="item.prejudice" @click="showCardIntro" class="p-2">
+        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="card mb-4 p-0">
+            <div class="card-body p-0 align-items-center d-flex">
+                <a :data-id="item['id']" :key="item.prejudice" @click="showCardIntro" class="p-1">
                     <h2 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h2>
                 </a>
             </div>
-            <div class="card-footer" style="background: #1D2448; text-align: left;">
+            <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
                 <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em; margin: 0.5em 0 ;">{{ item.category }}</a>
 
                 <!-- Show all cards: -->
@@ -320,7 +324,7 @@ h1 {
         column-count: 5;
     }
 
-    >div {
+    >.card {
         border: none;
         cursor: pointer;
         background-image: url(../assets/img/icons/flat/bitcoin.svg), linear-gradient(#272f52, #3a4275);
@@ -346,6 +350,9 @@ h1 {
             border-bottom-right-radius: 10px;
             padding: 0 0.5em 0 0.5em;
 
+        }
+        .card-body {
+            min-height: 10em;
         }
     }
 
@@ -373,10 +380,6 @@ h1 {
 
 div.cards.selection .category-all-shown-in-cards {
     display: inline;
-}
-
-.selection .video-container {
-    display: none;
 }
 
 .resp-sharing-button__link img {
