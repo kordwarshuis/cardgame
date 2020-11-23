@@ -64,6 +64,34 @@
         </h3> -->
     </div>
 
+    <!-- PICKED CARDS -->
+<!--     <div class="masonry-with-columns-picked-cards ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
+        <div v-for="item in $store.state.allPickedCards" :key="item.pickedPrejudice" class="mb-4">
+            <a :data-id="item['id']" :key="item.prejudice" @click="showCardIntro" class="p-2">
+                <h2 class=""><span class="quote">“</span>{{ item.pickedPrejudice }}<span class="quote">”</span></h2>
+            </a>
+            <div class="card-footer" style="background: #1D2448; text-align: left;">
+                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em; margin: 0.5em 0 ;">{{ item.pickedCategory }}</a>
+
+                <!~~ Show all cards: ~~>
+                <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
+
+                <!~~ check allCardsInChosenCategory in store for what is in array, this should be made easier ~~>
+                <button :data-prejudice="item.pickedPrejudice" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" style="margin-top: 0.7em !important;" title="Copy Link">Copy Link</button>
+
+                <!~~ Sharingbutton Twitter ~~>
+                <a class="resp-sharing-button__link float-right mr-2" :href="'https://twitter.com/intent/tweet/?text=' + item.pickedPrejudice + '&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.pickedId" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on Twitter</span>
+                    <img src="../assets/img/icons/social-media-buttons/twitter.svg" alt="twitter logo" />
+                </a>
+
+                <!~~ Sharingbutton LinkedIn ~~>
+                <a class="resp-sharing-button__link float-right mr-2" :href="'https://www.linkedin.com/shareArticle?mini=true&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id + '&amp;title=' + item.pickedPrejudice + '&amp;summary=' + item.pickedPrejudice + '&amp;source=' + windowLocationOrigin + publicPath + 'card/' + item.pickedId" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on LinkedIn</span>
+                    <img src="../assets/img/icons/social-media-buttons/linked-in.svg" alt="linkedin logo" />
+                </a>
+            </div>
+        </div>
+    </div> -->
+
     <!-- THE CARDS -->
     <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
         <div v-if="this.$store.state.gameId === 'btc'" class="video-container mb-4 p-0" style="background: transparent;">
@@ -334,6 +362,13 @@ h1 {
         background: #1D807D;
         margin: 0.8em;
     }
+
+}
+
+.masonry-with-columns-picked-cards {
+    column-count: 5;
+    column-width: 200px;
+    column-gap: 1rem;
 
 }
 
