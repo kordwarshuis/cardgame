@@ -20,7 +20,6 @@ export default new Vuex.Store({
     currentCard: {},
     numberofCards: 0,
     allCardsInChosenCategory: [],
-    allPickedCards: [],
     dataFetched: false,
     topScorer: "",
     linkifyOptions: {
@@ -174,27 +173,6 @@ export default new Vuex.Store({
     showToast(state, a) {
       // https://stackoverflow.com/a/57448058
       this._vm.$toast.info(a);
-    },
-    showPickedItems(state) {
-      var allPickedCards = [];
-
-      function makeArray(a, b) {
-        a.push({
-          "pickedId": b["Unique URL"],
-          "pickedPrejudice": b.Prejudice,
-          "pickedCategory": b.Cat,
-          "pickedPrejudiceElaborate": b["Prejudice Elaborate"]
-        });
-      }
-
-      for (let i = 0; i < this.state.theJSON.length; i++) {
-        if (this.state.theJSON[i].pick === "x") {
-          makeArray(allPickedCards, this.state.theJSON[i]);
-        }
-      }
-
-      // copy the final array to the store
-      this.state.allPickedCards = allPickedCards;
     },
     // TODO: does not work as expected, check
     // setActiveMenuItem(item) {
