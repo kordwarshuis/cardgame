@@ -18,7 +18,7 @@ export var getJSON = (function () {
 
     // console showing messages to user
     var konsole;
-    var tweets
+    var tweets;
     document.addEventListener("DOMContentLoaded", function (event) {
         konsole = document.querySelector('.console .message');
         tweets = document.querySelector(".tweets-realtime .tweets");
