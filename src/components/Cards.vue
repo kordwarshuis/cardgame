@@ -64,10 +64,7 @@
         </h3> -->
     </div>
 
-    <!-- PICKED CARDS -->
-
     <!-- THE CARDS -->
-    <!-- <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2"> -->
     <div class="card-columns">
         <div v-if="this.$store.state.gameId === 'btc'" class="card video-container mb-4 p-0" style="background: transparent;max-height: 60px;">
             <video class="" style="width: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
@@ -101,7 +98,7 @@
         </div>
     </div>
 
-    <!-- <NewsTicker /> -->
+    <NewsTicker />
     <!-- <SoundToggle /> -->
     <!-- </transition> -->
 
@@ -314,7 +311,6 @@ h1 {
 }
 
 // https://css-tricks.com/piecing-together-approaches-for-a-css-masonry-layout/
-// .masonry-with-columns {
 .card-columns {
     @include media-breakpoint-only(lg) {
         column-count: 4;
@@ -358,13 +354,6 @@ h1 {
         background: #1D807D;
         margin: 0.8em;
     }
-
-}
-
-.masonry-with-columns-picked-cards {
-    column-count: 5;
-    column-width: 200px;
-    column-gap: 1rem;
 
 }
 
