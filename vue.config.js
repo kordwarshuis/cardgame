@@ -17,7 +17,7 @@ module.exports = {
   },
   devServer: {//https://github.com/vuejs/vue-cli/issues/2051#issuecomment-420320469
     watchOptions: {
-      poll: true
+      // poll: true
     }
   }
 };
