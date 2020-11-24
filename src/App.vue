@@ -646,8 +646,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
     width: 100%;
 }
 
-.modal-content .related a,
-.md-content button {
+.modal-content .related a {
     margin: 0 0.3em 0.5em;
 }
 
