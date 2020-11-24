@@ -1,8 +1,8 @@
 <template>
 <!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
-    <div class="input-group ml-3 align-center" style="width: 10em !important;">
-        <input @keydown="onInputChangeOrKeyDown" @change="onInputChangeOrKeyDown" v-model="search" class="searchBar  border form-control" placeholder="Search" />
+    <div class="input-group">
+        <input @keydown="onInputChangeOrKeyDown" @change="onInputChangeOrKeyDown" v-model="search" class="searchBar border form-control" placeholder="Search" />
     </div>
 
     <div class="search-results-container hideSearchResults">
@@ -33,7 +33,6 @@
                 <p @click="hideSearchResultsContainer" style="cursor: pointer" class="w-1/4">
                     <router-link class="search-result" :to="'/card/' + card['Unique URL']">▶ Go to card</router-link>
                 </p>
-
 
                 <!-- result snippet -->
                 <p @click="hideSearchResultsContainer" class="search-result" style="font-size: 1em;" v-html="card.searchResultSnippet">
@@ -199,24 +198,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-.searchBar {
-    background: #393E4D;
-    color: #eee;
-    width: 12em;
-    margin: 0 auto !important;
-    // display: block;
-}
-
-/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-@media (min-width: 768px) {
-    .searchBar {
-        background: #393E4D;
-        // height: 1.5em;
-        // width: 8em;
-        // margin-left: 1.5em !important;
-    }
-}
-
 .search-results {
     padding: 2em;
     border: 1px dashed #eee;
