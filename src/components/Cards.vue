@@ -335,7 +335,9 @@ h1 {
         color: $_text1;
         display: inline-block;
         width: 100%;
-
+        h2 {
+            line-height: 1.7;
+        }
         h2,
         h3 {
             color: $_text1;
