@@ -26,7 +26,7 @@
         </div>
     </footer>
     <!-- <template v-if="this.$store.state.gameId === 'btc'"> -->
-    <NewsTicker />
+    <!-- <NewsTicker /> -->
     <!-- </template> -->
 </div>
 </template>
@@ -508,8 +508,7 @@ h4,
 h5,
 h6 {
     text-transform: uppercase;
-    // font-family: poppinsbold;
-    font-family: poppinsregular;
+    font-family: poppinsbold;
 }
 
 p {
