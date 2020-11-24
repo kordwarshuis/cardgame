@@ -21,7 +21,7 @@
                     Filter
                 </button>
                 <div style="z-index: 1021;" class="dropdown-menu dropdown-menu-right dropdown-menu-categories">
-                    <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
+                    <ul class="nav nav-pills pt-0 mx-auto ">
                         <!-- All = All categories at once -->
                         <li class="nav-item ">
                             <a class="nav-link p-1 All" @click="showAllCategories" data-category="All">All</a>
@@ -31,7 +31,7 @@
                         <li class="nav-item" :class="category.name" v-for="category in $store.state.categories" :key="category.name">
                             <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category.name)" :data-category="category.name">
                                 {{ category.name }}
-                                ({{ category.numberOfItems }})
+                                <!-- ({{ category.numberOfItems }}) -->
                             </a>
                         </li>
                     </ul>
@@ -292,7 +292,6 @@ h1 {
 
 .dropdown-menu-categories a {
     font-family: poppinsbold;
-    border: 1px solid #333;
     margin: 0.3em;
     cursor: pointer;
 }
@@ -351,6 +350,7 @@ h1 {
             padding: 0 0.5em 0 0.5em;
 
         }
+
         .card-body {
             min-height: 10em;
         }
