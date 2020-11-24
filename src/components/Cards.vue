@@ -352,6 +352,10 @@ h1 {
         }
 
         .card-body {
+            a {
+                width: 100%;
+            }
+
             min-height: 10em;
         }
     }
