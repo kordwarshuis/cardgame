@@ -11,7 +11,7 @@
                         <!-- <span class="quote">“</span> -->
                         <p class="typed mb-3">{{ getPrejudice }} …</p>
                         <!-- <span class="quote">”</span> -->
-                        <button class="btn btn-outline-light mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
+                        <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                     </div>
 
                 </div>
