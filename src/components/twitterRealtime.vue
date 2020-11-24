@@ -687,6 +687,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 .menu-icon {
     background: url(../assets/img/twitter/Twitter_Logo_Blue.svg);
     box-shadow: $hamburgerBoxShadow;
+    // position of twitter icon when tweet panel is closed
     position: fixed;
     top: 5px;
     left: -140px;
@@ -725,6 +726,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     height: 12px;
 }
 
+// position of twitter icon when tweet panel is opened
 .show-menu .menu-icon {
     background: url(../assets/img/twitter/Twitter_Logo_WhiteOnBlue.svg);
     left: auto;
