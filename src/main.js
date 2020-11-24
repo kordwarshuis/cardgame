@@ -183,7 +183,8 @@ new ClipboardJS('.copyURLtoClipboard3', {
 
 var clipboardOverviewScreen = new ClipboardJS('.copyURLtoClipboard4', {
   text: function (trigger) {
-    return "“" + trigger.dataset.prejudice + "”\n" + " 👉 " + trigger.baseURI + "card/" + trigger.dataset.url;
+    //https://stackoverflow.com/a/6941624
+    return "“" + trigger.dataset.prejudice + "”\n" + " 👉 " + window.location.protocol + "//" + window.location.host + VueConfig.publicPath + "card/" + trigger.dataset.url;
   }
 });
 
@@ -269,7 +270,7 @@ clipboardBookmarkedURLsToEmail.on('success', function (e) {
 var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
   text: function (trigger) {
     // console.log('VueConfig.publicPath: ', VueConfig.publicPath);
-    return window.location.protocol + "//" + window.location.hostname + VueConfig.publicPath + trigger.dataset.url;
+    return window.location.protocol + "//" + window.location.host + VueConfig.publicPath + trigger.dataset.url;
   }
 });
 
