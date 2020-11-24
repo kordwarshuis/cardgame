@@ -508,7 +508,8 @@ h4,
 h5,
 h6 {
     text-transform: uppercase;
-    font-family: poppinsbold;
+    // font-family: poppinsbold;
+    font-family: poppinsregular;
 }
 
 p {
