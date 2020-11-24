@@ -258,10 +258,18 @@ export default {
 .buttonHideSearchResults {
     font-size: 2em;
     position: fixed;
-    right: 10px;
-    top: 2em;
+    right: 0em;
+    top: 4.5em;
     cursor: pointer;
     background: transparent;
     color: #eee;
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .buttonHideSearchResults {
+        top: 1em;
+        right: 0;
+    }
 }
 </style>
