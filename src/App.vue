@@ -625,7 +625,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .copyURLtoClipboard {
-    background: transparent url(./assets/img/icons/flat/sheet.svg) no-repeat center;
+    background: transparent url(./assets/img/icons/flat/copy.svg) no-repeat center;
     background-size: contain;
     // padding: 3em 1.2em 3em 2em;
     // padding: 1.5em 0.6em 1.5em 1em;
