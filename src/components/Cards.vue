@@ -81,7 +81,7 @@
                 </a>
             </div>
             <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
-                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="text-transform: uppercase;color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em; margin: 0.5em 0 ;">{{ item.category }}</a>
+                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
 
                 <!-- Show all cards: -->
                 <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
@@ -331,7 +331,6 @@ h1 {
         background-size: 25px 25px, 100% 100%;
         background-position: center center, center center;
         text-align: center;
-        font-variant: small-caps;
         border-radius: 10px;
         color: $_text1;
         display: inline-block;
