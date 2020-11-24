@@ -727,9 +727,8 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 
 .show-menu .menu-icon {
     background: url(../assets/img/twitter/Twitter_Logo_WhiteOnBlue.svg);
-
     left: auto;
-    right: 0;
+    right: 1em;
 }
 
 .tweets-realtime {
