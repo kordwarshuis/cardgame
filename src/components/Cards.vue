@@ -337,6 +337,7 @@ h1 {
         width: 100%;
         h2 {
             line-height: 1.7;
+            font-family: poppinsregular;
         }
         h2,
         h3 {
