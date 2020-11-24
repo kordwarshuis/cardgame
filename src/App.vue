@@ -1,5 +1,5 @@
 <template>
-<div id="app" class="container-fluid">
+<div id="app" class="container-fluid pl-sm-5 pr-sm-5">
     <!-- true and false are strings not booleans -->
     <template v-if="realTimeTweets === 'true'">
         <TwitterRealTimeConfigModal />
