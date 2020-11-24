@@ -65,7 +65,7 @@
     </div>
 
     <!-- THE CARDS -->
-    <div class="card-columns">
+    <div class="card-columns mb-5">
         <div v-if="this.$store.state.gameId === 'btc'" class="card  mb-4 p-0" style="background: transparent;">
             <div class="card-body p-0 justify-content-center align-items-center d-flex">
                 <video class="p-1" style="max-width: 55%;max-height: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
