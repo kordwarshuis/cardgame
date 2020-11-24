@@ -7,7 +7,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse " id="navbarNav">
-        <ul class="nav justify-content-center ">
+        <ul class="nav justify-content-center mr-3">
 
             <!-- CARDS -->
             <li class="nav-item">
