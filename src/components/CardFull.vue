@@ -18,7 +18,7 @@
                     <p  v-for="item in this.$store.state.currentCard['short direct answer']" v-bind:key="item">{{ item }}</p>
                 </div> -->
 
-                <div class=" border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['short direct answer']">
+                <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['short direct answer']">
                     <h3>In short</h3>
                     <p class="text" style="">{{ this.$store.state.currentCard["short direct answer"] }}</p>
                 </div>
