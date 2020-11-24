@@ -198,6 +198,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
+.searchBar {
+    background: #383E4E;
+    color: #eee;
+}
+
 .search-results {
     padding: 2em;
     border: 1px dashed #eee;
@@ -215,15 +220,24 @@ export default {
     padding-bottom: 12em;
     left: 0;
     font-size: 1em;
-    background: #222;
+    background: #383E4E;
     overflow: scroll;
     height: 100%;
     width: 100%;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
 }
 
+    .input-group{
+        margin-top: 1em;
+    }
+
+
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
+    .input-group{
+        margin-top: 0;
+    }
+    
     .search-results-container {
         top: 3em;
     }
