@@ -207,7 +207,8 @@ export default {
     padding: 2em;
     border: 1px dashed #eee;
     border-radius: 10px;
-    margin: 2em;
+    margin: 2em auto;
+    max-width: 50em;
 }
 
 .search-results a {
@@ -218,6 +219,8 @@ export default {
     position: fixed;
     top: 10em;
     padding-bottom: 12em;
+    padding-left: 2em;
+    padding-right: 2em;
     left: 0;
     font-size: 1em;
     background: #383E4E;
