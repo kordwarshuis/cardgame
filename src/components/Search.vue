@@ -219,8 +219,8 @@ export default {
     position: fixed;
     top: 10em;
     padding-bottom: 12em;
-    padding-left: 2em;
-    padding-right: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
     left: 0;
     font-size: 1em;
     background: #383E4E;
@@ -261,8 +261,8 @@ export default {
 .buttonHideSearchResults {
     font-size: 2em;
     position: fixed;
-    right: 0em;
-    top: 4.5em;
+    right: -0.3em;
+    top: 4.2em;
     cursor: pointer;
     background: transparent;
     color: #eee;
