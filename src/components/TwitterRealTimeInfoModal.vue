@@ -63,4 +63,13 @@ h1,
 h2 {
     font-size: 1rem;
 }
+
+// https://stackoverflow.com/a/26917844
+.close {
+  font-size: 2em;
+  color: #eee;
+}
+.close:hover {
+    color: #fff;
+}
 </style>
