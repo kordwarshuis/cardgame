@@ -56,7 +56,7 @@
 
         <div class="footer col-lg-12 col-sm-12 m-0">
             <div>
-                <div style="display: inline-block;">
+                <div>
                     <SocialMedia />
                 </div>
                 <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
@@ -239,6 +239,14 @@ export default {
     background: linear-gradient(to right, #5C34A7, #2376D6);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.footer>div {
+    margin: 0 auto;
+    text-align: center;
+}
+.footer>div>div {
+    display: inline-block;
 }
 
 // hr {
