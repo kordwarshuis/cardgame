@@ -147,15 +147,15 @@ export default new Vuex.Store({
         // copy the final array to the store
         this.state.allCardsInChosenCategory = allCardsInChosenCategory;
         //TODO: duplicate code, see addVisitedToCards()
-        setTimeout(function () {
-          var allCards = document.querySelectorAll(".grid__item");
-          // loop all cards and add .visited if in localStorage visited
-          for (let i = 0; i < allCards.length; i++) {
-            if (localStorage.getItem("visited") && localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
-              allCards[i].classList.add("visited");
-            }
-          }
-        }, 1000);
+        // setTimeout(function () {
+        //   var allCards = document.querySelectorAll(".grid__item");
+        //   // loop all cards and add .visited if in localStorage visited
+        //   for (let i = 0; i < allCards.length; i++) {
+        //     if (localStorage.getItem("visited") && localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
+        //       allCards[i].classList.add("visited");
+        //     }
+        //   }
+        // }, 1000);
 
         // TODO: needs more work
         if (categoryName === undefined) {
