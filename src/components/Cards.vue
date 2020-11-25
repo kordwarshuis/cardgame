@@ -66,9 +66,11 @@
 
     <!-- THE CARDS -->
     <div class="card-columns mb-5">
-        <div v-if="this.$store.state.gameId === 'btc'" class="card  mb-4 p-0" style="background: transparent;">
+        <div v-if="this.$store.state.gameId === 'btc'" class="card mb-4 p-0">
             <div class="card-body p-0 justify-content-center align-items-center d-flex">
-                <video class="p-1" style="max-width: 55%;max-height: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
+                <div class="video-wrapper">
+                    <video src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
+                </div>
             </div>
             <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
             </div>
@@ -314,10 +316,12 @@ h1 {
         color: $_text1;
         display: inline-block;
         width: 100%;
+
         h2 {
             line-height: 1.7;
             font-family: poppinsregular;
         }
+
         h2,
         h3 {
             color: $_text1;
@@ -380,5 +384,21 @@ div.cards.selection .category-all-shown-in-cards {
 .resp-sharing-button__link:hover,
 .copyURLtoClipboard4:hover {
     opacity: 1;
+}
+
+.video-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.video-wrapper video {
+    width: 100%;
+    border-radius: 10px;
 }
 </style>
