@@ -101,33 +101,21 @@
             </div>
         </div>
     </div>
-
-    <NewsTicker />
-    <!-- <SoundToggle /> -->
-    <!-- </transition> -->
-
 </div>
 </template>
 
 <script>
-// import NewsTicker from "@/components/NewsTicker.vue";
-// import Search from "@/components/Search.vue";
 import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
-// import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
 import publicPath from "../../vue.config";
 import GameInstructionsCarousel from "./GameInstructionsCarousel.vue";
 
 export default {
     name: "Index",
     components: {
-        // Search,
-        // NewsTicker,
         SoundToggle,
         ICountUp,
         GameInstructionsCarousel
-        // ,BitcoinAnimation
-        // VueFuse
     },
     props: {
         msg: String,
@@ -151,65 +139,61 @@ export default {
         }
     },
     mounted() {
-        this.addVisitedToCards();
-        // this.selectPickedItems();
+        // this.addVisitedToCards();
     },
     methods: {
-        // selectPickedItems() {
-        //     console.log("lapm");
-        //     console.log(this.$store.state.allCardsInChosenCategory);
-        //     for (let i = 0; i < this.$store.state.allCardsInChosenCategory.length; i++) {
-        //         console.log($store.state.allCardsInChosenCategory[i]);
-
-        //     }
-
-        // },
         showAllCategories() {
             this.$store.commit('showItemsInSelectedCategory');
             this.$router.push("/");
         },
-        addVisitedToCards() {
-            //TODO: duplicate code, see addVisitedToCards()
-            setTimeout(function () {
-                var allCards = document.querySelectorAll(".grid__item");
-                // loop all cards and add .visited if in localStorage visited
-                for (let i = 0; i < allCards.length; i++) {
-                    if (localStorage.getItem("visited") && localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
-                        allCards[i].classList.add("visited");
-                    }
-                }
-            }, 1000);
-        },
-        startElectricitySound(e) {
-            if (e.target.closest("a").classList.contains("visited")) {
-                if (localStorage.getItem("soundOn") === "true") {
-                    electricity.play();
-                    setTimeout(function () {
-                        electricity.stop()
-                    }, 1000);
-                }
-            }
-        },
+        // addVisitedToCards() {
+        //     //TODO: duplicate code, see addVisitedToCards()
+        //     setTimeout(function () {
+        //         var allCards = document.querySelectorAll(".card");
+        //         // loop all cards and add .visited if in localStorage visited
+        //         // for (let i = 0; i < allCards.length; i++) {
+        //         //     if (localStorage.getItem("visited") && localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
+        //         //         allCards[i].classList.add("visited");
+        //         //     }
+        //         // }
+        //     }, 1000);
+        // },
+        // startElectricitySound(e) {
+        //     if (e.target.closest("a").classList.contains("visited")) {
+        //         if (localStorage.getItem("soundOn") === "true") {
+        //             electricity.play();
+        //             setTimeout(function () {
+        //                 electricity.stop()
+        //             }, 1000);
+        //         }
+        //     }
+        // },
         // stopElectricitySound(e) {
         //     if (e.target.closest("a").classList.contains("visited")) {
         //         if (localStorage.getItem("soundOn") === "true") electricity.stop();
         //     }
         // },
         showCardIntro(event) {
-            // console.log('this.$store.state.currentCard["Youtube Video Id"]: ', this.$store.state.currentCard["Youtube Video Id"]);
-            // event.target.closest("a").classList.add("visited");
+            // event.target.closest(".card").classList.add("visited");
+            // console.log('event.target.closest(".card"): ', event.target.closest(".card"));
 
-            // https://stackoverflow.com/a/7680123
-            // localStorage can only be string
-            function appendToLocalStorage(name, data) {
-                var old = localStorage.getItem(name);
+            // // https://stackoverflow.com/a/7680123
+            // // localStorage can only be string
+            // function appendToLocalStorage(name, data) {
+            //     var old = localStorage.getItem(name);
 
-                // create if not existing
-                if (old === null) old = "";
+            //     // create if not existing
+            //     if (old === null) old = "";
 
-                // only add if it is not already in the string
-                if (old.indexOf(data) === -1) localStorage.setItem(name, old + data + " ");
-            }
+            //     // only add if it is not already in the string
+            //     if (old.indexOf(data) === -1) localStorage.setItem(name, old + data + " ");
+            //     console.log(localStorage.getItem("visited"));
+            // }
+
+            // // add current card url to visited in localStorage
+            // appendToLocalStorage("visited", this.$store.state.currentCard["Unique URL"]);
+
+            // this.addVisitedToCards();
 
             // deal with CSS to open and close
             this.$store.commit("changeCssClassCardIntroState", "open");
@@ -226,11 +210,6 @@ export default {
             this.$router.push("/card/" + currentCard["Unique URL"]);
 
             if (localStorage.getItem("soundOn") === "true") whoosh2.play();
-
-            // add current card url to visited in localStorage
-            appendToLocalStorage("visited", this.$store.state.currentCard["Unique URL"]);
-
-            this.addVisitedToCards();
         }
     }
 };
