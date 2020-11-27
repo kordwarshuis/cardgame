@@ -26,7 +26,7 @@
         </div>
     </footer>
     <!-- <template v-if="this.$store.state.gameId === 'btc'"> -->
-    <NewsTicker />
+    <!-- <NewsTicker /> -->
     <!-- </template> -->
 </div>
 </template>
