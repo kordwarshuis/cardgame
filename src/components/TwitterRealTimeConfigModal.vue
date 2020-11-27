@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <h2 class="mt-3">None of these strings or words</h2>
                                 <label class="" for="noneOfTheseStrings" id="labelNoneOfTheseStrings">None of these words</label>
-                                <textarea id="noneOfTheseStrings" name="noneOfTheseStrings" rows="5" class="form-control block p-3">play online casino,Airdrop,All you have to do is RT,I will give one random follower,I will give someone</textarea>
+                                <textarea id="noneOfTheseStrings" name="noneOfTheseStrings" rows="5" class="form-control block p-3">I've hacked your computer,play online casino,Airdrop,All you have to do is RT,I will give one random follower,I will give someone</textarea>
                                 <button id="restoreNoneOfTheseStringsDefault" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyNoneOfTheseStrings" type="button" class="btn btn-light">Empty</button>
                             </div>
 
