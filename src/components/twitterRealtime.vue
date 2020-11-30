@@ -97,7 +97,6 @@
 </template>
 
 <script>
-import store from "../store/store";
 import TwitterRealTimeStartStopToggle from "@/components/TwitterRealTimeStartStopToggle.vue";
 
 import {
@@ -117,9 +116,7 @@ import {
 export default {
     name: "twitterRealtime",
     data() {
-        return {
-            realTimeTweetsOn: process.env.VUE_APP_REALTIME_TWEETS
-        };
+        return {};
     },
     mixins: [disableBodyScrollMixin],
     components: {
