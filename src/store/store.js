@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import router from '../router/router';
+import axios from "axios";
+import * as d3 from "d3-dsv";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -33,7 +35,8 @@ export default new Vuex.Store({
         }
         return value;
       }
-    }
+    },
+    prospectHandles: []
   },
   getters: {
     getCard: (state) => (id) => {
@@ -173,7 +176,7 @@ export default new Vuex.Store({
     showToast(state, a) {
       // https://stackoverflow.com/a/57448058
       this._vm.$toast.info(a);
-    },
+    }
     // TODO: does not work as expected, check
     // setActiveMenuItem(item) {
     //   var selector = ".nav";
@@ -194,6 +197,13 @@ export default new Vuex.Store({
     //   }
     // }
   },
-  actions: {},
+  actions: {
+    setProspectHandles() {
+      return axios.get("https://blockchainbird.com/t/data/cards.prospects.handles.php")
+        .then(response => {
+          this.state.prospectHandles = d3.csvParse(response.data);
+        });
+    },
+  },
   modules: {}
 });
