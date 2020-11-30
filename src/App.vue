@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import store from "./store/store";
 import publicPath from "../vue.config";
 import axios from "axios";
 import * as d3 from "d3-dsv";
@@ -69,6 +70,7 @@ export default {
         this.fetchData();
         // this.soundSetting();
         this.initSound();
+        this.$store.dispatch("setProspectHandles");
     },
     methods: {
         fetchData() {
