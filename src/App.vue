@@ -76,7 +76,6 @@ export default {
         fetchData() {
             // only fetch data
             if (this.$store.state.dataFetched === false) {
-                // return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
                 return axios.get(process.env.VUE_APP_CARDS_CONTENT)
                     .then(response => {
                         var responseData = d3.csvParse(response.data);
