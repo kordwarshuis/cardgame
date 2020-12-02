@@ -438,7 +438,7 @@ export default {
 }
 
 .modal-content h3.related {
-    background-image: url(../assets/img/logo/blockchainbird-logo.png);
+    background-image: url(../assets/img/logo/logo.png);
 }
 
 .modal-content h3.libbitcoin {
