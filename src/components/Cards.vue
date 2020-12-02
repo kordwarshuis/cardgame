@@ -63,7 +63,7 @@
         <div v-if="realtimeTweets === 'true'" class="card mb-4 p-0">
             <div class="card-body p-0 justify-content-center align-items-center d-flex">
                 <div class="video-wrapper">
-                    <video src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
+                    <video src="https://blockchainbird.com/t/media/video/instructions.mp4" muted autoplay controls playsinline></video>
                 </div>
             </div>
             <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
