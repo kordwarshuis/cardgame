@@ -22,19 +22,7 @@ const routes = [{
     path: "/about",
     name: "About",
     component: () =>
-      import("../views/AboutBTC.vue")
-  },
-  {
-    path: "/about-ssi",
-    name: "AboutSSI",
-    component: () =>
-      import("../views/AboutSSI.vue")
-  },
-  {
-    path: "/about-bcb",
-    name: "AboutBCB",
-    component: () =>
-      import("../views/AboutBCB.vue")
+      import("../views/About.vue")
   },
   {
     path: "/scores",
