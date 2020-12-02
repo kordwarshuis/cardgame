@@ -15,20 +15,8 @@
                 <router-link @click.native="$store.commit('showItemsInSelectedCategory')" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/">Cards</router-link>
             </li>
 
-            <!-- ABOUT BTC -->
-            <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
+            <!-- ABOUT -->
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about">About</router-link>
-            </li>
-
-            <!-- ABOUT BCB -->
-            <li class="nav-item" v-if="this.$store.state.gameId === 'bcb'">
-                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about-bcb">About</router-link>
-            </li>
-
-            <!-- ABOUT SSI -->
-            <li class="nav-item" v-if="this.$store.state.gameId === 'ssi'">
-                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about-ssi">About</router-link>
-            </li>
 
             <!-- SCORES -->
             <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
