@@ -41,7 +41,7 @@
 
         <div class="col-md-12">
             <p class="mt-0">{{this.$store.state.gameSubTitle}}
-                <template v-if="appId === 'btc'">
+                <template v-if="realtimeTweets === 'true'">
                     <GameInstructionsCarousel />
                 </template>
             </p>
