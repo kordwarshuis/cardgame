@@ -22,7 +22,6 @@ import linkify from 'vue-linkify';
 
 // Redirects
 import {redirects} from '@/assets/js/redirects';
-console.log('redirects: ', redirects);
 if (redirects !== undefined) {
   redirects();
 } else {
@@ -208,7 +207,6 @@ clipboardBookmarkedURLsToEmail.on('success', function (e) {
 
 var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
   text: function (trigger) {
-    // console.log('VueConfig.publicPath: ', VueConfig.publicPath);
     return window.location.protocol + "//" + window.location.host + VueConfig.publicPath + trigger.dataset.url;
   }
 });
