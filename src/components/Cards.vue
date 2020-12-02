@@ -66,7 +66,7 @@
 
     <!-- THE CARDS -->
     <div class="card-columns mb-5">
-        <div v-if="this.$store.state.gameId === 'btc'" class="card mb-4 p-0">
+        <div v-if="realtimeTweets === 'true'" class="card mb-4 p-0">
             <div class="card-body p-0 justify-content-center align-items-center d-flex">
                 <div class="video-wrapper">
                     <video src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
@@ -137,7 +137,8 @@ export default {
             },
             publicPath: publicPath.publicPath,
             windowLocationOrigin: window.location.origin,
-            appId: process.env.VUE_APP_ID
+            appId: process.env.VUE_APP_ID,
+            realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
         }
     },
     mounted() {
