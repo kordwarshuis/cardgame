@@ -77,13 +77,13 @@
                     <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
                 </div>
 
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['wiki - Myths']">
-                    <h3 class="WikiMyths">Wiki Myths</h3>
-                    <p>This bitcoin misconception cleared up by the bitcoin wiki community: <a target="_blank" rel="noopener" :href="this.$store.state.currentCard['wiki - Myths']">Read</a></p>
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert3']">
+                    <h3 class="expert3">Wiki Myths</h3>
+                    <p>This bitcoin misconception cleared up by the bitcoin wiki community: <a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert1']">
-                    <h3 class="Expert1">Eric Voskuil</h3>
+                    <h3 class="expert1">Eric Voskuil</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{ this.$store.state.currentCard['Expert1'] }}</p>
                 </div>
 
@@ -99,10 +99,10 @@
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Analogy"]}}</p>
                 </div>
 
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Flower Power']">
 
                     <h3 class="flowerPower">Flower Power</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["FlowerPower"]}}</p>
+                    <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Flower Power"]}}</p>
                 </div>
 
                 <!-- <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Related']">
