@@ -93,7 +93,7 @@ export default new Vuex.Store({
       this.commit("changeCssClassCardIntroState", "open");
       this.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
 
-      // returns object with all entries of one prejudice
+      // returns object with all entries of one misconception
       var currentCard = this.getters.getCard(uniqueIdFromUrl);
       this.commit("changeCard", currentCard);
     },
@@ -122,9 +122,9 @@ export default new Vuex.Store({
         function makeArray(a, b) {
           a.push({
             "id": b["Unique URL"],
-            "prejudice": b.Prejudice,
-            "category": b.Cat,
-            "prejudiceElaborate": b["Prejudice Elaborate"],
+            "misconception": b.Misconception,
+            "category": b.Category,
+            "misconceptionElaborate": b["Misconception Elaborate"],
             "Youtube Video Id": b["Youtube Video Id"]
             // ,
             // "numberOfItems": 
@@ -140,7 +140,7 @@ export default new Vuex.Store({
             }
           } else {
             for (let i = 0; i < this.state.theJSON.length; i++) {
-              if (this.state.theJSON[i].Cat === categoryName) {
+              if (this.state.theJSON[i].Category === categoryName) {
                 makeArray(allCardsInChosenCategory, this.state.theJSON[i]);
               }
             }

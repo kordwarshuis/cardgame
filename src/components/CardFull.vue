@@ -6,27 +6,27 @@
         <div>
             <div class="modal-content p-3 pt-5">
                 <div class="misconception-short-and-elaborate">
-                    <h2 class="title text-center"><span class="quote">“</span>{{ this.$store.state.currentCard.Prejudice }}<span class="quote">”</span></h2>
-                    <p class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Prejudice Elaborate"] }}<span class="quote">”</span></p>
+                    <h2 class="title text-center"><span class="quote">“</span>{{ this.$store.state.currentCard.Misconception }}<span class="quote">”</span></h2>
+                    <p class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Misconception Elaborate"] }}<span class="quote">”</span></p>
                 </div>
 
                 <!-- <button class="copyURLtoClipboard copyURLtoClipboard1" title="Copy Link">Copy Link</button> -->
 
-                <!-- <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['short direct answer']">
+                <!-- <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
 
                     <h3 class="longAnswer">Short Answer</h3>
-                    <p  v-for="item in this.$store.state.currentCard['short direct answer']" v-bind:key="item">{{ item }}</p>
+                    <p  v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
                 </div> -->
 
-                <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['short direct answer']">
+                <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
                     <h3>In short</h3>
-                    <p class="text" style="">{{ this.$store.state.currentCard["short direct answer"] }}</p>
+                    <p class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</p>
                 </div>
 
-                <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['long answer+facts']">
+                <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Long Answer']">
 
                     <h3 class="longAnswer">Longer Answer</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['long answer+facts']" v-bind:key="item">{{ item }}</p>
+                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">{{ item }}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
@@ -82,21 +82,21 @@
                     <p>This bitcoin misconception cleared up by the bitcoin wiki community: <a target="_blank" rel="noopener" :href="this.$store.state.currentCard['wiki - Myths']">Read</a></p>
                 </div>
 
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Eric Voskuil']">
-                    <h3 class="EricVoskuil">Eric Voskuil</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">{{ this.$store.state.currentCard['Eric Voskuil'] }}</p>
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert1']">
+                    <h3 class="Expert1">Eric Voskuil</h3>
+                    <p v-linkified:options="$store.state.linkifyOptions">{{ this.$store.state.currentCard['Expert1'] }}</p>
                 </div>
 
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter-questions']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter Questions']">
 
-                    <h3 class="counterQuestion">Counter-questions</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Counter-questions"]}}</p>
+                    <h3 class="counter-question">Counter Questions</h3>
+                    <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Counter Questions"]}}</p>
                 </div>
 
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['analogy']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Analogy']">
 
                     <h3 class="">Analogy</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["analogy"]}}</p>
+                    <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Analogy"]}}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['FlowerPower']">
@@ -155,12 +155,12 @@ export default {
         Person3
     },
     computed: {
-        getPrejudice: function () {
-            return this.$store.state.currentCard.Prejudice;
+        getMisconception: function () {
+            return this.$store.state.currentCard.Misconception;
         }
     },
     watch: {
-        getPrejudice(newValue, oldValue) {
+        getMisconception(newValue, oldValue) {
             setTimeout(() => {
                 if (this.$store.state.currentCard['Diagram Data']) {
                     this.createBarGraph();
@@ -422,7 +422,7 @@ export default {
 
 }
 
-.modal-content h3.counterQuestion {
+.modal-content h3.counter-question {
     // background-image: url(../assets/img/animated-gif/insects15.gif);
     background-image: url(../assets/img/icons/jv-creative/counter-questions.svg);
 }

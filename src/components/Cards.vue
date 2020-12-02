@@ -70,10 +70,10 @@
             </div>
         </div>
 
-        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="card mb-4 p-0">
+        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.misconception" class="card mb-4 p-0">
             <div class="card-body p-0 align-items-center d-flex">
-                <a :data-id="item['id']" :key="item.prejudice" @click="showCardIntro" class="p-1">
-                    <h2 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h2>
+                <a :data-id="item['id']" :key="item.misconception" @click="showCardIntro" class="p-1">
+                    <h2 class=""><span class="quote">“</span>{{ item.misconception }}<span class="quote">”</span></h2>
                 </a>
             </div>
             <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
@@ -83,15 +83,15 @@
                 <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
 
                 <!-- check allCardsInChosenCategory in store for what is in array, this should be made easier -->
-                <button :data-prejudice="item.prejudice" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" title="Copy Link">Copy Link</button>
+                <button :data-misconception="item.misconception" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" title="Copy Link">Copy Link</button>
 
                 <!-- Sharingbutton Twitter -->
-                <a class="resp-sharing-button__link float-right mr-2" :href="'https://twitter.com/intent/tweet/?text=' + item.prejudice + '&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on Twitter</span>
+                <a class="resp-sharing-button__link float-right mr-2" :href="'https://twitter.com/intent/tweet/?text=' + item.misconception + '&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on Twitter</span>
                     <img src="../assets/img/icons/social-media-buttons/twitter.svg" alt="twitter logo" />
                 </a>
 
                 <!-- Sharingbutton LinkedIn -->
-                <a class="resp-sharing-button__link float-right mr-2" :href="'https://www.linkedin.com/shareArticle?mini=true&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id + '&amp;title=' + item.prejudice + '&amp;summary=' + item.prejudice + '&amp;source=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on LinkedIn</span>
+                <a class="resp-sharing-button__link float-right mr-2" :href="'https://www.linkedin.com/shareArticle?mini=true&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id + '&amp;title=' + item.misconception + '&amp;summary=' + item.misconception + '&amp;source=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on LinkedIn</span>
                     <img src="../assets/img/icons/social-media-buttons/linked-in.svg" alt="linkedin logo" />
                 </a>
             </div>
@@ -196,7 +196,7 @@ export default {
             this.$store.commit("changeCssClassCardIntroState", "open");
             this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
 
-            // returns object with all entries of one prejudice
+            // returns object with all entries of one misconception
             var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
 
             this.$store.commit("changeCard", currentCard);

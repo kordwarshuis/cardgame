@@ -90,8 +90,8 @@ new ClipboardJS('.copyURLtoClipboard1', {
     setTimeout(function () {
       document.querySelector('body').classList.remove('person1');
     }, 1500);
-    // return "“" + store.state.currentCard["Prejudice"] + "”\n" + store.state.currentCard["short direct answer"] + " 👉 " + window.location.href;
-    return "“" + store.state.currentCard["Prejudice"] + "”\n" + " 👉 " + window.location.href;
+    // return "“" + store.state.currentCard["Misconception"] + "”\n" + store.state.currentCard["Short Answer"] + " 👉 " + window.location.href;
+    return "“" + store.state.currentCard["Misconception"] + "”\n" + " 👉 " + window.location.href;
   }
 });
 new ClipboardJS('.copyURLtoClipboard2', {
@@ -102,8 +102,8 @@ new ClipboardJS('.copyURLtoClipboard2', {
     setTimeout(function () {
       document.querySelector('body').classList.remove('person1');
     }, 1500);
-    // return "“" + store.state.currentCard["Prejudice"] + "”\n" + store.state.currentCard["short direct answer"] + " 👉 " + window.location.href;
-    return "“" + store.state.currentCard["Prejudice"] + "”\n" + " 👉 " + window.location.href;
+    // return "“" + store.state.currentCard["Misconception"] + "”\n" + store.state.currentCard["Short Answer"] + " 👉 " + window.location.href;
+    return "“" + store.state.currentCard["Misconception"] + "”\n" + " 👉 " + window.location.href;
   }
 });
 new ClipboardJS('.copyURLtoClipboard3', {
@@ -114,15 +114,15 @@ new ClipboardJS('.copyURLtoClipboard3', {
     setTimeout(function () {
       document.querySelector("body").classList.remove("person1");
     }, 1500);
-    // return "“" + store.state.currentCard["Prejudice"] + "”\n" + store.state.currentCard["short direct answer"] + " 👉 " + window.location.href;
-    return "“" + store.state.currentCard["Prejudice"] + "”\n" + " 👉 " + window.location.href;
+    // return "“" + store.state.currentCard["Misconception"] + "”\n" + store.state.currentCard["Short Answer"] + " 👉 " + window.location.href;
+    return "“" + store.state.currentCard["Misconception"] + "”\n" + " 👉 " + window.location.href;
   }
 });
 
 var clipboardOverviewScreen = new ClipboardJS('.copyURLtoClipboard4', {
   text: function (trigger) {
     //https://stackoverflow.com/a/6941624
-    return "“" + trigger.dataset.prejudice + "”\n" + " 👉 " + window.location.protocol + "//" + window.location.host + VueConfig.publicPath + "card/" + trigger.dataset.url;
+    return "“" + trigger.dataset.misconception + "”\n" + " 👉 " + window.location.protocol + "//" + window.location.host + VueConfig.publicPath + "card/" + trigger.dataset.url;
   }
 });
 

@@ -10,23 +10,23 @@
             <button class="buttonHideSearchResults" @click="hideSearchResultsContainerAndRemoveSearchStringFromURL"><span class="visuallyhidden">Close search results</span>×</button>
             <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Everything about “{{search}}”</h1>
 
-            <div class="search-results" v-for="card in computedFilteredList" :key="card.Prejudice" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
+            <div class="search-results" v-for="card in computedFilteredList" :key="card.Misconception" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
 
                 <!-- copy card URL to clipboard -->
                 <button onclick="return false;" :data-url="'card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="float: right; width: 2em; height: 2em;vertical-align: top;" title="Copy Link">Copy Link</button>
 
                 <!-- category -->
-                <small @click="hideSearchResultsContainer" class="search-result category mb-4 pt-1 pl-2 pr-2 pb-0 display-5" :class="card.Cat" style="display: inline-block; border-radius: 10px;">
-                    <router-link :to="'/card/' + card['Unique URL']">{{card.Cat}}</router-link>
+                <small @click="hideSearchResultsContainer" class="search-result category mb-4 pt-1 pl-2 pr-2 pb-0 display-5" :class="card.Category" style="display: inline-block; border-radius: 10px;">
+                    <router-link :to="'/card/' + card['Unique URL']">{{card.Category}}</router-link>
                 </small>
                 <!-- misconception -->
                 <h2 @click="hideSearchResultsContainer" style="cursor: pointer" class="w-1/4">
-                    <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{ card.Prejudice }}</router-link>
+                    <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{ card.Misconception }}</router-link>
                 </h2>
 
                 <!-- misconception longer -->
                 <p @click="hideSearchResultsContainer" class="search-result ml-4 w-3/4" style="cursor: pointer">
-                    {{ card['Prejudice Elaborate'] }}
+                    {{ card['Misconception Elaborate'] }}
                 </p>
 
                 <!-- go to card -->
@@ -117,7 +117,7 @@ export default {
                     return this.cards.filter(card => {
                         var results = false;
 
-                        // go through all columns, Prejudice, Prejudice Elaborate, Short Answer etc
+                        // go through all columns, Misconception, Misconception Elaborate, Short Answer etc
                         for (let i = 0; i < allKeys.length; i++) {
                             if (this.search !== undefined) {
                                 // if (typeof card[allKeys[i]] === "string" && card[allKeys[i]] !== "") {

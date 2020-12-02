@@ -9,7 +9,7 @@
                     <h3 class="pt-sm-2">Misconception</h3>
                     <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 9em; border-radius: 10px;">
                         <!-- <span class="quote">“</span> -->
-                        <p class="typed mb-3">{{ getPrejudice }} …</p>
+                        <p class="typed mb-3">{{ getMisconception }} …</p>
                         <!-- <span class="quote">”</span> -->
                         <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                     </div>
@@ -23,7 +23,7 @@
                 <div class="card-body center" style="">
                     <h3 class="pt-2" style="color: #5FE2FC;">Reply</h3>
                     <p class="">
-                        <span class="text" style="">{{ this.$store.state.currentCard["short direct answer"] }}</span>
+                        <span class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</span>
                     </p>
                     <hr>
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
@@ -90,12 +90,12 @@ export default {
         return {}
     },
     computed: {
-        getPrejudice: function () {
-            return this.$store.state.currentCard["Prejudice"];
+        getMisconception: function () {
+            return this.$store.state.currentCard["Misconception"];
         }
     },
     watch: {
-        getPrejudice(newValue, oldValue) {
+        getMisconception(newValue, oldValue) {
             this.typeWriter(".typed", newValue, 20);
         }
     },
@@ -104,10 +104,10 @@ export default {
         this.disableBodyScroll(".overlay-fullscreen>div"); //mixin
     },
     methods: {
-        typeWriter(selector, prejudice, interval) {
+        typeWriter(selector, misconception, interval) {
             var audioPlaying = false;
             var text = document.querySelector(selector),
-                textCopy = prejudice,
+                textCopy = misconception,
                 i = 0,
                 clear,
                 pauseBeforeStart = 600;

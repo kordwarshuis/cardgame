@@ -135,7 +135,7 @@ export default {
                             responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
 
                             // split string on \n\n, so we can make paragraphs later, or separate links for example
-                            responseData[i]["long answer+facts"] = this.splitString(responseData[i]["long answer+facts"], "\n\n");
+                            responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
 
                             responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
 
@@ -234,7 +234,7 @@ export default {
 
             // create array with all categories (to create a menu with all categories):
             for (var i = 0; i < theJSON.length; i++) {
-                categoriesArray.push(theJSON[i].Cat);
+                categoriesArray.push(theJSON[i].Category);
             }
 
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
@@ -246,7 +246,7 @@ export default {
             for (let i = 0; i < categoriesArray.length; i++) {
                 var counter = 0;
                 for (let j = 0; j < theJSON.length; j++) {
-                    if (theJSON[j].Cat === categoriesArray[i]) {
+                    if (theJSON[j].Category === categoriesArray[i]) {
                         //TODO: number of items in category is sometimes wrong
                         counter++;
                     }
