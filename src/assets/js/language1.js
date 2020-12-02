@@ -12,6 +12,10 @@ export var language = {
         message5: "<p>Play withthe configuration options to change the keywords, number of followers etc.</p>",
         message6: "<p>Depending on your search configurations it can take a while before real time tweets show.</p>"
         // message7: "<p>Play withthe configuration options to change the keywords, number of followers etc.</p>"
-    }
+    },
+    expert1: "Eric Voskuil",
+    expert1Description: "",
+    expert1: "Eric Voskuil",
+    expert3Description: "This bitcoin misconception cleared up by the bitcoin wiki community: "
 
 };
