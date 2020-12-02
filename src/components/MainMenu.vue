@@ -16,16 +16,18 @@
             </li>
 
             <!-- ABOUT -->
+            <li v-if="aboutPage !== ''">
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about">About</router-link>
+            </li>
 
             <!-- SCORES -->
-            <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
-                <router-link class="nav-link" v-if="this.$store.state.gameId === 'btc'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">Scores</router-link>
+            <li class="nav-item" v-if="scoresPage === 'true'">
+                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">Scores</router-link>
             </li>
 
             <!-- QUIZ -->
-            <li class="nav-item" v-if="this.$store.state.gameId === 'btc'">
-                <router-link class="nav-link" v-if="this.$store.state.gameId === 'btc'" data-toggle="collapse" data-target=".navbar-collapse.show" to="/quiz">Quiz</router-link>
+            <li class="nav-item" v-if="quizPage === 'true'">
+                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/quiz">Quiz</router-link>
             </li>
 
             <!-- SOUND ON OFF -->
@@ -44,6 +46,13 @@ import Search from "@/components/Search.vue";
 
 export default {
     name: "MainMenu",
+    data: function () {
+        return {
+            aboutPage: process.env.VUE_APP_ABOUT_PAGE_SOURCE,
+            scoresPage: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
+            quizPage: process.env.VUE_APP_QUIZ
+        }
+    },
     components: {
         Search,
         SoundToggle
