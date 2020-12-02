@@ -58,12 +58,6 @@
         </h3>
     </div>
 
-    <div v-else>
-        <!-- <h3 v-if="(this.$store.state.gameId === 'btc')" class="game-instructions text-center">
-            <span>1</span> Find A Tweet <span>2</span> Find A Card <span>3</span> Reply With Card
-        </h3> -->
-    </div>
-
     <!-- THE CARDS -->
     <div class="card-columns mb-5">
         <div v-if="realtimeTweets === 'true'" class="card mb-4 p-0">
