@@ -1399,7 +1399,7 @@ export default {
 
             // start de instelbare staafdiagrammen, het getal is percentage van totaal
             // main.quizInstelbareStaafdiagrammen.doe(".totaleAardgasbaten", 0.6);
-            main.quizInstelbareStaafdiagrammen.doe(".quizQuestion", 7);// make generic
+            main.quizInstelbareStaafdiagrammen.doe(".quizQuestion", 7); // make generic
             // main.quizInstelbareStaafdiagrammen.doe(".aantalBesluiten", 4);
 
             var clipboard = new ClipboardJS('.kopieertekst');
