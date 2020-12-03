@@ -302,7 +302,7 @@ h1 {
     >.card {
         border: none;
         cursor: pointer;
-        background-image: url(../assets/img/icons/flat/bitcoin.svg), linear-gradient(#272f52, #3a4275);
+        background-image: url(../assets/img/icons/flat/card-background.svg), linear-gradient(#272f52, #3a4275);
         background-repeat: repeat, no-repeat;
         background-size: 25px 25px, 100% 100%;
         background-position: center center, center center;
