@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="" :class="this.$store.state.cssClassCardOverviewState">
-        <Cards msg="Bitcoin Card Game" />
+        <Cards />
     </div>
     <CardIntro />
     <CardFull />
