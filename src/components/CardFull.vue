@@ -433,16 +433,11 @@ export default {
 }
 
 .modal-content h3.counter-question {
-    // background-image: url(../assets/img/animated-gif/insects15.gif);
     background-image: url(../assets/img/icons/jv-creative/counter-questions.svg);
 }
 
 .modal-content h3.related {
     background-image: url(../assets/img/logo/logo.png);
-}
-
-.modal-content h3.libbitcoin {
-    background-image: url(../assets/img/logo/libbitcoin.png);
 }
 
 .modal-content a.modalbox-iconbackground {
