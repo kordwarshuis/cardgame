@@ -44,8 +44,8 @@
                                     All changes work immediately.
                                 </div>
 
-                                <label class="" for="anyOfTheseStrings" id="labelAnyOfTheseStrings">Any of these strings of words, separated by a comma. Empty field shows all tweets containing “bitcoin”. Add your own:</label>
-                                <textarea id="anyOfTheseStrings" name="anyOfTheseStrings" rows="5" class="form-control block p-3">bitcoin will never, bitcoin can never, bitcoin just is not, bitcoin is one big, criminals, slow, laundering, energy, complicated, unfair, quantum, tax evaders, unsustainable, intrinsic value, shut down, scammers, roulette, only 21, not safe, black market, terrorists, tulip, greater fool, not scalable, anarchists, distribution unfair, hacked, anonymous, unsustainable, useless, ponzi, no backing, will die, forbidden, shut down, scammers, not gdpr, price down, terrorists, privacy breach, volatile, useless, deflation, chinese</textarea>
+                                <label class="" for="anyOfTheseStrings" id="labelAnyOfTheseStrings">Any of these strings of words, separated by a comma. Empty field shows all tweets. Add your own:</label>
+                                <textarea id="anyOfTheseStrings" name="anyOfTheseStrings" rows="5" class="form-control block p-3" >{{anyOfTheseStrings}}</textarea>
                                 <button id="restoreAnyOfTheseStringsDefault" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyAnyOfTheseStrings" type="button" class="btn btn-light">Empty</button>
                             </div>
                             <hr class="mt-5">
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <h2 class="mt-3">None of these strings or words</h2>
                                 <label class="" for="noneOfTheseStrings" id="labelNoneOfTheseStrings">None of these words</label>
-                                <textarea id="noneOfTheseStrings" name="noneOfTheseStrings" rows="5" class="form-control block p-3">I've hacked your computer,play online casino,Airdrop,All you have to do is RT,I will give one random follower,I will give someone</textarea>
+                                <textarea id="noneOfTheseStrings" name="noneOfTheseStrings" rows="5" class="form-control block p-3" >{{noneOfTheseStrings}}</textarea>
                                 <button id="restoreNoneOfTheseStringsDefault" type="button" class="btn btn-light mr-2">Reset</button><button id="emptyNoneOfTheseStrings" type="button" class="btn btn-light">Empty</button>
                             </div>
 
@@ -74,8 +74,19 @@
 import {
     realTimeTweets
 } from "@/assets/js/realTimeTweets.js";
+import {
+    language
+} from "@/assets/js/language1.js";
+
 export default {
     name: "TwitterRealTimeConfigModal",
+        data: function () {
+        return {
+            anyOfTheseStrings: language.tweetStream.anyOfTheseStrings,
+            noneOfTheseStrings: language.tweetStream.noneOfTheseStrings
+        }
+    },
+
     mounted: function () {
         this.setFollowersNumber();
         this.handleAnyOfTheseStrings();
