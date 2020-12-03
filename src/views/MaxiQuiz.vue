@@ -1,12 +1,6 @@
 <template>
 <div class="container-sm" style="max-width: 540px;">
-    <QGox />
-    <QPonzi />
-    <QLaundering />
-    <QLightning />
-    <QPatents />
-    <QSmallestUnit />
-    <QForks />
+    <div v-html="content"></div>
 
     <hr>
     <!-- Delen en Bronnen-->
@@ -50,15 +44,7 @@
 </template>
 
 <script>
-import QForks from "@/components/MaxiQuizQuestions/QForks.vue";
-import QGox from "@/components/MaxiQuizQuestions/QGox.vue";
-import QLaundering from "@/components/MaxiQuizQuestions/QLaundering.vue";
-import QLightning from "@/components/MaxiQuizQuestions/QLightning.vue";
-import QPatents from "@/components/MaxiQuizQuestions/QPatents.vue";
-import QPonzi from "@/components/MaxiQuizQuestions/QPonzi.vue";
-import QSmallestUnit from "@/components/MaxiQuizQuestions/QSmallestUnit.vue";
-// import SocialMedia from "@/components/SocialMedia.vue";
-
+import axios from "axios";
 import store from "../store/store";
 import {
     languageEn
@@ -67,28 +53,32 @@ import interact from 'interactjs';
 
 export default {
     name: "Quiz",
-    components: {
-        QForks,
-        QGox,
-        QLaundering,
-        QLightning,
-        QPatents,
-        QPonzi,
-        QSmallestUnit,
-        // SocialMedia
-
-    },
+    components: {},
     data() {
-        return {}
+        return {
+            content: ""
+        }
     },
     mounted: function () {
-        this.quiz();
+        this.getContent();
     },
     methods: {
+        getContent() {
+            var that = this;
+            return axios.get(process.env.VUE_APP_QUIZ_PAGE_SOURCE)
+                .then(response => {
+                    this.content = response.data;
+                })
+                .then(function () {
+                    that.quiz();
+                })
+                .catch(function (error) {
+                    console.log("We have a problem: " + error);
+                });
+        },
         quiz() {
             var main = (function () {
                 "use strict";
-
                 // https://stackoverflow.com/a/14947838                        
                 var qS = document.querySelector.bind(document);
                 var qSA = document.querySelectorAll.bind(document);
@@ -529,7 +519,7 @@ export default {
                     // deVraag ziet er zo uit: ".winstCVW"
                     var doe = function (deVraag, correcteWaardePerc) {
                         if (document.querySelector(deVraag) === null) {
-                            alert(deVraag + " does not exist");
+                            console.log(deVraag + " does not exist");
                         }
 
                         var domInstelbareBalk = qS(deVraag + " .instelbareBalk");
@@ -856,8 +846,6 @@ export default {
                         var value = this.value;
                         var chosenAnswer = this.closest("label").innerText;
                         var questionNumber = this.closest("section").querySelector(".nummering span").innerText;
-                        // console.log('questionNumber: ', questionNumber);
-                        // console.log('chosenAnswer: ', chosenAnswer);
                         var antwGoed = qS("#geluidAntwGoed");
                         var antwFout = qS("#geluidAntwFout");
                         var goedeInput;
@@ -1292,7 +1280,6 @@ export default {
                 // agent.show();
                 // agent.moveTo(getViewport().width/2, getViewport().height/2);
                 agent.moveTo(main.getViewport().width - 150, main.getViewport().height - 100);
-                // console.log(agent);
                 // agent.play("Reading");
                 // setTimeout(
                 //     function(){
@@ -1399,14 +1386,13 @@ export default {
                         agent.speak(main.randomValueFromArray(tekstPerScore.score10));
                         agent.play("Congratulate");
                     }, vertragingClippy);
-                    // console.log(main.scorePercentage());
                 }, false);
             }
 
-            clippy.load("Links", function (agent) {
-                "use strict";
-                clippyLinksActies(agent);
-            });
+            // clippy.load("Links", function (agent) {
+            //     "use strict";
+            //     clippyLinksActies(agent);
+            // });
 
             var statusTekst = languageEn.statusText;
             var socialMediaTekst = languageEn.socialMediaTekst;
@@ -1473,14 +1459,3 @@ export default {
     }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-
-<style lang="scss" scoped>
-@import "../assets/css/quiz/korQuiz.02.css";
-@import "../assets/css/quiz/instelbareStaafdiagrammen.02.css";
-@import "../assets/css/quiz/staafDiagrammen.01.scss";
-@import "../assets/css/quiz/multiplechoice.01.css";
-// @import "../assets/css/quiz/skin-lay-out.01.css";
-@import "../assets/css/quiz/skin7.01.scss";
-</style>
