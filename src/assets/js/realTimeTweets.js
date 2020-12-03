@@ -3,6 +3,9 @@ import moment from "moment";
 import {
     twitterLinks
 } from "./twitterLinks";
+import {
+    language
+} from "@/assets/js/language1.js";
 
 // https://www.npmjs.com/package/platform-detect
 import platform from 'platform-detect';
@@ -289,9 +292,9 @@ export var realTimeTweets = (function () {
     function toggleAllTweets() {
         if (anyOfTheseStrings.length !== 0) {
             anyOfTheseStrings = []; // don't do anyOfTheseStrings.length = 0, that will affect anyOfTheseStringsDefault
-            store.commit("showToast", "All tweets with ‘bitcoin’ in it will show here.");
+            store.commit("showToast", language.tweetStream.message7);
         } else {
-            store.commit("showToast", "Mostly relevant tweets about bitcoin will show here.");
+            store.commit("showToast", language.tweetStream.message8);
             anyOfTheseStrings = anyOfTheseStringsDefault;
         }
 
