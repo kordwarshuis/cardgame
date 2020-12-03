@@ -143,9 +143,9 @@ import Person3 from "@/components/AnimatedCharacters/Person3.vue";
 import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
-import {
-    language
-} from "@/assets/js/language1.js";
+// import {
+//     language
+// } from "@/assets/js/language1.js";
 
 export default {
     name: "CardFull",

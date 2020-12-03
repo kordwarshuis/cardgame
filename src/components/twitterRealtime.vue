@@ -109,9 +109,9 @@ import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
 import moment from "moment";
-import {
-    language
-} from "@/assets/js/language1.js";
+// import {
+//     language
+// } from "@/assets/js/language1.js";
 
 export default {
     name: "twitterRealtime",

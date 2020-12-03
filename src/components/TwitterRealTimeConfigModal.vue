@@ -74,9 +74,9 @@
 import {
     realTimeTweets
 } from "@/assets/js/realTimeTweets.js";
-import {
-    language
-} from "@/assets/js/language1.js";
+// import {
+//     language
+// } from "@/assets/js/language1.js";
 
 export default {
     name: "TwitterRealTimeConfigModal",
