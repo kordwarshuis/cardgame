@@ -35,6 +35,9 @@ export default {
             content: ""
         }
     },
+    mounted() {
+        this.getContent();
+    },
     methods: {
         getContent() {
             return axios.get(process.env.VUE_APP_TWEETSTREAM_HELPTEXT)
