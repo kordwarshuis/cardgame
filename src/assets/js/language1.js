@@ -19,7 +19,11 @@ export var language = {
     },
     expert1: "Eric Voskuil",
     expert1Description: "",
-    expert1: "Eric Voskuil",
-    expert3Description: "This bitcoin misconception cleared up by the bitcoin wiki community: "
-
+    expert1Logo: "",
+    expert2: "",
+    expert2Description: "",
+    expert2Logo: "",
+    expert3: "Bitcoin Wiki",
+    expert3Description: "This bitcoin misconception cleared up by the bitcoin wiki community: ",
+    expert3Logo: ""
 };
