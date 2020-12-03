@@ -1099,7 +1099,7 @@ export default {
                 };
             }());
 
-            var writeResultsTo = "/data-receive/bitcoinquiz1.php";
+            // var writeResultsTo = "/data-receive/quiz.php";
             // var SHOW_SCORE = language.showScore;
             // de videos heb ik eentje gedefinieerd en dan verander ik het src attribuut, dit is zo gegroeid, had misschien beter alles in de html kunnnen definieren net als audio
             // TODO: language file
