@@ -19,19 +19,19 @@
                 </div> -->
 
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
-                    <h3>In short</h3>
+                    <h3>{{ shortAnswer }}</h3>
                     <p class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Long Answer']">
 
-                    <h3 class="longAnswer">Longer Answer</h3>
+                    <h3 class="longAnswer">{{ longAnswer }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">{{ item }}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
 
-                    <h3 class="diagram">Diagram</h3>
+                    <h3 class="diagram">{{ diagram }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Diagram Description"]}}</p>
 
                     <div class="ct-chart ct-golden-section " style=" max-width: 50em;margin: auto !important; ">
@@ -46,9 +46,9 @@
                     </div>
                     <div class="col-md-8 mb-3">
                         <div class="content-item border p-3 " v-if="this.$store.state.currentCard['Read On 1 Text']">
-                            <h3 class="readOn">Read More</h3>
+                            <h3 class="readOn">{{ readMore }}</h3>
                             <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
-                            <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
+                            <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a></p>
                         </div>
                     </div>
                 </div>
@@ -57,24 +57,24 @@
                 <div class="row" v-else>
                     <div class="col-md-12 mb-3">
                         <div class="content-item border p-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
-                            <h3 class="readOn">Read More</h3>
+                            <h3 class="readOn">{{ readMore }}</h3>
                             <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
-                            <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">Read on</a></p>
+                            <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a></p>
                         </div>
                     </div>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
 
-                    <h3 class="readOn">Read More</h3>
+                    <h3 class="readOn">{{ readMore }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
-                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">Read on</a></p>
+                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">{{ readOn }}</a></p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
-                    <h3 class="readOn">Read More</h3>
+                    <h3 class="readOn">{{ readMore }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
-                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">Read on</a></p>
+                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">{{ readOn }}</a></p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert3']">
@@ -89,19 +89,19 @@
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter Questions']">
 
-                    <h3 class="counter-question">Counter Questions</h3>
+                    <h3 class="counter-question">{{ counterQuestions }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Counter Questions"]}}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Analogy']">
 
-                    <h3 class="">Analogy</h3>
+                    <h3 class="">{{ analogy }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Analogy"]}}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Flower Power']">
 
-                    <h3 class="flowerPower">Flower Power</h3>
+                    <h3 class="flowerPower">{{ flowerPower }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Flower Power"]}}</p>
                 </div>
 
@@ -153,7 +153,15 @@ export default {
         return {
             expert1: language.expert1,
             expert3: language.expert3,
-            expert3Description: language.expert3Description
+            expert3Description: language.expert3Description,
+            shortAnswer: language.shortAnswer,
+            longAnswer: language.longAnswer,
+            diagram: language.diagram,
+            readMore: language.readMore,
+            readOn: language.readOn,
+            counterQuestions: language.counterQuestions,
+            analogy: language.analogy,
+            flowerPower: language.flowerPower
         }
     },
     mixins: [disableBodyScrollMixin],
