@@ -17,7 +17,6 @@ export default {
     },
     methods: {
         getContent() {
-        console.log('process.env.VUE_APP_ABOUT_PAGE_SOURCE: ', process.env.VUE_APP_ABOUT_PAGE_SOURCE);
             return axios.get(process.env.VUE_APP_ABOUT_PAGE_SOURCE)
                 .then(response => {
                     this.content = response.data;
