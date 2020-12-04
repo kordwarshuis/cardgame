@@ -21,7 +21,7 @@
             </li>
 
             <!-- SCORES -->
-            <li class="nav-item" v-if="scoresPage === 'true'">
+            <li class="nav-item" v-if="showScoresPage === 'true'">
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">{{ menuItemScores }}</router-link>
             </li>
 
@@ -49,7 +49,7 @@ export default {
     data: function () {
         return {
             aboutPage: process.env.VUE_APP_ABOUT_PAGE_SOURCE,
-            scoresPage: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is “on” -> scores page. Note: True is not a boolean but a string
+            showScoresPage: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is “on” -> scores page. Note: True is not a boolean but a string
             quizPage: process.env.VUE_APP_QUIZ,
             menuItemCards: language.menu.cards,
             menuItemAbout: language.menu.about,
