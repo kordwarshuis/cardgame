@@ -21,7 +21,9 @@ import linkify from 'vue-linkify';
 // import animated from 'animate.css';
 
 // Redirects
-import {redirects} from '@/assets/js/redirects';
+import {
+  redirects
+} from '@/assets/js/redirects';
 if (redirects !== undefined) {
   redirects();
 } else {
