@@ -12,22 +12,22 @@
             <!-- CARDS -->
             <li class="nav-item">
                 <!-- https://stackoverflow.com/a/42401686 -->
-                <router-link @click.native="$store.commit('showItemsInSelectedCategory')" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/">Cards</router-link>
+                <router-link @click.native="$store.commit('showItemsInSelectedCategory')" class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/">{{ menuItemCards }}</router-link>
             </li>
 
             <!-- ABOUT -->
             <li v-if="aboutPage !== ''">
-                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about">About</router-link>
+                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/about">{{ menuItemAbout }}</router-link>
             </li>
 
             <!-- SCORES -->
             <li class="nav-item" v-if="scoresPage === 'true'">
-                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">Scores</router-link>
+                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">{{ menuItemScores }}</router-link>
             </li>
 
             <!-- QUIZ -->
             <li class="nav-item" v-if="quizPage === 'true'">
-                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/quiz">Quiz</router-link>
+                <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/quiz">{{ menuItemQuiz }}</router-link>
             </li>
 
             <!-- SOUND ON OFF -->
@@ -49,8 +49,12 @@ export default {
     data: function () {
         return {
             aboutPage: process.env.VUE_APP_ABOUT_PAGE_SOURCE,
-            scoresPage: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
-            quizPage: process.env.VUE_APP_QUIZ
+            scoresPage: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is “on” -> scores page. Note: True is not a boolean but a string
+            quizPage: process.env.VUE_APP_QUIZ,
+            menuItemCards: language.menu.cards,
+            menuItemAbout: language.menu.about,
+            menuItemScores: language.menu.scores,
+            menuItemQuiz: language.menu.quiz
         }
     },
     components: {
