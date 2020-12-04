@@ -166,8 +166,6 @@ export default new Vuex.Store({
           // router.push("/");
         }
         if (categoryName !== undefined) {
-          // this.commit("showToast", "You are now viewing all cards in category \"" + this.state.activeCategory + "\"");
-
           // set URL
           router.push("/category/" + categoryName);
         }
