@@ -2,12 +2,8 @@
 node_modules
 /dist
 
-# .env*
-.env
-.env.bcb.env
-.env.btc.env
-.env.ssi.env
-.env.test.env
+# no .env except .env.example
+*.env
 
 
 # local env files
@@ -53,10 +49,8 @@ vue.config.ssi.js
 vue.config.test.js
 
 # source htaccess files
-.bcb.htaccess
-.btc.htaccess
-.ssi.htaccess
-.test.htaccess
+*.htaccess
+
 
 #video
 video/
