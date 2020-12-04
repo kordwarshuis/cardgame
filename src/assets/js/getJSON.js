@@ -27,18 +27,10 @@ export var getJSON = (function () {
     function start(source) {
         const mediaQuery = window.matchMedia('(max-width: 767px)');
         console.log("start");
-        // store.commit("showToast", "Tweet stream is running.");
         
         if (document.querySelector('.tweet-stream-info-in-stream')) {
             document.querySelector('.tweet-stream-info-in-stream').classList.add('hidden');
         }
-
-        // show message only on smaller screens where tweet stream does not open initially
-        // if (mediaQuery.matches) {
-        //     setTimeout(function () {
-        //         store.commit("showToast", "Open Tweet panel to see tweet stream");
-        //     }, 6000);
-        // }
 
         var resp;
         var refreshInterval = 10000;
@@ -147,7 +139,6 @@ export var getJSON = (function () {
     }
 
     function stop() {
-        store.commit("showToast", "Tweet stream is paused.");
         document.querySelector('.tweet-stream-info-in-stream').classList.remove('hidden');
         console.log("stop");
 
