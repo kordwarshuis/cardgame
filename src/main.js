@@ -84,7 +84,7 @@ store.commit('setCardImage', process.env.VUE_APP_IMAGE);
 // Note: here it is not: "this.$store.commit" but "store.commit" (https://stackoverflow.com/q/51348936)
 new ClipboardJS('.copyURLtoClipboard1', {
   text: function () {
-    store.commit('showToast', 'You can now paste the link on Twitter, Facebook etc.');
+    store.commit('showToast', language.shareMessage);
     if (localStorage.getItem('soundOn') === 'true') go.play();
     document.querySelector('body').classList.add('person1');
     setTimeout(function () {
@@ -96,7 +96,7 @@ new ClipboardJS('.copyURLtoClipboard1', {
 });
 new ClipboardJS('.copyURLtoClipboard2', {
   text: function () {
-    store.commit('showToast', 'You can now paste the link on Twitter, Facebook etc.');
+    store.commit('showToast', language.shareMessage);
     if (localStorage.getItem('soundOn') === 'true') go.play();
     document.querySelector('body').classList.add('person1');
     setTimeout(function () {
@@ -108,7 +108,7 @@ new ClipboardJS('.copyURLtoClipboard2', {
 });
 new ClipboardJS('.copyURLtoClipboard3', {
   text: function () {
-    store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+    store.commit("showToast", language.shareMessage);
     if (localStorage.getItem("soundOn") === "true") go.play();
     document.querySelector("body").classList.add("person1");
     setTimeout(function () {
@@ -127,7 +127,7 @@ var clipboardOverviewScreen = new ClipboardJS('.copyURLtoClipboard4', {
 });
 
 clipboardOverviewScreen.on('success', function (e) {
-  store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+  store.commit("showToast", language.shareMessage);
   if (localStorage.getItem("soundOn") === "true") go.play();
   document.querySelector("body").classList.add("person1");
   setTimeout(function () {
@@ -143,7 +143,7 @@ var clipboardCategory = new ClipboardJS('.copyURLtoClipboard5', {
 });
 
 clipboardCategory.on('success', function (e) {
-  store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+  store.commit("showToast", language.shareMessage);
   if (localStorage.getItem("soundOn") === "true") go.play();
   document.querySelector("body").classList.add("person1");
   setTimeout(function () {
@@ -167,7 +167,7 @@ var clipboardBookmarkedURLs = new ClipboardJS('.copyBookmarkedURLsToClipboard', 
 });
 
 clipboardBookmarkedURLs.on('success', function (e) {
-  store.commit("showToast", "You can now paste the bookmarked links in an e-mail etc");
+  store.commit("showToast", language.shareMessage);
   if (localStorage.getItem("soundOn") === "true") go.play();
   document.querySelector("body").classList.add("person1");
   setTimeout(function () {
@@ -195,7 +195,7 @@ var clipboardBookmarkedURLsToEmail = new ClipboardJS('.copyBookmarkedURLsToEmail
 });
 
 clipboardBookmarkedURLsToEmail.on('success', function (e) {
-  store.commit("showToast", "You can now paste the bookmarked links in an e-mail etc");
+  store.commit("showToast", language.shareMessage);
   if (localStorage.getItem("soundOn") === "true") go.play();
   document.querySelector("body").classList.add("person1");
   setTimeout(function () {
@@ -212,7 +212,7 @@ var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
 });
 
 clipboardSearchResults.on('success', function (e) {
-  store.commit("showToast", "You can now paste the link on Twitter, Facebook etc.");
+  store.commit("showToast", language.shareMessage);
   if (localStorage.getItem("soundOn") === "true") go.play();
   document.querySelector("body").classList.add("person1");
   setTimeout(function () {
