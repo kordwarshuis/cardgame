@@ -1,5 +1,7 @@
 import store from "../../store/store";
-import moment from "moment";
+import {
+    formatDistance
+} from 'date-fns';
 import {
     twitterLinks
 } from "./twitterLinks";
@@ -68,12 +70,12 @@ export var realTimeTweets = (function () {
         document.querySelector("#numberOfFollowers").innerHTML = numberOfFollowers;
     }
 
-    function timestampNow() {
-        return moment().format("HH:mm:ss");
-    }
-
     function timestampTweet(time) {
-        return moment.utc(time, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow();
+        // https://stackoverflow.com/a/2766516/9749918
+        var date = new Date(
+            time.replace(/^\w+ (\w+) (\d+) ([\d:]+) \+0000 (\d+)$/,
+                "$1 $2 $4 $3 UTC"));
+        return formatDistance(date, Date.now());
     }
 
     function reCalculateTimestamp() {
@@ -277,7 +279,7 @@ export var realTimeTweets = (function () {
                         }, k);
                         // k = k + 10;
                         // spread available tweets, every 10 sec new tweet set arrives, tweets spread over 9 secs, 1 sec pause
-                        k = k + (Math.floor(9500/newTweets.length));
+                        k = k + (Math.floor(9500 / newTweets.length));
                     }(i));
                 }
             }
