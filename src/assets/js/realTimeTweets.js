@@ -1,53 +1,49 @@
-import moment from "moment";
+import store from "../../store/store";
+import {
+    formatDistance
+} from 'date-fns';
 import {
     twitterLinks
 } from "./twitterLinks";
+// import {
+//     language
+// } from "@/assets/js/language1.js";
+
+// https://www.npmjs.com/package/platform-detect
+import platform from 'platform-detect';
+// import {ios, android, tizen} from 'platform-detect/os.mjs';
 
 export var realTimeTweets = (function () {
+    // console showing messages to user
+    var konsole;
+    document.addEventListener("DOMContentLoaded", function (event) {
+        konsole = document.querySelector('.console .message');
+    });
+
     var stopNow = false;
     var isSpecialAccount = false;
-    var specialAccountHTMLcode = "";
-
-
-    var domStart = document.querySelector("#start");
-    var domStop = document.querySelector("#stop");
-    var domRestoreKeyWords = document.querySelector("#restoreKeyWords");
-    var domEmptyKeyWords = document.querySelector("#emptyKeyWords");
-    var domRestoreTweetAccounts = document.querySelector("#restoreTweetAccounts");
-    var domEmptyTweetAccounts = document.querySelector("#emptyTweetAccounts");
-    var domTestTweetAccountsSound = document.querySelector("#testTweetAccountsSound");
 
     var domTemp = "";
     var domTempOld = "x";
 
-    var fetchTweetsLoop;
-    var keywordFound = false;
     var currentKeyword = "";
 
     var tweetNumber = 0;
-    var curatedTweetText = "";
-    var status = document.querySelector("#status span");
-    var lastDataSet;
+    var tweetTypeText = "";
 
 
     // criteria
 
-    var numberOfFollowersBackup = 750;
+    var numberOfFollowersBackup = 0;
     var numberOfFollowers = numberOfFollowersBackup;
 
-
-    var anyOfTheseWordsBackup = [
-        "bitcoin will never", "bitcoin can never", "bitcoin just is not", "bitcoin is one big", "criminals", "slow", "laundering", "energy", "complicated", "unfair", "quantum", "tax evaders", "unsustainable", "intrinsic value", "shut down", "scammers", "roulette", "only 21", "not safe", "black market", "terrorists", "tulip", "greater fool", "not scalable", "anarchists", "distribution unfair", "hacked", " anonymous", "unsustainable", "useless", "ponzi", "no backing", "will die", "forbidden", "shut down", "scammers", "not gdpr", "price down", "terrorists", "privacy breach", "volatile", "useless", "deflation", "chinese"
-    ];
-
-
     var onlyVerifiedAccountsUsersChoice = false;
-    var anyOfTheseWords = anyOfTheseWordsBackup;
-    var anyOfTheseWordsUsersChoice = [];
-    var noneOfTheseWords = ["airdrop", "earn", "giveaway"];
-    var noneOfTheseWordsUsersChoice = [];
 
+    var anyOfTheseStringsDefault = [];
+    var anyOfTheseStrings = [];
 
+    var noneOfTheseStringsDefault = [];
+    var noneOfTheseStrings = [];
 
     var tweetAccounts = [];
     // var followersSelect = document.querySelector("#followers");
@@ -74,9 +70,24 @@ export var realTimeTweets = (function () {
         document.querySelector("#numberOfFollowers").innerHTML = numberOfFollowers;
     }
 
-    function timestampNow() {
-        return moment().format("HH:mm:ss");
+    function timestampTweet(time) {
+        // https://stackoverflow.com/a/2766516/9749918
+        var date = new Date(
+            time.replace(/^\w+ (\w+) (\d+) ([\d:]+) \+0000 (\d+)$/,
+                "$1 $2 $4 $3 UTC"));
+        return formatDistance(date, Date.now());
     }
+
+    function reCalculateTimestamp() {
+        setInterval(function () {
+            var allTimestamps = document.querySelectorAll('.timestamp');
+            allTimestamps.forEach(function (a) {
+                a.innerHTML = timestampTweet(a.dataset.createdat);
+            });
+        }, 60000);
+    }
+    reCalculateTimestamp();
+
 
     // https://stackoverflow.com/a/1584377
     function arrayUnique(array) {
@@ -94,10 +105,9 @@ export var realTimeTweets = (function () {
 
     function processTwitters(data) {
         var tweets = document.querySelector(".tweets-realtime .tweets");
-        // var tweets = document.querySelector(".tweets-realtime");
         var domMenuIcon = document.querySelector(".menu-icon");
         var somethingFound = false;
-        var curatedClass = "";
+        var handpickedClass = "";
 
         // if we dont remove tweets the DOM will be overpopulated and the browser will not keep up
         function removeOldestTweets() {
@@ -105,154 +115,141 @@ export var realTimeTweets = (function () {
 
             for (let i = 0; i < allTweets.length; i++) {
                 // i determines how many tweets will stay, the rest will be deleted
-                if (i > 99) {
-                    allTweets[i].parentNode.removeChild(allTweets[i]);
+                // make a distinction between operating systems
+                if (platform.android || platform.ios || platform.tizen) {
+                    if (i > 99) {
+                        allTweets[i].parentNode.removeChild(allTweets[i]);
+                    }
+                } else {
+                    if (i > 999) {
+                        allTweets[i].parentNode.removeChild(allTweets[i]);
+                    }
                 }
             }
         }
 
         // 
-        // Only for curated tweets; if the first element is true then all is true
-        if (data[0].curatedTweet === true) {
-            console.log("curated");
-            // here we take one random tweet from an array, so the tweet stream is not flooded with curated tweets
-            // pick random tweet from curated tweets:
+        // Only for handpicked tweets; if the first element is true then all is true
+        if (data[0].handpickedTweet === true) {
+            // here we take one random tweet from an array, so the tweet stream is not flooded with handpicked tweets
+            // pick random tweet from handpicked tweets:
             let selectedRandomTweet = randomValue(data);
-            // empty the curated tweets array
+            // empty the handpicked tweets array
             data = [];
             // create array with selected element
             data[0] = selectedRandomTweet;
         }
 
-        // join the hardcoded keywords with the users choice
-        if (anyOfTheseWordsUsersChoice.length > 0) {
-            anyOfTheseWords = arrayUnique(anyOfTheseWords.concat(anyOfTheseWordsUsersChoice));
-        }
-
-        // join the hardcoded keywords with the users choice
-        if (noneOfTheseWordsUsersChoice.length > 0) {
-            noneOfTheseWords = arrayUnique(noneOfTheseWords.concat(noneOfTheseWordsUsersChoice));
-        }
-
-
         function loopThroughAllTweets(data) {
+            konsole.innerHTML = data.length + ' incoming tweets';
+
             // loop through all tweets:
             for (var i = 0; i < data.length; i++) {
                 var onlyVerifiedAccountsUsersChoiceCriterium = false;
                 var numberOfFollowersCriterium = false;
-                var anyOfTheseWordsCriterium = false;
-                var noneOfTheseWordsCriterium = false;
+                var anyOfTheseStringsCriterium = false;
+                var noneOfTheseStringsCriterium = false;
 
-                if (data[i].curatedTweet === true) {
-                    curatedClass = " curated ";
-                    curatedTweetText = "Handpicked";
+                // HANDPICKED TWEETS
+                if (data[i].handpickedTweet === true) {
+                    handpickedClass = " handpicked ";
+                    tweetTypeText = "<div class='col-12 mb-2 handpicked-tweet-text text-center'><small class='m-0'>– Handpicked –</small></div>";
                 } else {
-                    curatedClass = "";
-                    curatedTweetText = "";
+                    handpickedClass = "";
+                    tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>– Real Time –</small></div>";
                 }
 
+                // NUMBER OF FOLLOWERS
                 if (data[i].user.followers_count >= numberOfFollowers) {
                     numberOfFollowersCriterium = true;
                 } else {
                     numberOfFollowersCriterium = false;
                 }
 
-                // loop through all anyOfTheseWords:
-
-
+                // VERIFIED USERS
                 if (data[i].user.verified === onlyVerifiedAccountsUsersChoice) {
                     onlyVerifiedAccountsUsersChoiceCriterium = true;
                 } else {
                     onlyVerifiedAccountsUsersChoiceCriterium = false;
                 }
 
-                if (anyOfTheseWords.length === 0) {
-                    anyOfTheseWordsCriterium = true;
+                // STRINGS THAT SHOULD EXIST IN TWEET TEXT
+                if (anyOfTheseStrings.length === 0) {
+                    anyOfTheseStringsCriterium = true;
                 } else {
-                    for (let j = 0; j < anyOfTheseWords.length; j++) {
-                        // if anyOfTheseWords found, only last anyOfTheseWords, if there are more, will be remembered:
-                        if (data[i].text.indexOf(anyOfTheseWords[j]) > -1) {
-                            anyOfTheseWordsCriterium = true;
-                            // somethingFound = keywordFound;
-                            currentKeyword = anyOfTheseWords[j];
+                    for (let j = 0; j < anyOfTheseStrings.length; j++) {
+
+                        // if anyOfTheseStrings found, only last anyOfTheseStrings, if there are more, will be remembered:
+                        if (data[i].text.toLowerCase().indexOf(anyOfTheseStrings[j].toLowerCase()) > -1) {
+                            anyOfTheseStringsCriterium = true;
+                            currentKeyword = anyOfTheseStrings[j];
                         }
-                    } // end anyOfTheseWords loop
+                    } // end anyOfTheseStrings loop
                 }
 
-                if (noneOfTheseWords.length === 0) {
-                    noneOfTheseWords = true; // there are now restrictions so tweet can be shown
+                // STRINGS THAT SHOULD NOT EXIST IN TWEET TEXT
+                if (noneOfTheseStrings.length === 0) {
+                    noneOfTheseStringsCriterium = true; // there are now restrictions so tweet can be shown
                 } else {
-                    // loop through all noneOfTheseWords:
-                    for (let j = 0; j < noneOfTheseWords.length; j++) {
-                        // if noneOfTheseWords found, only last keyword, if there are more, will be remembered:
-                        if (data[i].text.indexOf(noneOfTheseWords[j]) > -1) { //words are found
-                            noneOfTheseWordsCriterium = false; // that means the criterium has NOT been met, and the tweet will not be shown
+                    // loop through all noneOfTheseStrings:
+                    for (let j = 0; j < noneOfTheseStrings.length; j++) {
+                        // if noneOfTheseStrings found, only last keyword, if there are more, will be remembered:
+                        if (data[i].text.toLowerCase().indexOf(noneOfTheseStrings[j].toLowerCase()) > -1) { //strings are found
+                            noneOfTheseStringsCriterium = false; // that means the criterium has NOT been met, and the tweet will not be shown
                         } else {
-                            noneOfTheseWordsCriterium = true; // if no word has been found, then the tweet can be shown
+                            noneOfTheseStringsCriterium = true; // if no word has been found, then the tweet can be shown
                         }
-                    } // end noneOfTheseWords loop
+                    } // end noneOfTheseStrings loop
                 }
-
-                // console.log("===");
-                // console.log('noneOfTheseWordsCriterium: ', noneOfTheseWordsCriterium);
-                // console.log('anyOfTheseWordsCriterium: ', anyOfTheseWordsCriterium);
-                // console.log('numberOfFollowersCriterium: ', numberOfFollowersCriterium);
-                // console.log('data[i].curatedTweet: ', data[i].curatedTweet);
 
                 if ((numberOfFollowersCriterium &&
                         onlyVerifiedAccountsUsersChoiceCriterium &&
-                        anyOfTheseWordsCriterium &&
-                        noneOfTheseWordsCriterium) ||
-                    data[i].curatedTweet === true) {
+                        anyOfTheseStringsCriterium &&
+                        noneOfTheseStringsCriterium
+                    ) ||
+                    data[i].handpickedTweet === true) {
                     somethingFound = true;
                     domTemp =
-
-                        "<div class='tweet " + curatedClass + specialAccountHTMLcode + "inviesieble col-md-12 p-0'>" +
-                        "<div class='card mb-4 pt-2'>" +
-                        "<div class='card-body'>"+
-                        "<div class='card-text'>" +
-                        "<span class='tweetNumber extra-info1'>#" + tweetNumber + "</span> | " +
-                        "<small class='text-muted extra-info2'> " +
-                        "<span class='extra-info3 tweetTimeStamp'>&#x1f550; " +
-                        timestampNow() +
-                        "</span>" +
-                        "</small>" +
-                        "<span class='curatedTweetIndication'>" + curatedTweetText + "</span>" +
-                        "<p><img class='img-thumbnail float-left mr-3' src='" +
-                        data[i].user.profile_image_url_https + "' alt=''> " + twitterLinks(data[i].text) +
-                        "</p><p class='extra-info'>Name: " + data[i].user.name +
-                        // "<br>Verified: " +
-                        // data[i].user.verified + 
-                        // "<br>Keyword: " + 
-                        // currentKeyword + 
-                        // "</p>" + 
-                        // "<p>" + 
-                        " | Followers: " + data[i].user.followers_count +
-                        " <button type='button' class='btn btn-primary select-tweet'>Select</button>" +
-                        "</p></div><div class='d-flex justify-content-between align-items-center'>" +
-                        "<a class='go-to-tweet btn btn-primary' target='_blank' rel='noopener' href='https://twitter.com/" +
-                        data[i].user.screen_name + "/status/" + data[i].id_str + "'>" +
-                        "Go to tweet" +
-                        "</a> " +
-                        "<span class='tweet-instruction'>now copy a suitable card and go to tweet</span>" +
+                        "<div class='card mb-3 tweet newTweet" + handpickedClass + "'>" +
+                        "<div class='card-body p-2'>" +
+                        "<div class='row'>" +
+                        tweetTypeText +
+                        "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>" +
+                        //IMAGE
+                        "<div class='col-auto' >" +
+                        "<img class='img-thumbnail float-left' src='" + data[i].user.profile_image_url_https + "' alt=''></img>" +
                         "</div>" +
+
+                        // TEXT
+                        "<div class='col pl-0'>" +
+                        "<div class='row'>" +
+                        // TWEET
+                        "<div class='col-12'>" +
+                        "<p>" + twitterLinks(data[i].text) + "</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+
+                        "<div class='row mb-3'>" +
+                        "<div class='col-6'>Name: " + data[i].user.name + "</div>" +
+                        "<div class='col-6'>Keyword</div>" +
+
+                        "<div class='col-6 mb-3'>Verified: " + data[i].user.verified + "</div>" +
+                        "<div class='col-6 mb-3'>Followers: " + data[i].user.followers_count + "</div>" +
+
+                        "<div class='col-6'></div>" +
+                        "<div data-createdat='" + data[i].created_at + "' class='col-6 timestamp'>" + timestampTweet(data[i].created_at) + "</div>" +
+                        "</div>" +
+
+                        "<div class='row'>" +
+                        "<div class='col-6'><a class='go-to-tweet btn btn-primary m-1' target='_blank' rel='noopener' href='https://twitter.com/" + data[i].user.screen_name + "/status/" + data[i].id_str + "'>" + "Go to tweet</a></div>" +
+                        "<div class='col-6 text-right'><button type='button' class='btn btn-primary mt-1 mr-1 ml-0 select-tweet'>Bookmark</button></div>" +
                         "</div>" +
                         "</div>" +
                         "</div>" +
                         domTemp;
-
-
-
-                    // domTemp = "<div class='tweet>xxxxx</div>" + domTemp;
-
-
-                    // domTemp = "<div class=' " + curatedClass + specialAccountHTMLcode + " '>" + 
-                    // "<div class='card box-shadow'>x</div></div>" + domTemp;
-
-
-
                     tweetNumber++;
-                    keywordFound = false;
                 } else {
                     somethingFound = false;
                 }
@@ -263,37 +260,26 @@ export var realTimeTweets = (function () {
 
         loopThroughAllTweets(data);
 
-
-
-
-
-
-
-
         if (somethingFound) {
             if (localStorage.getItem("soundOn") === "true") alert.play();
             domMenuIcon.classList.add('new-tweets');
-            // console.log('domTemp: ', domTemp);
-            // console.log('domTempOld: ', domTempOld);
             if (domTempOld !== domTemp) {
-                var k = 1;
+                var k = 0;
 
                 tweets.insertAdjacentHTML("afterbegin", domTemp);
 
-                var invisibleTweets = document.querySelectorAll(".tweet.inviesieble");
-                // for (var i=0;i<invisibleTweets.length;i++) {
-                for (var i = invisibleTweets.length - 1; i > -1; i--) {
-                    // this is for give tweets a little fade in so you can see there is something new. “visible” is a reserved word in Bootstrap
+                var newTweets = document.querySelectorAll(".newTweet");
+                for (var i = newTweets.length - 1; i > -1; i--) {
                     (function (i) {
                         setTimeout(function () {
-                            invisibleTweets[i].classList.add("makeVisible");
+                            newTweets[i].classList.add("displayBlokTweet");
                             setTimeout(function () {
-                                invisibleTweets[i].classList.remove("makeVisible");
-                                invisibleTweets[i].classList.remove("inviesieble");
-                            }, 1000);
-
+                                newTweets[i].classList.remove("newTweet");
+                            }, 100);
                         }, k);
-                        k = k + 100;
+                        // k = k + 10;
+                        // spread available tweets, every 10 sec new tweet set arrives, tweets spread over 9 secs, 1 sec pause
+                        k = k + (Math.floor(9500 / newTweets.length));
                     }(i));
                 }
             }
@@ -305,15 +291,13 @@ export var realTimeTweets = (function () {
         removeOldestTweets();
     }
 
-    function startStream(data) {
-        processTwitters(data);
-    }
-
     function toggleAllTweets() {
-        if (anyOfTheseWords.length !== 0) {
-            anyOfTheseWords = []; // don't do anyOfTheseWords.length = 0, that will affect anyOfTheseWordsBackup
+        if (anyOfTheseStrings.length !== 0) {
+            anyOfTheseStrings = []; // don't do anyOfTheseStrings.length = 0, that will affect anyOfTheseStringsDefault
+            store.commit("showToast", language.tweetStream.message7);
         } else {
-            anyOfTheseWords = anyOfTheseWordsBackup;
+            store.commit("showToast", language.tweetStream.message8);
+            anyOfTheseStrings = anyOfTheseStringsDefault;
         }
 
         if (numberOfFollowers !== 0) {
@@ -327,24 +311,64 @@ export var realTimeTweets = (function () {
         numberOfFollowers = a;
     }
 
-    function setAnyOfTheseWordsUsersChoice(a) {
-        anyOfTheseWordsUsersChoice = a;
-    }
-
-    function setNoneOfTheseWordsUsersChoice(a) {
-        noneOfTheseWordsUsersChoice = a;
-    }
-
     function setOnlyVerifiedAccountsUsersChoice(a) {
         onlyVerifiedAccountsUsersChoice = a;
     }
 
+
+    function getAnyOfTheseStrings() {
+        return anyOfTheseStrings;
+    }
+
+    function getAnyOfTheseStringsDefault() {
+        return anyOfTheseStringsDefault;
+    }
+
+    function setAnyOfTheseStrings(a) {
+        anyOfTheseStrings = a;
+    }
+
+    function setAnyOfTheseStringsDefault(a) {
+        anyOfTheseStringsDefault = a;
+    }
+
+
+
+
+
+
+
+
+    function getNoneOfTheseStrings() {
+        return noneOfTheseStrings;
+    }
+
+    function getNoneOfTheseStringsDefault() {
+        return noneOfTheseStringsDefault;
+    }
+
+    function setNoneOfTheseStrings(a) {
+        noneOfTheseStrings = a;
+    }
+
+    function setNoneOfTheseStringsDefault(a) {
+        noneOfTheseStringsDefault = a;
+    }
+
     return {
-        start: startStream,
+        start: processTwitters,
         toggleAllTweets: toggleAllTweets,
         setFollowersNumber: setFollowersNumber,
-        setAnyOfTheseWordsUsersChoice: setAnyOfTheseWordsUsersChoice,
-        setNoneOfTheseWordsUsersChoice: setNoneOfTheseWordsUsersChoice,
-        setOnlyVerifiedAccountsUsersChoice: setOnlyVerifiedAccountsUsersChoice
+        setOnlyVerifiedAccountsUsersChoice: setOnlyVerifiedAccountsUsersChoice,
+
+        setAnyOfTheseStrings: setAnyOfTheseStrings,
+        setAnyOfTheseStringsDefault: setAnyOfTheseStringsDefault,
+        getAnyOfTheseStrings: getAnyOfTheseStrings,
+        getAnyOfTheseStringsDefault: getAnyOfTheseStringsDefault,
+
+        setNoneOfTheseStrings: setNoneOfTheseStrings,
+        setNoneOfTheseStringsDefault: setNoneOfTheseStringsDefault,
+        getNoneOfTheseStrings: getNoneOfTheseStrings,
+        getNoneOfTheseStringsDefault: getNoneOfTheseStringsDefault,
     };
 }());

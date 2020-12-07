@@ -2,10 +2,8 @@
 node_modules
 /dist
 
-# .env*
-.env
-.env-bcb
-.env-btc
+# no .env except .env.example
+*.env
 
 
 # local env files
@@ -27,9 +25,8 @@ yarn-error.log*
 *.sw?
 .history/
 
-
 # /src/assets/img/
-# /src/assets/audio/
+/src/assets/audio/
 # /src/assets/video/
 # /src/assets/fonts/
 /src/assets/source-files/
@@ -40,3 +37,22 @@ yarn-error.log*
 
 # Bash script
 live.sh
+live.bcb.sh
+live.btc.sh
+live.ssi.sh
+local.btc.sh
+
+# Vue source config files
+vue.config.bcb.js
+vue.config.btc.js
+vue.config.ssi.js
+vue.config.test.js
+
+# source htaccess files
+*.htaccess
+
+
+#video
+video/
+
+_credits.txt

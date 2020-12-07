@@ -18,13 +18,21 @@ export default {
     methods: {
         streamOnOffSetting() {
             var twitterRealTimeToggleInput = document.querySelector("#twitterRealTimeToggleInput");
+            var tweets = document.querySelector(".tweets-realtime .tweets");
             var streamOn = true;
+
+            function stop() {
+                getJSON.stop();
+            }
+            function start() {
+                getJSON.start(process.env.VUE_APP_REALTIME_TWITTER_JSON);
+            }
 
             // toggle between stream is on and stream is off
             twitterRealTimeToggleInput.addEventListener('change', function () {
                 streamOn ?
-                    getJSON.stop() :
-                    getJSON.start(getJSON.start(process.env.VUE_APP_REALTIME_TWITTER_JSON));
+                    stop() :
+                    start();
                 streamOn = !streamOn;
             });
         }

@@ -64,8 +64,15 @@
   <!-- <link rel="stylesheet" href="<%= BASE_URL %>css/chartist/scss/settings/_chartist-settings.min.css"> -->
   <link rel="stylesheet" href="<%= BASE_URL %>css/chartist/scss/chartist.min.css">
   <!-- <link rel="stylesheet" href="<%= BASE_URL %>css/chartist-plugin-accessibility.min.css"> -->
-
-
+  <link rel="stylesheet" href="<%= BASE_URL %>css/clippy/clippy.min.css">
+  <style>
+  .clippy {
+    position: fixed;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 20px !important;
+  }
+  </style>
 
   <script>
     // https://developers.google.com/youtube/iframe_api_reference#Examples
@@ -77,52 +84,40 @@
     }
   </script>
 
-  <!-- <script src="<%= BASE_URL %>js/pizzicato/Pizzicato.min.js"></script> -->
-
   <!-- BOOTSTRAP -->
-  <script src="<%= BASE_URL %>js/jquery-3.5.1.slim.min.js"></script>
-  <script src="<%= BASE_URL %>js/popper.min.js"></script>
+  <script defer src="<%= BASE_URL %>js/jquery.slim.min.js"></script>
+  <script defer src="<%= BASE_URL %>js/popper.min.js"></script>
   <!-- popper before bootstrap, order matters -->
-  <script src="<%= BASE_URL %>js/bootstrap.min.js"></script>
-
-  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script> -->
+  <script defer src="<%= BASE_URL %>js/bootstrap.min.js"></script>
   <!-- END BOOTSTRAP -->
 
   <script src="<%= BASE_URL %>js/ModernizrForCardIntro.js"></script>
   <script src="<%= BASE_URL %>js/clipboard.js/v2.0.0/clipboard.min.js"></script>
-  <script src="<%= BASE_URL %>js/constants.js"></script>
-  <script src="<%= BASE_URL %>js/helpers.js"></script>
+  <!-- <script src="<%= BASE_URL %>js/clippy/clippy.min.js"></script> -->
 
   <!-- CHARTIST -->
-  <script src="<%= BASE_URL %>js/chartist/chartist.min.js"></script>
+  <script defer src="<%= BASE_URL %>js/chartist/chartist.min.js"></script>
 
   <script>
     // Sound
     var sound = true;
-    var alert, alertSpecialAccount, dong, go, whoosh, whoosh2, whistle, pur, click, electricity, typewriter;
+    var alert, alertSpecialAccount, dong, go, whoosh, whoosh2, whistle, pur, click, electricity, typewriter,quizPlop,whawhaTrumpet,laughManiacal,cannedLaughter,blur,bouncing3,gasp,drumCrash1,surprisedGasp,fanfare,epiphany,quizEnd,dragging,draggingEnd,quizCorrectDragging,quizCorrectAnswer,quizWrongAnswer;
   </script>
+
+  <script src="<%= VUE_APP_LANGUAGE_FILE %>"></script>
+  
   <!-- BEGIN GOOGLE ANALYTICS GA -->
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-N8VG5BGPSH"></script>
+  <script src="https://www.googletagmanager.com/gtag/js?id=<%= VUE_APP_GOOGLE_ANALYTICS_ID %>"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
-        gtag('config', 'G-N8VG5BGPSH');
-    </script> -->
-  <!-- EIND GOOGLE ANALYTICS GA -->
+        gtag('config', '<%= VUE_APP_GOOGLE_ANALYTICS_ID %>');
+    </script>
+  <!-- END GOOGLE ANALYTICS GA -->
 </head>
 
 <body class="animationEnabled">

@@ -1,3 +1,4 @@
+import store from "../../store/store";
 import {
     fixJSON
 } from "./fixJSON";
@@ -7,15 +8,36 @@ import {
 
 export var getJSON = (function () {
     var fetchTweetsLoop;
-    var fetchTweetsLoop2;
+    var fetchTweetsLoopHandpicked;
+    var handpicked1;
+    var handpicked2;
+    var handpicked3;
+    var handpicked4;
+    var handpicked5;
+    var handpicked6;
+
+    // console showing messages to user
+    var konsole;
+    var tweets;
+    document.addEventListener("DOMContentLoaded", function (event) {
+        konsole = document.querySelector('.console .message');
+        tweets = document.querySelector(".tweets-realtime .tweets");
+    });
 
     function start(source) {
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
         console.log("start");
+        
+        if (document.querySelector('.tweet-stream-info-in-stream')) {
+            document.querySelector('.tweet-stream-info-in-stream').classList.add('hidden');
+        }
+
         var resp;
         var refreshInterval = 10000;
 
-        function fetchData(source, curated) {
-            // console.log('curated: ', curated);
+        function fetchData(source, handpicked) {
+            // console.log('handpicked: ', handpicked);
+            var connectionSymbol = document.querySelector('.menu-icon');
             fetch(source)
                 // 1 json
                 // .then(response => response.json())
@@ -24,6 +46,7 @@ export var getJSON = (function () {
                 .then(response => response.text())
 
                 .then(data => {
+                    connectionSymbol.classList.remove('disconnected');
                     // 1: we need what is insides statuses
                     // resp = data.statuses;
 
@@ -56,14 +79,14 @@ export var getJSON = (function () {
                     // we need what is insides statuses
                     resp = resp.statuses;
 
-                    // if the json is taken from the curated source, then give each array element a property named curatedTweet
-                    if (curated === true) {
+                    // if the json is taken from the handpicked source, then give each array element a property named handpickedTweet
+                    if (handpicked === true) {
                         resp.forEach(element => {
-                            element.curatedTweet = true;
+                            element.handpickedTweet = true;
                         });
                     } else {
                         resp.forEach(element => {
-                            element.curatedTweet = false;
+                            element.handpickedTweet = false;
                         });
                     }
 
@@ -71,31 +94,65 @@ export var getJSON = (function () {
                     realTimeTweets.start(resp);
                 })
                 .catch(error => {
+                    connectionSymbol.classList.add('disconnected');
                     console.log('error: ', error);
+                    konsole.innerHTML = 'No tweets or invalid data.';
                     // handle the error
-                });;
+                });
         }
 
         fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
-        fetchTweetsLoop2 = setInterval(function () {
-            // console.log('fetchTweetsLoop2: ', fetchTweetsLoop2);
+
+
+        // simple way of showing some handpicked tweets
+        handpicked1 = setTimeout(function () {
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
-        }, 58000);
+        }, 6000);
+        handpicked2 = setTimeout(function () {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 12000);
+        handpicked3 = setTimeout(function () {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 25000);
+        handpicked4 = setTimeout(function () {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 45000);
+        handpicked5 = setTimeout(function () {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 80000);
+        handpicked6 = setTimeout(function () {
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 190000);
+        fetchTweetsLoopHandpicked = setInterval(function () {
+            console.log('Fetch handpicked tweets');
+            konsole.innerHTML = 'Fetch handpicked tweets.';
+            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        }, 580000);
 
 
         fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
         fetchTweetsLoop = setInterval(function () {
-            // console.log('fetchTweetsLoop: ', fetchTweetsLoop);
+            console.log('Fetch new tweets.');
+            konsole.innerHTML = 'Fetch new tweets.'
             fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
         }, refreshInterval);
     }
 
     function stop() {
+        document.querySelector('.tweet-stream-info-in-stream').classList.remove('hidden');
         console.log("stop");
+
+        clearTimeout(handpicked1);
+        clearTimeout(handpicked2);
+        clearTimeout(handpicked3);
+        clearTimeout(handpicked4);
+        clearTimeout(handpicked5);
+        clearTimeout(handpicked6);
+
         clearInterval(fetchTweetsLoop);
         console.log('fetchTweetsLoop: ', fetchTweetsLoop);
-        clearInterval(fetchTweetsLoop2);
-        console.log('fetchTweetsLoop2: ', fetchTweetsLoop2);
+        clearInterval(fetchTweetsLoopHandpicked);
+        console.log('fetchTweetsLoopHandpicked: ', fetchTweetsLoopHandpicked);
     }
 
     return {

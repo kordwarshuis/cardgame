@@ -11,6 +11,11 @@ const routes = [{
   },
   {
     path: "/card/:card",
+    name: "/card/:card",
+    component: Home
+  },
+  {
+    path: "/category/:category",
     component: Home
   },
   {
@@ -26,11 +31,17 @@ const routes = [{
       import("../views/Scores.vue")
   },
   {
-    path: "/twitter-real-time",
-    name: "TwitterRealTime",
+    path: "/quiz",
+    name: "Quiz",
     component: () =>
-      import("../views/TwitterRealTime.vue")
-  }
+      import("../views/MaxiQuiz.vue")
+  },
+  // {
+  //   path: "/twitter-real-time",
+  //   name: "TwitterRealTime",
+  //   component: () =>
+  //     import("../views/TwitterRealTime.vue")
+  // }
 ];
 
 const router = new VueRouter({
@@ -39,10 +50,18 @@ const router = new VueRouter({
   mode: 'history',
   routes,
   scrollBehavior() { //https://stackoverflow.com/a/57212309, TODO: https://router.vuejs.org/guide/advanced/scroll-behavior.html#async-scrolling
+    var a = document.querySelector(".modal-content");
+    var b = document.querySelector(".overlay-fullscreen .card-body");
+
     // setTimeout(function(){document.getElementById('app').scrollIntoView();}, 3000);
     document.getElementById("app").scrollIntoView();
-    document.querySelector(".modal-content").scrollIntoView();
-    document.querySelector(".overlay-fullscreen .card-body").scrollIntoView();
+
+    if (a) {
+      a.scrollIntoView();
+    }
+    if (b) {
+      b.scrollIntoView();
+    }
   }
 });
 

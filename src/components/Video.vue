@@ -4,12 +4,13 @@
     <!-- <h3 class="video">Video</h3> -->
 
     <VideoBare />
-    <p class="video-description ml-0">{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
+    <p v-linkified:options="$store.state.linkifyOptions" class="video-description ml-0">{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
 
 </div>
 </template>
 
 <script>
+import store from "../store/store";
 import VideoBare from "@/components/VideoBare.vue";
 export default {
     name: "Video",
