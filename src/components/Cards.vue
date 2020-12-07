@@ -1,13 +1,8 @@
 <template>
 <div class="cards">
-    <!-- <transition name="fade"> -->
-    <!-- <h1>{{ msg }}</h1> -->
-    <!-- <BitcoinAnimation /> -->
-    <!-- <h1>Bitcoin Misconceptions</h1> -->
-
     <div class="row">
-        <!-- NAME -->
-        <div class="col-md-8">
+        <!-- TITLE AND SUBTITLE -->
+        <div class="col-8">
             <h1 class="mb-0">
                 <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" />
                 <span class="game-title-1">
@@ -17,102 +12,106 @@
                     {{this.$store.state.gameTitle2}}
                 </span>
             </h1>
-            <p class="mt-0">{{this.$store.state.gameSubTitle}}</p>
-
         </div>
 
-        <div class="col-md-4 text-right">
+        <!-- FILTER -->
+        <div class="col-4 text-right">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary dropdown-toggle button-categories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Filter By
+                <button type="button" class="btn btn-primary dropdown-toggle button-categories mt-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter
                 </button>
                 <div style="z-index: 1021;" class="dropdown-menu dropdown-menu-right dropdown-menu-categories">
-                    <ul class="nav nav-pills pt-0 mx-auto justify-content-center">
+                    <ul class="nav nav-pills pt-0 mx-auto ">
                         <!-- All = All categories at once -->
                         <li class="nav-item ">
-                            <a class="nav-link p-1 All" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
+                            <a class="nav-link p-1 All" @click="showAllCategories" data-category="All">All</a>
                         </li>
 
                         <!-- Every category in a menu item -->
                         <li class="nav-item" :class="category.name" v-for="category in $store.state.categories" :key="category.name">
                             <a class="nav-link p-1" @click="$store.commit('showItemsInSelectedCategory',category.name)" :data-category="category.name">
                                 {{ category.name }}
-                                ({{ category.numberOfItems }})
+                                <!-- ({{ category.numberOfItems }}) -->
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+
+        <div class="col-md-12">
+            <p class="mt-0">{{this.$store.state.gameSubTitle}}
+                <template v-if="realtimeTweets === 'true'">
+                    <GameInstructionsCarousel />
+                </template>
+            </p>
+
+        </div>
     </div>
 
-    <!-- <div class="alert alert-info ml-1 mr-1 ml-md-5 mr-md-5 mt-0" role="alert">
-            1: Select a tweet – 2: Select and Copy a card – 3: Paste card in reply to tweet
-    </div> -->
     <!-- <h1 class="pt-5">{{this.$store.state.topScorer}} Poster of the week</h1> -->
 
-    <div v-if="(this.$store.state.activeCategory !== 'All')" >
-        <h3>
+    <!-- CATEGORY NAME AND COPY BUTTON WHEN IN CATEGORY -->
+    <div v-if="(this.$store.state.activeCategory !== 'All')">
+        <h3 class="text-center">
             {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboard5 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
-        </h3    >
+        </h3>
     </div>
 
     <!-- THE CARDS -->
-    <div class="masonry-with-columns ml-1 mr-1 ml-md-5 mr-md-5 mt-2">
-        <div class="video-container mb-4 p-0" style="background: transparent;">
-            <video class="" style="width: 100%;border-radius: 10px;" src="@/assets/video/instructions.mp4" muted autoplay controls playsinline></video>
+    <div class="card-columns mb-5">
+        <div v-if="realtimeTweets === 'true'" class="card mb-4 p-0">
+            <div class="card-body p-0 justify-content-center align-items-center d-flex">
+                <div class="video-wrapper">
+                    <video id="video-homepage" src="https://blockchainbird.com/t/media/video/instructions.mp4" poster="https://blockchainbird.com/t/media/video/instructions.jpg" muted controls playsinline preload="none"></video>
+                </div>
+            </div>
+            <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
+            </div>
         </div>
 
-        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.prejudice" class="mb-4">
-            <a :data-id="item['id']" :key="item.prejudice" @click="showCardIntro" class="p-2">
-                <h2 class=""><span class="quote">“</span>{{ item.prejudice }}<span class="quote">”</span></h2>
-            </a>
-            <div class="card-footer" style="background: #1D2448; text-align: left;">
-                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em; margin: 0.5em 0 ;">{{ item.category }}</a>
+        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.misconception" class="card mb-4 p-0">
+            <div class="card-body p-0 align-items-center d-flex">
+                <a :data-id="item['id']" :key="item.misconception" @click="showCardIntro" class="p-1">
+                    <h2 class=""><span class="quote">“</span>{{ item.misconception }}<span class="quote">”</span></h2>
+                </a>
+            </div>
+            <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
+                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
 
                 <!-- Show all cards: -->
-                <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="$store.commit('showItemsInSelectedCategory')" data-category="All">All</a>
+                <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
 
                 <!-- check allCardsInChosenCategory in store for what is in array, this should be made easier -->
-                <button :data-prejudice="item.prejudice" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" style="margin-top: 0.7em !important;" title="Copy Link">Copy Link</button>
+                <button :data-misconception="item.misconception" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" title="Copy Link">Copy Link</button>
 
                 <!-- Sharingbutton Twitter -->
-                <a class="resp-sharing-button__link float-right mr-2" :href="'https://twitter.com/intent/tweet/?text=' + item.prejudice + '&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on Twitter</span>
+                <a class="resp-sharing-button__link float-right mr-2" :href="'https://twitter.com/intent/tweet/?text=' + item.misconception + '&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on Twitter</span>
                     <img src="../assets/img/icons/social-media-buttons/twitter.svg" alt="twitter logo" />
                 </a>
 
                 <!-- Sharingbutton LinkedIn -->
-                <a class="resp-sharing-button__link float-right mr-2" :href="'https://www.linkedin.com/shareArticle?mini=true&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id + '&amp;title=' + item.prejudice + '&amp;summary=' + item.prejudice + '&amp;source=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on LinkedIn</span>
+                <a class="resp-sharing-button__link float-right mr-2" :href="'https://www.linkedin.com/shareArticle?mini=true&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id + '&amp;title=' + item.misconception + '&amp;summary=' + item.misconception + '&amp;source=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on LinkedIn</span>
                     <img src="../assets/img/icons/social-media-buttons/linked-in.svg" alt="linkedin logo" />
                 </a>
             </div>
         </div>
     </div>
-
-    <!-- <NewsTicker /> -->
-    <!-- <SoundToggle /> -->
-    <!-- </transition> -->
-
 </div>
 </template>
 
 <script>
-// import NewsTicker from "@/components/NewsTicker.vue";
-// import Search from "@/components/Search.vue";
 import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
-// import BitcoinAnimation from "@/components/BitcoinAnimation.vue";
 import publicPath from "../../vue.config";
+import GameInstructionsCarousel from "./GameInstructionsCarousel.vue";
 
 export default {
     name: "Index",
     components: {
-        // Search,
-        // NewsTicker,
         SoundToggle,
-        ICountUp
-        // ,BitcoinAnimation
-        // VueFuse
+        ICountUp,
+        GameInstructionsCarousel
     },
     props: {
         msg: String,
@@ -120,6 +119,7 @@ export default {
     },
     data() {
         return {
+            // pickedItems: [],
             ICountUpDelay: 2000, //msec
             ICountUpOptions: {
                 useEasing: true,
@@ -130,61 +130,76 @@ export default {
                 duration: 4 //sec
             },
             publicPath: publicPath.publicPath,
-            windowLocationOrigin: window.location.origin
+            windowLocationOrigin: window.location.origin,
+            appId: process.env.VUE_APP_ID,
+            realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
         }
     },
     mounted() {
-        this.addVisitedToCards();
+        // delay in starting video
+        setTimeout(function () {
+            document.querySelector('#video-homepage').play();
+        }, 7000);
     },
     methods: {
-        addVisitedToCards() {
-            //TODO: duplicate code, see addVisitedToCards()
-            setTimeout(function () {
-                var allCards = document.querySelectorAll(".grid__item");
-                // loop all cards and add .visited if in localStorage visited
-                for (let i = 0; i < allCards.length; i++) {
-                    if (localStorage.getItem("visited") && localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
-                        allCards[i].classList.add("visited");
-                    }
-                }
-            }, 1000);
+        showAllCategories() {
+            this.$store.commit('showItemsInSelectedCategory');
+            this.$router.push("/");
         },
-        startElectricitySound(e) {
-            if (e.target.closest("a").classList.contains("visited")) {
-                if (localStorage.getItem("soundOn") === "true") {
-                    electricity.play();
-                    setTimeout(function () {
-                        electricity.stop()
-                    }, 1000);
-                }
-            }
-        },
+        // addVisitedToCards() {
+        //     //TODO: duplicate code, see addVisitedToCards()
+        //     setTimeout(function () {
+        //         var allCards = document.querySelectorAll(".card");
+        //         // loop all cards and add .visited if in localStorage visited
+        //         // for (let i = 0; i < allCards.length; i++) {
+        //         //     if (localStorage.getItem("visited") && localStorage.getItem("visited").indexOf(allCards[i].dataset.id) > -1) {
+        //         //         allCards[i].classList.add("visited");
+        //         //     }
+        //         // }
+        //     }, 1000);
+        // },
+        // startElectricitySound(e) {
+        //     if (e.target.closest("a").classList.contains("visited")) {
+        //         if (localStorage.getItem("soundOn") === "true") {
+        //             electricity.play();
+        //             setTimeout(function () {
+        //                 electricity.stop()
+        //             }, 1000);
+        //         }
+        //     }
+        // },
         // stopElectricitySound(e) {
         //     if (e.target.closest("a").classList.contains("visited")) {
         //         if (localStorage.getItem("soundOn") === "true") electricity.stop();
         //     }
         // },
         showCardIntro(event) {
-            // console.log('this.$store.state.currentCard["Youtube Video Id"]: ', this.$store.state.currentCard["Youtube Video Id"]);
-            // event.target.closest("a").classList.add("visited");
+            // event.target.closest(".card").classList.add("visited");
+            // console.log('event.target.closest(".card"): ', event.target.closest(".card"));
 
-            // https://stackoverflow.com/a/7680123
-            // localStorage can only be string
-            function appendToLocalStorage(name, data) {
-                var old = localStorage.getItem(name);
+            // // https://stackoverflow.com/a/7680123
+            // // localStorage can only be string
+            // function appendToLocalStorage(name, data) {
+            //     var old = localStorage.getItem(name);
 
-                // create if not existing
-                if (old === null) old = "";
+            //     // create if not existing
+            //     if (old === null) old = "";
 
-                // only add if it is not already in the string
-                if (old.indexOf(data) === -1) localStorage.setItem(name, old + data + " ");
-            }
+            //     // only add if it is not already in the string
+            //     if (old.indexOf(data) === -1) localStorage.setItem(name, old + data + " ");
+            //     console.log(localStorage.getItem("visited"));
+            // }
+
+            // // add current card url to visited in localStorage
+            // appendToLocalStorage("visited", this.$store.state.currentCard["Unique URL"]);
+
+            // this.addVisitedToCards();
 
             // deal with CSS to open and close
             this.$store.commit("changeCssClassCardIntroState", "open");
             this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
 
-            // returns object with all entries of one prejudice
+            // returns object with all entries of one misconception
             var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
 
             this.$store.commit("changeCard", currentCard);
@@ -195,11 +210,6 @@ export default {
             this.$router.push("/card/" + currentCard["Unique URL"]);
 
             if (localStorage.getItem("soundOn") === "true") whoosh2.play();
-
-            // add current card url to visited in localStorage
-            appendToLocalStorage("visited", this.$store.state.currentCard["Unique URL"]);
-
-            this.addVisitedToCards();
         }
     }
 };
@@ -208,6 +218,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
+// https://www.dev-tips-and-tricks.com/use-bootstrap-4-media-query-mixins
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/_breakpoints";
+
 .cards {
     padding-top: 30px;
 }
@@ -236,10 +251,11 @@ h1 {
     font-family: poppinsregular;
 }
 
-// .nav-link {
-//     color: #eee;
-//     cursor: pointer;
-// }
+.game-instructions {
+    text-transform: none;
+    font-size: 1.1em;
+    margin-bottom: 2em;
+}
 
 .button-categories {
     background: #5965F9;
@@ -255,7 +271,6 @@ h1 {
 
 .dropdown-menu-categories a {
     font-family: poppinsbold;
-    border: 1px solid #333;
     margin: 0.3em;
     cursor: pointer;
 }
@@ -278,25 +293,32 @@ h1 {
 }
 
 // https://css-tricks.com/piecing-together-approaches-for-a-css-masonry-layout/
-.masonry-with-columns {
-    // columns: 5 200px;
-    column-count: 5;
-    column-width: 200px;
-    column-gap: 1rem;
-    // column-rule: 1px dotted #ddd;
+.card-columns {
+    @include media-breakpoint-only(lg) {
+        column-count: 4;
+    }
 
-    >div {
+    @include media-breakpoint-only(xl) {
+        column-count: 5;
+    }
+
+    >.card {
+        border: none;
         cursor: pointer;
-        background-image: url(../assets/img/icons/flat/bitcoin.svg), linear-gradient(#272f52, #3a4275);
+        background-image: url(../assets/img/icons/flat/card-background.svg), linear-gradient(#272f52, #3a4275);
         background-repeat: repeat, no-repeat;
         background-size: 25px 25px, 100% 100%;
         background-position: center center, center center;
         text-align: center;
-        font-variant: small-caps;
         border-radius: 10px;
         color: $_text1;
         display: inline-block;
         width: 100%;
+
+        h2 {
+            line-height: 1.7;
+            font-family: poppinsregular;
+        }
 
         h2,
         h3 {
@@ -310,6 +332,14 @@ h1 {
             border-bottom-right-radius: 10px;
             padding: 0 0.5em 0 0.5em;
 
+        }
+
+        .card-body {
+            a {
+                width: 100%;
+            }
+
+            min-height: 10em;
         }
     }
 
@@ -339,10 +369,6 @@ div.cards.selection .category-all-shown-in-cards {
     display: inline;
 }
 
-.selection .video-container {
-    display: none;
-}
-
 .resp-sharing-button__link img {
     width: 20px;
     margin-top: 0.8em;
@@ -356,5 +382,21 @@ div.cards.selection .category-all-shown-in-cards {
 .resp-sharing-button__link:hover,
 .copyURLtoClipboard4:hover {
     opacity: 1;
+}
+
+.video-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.video-wrapper video {
+    width: 100%;
+    border-radius: 10px;
 }
 </style>

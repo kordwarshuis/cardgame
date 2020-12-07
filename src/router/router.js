@@ -11,6 +11,7 @@ const routes = [{
   },
   {
     path: "/card/:card",
+    name: "/card/:card",
     component: Home
   },
   {
@@ -28,6 +29,12 @@ const routes = [{
     name: "Scores",
     component: () =>
       import("../views/Scores.vue")
+  },
+  {
+    path: "/quiz",
+    name: "Quiz",
+    component: () =>
+      import("../views/MaxiQuiz.vue")
   },
   // {
   //   path: "/twitter-real-time",

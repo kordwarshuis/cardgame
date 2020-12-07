@@ -13,25 +13,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <p>This is the place where real time tweets will stream. All tweets with keyword “bitcoin” will be loaded but which tweets are shown depends on your configuration.</p>
-
-                            <p>The top of the screen shows the number of incoming tweets every ten seconds.</p>
-
-                            <p>Also the stream will show handpicked tweets every now and then. It may take a while before a realtime tweet that meets your configuration settings </p>
-
-                            <p>The default configuration will not show many tweets.</p>
-
-                            <p>The “clear” button will remove all tweets that are shown and wait for new tweets.</p>
-                            <p>
-                                <img style="width: 20px;" src="@/assets/img/icons/ui/configuration.svg" alt="" /> = to configuration panel where you can configure your tweet stream.
-                            </p>
-                            <p>
-                                <img style="width: 20px;" src="@/assets/img/icons/ui/003-stop.svg" alt="" /> will stop the tweet stream.
-                            </p>
-                            <p>
-                                <img style="width: 20px;" src="@/assets/img/icons/ui/013-play.svg" alt="" /> will start the tweet stream.
-                            </p>
-
+                            {{content}}
                         </div>
 
                     </div>
@@ -47,7 +29,25 @@
 
 <script>
 export default {
-    name: "TwitterRealTimeInfoModal"
+    name: "TwitterRealTimeInfoModal",
+    data: function () {
+        return {
+            content: ""
+        }
+    },
+    mounted() {
+        this.getContent();
+    },
+    methods: {
+        getContent() {
+            return axios.get(process.env.VUE_APP_TWEETSTREAM_HELPTEXT)
+                .then(response => {
+                    this.content = response.data;
+                }).catch(function (error) {
+                    console.log("We have a problem: " + error);
+                });
+        }
+    }
 };
 </script>
 
@@ -62,5 +62,15 @@ select {
 h1,
 h2 {
     font-size: 1rem;
+}
+
+// https://stackoverflow.com/a/26917844
+.close {
+    font-size: 2em;
+    color: #eee;
+}
+
+.close:hover {
+    color: #fff;
 }
 </style>

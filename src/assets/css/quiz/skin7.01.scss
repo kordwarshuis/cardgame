@@ -1,0 +1,682 @@
+/* ***********************
+BEGIN SKIN
+*********************** */
+/*
+https://www.colourlovers.com/web/trends/websites/7818/Brooklyn_Beta 
+*/
+
+/* 
+https://digitalsynopsis.com/design/flat-color-palettes/
+*/
+
+
+// https://digitalsynopsis.com/design/beautiful-color-palettes-combinations-schemes/
+
+// $text:#00aedb;
+// $background1:#d11141;
+// $background2:#f37735;
+// $background3:#ffc425;
+// $border:#00b159;
+
+
+
+// https://digitalsynopsis.com/design/beautiful-color-schemes-combinations-palettes/
+// nr 7
+// $text:#4281A4;
+// $background1:#FE938C;
+// $background2:#E6B89B;
+// $background3:#EAD2AC;
+// $border:#9CAFB7;
+
+// $text:rgb(69, 71, 71);
+// $background1:rgb(228, 218, 217);
+// $background2:rgb(209, 206, 203);
+// $background3:rgb(189, 180, 166);
+// $border:rgb(157, 208, 229);
+
+
+// $text:#765D69;
+// $background1:#FEFAD4;
+// $background2:#FCD0BA;
+// $background3:#F1828D;
+// $border:#8FB9A8;
+
+
+
+// $text:#475C7A;
+// $background1:#FCBB6D;
+// $background2:#D8737F;
+// $background3:#AB6C82;
+// $border:#685D79;
+
+
+
+
+// $a1: #FCBB6D;
+// $a2: #AB6C82;
+// $a3: #475C7A;
+// $a4: #475C7A;
+// $a5: #685D79;
+
+
+
+// $a1: #EE4540;
+// $a2: #C72C41;
+// $a3: #801336;
+// $a4: #510A32;
+// $a5: #2D142C;
+
+// $a1: #eee;
+// $a2: #ccc;
+// $a3: #801336;
+// $a4: #510A32;
+// $a5: #222;
+
+
+
+
+
+
+// $text: #72747a;
+// $background1:#c4d0d9;
+// $background2:#d1d9dc;
+// $background3:#dde2e3;
+// $border:#9d9c9a;
+
+
+$text: #72747a;
+$background1:#9bbcd4;
+$background2:#d1d9dc;
+$background3:#dde2e3;
+$border:#9d9c9a;
+
+
+
+$startscherm-tekst: $text;
+
+$startscherm-achtergrondkleur: $background3;
+$startscherm-border: none;
+$blok-achtergrondkleur: $background2;
+
+
+$kleur-achtergrond: $background1;
+$kleur-tekst: $text;
+
+$kleur4: #F1828D;
+$kleur5: #765D69;
+$kleur6: #222;
+$kleur-link: $text;
+$kleur-audio: $text;
+$kleur-tekst-coda: $text;
+$eindespel-achtergrond: $background3;
+$citation-text: $text;
+
+$button-achtergrond: $background2;
+$button-tekstkleur: $text;
+
+$answer-right-background: #82dfb4;
+$answer-right-text: $text;
+$answer-right-shadow: #35455A;
+
+
+// $button-startgame-achtergrond: #333;
+$button-startgame-tekst: $text;
+$button-startgame-achtergrond: $background2;
+
+$coda-tekst-achtergrondkleur: #333;
+
+$coda-nummering-tekst: $text;
+$coda-nummering-background: $background2;
+
+$toon-notificatie-tekst: $text;
+$toon-notificatie-achtergrond: $background2;
+
+
+$explanation-background: $background3;
+$explanation-text: $text;
+$explanation-border: $border;
+
+
+
+
+$text-area-background: $background2;
+$text-area-text: $text;
+
+$copy-text-border: $border;
+$copy-text-border-hover: $border;
+$copy-text-background: $background3;
+$copy-text-background-hover: $background1;
+$copy-text-text: $text;
+
+
+$numbering-background: $background3;
+$numbering-text: $text;
+
+
+$bargraph-background: $background2;
+$bargraph-grid-color: $text;
+$bargraph-text-color: $text;
+
+$bargraph-notinviewport-background: $background2;
+$bargraph-notinviewport-text: $text;
+$bargraph-notinviewport-border: $border;
+
+
+
+
+// $bargraph-left-background: $background3;
+// $dragbar-background: $background3;
+// $dragbar-draghandle-color: $background1;
+
+$bargraph-left-background: #646363;
+$dragbar-background: #646363;
+$dragbar-draghandle-color: #4d4b4b;
+
+
+
+$bargraph-left-text: $text;
+$legenda-chosen-answer-background: $dragbar-background;
+
+
+$drag-this-bar-background: $background3;
+$drag-this-bar-text: $text;
+$drag-this-bar-border: $text;
+
+
+
+$bargraph-endresult-correct-answer-background: $answer-right-background;
+$legenda-correct-answer-background: $answer-right-background;
+
+$legenda-background: $background2;
+$legenda-border: $border;
+$legenda-kleur: $text;
+
+
+$bargraph-endresult-correct-answer-text: $text;
+
+
+
+
+
+
+
+
+
+
+
+$vraag-achtergrond: $background3;
+$vraag-tekstkleur: $text;
+$vraag-border-kleur: $border;
+
+$background-score-text: $background3;
+
+/* MENU */
+section#startscherm div p.menu {
+    font-size: 1.3em;
+}
+section#startscherm div p.menu a {
+    display: inline-block;
+    padding: 0 0.5em;
+    text-decoration: none;
+}
+section#startscherm div p.menu a:hover {
+    color: $kleur-tekst;
+}
+
+
+section#startscherm > div > div {
+    padding: 1em;
+    background: $startscherm-achtergrondkleur;
+    border: 3px solid $startscherm-border;
+
+}
+
+section#startscherm div .mainblock {
+    background: $blok-achtergrondkleur;
+    border: 3px solid $border;
+    padding: 2em;
+    // box-shadow: 0px 0px 5px 4px $blok-achtergrondkleur;
+    margin: 11px;
+}
+
+
+
+
+/* CODA */
+.coda .tekst {
+    background: $coda-tekst-achtergrondkleur;
+}
+
+.coda .nummering span,
+.coda .nummering2 span
+{
+    background: $coda-nummering-background;
+    color: $coda-nummering-tekst;
+}
+
+
+button {
+    background: $button-achtergrond;
+    color: $button-tekstkleur;
+}
+#toonNotificatie {
+    background: $toon-notificatie-achtergrond;
+    color: $toon-notificatie-tekst;
+    border-color: $border;
+    padding: 0 0.5em;
+}
+
+button#startGame {
+    color: $button-startgame-tekst !important;
+    background: $button-startgame-achtergrond;
+    border: 3px solid $border;
+    // margin: 1.5em auto;
+    // height: 2em;
+}
+
+
+button#startGame.disabled-and-loaded {
+    font-size: 1em;
+    // color: $button-startgame-tekst !important;
+    margin: 1.5em auto;
+    height: 2em;
+}
+
+
+/* de button voor het kopieren van tekst */
+.kopieertekst {
+    border: 3px solid $copy-text-border;
+    background: $copy-text-background;
+    color: $copy-text-text;
+}
+.kopieertekst:hover,
+.kopieertekst:focus {
+    border: 3px solid $copy-text-border-hover;
+    background: $copy-text-background-hover;
+}
+.cbp-spmenu-inner {
+    background: #FFB74D;
+}
+.cbp-spmenu-inner {
+    /* font-size: 0.7em; */
+    background: #FFB74D;
+    text-align: left;
+}
+#buttonShowExtraInfo {
+    background-color: #FFB74D;
+    border: 3px solid #eee;
+    color: #111;
+    /* font-size: 0.7em; */
+}
+.antw {
+    background: transparent !important;
+}
+.schaalhouder {
+    background: $bargraph-background;
+    color: $bargraph-text-color !important;
+    
+    border-bottom: 1px solid $bargraph-grid-color;
+}
+.horizontaal .schaalhouder>div {
+    border-right: 1px solid $bargraph-grid-color;
+}
+.horizontaal .schaalhouder>div:nth-child(1) {
+    border-left: 1px solid $bargraph-grid-color;
+}
+.vertikaal .schaalhouder>div {
+    border-bottom: 1px solid $bargraph-grid-color;
+}
+.vertikaal .schaalhouder>div:nth-child(1) {
+    border-top: 1px solid $bargraph-grid-color;
+}
+/* bij vertikaal, de linker balken  */
+.vertikaal .chart>div {
+    background-color: $bargraph-grid-color;
+}
+/* eindresultaat balk */
+.eindresultaatBalk {
+    background: $bargraph-endresult-correct-answer-background !important;
+    color: $bargraph-endresult-correct-answer-text !important;
+    margin-left:0.6em;
+}
+/* de LINKER vertikale staafdiagrammen */
+.vertikaal .chartleft div {
+    background: $bargraph-left-background;
+    font-size: 11px;
+}
+.vertikaal .chartleft div span {
+    color: $bargraph-left-text !important;
+}
+
+
+/* de RECHTER vertikale staafdiagrammen */
+// .vertikaal .chartright div {
+
+// }
+/* ROTEREN voeg een span toe als je wilt ROTEREN */
+/* .vertikaal .chart div span {
+    color: #8FB9A8;
+    display: inline-block;
+    line-height: 1;
+} */
+
+/* .vertikaal .chartright div span.deJuisteKeuzeTekst {
+    color: #8FB9A8;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: left;
+    transform: translate(0, -3em);
+    line-height: 1;
+} */
+
+// .horizontaal div span.deJuisteKeuzeTekst {
+//     color: #8FB9A8;
+//     position: absolute;
+//     /* right: -3em; */
+//     right: 0;
+//     top: 0;
+//     text-align: left;
+//     transform: translate(5em, -3em);
+//     line-height: 1;
+//     /* transform: rotate(-90deg); */
+//     /* transform-origin: bottom right; */
+// }
+
+
+/* horizontale instelbare balk */
+.horizontaal .instelbareBalk {
+    font-size: 0.8em;
+    background: $dragbar-background;
+    border-right: 20px solid $dragbar-draghandle-color;
+}
+/* vertikale instelbare balk */
+.vertikaal .chart>div.instelbareBalk {
+    font-size: 0.8em;
+    background: $dragbar-background;
+    border-top: 20px solid $dragbar-draghandle-color;
+    /* margin-left: 20px; */
+    text-align: center;
+}
+.aanwijspijl p {
+    font-size: 0.9em;
+    color: $drag-this-bar-text;
+    background: $drag-this-bar-background;
+    border: 1px solid $drag-this-bar-border;
+    padding: 0.5em;
+    border-radius: 10px;
+    /* text-shadow: 0px 0px 5px #000; */
+}
+/* melding dat diagram niet helemaal in beeld is */
+.schaalhouderMelding {
+    color: $bargraph-notinviewport-text;
+    background: $bargraph-notinviewport-background;
+    border: 1em solid $bargraph-notinviewport-border;
+    /* margin: 1em; */
+}
+.schaalhouderMelding:before {
+    background: $background3;
+}
+
+
+
+.achtergrond-vaag {
+    font-size: 8em;
+    font-size: 15vw;  /*https://css-tricks.com/viewport-sized-typography/*/
+    line-height: 1;
+    margin: 0;
+    color: $background-score-text;
+    text-shadow: 0 0 13px $background-score-text;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.toelichting {
+    color: $explanation-text;
+    background: $explanation-background;
+    padding: 1em;
+    // text-align: center;
+    margin: 2em auto;
+}
+.almost-visible {
+    outline: 0;
+}
+.almost-visible2 {
+    outline: 8px dashed $explanation-border;
+}
+
+
+
+.startschermcirkel
+{
+    border-radius: 50%;
+    /* = 15%, almost gives us viewport width unit (15vw) */
+    width: 100%;
+    padding-bottom: 100%;
+    text-align: center;
+    /* this way we should have 1px gap between circles */
+    /* margin: 35px .5px; */
+    margin: 1em auto 0.5em;
+    background: #D8737F;
+    color: #8FB9A8;
+    
+    display: block;
+    /* circle to the middle, so that... [1] */
+    /* vertical-align: middle; */
+    
+    /* to use viewport based units we can safely override the old units in this way */
+    /* padding-bottom: 0vw;
+    font-size: 5vw;
+    line-height: 7vw;
+    width: 7vw;
+    height: 7vw; */
+
+    padding-bottom: 0;
+    font-size: 2em;
+    line-height: 2em;
+    width: 20em;
+    height: 20em;
+
+}
+
+
+
+
+// form.miniquiz label {
+//     background: $vraag-achtergrond;
+//     color: $vraag-tekstkleur;
+//     border: 1px solid $vraag-border-kleur;
+//     padding: 1em;
+//     margin-bottom: 1em;
+//     cursor: pointer;
+// }
+// form.miniquiz .antw {
+//     top: 0.3em;
+//     left: 0.35em;
+// }
+// form.miniquiz label:before {
+//     margin-right: 0.5em;
+// }
+// form.miniquiz label > span {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     /* height: 13em; */
+//     /* border: 10px solid #555; */
+// }
+// form.miniquiz label > span span {
+    
+// }
+// form.miniquiz label span audio {
+//     /* border: 1em solid rgb(201, 11, 11); */
+//     /* display: block; */
+//     /* padding: 1em; */
+//     /* height: 2em; */
+// }
+
+.toelichting video,
+.toelichting iframe.youtube {
+    border: 10px solid rgb(46, 3, 48);
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.toelichting video.fullwidth,
+.toelichting iframe.youtube.fullwidth {
+    max-width: 100%;
+}
+
+form.miniquiz label.ditIsHetJuisteAntwoord {
+    background: $answer-right-background;
+    color: $answer-right-text;
+    box-shadow: 0px 0px 30px 8px $answer-right-shadow;
+}
+
+
+.legenda {
+    background: $legenda-background;
+    border: 1px solid $legenda-border;
+    color: $legenda-kleur;
+    /* display: inline-bl   ock; */
+    /* position: absolute;
+    right: 0;
+    bottom: 0; */
+    /* margin: 0em; */
+    font-size: 0.9em;
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+}
+
+
+.legenda-gekozen-antwoord,
+.legenda-juiste-antwoord
+{
+    /* border-radius: 50%; */
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+}
+
+.legenda-juiste-antwoord {
+    background: $legenda-correct-answer-background;
+    margin-left: 1em;
+}
+.legenda-gekozen-antwoord {
+    background: $legenda-chosen-answer-background;
+}
+
+.volgende-pijl {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0;
+}
+.volgende-tekst {
+    text-align: center;
+    font-size: 0.8em;
+    margin-top: 0;
+}
+
+.categorie {
+    text-align: center;
+    font-style: italic;
+}
+
+
+
+section#startscherm {
+}
+section#startscherm > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+    color: $startscherm-tekst;
+    position: relative;
+    padding: 0;
+    background: transparent;
+    overflow: hidden;
+}
+section#startscherm > div h1,
+section#startscherm > div h2,
+section#startscherm > div h3,
+section#startscherm > div a
+{
+    color: $startscherm-tekst;
+}
+
+section#startscherm > div h1 {
+    font-size: 1.6em;
+}
+section#startscherm > div h2 {
+    font-size: 1.2em;
+}
+section#startscherm div p {
+    font-size: 0.9em;
+}
+section#startscherm div {
+    text-align: center;
+}
+
+
+
+
+
+section#startscherm > div > video
+{
+    position: absolute;
+    width: 100%;
+    /* max-height: 100%; */
+    opacity: 1;
+    z-index: -1;
+
+
+
+    /*http://thenewcode.com/777/Create-Fullscreen-HTML5-Page-Background-Video*/
+    /* border: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%); */
+}
+.disclaimer {
+    font-size: 0.8em !important;
+    padding: 2em;
+}
+
+
+#socialMediaTekst {
+    min-height: 20em;
+}
+
+// body.eindeSpel {
+//     background: $eindespel-achtergrond;
+// }
+
+/* in verband met JS constateren of het in vieuwport is of niet */
+audio, video {
+    display: block;
+}
+
+
+
+.twitter-tweet.twitter-tweet-rendered {
+    margin: 0 auto;
+}
+
+
+/* ***********************
+EINDE SKIN
+*********************** */

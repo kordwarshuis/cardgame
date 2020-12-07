@@ -1,34 +1,41 @@
 <template>
-<div id="app" class="container-fluid">
-    <TwitterRealTimeConfigModal />
-    <TwitterRealTimeInfoModal />
+<div id="app" class="container-fluid pl-sm-5 pr-sm-5">
+    <!-- true and false are strings not booleans -->
+    <template v-if="realTimeTweets === 'true'">
+        <TwitterRealTimeConfigModal />
+    </template>
+    <template v-if="realTimeTweets === 'true'">
+        <TwitterRealTimeInfoModal />
+    </template>
     <MainMenu />
     <!-- <slideInMenu /> -->
-    <twitterRealtime3 />
+    <template v-if="realTimeTweets === 'true'">
+        <twitterRealtime />
+    </template>
     <!-- <CryptoRadio /> -->
     <router-view />
     <Person1 />
     <Person2 />
     <!-- <Person3 /> -->
-    <!-- <TwitterRealTime2 /> -->
 
     <Toasts :show-progress="false" :time-out="2500"></Toasts>
 
     <footer class="footer mt-auto py-2">
-        <div class="container-fluid text-center">
-            <small><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/cc_icon_white_x2.png" alt="Two C's next to each other"><img style="width: 20px;height: 20px; margin-right: 15px;" src="@/assets/img/logo/attribution_icon_white_x2.png" alt="A symbol of a person">Except where otherwise noted, content on this site is licensed under a <a target="_blank" rel="noopener" class="light" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</small>
-        </div>
+        <div class="container-fluid text-center" v-html="footerContent"></div>
     </footer>
-    <NewsTicker />
+    <template v-if="newsticker === 'true'">
+        <NewsTicker />
+    </template>
 </div>
 </template>
 
 <script>
+import store from "./store/store";
 import publicPath from "../vue.config";
 import axios from "axios";
 import * as d3 from "d3-dsv";
 // import slideInMenu from "@/components/slideInMenu.vue";
-import twitterRealtime3 from "@/components/twitterRealtime3.vue";
+import twitterRealtime from "@/components/twitterRealtime.vue";
 import TwitterRealTimeConfigModal from "@/components/TwitterRealTimeConfigModal.vue";
 import TwitterRealTimeInfoModal from "@/components/TwitterRealTimeInfoModal.vue";
 import MainMenu from "@/components/MainMenu.vue";
@@ -41,30 +48,34 @@ import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 
 export default {
     components: {
-        TwitterRealTimeConfigModal,
-        TwitterRealTimeInfoModal,
+        TwitterRealTimeConfigModal: () => import( /* webpackChunkName: "TwitterRealTimeConfigModal" */ './components/TwitterRealTimeConfigModal.vue'),
+        TwitterRealTimeInfoModal: () => import( /* webpackChunkName: "TwitterRealTimeInfoModal" */ './components/TwitterRealTimeConfigModal.vue'),
+        twitterRealtime: () => import( /* webpackChunkName: "Realtimetweets" */ './components/twitterRealtime.vue'),
         MainMenu,
-        // slideInMenu,
-        twitterRealtime3,
-        // CryptoRadio,
-        NewsTicker,
-        // Hammer,
+        NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
         Person1,
         Person2
+        // slideInMenu,
+        // CryptoRadio,
+        // Hammer,
     },
     data: function () {
-        return {}
+        return {
+            realTimeTweets: process.env.VUE_APP_REALTIME_TWEETS,
+            newsticker: process.env.VUE_APP_NEWSTICKER,
+            footerContent: language.footerContent
+        }
     },
     mounted() {
         this.fetchData();
         // this.soundSetting();
         this.initSound();
+        this.$store.dispatch("setProspectHandles");
     },
     methods: {
         fetchData() {
             // only fetch data
             if (this.$store.state.dataFetched === false) {
-                // return axios.get("https://blockchainbird.com/t/cardgame-resources/data/data-csv-cors.php")
                 return axios.get(process.env.VUE_APP_CARDS_CONTENT)
                     .then(response => {
                         var responseData = d3.csvParse(response.data);
@@ -72,14 +83,10 @@ export default {
                         // prepare data
 
                         // select the stack
-                        // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to Bitcoin, if a "2" is in the string, it belong to Blockchain. "12" means it belongs to both.
+                        // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to STACK 1, if a "2" it's STACK 2, "12" means it belongs to both.
                         // TODO: move this to main.js
-                        var stack = 0;
-                        if (this.$store.state.gameId === "btc") {
-                            stack = 1;
-                        } else if (this.$store.state.gameId === "bcb") {
-                            stack = 2;
-                        }
+
+                        var stack = Number(process.env.VUE_APP_STACK);
 
                         // select only the items that are in the selected stack
                         // avoid working on a changing array by using a temp array
@@ -122,7 +129,7 @@ export default {
                             responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
 
                             // split string on \n\n, so we can make paragraphs later, or separate links for example
-                            responseData[i]["long answer+facts"] = this.splitString(responseData[i]["long answer+facts"], "\n\n");
+                            responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
 
                             responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
 
@@ -144,8 +151,6 @@ export default {
                                 this.$store.state.allKeys.push(k);
                             }
                         }
-
-                        this.$store.commit("showPickedItems");
 
                         // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
                         this.$store.commit("showItemsInSelectedCategory");
@@ -223,7 +228,7 @@ export default {
 
             // create array with all categories (to create a menu with all categories):
             for (var i = 0; i < theJSON.length; i++) {
-                categoriesArray.push(theJSON[i].Cat);
+                categoriesArray.push(theJSON[i].Category);
             }
 
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
@@ -235,7 +240,7 @@ export default {
             for (let i = 0; i < categoriesArray.length; i++) {
                 var counter = 0;
                 for (let j = 0; j < theJSON.length; j++) {
-                    if (theJSON[j].Cat === categoriesArray[i]) {
+                    if (theJSON[j].Category === categoriesArray[i]) {
                         //TODO: number of items in category is sometimes wrong
                         counter++;
                     }
@@ -343,6 +348,75 @@ export default {
                 src: [require("./assets/audio/click.mp4")]
             });
 
+            quizPlop = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/348493__jalastram__gui-sound-effects-031.mp4")]
+            });
+            whawhaTrumpet = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/wha-wha-trumpet.mp4")]
+            });
+            laughManiacal = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/laugh-maniacal.mp4")]
+            });
+            cannedLaughter = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/canned-laughter.mp4")]
+            });
+            blur = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/blur.mp4")]
+            });
+            bouncing3 = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/bouncing-3.mp4")]
+            });
+            gasp = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/gasp.mp4")]
+            });
+            drumCrash1 = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/drum-crash-1.mp4")]
+            });
+            surprisedGasp = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/surprised-gasp.mp4")]
+            });
+            fanfare = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/fanfare.mp4")]
+            });
+            epiphany = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/epiphany.mp4")]
+            });
+            quizEnd = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/370294__mrthenoronha__tribal-game-theme-loop.mp4")]
+            });
+            dragging = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/171043__st303__mechanical-alarm-clock-is-ticking-slava.mp4")]
+            });
+            draggingEnd = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/179055__robinhood76__04148-a-circus-jump-with-clarinet-part2.mp4")]
+            });
+            quizCorrectDragging = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/394485__gameloops__gamepack1-mystery-failed.mp4")]
+            });
+            quizCorrectAnswer = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/29543__bennychico11__wink.mp4")]
+            });
+            quizWrongAnswer = new Howl({
+                volume: 0.1,
+                src: [require("./assets/audio/348477__jalastram__gui-sound-effects-044.mp4")]
+            });
+
             // document.querySelectorAll("a").forEach(item => item.addEventListener('click', function () {
             //     click.play()
             // }, false));
@@ -356,27 +430,9 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/dist/css/bootstrap.min.css";
-// @font-face {
-//     font-family: 'FontAwesome';
-//     src: url('./assets/fonts/fontawesome-webfont.eot?v=4.5.0');
-//     src: url('./assets/fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'),
-//         url('./assets/fonts/fontawesome-webfont.woff2?v=4.5.0') format('woff2'),
-//         url('./assets/fonts/fontawesome-webfont.woff?v=4.5.0') format('woff'),
-//         url('./assets/fonts/fontawesome-webfont.ttf?v=4.5.0') format('truetype'),
-//         url('./assets/fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-
-// /*type writer like*/
-// /*! Generated by Font Squirrel (https://www.fontsquirrel.com) on October 22, 2016 */
-// @font-face {
-//     font-family: 'special_eliteregular';
-//     src: url('./assets/fonts/specialelite-webfont.woff2') format('woff2'),
-//         url('./assets/fonts/specialelite-webfont.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+// @import "~bootstrap/scss/mixins/_breakpoints";
 
 /*! Generated by Font Squirrel (https://www.fontsquirrel.com) on October 9, 2020 */
 @font-face {
@@ -435,6 +491,10 @@ body {
     background-color: $backgroundBCB;
 }
 
+.ssi {
+    background-color: $backgroundSSI;
+}
+
 h1,
 h2,
 h3,
@@ -482,6 +542,20 @@ a:focus {
     outline: none;
 }
 
+.cards a:focus {
+    outline: none !important;
+}
+
+.cards a:focus h2,
+a:focus {
+    outline: 3px solid #eee;
+}
+
+.nav a:focus {
+    background: #666;
+    outline: none;
+}
+
 .hidden {
     position: absolute;
     overflow: hidden;
@@ -489,15 +563,6 @@ a:focus {
     height: 0;
     pointer-events: none;
 }
-
-/* Icons */
-// .icon {
-//     display: block;
-//     width: 1.5em;
-//     height: 1.5em;
-//     margin: 0 auto;
-//     fill: currentColor;
-// }
 
 .border {
     border: 1px solid $_border1 !important;
@@ -553,7 +618,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .copyURLtoClipboard {
-    background: transparent url(./assets/img/icons/flat/sheet.svg) no-repeat center;
+    background: transparent url(./assets/img/icons/flat/copy.svg) no-repeat center;
     background-size: contain;
     // padding: 3em 1.2em 3em 2em;
     // padding: 1.5em 0.6em 1.5em 1em;
@@ -575,8 +640,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
     width: 100%;
 }
 
-.modal-content .related a,
-.md-content button {
+.modal-content .related a {
     margin: 0 0.3em 0.5em;
 }
 
@@ -688,17 +752,24 @@ a.overlay__close:not(.overlay__close-cross):hover,
     border-radius: 10px;
 }
 
-// this is for give tweets a little fade in so you can see there is something new. “visible” is a reserved word in Bootstrap
-.tweet.invisibleTweet {
-    opacity: 0;
-    display: none;
-    transition: opacity 0.2s ease-in-out;
+.tweet .close {
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }
 
-.tweet.invisibleTweet.makeVisible {
+.tweet-stream-messages .close {
+    position: absolute;
+    right: -2px;
+    top: -2px;
+}
+
+.tweet {
+    display: none;
+}
+
+.tweet.displayBlokTweet {
     display: block;
-    opacity: 1 !important;
-    transition: opacity 0.2s ease-in-out;
 }
 
 .tweet-stream-info-in-stream {
@@ -706,8 +777,30 @@ a.overlay__close:not(.overlay__close-cross):hover,
     font-size: 2em;
     text-align: center;
 }
+
 .tweet-stream-info-in-stream.hidden {
     display: none;
+}
+
+.tweet-stream-messages {
+    background: linear-gradient(to right, #5C34A7, #2376D6);
+    border-radius: 10px;
+    color: #eee;
+    padding: 1em;
+    width: 100%;
+    margin: 0 0 1em;
+    text-align: center;
+}
+
+.tweet-stream-messages h2 {
+    font-size: 1.5em;
+    margin-bottom: 0;
+}
+
+.tweet-stream-messages ul {
+    margin-bottom: 0;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 // .select-tweet,
@@ -719,23 +812,18 @@ a.overlay__close:not(.overlay__close-cross):hover,
     display: none;
 }
 
-// .tweets-realtime .go-to-tweet {
-//     display: none;
-// }
-
 .tweets-realtime .tweet-instruction {
     display: none;
 }
 
-.card.curated {
+.card.handpicked {
     background-color: rgb(250, 239, 202) !important;
 }
 
-.curatedTweetIndication {
+.handpickedTweetIndication {
     position: absolute;
     top: 10px;
     right: 10px;
-
 }
 
 footer {
@@ -746,10 +834,9 @@ footer {
 
 .tweet small {
     font-size: 1.1em;
-
 }
 
-.curated-tweet-text small {
+.handpicked-tweet-text small {
     background: rgb(247, 229, 130);
 }
 
@@ -757,7 +844,7 @@ footer {
     background: rgb(247, 229, 130);
 }
 
-//
+// SEARCH
 .hideSearchResult {
     margin: 0 !important;
     display: none !important;
@@ -767,7 +854,7 @@ footer {
     padding: 0;
 }
 
-.search-results>a {
+.search-results-container>a {
     text-decoration: none;
 }
 
@@ -779,7 +866,6 @@ footer {
     padding-left: 0.3em;
     padding-right: 0.3em;
     border-radius: 10px;
-
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
@@ -791,6 +877,8 @@ footer {
     }
 }
 
+// TODO: make this selection les complicated
+.cards,
 .search-results-container,
 .masonry-with-columns {
 
@@ -858,6 +946,85 @@ footer {
     .nav-item.Supply a {
         background: #063333;
     }
+}
+
+// QUIZ
+.nummering,
+.nummering2 {
+    font-size: 1em;
+    line-height: 0.5em;
+    margin-bottom: 3em;
+    text-align: center;
+}
+
+.nummering span,
+.nummering2 span {
+    border-radius: 50%;
+    /* = 15%, almost gives us viewport width unit (15vw) */
+    text-align: center;
+    /* this way we should have 1px gap between circles */
+    /* margin: 35px .5px; */
+    margin: 1em auto 0.5em;
+    // background: $numbering-background;
+    // color: $numbering-text;
+
+    display: block;
+    /* circle to the middle, so that... [1] */
+
+    /* to use viewport based units we can safely override the old units in this way */
+    /* padding-bottom: 0vw;
+    font-size: 5vw;
+    line-height: 7vw;
+    width: 7vw;
+    height: 7vw; */
+
+    padding-bottom: 0;
+    font-size: 2em;
+    line-height: 2em;
+    width: 2em;
+    height: 2em;
+}
+
+.nummering+h3 {
+    text-align: center;
+}
+
+// END QUIZ
+
+// ABOUT PAGE
+.about {
+
+    h1,
+    h2,
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 0.98em;
+    }
+
+    a {
+        color: #eee;
+    }
+
+    .card {
+        border: 1px dashed #eee !important;
+        background: transparent;
+        border-radius: 15px;
+        // border-style: dashed !important;
+    }
 
 }
+
+// END ABOUT PAGE
+
+// QUIZ
+@import "./assets/css/quiz/korQuiz.02.css";
+@import "./assets/css/quiz/instelbareStaafdiagrammen.02.css";
+@import "./assets/css/quiz/staafDiagrammen.01.scss";
+@import "./assets/css/quiz/multiplechoice.01.css";
+// @import "./assets/css/quiz/skin-lay-out.01.css";
+@import "./assets/css/quiz/skin7.01.scss";
+// EIND QUIZ
 </style>

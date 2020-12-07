@@ -216,7 +216,6 @@
 </template>
 
 <script>
-import moment from "moment";
 import axios from "axios";
 // import DatePickers from "./components/JavascriptComponents/DatePickers";
 
@@ -357,13 +356,14 @@ export default {
             this.sortedFavorites = scoresCopy.sort(compare);
         },
         addWeekNumber() {
+            // console.log('this.scores[i]', this.scores[i].time);
             for (let i = 0; i < this.scores.length; i++) {
-                this.scores[i].week_nr = moment(this.scores[i].time).week();
+                // this.scores[i].week_nr = moment(this.scores[i].time).week();
             }
         },
         addYear() {
             for (let i = 0; i < this.scores.length; i++) {
-                this.scores[i].year = moment(this.scores[i].time).year();
+                // this.scores[i].year = moment(this.scores[i].time).year();
             }
         },
         calculateTweetsPerUser(year, week) {

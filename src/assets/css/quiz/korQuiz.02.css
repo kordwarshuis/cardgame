@@ -1,0 +1,112 @@
+
+/* BEGIN PULSEREN */
+.animatedSlow {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animatedSlow.infinite {
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.15, 1.15, 1.15);
+    }
+
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes pulse {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.15, 1.15, 1.15);
+        transform: scale3d(1.15, 1.15, 1.15);
+    }
+
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.pulse {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+}
+/* EIND PULSEREN */
+
+
+
+
+/* BEGIN TOELICHTING */
+.displayNone {
+    display:none !important;
+}
+.almost-visible,
+.almost-visible2
+{
+    transition: all 1s ease-in-out;
+    position: relative;
+    
+    /* extra, naast de :before, nodig voor IE11 */
+    /* cursor: pointer; */
+}
+.almost-visible
+{
+    margin-top: -25em;
+    max-width: 1em;
+    max-height: 1em;
+    display: block;
+    overflow: hidden;
+}
+.almost-visible2
+{
+    margin-top: 1em;
+    max-width: 40em;
+}
+.almost-visible2 video {
+    display: block;
+    z-index: inherit;
+}
+/* EIND TOELICHTING */
+
+
+
+/* BEGIN TEKST ROTEREN */
+.roterenMin90 {
+    transform: rotate(-90deg);
+    transform-origin: bottom left;
+}
+/* EIND TEKST ROTEREN */
+
+
+
+/* BEGIN ONMOGELIJK MAKEN VAN CLICKS OP REEDS BEANTWOORDE VRAGEN */
+.avoid-clicks {
+    pointer-events: none;
+}
+.avoid-clicks video,
+.avoid-clicks audio,
+.avoid-clicks iframe
+
+{
+    pointer-events: auto;
+}
+/* EIND ONMOGELIJK MAKEN VAN CLICKS OP REEDS BEANTWOORDE VRAGEN */

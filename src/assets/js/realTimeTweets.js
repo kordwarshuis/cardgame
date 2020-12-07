@@ -1,8 +1,17 @@
 import store from "../../store/store";
-import moment from "moment";
+import {
+    formatDistance
+} from 'date-fns';
 import {
     twitterLinks
 } from "./twitterLinks";
+// import {
+//     language
+// } from "@/assets/js/language1.js";
+
+// https://www.npmjs.com/package/platform-detect
+import platform from 'platform-detect';
+// import {ios, android, tizen} from 'platform-detect/os.mjs';
 
 export var realTimeTweets = (function () {
     // console showing messages to user
@@ -27,7 +36,7 @@ export var realTimeTweets = (function () {
 
     var numberOfFollowersBackup = 0;
     var numberOfFollowers = numberOfFollowersBackup;
-    
+
     var onlyVerifiedAccountsUsersChoice = false;
 
     var anyOfTheseStringsDefault = [];
@@ -61,12 +70,12 @@ export var realTimeTweets = (function () {
         document.querySelector("#numberOfFollowers").innerHTML = numberOfFollowers;
     }
 
-    function timestampNow() {
-        return moment().format("HH:mm:ss");
-    }
-
     function timestampTweet(time) {
-        return moment.utc(time, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').fromNow();
+        // https://stackoverflow.com/a/2766516/9749918
+        var date = new Date(
+            time.replace(/^\w+ (\w+) (\d+) ([\d:]+) \+0000 (\d+)$/,
+                "$1 $2 $4 $3 UTC"));
+        return formatDistance(date, Date.now());
     }
 
     function reCalculateTimestamp() {
@@ -98,7 +107,7 @@ export var realTimeTweets = (function () {
         var tweets = document.querySelector(".tweets-realtime .tweets");
         var domMenuIcon = document.querySelector(".menu-icon");
         var somethingFound = false;
-        var curatedClass = "";
+        var handpickedClass = "";
 
         // if we dont remove tweets the DOM will be overpopulated and the browser will not keep up
         function removeOldestTweets() {
@@ -106,19 +115,26 @@ export var realTimeTweets = (function () {
 
             for (let i = 0; i < allTweets.length; i++) {
                 // i determines how many tweets will stay, the rest will be deleted
-                if (i > 999) {
-                    allTweets[i].parentNode.removeChild(allTweets[i]);
+                // make a distinction between operating systems
+                if (platform.android || platform.ios || platform.tizen) {
+                    if (i > 99) {
+                        allTweets[i].parentNode.removeChild(allTweets[i]);
+                    }
+                } else {
+                    if (i > 999) {
+                        allTweets[i].parentNode.removeChild(allTweets[i]);
+                    }
                 }
             }
         }
 
         // 
-        // Only for curated tweets; if the first element is true then all is true
-        if (data[0].curatedTweet === true) {
-            // here we take one random tweet from an array, so the tweet stream is not flooded with curated tweets
-            // pick random tweet from curated tweets:
+        // Only for handpicked tweets; if the first element is true then all is true
+        if (data[0].handpickedTweet === true) {
+            // here we take one random tweet from an array, so the tweet stream is not flooded with handpicked tweets
+            // pick random tweet from handpicked tweets:
             let selectedRandomTweet = randomValue(data);
-            // empty the curated tweets array
+            // empty the handpicked tweets array
             data = [];
             // create array with selected element
             data[0] = selectedRandomTweet;
@@ -135,11 +151,11 @@ export var realTimeTweets = (function () {
                 var noneOfTheseStringsCriterium = false;
 
                 // HANDPICKED TWEETS
-                if (data[i].curatedTweet === true) {
-                    curatedClass = " curated ";
-                    tweetTypeText = "<div class='col-12 mb-2 curated-tweet-text text-center'><small class='m-0'>– Handpicked –</small></div>";
+                if (data[i].handpickedTweet === true) {
+                    handpickedClass = " handpicked ";
+                    tweetTypeText = "<div class='col-12 mb-2 handpicked-tweet-text text-center'><small class='m-0'>– Handpicked –</small></div>";
                 } else {
-                    curatedClass = "";
+                    handpickedClass = "";
                     tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>– Real Time –</small></div>";
                 }
 
@@ -187,20 +203,18 @@ export var realTimeTweets = (function () {
                 }
 
                 if ((numberOfFollowersCriterium &&
-                        onlyVerifiedAccountsUsersChoiceCriterium 
-                        &&
-                        anyOfTheseStringsCriterium 
-                        &&
+                        onlyVerifiedAccountsUsersChoiceCriterium &&
+                        anyOfTheseStringsCriterium &&
                         noneOfTheseStringsCriterium
-                        ) 
-                        ||
-                    data[i].curatedTweet === true) {
+                    ) ||
+                    data[i].handpickedTweet === true) {
                     somethingFound = true;
                     domTemp =
-                        "<div class='card mb-3 tweet invisibleTweet " + curatedClass + "'>" +
+                        "<div class='card mb-3 tweet newTweet" + handpickedClass + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
                         tweetTypeText +
+                        "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>" +
                         //IMAGE
                         "<div class='col-auto' >" +
                         "<img class='img-thumbnail float-left' src='" + data[i].user.profile_image_url_https + "' alt=''></img>" +
@@ -254,20 +268,18 @@ export var realTimeTweets = (function () {
 
                 tweets.insertAdjacentHTML("afterbegin", domTemp);
 
-                var invisibleTweets = document.querySelectorAll(".tweet.invisibleTweet");
-                // for (var i=0;i<invisibleTweets.length;i++) {
-                for (var i = invisibleTweets.length - 1; i > -1; i--) {
-                    // this is for give tweets a little fade in so you can see there is something new.
+                var newTweets = document.querySelectorAll(".newTweet");
+                for (var i = newTweets.length - 1; i > -1; i--) {
                     (function (i) {
                         setTimeout(function () {
-                            invisibleTweets[i].classList.add("makeVisible");
+                            newTweets[i].classList.add("displayBlokTweet");
                             setTimeout(function () {
-                                invisibleTweets[i].classList.remove("makeVisible");
-                                invisibleTweets[i].classList.remove("invisibleTweet");
-                            }, 1000);
+                                newTweets[i].classList.remove("newTweet");
+                            }, 100);
                         }, k);
-                        // k = Math.floor(k + ((10000 / invisibleTweets.length) -100  ));
-                        k = k + 10;
+                        // k = k + 10;
+                        // spread available tweets, every 10 sec new tweet set arrives, tweets spread over 9 secs, 1 sec pause
+                        k = k + (Math.floor(9500 / newTweets.length));
                     }(i));
                 }
             }
@@ -282,9 +294,9 @@ export var realTimeTweets = (function () {
     function toggleAllTweets() {
         if (anyOfTheseStrings.length !== 0) {
             anyOfTheseStrings = []; // don't do anyOfTheseStrings.length = 0, that will affect anyOfTheseStringsDefault
-            store.commit("showToast", "All tweets with ‘bitcoin’ in it will show here.");
+            store.commit("showToast", language.tweetStream.message7);
         } else {
-            store.commit("showToast", "Mostly relevant tweets about bitcoin will show here.");
+            store.commit("showToast", language.tweetStream.message8);
             anyOfTheseStrings = anyOfTheseStringsDefault;
         }
 
@@ -342,7 +354,7 @@ export var realTimeTweets = (function () {
     function setNoneOfTheseStringsDefault(a) {
         noneOfTheseStringsDefault = a;
     }
-    
+
     return {
         start: processTwitters,
         toggleAllTweets: toggleAllTweets,

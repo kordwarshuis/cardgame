@@ -8,7 +8,7 @@ import {
 
 export var getJSON = (function () {
     var fetchTweetsLoop;
-    var fetchTweetsLoop2;
+    var fetchTweetsLoopHandpicked;
     var handpicked1;
     var handpicked2;
     var handpicked3;
@@ -18,38 +18,25 @@ export var getJSON = (function () {
 
     // console showing messages to user
     var konsole;
-    var tweets
+    var tweets;
     document.addEventListener("DOMContentLoaded", function (event) {
         konsole = document.querySelector('.console .message');
         tweets = document.querySelector(".tweets-realtime .tweets");
-        console.log('tweets: ', tweets);
     });
 
     function start(source) {
         const mediaQuery = window.matchMedia('(max-width: 767px)');
         console.log("start");
-        store.commit("showToast", "Tweet stream is running.");
-        document.querySelector('.tweet-stream-info-in-stream').classList.add('hidden');
-
-        // show message only on smaller screens where tweet stream does not open initially
-        if (mediaQuery.matches) {
-            setTimeout(function () {
-                store.commit("showToast", "Open Tweet panel to see tweet stream");
-            }, 6000);
+        
+        if (document.querySelector('.tweet-stream-info-in-stream')) {
+            document.querySelector('.tweet-stream-info-in-stream').classList.add('hidden');
         }
-        setTimeout(function () {
-            store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
-        }, 12000);
-
-        setTimeout(function () {
-            store.commit("showToast", "Depending on your chosen settings it may take a while before realtime tweets show.");
-        }, 180000);
 
         var resp;
         var refreshInterval = 10000;
 
-        function fetchData(source, curated) {
-            // console.log('curated: ', curated);
+        function fetchData(source, handpicked) {
+            // console.log('handpicked: ', handpicked);
             var connectionSymbol = document.querySelector('.menu-icon');
             fetch(source)
                 // 1 json
@@ -92,14 +79,14 @@ export var getJSON = (function () {
                     // we need what is insides statuses
                     resp = resp.statuses;
 
-                    // if the json is taken from the curated source, then give each array element a property named curatedTweet
-                    if (curated === true) {
+                    // if the json is taken from the handpicked source, then give each array element a property named handpickedTweet
+                    if (handpicked === true) {
                         resp.forEach(element => {
-                            element.curatedTweet = true;
+                            element.handpickedTweet = true;
                         });
                     } else {
                         resp.forEach(element => {
-                            element.curatedTweet = false;
+                            element.handpickedTweet = false;
                         });
                     }
 
@@ -136,8 +123,8 @@ export var getJSON = (function () {
         handpicked6 = setTimeout(function () {
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 190000);
-        fetchTweetsLoop2 = setInterval(function () {
-            console.log('Fetch curated tweets');
+        fetchTweetsLoopHandpicked = setInterval(function () {
+            console.log('Fetch handpicked tweets');
             konsole.innerHTML = 'Fetch handpicked tweets.';
             fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
         }, 580000);
@@ -152,7 +139,6 @@ export var getJSON = (function () {
     }
 
     function stop() {
-        store.commit("showToast", "Tweet stream is paused.");
         document.querySelector('.tweet-stream-info-in-stream').classList.remove('hidden');
         console.log("stop");
 
@@ -165,8 +151,8 @@ export var getJSON = (function () {
 
         clearInterval(fetchTweetsLoop);
         console.log('fetchTweetsLoop: ', fetchTweetsLoop);
-        clearInterval(fetchTweetsLoop2);
-        console.log('fetchTweetsLoop2: ', fetchTweetsLoop2);
+        clearInterval(fetchTweetsLoopHandpicked);
+        console.log('fetchTweetsLoopHandpicked: ', fetchTweetsLoopHandpicked);
     }
 
     return {

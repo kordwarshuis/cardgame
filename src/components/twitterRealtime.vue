@@ -18,7 +18,6 @@
                             </div>
 
                             <div class="col-md-12 m-0 p-0 ">
-
                                 <!-- START STOP -->
                                 <TwitterRealTimeStartStopToggle class="align-middle inline mr-2" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
 
@@ -48,10 +47,9 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-sm">Filter tweets</span>
                                     </div>
-                                    <input type="text" class="form-control" id="filterTweets" value="Tip: stop stream first" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                    <input type="text" class="form-control" id="filterTweets" value="" aria-label="filter tweet stream" aria-describedby="filter tweet stream">
                                 </div>
                                 <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
-
                             </div>
                         </div>
                     </nav>
@@ -72,7 +70,9 @@
                             </div>
 
                             <div class="col-xs-6 m-0 p-0 mt-1 ">
-                                <button class="btn btn-sm btn-outline-light ml-3 float-right inline clear-selected-tweets-button">Clear</button>
+                                <button class="btn btn-sm btn-outline-light float-right inline clear-selected-tweets-button">Clear</button>
+                                <button class="copyBookmarkedURLsToClipboard btn btn-sm btn-outline-light" style="" title="Copy Links">Copy All</button>
+                                <button class="copyBookmarkedURLsToEmail btn btn-sm btn-outline-light" style="" title="Copy to email">Email</button>
                             </div>
                         </div>
                     </nav>
@@ -84,7 +84,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- END own content -->
         </div>
 
@@ -93,15 +92,13 @@
             <span></span>
             <span class="visuallyhidden">Open/Close Menu</span>
         </label>
-
     </div>
-
 </div>
 </template>
 
 <script>
-import store from "../store/store";
 import TwitterRealTimeStartStopToggle from "@/components/TwitterRealTimeStartStopToggle.vue";
+
 import {
     getJSON
 } from "@/assets/js/getJSON.js";
@@ -111,10 +108,9 @@ import {
 import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
-import moment from "moment";
 
 export default {
-    name: "twitterRealtime3",
+    name: "twitterRealtime",
     data() {
         return {};
     },
@@ -123,7 +119,8 @@ export default {
         TwitterRealTimeStartStopToggle
     },
     mounted() {
-        getJSON.start();
+        setTimeout(function(){getJSON.start()}, 10000);
+        this.hideThisTweet();
         this.copyTweet();
         // this.startStopTweetStream();
         this.disableBodyScroll(".content"); //mixin
@@ -137,15 +134,59 @@ export default {
         this.clearSelectedTweets();
         this.filterTweets();
         this.getBookmarkedTweetsFromLocalStorage();
+        this.getRealtimeTweetsFromLocalStorage();
+        this.setRealtimeTweetsToLocalStorageBeforeUnload();
         this.clock();
+        this.insertAndRemoveMessageToTweetStream();
     },
     methods: {
+        hideThisTweet() {
+            document.addEventListener("click", function (event) {
+                // tweets
+                if (event.target.matches(".tweets-container .tweet .card-body button.close")) {
+                    var selectedTweet = event.target.closest(".tweet");
+                    selectedTweet.style.display = 'none';
+                }
+                // messages in between tweets
+                if (event.target.matches(".tweets-container .tweet-stream-messages button.close")) {
+                    var selectedTweet = event.target.closest(".tweet-stream-messages");
+                    selectedTweet.style.display = 'none';
+                }
+            }, false);
+        },
         clock() {
-            var clock = document.querySelector('.console .timestamp');
+            // https://codepen.io/afarrar/pen/JRaEjP
+            function showTime() {
+                var clock = document.querySelector('.console .timestamp');
 
-            setInterval(function () {
-                clock.innerHTML = moment().format('h:mm:ss');
-            }, 1000);
+                var date = new Date();
+                var h = date.getHours(); // 0 - 23
+                var m = date.getMinutes(); // 0 - 59
+                var s = date.getSeconds(); // 0 - 59
+                // var session = "AM";
+
+                // if (h == 0) {
+                //     h = 12;
+                // }
+
+                // if (h > 12) {
+                //     h = h - 12;
+                //     session = "PM";
+                // }
+
+                h = (h < 10) ? "0" + h : h;
+                m = (m < 10) ? "0" + m : m;
+                s = (s < 10) ? "0" + s : s;
+
+                // var time = h + ":" + m + ":" + s + " " + session;
+                var time = h + ":" + m + ":" + s;
+                clock.innerText = time;
+                clock.textContent = time;
+
+                setTimeout(showTime, 1000);
+            }
+            showTime();
+
         },
         getBookmarkedTweetsFromLocalStorage() {
             var selectedTweets = document.querySelector('.tweets-selected .tweets');
@@ -158,6 +199,31 @@ export default {
         setBookmarkedTweetsToLocalStorage() {
             var selectedTweets = document.querySelector('.tweets-selected .tweets');
             localStorage.setItem("bookmarkedTweets", selectedTweets.innerHTML);
+        },
+        getRealtimeTweetsFromLocalStorage() {
+            var realtimeTweets = document.querySelector('.tweets-realtime .tweets');
+            var val;
+            if (localStorage.getItem("realtimeTweets") !== null) {
+                val = localStorage.getItem("realtimeTweets");
+                realtimeTweets.insertAdjacentHTML("afterbegin", val);
+            }
+        },
+        setRealtimeTweetsToLocalStorage() {
+            var realtimeTweets = document.querySelector('.tweets-realtime .tweets');
+            localStorage.setItem("realtimeTweets", realtimeTweets.innerHTML);
+        },
+        setRealtimeTweetsToLocalStorageBeforeUnload() {
+            var that = this;
+
+            // new tweets are deliverd every 10 sec, hence 10000
+            setInterval(function () {
+                that.setRealtimeTweetsToLocalStorage();
+            }, 10000);
+
+            // doesn't seem to work
+            document.addEventListener('beforeunload', function () {
+                that.setRealtimeTweetsToLocalStorage();
+            }, false);
         },
         filterTweets() {
             // https://schier.co/blog/2014/12/08/wait-for-user-to-stop-typing-using-javascript.html
@@ -193,7 +259,6 @@ export default {
             }
 
             function showResults(searchString) {
-                console.log('searchString: ', searchString);
                 showAllEntries();
 
                 if (searchString !== "") { // als er iets in het zoekveld staat
@@ -236,10 +301,12 @@ export default {
             }, 1000), false);
         },
         clearTweetStream() {
+            var that = this;
             var button = document.querySelector('.clear-tweet-stream-button');
             var tweets = document.querySelector('.tweets-realtime .tweets');
             button.addEventListener('click', function () {
                 tweets.innerHTML = "";
+                that.setRealtimeTweetsToLocalStorage();
             }, false);
         },
         clearSelectedTweets() {
@@ -297,12 +364,8 @@ export default {
         },
         copyTweet() {
             var that = this;
-            // var tweetCopyContainer = document.createElement("div");
-            // tweetCopyContainer.classList.add("tweetCopyContainer", "tweets");
-            // document.querySelector("body").appendChild(tweetCopyContainer);
             document.addEventListener("click", function (event) {
                 if (event.target.matches(".tweets-container .tweet .card-body button.select-tweet")) {
-                    console.log("bingo");
                     var selectedTweet = event.target.closest(".tweet");
                     // document.querySelector(".tweets-selected .tweets").innerHTML = "";
                     document.querySelector(".tweets-selected .tweets").insertAdjacentElement('afterbegin', selectedTweet);
@@ -311,6 +374,98 @@ export default {
                 }
             }, false);
         },
+        insertAndRemoveMessageToTweetStream() {
+            var container = document.querySelector(".tweets-realtime .tweets");
+
+            // array that will contain all keys in language.tweetStream
+            var allTweetStreamMessages = [];
+
+            function insertAndRemoveMessage(a) {
+                var string = "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>";
+                var div = document.createElement("div");
+                div.classList.add('tweet-stream-messages');
+                div.classList.add('card');
+                div.insertAdjacentHTML("afterbegin", string);
+                div.insertAdjacentHTML("beforeend", a);
+
+                // add
+                container.insertAdjacentElement("afterbegin", div);
+
+                // remove
+                setTimeout(function () {
+                    container.removeChild(div);
+                }, 60000);
+            }
+
+            //How to randomize (shuffle) a JavaScript array?
+            //https://stackoverflow.com/a/2450976
+            function shuffle(array) {
+                var currentIndex = array.length,
+                    temporaryValue, randomIndex;
+
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
+
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
+
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
+
+                return array;
+            }
+
+            // push all keys in language.tweetStream into array that we can shuffle
+            for (var k in language.tweetStream) {
+                if (language.tweetStream.hasOwnProperty(k)) {
+                    allTweetStreamMessages.push(k);
+                }
+            }
+
+            shuffle(allTweetStreamMessages);
+
+            // insert a message from the shuffled array. Array will be re-shuffled
+            (function () {
+                var i = 0;
+                setInterval(function () {
+                    if (i >= allTweetStreamMessages.length) {
+                        i = 0;
+                        shuffle(allTweetStreamMessages);
+                    }
+                    // allTweetStreamMessages as key for language.tweetStream
+                    insertAndRemoveMessage(language.tweetStream[allTweetStreamMessages[i]]);
+                    i++;
+                }, 180000);
+            }())
+
+            setTimeout(function () {
+                insertAndRemoveMessage(language.tweetStream.message1);
+            }, 1000);
+
+            setTimeout(function () {
+                insertAndRemoveMessage(language.tweetStream.message5);
+            }, 8000);
+
+            setTimeout(function () {
+                insertAndRemoveMessage(language.tweetStream.message6);
+            }, 12000);
+
+            setTimeout(function () {
+                insertAndRemoveMessage(language.tweetStream.message1);
+            }, 16000);
+
+            setTimeout(function () {
+                insertAndRemoveMessage(language.tweetStream.message1);
+            }, 45000);
+
+            setTimeout(function () {
+                insertAndRemoveMessage(language.tweetStream.message1);
+            }, 130000);
+        }
     }
 };
 
@@ -329,20 +484,27 @@ function slideInMenu() {
 
     function initEvents() {
         const mediaQuery = window.matchMedia('(min-width: 768px)');
-        openbtn.addEventListener("click", toggleMenu);
-        openbtn2.addEventListener("click", toggleMenu);
+        if (openbtn) openbtn.addEventListener("click", toggleMenu);
+        if (openbtn2) openbtn2.addEventListener("click", toggleMenu);
 
         // Create a media condition that targets viewports at least 768px wide
         // Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint
         // Toggle menu to show tweet stream initially only on bigger screens
         if (mediaQuery.matches) {
-            toggleMenu();
+            // open the tweetstream only once
+            if (localStorage.getItem("tweetStreamOpenedOnce") !== "true") {
+                toggleMenu();
+                setTimeout(function () {
+                    toggleMenu();
+                }, 4000);
+
+                localStorage.setItem("tweetStreamOpenedOnce", "true");
+            }
         }
 
-        if (isOpen === true) {
+        if (isOpen === true && document.querySelector("#open-button")) {
             document.querySelector("#open-button").setAttribute("checked", "checked");
         }
-
     }
 
     // after click on clickable item, menu should disappear:
@@ -535,6 +697,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 .menu-icon {
     background: url(../assets/img/twitter/Twitter_Logo_Blue.svg);
     box-shadow: $hamburgerBoxShadow;
+    // position of twitter icon when tweet panel is closed
     position: fixed;
     top: 5px;
     left: -140px;
@@ -573,11 +736,11 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     height: 12px;
 }
 
+// position of twitter icon when tweet panel is opened
 .show-menu .menu-icon {
     background: url(../assets/img/twitter/Twitter_Logo_WhiteOnBlue.svg);
-
     left: auto;
-    right: 0;
+    right: 1em;
 }
 
 .tweets-realtime {
@@ -606,14 +769,14 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 
 .tweets-selected-open-close-button {
     background: url("../assets/img/icons/jv-creative/tweets-selected-open.png") no-repeat center;
-    background-size: cover;
+    background-size: 20px;
     width: 30px;
     height: 30px;
 }
 
 .open .tweets-selected-open-close-button {
-    background: url("../assets/img/icons/jv-creative/tweets-selected-close.png") no-repeat center !important;
-    background-size: cover;
+    background: url("../assets/img/icons/jv-creative/tweets-selected-close.png") no-repeat center;
+    background-size: 20px;
     width: 30px;
     height: 30px;
 }
@@ -622,7 +785,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 .header-tweets-selected {
     color: #eee;
     font-family: poppinsbold;
-    font-size: 2em;
+    font-size: 1.3em;
 }
 
 .select-tweet {

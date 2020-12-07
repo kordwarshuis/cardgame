@@ -6,12 +6,12 @@
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body">
 
-                    <h3 class="pt-sm-2">Misconception</h3>
+                    <h3 class="pt-sm-2">{{ misconception }}</h3>
                     <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 9em; border-radius: 10px;">
                         <!-- <span class="quote">“</span> -->
-                        <p class="typed mb-3">{{ getPrejudice }} …</p>
+                        <p class="typed mb-3">{{ getMisconception }} …</p>
                         <!-- <span class="quote">”</span> -->
-                        <button class="btn btn-outline-light mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
+                        <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
                     </div>
 
                 </div>
@@ -21,9 +21,9 @@
         <div class="col-lg-6 col-sm-6 column2 p-0">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body center" style="">
-                    <h3 class="pt-2" style="color: #5FE2FC;">Reply</h3>
+                    <h3 class="pt-2" style="color: #5FE2FC;">{{ reply }}</h3>
                     <p class="">
-                        <span class="text" style="">{{ this.$store.state.currentCard["short direct answer"] }}</span>
+                        <span class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</span>
                     </p>
                     <hr>
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
@@ -54,9 +54,9 @@
             </div>
         </div>
 
-        <div class="col-lg-12 col-sm-12 m-0" style="position: fixed; bottom: 0; left: 0;background: linear-gradient(to right, #5C34A7, #2376D6);">
+        <div class="footer col-lg-12 col-sm-12 m-0">
             <div>
-                <div style="display: inline-block;">
+                <div>
                     <SocialMedia />
                 </div>
                 <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
@@ -87,15 +87,18 @@ export default {
         // Quiz
     },
     data() {
-        return {}
+        return {
+            misconception: language.misconception,
+            reply: language.reply
+        }
     },
     computed: {
-        getPrejudice: function () {
-            return this.$store.state.currentCard["Prejudice"];
+        getMisconception: function () {
+            return this.$store.state.currentCard["Misconception"];
         }
     },
     watch: {
-        getPrejudice(newValue, oldValue) {
+        getMisconception(newValue, oldValue) {
             this.typeWriter(".typed", newValue, 20);
         }
     },
@@ -104,10 +107,10 @@ export default {
         this.disableBodyScroll(".overlay-fullscreen>div"); //mixin
     },
     methods: {
-        typeWriter(selector, prejudice, interval) {
+        typeWriter(selector, misconception, interval) {
             var audioPlaying = false;
             var text = document.querySelector(selector),
-                textCopy = prejudice,
+                textCopy = misconception,
                 i = 0,
                 clear,
                 pauseBeforeStart = 600;
@@ -232,6 +235,23 @@ export default {
     -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to right, #5C34A7, #2376D6);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.footer>div {
+    margin: 0 auto;
+    text-align: center;
+}
+.footer>div>div {
+    display: inline-block;
+}
+
 // hr {
 
 // }
@@ -323,7 +343,9 @@ export default {
     }
 
     #app .overlay-fullscreen {
-        height: 70%;
+        // height: 70%;
+        min-height: 70% !important;
+        max-height: 90%;
     }
 }
 
