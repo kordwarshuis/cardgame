@@ -106,6 +106,15 @@
 
   <script src="<%= VUE_APP_LANGUAGE_FILE %>"></script>
   
+</head>
+
+<body class="animationEnabled">
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+</body>
   <!-- BEGIN GOOGLE ANALYTICS GA -->
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script src="https://www.googletagmanager.com/gtag/js?id=<%= VUE_APP_GOOGLE_ANALYTICS_ID %>"></script>
@@ -118,14 +127,5 @@
         gtag('config', '<%= VUE_APP_GOOGLE_ANALYTICS_ID %>');
     </script>
   <!-- END GOOGLE ANALYTICS GA -->
-</head>
-
-<body class="animationEnabled">
-  <noscript>
-    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
-      Please enable it to continue.</strong>
-  </noscript>
-  <div id="app"></div>
-</body>
 
 </html>
