@@ -49,7 +49,7 @@ import store from "../store/store";
 import {
     languageEn
 } from "@/assets/js/quiz.language.en.js";
-import interact from 'interactjs';
+// import interact from 'interactjs';
 
 export default {
     name: "Quiz",
@@ -789,41 +789,41 @@ export default {
                             }
 
                             // nadat je versleept hebt, wil je niet dat ze weer kunnen verslepen, hiermee zet je dat uit
-                            interact(deVraag + " .instelbareBalk").resizable(false);
+                            // interact(deVraag + " .instelbareBalk").resizable(false);
                             zijnAlleVragenBeantwoord();
                         }
 
-                        interact(deVraag + " .instelbareBalk")
-                            .resizable({
-                                // https://github.com/taye/interact.js/issues/207
-                                margin: 30,
+                        // interact(deVraag + " .instelbareBalk")
+                        //     .resizable({
+                        //         // https://github.com/taye/interact.js/issues/207
+                        //         margin: 30,
 
-                                // resize from all edges and corners
-                                edges: {
-                                    left: welkeKantenSleepbaar.left,
-                                    right: welkeKantenSleepbaar.right,
-                                    bottom: welkeKantenSleepbaar.bottom,
-                                    top: welkeKantenSleepbaar.top
-                                },
+                        //         // resize from all edges and corners
+                        //         edges: {
+                        //             left: welkeKantenSleepbaar.left,
+                        //             right: welkeKantenSleepbaar.right,
+                        //             bottom: welkeKantenSleepbaar.bottom,
+                        //             top: welkeKantenSleepbaar.top
+                        //         },
 
-                                // keep the edges inside the parent
-                                restrictEdges: {
-                                    outer: "parent",
-                                    endOnly: true,
-                                },
+                        //         // keep the edges inside the parent
+                        //         restrictEdges: {
+                        //             outer: "parent",
+                        //             endOnly: true,
+                        //         },
 
-                                // minimum size
-                                restrictSize: {
-                                    min: {
-                                        width: 0,
-                                        height: 0
-                                    },
-                                },
-                                inertia: true,
-                            }).
-                        on("resizemove", handleResizeMove).
-                        on("resizeend", handleResizeEnd).
-                        on("resizestart", handleResizeStart);
+                        //         // minimum size
+                        //         restrictSize: {
+                        //             min: {
+                        //                 width: 0,
+                        //                 height: 0
+                        //             },
+                        //         },
+                        //         inertia: true,
+                        //     }).
+                        // on("resizemove", handleResizeMove).
+                        // on("resizeend", handleResizeEnd).
+                        // on("resizestart", handleResizeStart);
                     };
 
                     return {
