@@ -10,7 +10,7 @@ import {
   Howl,
   Howler
 } from 'howler';
-import _ from 'lodash';
+// import _ from 'lodash';
 // import interact from 'interactjs';
 // import './assets/js/menu_sideslide';
 // import bootstrap from 'bootstrap';
