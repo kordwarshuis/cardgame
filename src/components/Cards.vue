@@ -63,7 +63,7 @@
         <div v-if="realtimeTweets === 'true'" class="card mb-4 p-0">
             <div class="card-body p-0 justify-content-center align-items-center d-flex">
                 <div class="video-wrapper">
-                    <video src="https://blockchainbird.com/t/media/video/instructions.mp4" muted autoplay controls playsinline></video>
+                    <video id="video-homepage" src="https://blockchainbird.com/t/media/video/instructions.mp4" poster="https://blockchainbird.com/t/media/video/instructions.jpg" muted controls playsinline preload="none"></video>
                 </div>
             </div>
             <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
@@ -136,7 +136,10 @@ export default {
         }
     },
     mounted() {
-        // this.addVisitedToCards();
+        // delay in starting video
+        setTimeout(function () {
+            document.querySelector('#video-homepage').play();
+        }, 7000);
     },
     methods: {
         showAllCategories() {
