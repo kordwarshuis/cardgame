@@ -119,7 +119,7 @@ export default {
         TwitterRealTimeStartStopToggle
     },
     mounted() {
-        getJSON.start();
+        setTimeout(function(){getJSON.start()}, 10000);
         this.hideThisTweet();
         this.copyTweet();
         // this.startStopTweetStream();
