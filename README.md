@@ -1,44 +1,45 @@
 # Introduction
 
-This is a card game that aims to fight Bitcoin misconceptions and Blockchain over-promising gibberish.
+This is a card game engine.
 
-Here are the live versions of both cardsets:
+Here are the live versions of the cardsets:
 * [Bitcoin misconceptions](https://blockchainbird.com/t/btc/)
 * [Blockchain bullshit buster](https://blockchainbird.com/t/bcb/)
+* [Misconception about self sovereign identity](https://blockchainbird.com/t/id/)
 
-This app contains:
-* Card game with misconceptions
+This repo contains:
+* Card game engine
 * Realtime Twitter keyword monitor
 * the scores calculated for the game
+* there's a possibility to create quizzes
 
 The monitor can be used to find misconceptions realtime.
 
-## Why Card game Misconceptions?: 
+Here are the `repos` of the cardgame implementation, or the card _sets_:
+* Repo Bitcoin misconceptions - [cardgame-btc](https://github.com/blockchainbird/cardgame-btc/)
+* Repo Blockchain bullshit buster - [cardgame-bcb](https://github.com/blockchainbird/cardgame-bcb/)
+* Repo Misconception about self sovereign identity - [cardgame-id](https://github.com/blockchainbird/cardgame-id/)
 
-We need to get it right and it needs to be fair. The elaborate explanation is [here](https://github.com/blockchainbird/cards_prejudice/wiki)
+## Why create a Card game and a specific topical stack of cards?
+There's always somebody wrong on the internet. When that itches, We need to get it right, don't we? And it needs to be fair. So we start writing, right away. As if it has urgency and it hasn't been done before....
+
+_No, no, no. stop!_ A cardgame offers a platform to create reusable information. Easy to use, expert-backed and a slow game attached to it. So don't waste your time, use others knowledge and preparatory work.
+
+#### What's the cardgame about?
+You can choose any relevant topic that needs explaining, needs background information, needs it myths busted, etc.
 
 #### Who's right, who's wrong?
 
-The cardgame *does not pretend to be right in everything at all times*. Our objective has been to:
+Most cardgames *don't pretend to be right in everything at all times*. Our objective has been to:
  - present a **nuanced and more complete** take on the matter
  - **substantiate the answers** with empirical data gathered from reknowned sources in the field
  - offer **a way to improve the answers** by anyone via the [Telegram-group](https://t.me/bcbird)
 
 
 ## For who is the cardgame
-
-Our target group likes to observe discussions on social media from a distance. If they'd like to react and spread a balanced neutral message, then it would be without having to take responsibility there (“I think it's an interesting discussion" and "Here I offer some info from respected experts" 
-
-It's somebody who
-- is socially concerned
-- knows how to use social media
-- knows a bit about bitcoin
-- neutral and eager to spread the correct message (neutral abritrary urge)
-
-Important to understand is that the cardgame is only secondairily meant for people who need to be trained about bitcoin and blockchain, those full of "misconceptions".
+Choose your own target group. The idea is however to activate them with the game, like for example a twitter poll. 
 
 ## What do we offer?
-
 Fixed URLs to cards, questions, answers, related video, podcast, opinions of experts, and further reading.
 
 We provide the tools in order to individualize your responses with the fixed URLS in social media:
@@ -46,7 +47,6 @@ We provide the tools in order to individualize your responses with the fixed URL
 2. Snippets selection
 3. Add pre-defined texts (neutral and for ease of use)
 4. Send fixed urls of cards and fixed catergories of cards
-
 
 ## Copyright & License
 
