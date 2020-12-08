@@ -101,32 +101,32 @@ export var getJSON = (function () {
                 });
         }
 
-        fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+        fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
 
 
         // simple way of showing some handpicked tweets
         handpicked1 = setTimeout(function () {
-            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
         }, 6000);
         handpicked2 = setTimeout(function () {
-            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
         }, 12000);
         handpicked3 = setTimeout(function () {
-            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
         }, 25000);
         handpicked4 = setTimeout(function () {
-            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
         }, 45000);
         handpicked5 = setTimeout(function () {
-            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
         }, 80000);
         handpicked6 = setTimeout(function () {
-            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
         }, 190000);
         fetchTweetsLoopHandpicked = setInterval(function () {
             console.log('Fetch handpicked tweets');
             konsole.innerHTML = 'Fetch handpicked tweets.';
-            fetchData("https://blockchainbird.com/t/twitter-phirehose/tweets-quickstart-cors.php", true);
+            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
         }, 580000);
 
 
