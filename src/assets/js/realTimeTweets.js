@@ -5,9 +5,6 @@ import {
 import {
     twitterLinks
 } from "./twitterLinks";
-// import {
-//     language
-// } from "@/assets/js/language1.js";
 
 // https://www.npmjs.com/package/platform-detect
 import platform from 'platform-detect';
