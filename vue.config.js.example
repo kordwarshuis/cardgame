@@ -3,6 +3,7 @@ module.exports = {
   // https://cli.vuejs.org/config/#publicpath
 
   //=============
+  // if your app will run from a sub directory then this is the path to the sub directory
   publicPath: process.env.NODE_ENV === 'production' ? '/path/to/app/' : '/',
   //=============
 
