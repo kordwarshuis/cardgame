@@ -197,7 +197,7 @@ export default new Vuex.Store({
   },
   actions: {
     setProspectHandles() {
-      return axios.get(VUE_APP_PROSPECT_SOCIAL_MEDIA_HANDLES_CSV)
+      return axios.get(process.env.VUE_APP_PROSPECT_SOCIAL_MEDIA_HANDLES_CSV)
         .then(response => {
           this.state.prospectHandles = d3.csvParse(response.data);
         });
