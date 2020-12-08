@@ -69,10 +69,10 @@ Go to https://blockchainbird.com/t/btc/, use the Tweet stream to find an appeali
 No FAQs yet
 
 ### Comments? 
-Go to our *open Telegram group* 'Bitcoin Misconceptions' [here](https://t.me/bcbird)
+Send a PM to our developers
 
 ### Category filter
-They are filterable per category on the overview page https://blockchainbird.com/t/btc/ 
+They are filterable per category on the overview page, e.g. https://blockchainbird.com/t/btc/ 
 
 The button bar at the top: "All" deselects the category option. The other buttons: The chosen category is in the URL and can also be used to send a subset of cards to a target. A card has been _attached to only one_ category.
 
