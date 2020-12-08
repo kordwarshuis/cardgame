@@ -30,16 +30,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-.news-ticker-container .news-ticker {
-    display: none;
-}
-
-.btc .news-ticker-container .news-ticker-btc,
-.bcb .news-ticker-container .news-ticker-bcb,
-.ssi .news-ticker-container .news-ticker-ssi {
-    display: block;
-}
-
 /*
  *  BEGIN NEWS TICKER
  */
