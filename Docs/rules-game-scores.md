@@ -4,6 +4,8 @@ First read:
 - [README](../README.md)
 - [Home](Home.md) of the documentation
 
+# THIS IS AN EXAMPLE FILE, EACH CARD STACK CAN HAVE ITS OWN RULES IMPLEMENTED
+
 ### What's the "game" in the cardgame
 Periodically we count the number of likes, retweets and responses you get on the use of a card link. You score points relatively to the number of followers you have. Weekly we create **a high score list** that grants the players eternal fame. 
 ![Grand score list all times](../Images/grand-champion.jpg)
