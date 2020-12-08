@@ -1,33 +1,29 @@
 <template>
-<div style="animation-duration: 1000s;" class="news-ticker-container">
-    <p class="news-ticker news-ticker-btc">
-        <img style="height: 50px;margin-left:500px" src="../assets/img/animated-gif/mens18.gif" alt=""><span style="margin-right: 3000px;">“Bitcoin is for criminals”</span>
-        <img style="height: 50px; transform: scaleX(-1);" src="../assets/img/animated-gif/mens71.gif" alt=""><span style="margin-right: 3000px;">“Bitcoin is one big money laundering machine.”</span>
-        <img style="height: 50px; transform: scaleX(-1);" src="../assets/img/animated-gif/mens09.gif" alt=""><span style="margin-right: 3000px;">“There are only 21 million bitcoins.”</span>
-        <img style="height: 50px;" src="../assets/img/animated-gif/c13.gif" alt=""><span style="margin-right: 3000px;">“Quantum computers will destroy Bitcoin.”</span>
-        <img style="height: 50px;" src="../assets/img/animated-gif/webpeople-tweety.gif" alt=""><span style="margin-right: 3000px;">“Bitcoin is a new tulip mania.”</span>
-        <img style="height: 50px;" src="../assets/img/animated-gif/mens41.gif" alt=""><span style="margin-right: 3000px;">“Bitcoin has been hacked many times.”</span>
-        <img style="height: 50px;" src="../assets/img/animated-gif/birds11.gif" alt=""><span style="margin-right: 3000px;">“Bitcoin is a ponzi scheme.”</span>
-    </p>
-
-    <p class="news-ticker news-ticker-bcb">
-        <img style="height: 50px;margin-left:500px" src="../assets/img/animated-gif/mens18.gif" alt=""><span style="margin-right: 3000px;">“I Haven‘t Seen Any Meaningful Blockchain Apps.”</span>
-        <img style="height: 50px; transform: scaleX(-1);" src="../assets/img/animated-gif/mens71.gif" alt=""><span style="margin-right: 3000px;">“We Can Put Anything On The Blockchain.”</span>
-        <img style="height: 50px; transform: scaleX(-1);" src="../assets/img/animated-gif/mens09.gif" alt=""><span style="margin-right: 3000px;">“Public Blockchains Violate Privacy Regulations.”</span>
-    </p>
-
-    <p class="news-ticker news-ticker-ssi">
-        <img style="height: 50px;margin-left:500px" src="../assets/img/animated-gif/mens18.gif" alt=""><span style="margin-right: 3000px;">“I Would Never Use A Wallet That Restricted Me To What I Can Put In It.”</span>
-        <img style="height: 50px; transform: scaleX(-1);" src="../assets/img/animated-gif/mens71.gif" alt=""><span style="margin-right: 3000px;">“Privacy Has Gone On The Web; Who Cares.”</span>
-        <img style="height: 50px; transform: scaleX(-1);" src="../assets/img/animated-gif/mens09.gif" alt=""><span style="margin-right: 3000px;">“I‘ve Got Nothing To Hide! They Can Check Up On Me.”</span>
-        <img style="height: 50px;" src="../assets/img/animated-gif/c13.gif" alt=""><span style="margin-right: 3000px;">“Duplicate Digital Identities Just Won‘t Work.”</span>
-    </p>
-</div>
+<div style="animation-duration: 1000s;" class="news-ticker-container" v-html="content"></div>
 </template>
 
 <script>
 export default {
-    name: "NewsTicker"
+    name: "NewsTicker",
+    data: function () {
+        return {
+            content: ""
+        }
+    },
+    mounted() {
+        this.getContent();
+    },
+    methods: {
+        getContent() {
+            return axios.get(process.env.VUE_APP_NEWSTICKER_SOURCE)
+                .then(response => {
+                    this.content = response.data;
+                }).catch(function (error) {
+                    console.log("We have a problem: " + error);
+                });
+        }
+    }
+
 };
 </script>
 
