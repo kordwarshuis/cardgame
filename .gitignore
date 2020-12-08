@@ -35,11 +35,10 @@ yarn-error.log*
 /public/php/writeCSV.php
 
 # Bash script
+live.*.sh
+local.*.sh
 live.sh
-live.bcb.sh
-live.btc.sh
-live.ssi.sh
-local.btc.sh
+
 
 # Vue source config files
 vue.config.*.js
