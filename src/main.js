@@ -20,16 +20,6 @@ import VueBootstrapToasts from 'vue-bootstrap-toasts';
 import linkify from 'vue-linkify';
 // import animated from 'animate.css';
 
-// Redirects
-import {
-  redirects
-} from '@/assets/js/redirects';
-if (redirects !== undefined) {
-  redirects();
-} else {
-  console.log("No Redirects found");
-}
-
 Vue.use(d3);
 Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
