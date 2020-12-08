@@ -5,7 +5,6 @@ node_modules
 # no .env except .env.example
 *.env
 
-
 # local env files
 # .env.local
 # .env.*.local
@@ -43,10 +42,8 @@ live.ssi.sh
 local.btc.sh
 
 # Vue source config files
-vue.config.bcb.js
-vue.config.btc.js
-vue.config.ssi.js
-vue.config.test.js
+vue.config.*.js
+vue.config.js
 
 # source htaccess files
 *.htaccess
