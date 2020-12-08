@@ -58,18 +58,19 @@
         </h3>
     </div>
 
-    <!-- THE CARDS -->
+    
     <div class="card-columns mb-5">
-        <div v-if="realtimeTweets === 'true'" class="card mb-4 p-0">
+        <!-- HOMEPAGEVIDEO -->
+        <div v-if="homepageVideo === 'true'" class="card mb-4 p-0">
             <div class="card-body p-0 justify-content-center align-items-center d-flex">
                 <div class="video-wrapper">
-                    <video id="video-homepage" src="https://blockchainbird.com/t/media/video/instructions.mp4" poster="https://blockchainbird.com/t/media/video/instructions.jpg" muted controls playsinline preload="none"></video>
+                    <video id="video-homepage" :src="homepageVideoPathToVideo" :poster="homepageVideoPathToPoster" muted controls playsinline preload="none"></video>
                 </div>
             </div>
             <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
             </div>
         </div>
-
+        <!-- THE CARDS -->
         <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.misconception" class="card mb-4 p-0">
             <div class="card-body p-0 align-items-center d-flex">
                 <a :data-id="item['id']" :key="item.misconception" @click="showCardIntro" class="p-1">
@@ -133,6 +134,9 @@ export default {
             windowLocationOrigin: window.location.origin,
             appId: process.env.VUE_APP_ID,
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
+            homepageVideo: process.env.VUE_APP_HOMEPAGE_VIDEO,
+            homepageVideoPathToVideo: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
+            homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE
         }
     },
     mounted() {
