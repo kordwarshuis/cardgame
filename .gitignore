@@ -46,6 +46,7 @@ vue.config.js
 
 # source htaccess files
 *.htaccess
+.htaccess
 
 
 #video
