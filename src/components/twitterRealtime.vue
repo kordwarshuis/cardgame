@@ -221,9 +221,9 @@ export default {
             }, 10000);
 
             // doesn't seem to work
-            document.addEventListener('beforeunload', function () {
-                that.setRealtimeTweetsToLocalStorage();
-            }, false);
+            // document.addEventListener('beforeunload', function () {
+            //     that.setRealtimeTweetsToLocalStorage();
+            // }, false);
         },
         filterTweets() {
             // https://schier.co/blog/2014/12/08/wait-for-user-to-stop-typing-using-javascript.html
