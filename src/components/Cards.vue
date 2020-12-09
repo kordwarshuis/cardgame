@@ -58,7 +58,6 @@
         </h3>
     </div>
 
-    
     <div class="card-columns mb-5">
         <!-- HOMEPAGEVIDEO -->
         <div v-if="homepageVideo === 'true'" class="card mb-4 p-0">
@@ -142,7 +141,10 @@ export default {
     mounted() {
         // delay in starting video
         setTimeout(function () {
-            document.querySelector('#video-homepage').play();
+            var videoHomepage = document.querySelector('#video-homepage');
+            if (videoHomepage) {
+                videoHomepage.play();
+            }
         }, 7000);
     },
     methods: {
