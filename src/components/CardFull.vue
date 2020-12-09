@@ -116,7 +116,7 @@
                 <RelatedCards />
                 <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button>
                 <div class="center m-4 mb-0 p-3 " style="border-top: 1px dashed #eee;">
-                    <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" href="https://web.telegram.org/#/im?p=@bcbird">Comment in our Telegram group</a></p>
+                    <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
                 </div>
 
                 <Person3 />
@@ -158,7 +158,9 @@ export default {
             readOn: language.readOn,
             counterQuestions: language.counterQuestions,
             analogy: language.analogy,
-            flowerPower: language.flowerPower
+            flowerPower: language.flowerPower,
+            discussionLink: process.env.VUE_APP_DISCUSSION_LINK,
+            discussionLinkDescription: process.env.VUE_APP_DISCUSSION_LINK_DESCRIPTION
         }
     },
     mixins: [disableBodyScrollMixin],
