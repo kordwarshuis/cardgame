@@ -12,8 +12,7 @@
   <meta name="author" content="<%= VUE_APP_AUTHOR %>" />
 
   <!-- OPEN GRAPH -->
-  <meta property="og:image" itemprop="image"
-    content="<%= VUE_APP_SOCIAL_MEDIA_IMAGE %>" />
+  <meta property="og:image" itemprop="image" content="<%= VUE_APP_SOCIAL_MEDIA_IMAGE %>" />
   <meta property="og:image:width" content="<%= VUE_APP_SOCIAL_MEDIA_IMAGE_WIDTH %>" />
   <meta property="og:image:height" content="<%=  VUE_APP_SOCIAL_MEDIA_IMAGE_HEIGHT  %>" />
   <meta property="og:title" content="<%= VUE_APP_TITLE %> <%= VUE_APP_TITLE_2 %>" />
@@ -93,11 +92,25 @@
   <script>
     // Sound
     var sound = true;
-    var alert, alertSpecialAccount, dong, go, whoosh, whoosh2, whistle, pur, click, electricity, typewriter,quizPlop,whawhaTrumpet,laughManiacal,cannedLaughter,blur,bouncing3,gasp,drumCrash1,surprisedGasp,fanfare,epiphany,quizEnd,dragging,draggingEnd,quizCorrectDragging,quizCorrectAnswer,quizWrongAnswer;
+    var alert, alertSpecialAccount, dong, go, whoosh, whoosh2, whistle, pur, click, electricity, typewriter, quizPlop,
+      whawhaTrumpet, laughManiacal, cannedLaughter, blur, bouncing3, gasp, drumCrash1, surprisedGasp, fanfare, epiphany,
+      quizEnd, dragging, draggingEnd, quizCorrectDragging, quizCorrectAnswer, quizWrongAnswer;
   </script>
 
   <script src="<%= VUE_APP_LANGUAGE_FILE %>"></script>
-  
+  <!-- BEGIN GOOGLE ANALYTICS GA -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script src="https://www.googletagmanager.com/gtag/js?id=<%= VUE_APP_GOOGLE_ANALYTICS_ID %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', '<%= VUE_APP_GOOGLE_ANALYTICS_ID %>');
+  </script>
+  <!-- END GOOGLE ANALYTICS GA -->
 </head>
 
 <body class="animationEnabled">
@@ -107,17 +120,5 @@
   </noscript>
   <div id="app"></div>
 </body>
-  <!-- BEGIN GOOGLE ANALYTICS GA -->
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script src="https://www.googletagmanager.com/gtag/js?id=<%= VUE_APP_GOOGLE_ANALYTICS_ID %>"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', '<%= VUE_APP_GOOGLE_ANALYTICS_ID %>');
-    </script>
-  <!-- END GOOGLE ANALYTICS GA -->
 
 </html>
