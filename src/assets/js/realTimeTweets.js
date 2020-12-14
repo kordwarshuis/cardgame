@@ -3,6 +3,9 @@ import {
     formatDistance
 } from 'date-fns';
 import {
+    convertTwitterTimeStamp
+} from "@/assets/js/convertTwitterTimeStamp.js";
+import {
     twitterLinks
 } from "./twitterLinks";
 
@@ -68,11 +71,7 @@ export var realTimeTweets = (function () {
     }
 
     function timestampTweet(time) {
-        // https://stackoverflow.com/a/2766516/9749918
-        var date = new Date(
-            time.replace(/^\w+ (\w+) (\d+) ([\d:]+) \+0000 (\d+)$/,
-                "$1 $2 $4 $3 UTC"));
-        return formatDistance(date, Date.now());
+        return formatDistance(convertTwitterTimeStamp(time), Date.now());
     }
 
     function reCalculateTimestamp() {
