@@ -11,7 +11,7 @@
             </div>
 
             <div class="row justify-content-center ">
-                
+
                 <!-- ALL TIME TWEETS -->
                 <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
                     <div class="card border-primary m-0 p-0 mb-3">
@@ -41,23 +41,23 @@
                                         Retweets
                                     </th>
                                 </tr>
-                                <tr class="border-bottom" v-for="item in tweetersAllTime" :key="item[0]">
+                                <tr class="border-bottom" v-for="item in tweetersAllTime" :key="item.name">
                                     <td class="text-left pr-2">
                                         <!-- trick to get a numbering in the table -->
                                         {{ tweetersAllTime.indexOf(item)+1}}
                                     </td>
                                     <td class="text-left">
-                                        <img class="mt-1 mr-2 mb-1" :src="item[2]" alt="" />
+                                        <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
                                     </td>
 
                                     <td>
-                                        {{ item[0] }}
+                                        {{ item.name }}
                                     </td>
                                     <td class="text-right">
-                                        {{ item[1] }}
+                                        {{ item.tweets }}
                                     </td>
                                     <td class="text-right">
-                                        {{ item[3] }}
+                                        {{ item.retweets }}
                                     </td>
                                 </tr>
                             </table>
@@ -86,12 +86,12 @@
                                         Tweets
                                     </th>
                                 </tr>
-                                <tr v-for="item in tweetersMostRecentWeek" :key="item[0]">
+                                <tr v-for="item in tweetersMostRecentWeek" :key="item.name">
                                     <td>
-                                        {{ item[0] }}
+                                        {{ item.name }}
                                     </td>
                                     <td class="text-right">
-                                        {{ item[1] }}
+                                        {{ item.tweets }}
                                     </td>
                                 </tr>
                             </table>
@@ -120,12 +120,12 @@
                                         Tweets
                                     </th>
                                 </tr>
-                                <tr v-for="item in tweetersMostRecentWeekMinusOne" :key="item[0]">
+                                <tr v-for="item in tweetersMostRecentWeekMinusOne" :key="item.name">
                                     <td>
-                                        {{ item[0] }}
+                                        {{ item.name }}
                                     </td>
                                     <td class="text-right">
-                                        {{ item[1] }}
+                                        {{ item.tweets }}
                                     </td>
                                 </tr>
                             </table>
@@ -151,12 +151,12 @@
                                         Tweets
                                     </th>
                                 </tr>
-                                <tr v-for="item in tweetersMostRecentWeekMinusTwo" :key="item[0]">
+                                <tr v-for="item in tweetersMostRecentWeekMinusTwo" :key="item.name">
                                     <td>
-                                        {{ item[0] }}
+                                        {{ item.name }}
                                     </td>
                                     <td class="text-right">
-                                        {{ item[1] }}
+                                        {{ item.tweets }}
                                     </td>
                                 </tr>
                             </table>
@@ -242,7 +242,6 @@ export default {
             scores: [],
             mostRecentYear: 0,
             mostRecentWeek: 0,
-            userNamesCountedAndSorted: [],
             tweetersAllTime: [],
             tweetersMostRecentWeek: [],
             tweetersMostRecentWeekMinusOne: [],
@@ -258,13 +257,13 @@ export default {
                 .then(response => {
                     this.scores = response.data.scores;
                     this.addCalendarData();
-                    this.scores = this.convertIntObj(this.scores); // turn strings that contain integers into integers
+                    // this.scores = this.convertIntObj(this.scores); // turn strings that contain integers into integers.
+
                 })
                 .catch(error => {
                     console.error("Fetching the data did not succeed.")
                 })
-                .finally(() => {
-                })
+                .finally(() => {})
         },
         addCalendarData() {
             const that = this;
@@ -303,12 +302,67 @@ export default {
             this.calculateScores();
         },
         calculateScores: function () {
-            this.tweetersAllTime = this.calculateTweetsPerUser();
-            this.tweetersMostRecentWeek = this.calculateTweetsPerUser(this.mostRecentYear, this.mostRecentWeek);
-            this.tweetersMostRecentWeekMinusOne = this.calculateTweetsPerUser(this.mostRecentYear, this.mostRecentWeek - 1);
-            this.tweetersMostRecentWeekMinusTwo = this.calculateTweetsPerUser(this.mostRecentYear, this.mostRecentWeek - 2);
+            this.tweetersAllTime = this.calculateScorePerUser();
+            this.tweetersMostRecentWeek = this.calculateScorePerUser(this.mostRecentYear, this.mostRecentWeek);
+            this.tweetersMostRecentWeekMinusOne = this.calculateScorePerUser(this.mostRecentYear, this.mostRecentWeek - 1);
+            this.tweetersMostRecentWeekMinusTwo = this.calculateScorePerUser(this.mostRecentYear, this.mostRecentWeek - 2);
         },
 
+        calculateScorePerUser(year, week) {
+            var selection = [];
+            var usernamesCounted;
+            var userNamesCountedAndSorted = [];
+
+            // if no arguments are given then take all
+            if (year === undefined && week === undefined) {
+                selection = JSON.parse(JSON.stringify(this.scores));
+            } else {
+                for (let i = 0; i < this.scores.length; i++) {
+                    if (this.scores[i].year === year && this.scores[i].week_nr === week) {
+                        selection.push(this.scores[i]);
+                    }
+                }
+            }
+
+            // Count particular key value from array of object, https://stackoverflow.com/a/38695084
+            usernamesCounted = selection.reduce(function (obj, v) {
+                // increment or set the property
+                // `(obj[v.status] || 0)` returns the property value if defined
+                // or 0 ( since `undefined` is a falsy value
+                obj[v.user_name] = (obj[v.user_name] || 0) + 1;
+                // return the updated object
+                return obj;
+                // set the initial value as an object
+            }, {});
+
+            // Sorting object property by values, https://stackoverflow.com/a/1069840
+            for (var user_name in usernamesCounted) {
+                userNamesCountedAndSorted.push({name: user_name, tweets: usernamesCounted[user_name]});
+            }
+                console.log('userNamesCountedAndSorted: ', userNamesCountedAndSorted);
+                // debugger;
+
+            userNamesCountedAndSorted.sort(function (a, b) {
+                return b.tweets - a.tweets;
+            });
+
+            for (let i = 0; i < userNamesCountedAndSorted.length; i++) {
+                userNamesCountedAndSorted[i].retweets = 0; // retweets per user
+                for (let j = 0; j < selection.length; j++) {
+                    if (userNamesCountedAndSorted[i].name === selection[j].user_name) {
+                        userNamesCountedAndSorted[i].image = selection[j].tweet_avatar
+
+                        if (selection[j].retweets !== "") { // no retweets is empty string
+                            userNamesCountedAndSorted[i].retweets = userNamesCountedAndSorted[i].retweets + parseInt(selection[j].retweets, 10);
+                        }
+                    }
+                }
+            }
+
+            // copy the array to the data object with same name
+            return userNamesCountedAndSorted;
+
+        },
         compareNumbers(a, b) {
             return a - b;
         },
@@ -324,60 +378,6 @@ export default {
                 }
             }
             return res;
-        },
-        calculateTweetsPerUser(year, week) {
-            var userNamesCountedAndSorted = [];
-            var selection = [];
-            // if no arguments are given then take all
-            if (year === undefined && week === undefined) {
-                selection = JSON.parse(JSON.stringify(this.scores));
-            } else {
-                for (let i = 0; i < this.scores.length; i++) {
-                    if (this.scores[i].year === year && this.scores[i].week_nr === week) {
-                        selection.push(this.scores[i]);
-                    }
-                }
-            }
-
-            // Count particular key value from array of object, https://stackoverflow.com/a/38695084
-            var usernamesCounted = selection.reduce(function (obj, v) {
-                // increment or set the property
-                // `(obj[v.status] || 0)` returns the property value if defined
-                // or 0 ( since `undefined` is a falsy value
-                obj[v.user_name] = (obj[v.user_name] || 0) + 1;
-                // return the updated object
-                return obj;
-                // set the initial value as an object
-            }, {});
-
-            // Sorting object property by values, https://stackoverflow.com/a/1069840
-            for (var user_name in usernamesCounted) {
-                userNamesCountedAndSorted.push([user_name, usernamesCounted[user_name]]);
-            }
-
-            userNamesCountedAndSorted.sort(function (a, b) {
-                return b[1] - a[1];
-            });
-
-            // after the selection is made, we have to look up the images again
-            for (let i = 0; i < userNamesCountedAndSorted.length; i++) {
-                var totalRetweets = 0;
-                userNamesCountedAndSorted[i][3] = 0; // retweets per user
-                for (let j = 0; j < this.scores.length; j++) {
-                    if (userNamesCountedAndSorted[i][0] === this.scores[j].user_name) {
-                        userNamesCountedAndSorted[i][2] = this.scores[j].tweet_avatar
-
-                        if (this.scores[j].retweets !== "") {
-                            userNamesCountedAndSorted[i][3] = userNamesCountedAndSorted[i][3] + parseInt(this.scores[j].retweets, 10);
-                        }
-                    }
-
-                }
-            }
-
-            // copy the array to the data object with same name
-            return userNamesCountedAndSorted;
-
         }
     },
     components: {
