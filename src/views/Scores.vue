@@ -40,6 +40,9 @@
                                     <th class="text-right">
                                         Retweets
                                     </th>
+                                    <th class="text-right">
+                                        Likes
+                                    </th>
                                 </tr>
                                 <tr class="border-bottom" v-for="item in tweetersAllTime" :key="item.name">
                                     <td class="text-left pr-2">
@@ -58,6 +61,9 @@
                                     </td>
                                     <td class="text-right">
                                         {{ item.retweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.likes }}
                                     </td>
                                 </tr>
                             </table>
@@ -348,12 +354,16 @@ export default {
 
             for (let i = 0; i < userNamesCountedAndSorted.length; i++) {
                 userNamesCountedAndSorted[i].retweets = 0; // retweets per user
+                userNamesCountedAndSorted[i].likes = 0; // likes per user
                 for (let j = 0; j < selection.length; j++) {
                     if (userNamesCountedAndSorted[i].name === selection[j].user_name) {
                         userNamesCountedAndSorted[i].image = selection[j].tweet_avatar
 
-                        if (selection[j].retweets !== "") { // no retweets is empty string
+                        if (selection[j].retweets !== "") { // zero is empty string
                             userNamesCountedAndSorted[i].retweets = userNamesCountedAndSorted[i].retweets + parseInt(selection[j].retweets, 10);
+                        }
+                        if (selection[j].likes !== "") { // zero is empty string
+                            userNamesCountedAndSorted[i].likes = userNamesCountedAndSorted[i].likes + parseInt(selection[j].likes, 10);
                         }
                     }
                 }
