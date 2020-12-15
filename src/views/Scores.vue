@@ -52,7 +52,122 @@
                                     <td class="text-left">
                                         <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
                                     </td>
+                                    <td>
+                                        {{ item.name }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.tweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.retweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.likes }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- TWEETS IN LAST WEEK -->
+                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
+                    <div class="card border-primary m-0 p-0 mb-3 ">
+                        <div class="card-header">
+                            <h2 class="">All Tweeps in week {{ mostRecentWeek }}</h2>
+                            <hr>
+                            <p>All Tweeps in the most recent week</p>
+                            <hr>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-responsive m-0 p-0">
+                                <tr>
+                                    <th class="text-left pr-2">
+                                        #
+                                    </th>
+                                    <th class="text-left">
+                                        Avatar
+                                    </th>
+                                    <th>
+                                        User name
+                                    </th>
+                                    <th class="text-right">
+                                        Tweets
+                                    </th>
+                                    <th class="text-right">
+                                        Retweets
+                                    </th>
+                                    <th class="text-right">
+                                        Likes
+                                    </th>
+                                </tr>
+                                <tr v-for="item in tweetersMostRecentWeek" :key="item.name">
+                                    <td class="text-left pr-2">
+                                        <!-- trick to get a numbering in the table -->
+                                        {{ tweetersMostRecentWeek.indexOf(item)+1}}
+                                    </td>
+                                    <td class="text-left">
+                                        <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
+                                    </td>
+                                    <td>
+                                        {{ item.name }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.tweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.retweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.likes }}
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center ">
+
+                <!-- TWEETS IN LAST WEEK -1  -->
+                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
+                    <div class="card border-primary m-0 p-0 mb-3">
+                        <div class="card-header">
+                            <h2 class="">All Tweeps in week {{ mostRecentWeek -1 }}</h2>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-responsive m-0 p-0">
+                                <tr>
+                                    <th class="text-left pr-2">
+                                        #
+                                    </th>
+                                    <th class="text-left">
+                                        Avatar
+                                    </th>
+                                    <th>
+                                        User name
+                                    </th>
+                                    <th class="text-right">
+                                        Tweets
+                                    </th>
+                                    <th class="text-right">
+                                        Retweets
+                                    </th>
+                                    <th class="text-right">
+                                        Likes
+                                    </th>
+                                </tr>
+                                <tr v-for="item in tweetersMostRecentWeekMinusOne" :key="item.name">
+                                    <td class="text-left pr-2">
+                                        <!-- trick to get a numbering in the table -->
+                                        {{ tweetersMostRecentWeekMinusOne.indexOf(item)+1}}
+                                    </td>
+                                    <td class="text-left">
+                                        <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
+                                    </td>
                                     <td>
                                         {{ item.name }}
                                     </td>
@@ -73,74 +188,6 @@
                     </div>
                 </div>
 
-                <!-- TWEETS IN LAST WEEK -->
-                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
-                    <div class="card border-primary m-0 p-0 mb-3 ">
-                        <div class="card-header">
-                            <h2 class="">All Tweeps in week {{ mostRecentWeek }}</h2>
-                            <hr>
-                            <p>All Tweeps in the most recent week</p>
-                            <hr>
-                        </div>
-                        <div class="card-body">
-                            <table>
-                                <tr>
-                                    <th>
-                                        User name
-                                    </th>
-                                    <th class="text-right">
-                                        Tweets
-                                    </th>
-                                </tr>
-                                <tr v-for="item in tweetersMostRecentWeek" :key="item.name">
-                                    <td>
-                                        {{ item.name }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ item.tweets }}
-                                    </td>
-                                </tr>
-                            </table>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center ">
-
-                <!-- TWEETS IN LAST WEEK -1  -->
-                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
-                    <div class="card border-primary m-0 p-0 mb-3">
-                        <div class="card-header">
-                            <h2 class="">All Tweeps in week {{ mostRecentWeek -1 }}</h2>
-                        </div>
-                        <div class="card-body">
-                            <table>
-                                <tr>
-                                    <th>
-                                        User name
-                                    </th>
-                                    <th class="text-right">
-                                        Tweets
-                                    </th>
-                                </tr>
-                                <tr v-for="item in tweetersMostRecentWeekMinusOne" :key="item.name">
-                                    <td>
-                                        {{ item.name }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ item.tweets }}
-                                    </td>
-                                </tr>
-                            </table>
-
-                        </div>
-
-                    </div>
-                </div>
-
                 <!-- TWEETS IN LAST WEEK -2  -->
                 <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
                     <div class="card border-primary m-0 p-0 mb-3">
@@ -148,21 +195,46 @@
                             <h2 class="">All Tweeps in week {{ mostRecentWeek -2 }}</h2>
                         </div>
                         <div class="card-body">
-                            <table>
+                            <table class="table table-responsive m-0 p-0">
                                 <tr>
+                                    <th class="text-left pr-2">
+                                        #
+                                    </th>
+                                    <th class="text-left">
+                                        Avatar
+                                    </th>
                                     <th>
                                         User name
                                     </th>
                                     <th class="text-right">
                                         Tweets
                                     </th>
+                                    <th class="text-right">
+                                        Retweets
+                                    </th>
+                                    <th class="text-right">
+                                        Likes
+                                    </th>
                                 </tr>
                                 <tr v-for="item in tweetersMostRecentWeekMinusTwo" :key="item.name">
+                                    <td class="text-left pr-2">
+                                        <!-- trick to get a numbering in the table -->
+                                        {{ tweetersMostRecentWeekMinusTwo.indexOf(item)+1}}
+                                    </td>
+                                    <td class="text-left">
+                                        <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
+                                    </td>
                                     <td>
                                         {{ item.name }}
                                     </td>
                                     <td class="text-right">
                                         {{ item.tweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.retweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.likes }}
                                     </td>
                                 </tr>
                             </table>
@@ -343,10 +415,13 @@ export default {
 
             // Sorting object property by values, https://stackoverflow.com/a/1069840
             for (var user_name in usernamesCounted) {
-                userNamesCountedAndSorted.push({name: user_name, tweets: usernamesCounted[user_name]});
+                userNamesCountedAndSorted.push({
+                    name: user_name,
+                    tweets: usernamesCounted[user_name]
+                });
             }
-                console.log('userNamesCountedAndSorted: ', userNamesCountedAndSorted);
-                // debugger;
+            console.log('userNamesCountedAndSorted: ', userNamesCountedAndSorted);
+            // debugger;
 
             userNamesCountedAndSorted.sort(function (a, b) {
                 return b.tweets - a.tweets;
