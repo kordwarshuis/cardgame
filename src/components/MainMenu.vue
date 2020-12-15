@@ -21,9 +21,9 @@
             </li>
 
             <!-- SCORES -->
-            <!-- <li class="nav-item" v-if="showScoresPage === 'true'">
+            <li class="nav-item" v-if="showScoresPage === 'true'">
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">{{ menuItemScores }}</router-link>
-            </li> -->
+            </li>
 
             <!-- QUIZ -->
             <li class="nav-item" v-if="quizPage === 'true'">
