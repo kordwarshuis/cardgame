@@ -11,8 +11,10 @@
             </div>
 
             <div class="row justify-content-center ">
+                
+                <!-- ALL TIME TWEETS -->
                 <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
-                    <div class="card border-primary m-0 p-0 mb-3"  >
+                    <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
                             <h2 class="">All Time Tweeps</h2>
                             <hr>
@@ -39,10 +41,10 @@
                                         Retweets
                                     </th>
                                 </tr>
-                                <tr class="border-bottom" v-for="item in userNamesCountedAndSorted" :key="item[0]">
+                                <tr class="border-bottom" v-for="item in tweetersAllTime" :key="item[0]">
                                     <td class="text-left pr-2">
                                         <!-- trick to get a numbering in the table -->
-                                        {{ userNamesCountedAndSorted.indexOf(item)+1}}
+                                        {{ tweetersAllTime.indexOf(item)+1}}
                                     </td>
                                     <td class="text-left">
                                         <img class="mt-1 mr-2 mb-1" :src="item[2]" alt="" />
@@ -65,10 +67,11 @@
                     </div>
                 </div>
 
+                <!-- TWEETS IN LAST WEEK -->
                 <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
                     <div class="card border-primary m-0 p-0 mb-3 ">
                         <div class="card-header">
-                            <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek }}</h2>
+                            <h2 class="">All Tweeps in week {{ mostRecentWeek }}</h2>
                             <hr>
                             <p>All Tweeps in the most recent week</p>
                             <hr>
@@ -83,7 +86,7 @@
                                         Tweets
                                     </th>
                                 </tr>
-                                <tr v-for="item in userNamesCountedAndSorted2.tweetersMostRecentWeek" :key="item[0]">
+                                <tr v-for="item in tweetersMostRecentWeek" :key="item[0]">
                                     <td>
                                         {{ item[0] }}
                                     </td>
@@ -100,10 +103,12 @@
             </div>
 
             <div class="row justify-content-center ">
+
+                <!-- TWEETS IN LAST WEEK -1  -->
                 <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
                     <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
-                            <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek -1 }}</h2>
+                            <h2 class="">All Tweeps in week {{ mostRecentWeek -1 }}</h2>
                         </div>
                         <div class="card-body">
                             <table>
@@ -115,7 +120,7 @@
                                         Tweets
                                     </th>
                                 </tr>
-                                <tr v-for="item in userNamesCountedAndSorted2.tweetersMostRecentWeekMinusOne" :key="item[0]">
+                                <tr v-for="item in tweetersMostRecentWeekMinusOne" :key="item[0]">
                                     <td>
                                         {{ item[0] }}
                                     </td>
@@ -130,10 +135,11 @@
                     </div>
                 </div>
 
+                <!-- TWEETS IN LAST WEEK -2  -->
                 <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
                     <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
-                            <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek -2 }}</h2>
+                            <h2 class="">All Tweeps in week {{ mostRecentWeek -2 }}</h2>
                         </div>
                         <div class="card-body">
                             <table>
@@ -145,7 +151,7 @@
                                         Tweets
                                     </th>
                                 </tr>
-                                <tr v-for="item in userNamesCountedAndSorted2.tweetersMostRecentWeekMinusTwo" :key="item[0]">
+                                <tr v-for="item in tweetersMostRecentWeekMinusTwo" :key="item[0]">
                                     <td>
                                         {{ item[0] }}
                                     </td>
@@ -217,161 +223,114 @@
 
 <script>
 import axios from "axios";
+
+import {
+    getWeek,
+    getYear
+} from 'date-fns';
+
+import {
+    convertTwitterTimeStamp
+} from "@/assets/js/convertTwitterTimeStamp.js";
+
 // import DatePickers from "./components/JavascriptComponents/DatePickers";
 
 export default {
     name: "Scores",
     data() {
         return {
-            // counter: 0,
             scores: [],
-            // sortedTweets: "",
-            // sortedFavorites: "",
-            userNamesCountedAndSorted: []
-        }
-    },
-    computed: {
-        // userNamesCountedAndSortedFirst5: function() {
-        //     // console.log("regen");
-        //     // console.log('userNamesCountedAndSorted.slice(0, 5): ', this.userNamesCountedAndSorted.slice(0, 5));
-        //     return userNamesCountedAndSorted.slice(0, 5);
-        // },
-        userNamesCountedAndSorted2: function () {
-            var tweetersMostRecentWeek;
-            var tweetersMostRecentWeekMinusOne;
-            var tweetersMostRecentWeekMinusTwo;
-
-            // we want to find the most recent weeks. So first we search for most recent year
-            var mostRecentYear = Math.max.apply(Math, this.scores.map(function (o) {
-                return o.year;
-            }));
-
-            // create subselection array with only most recent year
-            var userNamesCountedAndSortedOnlyRecentYear = [];
-            // create subselection array with only most recent week
-            var mostRecentWeek = 0;
-            var userNamesCountedAndSortedOnlyRecentWeek = [];
-
-            for (let i = 0; i < this.scores.length; i++) {
-                if (this.scores[i].year === mostRecentYear) {
-                    userNamesCountedAndSortedOnlyRecentYear.push(this.scores[i]);
-                }
-            }
-
-            mostRecentWeek = Math.max.apply(Math, userNamesCountedAndSortedOnlyRecentYear.map(function (o) {
-                return o.week_nr;
-            }))
-
-            for (let i = 0; i < userNamesCountedAndSortedOnlyRecentYear.length; i++) {
-                if (userNamesCountedAndSortedOnlyRecentYear[i].week_nr === mostRecentWeek) {
-                    userNamesCountedAndSortedOnlyRecentWeek.push(userNamesCountedAndSortedOnlyRecentYear[i]);
-                }
-            }
-
-            tweetersMostRecentWeek = this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek);
-            tweetersMostRecentWeekMinusOne = this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek - 1);
-            tweetersMostRecentWeekMinusTwo = this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek - 2);
-            
-            // this.$store.tweetersMostRecentWeek = tweetersMostRecentWeek;
-            // this.$store.tweetersMostRecentWeekMinusOne = tweetersMostRecentWeekMinusOne;
-            // this.$store.tweetersMostRecentWeekMinusTwo = tweetersMostRecentWeekMinusTwo;
-            // console.log('tweetersMostRecentWeek[0][0]: ', tweetersMostRecentWeek[0][0]);
-            // this.$store.state.topScorer = tweetersMostRecentWeek[0][0];
-            this.$store.commit("setTopScorer", tweetersMostRecentWeek[0][0]);
-
-
-
-            return {
-                tweetersMostRecentWeek: tweetersMostRecentWeek,
-                tweetersMostRecentWeekMinusOne: tweetersMostRecentWeekMinusOne,
-                tweetersMostRecentWeekMinusTwo: tweetersMostRecentWeekMinusTwo,
-                mostRecentWeek: mostRecentWeek
-            };
+            mostRecentYear: 0,
+            mostRecentWeek: 0,
+            userNamesCountedAndSorted: [],
+            tweetersAllTime: [],
+            tweetersMostRecentWeek: [],
+            tweetersMostRecentWeekMinusOne: [],
+            tweetersMostRecentWeekMinusTwo: []
         }
     },
     mounted: function () {
         this.fetchScores();
     },
     methods: {
-        // incrementCounter: function () {
-        //     return this.counter += 1;
-        // },
-
-        // testDatePicked(datePicked) {
-        //     // this.calculateHighestTweet(moment(datePicked, "YYYY-MM-DD").week());
-
-        //     alert("Er wordt nog niks met deze keuze gedaan maar hier is alvast de keuze weergegeven: " + datePicked +
-        //         " Dit is weeknr: " + moment(datePicked, "YYYY-MM-DD").week());
-        // },
         fetchScores() {
             return axios.get(process.env.VUE_APP_CARDGAME_SCORES)
                 .then(response => {
                     this.scores = response.data.scores;
-                    // this.calculateHighestTweet();
-                    // this.calculateHighestFollowers();
-                    this.addWeekNumber();
-                    this.addYear();
-                    // this.calculateTweetsPerUser(2020, 15);
-                    // this.calculateTweetsPerUser();
-                    this.allTweets();
+                    this.addCalendarData();
+                    this.scores = this.convertIntObj(this.scores); // turn strings that contain integers into integers
                 })
-                .catch(error => {})
+                .catch(error => {
+                    console.error("Fetching the data did not succeed.")
+                })
                 .finally(() => {
-                    // this.loading = false
                 })
         },
-        calculateHighestTweet(a) {
-            // https://stackoverflow.com/a/1129270
-            function compare(a, b) {
-                if (a.weekreport[0].retweet_count < b.weekreport[0].retweet_count) {
-                    return 1;
+        addCalendarData() {
+            const that = this;
+
+            function addWeekNumbers() {
+                for (let i = 0; i < that.scores.length; i++) {
+                    that.scores[i].week_nr = getWeek(convertTwitterTimeStamp(that.scores[i].time));
                 }
-                if (a.weekreport[0].retweet_count > b.weekreport[0].retweet_count) {
-                    return -1;
-                }
-                return 0;
             }
 
-            // make a copy, not by reference
-            var scoresCopy = JSON.parse(JSON.stringify(this.scores));
-            var myArray = scoresCopy.filter(function (obj) {
-                return obj.weekreport.weeknumber !== 2;
-            });
-
-            this.sortedTweets = scoresCopy.sort(compare);
-        },
-        calculateHighestFollowers(a) {
-            // https://stackoverflow.com/a/1129270
-            function compare(a, b) {
-                if (a.weekreport[0].favorite_count < b.weekreport[0].favorite_count) {
-                    return 1;
+            function addYears() {
+                for (let i = 0; i < that.scores.length; i++) {
+                    that.scores[i].year = getYear(convertTwitterTimeStamp(that.scores[i].time));
                 }
-                if (a.weekreport[0].favorite_count > b.weekreport[0].favorite_count) {
-                    return -1;
-                }
-                return 0;
             }
 
-            var scoresCopy = JSON.parse(JSON.stringify(this.scores));
-            this.sortedFavorites = scoresCopy.sort(compare);
+            addWeekNumbers();
+            addYears();
+            this.getMostRecentWeekAndYear();
         },
-        addWeekNumber() {
-            // console.log('this.scores[i]', this.scores[i].time);
-            for (let i = 0; i < this.scores.length; i++) {
-                // this.scores[i].week_nr = moment(this.scores[i].time).week();
-            }
+        getMostRecentWeekAndYear() {
+            const that = this;
+            var week = 0;
+            // you first have to find the most recent year before you can search for the most recent week
+            this.mostRecentYear = Math.max.apply(Math, that.scores.map(function (o) {
+                return o.year;
+            }))
+
+            this.mostRecentWeek = Math.max.apply(Math, that.scores.map(function (o) {
+                if (o.year === that.mostRecentYear) {
+                    week = o.week_nr;
+                }
+                return week;
+            }))
+
+            this.calculateScores();
         },
-        addYear() {
-            for (let i = 0; i < this.scores.length; i++) {
-                // this.scores[i].year = moment(this.scores[i].time).year();
+        calculateScores: function () {
+            this.tweetersAllTime = this.calculateTweetsPerUser();
+            this.tweetersMostRecentWeek = this.calculateTweetsPerUser(this.mostRecentYear, this.mostRecentWeek);
+            this.tweetersMostRecentWeekMinusOne = this.calculateTweetsPerUser(this.mostRecentYear, this.mostRecentWeek - 1);
+            this.tweetersMostRecentWeekMinusTwo = this.calculateTweetsPerUser(this.mostRecentYear, this.mostRecentWeek - 2);
+        },
+
+        compareNumbers(a, b) {
+            return a - b;
+        },
+        // converts strings that represent an integer to an integer
+        // https://stackoverflow.com/a/61057671/9749918
+        convertIntObj(obj) {
+            const res = {}
+            for (const key in obj) {
+                res[key] = {};
+                for (const prop in obj[key]) {
+                    const parsed = parseInt(obj[key][prop], 10);
+                    res[key][prop] = isNaN(parsed) ? obj[key][prop] : parsed;
+                }
             }
+            return res;
         },
         calculateTweetsPerUser(year, week) {
             var userNamesCountedAndSorted = [];
             var selection = [];
-
+            // if no arguments are given then take all
             if (year === undefined && week === undefined) {
-                selection = this.scores;
+                selection = JSON.parse(JSON.stringify(this.scores));
             } else {
                 for (let i = 0; i < this.scores.length; i++) {
                     if (this.scores[i].year === year && this.scores[i].week_nr === week) {
@@ -419,20 +378,7 @@ export default {
             // copy the array to the data object with same name
             return userNamesCountedAndSorted;
 
-        },
-        allTweets() {
-            this.userNamesCountedAndSorted = this.calculateTweetsPerUser();
         }
-    },
-    created() {
-        // ScoreAPI.getScores()
-        //   .then(scores => {
-        //     this.scores = scores
-        //   })
-        //   .catch(error => {})
-        //   .finally(() => {
-        //     this.loading = false
-        //   })
     },
     components: {
         // DatePickers
@@ -443,7 +389,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-
 .card {
     border: 1px dashed #eee !important;
     background: #45517A;
@@ -452,10 +397,10 @@ export default {
     // border-style: dashed !important;
 }
 
-tr, td {
+tr,
+td {
     color: #eee;
 }
-
 
 ol {
     list-style-position: inside;
