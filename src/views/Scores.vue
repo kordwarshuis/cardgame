@@ -13,7 +13,7 @@
             <div class="row justify-content-center ">
 
                 <!-- ALL TIME TWEETS -->
-                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
+                <div class="col-lg-12 col-md-12 col-sm-12 m-0 p-0 pr-1">
                     <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
                             <h2 class="">All Time Tweeps</h2>
@@ -43,8 +43,15 @@
                                     <th class="text-right">
                                         Likes
                                     </th>
+                                    <th class="text-right">
+                                        Replies
+                                    </th>
+                                    <th class="text-right">
+                                        Points
+                                    </th>
                                 </tr>
-                                <tr class="border-bottom" v-for="item in tweetersAllTime" :key="item.name">
+                                <template v-for="item in tweetersAllTime">
+                                <tr class="border-bottom"  :key="item.name">
                                     <td class="text-left pr-2">
                                         <!-- trick to get a numbering in the table -->
                                         {{ tweetersAllTime.indexOf(item)+1}}
@@ -64,14 +71,22 @@
                                     <td class="text-right">
                                         {{ item.likes }}
                                     </td>
+                                    <td class="text-right">
+                                        {{ item.replies }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.points }}
+                                    </td>
                                 </tr>
+                                <tr colspan="8"></tr>
+                                </template>
                             </table>
                         </div>
                     </div>
                 </div>
 
                 <!-- TWEETS IN LAST WEEK -->
-                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
+                <div class="col-lg-12 col-md-12 col-sm-12 m-0 p-0 pl-1">
                     <div class="card border-primary m-0 p-0 mb-3 ">
                         <div class="card-header">
                             <h2 class="">All Tweeps in week {{ mostRecentWeek }}</h2>
@@ -100,6 +115,12 @@
                                     <th class="text-right">
                                         Likes
                                     </th>
+                                    <th class="text-right">
+                                        Replies
+                                    </th>
+                                    <th class="text-right">
+                                        Points
+                                    </th>
                                 </tr>
                                 <tr v-for="item in tweetersMostRecentWeek" :key="item.name">
                                     <td class="text-left pr-2">
@@ -121,6 +142,12 @@
                                     <td class="text-right">
                                         {{ item.likes }}
                                     </td>
+                                    <td class="text-right">
+                                        {{ item.replies }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.points }}
+                                    </td>
                                 </tr>
                             </table>
 
@@ -133,13 +160,13 @@
             <div class="row justify-content-center ">
 
                 <!-- TWEETS IN LAST WEEK -1  -->
-                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
+                <div class="col-lg-12 col-md-12 col-sm-12 m-0 p-0 pr-1">
                     <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
                             <h2 class="">All Tweeps in week {{ mostRecentWeek -1 }}</h2>
                         </div>
-                        <div class="card-body">
-                            <table class="table table-responsive m-0 p-0">
+                        <div class="card-body ">
+                            <table class="table table-responsive">
                                 <tr>
                                     <th class="text-left pr-2">
                                         #
@@ -158,6 +185,12 @@
                                     </th>
                                     <th class="text-right">
                                         Likes
+                                    </th>
+                                    <th class="text-right">
+                                        Replies
+                                    </th>
+                                    <th class="text-right">
+                                        Points
                                     </th>
                                 </tr>
                                 <tr v-for="item in tweetersMostRecentWeekMinusOne" :key="item.name">
@@ -180,16 +213,20 @@
                                     <td class="text-right">
                                         {{ item.likes }}
                                     </td>
+                                    <td class="text-right">
+                                        {{ item.replies }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.points }}
+                                    </td>
                                 </tr>
                             </table>
-
                         </div>
-
                     </div>
                 </div>
 
                 <!-- TWEETS IN LAST WEEK -2  -->
-                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
+                <div class="col-lg-12 col-md-12 col-sm-12 m-0 p-0 pl-1">
                     <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
                             <h2 class="">All Tweeps in week {{ mostRecentWeek -2 }}</h2>
@@ -215,6 +252,12 @@
                                     <th class="text-right">
                                         Likes
                                     </th>
+                                    <th class="text-right">
+                                        Replies
+                                    </th>
+                                    <th class="text-right">
+                                        Points
+                                    </th>
                                 </tr>
                                 <tr v-for="item in tweetersMostRecentWeekMinusTwo" :key="item.name">
                                     <td class="text-left pr-2">
@@ -235,6 +278,12 @@
                                     </td>
                                     <td class="text-right">
                                         {{ item.likes }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.replies }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.points }}
                                     </td>
                                 </tr>
                             </table>
@@ -420,20 +469,19 @@ export default {
                     tweets: usernamesCounted[user_name]
                 });
             }
-            console.log('userNamesCountedAndSorted: ', userNamesCountedAndSorted);
-            // debugger;
-
-            userNamesCountedAndSorted.sort(function (a, b) {
-                return b.tweets - a.tweets;
-            });
 
             for (let i = 0; i < userNamesCountedAndSorted.length; i++) {
+                userNamesCountedAndSorted[i].replies = 0; // replies per user
                 userNamesCountedAndSorted[i].retweets = 0; // retweets per user
                 userNamesCountedAndSorted[i].likes = 0; // likes per user
+                userNamesCountedAndSorted[i].points = 0; // points per user
                 for (let j = 0; j < selection.length; j++) {
                     if (userNamesCountedAndSorted[i].name === selection[j].user_name) {
                         userNamesCountedAndSorted[i].image = selection[j].tweet_avatar
 
+                        if (selection[j].replies !== "") { // zero is empty string
+                            userNamesCountedAndSorted[i].replies = userNamesCountedAndSorted[i].replies + parseInt(selection[j].replies, 10);
+                        }
                         if (selection[j].retweets !== "") { // zero is empty string
                             userNamesCountedAndSorted[i].retweets = userNamesCountedAndSorted[i].retweets + parseInt(selection[j].retweets, 10);
                         }
@@ -442,7 +490,14 @@ export default {
                         }
                     }
                 }
+
+                userNamesCountedAndSorted[i].points = userNamesCountedAndSorted[i].replies + userNamesCountedAndSorted[i].retweets + userNamesCountedAndSorted[i].likes;
+
             }
+
+            userNamesCountedAndSorted.sort(function (a, b) {
+                return b.points - a.points;
+            });
 
             // copy the array to the data object with same name
             return userNamesCountedAndSorted;
@@ -485,6 +540,10 @@ export default {
 tr,
 td {
     color: #eee;
+}
+
+th:last-child, td:last-child {
+    background: rgb(4, 132, 218);
 }
 
 ol {
