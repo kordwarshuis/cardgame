@@ -51,34 +51,46 @@
                                     </th>
                                 </tr>
                                 <template v-for="item in tweetersAllTime">
-                                <tr class="border-bottom"  :key="item.name">
-                                    <td class="text-left pr-2">
-                                        <!-- trick to get a numbering in the table -->
-                                        {{ tweetersAllTime.indexOf(item)+1}}
-                                    </td>
-                                    <td class="text-left">
-                                        <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
-                                    </td>
-                                    <td>
-                                        {{ item.name }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ item.tweets }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ item.retweets }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ item.likes }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ item.replies }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ item.points }}
-                                    </td>
-                                </tr>
-                                <tr colspan="8"></tr>
+                                    <tr class="border-bottom" :key="item.name">
+                                        <td class="text-left pr-2">
+                                            <!-- trick to get a numbering in the table -->
+                                            {{ tweetersAllTime.indexOf(item)+1}}
+                                        </td>
+                                        <td class="text-left">
+                                            <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
+                                        </td>
+                                        <td>
+                                            <a @click="getAllTweetsOfUser(item.name)">{{ item.name }}</a>
+                                            <template v-for="item2 in allTweetsOfUser">
+                                                <div v-if="item.name === item2.name" :key="item2.id" class="card m-2 allTweetsOfUser">
+                                                    <div class="card-body m-0 p-2">
+                                                        <p><a target="_blank" rel="noopener" :href="item2.url">Go to tweet</a></p>
+                                                        <p v-html="item2.text"></p>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.tweets }}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.retweets }}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.likes }}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.replies }}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.points }}
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td colspan="8">
+                                            
+                                        </td>
+                                    </tr> -->
                                 </template>
                             </table>
                         </div>
@@ -350,6 +362,9 @@
 
 <script>
 import axios from "axios";
+import {
+    twitterLinks
+} from "../assets/js/twitterLinks";
 
 import {
     getWeek,
@@ -372,7 +387,8 @@ export default {
             tweetersAllTime: [],
             tweetersMostRecentWeek: [],
             tweetersMostRecentWeekMinusOne: [],
-            tweetersMostRecentWeekMinusTwo: []
+            tweetersMostRecentWeekMinusTwo: [],
+            allTweetsOfUser: []
         }
     },
     mounted: function () {
@@ -503,6 +519,18 @@ export default {
             return userNamesCountedAndSorted;
 
         },
+        getAllTweetsOfUser(text) {
+            for (let i = 0; i < this.scores.length; i++) {
+                if (this.scores[i].user_name === text) {
+                    this.allTweetsOfUser.push({
+                        id: this.scores[i].tweet_id,
+                        name: this.scores[i].user_name,
+                        url: this.scores[i].url,
+                        text: this.scores[i].tweet_text
+                    });
+                }
+            }
+        },
         compareNumbers(a, b) {
             return a - b;
         },
@@ -542,7 +570,8 @@ td {
     color: #eee;
 }
 
-th:last-child, td:last-child {
+th:last-child,
+td:last-child {
     background: rgb(4, 132, 218);
 }
 
