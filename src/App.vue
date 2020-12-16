@@ -1026,5 +1026,22 @@ footer {
 @import "./assets/css/quiz/multiplechoice.01.css";
 // @import "./assets/css/quiz/skin-lay-out.01.css";
 @import "./assets/css/quiz/skin7.01.scss";
-// EIND QUIZ
+// END QUIZ
+
+// SCORES
+.allTweetsOfUser {
+    font-size: 0.7em;
+    color: #555;
+    // background: rgb(191, 207, 241);
+}
+
+.allTweetsOfUser a {
+    color: #eee;
+}
+
+#app > section > div > div > div > div.col-lg-12.col-md-12.col-sm-12.m-0.p-0.pr-1 > div > div.card-body > table > tr > td > div > div > p > img {
+    width: 20px !important;
+}
+// END SCORES
+
 </style>
