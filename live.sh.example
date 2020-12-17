@@ -13,4 +13,4 @@
 npm run build
 
 # COPY TO LIVE SERVER
-rsync -vurt --delete dist/. xxxxx@xxxxx.com:/xxx/xxx/xxxxx/t/btc/
+rsync -vurt --delete dist/. xxxxx@xxxxx.com:/path/to/dir/
