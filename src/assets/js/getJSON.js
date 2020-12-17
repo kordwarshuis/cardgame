@@ -107,27 +107,27 @@ export var getJSON = (function () {
         // simple way of showing some handpicked tweets
         handpicked1 = setTimeout(function () {
             fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        }, 6000);
+        }, 0);
         handpicked2 = setTimeout(function () {
             fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        }, 12000);
+        }, 60000);
         handpicked3 = setTimeout(function () {
             fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        }, 25000);
-        handpicked4 = setTimeout(function () {
-            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        }, 45000);
-        handpicked5 = setTimeout(function () {
-            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        }, 80000);
-        handpicked6 = setTimeout(function () {
-            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        }, 190000);
-        fetchTweetsLoopHandpicked = setInterval(function () {
-            console.log('Fetch handpicked tweets');
-            konsole.innerHTML = 'Fetch handpicked tweets.';
-            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        }, 580000);
+        }, 180000);
+        // handpicked4 = setTimeout(function () {
+        //     fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
+        // }, 45000);
+        // handpicked5 = setTimeout(function () {
+        //     fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
+        // }, 80000);
+        // handpicked6 = setTimeout(function () {
+        //     fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
+        // }, 190000);
+        // fetchTweetsLoopHandpicked = setInterval(function () {
+        //     console.log('Fetch handpicked tweets');
+        //     konsole.innerHTML = 'Fetch handpicked tweets.';
+        //     fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
+        // }, 580000);
 
 
         fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
@@ -145,9 +145,9 @@ export var getJSON = (function () {
         clearTimeout(handpicked1);
         clearTimeout(handpicked2);
         clearTimeout(handpicked3);
-        clearTimeout(handpicked4);
-        clearTimeout(handpicked5);
-        clearTimeout(handpicked6);
+        // clearTimeout(handpicked4);
+        // clearTimeout(handpicked5);
+        // clearTimeout(handpicked6);
 
         clearInterval(fetchTweetsLoop);
         console.log('fetchTweetsLoop: ', fetchTweetsLoop);

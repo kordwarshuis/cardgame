@@ -394,7 +394,7 @@ export default {
                 // remove
                 setTimeout(function () {
                     container.removeChild(div);
-                }, 60000);
+                }, 12000);
             }
 
             //How to randomize (shuffle) a JavaScript array?
@@ -452,11 +452,11 @@ export default {
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message6);
-            }, 12000);
+            }, 20000);
 
-            setTimeout(function () {
-                insertAndRemoveMessage(language.tweetStream.message1);
-            }, 16000);
+            // setTimeout(function () {
+            //     insertAndRemoveMessage(language.tweetStream.message1);
+            // }, 16000);
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message1);
