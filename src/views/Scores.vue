@@ -487,6 +487,7 @@ export default {
             }
 
             for (let i = 0; i < userNamesCountedAndSorted.length; i++) {
+                console.log('userNamesCountedAndSorted[i]: ', userNamesCountedAndSorted[i]);
                 userNamesCountedAndSorted[i].replies = 0; // replies per user
                 userNamesCountedAndSorted[i].retweets = 0; // retweets per user
                 userNamesCountedAndSorted[i].likes = 0; // likes per user
@@ -507,7 +508,7 @@ export default {
                     }
                 }
 
-                userNamesCountedAndSorted[i].points = userNamesCountedAndSorted[i].replies + userNamesCountedAndSorted[i].retweets + userNamesCountedAndSorted[i].likes;
+                userNamesCountedAndSorted[i].points = userNamesCountedAndSorted[i].tweets + userNamesCountedAndSorted[i].replies + userNamesCountedAndSorted[i].retweets + userNamesCountedAndSorted[i].likes;
 
             }
 
