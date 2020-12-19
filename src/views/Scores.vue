@@ -487,7 +487,6 @@ export default {
             }
 
             for (let i = 0; i < userNamesCountedAndSorted.length; i++) {
-                console.log('userNamesCountedAndSorted[i]: ', userNamesCountedAndSorted[i]);
                 userNamesCountedAndSorted[i].replies = 0; // replies per user
                 userNamesCountedAndSorted[i].retweets = 0; // retweets per user
                 userNamesCountedAndSorted[i].likes = 0; // likes per user
