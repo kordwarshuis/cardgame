@@ -693,26 +693,6 @@ a.overlay__close:not(.overlay__close-cross):hover,
     min-height: 2em;
 }
 
-#attentionSeeker {
-    display: none;
-    // display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    // transform: translate(-50%, 0);
-    width: 100%;
-    height: 100%;
-    // border: 3px solid #900;
-    background: transparent url(./assets/img/animated-gif/party.gif) no-repeat center;
-    background-size: contain;
-    z-index: 9;
-    pointer-events: none;
-}
-
-#attentionSeeker.visible {
-    display: block !important;
-}
-
 .card-video {
     width: 6em;
     float: left;
