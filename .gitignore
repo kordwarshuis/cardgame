@@ -56,3 +56,4 @@ _credits.txt
 
 #css
 src/assets/css/*.css
+src/assets/css/quiz/*.css
