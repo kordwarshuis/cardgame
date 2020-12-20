@@ -487,14 +487,6 @@ body {
     }
 }
 
-.bcb {
-    background-color: $backgroundBCB;
-}
-
-.ssi {
-    background-color: $backgroundSSI;
-}
-
 h1,
 h2,
 h3,
