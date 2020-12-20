@@ -471,7 +471,7 @@ body {
     font-size: 0.9rem;
     min-height: 100%;
     color: $text;
-    background-color: $background;
+    background-color: $color1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -565,7 +565,7 @@ a:focus {
 }
 
 .border {
-    border: 1px solid $_border1 !important;
+    border: 1px solid $color2 !important;
 }
 
 // https://codepen.io/joeyhoer/pen/BmqIx
@@ -588,16 +588,7 @@ hr {
 /* het sluiten van de eerste popup: */
 .overlay__close,
 /* het sluiten van de tweede popup: */
-button // related Items
-
-// .relatedItems a,
-/* alle links in de tweede popup: */
-// .modal-content a
-/* het menu met alle categorieen */
-// .categoryLinks a 
-    {
-    // border: 3px solid $linksBorder;
-    /* border-radius: 5px; */
+button {
     border: none;
     color: $linksText;
     display: inline-block;
