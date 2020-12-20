@@ -995,7 +995,6 @@ footer {
 @import "./assets/css/quiz/instelbareStaafdiagrammen.02.css";
 @import "./assets/css/quiz/staafDiagrammen.01.scss";
 @import "./assets/css/quiz/multiplechoice.01.css";
-// @import "./assets/css/quiz/skin-lay-out.01.css";
 @import "./assets/css/quiz/skin7.01.scss";
 // END QUIZ
 
