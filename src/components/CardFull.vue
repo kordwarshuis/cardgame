@@ -396,14 +396,7 @@ export default {
     margin-left: $cardFullTextIndent;
 }
 
-// .content-item a {
-//     color: $cardFullBlockLink;
-//     background: $cardFullBlockBackground;
-
-// }
-
 .modal-content {
-    // background: $cardFullBackground;
     background: #2F3558 !important; //Suddenly needs important, can't explain why
 }
 
