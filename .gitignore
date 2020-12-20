@@ -53,3 +53,6 @@ vue.config.js
 video/
 
 _credits.txt
+
+#css
+src/assets/css/*.css
