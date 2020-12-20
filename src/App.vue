@@ -479,7 +479,7 @@ body {
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     body {
-        background-image: url(./assets/img/background-blocks.svg);
+        background-image: url(https://blockchainbird.com/t/media/img/background-blocks.svg);
         background-repeat: no-repeat;
         background-position: left bottom;
         background-attachment: fixed;
