@@ -470,7 +470,7 @@ body {
     font-family: poppinsregular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 0.9rem;
     min-height: 100%;
-    color: $text;
+    color: $color3;
     background-color: $color1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -527,7 +527,7 @@ p {
 
 a {
     text-decoration: none;
-    color: $generalLinksText;
+    color: $color5;
     outline: none;
 }
 
@@ -538,7 +538,7 @@ a.light {
 
 a:hover,
 a:focus {
-    color: $generalLinksTextHover;
+    color: $color5;
     outline: none;
 }
 
@@ -548,7 +548,7 @@ a:focus {
 
 .cards a:focus h2,
 a:focus {
-    outline: 3px solid #eee;
+    outline: 3px solid $color3;
 }
 
 .nav a:focus {
@@ -576,13 +576,13 @@ hr {
 
 .menu hr {
     margin: 0.35em auto;
-    background-image: radial-gradient(closest-side, $hr1menu, 100%);
+    background-image: radial-gradient(closest-side, $color4, 100%);
 }
 
 .menu hr:after {
-    background-color: $hr1menu;
-    border: 4px solid $hr1menu;
-    box-shadow: -10px 10px 0, 10px -10px 0 $hr1menu;
+    background-color: $color4;
+    border: 4px solid $color4;
+    box-shadow: -10px 10px 0, 10px -10px 0 $color4;
 }
 
 /* het sluiten van de eerste popup: */
@@ -590,7 +590,7 @@ hr {
 /* het sluiten van de tweede popup: */
 button {
     border: none;
-    color: $linksText;
+    color: $color5;
     display: inline-block;
     padding: 0.5em;
     margin: 0.3em;
@@ -709,7 +709,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 
 .toast-container>div>div {
     color: #111;
-    background-color: #eee;
+    background-color: $color3;
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
 }
 
@@ -744,7 +744,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .tweet-stream-info-in-stream {
-    color: #eee;
+    color: $color3;
     font-size: 2em;
     text-align: center;
 }
@@ -756,7 +756,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 .tweet-stream-messages {
     background: linear-gradient(to right, #5C34A7, #2376D6);
     border-radius: 10px;
-    color: #eee;
+    color: $color3;
     padding: 1em;
     width: 100%;
     margin: 0 0 1em;
@@ -831,7 +831,7 @@ footer {
 
 .search-results-container em {
     background: rgba(240, 224, 131, 0.904);
-    // border: 3px dashed #eee;
+    // border: 3px dashed $color3;
     color: #222;
     font-style: normal;
     padding-left: 0.3em;
@@ -976,11 +976,11 @@ footer {
     }
 
     a {
-        color: #eee;
+        color: $color3;
     }
 
     .card {
-        border: 1px dashed #eee !important;
+        border: 1px dashed $color3 !important;
         background: transparent;
         border-radius: 15px;
         // border-style: dashed !important;
@@ -1006,7 +1006,7 @@ footer {
 }
 
 .allTweetsOfUser a {
-    color: #eee;
+    color: $color3;
 }
 
 #app > section > div > div > div > div.col-lg-12.col-md-12.col-sm-12.m-0.p-0.pr-1 > div > div.card-body > table > tr > td > div > div > p > img {
