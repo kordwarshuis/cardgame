@@ -317,7 +317,7 @@ h1 {
         background-position: center center, center center;
         text-align: center;
         border-radius: 10px;
-        color: $_text1;
+        color: #eee;
         display: inline-block;
         width: 100%;
 
@@ -328,7 +328,7 @@ h1 {
 
         h2,
         h3 {
-            color: $_text1;
+            color: #eee;
             font-size: 1.1em;
             margin: 0.5em;
         }
