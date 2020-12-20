@@ -558,16 +558,16 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-    border: 1px dashed #eee !important;
+    border: 1px dashed $color3 !important;
     background: #45517A;
     border-radius: 15px;
-    color: #eee;
+    color: $color3;
     // border-style: dashed !important;
 }
 
 tr,
 td {
-    color: #eee;
+    color: $color3;
 }
 
 th:last-child,

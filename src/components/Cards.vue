@@ -77,10 +77,10 @@
                 </a>
             </div>
             <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
-                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
+                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: $color3;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
 
                 <!-- Show all cards: -->
-                <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
+                <a style="color: $color3;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
 
                 <!-- check allCardsInChosenCategory in store for what is in array, this should be made easier -->
                 <button :data-misconception="item.misconception" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" title="Copy Link">Copy Link</button>
@@ -283,7 +283,7 @@ h1 {
 
 .dropdown-menu-categories a:hover {
     background: #323A66;
-    color: #eee;
+    color: $color3;
 }
 
 @media screen and (min-width: 320px) {
@@ -317,7 +317,7 @@ h1 {
         background-position: center center, center center;
         text-align: center;
         border-radius: 10px;
-        color: #eee;
+        color: $color3;
         display: inline-block;
         width: 100%;
 
@@ -328,7 +328,7 @@ h1 {
 
         h2,
         h3 {
-            color: #eee;
+            color: $color3;
             font-size: 1.1em;
             margin: 0.5em;
         }
@@ -358,11 +358,11 @@ h1 {
 }
 
 .nav-item a {
-    color: #eee;
+    color: $color3;
 }
 
 .nav-item a.All {
-    background: #eee;
+    background: $color3;
     color: #111;
 }
 

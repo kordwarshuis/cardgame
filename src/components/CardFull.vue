@@ -115,7 +115,7 @@
                 </div> -->
                 <RelatedCards />
                 <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button>
-                <div class="center m-4 mb-0 p-3 " style="border-top: 1px dashed #eee;">
+                <div class="center m-4 mb-0 p-3 " style="border-top: 1px dashed $color3;">
                     <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
                 </div>
 
@@ -308,7 +308,7 @@ export default {
     width: 100%;
     border: none;
     background: linear-gradient(#0745A8, #015DF4);
-    color: #eee;
+    color: $color3;
     display: block;
     z-index: 1;
 
@@ -357,7 +357,7 @@ export default {
         background: none;
         // border: 1px solid red;
         // border-radius: 50%;
-        color: #eee;
+        color: $color3;
         padding: 0.2em;
         margin-top: 0;
         display: inline-block;
@@ -387,7 +387,7 @@ export default {
 }
 
 .content-item {
-    background: #eee;
+    background: $color3;
     color: #0B364D;
     border-radius: 10px;
 }

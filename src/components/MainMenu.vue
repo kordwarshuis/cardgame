@@ -94,7 +94,7 @@ export default {
     a:focus,
     a:hover,
     a:active {
-        color: #eee;
+        color: $color3;
 
     }
 

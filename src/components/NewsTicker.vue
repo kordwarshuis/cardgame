@@ -68,7 +68,7 @@ export default {
 
 .news-ticker-container p span {
     background: linear-gradient(to right, #5C34A7, #2376D6);
-    color: #eee;
+    color: $color3;
     padding: 0 2em;
 }
 

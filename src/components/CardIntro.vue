@@ -223,7 +223,7 @@ export default {
     padding-top: 60px;
     transform: translate(-50%, -50%);
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
-    color: $overlayItemText;
+    color: $color3;
     background: #474E71;
     border-radius: 10px;
     outline: 2000px solid rgba(34, 34, 34, 0.8);
@@ -271,7 +271,7 @@ export default {
     width: 100%;
     border: none;
     background: linear-gradient(#2F3762, #343C6B);
-    color: #eee;
+    color: $color3;
     display: block;
 
     // height of secondary menu bar
@@ -319,7 +319,7 @@ export default {
         background: none;
         // border: 1px solid red;
         // border-radius: 50%;
-        color: #eee;
+        color: $color3;
         padding: 0.2em;
         margin-top: 0;
         display: inline-block;

@@ -200,19 +200,19 @@ export default {
 <style lang="scss" scoped>
 .searchBar {
     background: #383E4E;
-    color: #eee;
+    color: $color3;
 }
 
 .search-results {
     padding: 2em;
-    border: 1px dashed #eee;
+    border: 1px dashed $color3;
     border-radius: 10px;
     margin: 2em auto;
     max-width: 50em;
 }
 
 .search-results a {
-    color: #eee;
+    color: $color3;
 }
 
 .search-results-container {
@@ -265,7 +265,7 @@ export default {
     top: 4.2em;
     cursor: pointer;
     background: transparent;
-    color: #eee;
+    color: $color3;
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */

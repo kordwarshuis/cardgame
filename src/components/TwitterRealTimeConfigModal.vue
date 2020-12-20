@@ -288,7 +288,7 @@ h2 {
 // https://stackoverflow.com/a/26917844
 .close {
   font-size: 2em;
-  color: #eee;
+  color: $color3;
 }
 .close:hover {
     color: #fff;
