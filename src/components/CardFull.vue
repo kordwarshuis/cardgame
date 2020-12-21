@@ -383,7 +383,7 @@ export default {
 // END TERTIARY MENU
 
 .modal-content h2 {
-    margin: 1em 0 0.5em; // to keep distance from sec / tert menu
+    margin: 1.5em 0 0.5em; // to keep distance from sec / tert menu
     font-size: 2em;
 }
 
