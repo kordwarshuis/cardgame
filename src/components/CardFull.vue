@@ -5,9 +5,10 @@
         <!-- <h3 class="modal-header"></h3> -->
         <div>
             <div class="modal-content p-3 pt-5">
+                <h2 class="mx-auto">{{ misconception }}</h2>
                 <div class="misconception-short-and-elaborate">
-                    <h2 class="title text-center"><span class="quote">“</span>{{ this.$store.state.currentCard.Misconception }}<span class="quote">”</span></h2>
-                    <p class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Misconception Elaborate"] }}<span class="quote">”</span></p>
+                    <p class="title text-center"><span class="quote">“</span>{{ this.$store.state.currentCard.Misconception }}<span class="quote">”</span></p>
+                    <p v-if="this.$store.state.currentCard['Misconception Elaborate']" class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Misconception Elaborate"] }}<span class="quote">”</span></p>
                 </div>
 
                 <!-- <button class="copyURLtoClipboard copyURLtoClipboard1" title="Copy Link">Copy Link</button> -->
@@ -17,7 +18,7 @@
                     <h3 class="longAnswer">Short Answer</h3>
                     <p  v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
                 </div> -->
-
+                <h2 class="mx-auto" style="color: #5FE2FC;">{{ reply }}</h2>
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
                     <h3>{{ shortAnswer }}</h3>
                     <p class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</p>
@@ -148,6 +149,8 @@ export default {
     name: "CardFull",
     data: function () {
         return {
+            misconception: language.misconception,
+            reply: language.reply,
             expert1: language.expert1,
             expert3: language.expert3,
             expert3Description: language.expert3Description,
@@ -379,8 +382,13 @@ export default {
 
 // END TERTIARY MENU
 
+.modal-content h2 {
+    margin: 1em 0 0.5em; // to keep distance from sec / tert menu
+    font-size: 2em;
+}
+
 .misconception-short-and-elaborate {
-    margin: 3em 0 1em; // to keep distance from sec / tert menu
+    margin: 0em 0 1em; // to keep distance from sec / tert menu
     padding: 1em 0;
     border-top: 3px dotted #666;
     border-bottom: 3px dotted #666;
