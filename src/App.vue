@@ -845,6 +845,10 @@ footer {
 .search-results-container,
 .masonry-with-columns {
 
+    a {
+        color: $color3;
+    }
+
     .category.Architecture,
     .nav-item.Architecture a {
         background: #148868;
