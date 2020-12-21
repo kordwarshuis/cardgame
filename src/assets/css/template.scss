@@ -6,3 +6,16 @@ $color2: #3A457D;
 $color3: #eee;
 $color4: #000;
 $color5: #2A3166;
+$color6: #1D2448;
+$color7: #111;
+$color8: #5965F9;
+
+$shadow1: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+$shadow2: -10px 10px 0, 10px -10px 0 $color4;
+$shadow3: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+
+.card-columns {
+    >.card {
+        background-image: url(https://blockchainbird.com/t/media/img/card-background.svg), linear-gradient(#272f52, #3a4275);
+    }
+}
