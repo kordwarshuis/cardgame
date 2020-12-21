@@ -66,7 +66,7 @@
                     <video id="video-homepage" :src="homepageVideoPathToVideo" :poster="homepageVideoPathToPoster" muted controls playsinline preload="none"></video>
                 </div>
             </div>
-            <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
+            <div class="card-footer">
             </div>
         </div>
         <!-- THE CARDS -->
@@ -76,7 +76,7 @@
                     <h2 class=""><span class="quote">“</span>{{ item.misconception }}<span class="quote">”</span></h2>
                 </a>
             </div>
-            <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
+            <div class="card-footer">
                 <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: $color3;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
 
                 <!-- Show all cards: -->
@@ -264,13 +264,13 @@ h1 {
 }
 
 .button-categories {
-    background: #5965F9;
+    background: $color8;
     border: none;
 }
 
 .dropdown-menu-categories {
-    background: #5965FA;
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+    background: $color8;
+    box-shadow: $shadow1;
     padding: 0.2em;
     font-size: 0.9em;
 }
@@ -311,7 +311,6 @@ h1 {
     >.card {
         border: none;
         cursor: pointer;
-        background-image: url(../assets/img/icons/flat/card-background.svg), linear-gradient(#272f52, #3a4275);
         background-repeat: repeat, no-repeat;
         background-size: 25px 25px, 100% 100%;
         background-position: center center, center center;
@@ -337,7 +336,9 @@ h1 {
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
             padding: 0 0.5em 0 0.5em;
-
+            min-height: 3em;
+            background: $color6;
+            text-align: left;
         }
 
         .card-body {
@@ -363,7 +364,7 @@ h1 {
 
 .nav-item a.All {
     background: $color3;
-    color: #111;
+    color: $color7;
 }
 
 // Show All button only if in selection

@@ -450,8 +450,7 @@ export default {
 
 // /* Content styles */
 .md-content {
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
-
+    box-shadow: $shadow3;
 }
 
 .md-content button {

@@ -222,7 +222,7 @@ export default {
     left: 50%;
     padding-top: 60px;
     transform: translate(-50%, -50%);
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: $shadow3;
     color: $color3;
     background: #474E71;
     border-radius: 10px;

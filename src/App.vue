@@ -574,7 +574,7 @@ hr {
 .menu hr:after {
     background-color: $color4;
     border: 4px solid $color4;
-    box-shadow: -10px 10px 0, 10px -10px 0 $color4;
+    box-shadow: $shadow2;
 }
 
 /* het sluiten van de eerste popup: */
@@ -702,7 +702,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 .toast-container>div>div {
     color: #111;
     background-color: $color3;
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+    box-shadow: $shadow1;
 }
 
 // the information icon is confusing since it is not clickable
@@ -792,7 +792,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 footer {
     background: #191F3A;
     width: 100%;
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+    box-shadow: $shadow1;
 }
 
 .tweet small {
