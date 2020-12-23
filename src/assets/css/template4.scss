@@ -62,8 +62,8 @@ $card-intro-background: #C0A878;
 $card-intro-content-item-color: #484830;
 $card-intro-content-item-background: #909060;
 // back / close:
-$card-intro-back-color: $color3;
-$card-intro-back-background: #{linear-gradient(#2F3762, #343C6B)};
+$card-intro-back-color: #F0D8A8;
+$card-intro-back-background: #{linear-gradient(#484830, #484830)};
 $card-intro-back-background-bigscreen: none;
 $card-intro-back-color-bigscreen: $color3;
 
@@ -71,11 +71,11 @@ $card-intro-back-color-bigscreen: $color3;
 // CARD FULL
 $card-full-color: $color3;
 $card-full-background: #C0A878;
-$card-full-content-item-color: #0b1320;
-$card-full-content-item-background: $color10;
+$card-full-content-item-color: #484830;
+$card-full-content-item-background: #909060;
 
-$card-full-back-color: $color3;
-$card-full-back-background: #{linear-gradient(#0745A8, #015DF4)};
+$card-full-back-color: #F0D8A8;
+$card-full-back-background: #{linear-gradient(#484830, #484830)};
 $card-full-back-background-bigscreen: none;
 $card-full-back-color-bigscreen: $color3;
 
