@@ -70,7 +70,7 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-    background: #191F3A;
+    background: $main-menu-background;
     // https://forum.freecodecamp.org/t/bootsrap-4-5-navbar-full-width/233369 :
     margin-right: -15px;
     margin-left: -15px;
@@ -94,12 +94,12 @@ export default {
     a:focus,
     a:hover,
     a:active {
-        color: $color3;
+        color: $main-menu-link;
 
     }
 
     .router-link-exact-active {
-        background: #252B44;
+        background: $main-menu-link-active;
     }
 
 }

@@ -7,7 +7,7 @@
                 <div class="card-body">
 
                     <h3 class="pt-sm-2">{{ misconception }}</h3>
-                    <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 9em; border-radius: 10px;">
+                    <div class="card-intro-misconception p-3 mt-2 text-center">
                         <!-- <span class="quote">“</span> -->
                         <p class="typed mb-3">{{ getMisconception }} …</p>
                         <!-- <span class="quote">”</span> -->
@@ -21,7 +21,7 @@
         <div class="col-lg-6 col-sm-6 column2 p-0">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body center" style="">
-                    <h3 class="pt-2" style="color: #5FE2FC;">{{ reply }}</h3>
+                    <h3 class="pt-2 reply">{{ reply }}</h3>
                     <p class="">
                         <span class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</span>
                     </p>
@@ -223,8 +223,8 @@ export default {
     padding-top: 60px;
     transform: translate(-50%, -50%);
     box-shadow: $shadow3;
-    color: $color3;
-    background: #474E71;
+    color: $card-intro-color;
+    background: $card-intro-background;
     border-radius: 10px;
     outline: 2000px solid rgba(34, 34, 34, 0.8);
 }
@@ -239,7 +239,7 @@ export default {
     position: fixed;
     bottom: 0;
     left: 0;
-    background: linear-gradient(to right, #5C34A7, #2376D6);
+    background: $linear-gradient1;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -248,6 +248,7 @@ export default {
     margin: 0 auto;
     text-align: center;
 }
+
 .footer>div>div {
     display: inline-block;
 }
@@ -262,6 +263,10 @@ export default {
     padding-top: 2em;
 }
 
+h3.reply {
+    color: $reply-heading-color;
+}
+
 .overlay-fullscreen .overlay-fullscreen-close {
     cursor: pointer;
     position: fixed;
@@ -270,8 +275,8 @@ export default {
     transform: translate(0, $subMenuOffsetTopOnSmallScreen);
     width: 100%;
     border: none;
-    background: linear-gradient(#2F3762, #343C6B);
-    color: $color3;
+    background: $card-intro-back-background;
+    color: $card-intro-back-color;
     display: block;
 
     // height of secondary menu bar
@@ -316,10 +321,10 @@ export default {
         left: auto;
         width: 40px;
         border: none;
-        background: none;
+        background: $card-intro-back-background-bigscreen;
         // border: 1px solid red;
         // border-radius: 50%;
-        color: $color3;
+        color: $card-intro-back-color-bigscreen;;
         padding: 0.2em;
         margin-top: 0;
         display: inline-block;
@@ -388,5 +393,12 @@ export default {
     .column1 .card-body {
         border-right: 1px dashed #A3A8B7;
     }
+}
+
+.card-intro-misconception {
+    color: $card-intro-content-item-color;
+    background-color: $card-intro-content-item-background;
+    min-height: 9em;
+    border-radius: 10px;
 }
 </style>

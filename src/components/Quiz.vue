@@ -86,16 +86,16 @@ form.miniquiz .antw {
 
 form.miniquiz .answer-check {
     font-size: 2em;
-    text-shadow: 0 0 1px $color3;
+    text-shadow: 0 0 1px $basic1;
     color: #35a726 !important;
-    background: $color3;
+    background: $basic1;
 }
 
 form.miniquiz .answer-cross {
     font-size: 2.5em;
-    text-shadow: 0 0 1px $color3;
+    text-shadow: 0 0 1px $basic1;
     color: #d8350e !important;
-    background: $color3;
+    background: $basic1;
 }
 
 form.miniquiz input {

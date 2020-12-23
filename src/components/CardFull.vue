@@ -18,7 +18,7 @@
                     <h3 class="longAnswer">Short Answer</h3>
                     <p  v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
                 </div> -->
-                <h2 class="mx-auto" style="color: #5FE2FC;">{{ reply }}</h2>
+                <h2 class="mx-auto reply">{{ reply }}</h2>
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
                     <h3>{{ shortAnswer }}</h3>
                     <p class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</p>
@@ -116,7 +116,7 @@
                 </div> -->
                 <RelatedCards />
                 <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button>
-                <div class="center m-4 mb-0 p-3 " style="border-top: 1px dashed $color3;">
+                <div class="discussion-group-link center m-4 mb-0 p-3 ">
                     <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
                 </div>
 
@@ -310,8 +310,8 @@ export default {
     left: 0;
     width: 100%;
     border: none;
-    background: linear-gradient(#0745A8, #015DF4);
-    color: $color3;
+    background: $card-full-back-background;
+    color: $card-full-back-color;
     display: block;
     z-index: 1;
 
@@ -357,10 +357,10 @@ export default {
         left: auto;
         width: 40px;
         border: none;
-        background: none;
+        background: $card-full-back-background-bigscreen;
         // border: 1px solid red;
         // border-radius: 50%;
-        color: $color3;
+        color: $card-full-back-color-bigscreen;
         padding: 0.2em;
         margin-top: 0;
         display: inline-block;
@@ -385,18 +385,25 @@ export default {
 .modal-content h2 {
     margin: 1.5em 0 0.5em; // to keep distance from sec / tert menu
     font-size: 2em;
+    color: $misconception-heading-color;
 }
+
+.modal-content h2.reply {
+    color: $reply-heading-color;
+}
+
 
 .misconception-short-and-elaborate {
     margin: 0em 0 1em; // to keep distance from sec / tert menu
     padding: 1em 0;
     border-top: 3px dotted #666;
     border-bottom: 3px dotted #666;
+    color: $misconception-short-and-elaborate-color;
 }
 
 .content-item {
-    background: $color3;
-    color: #0B364D;
+    background: $card-full-content-item-background;
+    color: $card-full-content-item-color;
     border-radius: 10px;
 }
 
@@ -405,7 +412,8 @@ export default {
 }
 
 .modal-content {
-    background: #2F3558 !important; //Suddenly needs important, can't explain why
+    color: $card-full-color;
+    background: $card-full-background !important; //Suddenly needs important, can't explain why
 }
 
 .modal-content h3 {
@@ -469,6 +477,9 @@ export default {
 
 .bottom-bar {
     margin-bottom: 1em; // to make the bottom bar fully visible
-    background: linear-gradient(to right, #5C34A7, #2376D6);
+    background: $linear-gradient1;
+}
+.discussion-group-link {
+    border-top: 1px dashed $card-full-content-item-color;
 }
 </style>

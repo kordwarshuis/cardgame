@@ -3,7 +3,7 @@
     <div class="row">
         <!-- TITLE AND SUBTITLE -->
         <div class="col-8">
-            <h1 class="mb-0">
+            <h1 class="mb-0 title">
                 <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" />
                 <span class="game-title-1">
                     {{this.$store.state.gameTitle}}
@@ -40,7 +40,7 @@
         </div>
 
         <div class="col-md-12">
-            <p class="mt-0">{{this.$store.state.gameSubTitle}}
+            <p class="mt-0 subtitle">{{this.$store.state.gameSubTitle}}
                 <template v-if="realtimeTweets === 'true'">
                     <GameInstructionsCarousel />
                 </template>
@@ -77,10 +77,10 @@
                 </a>
             </div>
             <div class="card-footer">
-                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: $color3;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
+                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: $card-footer-link-color; text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
 
                 <!-- Show all cards: -->
-                <a style="color: $color3;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
+                <a style="color: $card-footer-link-color;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
 
                 <!-- check allCardsInChosenCategory in store for what is in array, this should be made easier -->
                 <button :data-misconception="item.misconception" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" title="Copy Link">Copy Link</button>
@@ -241,12 +241,18 @@ export default {
 }
 
 // https://css-tricks.com/how-do-you-do-max-font-size-in-css/
-h1 {
+h1.title {
+    color: $game-title;
     font-size: 20px;
 }
 
 h1 {
     font-weight: normal;
+}
+
+p.subtitle {
+    color: $game-subtitle;
+
 }
 
 .game-title-1 {
@@ -264,12 +270,12 @@ h1 {
 }
 
 .button-categories {
-    background: $color8;
+    background: $categories-colors;
     border: none;
 }
 
 .dropdown-menu-categories {
-    background: $color8;
+    background: $categories-colors;
     box-shadow: $shadow1;
     padding: 0.2em;
     font-size: 0.9em;
@@ -279,11 +285,6 @@ h1 {
     font-family: poppinsbold;
     margin: 0.3em;
     cursor: pointer;
-}
-
-.dropdown-menu-categories a:hover {
-    background: #323A66;
-    color: $color3;
 }
 
 @media screen and (min-width: 320px) {
@@ -316,7 +317,7 @@ h1 {
         background-position: center center, center center;
         text-align: center;
         border-radius: 10px;
-        color: $color3;
+        color: $card-overview-text;
         display: inline-block;
         width: 100%;
 
@@ -325,9 +326,9 @@ h1 {
             font-family: poppinsregular;
         }
 
-        h2,
-        h3 {
-            color: $color3;
+        h2
+         {
+            color: $card-overview-text;
             font-size: 1.1em;
             margin: 0.5em;
         }
@@ -337,7 +338,7 @@ h1 {
             border-bottom-right-radius: 10px;
             padding: 0 0.5em 0 0.5em;
             min-height: 3em;
-            background: $color6;
+            background: $card-footer-background;
             text-align: left;
         }
 
@@ -359,12 +360,12 @@ h1 {
 }
 
 .nav-item a {
-    color: $color3;
+    color: $card-overview-text;
 }
 
 .nav-item a.All {
-    background: $color3;
-    color: $color7;
+    background: $card-overview-text;
+    color: $category-menu;
 }
 
 // Show All button only if in selection

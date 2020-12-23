@@ -13,7 +13,7 @@
                     <nav class="navbar navbar-expand-md sticky-top p-0 " style="background: #1FA1F2;">
                         <div class="row m-0 p-0" style="width: 100%;">
                             <div class="col-md-12 m-0 p-0 mr-2 mt-1">
-                                <div style="font-family: courier; font-weight: bold;font-size: 1.3em; color: $color3;" class="console"><span class="timestamp">-</span>: <span class="message">-</span></div>
+                                <div style="font-family: courier; font-weight: bold;font-size: 1.3em; color: #eee;" class="console"><span class="timestamp">-</span>: <span class="message">-</span></div>
                                 <!-- <h2 class="header-tweets-realtime " style="display: inline;">Realtime</h2> -->
                             </div>
 
@@ -30,7 +30,7 @@
                                 <!-- ALL TWEETS -->
                                 <!-- <div class="form-check ml-0 m-0 " style="display: inline;">
                                     <input type="checkbox" class="form-check-input mt-3" id="showAllTweets">
-                                    <label style="color: $color3;" class="form-check-label align-middle inline" for="showAllTweets">all tweets</label>
+                                    <label style="color: #eee;" class="form-check-label align-middle inline" for="showAllTweets">all tweets</label>
                                 </div> -->
 
                                 <!-- CLEAR -->
@@ -783,7 +783,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 
 .header-tweets-realtime,
 .header-tweets-selected {
-    color: $color3;
+    color: #eee;
     font-family: poppinsbold;
     font-size: 1.3em;
 }
