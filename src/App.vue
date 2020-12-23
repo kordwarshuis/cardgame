@@ -696,12 +696,12 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .toast-header {
-    background: linear-gradient(to right, #5C34A7, #2376D6);
+    background: $linear-gradient1;
 }
 
 .toast-container>div>div {
-    color: #111;
-    background-color: $basic1;
+    color: $toast-content-color;
+    background-color: $toast-content-background;
     box-shadow: $shadow1;
 }
 

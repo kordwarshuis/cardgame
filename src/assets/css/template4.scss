@@ -1,0 +1,101 @@
+$subMenuOffsetTopOnSmallScreen: 50px;
+$cardFullTextIndent: 1.8em;
+
+$color1: #0D1227;
+$color2: #3A457D;
+$color3: #111;
+$color4: #000;
+$color5: #2A3166;
+$color6: #b1bae9;
+$color7: #111;
+$color8: #5965F9;
+$color9: #5FE2FC;
+$color10: #eee;
+$color11: #474E71;
+$color12: #2F3558;
+
+$shadow1: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+$shadow2: -10px 10px 0, 10px -10px 0 $color4;
+$shadow3: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+
+
+$linear-gradient1: #{linear-gradient(to right, #909060, #909060)};
+
+
+$basic1: $color3;
+$basic2: $color4;
+$basic3: $color5;
+
+
+//BODY
+$body-color: #0b1320;
+$body-background: #F0D8A8;
+$game-title: #333;
+$game-subtitle: #333;
+
+
+// CARD OVERVIEW
+$card-overview-text: #484830;
+// background
+.card-columns {
+    >.card {
+        background: #C0A878;
+    }
+}
+$borders: $color2;
+$card-footer-background: #C0A878;
+$card-footer-link-color: $color3;
+
+$category-menu: $color7;
+$categories-colors: $color8;
+
+
+// CARD INTRO + CARD FULL
+$misconception-heading-color: $color3;
+$reply-heading-color: #484830;
+$misconception-short-and-elaborate-color: $color3;
+
+
+// CARD INTRO
+$card-intro-color: #484830;
+$card-intro-background: #C0A878;
+$card-intro-content-item-color: #484830;
+$card-intro-content-item-background: #909060;
+// back / close:
+$card-intro-back-color: $color3;
+$card-intro-back-background: #{linear-gradient(#2F3762, #343C6B)};
+$card-intro-back-background-bigscreen: none;
+$card-intro-back-color-bigscreen: $color3;
+
+
+// CARD FULL
+$card-full-color: $color3;
+$card-full-background: #C0A878;
+$card-full-content-item-color: #0b1320;
+$card-full-content-item-background: $color10;
+
+$card-full-back-color: $color3;
+$card-full-back-background: #{linear-gradient(#0745A8, #015DF4)};
+$card-full-back-background-bigscreen: none;
+$card-full-back-color-bigscreen: $color3;
+
+
+//PAGE FOOTER
+$page-footer-background: #191F3A;
+$page-footer-color: #eee;
+
+
+//SEARCH
+$searchbar-color: $color3;
+$searchbar-background: #383E4E;
+
+
+//MAIN MENU
+$main-menu-link:#F0D8A8;
+$main-menu-link-active: #252B44;
+$main-menu-background: #909060;
+
+//NOTIFICATIONS
+$toast-header-background: $linear-gradient1;
+$toast-content-color: #484830;
+$toast-content-background: #C0A878;
