@@ -5,12 +5,8 @@
         <div class="col-8">
             <h1 class="mb-0 title">
                 <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" />
-                <span class="game-title-1">
-                    {{this.$store.state.gameTitle}}
-                </span>
-                <span class="game-title-2">
-                    {{this.$store.state.gameTitle2}}
-                </span>
+                <span class="game-title-1"> {{this.$store.state.gameTitle}}</span>
+                <span class="game-title-2">{{this.$store.state.gameTitle2}}</span>
             </h1>
         </div>
 
@@ -353,7 +349,8 @@ p.subtitle {
 
     .category {
         border-radius: 4px;
-        background: #1D807D;
+        color: $category-color;
+        background: $category-background;
         margin: 0.8em;
     }
 
