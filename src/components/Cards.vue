@@ -266,12 +266,13 @@ p.subtitle {
 }
 
 .button-categories {
-    background: $categories-colors;
+    color: $button-categories-color;
+    background: $button-categories-background;
     border: none;
 }
 
 .dropdown-menu-categories {
-    background: $categories-colors;
+    background: $button-categories-background;
     box-shadow: $shadow1;
     padding: 0.2em;
     font-size: 0.9em;
@@ -361,8 +362,8 @@ p.subtitle {
 }
 
 .nav-item a.All {
-    background: $card-overview-text;
-    color: $category-menu;
+    background: $category-menu-item-background;
+    color: $category-menu-item-color;
 }
 
 // Show All button only if in selection
