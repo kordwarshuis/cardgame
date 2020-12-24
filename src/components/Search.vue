@@ -13,7 +13,7 @@
             <div class="search-results" v-for="card in computedFilteredList" :key="card.Misconception" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
 
                 <!-- copy card URL to clipboard -->
-                <button onclick="return false;" :data-url="'card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="float: right; width: 2em; height: 2em;vertical-align: top;" title="Copy Link">Copy Link</button>
+                <button onclick="return false;" :data-misconception="card['Misconception']" :data-url="'card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="float: right; width: 2em; height: 2em;vertical-align: top;" title="Copy Link">Copy Link</button>
 
                 <!-- category -->
                 <small @click="hideSearchResultsContainer" class="search-result category mb-4 pt-1 pl-2 pr-2 pb-0 display-5" :class="card.Category" style="display: inline-block; border-radius: 10px;">
