@@ -475,9 +475,8 @@ function slideInMenu() {
     var bodyEl = document.body,
         openbtn = document.getElementById("open-button"),
         openbtn2 = document.querySelector(".twitter-open-close-handle"),
-        isOpen = false, // see above
-        clickableItems = document.querySelectorAll(".content a");
-
+        isOpen = false; // see above
+        
     function init() {
         initEvents();
     }
@@ -505,22 +504,6 @@ function slideInMenu() {
         if (isOpen === true && document.querySelector("#open-button")) {
             document.querySelector("#open-button").setAttribute("checked", "checked");
         }
-    }
-
-    // after click on clickable item, menu should disappear:
-    for (let i = 0; i < clickableItems.length; i++) {
-        clickableItems[i].addEventListener(
-            "click",
-            toggleMenuFromClickableItem,
-            false
-        );
-    }
-
-    function toggleMenuFromClickableItem() {
-        toggleMenu();
-
-        // if the input isnt clicked but menu is toggled anyway, then we have to remove checked=true also
-        openbtn.checked = false;
     }
 
     function toggleMenu() {
