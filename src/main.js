@@ -198,7 +198,7 @@ clipboardBookmarkedURLsToEmail.on('success', function (e) {
 
 var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
   text: function (trigger) {
-    return window.location.protocol + "//" + window.location.host + VueConfig.publicPath + trigger.dataset.url;
+    return "“" + trigger.dataset.misconception + "”\n" + " 👉 " + window.location.protocol + "//" + window.location.host + VueConfig.publicPath + "card/" + trigger.dataset.url;
   }
 });
 
