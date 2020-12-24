@@ -11,7 +11,7 @@
                         <!-- <span class="quote">“</span> -->
                         <p class="typed mb-3">{{ getMisconception }} …</p>
                         <!-- <span class="quote">”</span> -->
-                        <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
+                        <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button>
                     </div>
 
                 </div>
@@ -89,7 +89,8 @@ export default {
     data() {
         return {
             misconception: language.misconception,
-            reply: language.reply
+            reply: language.reply,
+            openFullCard: language.openFullCard
         }
     },
     computed: {
