@@ -73,7 +73,7 @@ $card-full-color: $color3;
 $card-full-background: $color12;
 $card-full-content-item-color: #0B364D;
 $card-full-content-item-background: $color10;
-
+//back button
 $card-full-back-color: $color3;
 $card-full-back-background: #{linear-gradient(#0745A8, #015DF4)};
 $card-full-back-background-bigscreen: none;
@@ -86,8 +86,14 @@ $page-footer-color: #eee;
 
 
 //SEARCH
-$searchbar-color: $color3;
-$searchbar-background: #383E4E;
+//search bar
+$search-bar-color: $color3;
+$search-bar-background: #383E4E;
+//search results
+$search-results-color: #eee;
+$search-results-background: #383E4E;
+//closing button
+$button-hide-search-results-color:#eee;
 
 
 //MAIN MENU
@@ -95,7 +101,12 @@ $main-menu-link: $color3;
 $main-menu-link-active: #252B44;
 $main-menu-background: #191F3A;
 
+
 //NOTIFICATIONS
 $toast-header-background: $linear-gradient1;
 $toast-content-color: $color3;
 $toast-content-background: $color2;
+
+//CATEGORIES
+$category-color: $color3;
+$category-background: #1D807D;
