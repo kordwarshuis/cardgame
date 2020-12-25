@@ -166,8 +166,6 @@ export default {
 
                 if (localStorage.getItem("soundOn") === "true") whoosh2.play();
                 if (overlayFullscreen.classList.contains('open')) {
-                    // overlayFullscreen.classList.remove('open');
-                    // container.classList.remove('overlay-fullscreen-open');
                     overlayFullscreen.classList.add('close');
 
                     that.$store.commit("changeCssClassCardIntroState", "");
@@ -227,7 +225,7 @@ export default {
     color: $card-intro-color;
     background: $card-intro-background;
     border-radius: 10px;
-    outline: 2000px solid rgba(34, 34, 34, 0.8);
+    outline: $card-intro-outline;
 }
 
 .overlay-fullscreen>div {
