@@ -1,6 +1,7 @@
 <template>
 <div class="cards pl-sm-5 pr-sm-5">
-    <div class="row">
+    <!-- margins should be set to 0: -->
+    <div class="row m-0">
         <!-- TITLE AND SUBTITLE -->
         <div class="col-8">
             <h1 class="mb-0 title">
