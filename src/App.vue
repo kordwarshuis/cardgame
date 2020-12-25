@@ -130,6 +130,7 @@ export default {
 
                             // split string on \n\n, so we can make paragraphs later, or separate links for example
                             responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
+                            responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
 
                             responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
 
