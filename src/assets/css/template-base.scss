@@ -48,7 +48,7 @@ $card-footer-link-color: $color3;
 //category dropdown button
 $button-categories-color: $color3;
 $button-categories-background: $color8;// color of button and also background of dropdown box
-// $button-categories-background-hover: green;
+$button-categories-background-hover: none;
 $category-menu-item-color: $color3;
 $category-menu-item-background: $color8;
 
@@ -64,6 +64,7 @@ $card-intro-color: $color3;
 $card-intro-background: $color11;
 $card-intro-content-item-color: $color3;
 $card-intro-content-item-background: #2F3659;
+$card-intro-box-shadow: 0 0 1000px 1000px  rgba(34, 34, 34, 0.8);// background around the box
 // back / close:
 $card-intro-back-color: $color3;
 $card-intro-back-background: #{linear-gradient(#2F3762, #343C6B)};
