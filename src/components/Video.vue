@@ -4,7 +4,8 @@
     <!-- <h3 class="video">Video</h3> -->
 
     <VideoBare />
-    <p v-linkified:options="$store.state.linkifyOptions" class="video-description ml-0">{{this.$store.state.currentCard["Youtube Video Description"]}}</p>
+
+    <p class="video-description" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Youtube Video Description']" v-bind:key="item">{{ item }}</p>
 
 </div>
 </template>
@@ -24,6 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 .video-description {
-    font-size: 0.95em;
+    font-size: 0.9em;
+    margin-left: 0;
 }
 </style>
