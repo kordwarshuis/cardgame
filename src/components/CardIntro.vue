@@ -225,7 +225,7 @@ export default {
     color: $card-intro-color;
     background: $card-intro-background;
     border-radius: 10px;
-    outline: $card-intro-outline;
+    box-shadow: $card-intro-box-shadow;
 }
 
 .overlay-fullscreen>div {
@@ -355,12 +355,14 @@ h3.reply {
 
 // END SECONDARY MENU
 
-.container.overlay-fullscreen-open::after {
-    visibility: visible;
-    opacity: 1;
-    -webkit-transition: opacity 0.5s;
-    transition: opacity 0.5s;
-}
+// doesnt seem to serve a purpose
+// .container.overlay-fullscreen-open::after {
+//     visibility: visible;
+//     opacity: 1;
+//     -webkit-transition: opacity 0.5s;
+//     transition: opacity 0.5s;
+// }
+
 
 // Show/Hide card intro
 // Opacity effect
