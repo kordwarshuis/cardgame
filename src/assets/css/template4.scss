@@ -45,11 +45,12 @@ $card-overview-text: #484830;
 $borders: $color2;
 $card-footer-background: #C0A878;
 $card-footer-link-color: $color3;
-
-$button-categories-color: $color3;
-$button-categories-background: $color8;// color of button and also background of dropdown box
-$category-menu-item-color: $color7;
-$category-menu-item-background: $color8;
+//category dropdown button
+$button-categories-color: #F0D8A8;
+$button-categories-background: #786048;// color of button and also background of dropdown box
+$button-categories-background-hover: #484830;
+$category-menu-item-color: #786048;
+$category-menu-item-background:#F0D8A8;
 
 
 // CARD INTRO + CARD FULL
@@ -83,7 +84,7 @@ $card-full-back-color-bigscreen: $color3;
 
 
 //PAGE FOOTER
-$page-footer-background: #191F3A;
+$page-footer-background: #484830;
 $page-footer-color: #eee;
 
 
