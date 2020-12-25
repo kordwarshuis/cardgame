@@ -1,5 +1,5 @@
 <template>
-<div class="cards">
+<div class="cards pl-sm-5 pr-sm-5">
     <div class="row">
         <!-- TITLE AND SUBTITLE -->
         <div class="col-8">
