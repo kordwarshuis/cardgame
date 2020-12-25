@@ -271,6 +271,12 @@ p.subtitle {
     border: none;
 }
 
+.button-categories:hover,
+.button-categories:focus,
+.button-categories:active {
+    background: $button-categories-background-hover !important;
+}
+
 .dropdown-menu-categories {
     background: $button-categories-background;
     box-shadow: $shadow1;
@@ -323,8 +329,7 @@ p.subtitle {
             font-family: poppinsregular;
         }
 
-        h2
-         {
+        h2 {
             color: $card-overview-text;
             font-size: 1.1em;
             margin: 0.5em;
@@ -358,12 +363,9 @@ p.subtitle {
 }
 
 .nav-item a {
-    color: $card-overview-text;
-}
-
-.nav-item a.All {
     background: $category-menu-item-background;
     color: $category-menu-item-color;
+
 }
 
 // Show All button only if in selection
