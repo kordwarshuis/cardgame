@@ -24,6 +24,6 @@ export default {
 
 <style lang="scss" scoped>
 .video-description {
-    font-size: 0.7em;;
+    font-size: 0.95em;
 }
 </style>
