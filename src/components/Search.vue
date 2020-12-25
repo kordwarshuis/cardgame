@@ -31,7 +31,7 @@
 
                 <!-- go to card -->
                 <p @click="hideSearchResultsContainer" style="cursor: pointer" class="w-1/4">
-                    <router-link class="search-result" :to="'/card/' + card['Unique URL']">▶ Go to card</router-link>
+                    <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{goToCard}}</router-link>
                 </p>
 
                 <!-- result snippet -->
@@ -58,7 +58,8 @@ export default {
         return {
             search: '',
             cards: [],
-            searchResultSnippet: ""
+            searchResultSnippet: "",
+            goToCard: language.searchGoToCard
         }
     },
     computed: {
