@@ -88,11 +88,6 @@ export default {
 
 #navbarNav {
     padding-bottom: 2em;
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
-
-    li.nav-item {
-        border-right: red !important;
-    }
 
     a:link,
     a:visited,
