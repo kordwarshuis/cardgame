@@ -2,7 +2,7 @@
 <!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
     <div class="input-group">
-        <input @keydown="onInputChangeOrKeyDown" @change="onInputChangeOrKeyDown" v-model="search" class="searchBar border form-control" placeholder="Search" />
+        <input @keydown="onInputChangeOrKeyDown" @change="onInputChangeOrKeyDown" v-model="search" class="searchBar border form-control" :placeholder="searchBarPlaceholderText" />
     </div>
 
     <div class="search-results-container hideSearchResults">
@@ -59,7 +59,8 @@ export default {
             search: '',
             cards: [],
             searchResultSnippet: "",
-            goToCard: language.searchGoToCard
+            goToCard: language.searchGoToCard,
+            searchBarPlaceholderText: language.searchBarPlaceholderText
         }
     },
     computed: {
@@ -201,7 +202,7 @@ export default {
 <style lang="scss" scoped>
 .searchBar {
     background: $search-bar-background;
-    color: $search-bar-color;
+    color: $search-bar-color !important;
 }
 
 .search-results {
