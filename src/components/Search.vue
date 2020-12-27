@@ -204,6 +204,11 @@ export default {
     background: $search-bar-background;
     color: $search-bar-color !important;
 }
+.searchBar:focus {
+    background: $search-bar-focus-background;
+    color: $search-bar-focus-color;
+
+}
 
 .search-results {
     padding: 2em;
