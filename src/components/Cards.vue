@@ -67,7 +67,7 @@
             </div>
         </div>
         <!-- THE CARDS -->
-        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.misconception" class="card mb-4 p-0">
+        <div v-for="item in this.allCards" :key="item.misconception" class="card mb-4 p-0">
             <div class="card-body p-0 align-items-center d-flex">
                 <a :data-id="item['id']" :key="item.misconception" @click="showCardIntro" class="p-1">
                     <h2 class=""><span class="quote">“</span>{{ item.misconception }}<span class="quote">”</span></h2>
@@ -93,6 +93,7 @@
                 </a>
             </div>
         </div>
+        <!-- <button class="btn btn-primary cards-show-all" @click="readMore">Show all cards</button> -->
     </div>
 </div>
 </template>
@@ -102,6 +103,7 @@ import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
 import publicPath from "../../vue.config";
 import GameInstructionsCarousel from "./GameInstructionsCarousel.vue";
+import store from "../store/store";
 
 export default {
     name: "Index",
@@ -117,6 +119,7 @@ export default {
     data() {
         return {
             // pickedItems: [],
+            allCards: [],
             ICountUpDelay: 2000, //msec
             ICountUpOptions: {
                 useEasing: true,
@@ -143,8 +146,55 @@ export default {
                 videoHomepage.play();
             }
         }, 7000);
+        this.addShowHideClassToCards();
+        
+
+        this.$nextTick(() => {
+            this.getAllCard();
+
+        });
+
+        console.log("this.allCards 0e: " + this.allCards.length);
+    },
+    computed: {
+        // setAllCards() {
+        //     this.allCards = this.$store.state.allCardsInChosenCategory;
+        // }
+
     },
     methods: {
+        getAllCard() {
+            this.allCards = this.$store.state.allCardsInChosenCategory;
+            console.log('this.allCards.length 1e: ', this.allCards.length);
+            this.addShowHideClassToCards();
+        },
+
+        addShowHideClassToCards() {
+
+            // setTimeout(function () {
+
+            // }, 5000);
+
+            let allCards = document.querySelectorAll('.card');
+            console.log('allCards.length 2e: ', allCards.length);
+
+            allCards.forEach(function (e) {
+                console.log("ddd");
+                e.classList.add('card-show-hide');
+            })
+
+        },
+        readMore() {
+            let cardsShowAll = document.querySelector('.cards-show-all');
+            let allCards = document.querySelectorAll('.card');
+
+            cardsShowAll.style.display = 'none';
+            allCards.forEach(function (e) {
+                console.log(e);
+                // e.classList.toggle('card-show-hide');
+                e.style.display = 'inline-block';
+            })
+        },
         showAllCategories() {
             this.$store.commit('showItemsInSelectedCategory');
             this.$router.push("/");
@@ -353,6 +403,10 @@ p.subtitle {
             min-height: 10em;
         }
     }
+
+    // >.card:nth-child(n + #{$cards-initially-shown + 1}) {
+    //     display: none;
+    // }
 
     .category {
         border-radius: 4px;
