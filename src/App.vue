@@ -1011,4 +1011,8 @@ footer {
 }
 // END SCORES
 
+// CONFETTI
+#confetti-canvas {
+    z-index: 1021;
+}
 </style>
