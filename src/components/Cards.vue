@@ -51,7 +51,7 @@
     <!-- CATEGORY NAME AND COPY BUTTON WHEN IN CATEGORY -->
     <div v-if="(this.$store.state.activeCategory !== 'All')">
         <h3 class="text-center">
-            {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboard5 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+            {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboardCardOverviewCategory " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
         </h3>
     </div>
 
@@ -80,7 +80,7 @@
                 <a style="color: $card-footer-link-color;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
 
                 <!-- check allCardsInChosenCategory in store for what is in array, this should be made easier -->
-                <button :data-misconception="item.misconception" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" title="Copy Link">Copy Link</button>
+                <button :data-misconception="item.misconception" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboardCardOverview float-right" title="Copy Link">Copy Link</button>
 
                 <!-- Sharingbutton Twitter -->
                 <a class="resp-sharing-button__link float-right mr-2" :href="'https://twitter.com/intent/tweet/?text=' + item.misconception + '&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on Twitter</span>
@@ -384,12 +384,12 @@ div.cards.selection .category-all-shown-in-cards {
 }
 
 .resp-sharing-button__link,
-.copyURLtoClipboard4 {
+.copyURLtoClipboardCardOverview {
     opacity: 0.5;
 }
 
 .resp-sharing-button__link:hover,
-.copyURLtoClipboard4:hover {
+.copyURLtoClipboardCardOverview:hover {
     opacity: 1;
 }
 

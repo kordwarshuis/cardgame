@@ -126,7 +126,7 @@
                 <div style="display: inline-block;">
                     <SocialMedia />
                 </div>
-                <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
+                <button class="copyURLtoClipboard copyURLtoClipboardCardIntroAndFull " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
             </div>
         </div>
     </div>

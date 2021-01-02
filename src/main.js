@@ -88,6 +88,7 @@ store.commit('setGameTitle', process.env.VUE_APP_TITLE);
 store.commit('setGameTitle2', process.env.VUE_APP_TITLE_2);
 store.commit('setGameSubTitle', process.env.VUE_APP_SUBTITLE);
 
+
 // copy URL into clipboard via click on button
 // Note: here it is not: "this.$store.commit" but "store.commit" (https://stackoverflow.com/q/51348936)
 
@@ -101,31 +102,51 @@ function createCopyToClipboardParty() {
   }, 1500);
   setTimeout(function () {
     cardgame.stopConfetti();
-  }, 7500);
+  }, 4500);
 }
 
-// 
-var clipboardOverviewScreen = new ClipboardJS('.copyURLtoClipboard4', {
+
+// CLIPBOARD CARD INTRO AND CARD FULL
+var copyURLtoClipboardCardIntroAndFull = new ClipboardJS('.copyURLtoClipboardCardIntroAndFull', {
+  text: function () {
+    if (localStorage.getItem("soundOn") === "true") go.play();
+    document.querySelector("body").classList.add("person1");
+    setTimeout(function () {
+      document.querySelector("body").classList.remove("person1");
+    }, 1500);
+    // return "“" + store.state.currentCard["Misconception"] + "”\n" + store.state.currentCard["Short Answer"] + " 👉 " + window.location.href;
+    return "“" + store.state.currentCard["Misconception"] + "”\n" + " 👉 " + window.location.href;
+  }
+});
+copyURLtoClipboardCardIntroAndFull.on('success', function (e) {
+  createCopyToClipboardParty();
+});
+
+
+// CLIPBOARD CARD OVERVIEW PAGE
+var copyURLtoClipboardCardOverview = new ClipboardJS('.copyURLtoClipboardCardOverview', {
   text: function (trigger) {
     //https://stackoverflow.com/a/6941624
     return "“" + trigger.dataset.misconception + "”\n" + " 👉 " + window.location.protocol + "//" + window.location.host + VueConfig.publicPath + "card/" + trigger.dataset.url;
   }
 });
-
-clipboardOverviewScreen.on('success', function (e) {
+copyURLtoClipboardCardOverview.on('success', function (e) {
   createCopyToClipboardParty();
 });
 
-var clipboardCategory = new ClipboardJS('.copyURLtoClipboard5', {
+
+// CLIPBOARD CARD OVERVIEW CATEGORY
+var copyURLtoClipboardCardOverviewCategory = new ClipboardJS('.copyURLtoClipboardCardOverviewCategory', {
   text: function (trigger) {
     return window.location.href;
   }
 });
-
-clipboardCategory.on('success', function (e) {
+copyURLtoClipboardCardOverviewCategory.on('success', function (e) {
   createCopyToClipboardParty();
 });
 
+
+// CLIPBOARD BOOKMARKED URLS
 // copies all URLs of bookmarked tweets to clipboard
 var clipboardBookmarkedURLs = new ClipboardJS('.copyBookmarkedURLsToClipboard', {
   text: function (trigger) {
@@ -140,11 +161,12 @@ var clipboardBookmarkedURLs = new ClipboardJS('.copyBookmarkedURLsToClipboard', 
     return urls;
   }
 });
-
 clipboardBookmarkedURLs.on('success', function (e) {
   createCopyToClipboardParty();
 });
 
+
+// CLIPBOARD BOOKMARKED URLS TO EMAIL
 // copies all URLs of bookmarked tweets to email
 var clipboardBookmarkedURLsToEmail = new ClipboardJS('.copyBookmarkedURLsToEmail', {
   text: function (trigger) {
@@ -162,17 +184,17 @@ var clipboardBookmarkedURLsToEmail = new ClipboardJS('.copyBookmarkedURLsToEmail
     return urls;
   }
 });
-
 clipboardBookmarkedURLsToEmail.on('success', function (e) {
   createCopyToClipboardParty();
 });
 
+
+// CLIPBOARD SEARCH RESULTS
 var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
   text: function (trigger) {
     return "“" + trigger.dataset.misconception + "”\n" + " 👉 " + window.location.protocol + "//" + window.location.host + VueConfig.publicPath + trigger.dataset.url;
   }
 });
-
 clipboardSearchResults.on('success', function (e) {
   createCopyToClipboardParty();
 });
