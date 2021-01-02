@@ -38,8 +38,6 @@ export const disableBodyScrollMixin = {
                 // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight#Problems_and_solutions
                 return _overlay.scrollHeight - _overlay.scrollTop <= _overlay.clientHeight;
             }
-        },
-
+        }
     }
-
 }
