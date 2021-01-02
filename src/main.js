@@ -38,7 +38,7 @@ var cardgame = new Vue({ // https://stackoverflow.com/a/46978163/9749918
   methods: {
     startConfetti() {
       if (process.env.VUE_APP_CONFETTI === "true") {
-        this.$confetti.start();
+        this.$confetti.start({particlesPerFrame: 0.2});
       }
     },
     stopConfetti() {
