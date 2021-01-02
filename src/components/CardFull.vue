@@ -11,8 +11,6 @@
                     <p v-if="this.$store.state.currentCard['Misconception Elaborate']" class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Misconception Elaborate"] }}<span class="quote">”</span></p>
                 </div>
 
-                <!-- <button class="copyURLtoClipboard copyURLtoClipboard1" title="Copy Link">Copy Link</button> -->
-
                 <!-- <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
 
                     <h3 class="longAnswer">Short Answer</h3>
