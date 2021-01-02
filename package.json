@@ -29,6 +29,7 @@
     "snapsvg": "^0.5.1",
     "vue": "^2.6.12",
     "vue-bootstrap-toasts": "^1.0.7",
+    "vue-confetti": "^2.2.1",
     "vue-countup-v2": "^4.0.0",
     "vue-fuse": "^2.2.1",
     "vue-gtag": "^1.10.0",
