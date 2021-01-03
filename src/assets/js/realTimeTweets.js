@@ -76,9 +76,9 @@ export var realTimeTweets = (function () {
 
     function reCalculateTimestamp() {
         setInterval(function () {
-            var allTimestamps = document.querySelectorAll('.timestamp');
-            allTimestamps.forEach(function (a) {
-                a.innerHTML = timestampTweet(a.dataset.createdat);
+            var allTimestamps = document.querySelectorAll('.timestamptweet');
+            allTimestamps.forEach(function (item) {
+                item.innerHTML = timestampTweet(item.dataset.createdate);
             });
         }, 60000);
     }
@@ -235,7 +235,7 @@ export var realTimeTweets = (function () {
                         "<div class='col-6 mb-3'>Followers: " + data[i].user.followers_count + "</div>" +
 
                         "<div class='col-6'></div>" +
-                        "<div data-createdat='" + data[i].created_at + "' class='col-6 timestamp'>" + timestampTweet(data[i].created_at) + "</div>" +
+                        "<div data-createdate='" + data[i].created_at + "' class='col-6 timestamptweet'>" + timestampTweet(data[i].created_at) + "</div>" +
                         "</div>" +
 
                         "<div class='row'>" +
