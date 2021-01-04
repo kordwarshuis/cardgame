@@ -109,6 +109,10 @@ import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
 
+import {
+    recalculateTweetTimeStamps
+} from "@/assets/js/calculateTweetTimeStamps"
+
 export default {
     name: "twitterRealtime",
     data() {
@@ -119,7 +123,9 @@ export default {
         TwitterRealTimeStartStopToggle
     },
     mounted() {
-        setTimeout(function(){getJSON.start()}, 10000);
+        setTimeout(function () {
+            getJSON.start()
+        }, 10000);
         this.hideThisTweet();
         this.copyTweet();
         // this.startStopTweetStream();
@@ -138,6 +144,7 @@ export default {
         this.setRealtimeTweetsToLocalStorageBeforeUnload();
         this.clock();
         this.insertAndRemoveMessageToTweetStream();
+        recalculateTweetTimeStamps();
     },
     methods: {
         hideThisTweet() {
@@ -476,7 +483,7 @@ function slideInMenu() {
         openbtn = document.getElementById("open-button"),
         openbtn2 = document.querySelector(".twitter-open-close-handle"),
         isOpen = false; // see above
-        
+
     function init() {
         initEvents();
     }

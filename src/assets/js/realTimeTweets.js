@@ -1,13 +1,10 @@
 import store from "../../store/store";
 import {
-    formatDistance
-} from 'date-fns';
-import {
-    convertTwitterTimeStamp
-} from "@/assets/js/convertTwitterTimeStamp.js";
-import {
     twitterLinks
 } from "./twitterLinks";
+import {
+    timestampTweet
+} from "@/assets/js/calculateTweetTimeStamps";
 
 // https://www.npmjs.com/package/platform-detect
 import platform from 'platform-detect';
@@ -69,21 +66,6 @@ export var realTimeTweets = (function () {
     function showNumberOfFollowers() {
         document.querySelector("#numberOfFollowers").innerHTML = numberOfFollowers;
     }
-
-    function timestampTweet(time) {
-        return formatDistance(convertTwitterTimeStamp(time), Date.now());
-    }
-
-    function reCalculateTimestamp() {
-        setInterval(function () {
-            var allTimestamps = document.querySelectorAll('.timestamptweet');
-            allTimestamps.forEach(function (item) {
-                item.innerHTML = timestampTweet(item.dataset.createdate);
-            });
-        }, 60000);
-    }
-    reCalculateTimestamp();
-
 
     // https://stackoverflow.com/a/1584377
     function arrayUnique(array) {
