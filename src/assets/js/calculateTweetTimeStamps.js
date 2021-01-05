@@ -10,11 +10,15 @@ export function timestampTweet(time) {
 }
 
 export var recalculateTweetTimeStamps = function () {
-    setInterval(function () {
-        console.log("hihi");
+    function a() {
         var allTimestamps = document.querySelectorAll('.timestamptweet');
         allTimestamps.forEach(function (item) {
             item.innerHTML = timestampTweet(item.dataset.createdate);
         });
+    }
+
+    a();
+    setInterval(function () {
+        a();
     }, 60000);
 };
