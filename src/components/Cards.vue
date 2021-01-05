@@ -67,7 +67,7 @@
             </div>
         </div>
         <!-- THE CARDS -->
-        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.misconception" class="card mb-4 p-0">
+        <div v-for="item in setAllCards" :key="item.misconception" class="card mb-4 p-0">
             <div class="card-body p-0 align-items-center d-flex">
                 <a :data-id="item['id']" :key="item.misconception" @click="showCardIntro" class="p-1">
                     <h2 class=""><span class="quote">“</span>{{ item.misconception }}<span class="quote">”</span></h2>
@@ -93,6 +93,7 @@
                 </a>
             </div>
         </div>
+        <button class="btn btn-primary cards-show-all display-none" @click="showAllCards">Show all cards</button>
     </div>
 </div>
 </template>
@@ -102,6 +103,7 @@ import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
 import publicPath from "../../vue.config";
 import GameInstructionsCarousel from "./GameInstructionsCarousel.vue";
+import store from "../store/store";
 
 export default {
     name: "Index",
@@ -117,6 +119,8 @@ export default {
     data() {
         return {
             // pickedItems: [],
+            allCards: [],
+            cardsInitiallyShown: 0,
             ICountUpDelay: 2000, //msec
             ICountUpOptions: {
                 useEasing: true,
@@ -143,8 +147,59 @@ export default {
                 videoHomepage.play();
             }
         }, 7000);
+        this.setCardsInitiallyShown();
+    },
+    computed: {
+        setAllCards() {
+            this.createCardsShown();
+            return this.allCards;
+        }
     },
     methods: {
+        setCardsInitiallyShown() {
+            if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE !== "") {
+                // set the number of cards to be shown
+                this.cardsInitiallyShown = parseInt(process.env.VUE_APP_MAX_CARDS_HOMEPAGE, 10);
+            } // else we do not set this
+        },
+        createCardsShown() {
+            this.allCards = JSON.parse(JSON.stringify(this.$store.state.allCardsInChosenCategory));
+
+            // if the number of cards to be shown is set then chop aray
+            if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE !== "") {
+                this.allCards.splice(this.cardsInitiallyShown);
+                // if number of cards to be shown is less than total then show “show all” button
+                if (this.cardsInitiallyShown < this.$store.state.allCardsInChosenCategory.length) {
+                    // show the button that shows all cards
+                    this.buttonShowAllCards().show();
+                }
+            } // else leave array as is
+        },
+        buttonShowAllCards() {
+            var button = document.querySelector('.cards-show-all');
+
+            function showButton() {
+                if (button) {
+                    button.classList.remove('display-none');
+                }
+            }
+
+            function hideButton() {
+                if (button) {
+                    button.classList.add('display-none');
+                }
+            }
+
+            return {
+                show: showButton,
+                hide: hideButton
+            }
+        },
+        showAllCards() {
+            this.cardsInitiallyShown = this.$store.state.allCardsInChosenCategory.length;
+            this.createCardsShown();
+            this.buttonShowAllCards().hide();
+        },
         showAllCategories() {
             this.$store.commit('showItemsInSelectedCategory');
             this.$router.push("/");
@@ -225,6 +280,10 @@ export default {
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/_breakpoints";
+
+.display-none {
+    display: none;
+}
 
 .cards {
     padding-top: 30px;
@@ -353,6 +412,10 @@ p.subtitle {
             min-height: 10em;
         }
     }
+
+    // >.card:nth-child(n + #{$cards-initially-shown + 1}) {
+    //     display: none;
+    // }
 
     .category {
         border-radius: 4px;
