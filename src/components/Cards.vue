@@ -93,7 +93,7 @@
                 </a>
             </div>
         </div>
-        <button class="btn btn-primary cards-show-all " @click="showAllCards">Show all cards</button>
+        <button class="btn btn-primary cards-show-all display-none" @click="showAllCards">Show all cards</button>
     </div>
 </div>
 </template>
@@ -147,31 +147,47 @@ export default {
                 videoHomepage.play();
             }
         }, 7000);
-        this.setCardsInitiallyShown()
+        this.setCardsInitiallyShown();
     },
     computed: {
         setAllCards() {
-            this.createCardsInitiallyShown();
+            this.createCardsShown();
             return this.allCards;
         }
     },
     methods: {
         setCardsInitiallyShown() {
-            if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE === "") {
-                this.cardsInitiallyShown = this.$store.state.allCardsInChosenCategory.length;
-            } else {
-                this.cardsInitiallyShown = parseInt(process.env.VUE_APP_MAX_CARDS_HOMEPAGE, 10)
-            }
+            if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE !== "") {
+                // set the number of cards to be shown
+                this.cardsInitiallyShown = parseInt(process.env.VUE_APP_MAX_CARDS_HOMEPAGE, 10);
+            } // else we do not set this
+        },
+        createCardsShown() {
+            this.allCards = JSON.parse(JSON.stringify(this.$store.state.allCardsInChosenCategory));
+
+            // if the number of cards to be shown is set then chop aray
+            if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE !== "") {
+                this.allCards.splice(this.cardsInitiallyShown);
+                // if number of cards to be shown is less than total then show “show all” button
+                if (this.cardsInitiallyShown < this.$store.state.allCardsInChosenCategory.length) {
+                    // show the button that shows all cards
+                    this.buttonShowAllCards().show();
+                }
+            } // else leave array as is
         },
         buttonShowAllCards() {
             var button = document.querySelector('.cards-show-all');
 
             function showButton() {
-                button.classList.remove('display-none');
+                if (button) {
+                    button.classList.remove('display-none');
+                }
             }
 
             function hideButton() {
-                button.classList.add('display-none');
+                if (button) {
+                    button.classList.add('display-none');
+                }
             }
 
             return {
@@ -179,13 +195,9 @@ export default {
                 hide: hideButton
             }
         },
-        createCardsInitiallyShown() {
-            this.allCards = JSON.parse(JSON.stringify(this.$store.state.allCardsInChosenCategory));
-            this.allCards.splice(this.cardsInitiallyShown);
-        },
         showAllCards() {
             this.cardsInitiallyShown = this.$store.state.allCardsInChosenCategory.length;
-            this.createCardsInitiallyShown();
+            this.createCardsShown();
             this.buttonShowAllCards().hide();
         },
         showAllCategories() {
