@@ -67,7 +67,7 @@
             </div>
         </div>
         <!-- THE CARDS -->
-        <div v-for="item in this.allCards" :key="item.misconception" class="card mb-4 p-0">
+        <div v-for="item in setAllCards" :key="item.misconception" class="card mb-4 p-0">
             <div class="card-body p-0 align-items-center d-flex">
                 <a :data-id="item['id']" :key="item.misconception" @click="showCardIntro" class="p-1">
                     <h2 class=""><span class="quote">“</span>{{ item.misconception }}<span class="quote">”</span></h2>
@@ -93,7 +93,7 @@
                 </a>
             </div>
         </div>
-        <!-- <button class="btn btn-primary cards-show-all" @click="readMore">Show all cards</button> -->
+        <button class="btn btn-primary cards-show-all " @click="showAllCards">Show all cards</button>
     </div>
 </div>
 </template>
@@ -120,6 +120,7 @@ export default {
         return {
             // pickedItems: [],
             allCards: [],
+            cardsInitiallyShown: 0,
             ICountUpDelay: 2000, //msec
             ICountUpOptions: {
                 useEasing: true,
@@ -146,54 +147,46 @@ export default {
                 videoHomepage.play();
             }
         }, 7000);
-        this.addShowHideClassToCards();
-        
-
-        this.$nextTick(() => {
-            this.getAllCard();
-
-        });
-
-        console.log("this.allCards 0e: " + this.allCards.length);
+        this.setCardsInitiallyShown()
     },
     computed: {
-        // setAllCards() {
-        //     this.allCards = this.$store.state.allCardsInChosenCategory;
-        // }
-
+        setAllCards() {
+            this.createCardsInitiallyShown();
+            return this.allCards;
+        }
     },
     methods: {
-        getAllCard() {
-            this.allCards = this.$store.state.allCardsInChosenCategory;
-            console.log('this.allCards.length 1e: ', this.allCards.length);
-            this.addShowHideClassToCards();
+        setCardsInitiallyShown() {
+            if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE === "") {
+                this.cardsInitiallyShown = this.$store.state.allCardsInChosenCategory.length;
+            } else {
+                this.cardsInitiallyShown = parseInt(process.env.VUE_APP_MAX_CARDS_HOMEPAGE, 10)
+            }
         },
+        buttonShowAllCards() {
+            var button = document.querySelector('.cards-show-all');
 
-        addShowHideClassToCards() {
+            function showButton() {
+                button.classList.remove('display-none');
+            }
 
-            // setTimeout(function () {
+            function hideButton() {
+                button.classList.add('display-none');
+            }
 
-            // }, 5000);
-
-            let allCards = document.querySelectorAll('.card');
-            console.log('allCards.length 2e: ', allCards.length);
-
-            allCards.forEach(function (e) {
-                console.log("ddd");
-                e.classList.add('card-show-hide');
-            })
-
+            return {
+                show: showButton,
+                hide: hideButton
+            }
         },
-        readMore() {
-            let cardsShowAll = document.querySelector('.cards-show-all');
-            let allCards = document.querySelectorAll('.card');
-
-            cardsShowAll.style.display = 'none';
-            allCards.forEach(function (e) {
-                console.log(e);
-                // e.classList.toggle('card-show-hide');
-                e.style.display = 'inline-block';
-            })
+        createCardsInitiallyShown() {
+            this.allCards = JSON.parse(JSON.stringify(this.$store.state.allCardsInChosenCategory));
+            this.allCards.splice(this.cardsInitiallyShown);
+        },
+        showAllCards() {
+            this.cardsInitiallyShown = this.$store.state.allCardsInChosenCategory.length;
+            this.createCardsInitiallyShown();
+            this.buttonShowAllCards().hide();
         },
         showAllCategories() {
             this.$store.commit('showItemsInSelectedCategory');
@@ -275,6 +268,10 @@ export default {
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/_breakpoints";
+
+.display-none {
+    display: none;
+}
 
 .cards {
     padding-top: 30px;
