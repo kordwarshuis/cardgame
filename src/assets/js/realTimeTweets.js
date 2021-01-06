@@ -167,7 +167,7 @@ export var realTimeTweets = (function () {
 
                 // STRINGS THAT SHOULD NOT EXIST IN TWEET TEXT
                 if (noneOfTheseStrings.length === 0) {
-                    noneOfTheseStringsCriterium = true; // there are now restrictions so tweet can be shown
+                    noneOfTheseStringsCriterium = true; // there are no restrictions so tweet can be shown
                 } else {
                     // loop through all noneOfTheseStrings:
                     for (let j = 0; j < noneOfTheseStrings.length; j++) {
