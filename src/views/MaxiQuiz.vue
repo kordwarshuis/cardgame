@@ -386,7 +386,7 @@ export default {
                         domSocialMediaTekst.innerHTML = document.head.querySelector("[name~=description][content]").content + " " + socialMediaTekst.bijMeerdereVragen[0] + " " + totaalAantalVragenBeantwoord + " " + socialMediaTekst.bijMeerdereVragen[1] + " " + totaalAantalVragen + " " + socialMediaTekst.bijMeerdereVragen[2] + " " + socialMediaTekst.bijMeerdereVragen[3] + afronden(scorePercentage, 0) + socialMediaTekst.bijMeerdereVragen[4] + " " + window.location.href;
                     }
 
-                    if (localStorage.getItem("soundOn") === "true") quizPlop.play();
+                    if (localStorage.getItem("soundOn") === "true") whoosh2.play();
 
                     // op de achtergrond zodat je tussen de blokken tekst en diagrammen door de score ziet
                     if (domAchtergrondScore) {
@@ -441,7 +441,7 @@ export default {
                         // de toelichting laten zien
                         setTimeout(
                             function () {
-                                if (localStorage.getItem("soundOn") === "true") quizPlop.play();
+                                if (localStorage.getItem("soundOn") === "true") whoosh2.play();
                                 // wadde.classList.add("zichtbaar");
                                 // TODO: de functie almostvisible moet herschreven worden zodat ik het hier kan aanroepen
 
@@ -1168,7 +1168,7 @@ export default {
                 // wat te doen bij een bepaalde score, via een custom event
                 document.addEventListener("customEventScore0", function () {
                     "use strict";
-                    main.speelScoreAudio(whawhaTrumpet, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(whawhaTrumpet, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s0);
@@ -1178,7 +1178,7 @@ export default {
 
                 document.addEventListener("customEventScore1", function () {
                     "use strict";
-                    main.speelScoreAudio(whawhaTrumpet, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(whawhaTrumpet, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s1);
@@ -1187,7 +1187,7 @@ export default {
 
                 document.addEventListener("customEventScore2", function () {
                     "use strict";
-                    main.speelScoreAudio(laughManiacal, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(laughManiacal, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s2);
@@ -1196,7 +1196,7 @@ export default {
 
                 document.addEventListener("customEventScore3", function () {
                     "use strict";
-                    main.speelScoreAudio(cannedLaughter, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(cannedLaughter, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s3);
@@ -1206,7 +1206,7 @@ export default {
                 document.addEventListener("customEventScore4", function () {
                     "use strict";
 
-                    main.speelScoreAudio(blur, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(blur, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s4);
@@ -1215,7 +1215,7 @@ export default {
 
                 document.addEventListener("customEventScore5", function () {
                     "use strict";
-                    main.speelScoreAudio(bouncing3, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(bouncing3, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s5);
@@ -1224,7 +1224,7 @@ export default {
 
                 document.addEventListener("customEventScore6", function () {
                     "use strict";
-                    main.speelScoreAudio(gasp, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(gasp, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s6);
@@ -1233,7 +1233,7 @@ export default {
 
                 document.addEventListener("customEventScore7", function () {
                     "use strict";
-                    main.speelScoreAudio(drumCrash1, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(drumCrash1, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s7);
@@ -1242,7 +1242,7 @@ export default {
 
                 document.addEventListener("customEventScore8", function () {
                     "use strict";
-                    main.speelScoreAudio(surprisedGasp, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(surprisedGasp, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s8);
@@ -1251,7 +1251,7 @@ export default {
 
                 document.addEventListener("customEventScore9", function () {
                     "use strict";
-                    main.speelScoreAudio(fanfare, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(fanfare, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s9);
@@ -1265,7 +1265,7 @@ export default {
                         main.domScoreVideoTekst.innerHTML = main.videootje.score10[1];
                     }
 
-                    main.speelScoreAudio(epiphany, vertragingCommentaarNaKeuze);
+                    // main.speelScoreAudio(epiphany, vertragingCommentaarNaKeuze);
 
                     setTimeout(function () {
                         store.commit("showToast", languageEn.yourScore.s10);
