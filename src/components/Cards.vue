@@ -72,6 +72,7 @@
                 <a :data-id="item['id']" :key="item.misconception" @click="showCardIntro" class="p-1">
                     <h2 class=""><span class="quote">“</span>{{ item.misconception }}<span class="quote">”</span></h2>
                 </a>
+                <p v-if='realtimeTweets === "true"' class="times-tweeted" :title="'This card has been tweeted ' + item['Number of tweets'] + ' times'"><img class="twitter-logo" src="../assets/img/icons/social-media-buttons/twitter.svg" alt="twitter logo" />{{item['Number of tweets']}}</p>
             </div>
             <div class="card-footer">
                 <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: $card-footer-link-color; text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
@@ -136,7 +137,8 @@ export default {
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
             homepageVideo: process.env.VUE_APP_HOMEPAGE_VIDEO,
             homepageVideoPathToVideo: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
-            homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE
+            homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
+            realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS
         }
     },
     mounted() {
@@ -424,6 +426,14 @@ p.subtitle {
         margin: 0.8em;
     }
 
+}
+
+.times-tweeted {
+    font-size: 0.8em;
+}
+
+.twitter-logo {
+    width: 12px;
 }
 
 .nav-item a {
