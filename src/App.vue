@@ -76,99 +76,168 @@ export default {
         fetchData() {
             // only fetch data
             if (this.$store.state.dataFetched === false) {
-                return axios.get(process.env.VUE_APP_CARDS_CONTENT)
-                    .then(response => {
-                        var responseData = d3.csvParse(response.data);
-                        var responseDataTemp = [];
-                        // prepare data
 
-                        // select the stack
-                        // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to STACK 1, if a "2" it's STACK 2, "12" means it belongs to both.
-                        // TODO: move this to main.js
+                let one = process.env.VUE_APP_CARDS_CONTENT;
+                let two = process.env.VUE_APP_CARDGAME_SCORES;
 
-                        var stack = Number(process.env.VUE_APP_STACK);
+                const requestOne = axios.get(one);
+                let requestTwo;
 
-                        // select only the items that are in the selected stack
-                        // avoid working on a changing array by using a temp array
-                        for (let i = 0; i < responseData.length; i++) {
-                            if (responseData[i].Stack.indexOf(stack) > -1) {
-                                responseDataTemp.push(responseData[i]);
+                if (two === "") {
+                    requestTwo = ""
+                } else {
+                    requestTwo = axios.get(two);
+                }
+
+                // https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
+                return axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
+                    const responseOne = responses[0]
+                    const responseTwo = responses[1]
+
+                    // use/access the results 
+
+                    // 1: the scores data
+                    var tweetedCards = [];
+                    var tweetedCardsFlat = [];
+
+                    // only if there is something to do:
+                    if (two !== "") {
+                        responseTwo.data.scores.forEach(function (entry) {
+                            tweetedCards.push(entry.cardURLs);
+                        })
+
+                        // make the array flat, https://stackoverflow.com/a/10865042/9749918
+                        var tweetedCardsFlat = [].concat.apply([], tweetedCards);
+
+                        // how to change values in source array: the https://stackoverflow.com/a/12482991/9749918
+                        tweetedCardsFlat.forEach(function (part, index, theArray) {
+
+                            // remove parts of the strings
+                            // remove domain name, https://stackoverflow.com/a/2599721/9749918
+                            theArray[index] = theArray[index].replace(/https?:\/\/[^\/]+/i, "");
+
+                            // remove subdirs:
+                            // var replace = publicPath;
+                            var replace = "/t/btc/"; //TODO: remove hard coded paths
+                            var re = new RegExp(replace, "i");
+                            theArray[index] = theArray[index].replace(re, "");
+
+                            var replace = "/t/btc";
+                            var re = new RegExp(replace, "i");
+                            theArray[index] = theArray[index].replace(re, "");
+                        });
+
+                        // only keep URLS with 'card' in them
+                        tweetedCardsFlat = tweetedCardsFlat.filter(function (e) {
+                            return e.indexOf('card') > -1
+                        });
+
+                        // remove the string 'card/'
+                        tweetedCardsFlat.forEach(function (part, index, theArray) {
+                            var replace = "card/";
+                            var re = new RegExp(replace, "i");
+                            theArray[index] = theArray[index].replace(re, "");
+                        });
+                    }
+
+                    // 2: the cards data
+                    var responseData = d3.csvParse(responseOne.data);
+                    var responseDataTemp = [];
+                    
+                    // prepare data
+
+                    // select the stack
+                    // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to STACK 1, if a "2" it's STACK 2, "12" means it belongs to both.
+                    // TODO: move this to main.js
+
+                    var stack = Number(process.env.VUE_APP_STACK);
+
+                    // select only the items that are in the selected stack
+                    // avoid working on a changing array by using a temp array
+                    for (let i = 0; i < responseData.length; i++) {
+                        if (responseData[i].Stack.indexOf(stack) > -1) {
+                            responseDataTemp.push(responseData[i]);
+                        }
+                    }
+                    // just to be sure that it's empty…:
+                    responseData = [];
+                    responseData.length = 0;
+                    // …and fill array again:
+                    responseData = responseDataTemp;
+                    // and empty the temp just to be sure, probably not necessary:
+                    responseDataTemp = [];
+                    responseDataTemp.length = 0;
+                    // now we only have items that are in the given stack
+
+                    this.$store.state.numberofCards = responseData.length;
+
+                    // cleaning
+                    for (let i = 0; i < responseData.length; i++) {
+                        for (var k in responseData[i]) {
+                            if (responseData[i].hasOwnProperty(k)) {
+                                // console.log("Key is " + k + ", value is: " + dataLayer1[i][k]);
+                                // the csv source from google introduces \' so we remove the backslash:
+                                responseData[i][k] = responseData[i][k].replace(/\\'/g, "‘");
+                                //experimental:
+                                responseData[i][k] = responseData[i][k].replace(/'/g, "‘");
+                                // responseData[i][k] = responseData[i][k].replace(/(\n\n)/gm, "</p><p>");
+                                responseData[i][k] = responseData[i][k].trim();
+                                // console.log('responseData[i][k]: ', responseData[i][k]);
                             }
                         }
-                        // just to be sure that it's empty…:
-                        responseData = [];
-                        responseData.length = 0;
-                        // …and fill array again:
-                        responseData = responseDataTemp;
-                        // and empty the temp just to be sure, probably not necessary:
-                        responseDataTemp = [];
-                        responseDataTemp.length = 0;
-                        // now we only have items that are in the given stack
+                    }
 
-                        this.$store.state.numberofCards = responseData.length;
+                    // split strings into arrays
+                    for (let i = 0; i < responseData.length; i++) {
+                        // format quiz data
+                        responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
 
-                        // cleaning
-                        for (let i = 0; i < responseData.length; i++) {
-                            for (var k in responseData[i]) {
-                                if (responseData[i].hasOwnProperty(k)) {
-                                    // console.log("Key is " + k + ", value is: " + dataLayer1[i][k]);
-                                    // the csv source from google introduces \' so we remove the backslash:
-                                    responseData[i][k] = responseData[i][k].replace(/\\'/g, "‘");
-                                    //experimental:
-                                    responseData[i][k] = responseData[i][k].replace(/'/g, "‘");
-                                    // responseData[i][k] = responseData[i][k].replace(/(\n\n)/gm, "</p><p>");
-                                    responseData[i][k] = responseData[i][k].trim();
-                                    // console.log('responseData[i][k]: ', responseData[i][k]);
-                                }
+                        // split string on \n\n, so we can make paragraphs later, or separate links for example
+                        responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
+                        responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
+
+                        responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
+
+                        // trim spaces (for example when source is: word1, word2) TODO: do this for everything
+                        if (responseData[i]["Related"] !== undefined) {
+                            for (let k = 0; k < responseData[i]["Related"].length; k++) {
+                                responseData[i]["Related"][k] = responseData[i]["Related"][k].trim();
                             }
                         }
+                    }
 
-                        // split strings into arrays
-                        for (let i = 0; i < responseData.length; i++) {
-                            // format quiz data
-                            responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
+                    // save data to store, probably not necessary, can be done via data and props
+                    // console.log('responseData: ', responseData);
+                    this.$store.state.theJSON = responseData;
+                    this.createCategoriesArray(this.$store.state.theJSON);
 
-                            // split string on \n\n, so we can make paragraphs later, or separate links for example
-                            responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
-                            responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
-
-                            responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
-
-                            // trim spaces (for example when source is: word1, word2) TODO: do this for everything
-                            if (responseData[i]["Related"] !== undefined) {
-                                for (let k = 0; k < responseData[i]["Related"].length; k++) {
-                                    responseData[i]["Related"][k] = responseData[i]["Related"][k].trim();
-                                }
-                            }
+                    // create array with all columns / keys
+                    for (var k in responseData[0]) {
+                        if (responseData[0].hasOwnProperty(k)) {
+                            this.$store.state.allKeys.push(k);
                         }
+                    }
 
-                        // save data to store, probably not necessary, can be done via data and props
-                        this.$store.state.theJSON = responseData;
-                        this.createCategoriesArray(this.$store.state.theJSON);
+                    // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
+                    this.$store.commit("showItemsInSelectedCategory");
 
-                        // create array with all columns / keys
-                        for (var k in responseData[0]) {
-                            if (responseData[0].hasOwnProperty(k)) {
-                                this.$store.state.allKeys.push(k);
-                            }
-                        }
+                    this.$store.state.dataFetched = true;
 
-                        // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
-                        this.$store.commit("showItemsInSelectedCategory");
+                    // deal with URL. We now have an overview of all the cards. Should we show a card intro? Or a category?
 
-                        this.$store.state.dataFetched = true;
+                    // if there is a specific url / card param, the do following:
+                    if (this.$route.params.card !== "" && this.$route.params.card !== undefined) {
+                        this.$store.commit("showCardIntroFromURL", this.$route.params.card);
+                    }
+                    // if there is a specific url / category param, the do following:
+                    if (this.$route.params.category !== "" && this.$route.params.category !== undefined) {
+                        this.$store.commit("showItemsInSelectedCategory", this.$route.params.category);
+                    }
 
-                        // deal with URL. We now have an overview of all the cards. Should we show a card intro? Or a category?
-
-                        // if there is a specific url / card param, the do following:
-                        if (this.$route.params.card !== "" && this.$route.params.card !== undefined) {
-                            this.$store.commit("showCardIntroFromURL", this.$route.params.card);
-                        }
-                        // if there is a specific url / category param, the do following:
-                        if (this.$route.params.category !== "" && this.$route.params.category !== undefined) {
-                            this.$store.commit("showItemsInSelectedCategory", this.$route.params.category);
-                        }
-                    });
+                })).catch(errors => {
+                    // react on errors.
+                    console.log("something goes wrong fetching the data");
+                })
             }
         },
         prepareQuiz(quiz) {
@@ -1006,9 +1075,10 @@ footer {
     color: $basic1;
 }
 
-#app > section > div > div > div > div.col-lg-12.col-md-12.col-sm-12.m-0.p-0.pr-1 > div > div.card-body > table > tr > td > div > div > p > img {
+#app>section>div>div>div>div.col-lg-12.col-md-12.col-sm-12.m-0.p-0.pr-1>div>div.card-body>table>tr>td>div>div>p>img {
     width: 20px !important;
 }
+
 // END SCORES
 
 // CONFETTI
