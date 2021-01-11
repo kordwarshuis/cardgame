@@ -143,7 +143,7 @@ export default {
                     // 2: the cards data
                     var responseData = d3.csvParse(responseOne.data);
                     var responseDataTemp = [];
-                    
+
                     // prepare data
 
                     // select the stack
@@ -209,6 +209,21 @@ export default {
                     // save data to store, probably not necessary, can be done via data and props
                     // console.log('responseData: ', responseData);
                     this.$store.state.theJSON = responseData;
+
+                    this.$store.state.theJSON.forEach(function (e) {
+                        var counts = {};
+
+                        for (var i = 0; i < tweetedCardsFlat.length; i++) {
+                            var num = tweetedCardsFlat[i];
+                            counts[num] = counts[num] ? counts[num] + 1 : 1;
+                        }
+
+                        if (counts[e['Unique URL']] === undefined) {
+                            e['Number of tweets'] = 0;
+                        } else {
+                            e['Number of tweets'] = counts[e['Unique URL']];
+                        }
+                    })
                     this.createCategoriesArray(this.$store.state.theJSON);
 
                     // create array with all columns / keys
