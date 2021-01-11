@@ -121,7 +121,8 @@ export default new Vuex.Store({
             "misconception": b.Misconception,
             "category": b.Category,
             "misconceptionElaborate": b["Misconception Elaborate"],
-            "Youtube Video Id": b["Youtube Video Id"]
+            "Youtube Video Id": b["Youtube Video Id"],
+            "Number of tweets": b["Number of tweets"],
             // ,
             // "numberOfItems": 
           });
