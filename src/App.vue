@@ -117,12 +117,12 @@ export default {
                             theArray[index] = theArray[index].replace(/https?:\/\/[^\/]+/i, "");
 
                             // remove subdirs:
-                            // var replace = publicPath;
-                            var replace = "/t/btc/"; //TODO: remove hard coded paths
+                            var replace = publicPath.publicPath;
                             var re = new RegExp(replace, "i");
                             theArray[index] = theArray[index].replace(re, "");
 
-                            var replace = "/t/btc";
+                            var replace = publicPath.publicPath.slice(0,-1);
+
                             var re = new RegExp(replace, "i");
                             theArray[index] = theArray[index].replace(re, "");
                         });
