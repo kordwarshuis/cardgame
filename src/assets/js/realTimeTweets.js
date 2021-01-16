@@ -28,6 +28,8 @@ export var realTimeTweets = (function () {
     var tweetNumber = 0;
     var tweetTypeText = "";
 
+    var timer = 0; // restrict how often new-tweet-sound plays
+
 
     // criteria
 
@@ -80,6 +82,9 @@ export var realTimeTweets = (function () {
         return a;
     }
 
+    setInterval(function () {
+        timer += 10000; // increase timer every 10 sec
+    }, 10000);
 
     function processTwitters(data) {
         var tweets = document.querySelector(".tweets-realtime .tweets");
@@ -239,7 +244,14 @@ export var realTimeTweets = (function () {
         loopThroughAllTweets(data);
 
         if (somethingFound) {
-            if (localStorage.getItem("soundOn") === "true") alert.play();
+            if (localStorage.getItem("soundOn") === "true") {
+                //only play the sound after enough time has passed
+                if (timer > 300000) {
+                    alert.play();
+                    timer = 0;
+                }
+            }
+
             domMenuIcon.classList.add('new-tweets');
             if (domTempOld !== domTemp) {
                 var k = 0;
