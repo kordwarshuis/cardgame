@@ -74,6 +74,8 @@ export default {
     },
     methods: {
         fetchData() {
+            var that = this;
+
             // only fetch data
             if (this.$store.state.dataFetched === false) {
 
@@ -121,7 +123,7 @@ export default {
                             var re = new RegExp(replace, "i");
                             theArray[index] = theArray[index].replace(re, "");
 
-                            var replace = publicPath.publicPath.slice(0,-1);
+                            var replace = publicPath.publicPath.slice(0, -1); // does not always work on local server, where the app is in the root, and remote it is not necessarily the case.
 
                             var re = new RegExp(replace, "i");
                             theArray[index] = theArray[index].replace(re, "");
@@ -138,6 +140,17 @@ export default {
                             var re = new RegExp(replace, "i");
                             theArray[index] = theArray[index].replace(re, "");
                         });
+                        
+                        // save in $store how many times has each card been tweeted
+                        (function () {
+                            //https://stackoverflow.com/a/5668029/9749918
+                            var counts = {};
+                            for (var i = 0; i < tweetedCardsFlat.length; i++) {
+                                var num = tweetedCardsFlat[i];
+                                counts[num] = counts[num] ? counts[num] + 1 : 1;
+                            }
+                            that.$store.commit("setTweetedCards", counts);
+                        }());
                     }
 
                     // 2: the cards data
@@ -211,14 +224,7 @@ export default {
                     this.$store.state.theJSON = responseData;
 
                     this.$store.state.theJSON.forEach(function (e) {
-                        var counts = {};
-
-                        for (var i = 0; i < tweetedCardsFlat.length; i++) {
-                            var num = tweetedCardsFlat[i];
-                            counts[num] = counts[num] ? counts[num] + 1 : 1;
-                        }
-
-                        if (counts[e['Unique URL']] === undefined) {
+                        if (that.$store.state.tweetedCards[e['Unique URL']] === undefined) {
                             e['Number of tweets'] = 0;
                         } else {
                             e['Number of tweets'] = counts[e['Unique URL']];
