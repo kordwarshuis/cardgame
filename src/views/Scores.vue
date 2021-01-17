@@ -12,6 +12,11 @@
 
             <div class="row justify-content-center ">
 
+                <h2>All cards, and number of times tweeted</h2>
+                <p style="font-size: 0.8em;font-weight: bold;text-align: center;">
+                        <span :style="{ fontSize: (10+(howOften/1.5)) + 'px' }" style="display: inline-block; border-radius: 5px; color: #111; background: #0385DB;margin: 0.3em; padding: 0.3em;" v-for="(howOften, cardName) in this.$store.state.tweetedCards" >{{cardName}}: {{howOften}} </span> 
+                </p>
+
                 <!-- ALL TIME TWEETS -->
                 <div class="col-lg-12 col-md-12 col-sm-12 m-0 p-0 pr-1">
                     <div class="card border-primary m-0 p-0 mb-3">
