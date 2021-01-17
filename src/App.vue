@@ -122,7 +122,6 @@ export default {
                             var replace = publicPath.publicPath;
                             var re = new RegExp(replace, "i");
                             theArray[index] = theArray[index].replace(re, "");
-
                             var replace = publicPath.publicPath.slice(0, -1); // does not always work on local server, where the app is in the root, and remote it is not necessarily the case.
 
                             var re = new RegExp(replace, "i");
@@ -140,7 +139,8 @@ export default {
                             var re = new RegExp(replace, "i");
                             theArray[index] = theArray[index].replace(re, "");
                         });
-                        
+                        // console.log('tweetedCardsFlat: ', tweetedCardsFlat);
+
                         // save in $store how many times has each card been tweeted
                         (function () {
                             //https://stackoverflow.com/a/5668029/9749918
@@ -223,13 +223,14 @@ export default {
                     // console.log('responseData: ', responseData);
                     this.$store.state.theJSON = responseData;
 
-                    this.$store.state.theJSON.forEach(function (e) {
-                        if (that.$store.state.tweetedCards[e['Unique URL']] === undefined) {
-                            e['Number of tweets'] = 0;
+                    this.$store.state.theJSON.forEach(function (part, index, theArray) {
+                        if (that.$store.state.tweetedCards[theArray[index]['Unique URL']] === undefined) {
+                            theArray[index]['Number of tweets'] = 0;
                         } else {
-                            e['Number of tweets'] = counts[e['Unique URL']];
+                            theArray[index]['Number of tweets'] = that.$store.state.tweetedCards[theArray[index]['Unique URL']];
                         }
                     })
+
                     this.createCategoriesArray(this.$store.state.theJSON);
 
                     // create array with all columns / keys
