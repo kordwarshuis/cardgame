@@ -51,7 +51,7 @@
     <!-- CATEGORY NAME AND COPY BUTTON WHEN IN CATEGORY -->
     <div v-if="(this.$store.state.activeCategory !== 'All')">
         <h3 class="text-center">
-            {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboardCardOverviewCategory " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+            {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboardCardFromAddressBar " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
         </h3>
     </div>
 
