@@ -35,7 +35,8 @@ export default new Vuex.Store({
         return value;
       }
     },
-    prospectHandles: []
+    prospectHandles: [],
+    tweetedCards: []
   },
   getters: {
     getCard: (state) => (id) => {
@@ -171,7 +172,7 @@ export default new Vuex.Store({
     showToast(state, a) {
       // https://stackoverflow.com/a/57448058
       this._vm.$toast.info(a);
-    }
+    },
     // TODO: does not work as expected, check
     // setActiveMenuItem(item) {
     //   var selector = ".nav";
@@ -191,6 +192,11 @@ export default new Vuex.Store({
     //     }
     //   }
     // }
+
+    setTweetedCards(state, tweetedCards) {
+      state.tweetedCards = tweetedCards;
+      console.log('state.tweetedCards: ', state.tweetedCards);
+    }
   },
   actions: {
     setProspectHandles() {
