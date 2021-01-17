@@ -136,12 +136,12 @@ copyURLtoClipboardCardOverview.on('success', function (e) {
 
 
 // CLIPBOARD CARD OVERVIEW CATEGORY
-var copyURLtoClipboardCardOverviewCategory = new ClipboardJS('.copyURLtoClipboardCardOverviewCategory', {
+var copyURLtoClipboardCardFromAddressBar = new ClipboardJS('.copyURLtoClipboardCardFromAddressBar', {
   text: function (trigger) {
     return window.location.href;
   }
 });
-copyURLtoClipboardCardOverviewCategory.on('success', function (e) {
+copyURLtoClipboardCardFromAddressBar.on('success', function (e) {
   createCopyToClipboardParty();
 });
 
