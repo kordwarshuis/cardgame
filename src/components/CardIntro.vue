@@ -148,19 +148,7 @@ export default {
             var container = document.querySelector('div.container'),
                 triggerBttn = document.getElementById('trigger-overlay-fullscreen'),
                 overlayFullscreen = document.querySelector('div.overlay-fullscreen'),
-                closeBttn = document.querySelector('.overlay-fullscreen-close'),
-                // closeBttn2 = overlayFullscreen.querySelector('button.closeCardIntro'),
-                transEndEventNames = {
-                    'WebkitTransition': 'webkitTransitionEnd',
-                    'MozTransition': 'transitionend',
-                    'OTransition': 'oTransitionEnd',
-                    'msTransition': 'MSTransitionEnd',
-                    'transition': 'transitionend'
-                },
-                transEndEventName = transEndEventNames[ModernizrForCardIntro.prefixed('transition')],
-                support = {
-                    transitions: ModernizrForCardIntro.csstransitions
-                };
+                closeBttn = document.querySelector('.overlay-fullscreen-close');
             // TODO: rename, since it is not a toggle anymore
             function toggleOverlayFullscreen() {
 
@@ -176,17 +164,12 @@ export default {
 
                     that.$router.push("/");
                     var onEndTransitionFn = function (ev) {
-                        if (support.transitions) {
                             if (ev.propertyName !== 'visibility') return;
-                            this.removeEventListener(transEndEventName, onEndTransitionFn);
-                        }
+                            this.removeEventListener('transitionend', onEndTransitionFn);
                         overlayFullscreen.classList.remove('close');
                     };
-                    if (support.transitions) {
-                        overlayFullscreen.addEventListener(transEndEventName, onEndTransitionFn);
-                    } else {
-                        onEndTransitionFn();
-                    }
+
+                    overlayFullscreen.addEventListener('transitionend', onEndTransitionFn);
                 } else if (!overlayFullscreen.classList.contains('close')) {
                     overlayFullscreen.classList.add('open');
                     container.classList.add('overlay-fullscreen-open');
