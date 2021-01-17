@@ -10,6 +10,12 @@
             <button class="buttonHideSearchResults" @click="hideSearchResultsContainerAndRemoveSearchStringFromURL"><span class="visuallyhidden">Close search results</span>×</button>
             <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Everything about “{{search}}”</h1>
 
+            <!-- SEARCH RESULT COPY BUTTON -->
+            <p class="text-center">
+                Search results <button class="copyURLtoClipboard copyURLtoClipboardCardFromAddressBar" style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+            </p>
+
+
             <div class="search-results" v-for="card in computedFilteredList" :key="card.Misconception" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
 
                 <!-- copy card URL to clipboard -->
