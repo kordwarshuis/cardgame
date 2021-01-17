@@ -8,11 +8,11 @@
     <div class="search-results-container hideSearchResults">
         <div>
             <button class="buttonHideSearchResults" @click="hideSearchResultsContainerAndRemoveSearchStringFromURL"><span class="visuallyhidden">Close search results</span>×</button>
-            <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">Everything about “{{search}}”</h1>
+            <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">{{everythingAbout }} “{{search}}”</h1>
 
             <!-- SEARCH RESULT COPY BUTTON -->
             <p class="text-center">
-                Search results <button class="copyURLtoClipboard copyURLtoClipboardCardFromAddressBar" style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+                {{searchResultsCopyOption}} <button class="copyURLtoClipboard copyURLtoClipboardCardFromAddressBar" style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
             </p>
 
 
@@ -66,7 +66,9 @@ export default {
             cards: [],
             searchResultSnippet: "",
             goToCard: language.searchGoToCard,
-            searchBarPlaceholderText: language.searchBarPlaceholderText
+            searchBarPlaceholderText: language.searchBarPlaceholderText,
+            everythingAbout: language.everythingAbout,
+            searchResultsCopyOption: language.searchResultsCopyOption
         }
     },
     computed: {
