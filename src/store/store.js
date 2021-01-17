@@ -195,7 +195,6 @@ export default new Vuex.Store({
 
     setTweetedCards(state, tweetedCards) {
       state.tweetedCards = tweetedCards;
-      console.log('state.tweetedCards: ', state.tweetedCards);
     }
   },
   actions: {
