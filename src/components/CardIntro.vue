@@ -22,9 +22,8 @@
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body center" style="">
                     <h3 class="pt-2 reply">{{ reply }}</h3>
-                    <p class="">
-                        <span class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</span>
-                    </p>
+
+                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
                     <hr>
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <VideoYoutubeBare />
