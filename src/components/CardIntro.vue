@@ -168,8 +168,8 @@ export default {
 
                     that.$router.push("/");
                     var onEndTransitionFn = function (ev) {
-                            if (ev.propertyName !== 'visibility') return;
-                            this.removeEventListener('transitionend', onEndTransitionFn);
+                        if (ev.propertyName !== 'visibility') return;
+                        this.removeEventListener('transitionend', onEndTransitionFn);
                         overlayFullscreen.classList.remove('close');
                     };
 
@@ -188,6 +188,11 @@ export default {
             if (localStorage.getItem("soundOn") === "true") whoosh2.play();
             //TODO: why is this working, should mutations be used?
             this.$store.state.cssClassCardFullState = " md-show";
+
+            // stop html video when opening modal. Simply stop all video:
+            document.querySelectorAll('video').forEach(function (vid) {
+                vid.pause();
+            });
         }
     }
 };
@@ -310,7 +315,8 @@ h3.reply {
         background: $card-intro-back-background-bigscreen;
         // border: 1px solid red;
         // border-radius: 50%;
-        color: $card-intro-back-color-bigscreen;;
+        color: $card-intro-back-color-bigscreen;
+        ;
         padding: 0.2em;
         margin-top: 0;
         display: inline-block;
@@ -349,7 +355,6 @@ h3.reply {
 //     -webkit-transition: opacity 0.5s;
 //     transition: opacity 0.5s;
 // }
-
 
 // Show/Hide card intro
 // Opacity effect
