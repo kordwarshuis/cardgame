@@ -205,11 +205,20 @@ export default {
                         // format quiz data
                         responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
 
+
                         // split string on \n\n, so we can make paragraphs later, or separate links for example
+                        responseData[i]["Misconception Elaborate"] = this.splitString(responseData[i]["Misconception Elaborate"], "\n\n");
+
+                        responseData[i]["Short Answer"] = this.splitString(responseData[i]["Short Answer"], "\n\n");
+                        
                         responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
+                        
                         responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
 
+
+                        // split string on ','
                         responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
+
 
                         // trim spaces (for example when source is: word1, word2) TODO: do this for everything
                         if (responseData[i]["Related"] !== undefined) {
