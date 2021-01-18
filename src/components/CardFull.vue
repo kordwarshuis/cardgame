@@ -51,6 +51,7 @@
                         <VideoYoutube />
                     </div>
                     <div class="col-md-8 mb-3">
+                        <!-- READ MORE 1 -->
                         <div class="content-item border p-3 " v-if="this.$store.state.currentCard['Read On 1 Text']">
                             <h3 class="readOn">{{ readMore }}</h3>
                             <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
@@ -62,6 +63,7 @@
                 <!-- if there is NO Youtube video -->
                 <div class="row" v-else>
                     <div class="col-md-12 mb-3">
+                        <!-- READ MORE 1 -->
                         <div class="content-item border p-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
                             <h3 class="readOn">{{ readMore }}</h3>
                             <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
@@ -77,43 +79,52 @@
                     </div>
                 </div>
 
+                <!-- READ MORE 2 -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
-
                     <h3 class="readOn">{{ readMore }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
                     <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">{{ readOn }}</a></p>
                 </div>
 
+                <!-- READ MORE 3 -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
                     <h3 class="readOn">{{ readMore }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
                     <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">{{ readOn }}</a></p>
                 </div>
 
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert3']">
-                    <h3 class="expert3">{{expert3}}</h3>
-                    <p>{{expert3Description}}<a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
-                </div>
-
+                <!-- EXPERT 1 -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert1']">
                     <h3 class="expert1">{{expert1}}</h3>
+                    <img v-if='expert1Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert1Logo" alt="portrait of the expert">
                     <p v-linkified:options="$store.state.linkifyOptions">{{ this.$store.state.currentCard['Expert1'] }}</p>
                 </div>
 
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter Questions']">
+                <!-- EXPERT 2 -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert2']">
+                    <h3 class="expert2">{{expert2}}</h3>
+                    <img v-if='expert2Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert2Logo" alt="portrait of the expert">
+                    <p v-linkified:options="$store.state.linkifyOptions">{{ this.$store.state.currentCard['Expert2'] }}</p>
+                </div>
 
+                <!-- EXPERT 3 -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert3']">
+                    <h3 class="expert3">{{expert3}}</h3>
+                    <img v-if='expert3Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert3Logo" alt="portrait of the expert">
+                    <p>{{expert3Description}}<a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
+                </div>
+
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter Questions']">
                     <h3 class="counter-question">{{ counterQuestions }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Counter Questions"]}}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Analogy']">
-
                     <h3 class="">{{ analogy }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Analogy"]}}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Flower Power']">
-
                     <h3 class="flowerPower">{{ flowerPower }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Flower Power"]}}</p>
                 </div>
@@ -165,8 +176,14 @@ export default {
             misconception: language.misconception,
             reply: language.reply,
             expert1: language.expert1,
+            expert1Description: language.expert1Description,
+            expert1Logo: language.expert1Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert1Logo : "",
+            expert2: language.expert2,
+            expert2Description: language.expert2Description,
+            expert2Logo: language.expert2Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert2Logo : "",
             expert3: language.expert3,
             expert3Description: language.expert3Description,
+            expert3Logo: language.expert3Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert3Logo : "",
             shortAnswer: language.shortAnswer,
             longAnswer: language.longAnswer,
             diagram: language.diagram,
