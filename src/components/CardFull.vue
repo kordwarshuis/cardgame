@@ -8,7 +8,12 @@
                 <h2 class="mx-auto">{{ misconception }}</h2>
                 <div class="misconception-short-and-elaborate">
                     <p class="title text-center"><span class="quote">“</span>{{ this.$store.state.currentCard.Misconception }}<span class="quote">”</span></p>
-                    <p v-if="this.$store.state.currentCard['Misconception Elaborate']" class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Misconception Elaborate"] }}<span class="quote">”</span></p>
+
+                    <template v-if="this.$store.state.currentCard['Misconception Elaborate']">
+                        <p class="text-center" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item"><span class="quote">“</span>{{ item }}<span class="quote">”</span></p>
+                    </template>
+
+                    <!-- <p  class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Misconception Elaborate"] }}<span class="quote">”</span></p> -->
                 </div>
 
                 <!-- <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
@@ -19,7 +24,9 @@
                 <h2 class="mx-auto reply">{{ reply }}</h2>
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
                     <h3>{{ shortAnswer }}</h3>
-                    <p class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</p>
+                    <!-- <p class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</p> -->
+
+                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Long Answer']">
@@ -399,7 +406,6 @@ export default {
     color: $reply-heading-color;
 }
 
-
 .misconception-short-and-elaborate {
     margin: 0em 0 1em; // to keep distance from sec / tert menu
     padding: 1em 0;
@@ -486,6 +492,7 @@ export default {
     margin-bottom: 1em; // to make the bottom bar fully visible
     background: $linear-gradient1;
 }
+
 .discussion-group-link {
     border-top: 1px dashed $card-full-content-item-color;
 }
