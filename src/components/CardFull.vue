@@ -38,7 +38,7 @@
                 </div>
 
                 <Quiz />
-                <!-- if there is video -->
+                <!-- if there is Youtube video -->
                 <div class="row" v-if="(this.$store.state.currentCard['Youtube Video Id'])">
                     <div class="col-md-4 mb-3">
                         <VideoYoutube />
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-                <!-- if there is NO video -->
+                <!-- if there is NO Youtube video -->
                 <div class="row" v-else>
                     <div class="col-md-12 mb-3">
                         <div class="content-item border p-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
@@ -60,6 +60,13 @@
                             <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
                             <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a></p>
                         </div>
+                    </div>
+                </div>
+
+                <!-- if there is Self Hosted video -->
+                <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Video'])">
+                    <div class="col-md-12 mb-3">
+                        <VideoSelfHosted />
                     </div>
                 </div>
 
@@ -136,6 +143,7 @@
 <script>
 import Quiz from "@/components/Quiz.vue";
 import VideoYoutube from "@/components/VideoYoutube.vue";
+import VideoSelfHosted from "@/components/VideoSelfHosted.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
 import Person3 from "@/components/AnimatedCharacters/Person3.vue";
@@ -168,6 +176,7 @@ export default {
     components: {
         Quiz,
         VideoYoutube,
+        VideoSelfHosted,
         SocialMedia,
         RelatedCards,
         Person3
