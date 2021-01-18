@@ -5,8 +5,7 @@
 
     <VideoSelfHostedBare />
 
-    <p class="video-description" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Self Hosted Video Description']" v-bind:key="item">{{ item }}</p>
-
+    <p class="video-description" v-linkified:options="$store.state.linkifyOptions" >{{this.$store.state.currentCard['Self Hosted Video Description']}}</p>
 </div>
 </template>
 
