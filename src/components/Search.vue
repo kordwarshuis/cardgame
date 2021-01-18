@@ -31,8 +31,8 @@
                 </h2>
 
                 <!-- misconception longer -->
-                <p @click="hideSearchResultsContainer" class="search-result ml-4 w-3/4" style="cursor: pointer">
-                    {{ card['Misconception Elaborate'] }}
+                <p v-for="item in card['Misconception Elaborate']" v-bind:key="item" @click="hideSearchResultsContainer" class="search-result ml-4 w-3/4" style="cursor: pointer">
+                    {{ item }}
                 </p>
 
                 <!-- go to card -->
