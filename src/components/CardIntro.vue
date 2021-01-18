@@ -27,7 +27,7 @@
                     </p>
                     <hr>
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
-                        <VideoBare />
+                        <VideoYoutubeBare />
                     </div>
 
                     <!-- <div v-if="(this.$store.state.currentCard['Quiz'])" class="col-lg-12 col-sm-12">
@@ -71,7 +71,7 @@
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
 import Quiz from "@/components/Quiz.vue";
-import VideoBare from "@/components/VideoBare.vue";
+import VideoYoutubeBare from "@/components/VideoYoutubeBare.vue";
 // import Quiz from "@/components/Quiz.vue";
 import {
     disableBodyScrollMixin
@@ -83,7 +83,7 @@ export default {
     components: {
         SocialMedia,
         RelatedCards,
-        VideoBare
+        VideoYoutubeBare
         // Quiz
     },
     data() {

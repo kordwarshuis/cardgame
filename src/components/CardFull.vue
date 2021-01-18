@@ -41,7 +41,7 @@
                 <!-- if there is video -->
                 <div class="row" v-if="(this.$store.state.currentCard['Youtube Video Id'])">
                     <div class="col-md-4 mb-3">
-                        <Video />
+                        <VideoYoutube />
                     </div>
                     <div class="col-md-8 mb-3">
                         <div class="content-item border p-3 " v-if="this.$store.state.currentCard['Read On 1 Text']">
@@ -135,7 +135,7 @@
 
 <script>
 import Quiz from "@/components/Quiz.vue";
-import Video from "@/components/Video.vue";
+import VideoYoutube from "@/components/VideoYoutube.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
 import Person3 from "@/components/AnimatedCharacters/Person3.vue";
@@ -167,7 +167,7 @@ export default {
     mixins: [disableBodyScrollMixin],
     components: {
         Quiz,
-        Video,
+        VideoYoutube,
         SocialMedia,
         RelatedCards,
         Person3

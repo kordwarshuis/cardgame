@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    name: "VideoBare",
+    name: "VideoYoutubeBare",
     mounted: function () {
         // console.log("mounted");
         this.youtubeVideo();
