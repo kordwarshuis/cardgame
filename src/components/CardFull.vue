@@ -2,7 +2,6 @@
 <div class="popup md-modal md-effect-2 mt-3 mb-3 m-0" :class="this.$store.state.cssClassCardFullState" id="modal-6">
     <a @click="$store.commit('hideModal')" class="md-close md-close-cross"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text">Back</span></a>
     <div class="md-content">
-        <!-- <h3 class="modal-header"></h3> -->
         <div>
             <div class="modal-content p-3 pt-5">
                 <h2 class="mx-auto">{{ misconception }}</h2>
@@ -12,25 +11,15 @@
                     <template v-if="this.$store.state.currentCard['Misconception Elaborate']">
                         <p class="text-center" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item"><span class="quote">“</span>{{ item }}<span class="quote">”</span></p>
                     </template>
-
-                    <!-- <p  class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Misconception Elaborate"] }}<span class="quote">”</span></p> -->
                 </div>
 
-                <!-- <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
-
-                    <h3 class="longAnswer">Short Answer</h3>
-                    <p  v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
-                </div> -->
                 <h2 class="mx-auto reply">{{ reply }}</h2>
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
                     <h3>{{ shortAnswer }}</h3>
-                    <!-- <p class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</p> -->
-
                     <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Long Answer']">
-
                     <h3 class="longAnswer">{{ longAnswer }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">{{ item }}</p>
                 </div>
@@ -114,30 +103,27 @@
                     <p>{{expert3Description}}<a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
                 </div>
 
+                <!-- COUNTER QUESTIONS -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter Questions']">
                     <h3 class="counter-question">{{ counterQuestions }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Counter Questions"]}}</p>
                 </div>
 
+                <!-- ANALOGY -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Analogy']">
                     <h3 class="">{{ analogy }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Analogy"]}}</p>
                 </div>
 
+                <!-- FLOWER POWER -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Flower Power']">
                     <h3 class="flowerPower">{{ flowerPower }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Flower Power"]}}</p>
                 </div>
 
-                <!-- <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Related']">
-                    <h3 class="related">Related</h3>
-                    <p>
-                        <span v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
-                            <router-link :to="'/card/' + item">{{ item }}</router-link>
-                        </span>
-                    </p>
-                </div> -->
+                <!-- RELATED CARDS -->
                 <RelatedCards />
+
                 <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button>
                 <div class="discussion-group-link center m-4 mb-0 p-3 ">
                     <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
