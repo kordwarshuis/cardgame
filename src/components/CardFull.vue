@@ -25,12 +25,9 @@
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
-
                     <h3 class="diagram">{{ diagram }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Diagram Description"]}}</p>
-
-                    <div class="ct-chart ct-golden-section " style=" max-width: 50em;margin: auto !important; ">
-                    </div>
+                    <div class="ct-chart ct-golden-section " style=" max-width: 50em;margin: auto !important; "></div>
                 </div>
 
                 <Quiz />
