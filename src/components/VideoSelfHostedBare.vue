@@ -1,8 +1,15 @@
 <template>
-<!-- negate doesnt seem to work -->
-<div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="">
+<!-- if video -->
+<div v-if="(this.$store.state.currentCard['Self Hosted Video'].indexOf('mp4') > -1)" class="">
     <div class="videoWrapper">
-        <video :src="path" controls></video>
+        <video :src="path + this.$store.state.currentCard['Self Hosted Video']" controls></video>
+    </div>
+</div>
+
+<!-- if audio -->
+<div v-else-if="(this.$store.state.currentCard['Self Hosted Video'].indexOf('mp3') > -1)" class="">
+    <div class="audioWrapper">
+        <audio :src="path + this.$store.state.currentCard['Self Hosted Video']" controls></audio>
     </div>
 </div>
 </template>
@@ -12,12 +19,8 @@ export default {
     name: "VideoSelfHostedBare",
     data() {
         return {
-            path: process.env.VUE_APP_MEDIA_LOCATION + this.$store.state.currentCard['Self Hosted Video']
+            path: process.env.VUE_APP_MEDIA_LOCATION
         }
-    },
-    mounted: function () {
-    },
-    methods: {
     }
 };
 </script>
