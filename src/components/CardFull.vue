@@ -6,10 +6,18 @@
             <div class="modal-content p-3 pt-5">
                 <h2 class="mx-auto">{{ misconception }}</h2>
                 <div class="misconception-short-and-elaborate">
-                    <p class="title text-center"><span class="quote">“</span>{{ this.$store.state.currentCard.Misconception }}<span class="quote">”</span></p>
+                    <p class="title text-center">
+                        <!-- <span class="quote">“</span> -->
+                        {{ this.$store.state.currentCard.Misconception }}
+                        <!-- <span class="quote">”</span> -->
+                    </p>
 
                     <template v-if="this.$store.state.currentCard['Misconception Elaborate']">
-                        <p class="text-center" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item"><span class="quote">“</span>{{ item }}<span class="quote">”</span></p>
+                        <p class="text-center" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item">
+                            <!-- <span class="quote">“</span> -->
+                            {{ item }}
+                            <!-- <span class="quote">”</span> -->
+                        </p>
                     </template>
                 </div>
 
