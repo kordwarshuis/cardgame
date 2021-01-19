@@ -190,7 +190,7 @@ export default {
             this.$store.state.cssClassCardFullState = " md-show";
 
             // stop html video when opening modal. Simply stop all video:
-            document.querySelectorAll('video').forEach(function (vid) {
+            document.querySelectorAll('video, audio').forEach(function (vid) {
                 vid.pause();
             });
         }
