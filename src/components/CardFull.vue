@@ -61,7 +61,7 @@
                 <!-- if there is Self Hosted video -->
                 <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Video'])">
                     <div class="col-md-12 mb-3">
-                        <VideoSelfHosted />
+                        <MediaSelfHosted />
                     </div>
                 </div>
 
@@ -144,7 +144,7 @@
 <script>
 import Quiz from "@/components/Quiz.vue";
 import VideoYoutube from "@/components/VideoYoutube.vue";
-import VideoSelfHosted from "@/components/VideoSelfHosted.vue";
+import MediaSelfHosted from "@/components/MediaSelfHosted.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
 import Person3 from "@/components/AnimatedCharacters/Person3.vue";
@@ -183,7 +183,7 @@ export default {
     components: {
         Quiz,
         VideoYoutube,
-        VideoSelfHosted,
+        MediaSelfHosted,
         SocialMedia,
         RelatedCards,
         Person3

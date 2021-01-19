@@ -29,7 +29,7 @@
                         <VideoYoutubeBare />
                     </div>
                     <div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
-                        <VideoSelfHostedBare />
+                        <MediaSelfHostedBare />
                     </div>
 
                     <!-- <div v-if="(this.$store.state.currentCard['Quiz'])" class="col-lg-12 col-sm-12">
@@ -74,7 +74,7 @@ import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
 import Quiz from "@/components/Quiz.vue";
 import VideoYoutubeBare from "@/components/VideoYoutubeBare.vue";
-import VideoSelfHostedBare from "@/components/VideoSelfHostedBare.vue";
+import MediaSelfHostedBare from "@/components/MediaSelfHostedBare.vue";
 // import Quiz from "@/components/Quiz.vue";
 import {
     disableBodyScrollMixin
@@ -87,7 +87,7 @@ export default {
         SocialMedia,
         RelatedCards,
         VideoYoutubeBare,
-        VideoSelfHostedBare
+        MediaSelfHostedBare
         // Quiz
     },
     data() {
