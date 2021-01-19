@@ -4,9 +4,12 @@
     <div class="md-content">
         <div>
             <div class="modal-content p-3 pt-5">
+                <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
                 <h2 class="mx-auto">{{ misconception }}</h2>
                 <div class="misconception-short-and-elaborate">
+                    
                     <p class="title text-center">
+                        
                         <!-- <span class="quote">“</span> -->
                         {{ this.$store.state.currentCard.Misconception }}
                         <!-- <span class="quote">”</span> -->
