@@ -70,7 +70,11 @@
         <div v-for="item in setAllCards" :key="item.misconception" class="card mb-4 p-0">
             <div class="card-body p-0 align-items-center d-flex">
                 <a :data-id="item['id']" :key="item.misconception" @click="showCardIntro" class="p-1">
-                    <h2 class=""><span class="quote">“</span>{{ item.misconception }}<span class="quote">”</span></h2>
+                    <h2 class="">
+                        <!-- <span class="quote">“</span> -->
+                        {{ item.misconception }}
+                        <!-- <span class="quote">”</span> -->
+                    </h2>
                 </a>
                 <p v-if='realtimeTweets === "true"' class="times-tweeted" :title="'This card has been tweeted ' + item['Number of tweets'] + ' times'"><img class="twitter-logo" src="../assets/img/icons/social-media-buttons/twitter.svg" alt="twitter logo" />{{item['Number of tweets']}}</p>
             </div>
