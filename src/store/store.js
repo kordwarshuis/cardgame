@@ -77,7 +77,7 @@ export default new Vuex.Store({
       if (youtubePlayer) youtubePlayer.stopVideo();
 
       // stop html video when closing modal. Simply stop all video:
-      document.querySelectorAll('video').forEach(function(vid) {
+      document.querySelectorAll('video, audio').forEach(function(vid) {
         vid.pause();
       });
     },
