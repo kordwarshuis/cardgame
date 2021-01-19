@@ -16,7 +16,7 @@
 
 <script>
 export default {
-    name: "VideoSelfHostedBare",
+    name: "MediaSelfHostedBare",
     data() {
         return {
             path: process.env.VUE_APP_MEDIA_LOCATION
