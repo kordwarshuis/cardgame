@@ -2,7 +2,7 @@
 <!-- if video -->
 <div v-if="(this.$store.state.currentCard['Self Hosted Video'].indexOf('mp4') > -1)" class="">
     <div class="videoWrapper">
-        <video :src="path + this.$store.state.currentCard['Self Hosted Video']" controls playsinline></video>
+        <video :src="path + this.$store.state.currentCard['Self Hosted Video']" controls playsinline preload="metadata"></video>
     </div>
 </div>
 
