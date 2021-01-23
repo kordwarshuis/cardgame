@@ -1,6 +1,6 @@
 <template>
 <div class="popup md-modal md-effect-2 mt-3 mb-3 m-0" :class="this.$store.state.cssClassCardFullState" id="modal-6">
-    <a @click="$store.commit('hideModal')" class="md-close md-close-cross"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text">Back</span></a>
+    <a @click="$store.commit('hideModal')" class="md-close md-close-cross"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text">{{backToCardIntro}}</span></a>
     <div class="md-content">
         <div>
             <div class="modal-content p-3 pt-5">
@@ -168,6 +168,7 @@ export default {
     data: function () {
         return {
             misconception: language.misconception,
+            backToCardIntro: language.backToCardIntro,
             reply: language.reply,
             expert1: language.expert1,
             expert1Description: language.expert1Description,
