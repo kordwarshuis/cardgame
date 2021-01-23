@@ -132,6 +132,9 @@
                 <!-- RELATED CARDS -->
                 <RelatedCards />
 
+                <!-- KEYWORDS CARDS -->
+                <Keywords />
+
                 <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button>
                 <div class="discussion-group-link center m-4 mb-0 p-3 ">
                     <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
@@ -158,6 +161,7 @@ import VideoYoutube from "@/components/VideoYoutube.vue";
 import MediaSelfHosted from "@/components/MediaSelfHosted.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
+import Keywords from "@/components/Keywords.vue";
 import Person3 from "@/components/AnimatedCharacters/Person3.vue";
 import {
     disableBodyScrollMixin
@@ -198,6 +202,7 @@ export default {
         MediaSelfHosted,
         SocialMedia,
         RelatedCards,
+        Keywords,
         Person3
     },
     computed: {
