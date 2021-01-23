@@ -5,7 +5,6 @@
         <div class="col-lg-6 col-sm-6 column1 p-0">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body">
-
                     <h3 class="pt-sm-2">{{ misconception }}</h3>
                     <div class="card-intro-misconception p-3 mt-2 text-center">
                         <!-- <span class="quote">“</span> -->
@@ -13,7 +12,7 @@
                         <!-- <span class="quote">”</span> -->
                         <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button>
                     </div>
-
+                    <RandomCard />
                 </div>
             </div>
         </div>
@@ -45,7 +44,6 @@
         <div class="col-lg-6 col-sm-6">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body p-0" style="">
-
                 </div>
             </div>
         </div>
@@ -74,6 +72,7 @@
 <script>
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
+import RandomCard from "@/components/RandomCard.vue";
 import Quiz from "@/components/Quiz.vue";
 import VideoYoutubeBare from "@/components/VideoYoutubeBare.vue";
 import MediaSelfHostedBare from "@/components/MediaSelfHostedBare.vue";
@@ -88,6 +87,7 @@ export default {
     components: {
         SocialMedia,
         RelatedCards,
+        RandomCard,
         VideoYoutubeBare,
         MediaSelfHostedBare
         // Quiz
