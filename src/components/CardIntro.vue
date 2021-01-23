@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-    <a class="overlay-fullscreen-close"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text"> Back to cards</span></a>
+    <a class="overlay-fullscreen-close"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text"> {{backToCards}}</span></a>
 </div>
 </template>
 
@@ -96,7 +96,8 @@ export default {
         return {
             misconception: language.misconception,
             reply: language.reply,
-            openFullCard: language.openFullCard
+            openFullCard: language.openFullCard,
+            backToCards: language.backToCards
         }
     },
     computed: {
