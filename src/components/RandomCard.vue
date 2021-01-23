@@ -1,7 +1,7 @@
 <template>
 <div v-if="(randomCardButton === 'true')" class="p-2 mb-3 mt-3 text-center ">
     <p>
-        <router-link class="btn btn-primary mr-2" :to="'/card/' + randomCard">{{randomCardButtonText}}</router-link>
+        <router-link class="btn btn-outline-primary btn-sm mr-2" :to="'/card/' + randomCard">{{randomCardButtonText}}</router-link>
     </p>
 </div>
 </template>
