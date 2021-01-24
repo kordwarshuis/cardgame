@@ -20,9 +20,9 @@
         <div class="col-lg-6 col-sm-6 column2 p-0">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body center" style="">
-                    <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
-
                     <h3 class="pt-2 reply">{{ reply }}</h3>
+                    
+                    <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
 
                     <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
                     <hr>
