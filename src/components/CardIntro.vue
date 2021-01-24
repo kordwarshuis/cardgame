@@ -21,7 +21,7 @@
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body center" style="">
                     <h3 class="pt-2 reply">{{ reply }}</h3>
-                    
+
                     <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
 
                     <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
@@ -31,6 +31,9 @@
                     </div>
                     <div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <MediaSelfHostedBare />
+                    </div>
+                    <div v-if="(this.$store.state.currentCard['Self Hosted Image'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
+                        <ImageSelfHosted />
                     </div>
 
                     <!-- <div v-if="(this.$store.state.currentCard['Quiz'])" class="col-lg-12 col-sm-12">
@@ -76,6 +79,7 @@ import RandomCard from "@/components/RandomCard.vue";
 import Quiz from "@/components/Quiz.vue";
 import VideoYoutubeBare from "@/components/VideoYoutubeBare.vue";
 import MediaSelfHostedBare from "@/components/MediaSelfHostedBare.vue";
+import ImageSelfHosted from "@/components/ImageSelfHosted.vue";
 // import Quiz from "@/components/Quiz.vue";
 import {
     disableBodyScrollMixin
@@ -89,7 +93,8 @@ export default {
         RelatedCards,
         RandomCard,
         VideoYoutubeBare,
-        MediaSelfHostedBare
+        MediaSelfHostedBare,
+        ImageSelfHosted
         // Quiz
     },
     data() {

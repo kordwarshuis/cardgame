@@ -76,6 +76,13 @@
                     </div>
                 </div>
 
+                <!-- if there is Self Hosted image -->
+                <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Image'])">
+                    <div class="col-md-12 mb-3">
+                        <ImageSelfHosted />
+                    </div>
+                </div>
+
                 <!-- READ MORE 2 -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
                     <h3 class="readOn">{{ readMore }}</h3>
@@ -159,6 +166,7 @@
 import Quiz from "@/components/Quiz.vue";
 import VideoYoutube from "@/components/VideoYoutube.vue";
 import MediaSelfHosted from "@/components/MediaSelfHosted.vue";
+import ImageSelfHosted from "@/components/ImageSelfHosted.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
 import Keywords from "@/components/Keywords.vue";
@@ -200,6 +208,7 @@ export default {
         Quiz,
         VideoYoutube,
         MediaSelfHosted,
+        ImageSelfHosted,
         SocialMedia,
         RelatedCards,
         Keywords,
