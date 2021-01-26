@@ -65,6 +65,19 @@ Have a look at an example stack of cards:\
 Go to https://blockchainbird.com/t/btc/, use the Tweet stream to find an appealing tweet with a misconception radiating from it, find the right card to answer (or whole category of cards), copy URL, and *"step forward"* by _pasting_ the copied URL in the tweet-response of the original tweet from the Tweet-stream. Briefly:
 > Find a tweet - Select a card - Reply with card 
 
+## How to integrate illustrations or cartoons
+Consider a work management system where you've negotiated an illustration as 'finished'.
+1. Check l-b ratio of image, is it conform specs
+     No: report back to illustrator and wait for next delivery\
+2. Yes:
+ - Open full image
+ - Download from Upwork: Image save as
+ - Crop Image
+ - Add text in picture (optional)
+
+3. {Kor could you add the instructions }
+
+
 # Frequently asked questions
 No FAQs yet
 
