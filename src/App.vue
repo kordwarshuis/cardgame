@@ -405,21 +405,10 @@ export default {
             alert = new Howl({
                 src: [require("./assets/audio/330050__paulmorek__beep-03-single.mp4")]
             });
-            // alertSpecialAccount = new Howl({
-            //     src: [require("./assets/audio/175893__toiletrolltube__110923-02-falling-metal-10.mp4")]
-            // });
-            // dong = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/288912__littlerobotsoundfactory__click-soft-00.mp4")]
-            // });
             go = new Howl({
                 volume: 0.5,
                 src: [require("./assets/audio/394477__gameloops__gamepack1-main-horrible-finish.mp4")]
             });
-            // whoosh = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/99263__robinhood76__01762-whoosh.mp4")]
-            // });
             whoosh2 = new Howl({
                 volume: 0.1,
                 src: [require("./assets/audio/399934__waveplay__short-click-snap-perc.mp4")]
@@ -428,87 +417,11 @@ export default {
                 volume: 0.1,
                 src: [require("./assets/audio/110390__soundscalpel-com__cartoon-siren-whistle-001.mp4")]
             });
-            // electricity = new Howl({
-            //     volume: 0.1,
-            //     loop: true,
-            //     src: [require("./assets/audio/341609__pureaudioninja__electricity-1.mp4")]
-            // });
             typewriter = new Howl({
                 volume: 0.6,
                 loop: true,
-                // src: [require("./assets/audio/love.mp4")]
                 src: [require("./assets/audio/331656__trollarch2__keyboard-typing.mp4")]
             });
-            // pur = new Howl({
-            //     volume: 1,
-            //     // loop: true,
-            //     src: [require("./assets/audio/130968__cubilon__cat-purring.mp4")]
-            // });
-            // click = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/click.mp4")]
-            // });
-
-            // quizPlop = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/348493__jalastram__gui-sound-effects-031.mp4")]
-            // });
-            // whawhaTrumpet = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/wha-wha-trumpet.mp4")]
-            // });
-            // laughManiacal = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/laugh-maniacal.mp4")]
-            // });
-            // cannedLaughter = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/canned-laughter.mp4")]
-            // });
-            // blur = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/blur.mp4")]
-            // });
-            // bouncing3 = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/bouncing-3.mp4")]
-            // });
-            // gasp = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/gasp.mp4")]
-            // });
-            // drumCrash1 = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/drum-crash-1.mp4")]
-            // });
-            // surprisedGasp = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/surprised-gasp.mp4")]
-            // });
-            // fanfare = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/fanfare.mp4")]
-            // });
-            // epiphany = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/epiphany.mp4")]
-            // });
-            // quizEnd = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/370294__mrthenoronha__tribal-game-theme-loop.mp4")]
-            // });
-            // dragging = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/171043__st303__mechanical-alarm-clock-is-ticking-slava.mp4")]
-            // });
-            // draggingEnd = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/179055__robinhood76__04148-a-circus-jump-with-clarinet-part2.mp4")]
-            // });
-            // quizCorrectDragging = new Howl({
-            //     volume: 0.1,
-            //     src: [require("./assets/audio/394485__gameloops__gamepack1-mystery-failed.mp4")]
-            // });
             quizCorrectAnswer = new Howl({
                 volume: 0.1,
                 src: [require("./assets/audio/29543__bennychico11__wink.mp4")]
