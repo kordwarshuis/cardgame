@@ -35,6 +35,14 @@
                     {{ item }}
                 </p>
 
+
+                <div v-if="(card['Youtube Video Id'])" class="clearfix">
+                    <!-- https://stackoverflow.com/a/2068371/9749918 -->
+                    <img @click="hideSearchResultsContainer" style="cursor: pointer;" class="rounded mx-auto d-block img-fluid" :src="'https://img.youtube.com/vi/' + card['Youtube Video Id'] + '/0.jpg'" alt="">
+                </div>
+
+                <video v-if="card['Self Hosted Video']" :src="path + card['Self Hosted Video']" controls></video>
+
                 <!-- go to card -->
                 <p @click="hideSearchResultsContainer" style="cursor: pointer" class="w-1/4">
                     <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{goToCard}}</router-link>
