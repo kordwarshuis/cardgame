@@ -41,7 +41,8 @@
                     <img @click="hideSearchResultsContainer" style="cursor: pointer;" class="rounded mx-auto d-block img-fluid" :src="'https://img.youtube.com/vi/' + card['Youtube Video Id'] + '/0.jpg'" alt="">
                 </div>
 
-                <video v-if="card['Self Hosted Video']" :src="path + card['Self Hosted Video']" controls></video>
+                <!-- <video style="max-width: 100%; width: 100%;" v-if="card['Self Hosted Video']" :src="path + card['Self Hosted Video']" controls preload="none" playsinline></video> -->
+                <!-- <video style="max-width: 100%; width: 100%;" v-if="card['Self Hosted Video']" :src="#" :data-src="path + card['Self Hosted Video']" controls preload="none" playsinline></video> -->
 
                 <!-- go to card -->
                 <p @click="hideSearchResultsContainer" style="cursor: pointer" class="w-1/4">
@@ -76,7 +77,8 @@ export default {
             goToCard: language.searchGoToCard,
             searchBarPlaceholderText: language.searchBarPlaceholderText,
             everythingAbout: language.everythingAbout,
-            searchResultsCopyOption: language.searchResultsCopyOption
+            searchResultsCopyOption: language.searchResultsCopyOption,
+            path: process.env.VUE_APP_MEDIA_LOCATION
         }
     },
     computed: {
