@@ -139,7 +139,6 @@ export default {
 
                         // go through all columns, Misconception, Misconception Elaborate, Short Answer etc
                         for (let i = 0; i < allKeys.length; i++) {
-                            if (this.search !== undefined) {
                                 // if (typeof card[allKeys[i]] === "string" && card[allKeys[i]] !== "") {
                                 if (card[allKeys[i]] !== undefined) {
 
@@ -162,7 +161,6 @@ export default {
                                         results = true;
                                     }
                                 }
-                            }
                         }
                         return results;
                     })
