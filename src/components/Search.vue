@@ -16,7 +16,7 @@
             </p>
 
 
-            <div class="search-results" v-for="card in computedFilteredList" :key="card.Misconception" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
+            <div class="search-results" v-for="card in computedsearchCards" :key="card.Misconception" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
 
                 <!-- copy card URL to clipboard -->
                 <button onclick="return false;" :data-misconception="card['Misconception']" :data-url="'card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="float: right; width: 2em; height: 2em;vertical-align: top;" title="Copy Link">Copy Link</button>
@@ -85,8 +85,8 @@ export default {
         getCards: function () {
             return this.$store.state.theJSON;
         },
-        computedFilteredList: function () {
-            return this.filteredList();
+        computedsearchCards: function () {
+            return this.searchCards();
         },
     },
     watch: {
@@ -117,10 +117,10 @@ export default {
             this.$router.push("/");
         },
         onInputChangeOrKeyDown() {
-            this.filteredList();
+            this.searchCards();
             this.showSearchResultsContainer();
         },
-        filteredList() {
+        searchCards() {
             var allKeys = this.$store.state.allKeys;
 
             // this updates the URL with what is entered in search field
@@ -168,14 +168,13 @@ export default {
                     })
                 }
             }
-
         },
         // Routing: dealing with query parameters in URL on page load. This will send the query parameter value to the search input field
         setSearchTermFromUrlQueryParams() {
             this.search = this.$route.query.search;
 
             if (this.search !== undefined) {
-                this.filteredList();
+                this.searchCards();
                 document.querySelector('.navbar-toggler').click();
                 this.showSearchResultsContainer();
             }
