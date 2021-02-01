@@ -12,6 +12,10 @@
                         <!-- <span class="quote">”</span> -->
                         <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button>
                     </div>
+
+                    <!-- <img v-if="showSocialMediaImage === 'true'" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt=""> -->
+                    <img v-if="showSocialMediaImage === 'true'" class="mt-3" style="width: 100%; border-radius: 10px;" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt="">
+
                     <RandomCard />
                 </div>
             </div>
@@ -102,7 +106,9 @@ export default {
             misconception: language.misconception,
             reply: language.reply,
             openFullCard: language.openFullCard,
-            backToCards: language.backToCards
+            backToCards: language.backToCards,
+            showSocialMediaImage: process.env.VUE_APP_SHOW_SOCIAL_MEDIA_IMAGE_IN_CARD,
+            socialMediaImagesPath: process.env.VUE_APP_SOCIAL_MEDIA_IMAGES_PATH
         }
     },
     computed: {
