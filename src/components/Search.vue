@@ -172,23 +172,7 @@ export default {
         },
         // Routing: dealing with query parameters in URL on page load. This will send the query parameter value to the search input field
         processQueryParams() {
-            // https://stackoverflow.com/a/21903119
-            var getUrlParameter = function getUrlParameter(sParam) {
-                var sPageURL = window.location.search.substring(1),
-                    sURLVariables = sPageURL.split('&'),
-                    sParameterName,
-                    i;
-
-                for (i = 0; i < sURLVariables.length; i++) {
-                    sParameterName = sURLVariables[i].split('=');
-
-                    if (sParameterName[0] === sParam) {
-                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-                    }
-                }
-            };
-
-            this.search = getUrlParameter('search');
+            this.search = this.$route.query.search;
 
             if (this.search !== undefined) {
                 this.filteredList();
