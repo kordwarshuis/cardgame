@@ -13,7 +13,6 @@
                         <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button>
                     </div>
 
-                    <!-- <img v-if="showSocialMediaImage === 'true'" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt=""> -->
                     <img v-if="showSocialMediaImage === 'true'" class="mt-3" style="width: 100%; border-radius: 10px;" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt="">
 
                     <RandomCard />
