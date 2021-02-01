@@ -96,7 +96,7 @@ export default {
     },
     mounted: function () {
         this.disableBodyScroll(".search-results-container"); //mixin
-        this.processQueryParams();
+        this.setSearchTermFromUrlQueryParams();
 
         // https://shubhamjain.co/til/vue-shortcuts/
         this._keyListener = function (e) {
@@ -171,7 +171,7 @@ export default {
 
         },
         // Routing: dealing with query parameters in URL on page load. This will send the query parameter value to the search input field
-        processQueryParams() {
+        setSearchTermFromUrlQueryParams() {
             this.search = this.$route.query.search;
 
             if (this.search !== undefined) {
