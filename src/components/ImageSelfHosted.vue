@@ -1,7 +1,7 @@
 <template>
 <!-- negate doesnt seem to work -->
 <div v-if="(this.$store.state.currentCard['Self Hosted Image'])" class="content-item p-3">
-    <img :src="path + this.$store.state.currentCard['Self Hosted Image']" :alt="this.$store.state.currentCard['Self Hosted Image Alt']">
+    <img class="mb-4" :src="path + this.$store.state.currentCard['Self Hosted Image']" :alt="this.$store.state.currentCard['Self Hosted Image Alt']">
     <p class="image-description" v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard['Self Hosted Image Description']}}</p>
 </div>
 </template>
