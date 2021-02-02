@@ -87,7 +87,7 @@ export default {
             return this.searchCards();
         },
         // not used ATM
-        searchQuery: function () {
+        routeQuery: function () {
             // return this.$route;
             // return this.$route.query.search;
             return this.$route.query;
@@ -98,7 +98,7 @@ export default {
             this.cards = newValue;
         },
         // not used ATM
-        searchQuery(newValue, oldValue) {
+        routeQuery(newValue, oldValue) {
             
             if (this.searchBarInputString !== undefined) {
                 this.showSearchResultsContainer();
