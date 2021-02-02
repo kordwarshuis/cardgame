@@ -189,7 +189,7 @@ export default {
                 }
             }
         },
-        // Routing: dealing with query parameters in URL on page load. This will send the query parameter value to the search input field
+        // Sends the URL query parameter value to the search input field
         setSearchTermFromUrlQueryParams() {
             this.routeQuerySearch = this.$route.query.search;
 
