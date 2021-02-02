@@ -144,9 +144,10 @@ export default {
             var allKeys = this.$store.state.allKeys;
 
             // this updates the URL with what is entered in search field
-            // this runs onload, and router should only push when search is not empty, to avoid a redirect to /search
+            // router should only push when search is not empty, to avoid a redirect to /search
             if (this.routeQuerySearch !== undefined) {
                 if (this.routeQuerySearch !== "") {
+                    console.log("tuk");
                     this.$router.push({
                         // path: '/',
                         query: {
