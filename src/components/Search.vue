@@ -35,7 +35,6 @@
                     {{ item }}
                 </p>
 
-
                 <div v-if="(card['Youtube Video Id'])" class="clearfix">
                     <!-- https://stackoverflow.com/a/2068371/9749918 -->
                     <img @click="hideSearchResultsContainer" style="cursor: pointer;" class="rounded mx-auto d-block img-fluid" :src="'https://img.youtube.com/vi/' + card['Youtube Video Id'] + '/0.jpg'" alt="">
@@ -88,10 +87,31 @@ export default {
         computedsearchCards: function () {
             return this.searchCards();
         },
+        searchQuery: function () {
+            // return this.$route;
+            // return this.$route.query.search;
+            return this.$route.query;
+        }
     },
     watch: {
         getCards(newValue, oldValue) {
             this.cards = newValue;
+        },
+        searchQuery(newValue, oldValue) {
+            console.log(newValue);
+            console.log(this.search);
+
+            console.log('this.search: ', this.search);
+            if (this.search !== undefined) {
+                this.showSearchResultsContainer();
+            } else {
+                this.hideSearchResultsContainer;
+            }
+
+            console.log('this.search NU IN GEBRUIK: ', this.search);
+            // console.log('this.$route.params.search GAAN GEBRUIKEN: ', this.$route.params.search);
+            console.log('this.$route.query GAAN GEBRUIKEN: ', this.$route.query.search);
+
         }
     },
     mounted: function () {
@@ -139,28 +159,28 @@ export default {
 
                         // go through all columns, Misconception, Misconception Elaborate, Short Answer etc
                         for (let i = 0; i < allKeys.length; i++) {
-                                // if (typeof card[allKeys[i]] === "string" && card[allKeys[i]] !== "") {
-                                if (card[allKeys[i]] !== undefined) {
+                            // if (typeof card[allKeys[i]] === "string" && card[allKeys[i]] !== "") {
+                            if (card[allKeys[i]] !== undefined) {
 
-                                    // NOTE: the search is done in almost all columns, except the ones where there is created an array out of strings separated by commas
-                                    if (card[allKeys[i]].toString().toLowerCase().includes(this.search.toLowerCase()) === true) {
-                                        // if a match is found, then this entry should be shown
-                                        // https://stackoverflow.com/a/494046
-                                        var replace = this.search;
-                                        var re = new RegExp((replace), "gi");
-                                        card.searchResultSnippet = card[allKeys[i]].toString().replace(re, "<em>" + replace + "</em>");
+                                // NOTE: the search is done in almost all columns, except the ones where there is created an array out of strings separated by commas
+                                if (card[allKeys[i]].toString().toLowerCase().includes(this.search.toLowerCase()) === true) {
+                                    // if a match is found, then this entry should be shown
+                                    // https://stackoverflow.com/a/494046
+                                    var replace = this.search;
+                                    var re = new RegExp((replace), "gi");
+                                    card.searchResultSnippet = card[allKeys[i]].toString().replace(re, "<em>" + replace + "</em>");
 
-                                        // remove links
-                                        // https://stackoverflow.com/a/960178
-                                        card.searchResultSnippet = card.searchResultSnippet.replace(/<a\b[^>]*>(.*?)<\/a>/i, "");
+                                    // remove links
+                                    // https://stackoverflow.com/a/960178
+                                    card.searchResultSnippet = card.searchResultSnippet.replace(/<a\b[^>]*>(.*?)<\/a>/i, "");
 
-                                        // remove URLs
-                                        // https://stackoverflow.com/a/23571059
-                                        card.searchResultSnippet = card.searchResultSnippet.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
+                                    // remove URLs
+                                    // https://stackoverflow.com/a/23571059
+                                    card.searchResultSnippet = card.searchResultSnippet.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
 
-                                        results = true;
-                                    }
+                                    results = true;
                                 }
+                            }
                         }
                         return results;
                     })
@@ -203,6 +223,7 @@ export default {
     background: $search-bar-background;
     color: $search-bar-color !important;
 }
+
 .searchBar:focus {
     background: $search-bar-focus-background;
     color: $search-bar-focus-color;
@@ -237,17 +258,16 @@ export default {
     box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
 }
 
-    .input-group{
-        margin-top: 1em;
-    }
-
+.input-group {
+    margin-top: 1em;
+}
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
-    .input-group{
+    .input-group {
         margin-top: 0;
     }
-    
+
     .search-results-container {
         top: 3em;
     }
