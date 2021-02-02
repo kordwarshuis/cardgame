@@ -2,13 +2,13 @@
 <!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
     <div class="input-group">
-        <input @keydown="onInputChangeOrKeyDown" @change="onInputChangeOrKeyDown" v-model="search" class="searchBar border form-control" :placeholder="searchBarPlaceholderText" />
+        <input @keydown="onInputChangeOrKeyDown" @change="onInputChangeOrKeyDown" v-model="routeQuerySearch" class="searchBar border form-control" :placeholder="searchBarPlaceholderText" />
     </div>
 
     <div class="search-results-container hideSearchResults">
         <div>
             <button class="buttonHideSearchResults" @click="hideSearchResultsContainerAndRemoveSearchStringFromURL"><span class="visuallyhidden">Close search results</span>×</button>
-            <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">{{everythingAbout }} “{{search}}”</h1>
+            <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">{{everythingAbout }} “{{routeQuerySearch}}”</h1>
 
             <!-- SEARCH RESULT COPY BUTTON -->
             <p class="text-center">
@@ -70,7 +70,7 @@ export default {
     components: {},
     data() {
         return {
-            search: '',
+            routeQuerySearch: '',
             cards: [],
             searchResultSnippet: "",
             goToCard: language.searchGoToCard,
@@ -87,6 +87,7 @@ export default {
         computedsearchCards: function () {
             return this.searchCards();
         },
+        // not used ATM
         searchQuery: function () {
             // return this.$route;
             // return this.$route.query.search;
@@ -97,18 +98,19 @@ export default {
         getCards(newValue, oldValue) {
             this.cards = newValue;
         },
+        // not used ATM
         searchQuery(newValue, oldValue) {
             console.log(newValue);
-            console.log(this.search);
+            
 
-            console.log('this.search: ', this.search);
-            if (this.search !== undefined) {
+            console.log('this.routeQuerySearch: ', this.routeQuerySearch);
+            if (this.routeQuerySearch !== undefined) {
                 this.showSearchResultsContainer();
             } else {
                 this.hideSearchResultsContainer;
             }
 
-            console.log('this.search NU IN GEBRUIK: ', this.search);
+            console.log('this.routeQuerySearch NU IN GEBRUIK: ', this.routeQuerySearch);
             // console.log('this.$route.params.search GAAN GEBRUIKEN: ', this.$route.params.search);
             console.log('this.$route.query GAAN GEBRUIKEN: ', this.$route.query.search);
 
@@ -145,12 +147,12 @@ export default {
 
             // this updates the URL with what is entered in search field
             // this runs onload, and router should only push when search is not empty, to avoid a redirect to /search
-            if (this.search !== undefined) {
-                if (this.search !== "") {
+            if (this.routeQuerySearch !== undefined) {
+                if (this.routeQuerySearch !== "") {
                     this.$router.push({
                         // path: '/',
                         query: {
-                            search: this.search.toLowerCase() // https://forum.vuejs.org/t/how-to-remove-one-query-string-from-url/39176/3
+                            search: this.routeQuerySearch.toLowerCase() // https://forum.vuejs.org/t/how-to-remove-one-query-string-from-url/39176/3
                         }
                     }).catch(err => {}) //https://stackoverflow.com/a/58747480
 
@@ -163,10 +165,10 @@ export default {
                             if (card[allKeys[i]] !== undefined) {
 
                                 // NOTE: the search is done in almost all columns, except the ones where there is created an array out of strings separated by commas
-                                if (card[allKeys[i]].toString().toLowerCase().includes(this.search.toLowerCase()) === true) {
+                                if (card[allKeys[i]].toString().toLowerCase().includes(this.routeQuerySearch.toLowerCase()) === true) {
                                     // if a match is found, then this entry should be shown
                                     // https://stackoverflow.com/a/494046
-                                    var replace = this.search;
+                                    var replace = this.routeQuerySearch;
                                     var re = new RegExp((replace), "gi");
                                     card.searchResultSnippet = card[allKeys[i]].toString().replace(re, "<em>" + replace + "</em>");
 
@@ -189,9 +191,9 @@ export default {
         },
         // Routing: dealing with query parameters in URL on page load. This will send the query parameter value to the search input field
         setSearchTermFromUrlQueryParams() {
-            this.search = this.$route.query.search;
+            this.routeQuerySearch = this.$route.query.search;
 
-            if (this.search !== undefined) {
+            if (this.routeQuerySearch !== undefined) {
                 this.searchCards();
                 document.querySelector('.navbar-toggler').click();
                 this.showSearchResultsContainer();
