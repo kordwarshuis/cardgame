@@ -147,7 +147,6 @@ export default {
             // router should only push when search is not empty, to avoid a redirect to /search
             if (this.routeQuerySearch !== undefined) {
                 if (this.routeQuerySearch !== "") {
-                    console.log("tuk");
                     this.$router.push({
                         // path: '/',
                         query: {
