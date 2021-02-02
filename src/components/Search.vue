@@ -16,7 +16,7 @@
             </p>
 
 
-            <div class="search-results" v-for="card in computedsearchCards" :key="card.Misconception" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
+            <div class="search-results" v-for="card in computedSearchCards" :key="card.Misconception" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
 
                 <!-- copy card URL to clipboard -->
                 <button onclick="return false;" :data-misconception="card['Misconception']" :data-url="'card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="float: right; width: 2em; height: 2em;vertical-align: top;" title="Copy Link">Copy Link</button>
@@ -84,7 +84,7 @@ export default {
         getCards: function () {
             return this.$store.state.theJSON;
         },
-        computedsearchCards: function () {
+        computedSearchCards: function () {
             return this.searchCards();
         },
         // not used ATM
