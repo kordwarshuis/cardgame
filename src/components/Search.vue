@@ -15,7 +15,6 @@
                 {{searchResultsCopyOption}} <button class="copyURLtoClipboard copyURLtoClipboardCardFromAddressBar" style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
             </p>
 
-
             <div class="search-results" v-for="card in computedSearchCards" :key="card.Misconception" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
 
                 <!-- copy card URL to clipboard -->
@@ -101,7 +100,6 @@ export default {
         // not used ATM
         searchQuery(newValue, oldValue) {
             console.log(newValue);
-            
 
             console.log('this.routeQuerySearch: ', this.routeQuerySearch);
             if (this.routeQuerySearch !== undefined) {
