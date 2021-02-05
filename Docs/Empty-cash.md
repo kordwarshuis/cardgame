@@ -7,6 +7,9 @@ https://stackoverflow.com/questions/34707915/how-do-you-clear-the-open-graph-cac
 ## Instagram
 
 ## Facebook
+Go to the Facebook debugger: https://developers.facebook.com/tools/debug
+
+
 
 ## Linkedin
 
