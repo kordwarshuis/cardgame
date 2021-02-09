@@ -822,6 +822,11 @@ footer {
     background: rgb(247, 229, 130);
 }
 
+.oldTweet {
+    background: rgb(250, 239, 202);
+}
+
+
 // SEARCH
 .hideSearchResult {
     margin: 0 !important;
