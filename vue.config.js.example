@@ -3,6 +3,7 @@ module.exports = {
   // https://cli.vuejs.org/config/#publicpath
 
   //=============
+  // if your app will run from a sub directory then this is the path to the sub directory
   publicPath: process.env.NODE_ENV === 'production' ? '/path/to/app/' : '/',
   //=============
 
@@ -10,7 +11,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        prependData: '@import "@/assets/css/_variables.scss";'
+        prependData: '@import "@/assets/css/template-base.scss";@import "@/assets/css/' + process.env.VUE_APP_TEMPLATE_CSS + '";'
       }
     }
   },

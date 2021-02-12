@@ -1,16 +1,13 @@
 <template>
-<div class="cards">
-    <div class="row">
+<div class="cards pl-sm-5 pr-sm-5">
+    <!-- margins should be set to 0: -->
+    <div class="row m-0">
         <!-- TITLE AND SUBTITLE -->
         <div class="col-8">
-            <h1 class="mb-0">
+            <h1 class="mb-0 title">
                 <ICountUp :delay="ICountUpDelay" :endVal="$store.state.numberofCards" :options="ICountUpOptions" />
-                <span class="game-title-1">
-                    {{this.$store.state.gameTitle}}
-                </span>
-                <span class="game-title-2">
-                    {{this.$store.state.gameTitle2}}
-                </span>
+                <span class="game-title-1"> {{this.$store.state.gameTitle}}</span>
+                <span class="game-title-2">{{this.$store.state.gameTitle2}}</span>
             </h1>
         </div>
 
@@ -40,7 +37,7 @@
         </div>
 
         <div class="col-md-12">
-            <p class="mt-0">{{this.$store.state.gameSubTitle}}
+            <p class="mt-0 subtitle">{{this.$store.state.gameSubTitle}}
                 <template v-if="realtimeTweets === 'true'">
                     <GameInstructionsCarousel />
                 </template>
@@ -54,36 +51,41 @@
     <!-- CATEGORY NAME AND COPY BUTTON WHEN IN CATEGORY -->
     <div v-if="(this.$store.state.activeCategory !== 'All')">
         <h3 class="text-center">
-            {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboard5 " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
+            {{this.$store.state.activeCategory}} <button class="copyURLtoClipboard copyURLtoClipboardCardFromAddressBar " style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
         </h3>
     </div>
 
-    <!-- THE CARDS -->
     <div class="card-columns mb-5">
-        <div v-if="realtimeTweets === 'true'" class="card mb-4 p-0">
+        <!-- HOMEPAGEVIDEO -->
+        <div v-if="homepageVideo === 'true'" class="card mb-4 p-0">
             <div class="card-body p-0 justify-content-center align-items-center d-flex">
                 <div class="video-wrapper">
-                    <video id="video-homepage" src="https://blockchainbird.com/t/media/video/instructions.mp4" poster="https://blockchainbird.com/t/media/video/instructions.jpg" muted controls playsinline preload="none"></video>
+                    <video id="video-homepage" :src="homepageVideoPathToVideo" :poster="homepageVideoPathToPoster" muted controls playsinline preload="none"></video>
                 </div>
             </div>
-            <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
+            <div class="card-footer">
             </div>
         </div>
-
-        <div v-for="item in $store.state.allCardsInChosenCategory" :key="item.misconception" class="card mb-4 p-0">
+        <!-- THE CARDS -->
+        <div v-for="item in setAllCards" :key="item.misconception" class="card mb-4 p-0">
             <div class="card-body p-0 align-items-center d-flex">
                 <a :data-id="item['id']" :key="item.misconception" @click="showCardIntro" class="p-1">
-                    <h2 class=""><span class="quote">“</span>{{ item.misconception }}<span class="quote">”</span></h2>
+                    <h2 class="">
+                        <!-- <span class="quote">“</span> -->
+                        {{ item.misconception }}
+                        <!-- <span class="quote">”</span> -->
+                    </h2>
                 </a>
+                <p v-if='realtimeTweets === "true"' class="times-tweeted" :title="'This card has been tweeted ' + item['Number of tweets'] + ' times'"><img class="twitter-logo" src="../assets/img/icons/social-media-buttons/twitter.svg" alt="twitter logo" />{{item['Number of tweets']}}</p>
             </div>
-            <div class="card-footer" style="min-height: 3em;background: #1D2448; text-align: left;">
-                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: #eee;text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
+            <div class="card-footer">
+                <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: $card-footer-link-color; text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
 
                 <!-- Show all cards: -->
-                <a style="color: #eee;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
+                <a style="color: $card-footer-link-color;" class="p-1 category-all-shown-in-cards" @click="showAllCategories" data-category="All">All</a>
 
                 <!-- check allCardsInChosenCategory in store for what is in array, this should be made easier -->
-                <button :data-misconception="item.misconception" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboard4 float-right" title="Copy Link">Copy Link</button>
+                <button :data-misconception="item.misconception" :data-url="item.id" class="copyURLtoClipboard copyURLtoClipboardCardOverview float-right" title="Copy Link">Copy Link</button>
 
                 <!-- Sharingbutton Twitter -->
                 <a class="resp-sharing-button__link float-right mr-2" :href="'https://twitter.com/intent/tweet/?text=' + item.misconception + '&amp;url=' + windowLocationOrigin + publicPath + 'card/' + item.id" target="_blank" rel="noopener" aria-label=""><span class="visuallyhidden">Post on Twitter</span>
@@ -96,6 +98,7 @@
                 </a>
             </div>
         </div>
+        <button class="btn btn-primary cards-show-all display-none" @click="showAllCards">Show all cards</button>
     </div>
 </div>
 </template>
@@ -105,6 +108,7 @@ import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
 import publicPath from "../../vue.config";
 import GameInstructionsCarousel from "./GameInstructionsCarousel.vue";
+import store from "../store/store";
 
 export default {
     name: "Index",
@@ -120,6 +124,8 @@ export default {
     data() {
         return {
             // pickedItems: [],
+            allCards: [],
+            cardsInitiallyShown: 0,
             ICountUpDelay: 2000, //msec
             ICountUpOptions: {
                 useEasing: true,
@@ -133,15 +139,73 @@ export default {
             windowLocationOrigin: window.location.origin,
             appId: process.env.VUE_APP_ID,
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
+            homepageVideo: process.env.VUE_APP_HOMEPAGE_VIDEO,
+            homepageVideoPathToVideo: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
+            homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
+            realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS
         }
     },
     mounted() {
         // delay in starting video
         setTimeout(function () {
-            document.querySelector('#video-homepage').play();
+            var videoHomepage = document.querySelector('#video-homepage');
+            if (videoHomepage) {
+                videoHomepage.play();
+            }
         }, 7000);
+        this.setCardsInitiallyShown();
+    },
+    computed: {
+        setAllCards() {
+            this.createCardsShown();
+            return this.allCards;
+        }
     },
     methods: {
+        setCardsInitiallyShown() {
+            if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE !== "") {
+                // set the number of cards to be shown
+                this.cardsInitiallyShown = parseInt(process.env.VUE_APP_MAX_CARDS_HOMEPAGE, 10);
+            } // else we do not set this
+        },
+        createCardsShown() {
+            this.allCards = JSON.parse(JSON.stringify(this.$store.state.allCardsInChosenCategory));
+
+            // if the number of cards to be shown is set then chop aray
+            if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE !== "") {
+                this.allCards.splice(this.cardsInitiallyShown);
+                // if number of cards to be shown is less than total then show “show all” button
+                if (this.cardsInitiallyShown < this.$store.state.allCardsInChosenCategory.length) {
+                    // show the button that shows all cards
+                    this.buttonShowAllCards().show();
+                }
+            } // else leave array as is
+        },
+        buttonShowAllCards() {
+            var button = document.querySelector('.cards-show-all');
+
+            function showButton() {
+                if (button) {
+                    button.classList.remove('display-none');
+                }
+            }
+
+            function hideButton() {
+                if (button) {
+                    button.classList.add('display-none');
+                }
+            }
+
+            return {
+                show: showButton,
+                hide: hideButton
+            }
+        },
+        showAllCards() {
+            this.cardsInitiallyShown = this.$store.state.allCardsInChosenCategory.length;
+            this.createCardsShown();
+            this.buttonShowAllCards().hide();
+        },
         showAllCategories() {
             this.$store.commit('showItemsInSelectedCategory');
             this.$router.push("/");
@@ -223,6 +287,10 @@ export default {
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins/_breakpoints";
 
+.display-none {
+    display: none;
+}
+
 .cards {
     padding-top: 30px;
 }
@@ -235,12 +303,18 @@ export default {
 }
 
 // https://css-tricks.com/how-do-you-do-max-font-size-in-css/
-h1 {
+h1.title {
+    color: $game-title;
     font-size: 20px;
 }
 
 h1 {
     font-weight: normal;
+}
+
+p.subtitle {
+    color: $game-subtitle;
+
 }
 
 .game-title-1 {
@@ -258,13 +332,20 @@ h1 {
 }
 
 .button-categories {
-    background: #5965F9;
+    color: $button-categories-color;
+    background: $button-categories-background;
     border: none;
 }
 
+.button-categories:hover,
+.button-categories:focus,
+.button-categories:active {
+    background: $button-categories-background-hover !important;
+}
+
 .dropdown-menu-categories {
-    background: #5965FA;
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+    background: $button-categories-background;
+    box-shadow: $shadow1;
     padding: 0.2em;
     font-size: 0.9em;
 }
@@ -273,11 +354,6 @@ h1 {
     font-family: poppinsbold;
     margin: 0.3em;
     cursor: pointer;
-}
-
-.dropdown-menu-categories a:hover {
-    background: #323A66;
-    color: #eee;
 }
 
 @media screen and (min-width: 320px) {
@@ -305,13 +381,12 @@ h1 {
     >.card {
         border: none;
         cursor: pointer;
-        background-image: url(../assets/img/icons/flat/card-background.svg), linear-gradient(#272f52, #3a4275);
         background-repeat: repeat, no-repeat;
         background-size: 25px 25px, 100% 100%;
         background-position: center center, center center;
         text-align: center;
         border-radius: 10px;
-        color: $_text1;
+        color: $card-overview-text;
         display: inline-block;
         width: 100%;
 
@@ -320,9 +395,8 @@ h1 {
             font-family: poppinsregular;
         }
 
-        h2,
-        h3 {
-            color: $_text1;
+        h2 {
+            color: $card-overview-text;
             font-size: 1.1em;
             margin: 0.5em;
         }
@@ -331,7 +405,9 @@ h1 {
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
             padding: 0 0.5em 0 0.5em;
-
+            min-height: 3em;
+            background: $card-footer-background;
+            text-align: left;
         }
 
         .card-body {
@@ -343,21 +419,31 @@ h1 {
         }
     }
 
+    // >.card:nth-child(n + #{$cards-initially-shown + 1}) {
+    //     display: none;
+    // }
+
     .category {
         border-radius: 4px;
-        background: #1D807D;
+        color: $category-color;
+        background: $category-background;
         margin: 0.8em;
     }
 
 }
 
-.nav-item a {
-    color: #eee;
+.times-tweeted {
+    font-size: 0.8em;
 }
 
-.nav-item a.All {
-    background: #eee;
-    color: #111;
+.twitter-logo {
+    width: 12px;
+}
+
+.nav-item a {
+    background: $category-menu-item-background;
+    color: $category-menu-item-color;
+
 }
 
 // Show All button only if in selection
@@ -375,12 +461,12 @@ div.cards.selection .category-all-shown-in-cards {
 }
 
 .resp-sharing-button__link,
-.copyURLtoClipboard4 {
+.copyURLtoClipboardCardOverview {
     opacity: 0.5;
 }
 
 .resp-sharing-button__link:hover,
-.copyURLtoClipboard4:hover {
+.copyURLtoClipboardCardOverview:hover {
     opacity: 1;
 }
 

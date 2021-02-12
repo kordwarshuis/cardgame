@@ -59,7 +59,7 @@ li {
 
 li a {
   padding: 0.5em;
-  color: #eee;
+  color: $basic1;
 }
 
 // li a:visited {
@@ -75,7 +75,6 @@ li a {
 #nav {
   a {
       font-family: poppinsbold;
-      // color: $generalLinksText;
       padding: 1em;
       display: inline-block;
   }

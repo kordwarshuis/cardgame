@@ -1,50 +1,54 @@
 <template>
 <div class="popup md-modal md-effect-2 mt-3 mb-3 m-0" :class="this.$store.state.cssClassCardFullState" id="modal-6">
-    <a @click="$store.commit('hideModal')" class="md-close md-close-cross"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text">Back</span></a>
+    <a @click="$store.commit('hideModal')" class="md-close md-close-cross"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text">{{backToCardIntro}}</span></a>
     <div class="md-content">
-        <!-- <h3 class="modal-header"></h3> -->
         <div>
             <div class="modal-content p-3 pt-5">
+                <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
+                <h2 class="mx-auto">{{ misconception }}</h2>
                 <div class="misconception-short-and-elaborate">
-                    <h2 class="title text-center"><span class="quote">“</span>{{ this.$store.state.currentCard.Misconception }}<span class="quote">”</span></h2>
-                    <p class="text-center"><span class="quote">“</span>{{ this.$store.state.currentCard["Misconception Elaborate"] }}<span class="quote">”</span></p>
+                    
+                    <p class="title text-center">
+                        
+                        <!-- <span class="quote">“</span> -->
+                        {{ this.$store.state.currentCard.Misconception }}
+                        <!-- <span class="quote">”</span> -->
+                    </p>
+
+                    <template v-if="this.$store.state.currentCard['Misconception Elaborate']">
+                        <p class="text-center" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item">
+                            <!-- <span class="quote">“</span> -->
+                            {{ item }}
+                            <!-- <span class="quote">”</span> -->
+                        </p>
+                    </template>
                 </div>
 
-                <!-- <button class="copyURLtoClipboard copyURLtoClipboard1" title="Copy Link">Copy Link</button> -->
-
-                <!-- <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
-
-                    <h3 class="longAnswer">Short Answer</h3>
-                    <p  v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
-                </div> -->
-
+                <h2 class="mx-auto reply">{{ reply }}</h2>
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Short Answer']">
                     <h3>{{ shortAnswer }}</h3>
-                    <p class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</p>
+                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Long Answer']">
-
                     <h3 class="longAnswer">{{ longAnswer }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">{{ item }}</p>
                 </div>
 
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
-
                     <h3 class="diagram">{{ diagram }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Diagram Description"]}}</p>
-
-                    <div class="ct-chart ct-golden-section " style=" max-width: 50em;margin: auto !important; ">
-                    </div>
+                    <div class="ct-chart ct-golden-section " style=" max-width: 50em;margin: auto !important; "></div>
                 </div>
 
                 <Quiz />
-                <!-- if there is video -->
+                <!-- if there is Youtube video -->
                 <div class="row" v-if="(this.$store.state.currentCard['Youtube Video Id'])">
                     <div class="col-md-4 mb-3">
-                        <Video />
+                        <VideoYoutube />
                     </div>
                     <div class="col-md-8 mb-3">
+                        <!-- READ MORE 1 -->
                         <div class="content-item border p-3 " v-if="this.$store.state.currentCard['Read On 1 Text']">
                             <h3 class="readOn">{{ readMore }}</h3>
                             <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
@@ -53,9 +57,10 @@
                     </div>
                 </div>
 
-                <!-- if there is NO video -->
+                <!-- if there is NO Youtube video -->
                 <div class="row" v-else>
                     <div class="col-md-12 mb-3">
+                        <!-- READ MORE 1 -->
                         <div class="content-item border p-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
                             <h3 class="readOn">{{ readMore }}</h3>
                             <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 1 Text"]}}</p>
@@ -64,59 +69,82 @@
                     </div>
                 </div>
 
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
+                <!-- if there is Self Hosted video -->
+                <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Video'])">
+                    <div class="col-md-12 mb-3">
+                        <MediaSelfHosted />
+                    </div>
+                </div>
 
+                <!-- if there is Self Hosted image -->
+                <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Image'])">
+                    <div class="col-md-12 mb-3">
+                        <ImageSelfHosted />
+                    </div>
+                </div>
+
+                <!-- READ MORE 2 -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
                     <h3 class="readOn">{{ readMore }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 2 Text"]}}</p>
                     <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">{{ readOn }}</a></p>
                 </div>
 
+                <!-- READ MORE 3 -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
                     <h3 class="readOn">{{ readMore }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Read On 3 Text"]}}</p>
                     <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">{{ readOn }}</a></p>
                 </div>
 
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert3']">
-                    <h3 class="expert3">{{expert3}}</h3>
-                    <p>{{expert3Description}}<a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
-                </div>
-
+                <!-- EXPERT 1 -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert1']">
                     <h3 class="expert1">{{expert1}}</h3>
+                    <img v-if='expert1Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert1Logo" alt="portrait of the expert">
                     <p v-linkified:options="$store.state.linkifyOptions">{{ this.$store.state.currentCard['Expert1'] }}</p>
                 </div>
 
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter Questions']">
+                <!-- EXPERT 2 -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert2']">
+                    <h3 class="expert2">{{expert2}}</h3>
+                    <img v-if='expert2Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert2Logo" alt="portrait of the expert">
+                    <p v-linkified:options="$store.state.linkifyOptions">{{ this.$store.state.currentCard['Expert2'] }}</p>
+                </div>
 
+                <!-- EXPERT 3 -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert3']">
+                    <h3 class="expert3">{{expert3}}</h3>
+                    <img v-if='expert3Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert3Logo" alt="portrait of the expert">
+                    <p>{{expert3Description}}<a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
+                </div>
+
+                <!-- COUNTER QUESTIONS -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter Questions']">
                     <h3 class="counter-question">{{ counterQuestions }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Counter Questions"]}}</p>
                 </div>
 
+                <!-- ANALOGY -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Analogy']">
-
                     <h3 class="">{{ analogy }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Analogy"]}}</p>
                 </div>
 
+                <!-- FLOWER POWER -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Flower Power']">
-
                     <h3 class="flowerPower">{{ flowerPower }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Flower Power"]}}</p>
                 </div>
 
-                <!-- <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Related']">
-                    <h3 class="related">Related</h3>
-                    <p>
-                        <span v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
-                            <router-link :to="'/card/' + item">{{ item }}</router-link>
-                        </span>
-                    </p>
-                </div> -->
+                <!-- RELATED CARDS -->
                 <RelatedCards />
+
+                <!-- KEYWORDS CARDS -->
+                <Keywords />
+
                 <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button>
-                <div class="center m-4 mb-0 p-3 " style="border-top: 1px dashed #eee;">
-                    <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" href="https://web.telegram.org/#/im?p=@bcbird">Comment in our Telegram group</a></p>
+                <div class="discussion-group-link center m-4 mb-0 p-3 ">
+                    <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
                 </div>
 
                 <Person3 />
@@ -127,7 +155,7 @@
                 <div style="display: inline-block;">
                     <SocialMedia />
                 </div>
-                <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
+                <button class="copyURLtoClipboard copyURLtoClipboardCardIntroAndFull " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
             </div>
         </div>
     </div>
@@ -136,24 +164,33 @@
 
 <script>
 import Quiz from "@/components/Quiz.vue";
-import Video from "@/components/Video.vue";
+import VideoYoutube from "@/components/VideoYoutube.vue";
+import MediaSelfHosted from "@/components/MediaSelfHosted.vue";
+import ImageSelfHosted from "@/components/ImageSelfHosted.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
+import Keywords from "@/components/Keywords.vue";
 import Person3 from "@/components/AnimatedCharacters/Person3.vue";
 import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
-// import {
-//     language
-// } from "@/assets/js/language1.js";
 
 export default {
     name: "CardFull",
     data: function () {
         return {
+            misconception: language.misconception,
+            backToCardIntro: language.backToCardIntro,
+            reply: language.reply,
             expert1: language.expert1,
+            expert1Description: language.expert1Description,
+            expert1Logo: language.expert1Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert1Logo : "",
+            expert2: language.expert2,
+            expert2Description: language.expert2Description,
+            expert2Logo: language.expert2Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert2Logo : "",
             expert3: language.expert3,
             expert3Description: language.expert3Description,
+            expert3Logo: language.expert3Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert3Logo : "",
             shortAnswer: language.shortAnswer,
             longAnswer: language.longAnswer,
             diagram: language.diagram,
@@ -161,15 +198,20 @@ export default {
             readOn: language.readOn,
             counterQuestions: language.counterQuestions,
             analogy: language.analogy,
-            flowerPower: language.flowerPower
+            flowerPower: language.flowerPower,
+            discussionLink: process.env.VUE_APP_DISCUSSION_LINK,
+            discussionLinkDescription: process.env.VUE_APP_DISCUSSION_LINK_DESCRIPTION
         }
     },
     mixins: [disableBodyScrollMixin],
     components: {
         Quiz,
-        Video,
+        VideoYoutube,
+        MediaSelfHosted,
+        ImageSelfHosted,
         SocialMedia,
         RelatedCards,
+        Keywords,
         Person3
     },
     computed: {
@@ -308,8 +350,8 @@ export default {
     left: 0;
     width: 100%;
     border: none;
-    background: linear-gradient(#0745A8, #015DF4);
-    color: #eee;
+    background: $card-full-back-background;
+    color: $card-full-back-color;
     display: block;
     z-index: 1;
 
@@ -355,10 +397,10 @@ export default {
         left: auto;
         width: 40px;
         border: none;
-        background: none;
+        background: $card-full-back-background-bigscreen;
         // border: 1px solid red;
         // border-radius: 50%;
-        color: #eee;
+        color: $card-full-back-color-bigscreen;
         padding: 0.2em;
         margin-top: 0;
         display: inline-block;
@@ -380,16 +422,27 @@ export default {
 
 // END TERTIARY MENU
 
+.modal-content h2 {
+    margin: 1.5em 0 0.5em; // to keep distance from sec / tert menu
+    font-size: 2em;
+    color: $misconception-heading-color;
+}
+
+.modal-content h2.reply {
+    color: $reply-heading-color;
+}
+
 .misconception-short-and-elaborate {
-    margin: 3em 0 1em; // to keep distance from sec / tert menu
+    margin: 0em 0 1em; // to keep distance from sec / tert menu
     padding: 1em 0;
     border-top: 3px dotted #666;
     border-bottom: 3px dotted #666;
+    color: $misconception-short-and-elaborate-color;
 }
 
 .content-item {
-    background: #eee;
-    color: #0B364D;
+    background: $card-full-content-item-background;
+    color: $card-full-content-item-color;
     border-radius: 10px;
 }
 
@@ -397,15 +450,9 @@ export default {
     margin-left: $cardFullTextIndent;
 }
 
-// .content-item a {
-//     color: $cardFullBlockLink;
-//     background: $cardFullBlockBackground;
-
-// }
-
 .modal-content {
-    // background: $cardFullBackground;
-    background: #2F3558 !important; //Suddenly needs important, can't explain why
+    color: $card-full-color;
+    background: $card-full-background !important; //Suddenly needs important, can't explain why
 }
 
 .modal-content h3 {
@@ -458,8 +505,7 @@ export default {
 
 // /* Content styles */
 .md-content {
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
-
+    box-shadow: $shadow3;
 }
 
 .md-content button {
@@ -470,6 +516,10 @@ export default {
 
 .bottom-bar {
     margin-bottom: 1em; // to make the bottom bar fully visible
-    background: linear-gradient(to right, #5C34A7, #2376D6);
+    background: $linear-gradient1;
+}
+
+.discussion-group-link {
+    border-top: 1px dashed $card-full-content-item-color;
 }
 </style>

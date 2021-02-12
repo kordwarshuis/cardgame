@@ -1,0 +1,119 @@
+$subMenuOffsetTopOnSmallScreen: 50px;
+$cardFullTextIndent: 1.8em;
+
+$color1: #0D1227;
+$color2: #3A457D;
+$color3: #eee;
+$color4: #000;
+$color5: #2A3166;
+$color6: #1D2448;
+$color7: #111;
+$color8: #5965F9;
+$color9: #5FE2FC;
+$color10: #eee;
+$color11: #474E71;
+$color12: #2F3558;
+
+$shadow1: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+$shadow2: -10px 10px 0, 10px -10px 0 $color4;
+$shadow3: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+
+
+$linear-gradient1: #{linear-gradient(to right, #5C34A7, #2376D6)};
+
+
+$basic1: $color3;
+$basic2: $color4;
+$basic3: $color5;
+
+
+//BODY
+$body-color: $color3;
+$body-background: $color1;
+$body-background-image: url(https://blockchainbird.com/t/media/img/background-blocks.svg);
+$game-title: $color3;
+$game-subtitle: $color3;
+
+
+// CARD OVERVIEW
+$card-overview-text: $color3;
+// background
+.card-columns {
+    >.card {
+        background-image: url(https://blockchainbird.com/t/media/img/card-background.svg), linear-gradient(#272f52, #3a4275);
+    }
+}
+$borders: $color2;
+$card-footer-background: $color6;
+$card-footer-link-color: $color3;
+//category dropdown button
+$button-categories-color: $color3;
+$button-categories-background: $color8;// color of button and also background of dropdown box
+$button-categories-background-hover: none;
+$category-menu-item-color: $color3;
+$category-menu-item-background: $color8;
+
+
+// CARD INTRO + CARD FULL
+$misconception-heading-color: $color3;
+$reply-heading-color: $color9;
+$misconception-short-and-elaborate-color: $color3;
+
+
+// CARD INTRO
+$card-intro-color: $color3;
+$card-intro-background: $color11;
+$card-intro-content-item-color: $color3;
+$card-intro-content-item-background: #2F3659;
+$card-intro-box-shadow: 0 0 1000px 1000px  rgba(34, 34, 34, 0.8);// background around the box
+// back / close:
+$card-intro-back-color: $color3;
+$card-intro-back-background: #{linear-gradient(#2F3762, #343C6B)};
+$card-intro-back-background-bigscreen: none;
+$card-intro-back-color-bigscreen: $color3;
+
+
+// CARD FULL
+$card-full-color: $color3;
+$card-full-background: $color12;
+$card-full-content-item-color: #0B364D;
+$card-full-content-item-background: $color10;
+//back button
+$card-full-back-color: $color3;
+$card-full-back-background: #{linear-gradient(#0745A8, #015DF4)};
+$card-full-back-background-bigscreen: none;
+$card-full-back-color-bigscreen: $color3;
+
+
+//PAGE FOOTER
+$page-footer-background: #191F3A;
+$page-footer-color: #eee;
+
+
+//SEARCH
+//search bar
+$search-bar-color: $color3;
+$search-bar-background: #383E4E;
+$search-bar-focus-color: #ddd;
+$search-bar-focus-background: #4b5368;
+//search results
+$search-results-color: #eee;
+$search-results-background: #383E4E;
+//closing button
+$button-hide-search-results-color:#eee;
+
+
+//MAIN MENU
+$main-menu-link: $color3;
+$main-menu-link-active: #252B44;
+$main-menu-background: #191F3A;
+
+
+//NOTIFICATIONS
+$toast-header-background: $linear-gradient1;
+$toast-content-color: $color3;
+$toast-content-background: $color2;
+
+//CATEGORIES
+$category-color: $color3;
+$category-background: #1D807D;

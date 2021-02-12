@@ -7,7 +7,7 @@ export function twitterLinks(text) {
     text = text.replace(
         /(>|<a[^<>]+href=['"])?(https?:\/\/([-a-z0-9]+\.)+[a-z]{2,5}(\/[-a-z0-9!#()\/?&.,]*[^ !#?().,])?)/gi,
         function ($0, $1, $2) {
-            return ($1 ? $0 : '<a href="' + $2 + '" target="_blank">' + $2 + '</a>');
+            return ($1 ? $0 : '<a href="' + $2 + '" target="_blank" rel="noopener">' + $2 + '</a>');
         });
     // convert protocol-less URLs into links
     text = text.replace(
@@ -20,7 +20,7 @@ export function twitterLinks(text) {
         /(:\/\/|>)?(@([_a-z0-9\-]+))/gi,
         function ($0, $1, $2, $3) {
             return ($1 ? $0 : '<a href="' + base_url + $ +
-                '" title="Follow ' + $3 + '" target="_blank">@' + $3 +
+                '" title="Follow ' + $3 + '" target="_blank" rel="noopener">@' + $3 +
                 '</a>');
         });
     // convert #hashtags into tag search links
@@ -28,7 +28,7 @@ export function twitterLinks(text) {
         /(:\/\/[^ <]*|>)?(\#([_a-z0-9\-]+))/gi,
         function ($0, $1, $2, $3) {
             return ($1 ? $0 : '<a href="' + base_url + hashtag_part + $3 +
-                '" title="Search tag: ' + $3 + '" target="_blank">#' + $3 +
+                '" title="Search tag: ' + $3 + '" target="_blank" rel="noopener">#' + $3 +
                 '</a>');
         });
     return text;

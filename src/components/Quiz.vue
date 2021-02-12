@@ -22,7 +22,7 @@ export default {
             // rigth answer chosen
             if (e.target.value === "true") {
                 // add class after innerHTML not possible as node is changed by innerHTML?
-                e.target.parentNode.insertAdjacentHTML("beforeend", "<span class='antw antw-vinkje'>√</span>");
+                e.target.parentNode.insertAdjacentHTML("beforeend", "<span class='antw answer-check'>√</span>");
 
                 if (localStorage.getItem("soundOn") === "true") go.play();
                 document.querySelector("body").classList.add("person1");
@@ -38,11 +38,11 @@ export default {
                 if (localStorage.getItem("soundOn") === "true") whistle.play();
                 setTimeout(
                     function () {
-                        domCorrectAnswer.insertAdjacentHTML("beforeend", "<span class='antw antw-vinkje'>√</span>");
+                        domCorrectAnswer.insertAdjacentHTML("beforeend", "<span class='antw answer-check'>√</span>");
                     },
                     800);
 
-                e.target.parentNode.insertAdjacentHTML("beforeend", "<span class='antw antw-kruis'>×</span>");
+                e.target.parentNode.insertAdjacentHTML("beforeend", "<span class='antw answer-cross'>×</span>");
 
                 document.querySelector("body").classList.add("person2");
                 setTimeout(function () {
@@ -63,32 +63,15 @@ export default {
 <style lang="scss">
 // scoped doesnt work for the styling of the green checkmark and the cross
 
-/*
- * MINI QUIZ
- */
-form.miniquiz,
-form.miniquiz label,
-form.miniquiz legend,
-form.miniquiz input {
-    text-align: left;
-    display: block;
-    float: left;
-    width: 100%;
-}
-
-form.miniquiz {
-    float: none;
-    margin-bottom: 2em;
-}
-
 form.miniquiz legend {
     font-size: 1.3em;
 }
+
 form.miniquiz label {
     font-size: 1.2em;
 }
-form.miniquiz legend,
-form.miniquiz label {
+
+form.miniquiz legend {
     margin-left: $cardFullTextIndent;
 }
 
@@ -101,28 +84,22 @@ form.miniquiz .antw {
     /*background-color: transparent;*/
 }
 
-form.miniquiz .antw-vinkje {
+form.miniquiz .answer-check {
     font-size: 2em;
-    text-shadow: 0 0 1px #eee;
+    text-shadow: 0 0 1px $basic1;
     color: #35a726 !important;
-    background: #eee;
+    background: $basic1;
 }
 
-form.miniquiz .antw-kruis {
+form.miniquiz .answer-cross {
     font-size: 2.5em;
-    text-shadow: 0 0 1px #eee;
+    text-shadow: 0 0 1px $basic1;
     color: #d8350e !important;
-    background: #eee;
-}
-
-form.miniquiz label {
-    display: block;
-    position: relative;
-    /*height: 3.5em;*/
+    background: $basic1;
 }
 
 form.miniquiz input {
-    /* verbergen */
+    /* hide */
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -135,8 +112,11 @@ form.miniquiz input {
 
 form.miniquiz label {
     display: inline-block;
-    /*margin-left  : -2em;*/
+    margin-left: calc(#{$cardFullTextIndent} + 1.3em);
+    text-indent: -1.3em;
     line-height: 1.5em;
+    display: block;
+    position: relative;
 }
 
 form.miniquiz label:before {
@@ -146,37 +126,17 @@ form.miniquiz label:before {
 }
 
 form.miniquiz p {
-    /*font-size: 0.7em;*/
     margin-left: 1em;
 }
-
-.miniquizimage {
-    z-index: 4;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 256px;
-    height: 256px;
-    margin-left: -128px;
-    margin-top: -128px;
-    display: block;
-}
-
-.miniQuizContainer {}
 
 .quizExplanation {
     margin: 0.5em 0;
     padding: 1em;
     border-top: 1px dashed #0B364D;
     color: #366F0C;
-
 }
 
 .quizExplanation.displayNone {
     display: none;
 }
-
-/*
-  * EINDE MINI QUIZ
-  */
 </style>

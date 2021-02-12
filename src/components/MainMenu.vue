@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-2 pr-2">
+<nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-0 pr-0">
     <!-- https://dev.to/yossiabramov/the-native-event-modifier-in-vue-js-bpb -->
     <router-link @click.native="$store.commit('showItemsInSelectedCategory')" class="navbar-brand" to="/"><img :src="logo" :alt="logoAlt"></router-link>
 
@@ -21,9 +21,9 @@
             </li>
 
             <!-- SCORES -->
-            <!-- <li class="nav-item" v-if="showScoresPage === 'true'">
+            <li class="nav-item" v-if="showScoresPage === 'true'">
                 <router-link class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" to="/scores">{{ menuItemScores }}</router-link>
-            </li> -->
+            </li>
 
             <!-- QUIZ -->
             <li class="nav-item" v-if="quizPage === 'true'">
@@ -70,10 +70,15 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-    background: #191F3A;
+    background: $main-menu-background;
     // https://forum.freecodecamp.org/t/bootsrap-4-5-navbar-full-width/233369 :
-    margin-right: -15px;
-    margin-left: -15px;
+    // margin-right: -15px;
+    // margin-left: -15px;
+    // margin-left: -3rem;
+    // margin-right: -3rem;
+    // box-shadow: 100px 0 0px 0px #909060;
+    // border-right: 100px solid #909060;
+    // border-left: 100px solid #909060;
 }
 
 // a:link {}
@@ -83,23 +88,18 @@ export default {
 
 #navbarNav {
     padding-bottom: 2em;
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
-
-    li.nav-item {
-        border-right: red !important;
-    }
 
     a:link,
     a:visited,
     a:focus,
     a:hover,
     a:active {
-        color: #eee;
+        color: $main-menu-link;
 
     }
 
     .router-link-exact-active {
-        background: #252B44;
+        background: $main-menu-link-active;
     }
 
 }

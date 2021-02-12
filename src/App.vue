@@ -1,5 +1,5 @@
 <template>
-<div id="app" class="container-fluid pl-sm-5 pr-sm-5">
+<div id="app" class="container-fluid pl-0 pr-0">
     <!-- true and false are strings not booleans -->
     <template v-if="realTimeTweets === 'true'">
         <TwitterRealTimeConfigModal />
@@ -74,100 +74,201 @@ export default {
     },
     methods: {
         fetchData() {
+            var that = this;
+
             // only fetch data
             if (this.$store.state.dataFetched === false) {
-                return axios.get(process.env.VUE_APP_CARDS_CONTENT)
-                    .then(response => {
-                        var responseData = d3.csvParse(response.data);
-                        var responseDataTemp = [];
-                        // prepare data
 
-                        // select the stack
-                        // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to STACK 1, if a "2" it's STACK 2, "12" means it belongs to both.
-                        // TODO: move this to main.js
+                let one = process.env.VUE_APP_CARDS_CONTENT;
+                let two = process.env.VUE_APP_CARDGAME_SCORES;
 
-                        var stack = Number(process.env.VUE_APP_STACK);
+                const requestOne = axios.get(one);
+                let requestTwo;
 
-                        // select only the items that are in the selected stack
-                        // avoid working on a changing array by using a temp array
-                        for (let i = 0; i < responseData.length; i++) {
-                            if (responseData[i].Stack.indexOf(stack) > -1) {
-                                responseDataTemp.push(responseData[i]);
+                if (two === "") {
+                    requestTwo = ""
+                } else {
+                    requestTwo = axios.get(two);
+                }
+
+                // https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
+                return axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
+                    const responseOne = responses[0]
+                    const responseTwo = responses[1]
+
+                    // use/access the results 
+
+                    // 1: the scores data
+                    var tweetedCards = [];
+                    var tweetedCardsFlat = [];
+
+                    // only if there is something to do:
+                    if (two !== "") {
+                        responseTwo.data.scores.forEach(function (entry) {
+                            tweetedCards.push(entry.cardURLs);
+                        })
+
+                        // make the array flat, https://stackoverflow.com/a/10865042/9749918
+                        var tweetedCardsFlat = [].concat.apply([], tweetedCards);
+
+                        // how to change values in source array: the https://stackoverflow.com/a/12482991/9749918
+                        tweetedCardsFlat.forEach(function (part, index, theArray) {
+
+                            // remove parts of the strings
+                            // remove domain name, https://stackoverflow.com/a/2599721/9749918
+                            theArray[index] = theArray[index].replace(/https?:\/\/[^\/]+/i, "");
+
+                            // remove subdirs:
+                            var replace = publicPath.publicPath;
+                            var re = new RegExp(replace, "i");
+                            theArray[index] = theArray[index].replace(re, "");
+                            var replace = publicPath.publicPath.slice(0, -1); // does not always work on local server, where the app is in the root, and remote it is not necessarily the case.
+
+                            var re = new RegExp(replace, "i");
+                            theArray[index] = theArray[index].replace(re, "");
+                        });
+
+                        // only keep URLS with 'card' in them
+                        tweetedCardsFlat = tweetedCardsFlat.filter(function (e) {
+                            return e.indexOf('card') > -1
+                        });
+
+                        // remove the string 'card/'
+                        tweetedCardsFlat.forEach(function (part, index, theArray) {
+                            var replace = "card/";
+                            var re = new RegExp(replace, "i");
+                            theArray[index] = theArray[index].replace(re, "");
+                        });
+                        // console.log('tweetedCardsFlat: ', tweetedCardsFlat);
+
+                        // save in $store how many times has each card been tweeted
+                        (function () {
+                            //https://stackoverflow.com/a/5668029/9749918
+                            var counts = {};
+                            for (var i = 0; i < tweetedCardsFlat.length; i++) {
+                                var num = tweetedCardsFlat[i];
+                                counts[num] = counts[num] ? counts[num] + 1 : 1;
+                            }
+                            that.$store.commit("setTweetedCards", counts);
+                        }());
+                    }
+
+                    // 2: the cards data
+                    var responseData = d3.csvParse(responseOne.data);
+                    var responseDataTemp = [];
+
+                    // prepare data
+
+                    // select the stack
+                    // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to STACK 1, if a "2" it's STACK 2, "12" means it belongs to both.
+                    // TODO: move this to main.js
+
+                    var stack = Number(process.env.VUE_APP_STACK);
+
+                    // select only the items that are in the selected stack
+                    // avoid working on a changing array by using a temp array
+                    for (let i = 0; i < responseData.length; i++) {
+                        if (responseData[i].Stack.indexOf(stack) > -1) {
+                            responseDataTemp.push(responseData[i]);
+                        }
+                    }
+                    // just to be sure that it's empty…:
+                    responseData = [];
+                    responseData.length = 0;
+                    // …and fill array again:
+                    responseData = responseDataTemp;
+                    // and empty the temp just to be sure, probably not necessary:
+                    responseDataTemp = [];
+                    responseDataTemp.length = 0;
+                    // now we only have items that are in the given stack
+
+                    this.$store.state.numberofCards = responseData.length;
+
+                    // cleaning
+                    for (let i = 0; i < responseData.length; i++) {
+                        for (var k in responseData[i]) {
+                            if (responseData[i].hasOwnProperty(k)) {
+                                // console.log("Key is " + k + ", value is: " + dataLayer1[i][k]);
+                                // the csv source from google introduces \' so we remove the backslash:
+                                responseData[i][k] = responseData[i][k].replace(/\\'/g, "‘");
+                                //experimental:
+                                responseData[i][k] = responseData[i][k].replace(/'/g, "‘");
+                                // responseData[i][k] = responseData[i][k].replace(/(\n\n)/gm, "</p><p>");
+                                responseData[i][k] = responseData[i][k].trim();
+                                // console.log('responseData[i][k]: ', responseData[i][k]);
                             }
                         }
-                        // just to be sure that it's empty…:
-                        responseData = [];
-                        responseData.length = 0;
-                        // …and fill array again:
-                        responseData = responseDataTemp;
-                        // and empty the temp just to be sure, probably not necessary:
-                        responseDataTemp = [];
-                        responseDataTemp.length = 0;
-                        // now we only have items that are in the given stack
+                    }
 
-                        this.$store.state.numberofCards = responseData.length;
+                    // split strings into arrays
+                    for (let i = 0; i < responseData.length; i++) {
+                        // format quiz data
+                        responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
 
-                        // cleaning
-                        for (let i = 0; i < responseData.length; i++) {
-                            for (var k in responseData[i]) {
-                                if (responseData[i].hasOwnProperty(k)) {
-                                    // console.log("Key is " + k + ", value is: " + dataLayer1[i][k]);
-                                    // the csv source from google introduces \' so we remove the backslash:
-                                    responseData[i][k] = responseData[i][k].replace(/\\'/g, "‘");
-                                    //experimental:
-                                    responseData[i][k] = responseData[i][k].replace(/'/g, "‘");
-                                    // responseData[i][k] = responseData[i][k].replace(/(\n\n)/gm, "</p><p>");
-                                    responseData[i][k] = responseData[i][k].trim();
-                                    // console.log('responseData[i][k]: ', responseData[i][k]);
-                                }
+
+                        // split string on \n\n, so we can make paragraphs later, or separate links for example
+                        responseData[i]["Misconception Elaborate"] = this.splitString(responseData[i]["Misconception Elaborate"], "\n\n");
+
+                        responseData[i]["Short Answer"] = this.splitString(responseData[i]["Short Answer"], "\n\n");
+                        
+                        responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
+                        
+                        responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
+
+
+                        // split string on ','
+                        responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
+
+
+                        // trim spaces (for example when source is: word1, word2) TODO: do this for everything
+                        if (responseData[i]["Related"] !== undefined) {
+                            for (let k = 0; k < responseData[i]["Related"].length; k++) {
+                                responseData[i]["Related"][k] = responseData[i]["Related"][k].trim();
                             }
                         }
+                    }
 
-                        // split strings into arrays
-                        for (let i = 0; i < responseData.length; i++) {
-                            // format quiz data
-                            responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
+                    // save data to store, probably not necessary, can be done via data and props
+                    // console.log('responseData: ', responseData);
+                    this.$store.state.theJSON = responseData;
 
-                            // split string on \n\n, so we can make paragraphs later, or separate links for example
-                            responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
-
-                            responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
-
-                            // trim spaces (for example when source is: word1, word2) TODO: do this for everything
-                            if (responseData[i]["Related"] !== undefined) {
-                                for (let k = 0; k < responseData[i]["Related"].length; k++) {
-                                    responseData[i]["Related"][k] = responseData[i]["Related"][k].trim();
-                                }
-                            }
+                    this.$store.state.theJSON.forEach(function (part, index, theArray) {
+                        if (that.$store.state.tweetedCards[theArray[index]['Unique URL']] === undefined) {
+                            theArray[index]['Number of tweets'] = 0;
+                        } else {
+                            theArray[index]['Number of tweets'] = that.$store.state.tweetedCards[theArray[index]['Unique URL']];
                         }
+                    })
 
-                        // save data to store, probably not necessary, can be done via data and props
-                        this.$store.state.theJSON = responseData;
-                        this.createCategoriesArray(this.$store.state.theJSON);
+                    this.createCategoriesArray(this.$store.state.theJSON);
 
-                        // create array with all columns / keys
-                        for (var k in responseData[0]) {
-                            if (responseData[0].hasOwnProperty(k)) {
-                                this.$store.state.allKeys.push(k);
-                            }
+                    // create array with all columns / keys
+                    for (var k in responseData[0]) {
+                        if (responseData[0].hasOwnProperty(k)) {
+                            this.$store.state.allKeys.push(k);
                         }
+                    }
 
-                        // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
-                        this.$store.commit("showItemsInSelectedCategory");
+                    // create an overview of all cards. All items are generated if no argument is given, elsewhere we create an overview based on category chosen
+                    this.$store.commit("showItemsInSelectedCategory");
 
-                        this.$store.state.dataFetched = true;
+                    this.$store.state.dataFetched = true;
 
-                        // deal with URL. We now have an overview of all the cards. Should we show a card intro? Or a category?
+                    // deal with URL. We now have an overview of all the cards. Should we show a card intro? Or a category?
 
-                        // if there is a specific url / card param, the do following:
-                        if (this.$route.params.card !== "" && this.$route.params.card !== undefined) {
-                            this.$store.commit("showCardIntroFromURL", this.$route.params.card);
-                        }
-                        // if there is a specific url / category param, the do following:
-                        if (this.$route.params.category !== "" && this.$route.params.category !== undefined) {
-                            this.$store.commit("showItemsInSelectedCategory", this.$route.params.category);
-                        }
-                    });
+                    // if there is a specific url / card param, the do following:
+                    if (this.$route.params.card !== "" && this.$route.params.card !== undefined) {
+                        this.$store.commit("showCardIntroFromURL", this.$route.params.card);
+                    }
+                    // if there is a specific url / category param, the do following:
+                    if (this.$route.params.category !== "" && this.$route.params.category !== undefined) {
+                        this.$store.commit("showItemsInSelectedCategory", this.$route.params.category);
+                    }
+
+                })).catch(errors => {
+                    // react on errors.
+                    console.log("something goes wrong fetching the data");
+                })
             }
         },
         prepareQuiz(quiz) {
@@ -304,20 +405,9 @@ export default {
             alert = new Howl({
                 src: [require("./assets/audio/330050__paulmorek__beep-03-single.mp4")]
             });
-            alertSpecialAccount = new Howl({
-                src: [require("./assets/audio/175893__toiletrolltube__110923-02-falling-metal-10.mp4")]
-            });
-            dong = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/288912__littlerobotsoundfactory__click-soft-00.mp4")]
-            });
             go = new Howl({
                 volume: 0.5,
                 src: [require("./assets/audio/394477__gameloops__gamepack1-main-horrible-finish.mp4")]
-            });
-            whoosh = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/99263__robinhood76__01762-whoosh.mp4")]
             });
             whoosh2 = new Howl({
                 volume: 0.1,
@@ -327,86 +417,10 @@ export default {
                 volume: 0.1,
                 src: [require("./assets/audio/110390__soundscalpel-com__cartoon-siren-whistle-001.mp4")]
             });
-            electricity = new Howl({
-                volume: 0.1,
-                loop: true,
-                src: [require("./assets/audio/341609__pureaudioninja__electricity-1.mp4")]
-            });
             typewriter = new Howl({
                 volume: 0.6,
                 loop: true,
-                // src: [require("./assets/audio/love.mp4")]
                 src: [require("./assets/audio/331656__trollarch2__keyboard-typing.mp4")]
-            });
-            // pur = new Howl({
-            //     volume: 1,
-            //     // loop: true,
-            //     src: [require("./assets/audio/130968__cubilon__cat-purring.mp4")]
-            // });
-            click = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/click.mp4")]
-            });
-
-            quizPlop = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/348493__jalastram__gui-sound-effects-031.mp4")]
-            });
-            whawhaTrumpet = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/wha-wha-trumpet.mp4")]
-            });
-            laughManiacal = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/laugh-maniacal.mp4")]
-            });
-            cannedLaughter = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/canned-laughter.mp4")]
-            });
-            blur = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/blur.mp4")]
-            });
-            bouncing3 = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/bouncing-3.mp4")]
-            });
-            gasp = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/gasp.mp4")]
-            });
-            drumCrash1 = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/drum-crash-1.mp4")]
-            });
-            surprisedGasp = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/surprised-gasp.mp4")]
-            });
-            fanfare = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/fanfare.mp4")]
-            });
-            epiphany = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/epiphany.mp4")]
-            });
-            quizEnd = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/370294__mrthenoronha__tribal-game-theme-loop.mp4")]
-            });
-            dragging = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/171043__st303__mechanical-alarm-clock-is-ticking-slava.mp4")]
-            });
-            draggingEnd = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/179055__robinhood76__04148-a-circus-jump-with-clarinet-part2.mp4")]
-            });
-            quizCorrectDragging = new Howl({
-                volume: 0.1,
-                src: [require("./assets/audio/394485__gameloops__gamepack1-mystery-failed.mp4")]
             });
             quizCorrectAnswer = new Howl({
                 volume: 0.1,
@@ -470,8 +484,8 @@ body {
     font-family: poppinsregular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 0.9rem;
     min-height: 100%;
-    color: $text;
-    background-color: $background;
+    color: $body-color;
+    background-color: $body-background;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -479,20 +493,12 @@ body {
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     body {
-        background-image: url(./assets/img/background-blocks.svg);
+        background-image: $body-background-image;
         background-repeat: no-repeat;
         background-position: left bottom;
         background-attachment: fixed;
         background-size: 40%;
     }
-}
-
-.bcb {
-    background-color: $backgroundBCB;
-}
-
-.ssi {
-    background-color: $backgroundSSI;
 }
 
 h1,
@@ -527,7 +533,7 @@ p {
 
 a {
     text-decoration: none;
-    color: $generalLinksText;
+    color: $basic3;
     outline: none;
 }
 
@@ -538,7 +544,7 @@ a.light {
 
 a:hover,
 a:focus {
-    color: $generalLinksTextHover;
+    color: $basic3;
     outline: none;
 }
 
@@ -548,7 +554,7 @@ a:focus {
 
 .cards a:focus h2,
 a:focus {
-    outline: 3px solid #eee;
+    outline: 3px solid $basic1;
 }
 
 .nav a:focus {
@@ -565,7 +571,7 @@ a:focus {
 }
 
 .border {
-    border: 1px solid $_border1 !important;
+    border: 1px solid $borders !important;
 }
 
 // https://codepen.io/joeyhoer/pen/BmqIx
@@ -576,30 +582,21 @@ hr {
 
 .menu hr {
     margin: 0.35em auto;
-    background-image: radial-gradient(closest-side, $hr1menu, 100%);
+    background-image: radial-gradient(closest-side, $basic2, 100%);
 }
 
 .menu hr:after {
-    background-color: $hr1menu;
-    border: 4px solid $hr1menu;
-    box-shadow: -10px 10px 0, 10px -10px 0 $hr1menu;
+    background-color: $basic2;
+    border: 4px solid $basic2;
+    box-shadow: $shadow2;
 }
 
 /* het sluiten van de eerste popup: */
 .overlay__close,
 /* het sluiten van de tweede popup: */
-button // related Items
-
-// .relatedItems a,
-/* alle links in de tweede popup: */
-// .modal-content a
-/* het menu met alle categorieen */
-// .categoryLinks a 
-    {
-    // border: 3px solid $linksBorder;
-    /* border-radius: 5px; */
+button {
     border: none;
-    color: $linksText;
+    color: $basic3;
     display: inline-block;
     padding: 0.5em;
     margin: 0.3em;
@@ -693,26 +690,6 @@ a.overlay__close:not(.overlay__close-cross):hover,
     min-height: 2em;
 }
 
-#attentionSeeker {
-    display: none;
-    // display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    // transform: translate(-50%, 0);
-    width: 100%;
-    height: 100%;
-    // border: 3px solid #900;
-    background: transparent url(./assets/img/animated-gif/party.gif) no-repeat center;
-    background-size: contain;
-    z-index: 9;
-    pointer-events: none;
-}
-
-#attentionSeeker.visible {
-    display: block !important;
-}
-
 .card-video {
     width: 6em;
     float: left;
@@ -733,13 +710,13 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .toast-header {
-    background: linear-gradient(to right, #5C34A7, #2376D6);
+    background: $linear-gradient1;
 }
 
 .toast-container>div>div {
-    color: #111;
-    background-color: #eee;
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+    color: $toast-content-color;
+    background-color: $toast-content-background;
+    box-shadow: $shadow1;
 }
 
 // the information icon is confusing since it is not clickable
@@ -773,7 +750,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 .tweet-stream-info-in-stream {
-    color: #eee;
+    color: #111;
     font-size: 2em;
     text-align: center;
 }
@@ -785,7 +762,7 @@ a.overlay__close:not(.overlay__close-cross):hover,
 .tweet-stream-messages {
     background: linear-gradient(to right, #5C34A7, #2376D6);
     border-radius: 10px;
-    color: #eee;
+    color: $basic1;
     padding: 1em;
     width: 100%;
     margin: 0 0 1em;
@@ -827,9 +804,10 @@ a.overlay__close:not(.overlay__close-cross):hover,
 }
 
 footer {
-    background: #191F3A;
+    background: $page-footer-background;
+    color: $page-footer-color;
     width: 100%;
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+    box-shadow: $shadow1;
 }
 
 .tweet small {
@@ -843,6 +821,11 @@ footer {
 .realtime-tweet-text small {
     background: rgb(247, 229, 130);
 }
+
+.oldTweet {
+    background: rgb(250, 239, 202);
+}
+
 
 // SEARCH
 .hideSearchResult {
@@ -860,7 +843,6 @@ footer {
 
 .search-results-container em {
     background: rgba(240, 224, 131, 0.904);
-    // border: 3px dashed #eee;
     color: #222;
     font-style: normal;
     padding-left: 0.3em;
@@ -881,6 +863,10 @@ footer {
 .cards,
 .search-results-container,
 .masonry-with-columns {
+
+    a {
+        color: $basic1;
+    }
 
     .category.Architecture,
     .nav-item.Architecture a {
@@ -1005,11 +991,11 @@ footer {
     }
 
     a {
-        color: #eee;
+        color: $basic1;
     }
 
     .card {
-        border: 1px dashed #eee !important;
+        border: 1px dashed $basic1 !important;
         background: transparent;
         border-radius: 15px;
         // border-style: dashed !important;
@@ -1024,7 +1010,28 @@ footer {
 @import "./assets/css/quiz/instelbareStaafdiagrammen.02.css";
 @import "./assets/css/quiz/staafDiagrammen.01.scss";
 @import "./assets/css/quiz/multiplechoice.01.css";
-// @import "./assets/css/quiz/skin-lay-out.01.css";
 @import "./assets/css/quiz/skin7.01.scss";
-// EIND QUIZ
+// END QUIZ
+
+// SCORES
+.allTweetsOfUser {
+    font-size: 0.7em;
+    color: #555;
+    // background: rgb(191, 207, 241);
+}
+
+.allTweetsOfUser a {
+    color: $basic1;
+}
+
+#app>section>div>div>div>div.col-lg-12.col-md-12.col-sm-12.m-0.p-0.pr-1>div>div.card-body>table>tr>td>div>div>p>img {
+    width: 20px !important;
+}
+
+// END SCORES
+
+// CONFETTI
+#confetti-canvas {
+    z-index: 1021;
+}
 </style>

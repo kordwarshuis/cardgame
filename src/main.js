@@ -19,27 +19,34 @@ import {
 import VueBootstrapToasts from 'vue-bootstrap-toasts';
 import linkify from 'vue-linkify';
 // import animated from 'animate.css';
-
-// Redirects
-import {
-  redirects
-} from '@/assets/js/redirects';
-if (redirects !== undefined) {
-  redirects();
-} else {
-  console.log("No Redirects found");
-}
+import VueConfetti from 'vue-confetti';
 
 Vue.use(d3);
+Vue.use(VueConfetti);
 Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
 Vue.use(Howl, Howler);
 Vue.directive('linkified', linkify);
 
-new Vue({
+var cardgame = new Vue({ // https://stackoverflow.com/a/46978163/9749918
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  mounted() {
+    // this.start();
+  },
+  methods: {
+    startConfetti() {
+      if (process.env.VUE_APP_CONFETTI === "true") {
+        this.$confetti.start({particlesPerFrame: 0.2});
+      }
+    },
+    stopConfetti() {
+      if (process.env.VUE_APP_CONFETTI === "true") {
+        this.$confetti.stop();
+      }
+    }
+  }
 }).$mount('#app');
 
 Vue.use(VueGtag, {
@@ -80,37 +87,28 @@ store.commit('setGameId', process.env.VUE_APP_ID);
 store.commit('setGameTitle', process.env.VUE_APP_TITLE);
 store.commit('setGameTitle2', process.env.VUE_APP_TITLE_2);
 store.commit('setGameSubTitle', process.env.VUE_APP_SUBTITLE);
-store.commit('setCardImage', process.env.VUE_APP_IMAGE);
+
 
 // copy URL into clipboard via click on button
 // Note: here it is not: "this.$store.commit" but "store.commit" (https://stackoverflow.com/q/51348936)
-new ClipboardJS('.copyURLtoClipboard1', {
+
+function createCopyToClipboardParty() {
+  store.commit("showToast", language.shareMessage);
+  if (localStorage.getItem("soundOn") === "true") go.play();
+  cardgame.startConfetti();
+  document.querySelector("body").classList.add("person1");
+  setTimeout(function () {
+    document.querySelector("body").classList.remove("person1");
+  }, 1500);
+  setTimeout(function () {
+    cardgame.stopConfetti();
+  }, 4500);
+}
+
+
+// CLIPBOARD CARD INTRO AND CARD FULL
+var copyURLtoClipboardCardIntroAndFull = new ClipboardJS('.copyURLtoClipboardCardIntroAndFull', {
   text: function () {
-    store.commit('showToast', language.shareMessage);
-    if (localStorage.getItem('soundOn') === 'true') go.play();
-    document.querySelector('body').classList.add('person1');
-    setTimeout(function () {
-      document.querySelector('body').classList.remove('person1');
-    }, 1500);
-    // return "“" + store.state.currentCard["Misconception"] + "”\n" + store.state.currentCard["Short Answer"] + " 👉 " + window.location.href;
-    return "“" + store.state.currentCard["Misconception"] + "”\n" + " 👉 " + window.location.href;
-  }
-});
-new ClipboardJS('.copyURLtoClipboard2', {
-  text: function () {
-    store.commit('showToast', language.shareMessage);
-    if (localStorage.getItem('soundOn') === 'true') go.play();
-    document.querySelector('body').classList.add('person1');
-    setTimeout(function () {
-      document.querySelector('body').classList.remove('person1');
-    }, 1500);
-    // return "“" + store.state.currentCard["Misconception"] + "”\n" + store.state.currentCard["Short Answer"] + " 👉 " + window.location.href;
-    return "“" + store.state.currentCard["Misconception"] + "”\n" + " 👉 " + window.location.href;
-  }
-});
-new ClipboardJS('.copyURLtoClipboard3', {
-  text: function () {
-    store.commit("showToast", language.shareMessage);
     if (localStorage.getItem("soundOn") === "true") go.play();
     document.querySelector("body").classList.add("person1");
     setTimeout(function () {
@@ -120,39 +118,35 @@ new ClipboardJS('.copyURLtoClipboard3', {
     return "“" + store.state.currentCard["Misconception"] + "”\n" + " 👉 " + window.location.href;
   }
 });
+copyURLtoClipboardCardIntroAndFull.on('success', function (e) {
+  createCopyToClipboardParty();
+});
 
-var clipboardOverviewScreen = new ClipboardJS('.copyURLtoClipboard4', {
+
+// CLIPBOARD CARD OVERVIEW PAGE
+var copyURLtoClipboardCardOverview = new ClipboardJS('.copyURLtoClipboardCardOverview', {
   text: function (trigger) {
     //https://stackoverflow.com/a/6941624
     return "“" + trigger.dataset.misconception + "”\n" + " 👉 " + window.location.protocol + "//" + window.location.host + VueConfig.publicPath + "card/" + trigger.dataset.url;
   }
 });
-
-clipboardOverviewScreen.on('success', function (e) {
-  store.commit("showToast", language.shareMessage);
-  if (localStorage.getItem("soundOn") === "true") go.play();
-  document.querySelector("body").classList.add("person1");
-  setTimeout(function () {
-    document.querySelector("body").classList.remove("person1");
-  }, 1500);
+copyURLtoClipboardCardOverview.on('success', function (e) {
+  createCopyToClipboardParty();
 });
 
 
-var clipboardCategory = new ClipboardJS('.copyURLtoClipboard5', {
+// CLIPBOARD CARD OVERVIEW CATEGORY
+var copyURLtoClipboardCardFromAddressBar = new ClipboardJS('.copyURLtoClipboardCardFromAddressBar', {
   text: function (trigger) {
     return window.location.href;
   }
 });
-
-clipboardCategory.on('success', function (e) {
-  store.commit("showToast", language.shareMessage);
-  if (localStorage.getItem("soundOn") === "true") go.play();
-  document.querySelector("body").classList.add("person1");
-  setTimeout(function () {
-    document.querySelector("body").classList.remove("person1");
-  }, 1500);
+copyURLtoClipboardCardFromAddressBar.on('success', function (e) {
+  createCopyToClipboardParty();
 });
 
+
+// CLIPBOARD BOOKMARKED URLS
 // copies all URLs of bookmarked tweets to clipboard
 var clipboardBookmarkedURLs = new ClipboardJS('.copyBookmarkedURLsToClipboard', {
   text: function (trigger) {
@@ -167,16 +161,12 @@ var clipboardBookmarkedURLs = new ClipboardJS('.copyBookmarkedURLsToClipboard', 
     return urls;
   }
 });
-
 clipboardBookmarkedURLs.on('success', function (e) {
-  store.commit("showToast", language.shareMessage);
-  if (localStorage.getItem("soundOn") === "true") go.play();
-  document.querySelector("body").classList.add("person1");
-  setTimeout(function () {
-    document.querySelector("body").classList.remove("person1");
-  }, 1500);
+  createCopyToClipboardParty();
 });
 
+
+// CLIPBOARD BOOKMARKED URLS TO EMAIL
 // copies all URLs of bookmarked tweets to email
 var clipboardBookmarkedURLsToEmail = new ClipboardJS('.copyBookmarkedURLsToEmail', {
   text: function (trigger) {
@@ -192,32 +182,19 @@ var clipboardBookmarkedURLsToEmail = new ClipboardJS('.copyBookmarkedURLsToEmail
     urls = encodeURIComponent(urls);
     window.open('mailto:?subject=Bookmarked%20Tweets%20Blockchain%20Bird&body=' + urls);
     return urls;
-
   }
 });
-
 clipboardBookmarkedURLsToEmail.on('success', function (e) {
-  store.commit("showToast", language.shareMessage);
-  if (localStorage.getItem("soundOn") === "true") go.play();
-  document.querySelector("body").classList.add("person1");
-  setTimeout(function () {
-    document.querySelector("body").classList.remove("person1");
-  }, 1500);
+  createCopyToClipboardParty();
 });
 
 
-
+// CLIPBOARD SEARCH RESULTS
 var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
   text: function (trigger) {
-    return window.location.protocol + "//" + window.location.host + VueConfig.publicPath + trigger.dataset.url;
+    return "“" + trigger.dataset.misconception + "”\n" + " 👉 " + window.location.protocol + "//" + window.location.host + VueConfig.publicPath + trigger.dataset.url;
   }
 });
-
 clipboardSearchResults.on('success', function (e) {
-  store.commit("showToast", language.shareMessage);
-  if (localStorage.getItem("soundOn") === "true") go.play();
-  document.querySelector("body").classList.add("person1");
-  setTimeout(function () {
-    document.querySelector("body").classList.remove("person1");
-  }, 1500);
+  createCopyToClipboardParty();
 });

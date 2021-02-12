@@ -109,6 +109,10 @@ import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
 
+import {
+    recalculateTweetTimeStamps
+} from "@/assets/js/calculateTweetTimeStamps"
+
 export default {
     name: "twitterRealtime",
     data() {
@@ -119,7 +123,9 @@ export default {
         TwitterRealTimeStartStopToggle
     },
     mounted() {
-        setTimeout(function(){getJSON.start()}, 10000);
+        setTimeout(function () {
+            getJSON.start()
+        }, 10000);
         this.hideThisTweet();
         this.copyTweet();
         // this.startStopTweetStream();
@@ -138,6 +144,7 @@ export default {
         this.setRealtimeTweetsToLocalStorageBeforeUnload();
         this.clock();
         this.insertAndRemoveMessageToTweetStream();
+        recalculateTweetTimeStamps();
     },
     methods: {
         hideThisTweet() {
@@ -221,9 +228,9 @@ export default {
             }, 10000);
 
             // doesn't seem to work
-            document.addEventListener('beforeunload', function () {
-                that.setRealtimeTweetsToLocalStorage();
-            }, false);
+            // document.addEventListener('beforeunload', function () {
+            //     that.setRealtimeTweetsToLocalStorage();
+            // }, false);
         },
         filterTweets() {
             // https://schier.co/blog/2014/12/08/wait-for-user-to-stop-typing-using-javascript.html
@@ -394,7 +401,7 @@ export default {
                 // remove
                 setTimeout(function () {
                     container.removeChild(div);
-                }, 60000);
+                }, 12000);
             }
 
             //How to randomize (shuffle) a JavaScript array?
@@ -452,11 +459,11 @@ export default {
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message6);
-            }, 12000);
+            }, 20000);
 
-            setTimeout(function () {
-                insertAndRemoveMessage(language.tweetStream.message1);
-            }, 16000);
+            // setTimeout(function () {
+            //     insertAndRemoveMessage(language.tweetStream.message1);
+            // }, 16000);
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message1);
@@ -475,8 +482,7 @@ function slideInMenu() {
     var bodyEl = document.body,
         openbtn = document.getElementById("open-button"),
         openbtn2 = document.querySelector(".twitter-open-close-handle"),
-        isOpen = false, // see above
-        clickableItems = document.querySelectorAll(".content a");
+        isOpen = false; // see above
 
     function init() {
         initEvents();
@@ -505,22 +511,6 @@ function slideInMenu() {
         if (isOpen === true && document.querySelector("#open-button")) {
             document.querySelector("#open-button").setAttribute("checked", "checked");
         }
-    }
-
-    // after click on clickable item, menu should disappear:
-    for (let i = 0; i < clickableItems.length; i++) {
-        clickableItems[i].addEventListener(
-            "click",
-            toggleMenuFromClickableItem,
-            false
-        );
-    }
-
-    function toggleMenuFromClickableItem() {
-        toggleMenu();
-
-        // if the input isnt clicked but menu is toggled anyway, then we have to remove checked=true also
-        openbtn.checked = false;
     }
 
     function toggleMenu() {

@@ -1,13 +1,10 @@
 import store from "../../store/store";
 import {
-    formatDistance
-} from 'date-fns';
-import {
     twitterLinks
 } from "./twitterLinks";
-// import {
-//     language
-// } from "@/assets/js/language1.js";
+import {
+    timestampTweet
+} from "@/assets/js/calculateTweetTimeStamps";
 
 // https://www.npmjs.com/package/platform-detect
 import platform from 'platform-detect';
@@ -30,6 +27,8 @@ export var realTimeTweets = (function () {
 
     var tweetNumber = 0;
     var tweetTypeText = "";
+
+    var timer = 0; // restrict how often new-tweet-sound plays
 
 
     // criteria
@@ -70,25 +69,6 @@ export var realTimeTweets = (function () {
         document.querySelector("#numberOfFollowers").innerHTML = numberOfFollowers;
     }
 
-    function timestampTweet(time) {
-        // https://stackoverflow.com/a/2766516/9749918
-        var date = new Date(
-            time.replace(/^\w+ (\w+) (\d+) ([\d:]+) \+0000 (\d+)$/,
-                "$1 $2 $4 $3 UTC"));
-        return formatDistance(date, Date.now());
-    }
-
-    function reCalculateTimestamp() {
-        setInterval(function () {
-            var allTimestamps = document.querySelectorAll('.timestamp');
-            allTimestamps.forEach(function (a) {
-                a.innerHTML = timestampTweet(a.dataset.createdat);
-            });
-        }, 60000);
-    }
-    reCalculateTimestamp();
-
-
     // https://stackoverflow.com/a/1584377
     function arrayUnique(array) {
         var a = array.concat();
@@ -102,6 +82,9 @@ export var realTimeTweets = (function () {
         return a;
     }
 
+    setInterval(function () {
+        timer += 10000; // increase timer every 10 sec
+    }, 10000);
 
     function processTwitters(data) {
         var tweets = document.querySelector(".tweets-realtime .tweets");
@@ -156,7 +139,9 @@ export var realTimeTweets = (function () {
                     tweetTypeText = "<div class='col-12 mb-2 handpicked-tweet-text text-center'><small class='m-0'>– Handpicked –</small></div>";
                 } else {
                     handpickedClass = "";
-                    tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>– Real Time –</small></div>";
+                    // TODO: remove eventually
+                    // tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>– Real Time –</small></div>";
+                    tweetTypeText = "";
                 }
 
                 // NUMBER OF FOLLOWERS
@@ -189,7 +174,7 @@ export var realTimeTweets = (function () {
 
                 // STRINGS THAT SHOULD NOT EXIST IN TWEET TEXT
                 if (noneOfTheseStrings.length === 0) {
-                    noneOfTheseStringsCriterium = true; // there are now restrictions so tweet can be shown
+                    noneOfTheseStringsCriterium = true; // there are no restrictions so tweet can be shown
                 } else {
                     // loop through all noneOfTheseStrings:
                     for (let j = 0; j < noneOfTheseStrings.length; j++) {
@@ -239,7 +224,7 @@ export var realTimeTweets = (function () {
                         "<div class='col-6 mb-3'>Followers: " + data[i].user.followers_count + "</div>" +
 
                         "<div class='col-6'></div>" +
-                        "<div data-createdat='" + data[i].created_at + "' class='col-6 timestamp'>" + timestampTweet(data[i].created_at) + "</div>" +
+                        "<div data-createdate='" + data[i].created_at + "' class='col-6 timestamptweet'>" + timestampTweet(data[i].created_at) + "</div>" +
                         "</div>" +
 
                         "<div class='row'>" +
@@ -261,7 +246,14 @@ export var realTimeTweets = (function () {
         loopThroughAllTweets(data);
 
         if (somethingFound) {
-            if (localStorage.getItem("soundOn") === "true") alert.play();
+            if (localStorage.getItem("soundOn") === "true") {
+                //only play the sound after enough time has passed
+                if (timer > 300000) {
+                    alert.play();
+                    timer = 0;
+                }
+            }
+
             domMenuIcon.classList.add('new-tweets');
             if (domTempOld !== domTemp) {
                 var k = 0;

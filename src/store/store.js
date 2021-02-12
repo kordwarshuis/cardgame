@@ -11,7 +11,6 @@ export default new Vuex.Store({
     gameTitle: "",
     gameTitle2: "",
     gameSubTitle: "",
-    cardImage: "",
     cssClassCardOverviewState: "",
     cssClassCardIntroState: "",
     cssClassCardFullState: "popup md-modal md-effect-1",
@@ -36,7 +35,8 @@ export default new Vuex.Store({
         return value;
       }
     },
-    prospectHandles: []
+    prospectHandles: [],
+    tweetedCards: []
   },
   getters: {
     getCard: (state) => (id) => {
@@ -63,9 +63,6 @@ export default new Vuex.Store({
     setGameSubTitle(state, name) {
       this.state.gameSubTitle = name;
     },
-    setCardImage(state, image) {
-      this.state.cardImage = image;
-    },
     hideModal(state) {
       //TODO: is this the way to change a store value? Seems not.
       this.state.cssClassCardFullState = "";
@@ -78,6 +75,11 @@ export default new Vuex.Store({
       //TODO: to stop video playing and avoind that scroll position is not top. Doesnt work
       // document.querySelector(".modal-content .videoWrapper").innerHTML = "";
       if (youtubePlayer) youtubePlayer.stopVideo();
+
+      // stop html video when closing modal. Simply stop all video:
+      document.querySelectorAll('video, audio').forEach(function(vid) {
+        vid.pause();
+      });
     },
     changeCard(state, newCard) {
       state.currentCard = newCard;
@@ -125,7 +127,8 @@ export default new Vuex.Store({
             "misconception": b.Misconception,
             "category": b.Category,
             "misconceptionElaborate": b["Misconception Elaborate"],
-            "Youtube Video Id": b["Youtube Video Id"]
+            "Youtube Video Id": b["Youtube Video Id"],
+            "Number of tweets": b["Number of tweets"],
             // ,
             // "numberOfItems": 
           });
@@ -174,7 +177,7 @@ export default new Vuex.Store({
     showToast(state, a) {
       // https://stackoverflow.com/a/57448058
       this._vm.$toast.info(a);
-    }
+    },
     // TODO: does not work as expected, check
     // setActiveMenuItem(item) {
     //   var selector = ".nav";
@@ -194,10 +197,14 @@ export default new Vuex.Store({
     //     }
     //   }
     // }
+
+    setTweetedCards(state, tweetedCards) {
+      state.tweetedCards = tweetedCards;
+    }
   },
   actions: {
     setProspectHandles() {
-      return axios.get("https://blockchainbird.com/t/data/cards.prospects.handles.php")
+      return axios.get(process.env.VUE_APP_PROSPECT_SOCIAL_MEDIA_HANDLES_CSV)
         .then(response => {
           this.state.prospectHandles = d3.csvParse(response.data);
         });

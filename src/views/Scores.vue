@@ -11,8 +11,15 @@
             </div>
 
             <div class="row justify-content-center ">
-                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
-                    <div class="card border-primary m-0 p-0 mb-3"  >
+
+                <h2>All cards, and number of times tweeted</h2>
+                <p style="font-size: 0.8em;font-weight: bold;text-align: center;">
+                        <span :style="{ fontSize: (10+(howOften/1.5)) + 'px' }" style="display: inline-block; border-radius: 5px; color: #111; background: #0385DB;margin: 0.3em; padding: 0.3em;" v-for="(howOften, cardName) in this.$store.state.tweetedCards" >{{cardName}}: {{howOften}} </span> 
+                </p>
+
+                <!-- ALL TIME TWEETS -->
+                <div class="col-lg-12 col-md-12 col-sm-12 m-0 p-0 pr-1">
+                    <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
                             <h2 class="">All Time Tweeps</h2>
                             <hr>
@@ -38,57 +45,125 @@
                                     <th class="text-right">
                                         Retweets
                                     </th>
+                                    <th class="text-right">
+                                        Likes
+                                    </th>
+                                    <th class="text-right">
+                                        Replies
+                                    </th>
+                                    <th class="text-right">
+                                        Points
+                                    </th>
                                 </tr>
-                                <tr class="border-bottom" v-for="item in userNamesCountedAndSorted" :key="item[0]">
-                                    <td class="text-left pr-2">
-                                        <!-- trick to get a numbering in the table -->
-                                        {{ userNamesCountedAndSorted.indexOf(item)+1}}
-                                    </td>
-                                    <td class="text-left">
-                                        <img class="mt-1 mr-2 mb-1" :src="item[2]" alt="" />
-                                    </td>
-
-                                    <td>
-                                        {{ item[0] }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ item[1] }}
-                                    </td>
-                                    <td class="text-right">
-                                        {{ item[3] }}
-                                    </td>
-                                </tr>
+                                <template v-for="item in tweetersAllTime">
+                                    <tr class="border-bottom" :key="item.name">
+                                        <td class="text-left pr-2">
+                                            <!-- trick to get a numbering in the table -->
+                                            {{ tweetersAllTime.indexOf(item)+1}}
+                                        </td>
+                                        <td class="text-left">
+                                            <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
+                                        </td>
+                                        <td>
+                                            <a @click="getAllTweetsOfUser(item.name)">{{ item.name }}</a>
+                                            <template v-for="item2 in allTweetsOfUser">
+                                                <div v-if="item.name === item2.name" :key="item2.id" class="card m-2 allTweetsOfUser">
+                                                    <div class="card-body m-0 p-2">
+                                                        <p><a target="_blank" rel="noopener" :href="item2.url">Go to tweet</a></p>
+                                                        <p v-html="item2.text"></p>
+                                                    </div>
+                                                </div>
+                                            </template>
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.tweets }}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.retweets }}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.likes }}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.replies }}
+                                        </td>
+                                        <td class="text-right">
+                                            {{ item.points }}
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td colspan="8">
+                                            
+                                        </td>
+                                    </tr> -->
+                                </template>
                             </table>
-
                         </div>
-
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
+                <!-- TWEETS IN LAST WEEK -->
+                <div class="col-lg-12 col-md-12 col-sm-12 m-0 p-0 pl-1">
                     <div class="card border-primary m-0 p-0 mb-3 ">
                         <div class="card-header">
-                            <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek }}</h2>
+                            <h2 class="">All Tweeps in week {{ mostRecentWeek }}</h2>
                             <hr>
                             <p>All Tweeps in the most recent week</p>
                             <hr>
                         </div>
                         <div class="card-body">
-                            <table>
+                            <table class="table table-responsive m-0 p-0">
                                 <tr>
+                                    <th class="text-left pr-2">
+                                        #
+                                    </th>
+                                    <th class="text-left">
+                                        Avatar
+                                    </th>
                                     <th>
                                         User name
                                     </th>
                                     <th class="text-right">
                                         Tweets
                                     </th>
+                                    <th class="text-right">
+                                        Retweets
+                                    </th>
+                                    <th class="text-right">
+                                        Likes
+                                    </th>
+                                    <th class="text-right">
+                                        Replies
+                                    </th>
+                                    <th class="text-right">
+                                        Points
+                                    </th>
                                 </tr>
-                                <tr v-for="item in userNamesCountedAndSorted2.tweetersMostRecentWeek" :key="item[0]">
+                                <tr v-for="item in tweetersMostRecentWeek" :key="item.name">
+                                    <td class="text-left pr-2">
+                                        <!-- trick to get a numbering in the table -->
+                                        {{ tweetersMostRecentWeek.indexOf(item)+1}}
+                                    </td>
+                                    <td class="text-left">
+                                        <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
+                                    </td>
                                     <td>
-                                        {{ item[0] }}
+                                        {{ item.name }}
                                     </td>
                                     <td class="text-right">
-                                        {{ item[1] }}
+                                        {{ item.tweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.retweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.likes }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.replies }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.points }}
                                     </td>
                                 </tr>
                             </table>
@@ -100,57 +175,132 @@
             </div>
 
             <div class="row justify-content-center ">
-                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pr-1">
+
+                <!-- TWEETS IN LAST WEEK -1  -->
+                <div class="col-lg-12 col-md-12 col-sm-12 m-0 p-0 pr-1">
                     <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
-                            <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek -1 }}</h2>
+                            <h2 class="">All Tweeps in week {{ mostRecentWeek -1 }}</h2>
                         </div>
-                        <div class="card-body">
-                            <table>
+                        <div class="card-body ">
+                            <table class="table table-responsive">
                                 <tr>
+                                    <th class="text-left pr-2">
+                                        #
+                                    </th>
+                                    <th class="text-left">
+                                        Avatar
+                                    </th>
                                     <th>
                                         User name
                                     </th>
                                     <th class="text-right">
                                         Tweets
                                     </th>
+                                    <th class="text-right">
+                                        Retweets
+                                    </th>
+                                    <th class="text-right">
+                                        Likes
+                                    </th>
+                                    <th class="text-right">
+                                        Replies
+                                    </th>
+                                    <th class="text-right">
+                                        Points
+                                    </th>
                                 </tr>
-                                <tr v-for="item in userNamesCountedAndSorted2.tweetersMostRecentWeekMinusOne" :key="item[0]">
+                                <tr v-for="item in tweetersMostRecentWeekMinusOne" :key="item.name">
+                                    <td class="text-left pr-2">
+                                        <!-- trick to get a numbering in the table -->
+                                        {{ tweetersMostRecentWeekMinusOne.indexOf(item)+1}}
+                                    </td>
+                                    <td class="text-left">
+                                        <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
+                                    </td>
                                     <td>
-                                        {{ item[0] }}
+                                        {{ item.name }}
                                     </td>
                                     <td class="text-right">
-                                        {{ item[1] }}
+                                        {{ item.tweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.retweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.likes }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.replies }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.points }}
                                     </td>
                                 </tr>
                             </table>
-
                         </div>
-
                     </div>
                 </div>
 
-                <div class="col-lg-6 col-md-12 col-sm-12 m-0 p-0 pl-1">
+                <!-- TWEETS IN LAST WEEK -2  -->
+                <div class="col-lg-12 col-md-12 col-sm-12 m-0 p-0 pl-1">
                     <div class="card border-primary m-0 p-0 mb-3">
                         <div class="card-header">
-                            <h2 class="">All Tweeps in week {{ userNamesCountedAndSorted2.mostRecentWeek -2 }}</h2>
+                            <h2 class="">All Tweeps in week {{ mostRecentWeek -2 }}</h2>
                         </div>
                         <div class="card-body">
-                            <table>
+                            <table class="table table-responsive m-0 p-0">
                                 <tr>
+                                    <th class="text-left pr-2">
+                                        #
+                                    </th>
+                                    <th class="text-left">
+                                        Avatar
+                                    </th>
                                     <th>
                                         User name
                                     </th>
                                     <th class="text-right">
                                         Tweets
                                     </th>
+                                    <th class="text-right">
+                                        Retweets
+                                    </th>
+                                    <th class="text-right">
+                                        Likes
+                                    </th>
+                                    <th class="text-right">
+                                        Replies
+                                    </th>
+                                    <th class="text-right">
+                                        Points
+                                    </th>
                                 </tr>
-                                <tr v-for="item in userNamesCountedAndSorted2.tweetersMostRecentWeekMinusTwo" :key="item[0]">
+                                <tr v-for="item in tweetersMostRecentWeekMinusTwo" :key="item.name">
+                                    <td class="text-left pr-2">
+                                        <!-- trick to get a numbering in the table -->
+                                        {{ tweetersMostRecentWeekMinusTwo.indexOf(item)+1}}
+                                    </td>
+                                    <td class="text-left">
+                                        <img class="mt-1 mr-2 mb-1" :src="item.image" alt="" />
+                                    </td>
                                     <td>
-                                        {{ item[0] }}
+                                        {{ item.name }}
                                     </td>
                                     <td class="text-right">
-                                        {{ item[1] }}
+                                        {{ item.tweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.retweets }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.likes }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.replies }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ item.points }}
                                     </td>
                                 </tr>
                             </table>
@@ -217,161 +367,103 @@
 
 <script>
 import axios from "axios";
+import {
+    twitterLinks
+} from "../assets/js/twitterLinks";
+
+import {
+    getWeek,
+    getYear
+} from 'date-fns';
+
+import {
+    convertTwitterTimeStamp
+} from "@/assets/js/convertTwitterTimeStamp.js";
+
 // import DatePickers from "./components/JavascriptComponents/DatePickers";
 
 export default {
     name: "Scores",
     data() {
         return {
-            // counter: 0,
             scores: [],
-            // sortedTweets: "",
-            // sortedFavorites: "",
-            userNamesCountedAndSorted: []
-        }
-    },
-    computed: {
-        // userNamesCountedAndSortedFirst5: function() {
-        //     // console.log("regen");
-        //     // console.log('userNamesCountedAndSorted.slice(0, 5): ', this.userNamesCountedAndSorted.slice(0, 5));
-        //     return userNamesCountedAndSorted.slice(0, 5);
-        // },
-        userNamesCountedAndSorted2: function () {
-            var tweetersMostRecentWeek;
-            var tweetersMostRecentWeekMinusOne;
-            var tweetersMostRecentWeekMinusTwo;
-
-            // we want to find the most recent weeks. So first we search for most recent year
-            var mostRecentYear = Math.max.apply(Math, this.scores.map(function (o) {
-                return o.year;
-            }));
-
-            // create subselection array with only most recent year
-            var userNamesCountedAndSortedOnlyRecentYear = [];
-            // create subselection array with only most recent week
-            var mostRecentWeek = 0;
-            var userNamesCountedAndSortedOnlyRecentWeek = [];
-
-            for (let i = 0; i < this.scores.length; i++) {
-                if (this.scores[i].year === mostRecentYear) {
-                    userNamesCountedAndSortedOnlyRecentYear.push(this.scores[i]);
-                }
-            }
-
-            mostRecentWeek = Math.max.apply(Math, userNamesCountedAndSortedOnlyRecentYear.map(function (o) {
-                return o.week_nr;
-            }))
-
-            for (let i = 0; i < userNamesCountedAndSortedOnlyRecentYear.length; i++) {
-                if (userNamesCountedAndSortedOnlyRecentYear[i].week_nr === mostRecentWeek) {
-                    userNamesCountedAndSortedOnlyRecentWeek.push(userNamesCountedAndSortedOnlyRecentYear[i]);
-                }
-            }
-
-            tweetersMostRecentWeek = this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek);
-            tweetersMostRecentWeekMinusOne = this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek - 1);
-            tweetersMostRecentWeekMinusTwo = this.calculateTweetsPerUser(mostRecentYear, mostRecentWeek - 2);
-            
-            // this.$store.tweetersMostRecentWeek = tweetersMostRecentWeek;
-            // this.$store.tweetersMostRecentWeekMinusOne = tweetersMostRecentWeekMinusOne;
-            // this.$store.tweetersMostRecentWeekMinusTwo = tweetersMostRecentWeekMinusTwo;
-            // console.log('tweetersMostRecentWeek[0][0]: ', tweetersMostRecentWeek[0][0]);
-            // this.$store.state.topScorer = tweetersMostRecentWeek[0][0];
-            this.$store.commit("setTopScorer", tweetersMostRecentWeek[0][0]);
-
-
-
-            return {
-                tweetersMostRecentWeek: tweetersMostRecentWeek,
-                tweetersMostRecentWeekMinusOne: tweetersMostRecentWeekMinusOne,
-                tweetersMostRecentWeekMinusTwo: tweetersMostRecentWeekMinusTwo,
-                mostRecentWeek: mostRecentWeek
-            };
+            mostRecentYear: 0,
+            mostRecentWeek: 0,
+            tweetersAllTime: [],
+            tweetersMostRecentWeek: [],
+            tweetersMostRecentWeekMinusOne: [],
+            tweetersMostRecentWeekMinusTwo: [],
+            allTweetsOfUser: []
         }
     },
     mounted: function () {
         this.fetchScores();
     },
     methods: {
-        // incrementCounter: function () {
-        //     return this.counter += 1;
-        // },
-
-        // testDatePicked(datePicked) {
-        //     // this.calculateHighestTweet(moment(datePicked, "YYYY-MM-DD").week());
-
-        //     alert("Er wordt nog niks met deze keuze gedaan maar hier is alvast de keuze weergegeven: " + datePicked +
-        //         " Dit is weeknr: " + moment(datePicked, "YYYY-MM-DD").week());
-        // },
         fetchScores() {
             return axios.get(process.env.VUE_APP_CARDGAME_SCORES)
                 .then(response => {
                     this.scores = response.data.scores;
-                    // this.calculateHighestTweet();
-                    // this.calculateHighestFollowers();
-                    this.addWeekNumber();
-                    this.addYear();
-                    // this.calculateTweetsPerUser(2020, 15);
-                    // this.calculateTweetsPerUser();
-                    this.allTweets();
+                    this.addCalendarData();
+                    // this.scores = this.convertIntObj(this.scores); // turn strings that contain integers into integers.
+
                 })
-                .catch(error => {})
-                .finally(() => {
-                    // this.loading = false
+                .catch(error => {
+                    console.error("Fetching the data did not succeed.")
                 })
+                .finally(() => {})
         },
-        calculateHighestTweet(a) {
-            // https://stackoverflow.com/a/1129270
-            function compare(a, b) {
-                if (a.weekreport[0].retweet_count < b.weekreport[0].retweet_count) {
-                    return 1;
+        addCalendarData() {
+            const that = this;
+
+            function addWeekNumbers() {
+                for (let i = 0; i < that.scores.length; i++) {
+                    that.scores[i].week_nr = getWeek(convertTwitterTimeStamp(that.scores[i].time));
                 }
-                if (a.weekreport[0].retweet_count > b.weekreport[0].retweet_count) {
-                    return -1;
-                }
-                return 0;
             }
 
-            // make a copy, not by reference
-            var scoresCopy = JSON.parse(JSON.stringify(this.scores));
-            var myArray = scoresCopy.filter(function (obj) {
-                return obj.weekreport.weeknumber !== 2;
-            });
-
-            this.sortedTweets = scoresCopy.sort(compare);
-        },
-        calculateHighestFollowers(a) {
-            // https://stackoverflow.com/a/1129270
-            function compare(a, b) {
-                if (a.weekreport[0].favorite_count < b.weekreport[0].favorite_count) {
-                    return 1;
+            function addYears() {
+                for (let i = 0; i < that.scores.length; i++) {
+                    that.scores[i].year = getYear(convertTwitterTimeStamp(that.scores[i].time));
                 }
-                if (a.weekreport[0].favorite_count > b.weekreport[0].favorite_count) {
-                    return -1;
-                }
-                return 0;
             }
 
-            var scoresCopy = JSON.parse(JSON.stringify(this.scores));
-            this.sortedFavorites = scoresCopy.sort(compare);
+            addWeekNumbers();
+            addYears();
+            this.getMostRecentWeekAndYear();
         },
-        addWeekNumber() {
-            // console.log('this.scores[i]', this.scores[i].time);
-            for (let i = 0; i < this.scores.length; i++) {
-                // this.scores[i].week_nr = moment(this.scores[i].time).week();
-            }
+        getMostRecentWeekAndYear() {
+            const that = this;
+            var week = 0;
+            // you first have to find the most recent year before you can search for the most recent week
+            this.mostRecentYear = Math.max.apply(Math, that.scores.map(function (o) {
+                return o.year;
+            }))
+
+            this.mostRecentWeek = Math.max.apply(Math, that.scores.map(function (o) {
+                if (o.year === that.mostRecentYear) {
+                    week = o.week_nr;
+                }
+                return week;
+            }))
+
+            this.calculateScores();
         },
-        addYear() {
-            for (let i = 0; i < this.scores.length; i++) {
-                // this.scores[i].year = moment(this.scores[i].time).year();
-            }
+        calculateScores: function () {
+            this.tweetersAllTime = this.calculateScorePerUser();
+            this.tweetersMostRecentWeek = this.calculateScorePerUser(this.mostRecentYear, this.mostRecentWeek);
+            this.tweetersMostRecentWeekMinusOne = this.calculateScorePerUser(this.mostRecentYear, this.mostRecentWeek - 1);
+            this.tweetersMostRecentWeekMinusTwo = this.calculateScorePerUser(this.mostRecentYear, this.mostRecentWeek - 2);
         },
-        calculateTweetsPerUser(year, week) {
-            var userNamesCountedAndSorted = [];
+
+        calculateScorePerUser(year, week) {
             var selection = [];
+            var usernamesCounted;
+            var userNamesCountedAndSorted = [];
 
+            // if no arguments are given then take all
             if (year === undefined && week === undefined) {
-                selection = this.scores;
+                selection = JSON.parse(JSON.stringify(this.scores));
             } else {
                 for (let i = 0; i < this.scores.length; i++) {
                     if (this.scores[i].year === year && this.scores[i].week_nr === week) {
@@ -381,7 +473,7 @@ export default {
             }
 
             // Count particular key value from array of object, https://stackoverflow.com/a/38695084
-            var usernamesCounted = selection.reduce(function (obj, v) {
+            usernamesCounted = selection.reduce(function (obj, v) {
                 // increment or set the property
                 // `(obj[v.status] || 0)` returns the property value if defined
                 // or 0 ( since `undefined` is a falsy value
@@ -393,46 +485,73 @@ export default {
 
             // Sorting object property by values, https://stackoverflow.com/a/1069840
             for (var user_name in usernamesCounted) {
-                userNamesCountedAndSorted.push([user_name, usernamesCounted[user_name]]);
+                userNamesCountedAndSorted.push({
+                    name: user_name,
+                    tweets: usernamesCounted[user_name]
+                });
+            }
+
+            for (let i = 0; i < userNamesCountedAndSorted.length; i++) {
+                userNamesCountedAndSorted[i].replies = 0; // replies per user
+                userNamesCountedAndSorted[i].retweets = 0; // retweets per user
+                userNamesCountedAndSorted[i].likes = 0; // likes per user
+                userNamesCountedAndSorted[i].points = 0; // points per user
+                for (let j = 0; j < selection.length; j++) {
+                    if (userNamesCountedAndSorted[i].name === selection[j].user_name) {
+                        userNamesCountedAndSorted[i].image = selection[j].tweet_avatar
+
+                        if (selection[j].replies !== "") { // zero is empty string
+                            userNamesCountedAndSorted[i].replies = userNamesCountedAndSorted[i].replies + parseInt(selection[j].replies, 10);
+                        }
+                        if (selection[j].retweets !== "") { // zero is empty string
+                            userNamesCountedAndSorted[i].retweets = userNamesCountedAndSorted[i].retweets + parseInt(selection[j].retweets, 10);
+                        }
+                        if (selection[j].likes !== "") { // zero is empty string
+                            userNamesCountedAndSorted[i].likes = userNamesCountedAndSorted[i].likes + parseInt(selection[j].likes, 10);
+                        }
+                    }
+                }
+
+                userNamesCountedAndSorted[i].points = userNamesCountedAndSorted[i].tweets + userNamesCountedAndSorted[i].replies + userNamesCountedAndSorted[i].retweets + userNamesCountedAndSorted[i].likes;
+
             }
 
             userNamesCountedAndSorted.sort(function (a, b) {
-                return b[1] - a[1];
+                return b.points - a.points;
             });
-
-            // after the selection is made, we have to look up the images again
-            for (let i = 0; i < userNamesCountedAndSorted.length; i++) {
-                var totalRetweets = 0;
-                userNamesCountedAndSorted[i][3] = 0; // retweets per user
-                for (let j = 0; j < this.scores.length; j++) {
-                    if (userNamesCountedAndSorted[i][0] === this.scores[j].user_name) {
-                        userNamesCountedAndSorted[i][2] = this.scores[j].tweet_avatar
-
-                        if (this.scores[j].retweets !== "") {
-                            userNamesCountedAndSorted[i][3] = userNamesCountedAndSorted[i][3] + parseInt(this.scores[j].retweets, 10);
-                        }
-                    }
-
-                }
-            }
 
             // copy the array to the data object with same name
             return userNamesCountedAndSorted;
 
         },
-        allTweets() {
-            this.userNamesCountedAndSorted = this.calculateTweetsPerUser();
+        getAllTweetsOfUser(text) {
+            for (let i = 0; i < this.scores.length; i++) {
+                if (this.scores[i].user_name === text) {
+                    this.allTweetsOfUser.push({
+                        id: this.scores[i].tweet_id,
+                        name: this.scores[i].user_name,
+                        url: this.scores[i].url,
+                        text: this.scores[i].tweet_text
+                    });
+                }
+            }
+        },
+        compareNumbers(a, b) {
+            return a - b;
+        },
+        // converts strings that represent an integer to an integer
+        // https://stackoverflow.com/a/61057671/9749918
+        convertIntObj(obj) {
+            const res = {}
+            for (const key in obj) {
+                res[key] = {};
+                for (const prop in obj[key]) {
+                    const parsed = parseInt(obj[key][prop], 10);
+                    res[key][prop] = isNaN(parsed) ? obj[key][prop] : parsed;
+                }
+            }
+            return res;
         }
-    },
-    created() {
-        // ScoreAPI.getScores()
-        //   .then(scores => {
-        //     this.scores = scores
-        //   })
-        //   .catch(error => {})
-        //   .finally(() => {
-        //     this.loading = false
-        //   })
     },
     components: {
         // DatePickers
@@ -443,19 +562,23 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-
 .card {
-    border: 1px dashed #eee !important;
+    border: 1px dashed $basic1 !important;
     background: #45517A;
     border-radius: 15px;
-    color: #eee;
+    color: $basic1;
     // border-style: dashed !important;
 }
 
-tr, td {
-    color: #eee;
+tr,
+td {
+    color: $basic1;
 }
 
+th:last-child,
+td:last-child {
+    background: rgb(4, 132, 218);
+}
 
 ol {
     list-style-position: inside;

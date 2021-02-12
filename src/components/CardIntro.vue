@@ -5,15 +5,17 @@
         <div class="col-lg-6 col-sm-6 column1 p-0">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body">
-
                     <h3 class="pt-sm-2">{{ misconception }}</h3>
-                    <div class="p-3 mt-2 text-center" style="background-color: #2F3658; min-height: 9em; border-radius: 10px;">
+                    <div class="card-intro-misconception p-3 mt-2 text-center">
                         <!-- <span class="quote">“</span> -->
                         <p class="typed mb-3">{{ getMisconception }} …</p>
                         <!-- <span class="quote">”</span> -->
-                        <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">Open full card</button>
+                        <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button>
                     </div>
 
+                    <img v-if="showSocialMediaImage === 'true'" class="mt-3" style="width: 100%; border-radius: 10px;" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt="">
+
+                    <RandomCard />
                 </div>
             </div>
         </div>
@@ -21,13 +23,20 @@
         <div class="col-lg-6 col-sm-6 column2 p-0">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body center" style="">
-                    <h3 class="pt-2" style="color: #5FE2FC;">{{ reply }}</h3>
-                    <p class="">
-                        <span class="text" style="">{{ this.$store.state.currentCard["Short Answer"] }}</span>
-                    </p>
+                    <h3 class="pt-2 reply">{{ reply }}</h3>
+
+                    <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
+
+                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
                     <hr>
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
-                        <VideoBare />
+                        <VideoYoutubeBare />
+                    </div>
+                    <div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
+                        <MediaSelfHostedBare />
+                    </div>
+                    <div v-if="(this.$store.state.currentCard['Self Hosted Image'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
+                        <ImageSelfHosted />
                     </div>
 
                     <!-- <div v-if="(this.$store.state.currentCard['Quiz'])" class="col-lg-12 col-sm-12">
@@ -41,7 +50,6 @@
         <div class="col-lg-6 col-sm-6">
             <div class="card h-100 bg-transparent" style="border:none;">
                 <div class="card-body p-0" style="">
-
                 </div>
             </div>
         </div>
@@ -59,19 +67,22 @@
                 <div>
                     <SocialMedia />
                 </div>
-                <button class="copyURLtoClipboard copyURLtoClipboard3 " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
+                <button class="copyURLtoClipboard copyURLtoClipboardCardIntroAndFull " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
             </div>
         </div>
     </div>
-    <a class="overlay-fullscreen-close"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text"> Back to cards</span></a>
+    <a class="overlay-fullscreen-close"><span class="cross">×</span><span class="back-sign">‹</span><span class="back-text"> {{backToCards}}</span></a>
 </div>
 </template>
 
 <script>
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
+import RandomCard from "@/components/RandomCard.vue";
 import Quiz from "@/components/Quiz.vue";
-import VideoBare from "@/components/VideoBare.vue";
+import VideoYoutubeBare from "@/components/VideoYoutubeBare.vue";
+import MediaSelfHostedBare from "@/components/MediaSelfHostedBare.vue";
+import ImageSelfHosted from "@/components/ImageSelfHosted.vue";
 // import Quiz from "@/components/Quiz.vue";
 import {
     disableBodyScrollMixin
@@ -83,13 +94,20 @@ export default {
     components: {
         SocialMedia,
         RelatedCards,
-        VideoBare
+        RandomCard,
+        VideoYoutubeBare,
+        MediaSelfHostedBare,
+        ImageSelfHosted
         // Quiz
     },
     data() {
         return {
             misconception: language.misconception,
-            reply: language.reply
+            reply: language.reply,
+            openFullCard: language.openFullCard,
+            backToCards: language.backToCards,
+            showSocialMediaImage: process.env.VUE_APP_SHOW_SOCIAL_MEDIA_IMAGE_IN_CARD,
+            socialMediaImagesPath: process.env.VUE_APP_SOCIAL_MEDIA_IMAGES_PATH
         }
     },
     computed: {
@@ -147,26 +165,12 @@ export default {
             var container = document.querySelector('div.container'),
                 triggerBttn = document.getElementById('trigger-overlay-fullscreen'),
                 overlayFullscreen = document.querySelector('div.overlay-fullscreen'),
-                closeBttn = document.querySelector('.overlay-fullscreen-close'),
-                // closeBttn2 = overlayFullscreen.querySelector('button.closeCardIntro'),
-                transEndEventNames = {
-                    'WebkitTransition': 'webkitTransitionEnd',
-                    'MozTransition': 'transitionend',
-                    'OTransition': 'oTransitionEnd',
-                    'msTransition': 'MSTransitionEnd',
-                    'transition': 'transitionend'
-                },
-                transEndEventName = transEndEventNames[ModernizrForCardIntro.prefixed('transition')],
-                support = {
-                    transitions: ModernizrForCardIntro.csstransitions
-                };
+                closeBttn = document.querySelector('.overlay-fullscreen-close');
             // TODO: rename, since it is not a toggle anymore
             function toggleOverlayFullscreen() {
 
                 if (localStorage.getItem("soundOn") === "true") whoosh2.play();
                 if (overlayFullscreen.classList.contains('open')) {
-                    // overlayFullscreen.classList.remove('open');
-                    // container.classList.remove('overlay-fullscreen-open');
                     overlayFullscreen.classList.add('close');
 
                     that.$store.commit("changeCssClassCardIntroState", "");
@@ -177,17 +181,12 @@ export default {
 
                     that.$router.push("/");
                     var onEndTransitionFn = function (ev) {
-                        if (support.transitions) {
-                            if (ev.propertyName !== 'visibility') return;
-                            this.removeEventListener(transEndEventName, onEndTransitionFn);
-                        }
+                        if (ev.propertyName !== 'visibility') return;
+                        this.removeEventListener('transitionend', onEndTransitionFn);
                         overlayFullscreen.classList.remove('close');
                     };
-                    if (support.transitions) {
-                        overlayFullscreen.addEventListener(transEndEventName, onEndTransitionFn);
-                    } else {
-                        onEndTransitionFn();
-                    }
+
+                    overlayFullscreen.addEventListener('transitionend', onEndTransitionFn);
                 } else if (!overlayFullscreen.classList.contains('close')) {
                     overlayFullscreen.classList.add('open');
                     container.classList.add('overlay-fullscreen-open');
@@ -202,6 +201,11 @@ export default {
             if (localStorage.getItem("soundOn") === "true") whoosh2.play();
             //TODO: why is this working, should mutations be used?
             this.$store.state.cssClassCardFullState = " md-show";
+
+            // stop html video when opening modal. Simply stop all video:
+            document.querySelectorAll('video, audio').forEach(function (vid) {
+                vid.pause();
+            });
         }
     }
 };
@@ -222,11 +226,11 @@ export default {
     left: 50%;
     padding-top: 60px;
     transform: translate(-50%, -50%);
-    box-shadow: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
-    color: $overlayItemText;
-    background: #474E71;
+    box-shadow: $shadow3;
+    color: $card-intro-color;
+    background: $card-intro-background;
     border-radius: 10px;
-    outline: 2000px solid rgba(34, 34, 34, 0.8);
+    box-shadow: $card-intro-box-shadow;
 }
 
 .overlay-fullscreen>div {
@@ -239,7 +243,7 @@ export default {
     position: fixed;
     bottom: 0;
     left: 0;
-    background: linear-gradient(to right, #5C34A7, #2376D6);
+    background: $linear-gradient1;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -248,6 +252,7 @@ export default {
     margin: 0 auto;
     text-align: center;
 }
+
 .footer>div>div {
     display: inline-block;
 }
@@ -262,6 +267,10 @@ export default {
     padding-top: 2em;
 }
 
+h3.reply {
+    color: $reply-heading-color;
+}
+
 .overlay-fullscreen .overlay-fullscreen-close {
     cursor: pointer;
     position: fixed;
@@ -270,8 +279,8 @@ export default {
     transform: translate(0, $subMenuOffsetTopOnSmallScreen);
     width: 100%;
     border: none;
-    background: linear-gradient(#2F3762, #343C6B);
-    color: #eee;
+    background: $card-intro-back-background;
+    color: $card-intro-back-color;
     display: block;
 
     // height of secondary menu bar
@@ -316,10 +325,11 @@ export default {
         left: auto;
         width: 40px;
         border: none;
-        background: none;
+        background: $card-intro-back-background-bigscreen;
         // border: 1px solid red;
         // border-radius: 50%;
-        color: #eee;
+        color: $card-intro-back-color-bigscreen;
+        ;
         padding: 0.2em;
         margin-top: 0;
         display: inline-block;
@@ -351,12 +361,13 @@ export default {
 
 // END SECONDARY MENU
 
-.container.overlay-fullscreen-open::after {
-    visibility: visible;
-    opacity: 1;
-    -webkit-transition: opacity 0.5s;
-    transition: opacity 0.5s;
-}
+// doesnt seem to serve a purpose
+// .container.overlay-fullscreen-open::after {
+//     visibility: visible;
+//     opacity: 1;
+//     -webkit-transition: opacity 0.5s;
+//     transition: opacity 0.5s;
+// }
 
 // Show/Hide card intro
 // Opacity effect
@@ -388,5 +399,12 @@ export default {
     .column1 .card-body {
         border-right: 1px dashed #A3A8B7;
     }
+}
+
+.card-intro-misconception {
+    color: $card-intro-content-item-color;
+    background-color: $card-intro-content-item-background;
+    min-height: 9em;
+    border-radius: 10px;
 }
 </style>
