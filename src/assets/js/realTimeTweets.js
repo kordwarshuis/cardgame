@@ -141,7 +141,7 @@ export var realTimeTweets = (function () {
                     handpickedClass = "";
                     // TODO: remove eventually
                     // tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>– Real Time –</small></div>";
-                    tweetTypeText = "";
+                    tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>–</small></div>";
                 }
 
                 // NUMBER OF FOLLOWERS
