@@ -7,7 +7,7 @@ The process is as follows:
 -     # redirect so twitterbot receives unique images per url
 -     # actual redirect for social media bots
 2. Periodically manually refresh Cache
-3. Whenever you add new images to the /t/media/img/social-media/cards2 directory, you have refresh all the cache of various social media platform
+3. Whenever you add new images to the /t/media/img/social-media/system directory, you have refresh all the cache of various social media platform
 
 ## Telegram
 
