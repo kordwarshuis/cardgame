@@ -81,7 +81,7 @@
     </div>
 
     <div class="card-columns mb-5">
-                <!-- HOMEPAGEVIDEO -->
+        <!-- HOMEPAGEVIDEO -->
         <div v-if="homepageVideo === 'true'" class="card mb-4 p-0">
             <div class="card-body p-0 justify-content-center align-items-center d-flex">
                 <div class="video-wrapper">
@@ -90,7 +90,7 @@
             </div>
             <div class="card-footer">
             </div>
-        </div> 
+        </div>
 
         <!-- THE CARDS -->
         <div v-for="item in setAllCards" :key="item.misconception" class="card mb-4 p-0">
