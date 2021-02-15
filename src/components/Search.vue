@@ -95,17 +95,11 @@ export default {
             this.cards = newValue;
         },
         routeQuery(newValue, oldValue) {
-            console.log("test-3");
             // if (this.searchBarInputString !== undefined) {
             //     this.showSearchResultsContainer();
             // } else {
             //     this.hideSearchResultsContainer;
             // }
-
-            console.log('this.searchBarInputString NU IN GEBRUIK: ', this.searchBarInputString);
-            // console.log('this.$route.params.search GAAN GEBRUIKEN: ', this.$route.params.search);
-            // console.log('this.$route.query GAAN GEBRUIKEN: ', this.$route.query.search);
-
         }
     },
     mounted: function () {
@@ -129,9 +123,8 @@ export default {
             document.querySelector('.searchBar').value = '';
         },
         stopSearch() {
-            
             // the router push should not run inside hideSearchResultsContainer because it does not play well with the URL handling when opening a card
-            this.$router.push("/").catch(()=>{});// https://stackoverflow.com/a/62465003
+            this.$router.push("/");
             this.emptySearchBar();
             this.hideSearchResultsContainer();
         },
@@ -202,14 +195,12 @@ export default {
 
             if (searchResultsContainer !== null) {
                 searchResultsContainer.classList.add('hideSearchResults');
-                console.log('test-1');
             }
             if (searchResultsContainerH1 !== null) {
                 searchResultsContainerH1.classList.add('hideSearchResults');
             }
         },
         showSearchResultsContainer() {
-            console.log('test-2');
             document.querySelector(".search-results-container").classList.remove('hideSearchResults');
             document.querySelector(".search-results-container h1").classList.remove('hideSearchResults');
         }
