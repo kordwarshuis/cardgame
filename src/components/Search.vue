@@ -7,7 +7,7 @@
 
     <div class="search-results-container hideSearchResults">
         <div>
-            <button class="buttonHideSearchResults" @click="hideSearchResultsContainerAndRemoveSearchStringFromURL"><span class="visuallyhidden">Close search results</span>×</button>
+            <button class="buttonHideSearchResults" @click="stopSearch"><span class="visuallyhidden">Close search results</span>×</button>
             <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">{{everythingAbout }} “{{searchBarInputString}}”</h1>
 
             <!-- SEARCH RESULT COPY BUTTON -->
@@ -86,10 +86,7 @@ export default {
         computedSearchCards: function () {
             return this.searchCards();
         },
-        // not used ATM
         routeQuery: function () {
-            // return this.$route;
-            // return this.$route.query.search;
             return this.$route.query;
         }
     },
@@ -97,14 +94,13 @@ export default {
         getCards(newValue, oldValue) {
             this.cards = newValue;
         },
-        // not used ATM
         routeQuery(newValue, oldValue) {
-            
-            if (this.searchBarInputString !== undefined) {
-                this.showSearchResultsContainer();
-            } else {
-                this.hideSearchResultsContainer;
-            }
+            console.log("test-3");
+            // if (this.searchBarInputString !== undefined) {
+            //     this.showSearchResultsContainer();
+            // } else {
+            //     this.hideSearchResultsContainer;
+            // }
 
             console.log('this.searchBarInputString NU IN GEBRUIK: ', this.searchBarInputString);
             // console.log('this.$route.params.search GAAN GEBRUIKEN: ', this.$route.params.search);
@@ -120,7 +116,7 @@ export default {
         this._keyListener = function (e) {
             if (e.key === "Escape") {
                 e.preventDefault();
-                this.hideSearchResultsContainerAndRemoveSearchStringFromURL();
+                this.stopSearch();
             }
         };
         document.addEventListener('keydown', this._keyListener.bind(this));
@@ -129,10 +125,15 @@ export default {
         document.removeEventListener('keydown', this._keyListener);
     },
     methods: {
-        hideSearchResultsContainerAndRemoveSearchStringFromURL() {
-            this.hideSearchResultsContainer();
+        emptySearchBar() {
+            document.querySelector('.searchBar').value = '';
+        },
+        stopSearch() {
+            
             // the router push should not run inside hideSearchResultsContainer because it does not play well with the URL handling when opening a card
-            this.$router.push("/");
+            this.$router.push("/").catch(()=>{});// https://stackoverflow.com/a/62465003
+            this.emptySearchBar();
+            this.hideSearchResultsContainer();
         },
         onInputChangeOrKeyDown() {
             this.searchCards();
@@ -201,12 +202,14 @@ export default {
 
             if (searchResultsContainer !== null) {
                 searchResultsContainer.classList.add('hideSearchResults');
+                console.log('test-1');
             }
             if (searchResultsContainerH1 !== null) {
                 searchResultsContainerH1.classList.add('hideSearchResults');
             }
         },
         showSearchResultsContainer() {
+            console.log('test-2');
             document.querySelector(".search-results-container").classList.remove('hideSearchResults');
             document.querySelector(".search-results-container h1").classList.remove('hideSearchResults');
         }
