@@ -55,8 +55,33 @@
         </h3>
     </div>
 
+    <!-- HOME-CARTOON -->
+    <div class="row m-0">
+        <div class="col-md-12 p-0">
+            <div class="card mb-4 p-0 text-center" style="background: transparent;">
+                <div style="z-index: 0;" id="cartoons-caroussel" class="card-body p-0 justify-content-center align-items-center d-flex carousel slide carousel-fade" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div data-interval="5000" v-for="(img, index) in homepageCartoon" :key="img" class="carousel-item" :class="{ 'active': index === 0 }">
+                            <img style="width: 100%; max-width: 50em; border-radius: 10px;" :src="img" alt="">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#cartoons-caroussel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#cartoons-caroussel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card-columns mb-5">
-        <!-- HOMEPAGEVIDEO -->
+        <!--         <!~~ HOMEPAGEVIDEO ~~>
         <div v-if="homepageVideo === 'true'" class="card mb-4 p-0">
             <div class="card-body p-0 justify-content-center align-items-center d-flex">
                 <div class="video-wrapper">
@@ -65,7 +90,8 @@
             </div>
             <div class="card-footer">
             </div>
-        </div>
+        </div> -->
+
         <!-- THE CARDS -->
         <div v-for="item in setAllCards" :key="item.misconception" class="card mb-4 p-0">
             <div class="card-body p-0 align-items-center d-flex">
@@ -109,6 +135,7 @@ import ICountUp from 'vue-countup-v2';
 import publicPath from "../../vue.config";
 import GameInstructionsCarousel from "./GameInstructionsCarousel.vue";
 import store from "../store/store";
+import axios from "axios";
 
 export default {
     name: "Index",
@@ -140,6 +167,7 @@ export default {
             appId: process.env.VUE_APP_ID,
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
             homepageVideo: process.env.VUE_APP_HOMEPAGE_VIDEO,
+            homepageCartoon: [],
             homepageVideoPathToVideo: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
             homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS
@@ -154,6 +182,7 @@ export default {
             }
         }, 7000);
         this.setCardsInitiallyShown();
+        this.getCartoons();
     },
     computed: {
         setAllCards() {
@@ -162,6 +191,52 @@ export default {
         }
     },
     methods: {
+        getCartoons() {
+            let one = "https://blockchainbird.com/t/media/img/social-media/cards/cartoons.php";
+            const requestOne = axios.get(one);
+
+            // https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
+            return axios.all([requestOne]).then(axios.spread((...responses) => {
+                var responseOne = responses[0];
+
+                // only images with '-text' in the name
+                function checker(value) {
+                    var obligatory = ['-text'];
+                    return obligatory.every(function (v) {
+                        return value.indexOf(v) !== -1;
+                    });
+                }
+
+                function shuffle(array) {
+                    var currentIndex = array.length, temporaryValue, randomIndex;
+
+                    // While there remain elements to shuffle...
+                    while (0 !== currentIndex) {
+
+                        // Pick a remaining element...
+                        randomIndex = Math.floor(Math.random() * currentIndex);
+                        currentIndex -= 1;
+
+                        // And swap it with the current element.
+                        temporaryValue = array[currentIndex];
+                        array[currentIndex] = array[randomIndex];
+                        array[randomIndex] = temporaryValue;
+                    }
+
+                    return array;
+                }
+
+                responseOne = responseOne.data;
+                responseOne = responseOne.filter(checker);
+                responseOne = shuffle(responseOne);
+                this.homepageCartoon = responseOne;
+            })).catch(errors => {
+                // react on errors.
+                console.log('errors: ', errors);
+                console.log("something goes wrong fetching the data");
+            })
+
+        },
         setCardsInitiallyShown() {
             if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE !== "") {
                 // set the number of cards to be shown
