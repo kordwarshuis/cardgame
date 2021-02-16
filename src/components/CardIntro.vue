@@ -35,7 +35,7 @@
                     <div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <MediaSelfHostedBare />
                     </div>
-                    <div v-if="(this.$store.state.currentCard['Self Hosted Image'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
+                    <div v-if="(this.$store.state.currentCard['Self Hosted Image 1'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <ImageSelfHosted />
                     </div>
 

@@ -76,10 +76,11 @@
                     </div>
                 </div>
 
-                <!-- if there is Self Hosted image -->
-                <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Image'])">
+                <!-- if there is Self Hosted Image -->
+                <!-- The assumption is that if any image is used this should be in the first one  -->
+                <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Image 1'])">
                     <div class="col-md-12 mb-3">
-                        <ImageSelfHosted />
+                        <ImagesSelfHosted />
                     </div>
                 </div>
 
