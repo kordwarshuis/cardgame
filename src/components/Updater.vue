@@ -49,8 +49,8 @@ export default {
 
 <style lang="scss" scoped>
 #updateinfo {
-    border: 1px solid #eee;
-    background: green;
+    border: 3px solid rgb(59, 166, 238);
+    background: rgb(164, 235, 131);
     padding: 1em;
     margin: 1em auto !important;
     display: inline-block;
