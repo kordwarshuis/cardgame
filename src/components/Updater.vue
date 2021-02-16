@@ -34,7 +34,7 @@ export default {
 
             function processUpdateInfo(versionNew) {
                 // see updater.js and updater.json in /public
-                if (versionCurrent < versionNew) {
+                if (versionCurrent !== versionNew) {
                     document.querySelector('#updateinfo').style.display = "block";
                 }
             }
