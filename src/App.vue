@@ -8,6 +8,7 @@
         <TwitterRealTimeInfoModal />
     </template>
     <MainMenu />
+    <Updater />
     <!-- <slideInMenu /> -->
     <template v-if="realTimeTweets === 'true'">
         <twitterRealtime />
@@ -45,6 +46,7 @@ import MainMenu from "@/components/MainMenu.vue";
 import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
+import Updater from "@/components/Updater.vue";
 
 export default {
     components: {
@@ -54,7 +56,8 @@ export default {
         MainMenu,
         NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
         Person1,
-        Person2
+        Person2,
+        Updater
         // slideInMenu,
         // CryptoRadio,
         // Hammer,
