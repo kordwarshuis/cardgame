@@ -193,6 +193,7 @@ export default {
             var searchResultsContainer = document.querySelector(".search-results-container");
             var searchResultsContainerH1 = document.querySelector(".search-results-container h1");
 
+            this.emptySearchBar();
             if (searchResultsContainer !== null) {
                 searchResultsContainer.classList.add('hideSearchResults');
             }
