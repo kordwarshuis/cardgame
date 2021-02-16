@@ -1,5 +1,5 @@
 <template>
-<div id="updateinfo" style="">
+<div id="updateinfo" style="display: none;">
     <p>Update available <button id="updater" onclick="window.location = window.location;">Update now</button></p>
 
 </div>
