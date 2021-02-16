@@ -157,6 +157,10 @@ export default {
                     var responseData = d3.csvParse(responseOne.data);
                     var responseDataTemp = [];
 
+                    // Temporary solution: remove some columns (google sheet) / keys
+                    responseData.forEach(function(v){ delete v.Cartoon });
+                    responseData.forEach(function(v){ delete v['Flower Power'] });
+
                     // prepare data
 
                     // select the stack
