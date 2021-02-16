@@ -167,7 +167,7 @@
 import Quiz from "@/components/Quiz.vue";
 import VideoYoutube from "@/components/VideoYoutube.vue";
 import MediaSelfHosted from "@/components/MediaSelfHosted.vue";
-import ImageSelfHosted from "@/components/ImageSelfHosted.vue";
+import ImagesSelfHosted from "@/components/ImagesSelfHosted.vue";
 import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
 import Keywords from "@/components/Keywords.vue";
@@ -209,7 +209,7 @@ export default {
         Quiz,
         VideoYoutube,
         MediaSelfHosted,
-        ImageSelfHosted,
+        ImagesSelfHosted,
         SocialMedia,
         RelatedCards,
         Keywords,
