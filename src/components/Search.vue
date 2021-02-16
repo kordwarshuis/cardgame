@@ -7,7 +7,7 @@
 
     <div class="search-results-container hideSearchResults">
         <div>
-            <button class="buttonHideSearchResults" @click="stopSearch"><span class="visuallyhidden">Close search results</span>×</button>
+            <button class="buttonHideSearchResults" @click="stopSearch1"><span class="visuallyhidden">Close search results</span>×</button>
             <h1 class="hideSearchResults m-3 mt-5 display-5 text-center">{{everythingAbout }} “{{searchBarInputString}}”</h1>
 
             <!-- SEARCH RESULT COPY BUTTON -->
@@ -21,34 +21,34 @@
                 <button onclick="return false;" :data-misconception="card['Misconception']" :data-url="'card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="float: right; width: 2em; height: 2em;vertical-align: top;" title="Copy Link">Copy Link</button>
 
                 <!-- category -->
-                <small @click="hideSearchResultsContainer" class="search-result category mb-4 pt-1 pl-2 pr-2 pb-0 display-5" :class="card.Category" style="display: inline-block; border-radius: 10px;">
+                <small @click="stopSearch2" class="search-result category mb-4 pt-1 pl-2 pr-2 pb-0 display-5" :class="card.Category" style="display: inline-block; border-radius: 10px;">
                     <router-link :to="'/card/' + card['Unique URL']">{{card.Category}}</router-link>
                 </small>
                 <!-- misconception -->
-                <h2 @click="hideSearchResultsContainer" style="cursor: pointer" class="w-1/4">
+                <h2 @click="stopSearch2" style="cursor: pointer" class="w-1/4">
                     <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{ card.Misconception }}</router-link>
                 </h2>
 
                 <!-- misconception longer -->
-                <p v-for="item in card['Misconception Elaborate']" v-bind:key="item" @click="hideSearchResultsContainer" class="search-result ml-4 w-3/4" style="cursor: pointer">
+                <p v-for="item in card['Misconception Elaborate']" v-bind:key="item" @click="stopSearch2" class="search-result ml-4 w-3/4" style="cursor: pointer">
                     {{ item }}
                 </p>
 
                 <div v-if="(card['Youtube Video Id'])" class="clearfix">
                     <!-- https://stackoverflow.com/a/2068371/9749918 -->
-                    <img @click="hideSearchResultsContainer" style="cursor: pointer;" class="rounded mx-auto d-block img-fluid" :src="'https://img.youtube.com/vi/' + card['Youtube Video Id'] + '/0.jpg'" alt="">
+                    <img @click="stopSearch2" style="cursor: pointer;" class="rounded mx-auto d-block img-fluid" :src="'https://img.youtube.com/vi/' + card['Youtube Video Id'] + '/0.jpg'" alt="">
                 </div>
 
                 <!-- <video style="max-width: 100%; width: 100%;" v-if="card['Self Hosted Video']" :src="path + card['Self Hosted Video']" controls preload="none" playsinline></video> -->
                 <!-- <video style="max-width: 100%; width: 100%;" v-if="card['Self Hosted Video']" :src="#" :data-src="path + card['Self Hosted Video']" controls preload="none" playsinline></video> -->
 
                 <!-- go to card -->
-                <p @click="hideSearchResultsContainer" style="cursor: pointer" class="w-1/4">
+                <p @click="stopSearch2" style="cursor: pointer" class="w-1/4">
                     <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{goToCard}}</router-link>
                 </p>
 
                 <!-- result snippet -->
-                <p @click="hideSearchResultsContainer" class="search-result" style="font-size: 1em;" v-html="card.searchResultSnippet">
+                <p @click="stopSearch2" class="search-result" style="font-size: 1em;" v-html="card.searchResultSnippet">
                     <router-link :to="'/card/' + card['Unique URL']">{{card.searchResultSnippet}}</router-link>
                 </p>
             </div>
@@ -110,7 +110,7 @@ export default {
         this._keyListener = function (e) {
             if (e.key === "Escape") {
                 e.preventDefault();
-                this.stopSearch();
+                this.stopSearch1();
             }
         };
         document.addEventListener('keydown', this._keyListener.bind(this));
@@ -122,9 +122,13 @@ export default {
         emptySearchBar() {
             document.querySelector('.searchBar').value = '';
         },
-        stopSearch() {
+        stopSearch1() {
             // the router push should not run inside hideSearchResultsContainer because it does not play well with the URL handling when opening a card
             this.$router.push("/");
+            this.emptySearchBar();
+            this.hideSearchResultsContainer();
+        },
+        stopSearch2() {
             this.emptySearchBar();
             this.hideSearchResultsContainer();
         },
@@ -193,7 +197,6 @@ export default {
             var searchResultsContainer = document.querySelector(".search-results-container");
             var searchResultsContainerH1 = document.querySelector(".search-results-container h1");
 
-            this.emptySearchBar();
             if (searchResultsContainer !== null) {
                 searchResultsContainer.classList.add('hideSearchResults');
             }
