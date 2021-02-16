@@ -114,6 +114,7 @@ export default {
             }
         };
         document.addEventListener('keydown', this._keyListener.bind(this));
+        this.stopSearch3();
     },
     beforeDestroy() {
         document.removeEventListener('keydown', this._keyListener);
@@ -131,6 +132,17 @@ export default {
         stopSearch2() {
             this.emptySearchBar();
             this.hideSearchResultsContainer();
+        },
+        stopSearch3() {
+            var that = this;
+
+            // when clicking on any link the search screen hides.
+            //TODO: does this run twice when clicking on link inside search results?
+            document.addEventListener("click", function (event) {
+                if (event.target.matches("a")) {
+                    that.stopSearch2();
+                }
+            }, false);
         },
         onInputChangeOrKeyDown() {
             this.searchCards();
