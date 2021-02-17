@@ -1,7 +1,6 @@
 <template>
-<div id="updateinfo" style="display: none;">
+<div id="updateinfo" class="alert alert-info m-5" role="alert" style="display: none;">
     <p>Update available <button id="updater" onclick="window.location = window.location;">Update now</button></p>
-
 </div>
 </template>
 
@@ -49,12 +48,12 @@ export default {
 
 <style lang="scss" scoped>
 #updateinfo {
-    border: 3px solid rgb(59, 166, 238);
-    background: rgb(164, 235, 131);
-    padding: 1em;
-    margin: 1em auto !important;
-    display: inline-block;
-    width: 30em;
+    // border: 3px solid rgb(59, 166, 238);
+    // background: rgb(164, 235, 131);
+    // padding: 1em;
+    // margin: 1em auto !important;
+    // display: inline-block;
+    // width: 30em;
 }
 
 #updater {
