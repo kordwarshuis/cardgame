@@ -1,6 +1,6 @@
 <template>
 <div id="updateinfo" class="alert alert-info m-5" role="alert" style="display: none;">
-    <p>Update available <button id="updater" onclick="window.location = window.location;">Update now</button></p>
+    <p class="text-center">Speed Update Available <button id="updater" onclick="window.location = window.location;">Update now</button></p>
 </div>
 </template>
 
