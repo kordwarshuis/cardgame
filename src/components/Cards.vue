@@ -55,13 +55,13 @@
         </h3>
     </div>
 
-    <!-- HOME-CARTOON -->
-    <div class="row m-0">
+    <!-- HOMEPAGE-ILLUSTRATIONS -->
+    <div v-if="homepageIllustrationsCarousel !== ''" class="row m-0">
         <div class="col-md-12 p-0">
             <div class="card mb-4 p-0 text-center" style="background: transparent;">
                 <div style="z-index: 0;" id="illustrations-caroussel" class="card-body p-0 justify-content-center align-items-center d-flex carousel slide carousel-fade" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div data-interval="5000" v-for="(img, index) in homepageIllustration" :key="img" class="carousel-item" :class="{ 'active': index === 0 }">
+                        <div data-interval="5000" v-for="(img, index) in homepageIllustrations" :key="img" class="carousel-item" :class="{ 'active': index === 0 }">
                             <img style="width: 100%; max-width: 50em; border-radius: 10px;" :src="img" alt="">
                         </div>
                     </div>
@@ -167,10 +167,11 @@ export default {
             appId: process.env.VUE_APP_ID,
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
             homepageVideo: process.env.VUE_APP_HOMEPAGE_VIDEO,
-            homepageIllustration: [],
+            homepageIllustrations: [],
             homepageVideoPathToVideo: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
             homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
-            realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS
+            realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS,
+            homepageIllustrationsCarousel: process.env.VUE_APP_HOMEPAGE_ILLUSTRATIONS_CAROUSEL
         }
     },
     mounted() {
@@ -229,7 +230,7 @@ export default {
                 responseOne = responseOne.data;
                 responseOne = responseOne.filter(checker);
                 responseOne = shuffle(responseOne);
-                this.homepageIllustration = responseOne;
+                this.homepageIllustrations = responseOne;
             })).catch(errors => {
                 // react on errors.
                 console.log('errors: ', errors);
