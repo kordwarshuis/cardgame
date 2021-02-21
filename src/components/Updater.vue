@@ -41,7 +41,7 @@ export default {
                 }
             }
 
-            setInterval(getUpdateInfo, 6000);
+            setInterval(getUpdateInfo, 60000);
         }
     }
 };
