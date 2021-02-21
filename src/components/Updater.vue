@@ -33,9 +33,7 @@ export default {
             };
 
             function processUpdateInfo(versionNew) {
-                // see updater.js and updater.json in /public
-                    console.log('versionNew: ', versionNew);
-                    console.log('versionCurrent: ', versionCurrent);
+                // search for updater.js and updater.json
                 if (versionCurrent !== versionNew) {
                     document.querySelector('#updateinfo').style.display = "block";
                 }
