@@ -59,17 +59,17 @@
     <div class="row m-0">
         <div class="col-md-12 p-0">
             <div class="card mb-4 p-0 text-center" style="background: transparent;">
-                <div style="z-index: 0;" id="cartoons-caroussel" class="card-body p-0 justify-content-center align-items-center d-flex carousel slide carousel-fade" data-ride="carousel">
+                <div style="z-index: 0;" id="illustrations-caroussel" class="card-body p-0 justify-content-center align-items-center d-flex carousel slide carousel-fade" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div data-interval="5000" v-for="(img, index) in homepageCartoon" :key="img" class="carousel-item" :class="{ 'active': index === 0 }">
+                        <div data-interval="5000" v-for="(img, index) in homepageIllustration" :key="img" class="carousel-item" :class="{ 'active': index === 0 }">
                             <img style="width: 100%; max-width: 50em; border-radius: 10px;" :src="img" alt="">
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#cartoons-caroussel" role="button" data-slide="prev">
+                    <a class="carousel-control-prev" href="#illustrations-caroussel" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#cartoons-caroussel" role="button" data-slide="next">
+                    <a class="carousel-control-next" href="#illustrations-caroussel" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
@@ -167,7 +167,7 @@ export default {
             appId: process.env.VUE_APP_ID,
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
             homepageVideo: process.env.VUE_APP_HOMEPAGE_VIDEO,
-            homepageCartoon: [],
+            homepageIllustration: [],
             homepageVideoPathToVideo: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
             homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS
@@ -182,7 +182,7 @@ export default {
             }
         }, 7000);
         this.setCardsInitiallyShown();
-        this.getCartoons();
+        this.getIllustrations();
     },
     computed: {
         setAllCards() {
@@ -191,8 +191,8 @@ export default {
         }
     },
     methods: {
-        getCartoons() {
-            let one = "https://blockchainbird.com/t/media/img/social-media/cards/cartoons.php";
+        getIllustrations() {
+            let one = "https://blockchainbird.com/t/media/img/social-media/cards/illustrations.php";
             const requestOne = axios.get(one);
 
             // https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
@@ -229,7 +229,7 @@ export default {
                 responseOne = responseOne.data;
                 responseOne = responseOne.filter(checker);
                 responseOne = shuffle(responseOne);
-                this.homepageCartoon = responseOne;
+                this.homepageIllustration = responseOne;
             })).catch(errors => {
                 // react on errors.
                 console.log('errors: ', errors);

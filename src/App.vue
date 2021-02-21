@@ -161,7 +161,7 @@ export default {
                     var responseDataTemp = [];
 
                     // Temporary solution: remove some columns (google sheet) / keys
-                    responseData.forEach(function(v){ delete v.Cartoon });
+                    responseData.forEach(function(v){ delete v.Illustration });
                     responseData.forEach(function(v){ delete v['Flower Power'] });
 
                     // prepare data
