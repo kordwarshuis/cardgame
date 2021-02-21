@@ -1,1 +1,1 @@
-var versionCurrent = "021721133230";
+var versionCurrent = "test";
