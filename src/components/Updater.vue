@@ -7,6 +7,7 @@
 <script>
 import axios from "axios";
 import publicPath from "../../vue.config";
+import {versionCurrent} from "../assets/js/updater";
 export default {
     name: "Updater",
     mounted: function () {
@@ -33,12 +34,14 @@ export default {
 
             function processUpdateInfo(versionNew) {
                 // see updater.js and updater.json in /public
+                    console.log('versionNew: ', versionNew);
+                    console.log('versionCurrent: ', versionCurrent);
                 if (versionCurrent !== versionNew) {
                     document.querySelector('#updateinfo').style.display = "block";
                 }
             }
 
-            setInterval(getUpdateInfo, 60000);
+            setInterval(getUpdateInfo, 6000);
         }
     }
 };
