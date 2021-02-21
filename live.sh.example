@@ -9,39 +9,39 @@
 #
 #
 
-# ####################
-# # UPDATE MECHANISM:
+####################
+# UPDATE MECHANISM:
 
-# # Names of two files that will contain an identical timestamp
-# JSONFILE='./public/updater.json'
-# JSFILE='./src/assets/js/updater.js'
+# Names of two files that will contain an identical timestamp
+JSONFILE='./public/updater.json'
+JSFILE='./src/assets/js/updater.js'
 
-# # Create the files
-# touch $JSONFILE
-# touch $JSFILE
+# Create the files
+touch $JSONFILE
+touch $JSFILE
 
-# # Create a timestamp
-# NOW=$( date '+%m%d%y%H%M%S' )
+# Create a timestamp
+NOW=$( date '+%m%d%y%H%M%S' )
 
-# # Fill JSON file
-# printf "{" > $JSONFILE;
-# printf "\n" >> $JSONFILE;
-# printf "\"versionNew\": " >> $JSONFILE;
-# printf '\"' >> $JSONFILE;
-# printf $NOW >> $JSONFILE;
-# printf '\"' >> $JSONFILE;
-# printf "\n" >> $JSONFILE;
-# printf "}" >> $JSONFILE;
+# Fill JSON file
+printf "{" > $JSONFILE;
+printf "\n" >> $JSONFILE;
+printf "\"versionNew\": " >> $JSONFILE;
+printf '\"' >> $JSONFILE;
+printf $NOW >> $JSONFILE;
+printf '\"' >> $JSONFILE;
+printf "\n" >> $JSONFILE;
+printf "}" >> $JSONFILE;
 
-# # Fill JS file
-# printf "export var versionCurrent = " > $JSFILE;
-# printf '\"' >> $JSFILE;
-# printf $NOW >> $JSFILE;
-# printf '\"' >> $JSFILE;
-# printf ';' >> $JSFILE;
+# Fill JS file
+printf "export var versionCurrent = " > $JSFILE;
+printf '\"' >> $JSFILE;
+printf $NOW >> $JSFILE;
+printf '\"' >> $JSFILE;
+printf ';' >> $JSFILE;
 
-# # END
-# ####################
+# END
+####################
 
 
 
