@@ -115,6 +115,7 @@ export default {
         };
         document.addEventListener('keydown', this._keyListener.bind(this));
         this.stopSearch3();
+        this.handlePopState();
     },
     beforeDestroy() {
         document.removeEventListener('keydown', this._keyListener);
@@ -205,7 +206,19 @@ export default {
                 this.showSearchResultsContainer();
             }
         },
+        handlePopState() {
+            var that = this;
+            window.onpopstate = function (event) {
+                // console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+                if (that.$route.query.search !== undefined) {
+                    that.showSearchResultsContainer();
+                } else {
+                    that.hideSearchResultsContainer();
+                }
+            };
+        },
         hideSearchResultsContainer() {
+            console.log('hideSearchResultsContainer');
             var searchResultsContainer = document.querySelector(".search-results-container");
             var searchResultsContainerH1 = document.querySelector(".search-results-container h1");
 
@@ -217,6 +230,7 @@ export default {
             }
         },
         showSearchResultsContainer() {
+            console.log('showSearchResultsContainer');
             document.querySelector(".search-results-container").classList.remove('hideSearchResults');
             document.querySelector(".search-results-container h1").classList.remove('hideSearchResults');
         }
