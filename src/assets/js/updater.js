@@ -1,1 +1,0 @@
-export var versionCurrent = "0";
