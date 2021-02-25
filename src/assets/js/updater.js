@@ -1,1 +1,1 @@
-export var versionCurrent = "022221140321";
+export var versionCurrent = "0";
