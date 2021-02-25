@@ -193,8 +193,7 @@ export default {
     },
     methods: {
         getIllustrations() {
-            // TODO: remove hardcoded url
-            let one = "https://blockchainbird.org/t/media/img/social-media/cards/illustrations.php";
+            let one = this.homepageIllustrationsCarousel;
             const requestOne = axios.get(one);
 
             // https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
