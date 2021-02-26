@@ -63,7 +63,7 @@
                     <div class="carousel-inner">
                         <div data-interval="5000" v-for="(img, index) in homepageIllustrations" :key="img" class="carousel-item" :class="{ 'active': index === 0 }">
                             <a :data-id="homepageIllustrationsUniqueUrl[index]">
-                                <img @click="showCardIntro" style="width: 100%; max-width: 50em; border-radius: 10px;" :src="img" alt="">
+                                <img @click="showCardIntro" style="cursor: pointer;width: 100%; max-width: 50em; border-radius: 10px;" :src="img" alt="">
                             </a>
                         </div>
                     </div>
