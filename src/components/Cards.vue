@@ -62,7 +62,9 @@
                 <div style="z-index: 0;" id="illustrations-caroussel" class="card-body p-0 justify-content-center align-items-center d-flex carousel slide carousel-fade" data-ride="carousel">
                     <div class="carousel-inner">
                         <div data-interval="5000" v-for="(img, index) in homepageIllustrations" :key="img" class="carousel-item" :class="{ 'active': index === 0 }">
-                            <img style="width: 100%; max-width: 50em; border-radius: 10px;" :src="img" alt="">
+                            <a :data-id="homepageIllustrationsUniqueUrl[index]">
+                                <img @click="showCardIntro" style="width: 100%; max-width: 50em; border-radius: 10px;" :src="img" alt="">
+                            </a>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#illustrations-caroussel" role="button" data-slide="prev">
@@ -168,6 +170,7 @@ export default {
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
             homepageVideo: process.env.VUE_APP_HOMEPAGE_VIDEO,
             homepageIllustrations: [],
+            homepageIllustrationsUniqueUrl: [],
             homepageVideoPathToVideo: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
             homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS,
@@ -192,6 +195,16 @@ export default {
         }
     },
     methods: {
+        grabFilenameFromURL() {
+            // the filename is the only source we have for creating the unique Url.
+            this.homepageIllustrations.forEach((element, index) => {
+                // strip the filename
+                // remove everthing before the last slash and after the last dot
+                this.homepageIllustrationsUniqueUrl[index] = element.substring(element.lastIndexOf("/") + 1, element.lastIndexOf("."));
+                // remove everything after "-text"
+                this.homepageIllustrationsUniqueUrl[index] = this.homepageIllustrationsUniqueUrl[index].substring(0, this.homepageIllustrationsUniqueUrl[index].lastIndexOf("-text"));
+            });
+        },
         getIllustrations() {
             let one = this.homepageIllustrationsCarousel;
             const requestOne = axios.get(one);
@@ -232,6 +245,7 @@ export default {
                 responseOne = responseOne.filter(checker);
                 responseOne = shuffle(responseOne);
                 this.homepageIllustrations = responseOne;
+                this.grabFilenameFromURL();
             })).catch(errors => {
                 // react on errors.
                 console.log('errors: ', errors);
@@ -335,24 +349,6 @@ export default {
             // appendToLocalStorage("visited", this.$store.state.currentCard["Unique URL"]);
 
             // this.addVisitedToCards();
-
-            // deal with CSS to open and close
-            this.$store.commit("changeCssClassCardIntroState", "open");
-            this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
-
-            // returns object with all entries of one misconception
-            var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
-
-            this.$store.commit("changeCard", currentCard);
-
-            // set URl to the item that was clicked
-            // catch error: https://stackoverflow.com/a/58747480
-            // this.$router.push("/card/" + currentCard["Unique URL"]).catch(err => {});
-            this.$router.push("/card/" + currentCard["Unique URL"]);
-
-            if (localStorage.getItem("soundOn") === "true") whoosh2.play();
-        },
-        showCardIntro2(event) {
 
             // deal with CSS to open and close
             this.$store.commit("changeCssClassCardIntroState", "open");
