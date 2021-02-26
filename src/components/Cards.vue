@@ -209,7 +209,8 @@ export default {
                 }
 
                 function shuffle(array) {
-                    var currentIndex = array.length, temporaryValue, randomIndex;
+                    var currentIndex = array.length,
+                        temporaryValue, randomIndex;
 
                     // While there remain elements to shuffle...
                     while (0 !== currentIndex) {
@@ -334,6 +335,24 @@ export default {
             // appendToLocalStorage("visited", this.$store.state.currentCard["Unique URL"]);
 
             // this.addVisitedToCards();
+
+            // deal with CSS to open and close
+            this.$store.commit("changeCssClassCardIntroState", "open");
+            this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
+
+            // returns object with all entries of one misconception
+            var currentCard = this.$store.getters.getCard(event.target.closest("a").dataset.id);
+
+            this.$store.commit("changeCard", currentCard);
+
+            // set URl to the item that was clicked
+            // catch error: https://stackoverflow.com/a/58747480
+            // this.$router.push("/card/" + currentCard["Unique URL"]).catch(err => {});
+            this.$router.push("/card/" + currentCard["Unique URL"]);
+
+            if (localStorage.getItem("soundOn") === "true") whoosh2.play();
+        },
+        showCardIntro2(event) {
 
             // deal with CSS to open and close
             this.$store.commit("changeCssClassCardIntroState", "open");
