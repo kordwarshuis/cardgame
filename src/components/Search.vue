@@ -126,6 +126,7 @@ export default {
         stopSearch2() {
             this.emptySearchBar();
             this.hideSearchResultsContainer();
+            $('#navbarNav').collapse('hide');
         },
         stopSearch3() {
             var that = this;
@@ -199,9 +200,7 @@ export default {
 
                 this.showSearchResultsContainer();
                 document.addEventListener("DOMContentLoaded", function (event) {
-                    // simulate click
-                    //TODO: does $('.navbarNav').dropdown('show'); work?
-                    document.querySelector('.navbar-toggler').click();
+                    $('#navbarNav').collapse('show');
                 });
             }
         },
@@ -213,11 +212,11 @@ export default {
 
                     that.showSearchResultsContainer();
                     // for small screen
-                    $('.navbarNav').dropdown('show');
+                    $('#navbarNav').collapse('show');
                 } else {
                     that.hideSearchResultsContainer();
                     // for small screen
-                    $('.navbarNav').dropdown('hide');
+                    $('#navbarNav').collapse('hide');
                 }
             };
         },
