@@ -2,7 +2,7 @@
 <!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
     <div class="input-group">
-        <input @keydown="onInputChangeOrKeyDown" @change="onInputChangeOrKeyDown" v-model="searchBarInputString" class="searchBar border form-control" :placeholder="searchBarPlaceholderText" />
+        <input @input="onSearchBarInput" v-model="searchBarInputString" class="searchBar border form-control" :placeholder="searchBarPlaceholderText" />
     </div>
 
     <div class="search-results-container hideSearchResults">
@@ -15,7 +15,7 @@
                 {{searchResultsCopyOption}} <button class="copyURLtoClipboard copyURLtoClipboardCardFromAddressBar" style="height: 1em;vertical-align: top;" title="Copy Link">Copy Link</button>
             </p>
 
-            <div class="search-results" v-for="card in computedSearchCards" :key="card.Misconception" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
+            <div class="search-results" v-for="card in searchCardsResult" :key="card.Misconception" @click="$store.commit('showCardIntroFromURL', card['Unique URL'])">
 
                 <!-- copy card URL to clipboard -->
                 <button onclick="return false;" :data-misconception="card['Misconception']" :data-url="'card/' + card['Unique URL']" class="copyURLtoClipboard copyURLtoClipboard6 " style="float: right; width: 2em; height: 2em;vertical-align: top;" title="Copy Link">Copy Link</button>
@@ -62,7 +62,7 @@ import store from "../store/store";
 import {
     disableBodyScrollMixin
 } from "./mixins/disableBodyScroll";
-
+import _ from 'lodash';
 export default {
     name: "Search",
     mixins: [disableBodyScrollMixin],
@@ -76,30 +76,18 @@ export default {
             searchBarPlaceholderText: language.searchBarPlaceholderText,
             everythingAbout: language.everythingAbout,
             searchResultsCopyOption: language.searchResultsCopyOption,
-            path: process.env.VUE_APP_MEDIA_LOCATION
+            path: process.env.VUE_APP_MEDIA_LOCATION,
+            searchCardsResult: []
         }
     },
     computed: {
         getCards: function () {
             return this.$store.state.theJSON;
-        },
-        computedSearchCards: function () {
-            return this.searchCards();
-        },
-        routeQuery: function () {
-            return this.$route.query;
         }
     },
     watch: {
         getCards(newValue, oldValue) {
             this.cards = newValue;
-        },
-        routeQuery(newValue, oldValue) {
-            // if (this.searchBarInputString !== undefined) {
-            //     this.showSearchResultsContainer();
-            // } else {
-            //     this.hideSearchResultsContainer;
-            // }
         }
     },
     mounted: function () {
@@ -121,6 +109,11 @@ export default {
         document.removeEventListener('keydown', this._keyListener);
     },
     methods: {
+        onSearchBarInput: _.debounce(function () {
+            this.searchCardsResult = this.searchCards();
+            this.showSearchResultsContainer();
+
+        }, 1000),
         emptySearchBar() {
             document.querySelector('.searchBar').value = '';
         },
@@ -144,10 +137,6 @@ export default {
                     that.stopSearch2();
                 }
             }, false);
-        },
-        onInputChangeOrKeyDown() {
-            this.searchCards();
-            this.showSearchResultsContainer();
         },
         searchCards() {
             var allKeys = this.$store.state.allKeys;
@@ -198,27 +187,41 @@ export default {
         },
         // Sends the URL query parameter value to the search input field
         setSearchTermFromUrlQueryParams() {
+            var that = this;
             this.searchBarInputString = this.$route.query.search;
 
             if (this.searchBarInputString !== undefined) {
-                this.searchCards();
-                document.querySelector('.navbar-toggler').click();
+                // for small screen
+                //TODO: remove setTimeout…
+                setTimeout(function () {
+                    that.searchCardsResult = that.searchCards();
+                }, 1000);
+
                 this.showSearchResultsContainer();
+                document.addEventListener("DOMContentLoaded", function (event) {
+                    // simulate click
+                    //TODO: does $('.navbarNav').dropdown('show'); work?
+                    document.querySelector('.navbar-toggler').click();
+                });
             }
         },
         handlePopState() {
             var that = this;
             window.onpopstate = function (event) {
-                // console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+                // example: console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
                 if (that.$route.query.search !== undefined) {
+
                     that.showSearchResultsContainer();
+                    // for small screen
+                    $('.navbarNav').dropdown('show');
                 } else {
                     that.hideSearchResultsContainer();
+                    // for small screen
+                    $('.navbarNav').dropdown('hide');
                 }
             };
         },
         hideSearchResultsContainer() {
-            console.log('hideSearchResultsContainer');
             var searchResultsContainer = document.querySelector(".search-results-container");
             var searchResultsContainerH1 = document.querySelector(".search-results-container h1");
 
@@ -230,7 +233,6 @@ export default {
             }
         },
         showSearchResultsContainer() {
-            console.log('showSearchResultsContainer');
             document.querySelector(".search-results-container").classList.remove('hideSearchResults');
             document.querySelector(".search-results-container h1").classList.remove('hideSearchResults');
         }
@@ -249,7 +251,6 @@ export default {
 .searchBar:focus {
     background: $search-bar-focus-background;
     color: $search-bar-focus-color;
-
 }
 
 .search-results {
