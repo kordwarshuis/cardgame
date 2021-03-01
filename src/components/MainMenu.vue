@@ -6,7 +6,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse " id="navbarNav">
+    <div class="collapse navbar-collapse pb-0" id="navbarNav">
         <ul class="nav justify-content-center mr-3">
 
             <!-- CARDS -->
@@ -36,6 +36,7 @@
             </li>
         </ul>
         <Search />
+        <div class="text-center navbar-toggler2" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">▲</div>
     </div>
 </nav>
 </template>
@@ -88,6 +89,7 @@ export default {
 
 #navbarNav {
     padding-bottom: 2em;
+    box-shadow: 0 1px 1px 1px #3b5775;
 
     a:link,
     a:visited,
@@ -102,12 +104,26 @@ export default {
         background: $main-menu-link-active;
     }
 
+    .navbar-toggler2 {
+        display: block;
+        color: #999;
+        cursor: pointer;
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 1em;
+    }
+
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
     #navbarNav {
         padding-bottom: 0;
+        box-shadow: none;
+    }
+
+    .navbar-toggler2 {
+        display: none !important;
     }
 }
 
