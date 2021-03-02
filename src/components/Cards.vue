@@ -126,7 +126,7 @@
                 </a>
             </div>
         </div>
-        <button class="btn btn-primary cards-show-all display-none" @click="showAllCards">Show all cards</button>
+        <button class="btn btn-primary cards-show-all display-none" @click="showAllCards">{{showAllCards}}</button>
     </div>
 </div>
 </template>
@@ -174,7 +174,8 @@ export default {
             homepageVideoPathToVideo: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
             homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS,
-            homepageIllustrationsCarousel: process.env.VUE_APP_HOMEPAGE_ILLUSTRATIONS_CAROUSEL
+            homepageIllustrationsCarousel: process.env.VUE_APP_HOMEPAGE_ILLUSTRATIONS_CAROUSEL,
+            showAllCards: language.showAllCards
         }
     },
     mounted() {
