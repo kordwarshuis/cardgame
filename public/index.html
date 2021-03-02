@@ -119,13 +119,13 @@
   
   <!-- BEGIN GOOGLE ANALYTICS GA -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7J8YT66S0P"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<%= VUE_APP_GOOGLE_ANALYTICS_ID %>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-7J8YT66S0P');
+  gtag('config', '<%= VUE_APP_GOOGLE_ANALYTICS_ID %>');
 </script>
   <!-- END GOOGLE ANALYTICS GA -->
 </head>
