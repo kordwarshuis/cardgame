@@ -209,6 +209,9 @@ export default {
             window.onpopstate = function (event) {
                 // example: console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
                 if (that.$route.query.search !== undefined) {
+                    // de search needs to run again with the search term in the URL
+                    that.searchBarInputString = that.$route.query.search;
+                    that.searchCardsResult = that.searchCards();
 
                     that.showSearchResultsContainer();
                     // for small screen
