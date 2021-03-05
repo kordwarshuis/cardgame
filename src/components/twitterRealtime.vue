@@ -45,9 +45,9 @@
                                 <!-- FILTER TWEETS -->
                                 <div class="input-group input-group-sm mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Filter tweets</span>
+                                        <span class="input-group-text" id="inputGroup-sizing-sm">Search tweets</span>
                                     </div>
-                                    <input type="text" class="form-control" id="filterTweets" value="" aria-label="filter tweet stream" aria-describedby="filter tweet stream">
+                                    <input type="text" class="form-control" id="filterTweets" value="" aria-label="Search tweet stream" aria-describedby="Search tweet stream">
                                 </div>
                                 <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
                             </div>
