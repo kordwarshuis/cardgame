@@ -81,8 +81,8 @@ export default {
     name: "TwitterRealTimeConfigModal",
         data: function () {
         return {
-            anyOfTheseStrings: language.tweetStream.anyOfTheseStrings,
-            noneOfTheseStrings: language.tweetStream.noneOfTheseStrings
+            anyOfTheseStrings: language.anyOfTheseStrings,
+            noneOfTheseStrings: language.noneOfTheseStrings
         }
     },
 
