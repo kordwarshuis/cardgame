@@ -262,7 +262,6 @@ export var realTimeTweets = (function () {
             if (domTempOld !== domTemp) {
                 var k = 0;
 
-
                 tweets.insertAdjacentHTML("afterbegin", domTemp);
 
                 var newTweets = document.querySelectorAll(".newTweet");
@@ -316,7 +315,6 @@ export var realTimeTweets = (function () {
         onlyVerifiedAccountsUsersChoice = a;
     }
 
-
     function getAnyOfTheseStrings() {
         return anyOfTheseStrings;
     }
@@ -332,13 +330,6 @@ export var realTimeTweets = (function () {
     function setAnyOfTheseStringsDefault(a) {
         anyOfTheseStringsDefault = a;
     }
-
-
-
-
-
-
-
 
     function getNoneOfTheseStrings() {
         return noneOfTheseStrings;
