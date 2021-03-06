@@ -48,6 +48,8 @@ export var realTimeTweets = (function () {
     // var followersSelect = document.querySelector("#followers");
     var followersSetCounter = document.querySelector("#followersset span");
 
+    var tweetsPassedFilter = 0;
+
     // var domKeywords = document.querySelector("#keywords");
     // var domTweetAccounts = document.querySelector("#tweetAccounts");
     // var onlyVerifiedAccounts = false;
@@ -124,7 +126,7 @@ export var realTimeTweets = (function () {
         }
 
         function loopThroughAllTweets(data) {
-            konsole.innerHTML = data.length + ' incoming tweets';
+            konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' tweets passed filter settings.';
 
             // loop through all tweets:
             for (var i = 0; i < data.length; i++) {
@@ -245,6 +247,8 @@ export var realTimeTweets = (function () {
 
         loopThroughAllTweets(data);
 
+        tweetsPassedFilter = 0;
+
         if (somethingFound) {
             if (localStorage.getItem("soundOn") === "true") {
                 //only play the sound after enough time has passed
@@ -258,9 +262,14 @@ export var realTimeTweets = (function () {
             if (domTempOld !== domTemp) {
                 var k = 0;
 
+
                 tweets.insertAdjacentHTML("afterbegin", domTemp);
 
                 var newTweets = document.querySelectorAll(".newTweet");
+                tweetsPassedFilter = newTweets.length;
+
+                konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' tweets passed filter settings.';
+
                 for (var i = newTweets.length - 1; i > -1; i--) {
                     (function (i) {
                         setTimeout(function () {
