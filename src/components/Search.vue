@@ -29,15 +29,17 @@
                     <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{ card.Misconception }}</router-link>
                 </h2>
 
+                <img v-if="showSocialMediaImage === 'true'" class="mt-3" style="width: 100%; border-radius: 10px;" :src="socialMediaImagesPath + card['Unique URL'] + '.jpg'" alt="">
+
                 <!-- misconception longer -->
-                <p v-for="item in card['Misconception Elaborate']" v-bind:key="item" @click="stopSearch2" class="search-result ml-4 w-3/4" style="cursor: pointer">
+                <p v-for="item in card['Misconception Elaborate']" v-bind:key="item" @click="stopSearch2" class="search-result mt-4 w-3/4" style="cursor: pointer">
                     {{ item }}
                 </p>
 
-                <div v-if="(card['Youtube Video Id'])" class="clearfix">
-                    <!-- https://stackoverflow.com/a/2068371/9749918 -->
+                <!-- <div v-if="(card['Youtube Video Id'])" class="clearfix">
+                    <!~~ https://stackoverflow.com/a/2068371/9749918 ~~>
                     <img @click="stopSearch2" style="cursor: pointer;" class="rounded mx-auto d-block img-fluid" :src="'https://img.youtube.com/vi/' + card['Youtube Video Id'] + '/0.jpg'" alt="">
-                </div>
+                </div> -->
 
                 <!-- <video style="max-width: 100%; width: 100%;" v-if="card['Self Hosted Video']" :src="path + card['Self Hosted Video']" controls preload="none" playsinline></video> -->
                 <!-- <video style="max-width: 100%; width: 100%;" v-if="card['Self Hosted Video']" :src="#" :data-src="path + card['Self Hosted Video']" controls preload="none" playsinline></video> -->
@@ -77,7 +79,9 @@ export default {
             everythingAbout: language.everythingAbout,
             searchResultsCopyOption: language.searchResultsCopyOption,
             path: process.env.VUE_APP_MEDIA_LOCATION,
-            searchCardsResult: []
+            searchCardsResult: [],
+            showSocialMediaImage: process.env.VUE_APP_SHOW_SOCIAL_MEDIA_IMAGE_IN_CARD,
+            socialMediaImagesPath: process.env.VUE_APP_SOCIAL_MEDIA_IMAGES_PATH
         }
     },
     computed: {
