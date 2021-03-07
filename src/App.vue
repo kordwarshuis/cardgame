@@ -161,8 +161,12 @@ export default {
                     var responseDataTemp = [];
 
                     // Temporary solution: remove some columns (google sheet) / keys
-                    responseData.forEach(function(v){ delete v.Illustration });
-                    responseData.forEach(function(v){ delete v['Flower Power'] });
+                    responseData.forEach(function (v) {
+                        delete v.Illustration
+                    });
+                    responseData.forEach(function (v) {
+                        delete v['Flower Power']
+                    });
 
                     // prepare data
 
@@ -212,20 +216,17 @@ export default {
                         // format quiz data
                         responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
 
-
                         // split string on \n\n, so we can make paragraphs later, or separate links for example
                         responseData[i]["Misconception Elaborate"] = this.splitString(responseData[i]["Misconception Elaborate"], "\n\n");
 
                         responseData[i]["Short Answer"] = this.splitString(responseData[i]["Short Answer"], "\n\n");
-                        
-                        responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
-                        
-                        responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
 
+                        responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
+
+                        responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
 
                         // split string on ','
                         responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
-
 
                         // trim spaces (for example when source is: word1, word2) TODO: do this for everything
                         if (responseData[i]["Related"] !== undefined) {
@@ -833,7 +834,6 @@ footer {
     background: rgb(250, 239, 202);
 }
 
-
 // SEARCH
 .hideSearchResult {
     margin: 0 !important;
@@ -1083,7 +1083,7 @@ footer {
     color: $basic1;
     padding: 0 2em;
     // display: block;
-    
+
 }
 
 .news-ticker-container img {
@@ -1093,12 +1093,12 @@ footer {
 @keyframes news-ticker {
     0% {
         right: 0;
-        transform: translate3d(100%,0,0);
+        transform: translate3d(100%, 0, 0);
     }
 
     100% {
         right: 100%;
-        transform: translate3d(0,0,0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
