@@ -126,7 +126,8 @@ export var realTimeTweets = (function () {
         }
 
         function loopThroughAllTweets(data) {
-            konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' tweets passed filter settings.';
+            // TODO: remove duplicate code, see elsewhere in this file
+            konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed filter.';
 
             // loop through all tweets:
             for (var i = 0; i < data.length; i++) {
@@ -267,7 +268,8 @@ export var realTimeTweets = (function () {
                 var newTweets = document.querySelectorAll(".newTweet");
                 tweetsPassedFilter = newTweets.length;
 
-                konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' tweets passed filter settings.';
+                // TODO: remove duplicate code, see elsewhere in this file
+                konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed filter.';
 
                 for (var i = newTweets.length - 1; i > -1; i--) {
                     (function (i) {
