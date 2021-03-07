@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueConfig from "../vue.config";
 import App from './App.vue';
+import VueTour from 'vue-tour';
+require('vue-tour/dist/vue-tour.css');
 import router from './router/router';
 import VueGtag from 'vue-gtag';
 // import VueAnalytics from 'vue-ua';
@@ -21,6 +23,7 @@ import linkify from 'vue-linkify';
 // import animated from 'animate.css';
 import VueConfetti from 'vue-confetti';
 
+Vue.use(VueTour);
 Vue.use(d3);
 Vue.use(VueConfetti);
 Vue.config.productionTip = false;
