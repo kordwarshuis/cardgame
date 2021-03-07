@@ -95,7 +95,7 @@
         </div>
 
         <!-- THE CARDS -->
-        <div v-for="item in setAllCards" :key="item.misconception" class="card mb-4 p-0">
+        <div v-for="(item, index) in setAllCards" :key="item.misconception" class="card mb-4 p-0" :id="'card' + index">
             <div class="card-body p-0 align-items-center d-flex">
                 <a :data-id="item['id']" :key="item.misconception" @click="showCardIntro" class="p-1">
                     <h2 class="">
