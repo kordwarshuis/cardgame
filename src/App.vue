@@ -20,7 +20,7 @@
     <!-- <Person3 /> -->
 
     <Toasts :show-progress="false" :time-out="2500"></Toasts>
-
+    <Tour></Tour>
     <footer class="footer mt-auto py-2">
         <div class="container-fluid text-center" v-html="footerContent"></div>
     </footer>
@@ -46,6 +46,7 @@ import MainMenu from "@/components/MainMenu.vue";
 import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
+import Tour from "@/components/Tour.vue";
 import Updater from "@/components/Updater.vue";
 
 export default {
@@ -57,6 +58,7 @@ export default {
         NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
         Person1,
         Person2,
+        Tour,
         Updater
         // slideInMenu,
         // CryptoRadio,
