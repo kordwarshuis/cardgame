@@ -1,8 +1,8 @@
 <template>
 <div>
-    <div class="alert alert-info m-5 startTour" role="alert">
+    <div class="alert alert-info m-5 p-0 startTour" role="alert">
         <button @click="startTour" type="button" class="btn btn-info tour-start">{{tourLanguage.startTour}}</button>
-        <button @click="turnOffTour" type="button" class="btn btn-info">{{tourLanguage.dontShowAgain}}</button>
+        <button @click="turnOffTour" type="button" class="btn">{{tourLanguage.dontShowAgain}}</button>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
