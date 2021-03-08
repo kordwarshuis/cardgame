@@ -128,6 +128,7 @@
         </div>
         <button class="btn btn-primary cards-show-all display-none" @click="showAllCards">{{showAllCardsButtonText}}</button>
     </div>
+    <button @click="startTourBis" class="btn  btn-light btn-sm tour-start-bis mb-5">Start tour</button>
 </div>
 </template>
 
@@ -196,6 +197,9 @@ export default {
         }
     },
     methods: {
+        startTourBis() {
+            this.$tours['myTour'].start();
+        },
         grabFilenameFromURL() {
             // the filename is the only source we have for creating the unique Url.
             this.homepageIllustrations.forEach((element, index) => {
