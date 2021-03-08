@@ -1,11 +1,13 @@
 <template>
 <div>
-    <div class="alert alert-info m-5 p-0 startTour" role="alert">
-        <button @click="startTour" type="button" class="btn btn-info tour-start">{{tourLanguage.startTour}}</button>
-        <button @click="turnOffTour" type="button" class="btn">{{tourLanguage.dontShowAgain}}</button>
+    <div class="alert alert-info m-5 p-3 startTour" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
+        <p>{{tourLanguage.welcome}}</p>
+        <p>{{tourLanguage.description}}</p>
+        <button @click="startTour" type="button" class="btn btn-info tour-start">{{tourLanguage.startTour}}</button>
+        <button @click="turnOffTour" type="button" class="btn">{{tourLanguage.dontShowAgain}}</button>
     </div>
     <v-tour name="myTour" :steps="tour.steps" :options="tour.options"></v-tour>
 </div>
