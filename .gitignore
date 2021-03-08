@@ -39,7 +39,7 @@ yarn-error.log*
 live.*.sh
 local.*.sh
 live.sh
-local.sh
+local*.sh
 
 
 # Vue source config files
