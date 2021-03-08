@@ -58,7 +58,7 @@
 
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <!-- REDIRECTS -->
-  <script src="<%= VUE_APP_REDIRECTS_FILE %>"></script>
+  <script src="<%= VUE_APP_REDIRECTS_FILE %>?v=<%= Math.floor(Date.now() / 1000) %>"></script>
 
   <!-- CHARTIST CSS -->
   <!-- <link rel="stylesheet" href="<%= BASE_URL %>css/chartist/chartist.min.css"> -->
@@ -105,7 +105,7 @@
 
 
   <!-- CHARTIST -->
-  <script defer src="<%= BASE_URL %>js/chartist/chartist.min.js"></script>
+  <script defer src="<%= BASE_URL %>js/chartist/chartist.min.js?v=<%= Math.floor(Date.now() / 1000) %>"></script>
 
   <script>
     // Sound
@@ -115,8 +115,8 @@
       quizEnd, dragging, draggingEnd, quizCorrectDragging, quizCorrectAnswer, quizWrongAnswer;
   </script>
 
-  <script src="<%= VUE_APP_LANGUAGE_FILE %>"></script>
-  <script src="<%= VUE_APP_TOUR_FILE %>"></script>
+  <script src="<%= VUE_APP_LANGUAGE_FILE %>?v=<%= Math.floor(Date.now() / 1000) %>"></script>
+  <script src="<%= VUE_APP_TOUR_FILE %>?v=<%= Math.floor(Date.now() / 1000) %>"></script>
   
   <!-- BEGIN GOOGLE ANALYTICS GA -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
