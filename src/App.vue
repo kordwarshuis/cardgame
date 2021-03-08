@@ -8,6 +8,10 @@
         <TwitterRealTimeInfoModal />
     </template>
     <MainMenu />
+    <template v-if="tour !== ''">
+        <Tour></Tour>
+    </template>
+
     <Updater />
     <!-- <slideInMenu /> -->
     <template v-if="realTimeTweets === 'true'">
@@ -20,7 +24,7 @@
     <!-- <Person3 /> -->
 
     <Toasts :show-progress="false" :time-out="2500"></Toasts>
-    <Tour></Tour>
+
     <footer class="footer mt-auto py-2">
         <div class="container-fluid text-center" v-html="footerContent"></div>
     </footer>
@@ -68,7 +72,8 @@ export default {
         return {
             realTimeTweets: process.env.VUE_APP_REALTIME_TWEETS,
             newsticker: process.env.VUE_APP_NEWSTICKER,
-            footerContent: language.footerContent
+            footerContent: language.footerContent,
+            tour: process.env.VUE_APP_TOUR_FILE
         }
     },
     mounted() {
