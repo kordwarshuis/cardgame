@@ -89,8 +89,8 @@ export default {
             // only fetch data
             if (this.$store.state.dataFetched === false) {
 
-                let one = process.env.VUE_APP_CARDS_CONTENT;
-                let two = process.env.VUE_APP_CARDGAME_SCORES;
+                let one = process.env.VUE_APP_CARDS_CONTENT + '?timestamp=' + new Date().getTime();
+                let two = process.env.VUE_APP_CARDGAME_SCORES + '?timestamp=' + new Date().getTime();
 
                 const requestOne = axios.get(one);
                 let requestTwo;
