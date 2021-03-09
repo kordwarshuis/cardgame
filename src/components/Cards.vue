@@ -211,7 +211,7 @@ export default {
             });
         },
         getIllustrations() {
-            let one = this.homepageIllustrationsCarousel;
+            let one = this.homepageIllustrationsCarousel + '?timestamp=' + new Date().getTime();
             const requestOne = axios.get(one);
 
             // https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
