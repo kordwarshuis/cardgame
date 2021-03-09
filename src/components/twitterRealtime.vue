@@ -516,12 +516,17 @@ function slideInMenu() {
     }
 
     function toggleMenu() {
+        var arrowTweetPanelWrap = document.querySelector(".arrow-tweet-panel-wrap");
         if (isOpen) {
             bodyEl.classList.remove("show-menu");
-            document.querySelector(".arrow-tweet-panel-wrap").classList.add("rotate180");
+            if (arrowTweetPanelWrap) {
+                arrowTweetPanelWrap.classList.add("rotate180");
+            }
         } else {
             bodyEl.classList.add("show-menu");
-            document.querySelector(".arrow-tweet-panel-wrap").classList.remove("rotate180");
+            if (arrowTweetPanelWrap) {
+                arrowTweetPanelWrap.classList.remove("rotate180");
+            }
         }
         isOpen = !isOpen;
     }
