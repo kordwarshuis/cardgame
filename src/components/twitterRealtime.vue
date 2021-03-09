@@ -862,13 +862,13 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 }
 
 .arrow-tweet-panel-wrap.rotate180 {
-    margin-left: 10px !important;
-    margin-top: 7px;
+    margin-left: -15px !important;
+    margin-top: 25px;
 }
 
 .arrow-tweet-panel-wrap {
-    margin-left: -25px;
-    margin-top: 7px;
+    margin-left: 0px;
+    margin-top: 19px;
 
 }
 
@@ -877,8 +877,8 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 }
 
 .arrow-tweet-panel-wrap.rotate180 .arrow-tweet-panel path {
-    // fill: #1CA1F2
-    fill: #EEE
+    fill: #1CA1F2;
+    // fill: #EEE;
 }
 
 .arrow-tweet-panel-wrap .arrow-tweet-panel {
