@@ -401,7 +401,7 @@ export default {
     },
     methods: {
         fetchScores() {
-            return axios.get(process.env.VUE_APP_CARDGAME_SCORES)
+            return axios.get(process.env.VUE_APP_CARDGAME_SCORES + '?timestamp=' + new Date().getTime())
                 .then(response => {
                     this.scores = response.data.scores;
                     this.addCalendarData();
