@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         getContent() {
-            return axios.get(process.env.VUE_APP_TWEETSTREAM_HELPTEXT)
+            return axios.get(process.env.VUE_APP_TWEETSTREAM_HELPTEXT + '?timestamp=' + new Date().getTime())
                 .then(response => {
                     this.content = response.data;
                 }).catch(function (error) {
