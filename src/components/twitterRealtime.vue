@@ -88,13 +88,8 @@
         <input type="checkbox" id="open-button" />
         <label class="menu-icon" for="open-button">
             <div class="arrow-tweet-panel-wrap rotate180">
-                <!-- <img class="arrow-tweet-panel" src="../assets/img/icons/ui/arrow.svg" alt=""> -->
-            
-            <svg style="width: 100px; height: 40px;border: 1px solid yellow;" class="arrow-tweet-panel" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-            <g transform="translate(-11,-11)">
-            <path width="100" height="100" d="M41.895 6.484C38.58 4.165 35.151 1.338 31.265.077c-1.677-.544-3.236 1.906-1.79 3.075a134.635 134.635 0 003.892 3.022c-3.56-.113-7.222.252-10.626.217-7.208-.076-14.428-.378-21.633-.02-1.479.072-1.478 2.216 0 2.296 11.347.615 22.721.397 34.056.903-1.218.691-2.47 1.328-3.692 2.027-2.079 1.19-3.956 2.381-4.225 4.921-.067.633.602 1.211 1.195 1.195 2.54-.064 4.678-1.886 6.861-3.013 2.528-1.303 4.939-2.609 7.07-4.514 1.214-1.085.692-2.885-.477-3.702" fill-rule="evenodd"/>
-            </g>
-            </svg>
+                <svg class="arrow-tweet-panel" width="43" height="18" viewBox="0 0 43 18">
+                    <path d="M41.895 6.484C38.58 4.165 35.151 1.338 31.265.077c-1.677-.544-3.236 1.906-1.79 3.075a134.635 134.635 0 003.892 3.022c-3.56-.113-7.222.252-10.626.217-7.208-.076-14.428-.378-21.633-.02-1.479.072-1.478 2.216 0 2.296 11.347.615 22.721.397 34.056.903-1.218.691-2.47 1.328-3.692 2.027-2.079 1.19-3.956 2.381-4.225 4.921-.067.633.602 1.211 1.195 1.195 2.54-.064 4.678-1.886 6.861-3.013 2.528-1.303 4.939-2.609 7.07-4.514 1.214-1.085.692-2.885-.477-3.702" fill-rule="evenodd" /></svg>
             </div>
             <span></span>
             <span class="visuallyhidden">Open/Close Menu</span>
@@ -739,7 +734,7 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 .show-menu .menu-icon {
     background: url(../assets/img/twitter/Twitter_Logo_WhiteOnBlue.svg);
     left: auto;
-    right: 1em;
+    right: 2em;
 }
 
 .tweets-realtime {
@@ -847,38 +842,43 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
 
 // END HAMBURGER
 
-//ARROW TWEET PANEL
+//ARROW IN TWEET PANEL OPENER
 //https://codepen.io/Nonoroazoro/pen/xWdPNp
 
-
-.arrow-tweet-panel-wrap, .arrow-tweet-panel {
-    width: 145px;
-    height: 40px;
-
-}
+// initial, .rotate180 makes arrow point to left
+.arrow-tweet-panel-wrap.rotate180,
 .arrow-tweet-panel {
-    border: 1px solid red;
+    // 43 : 18, see inline <svg>
+    width: 40px;
+    height: 17px;
+}
+
+// when tweet panel open, class rotate180 removed
+.arrow-tweet-panel-wrap,
+.arrow-tweet-panel {
+    // 43 : 18, see inline <svg>
+    width: 25px;
+    height: 10px;
+}
+
+.arrow-tweet-panel-wrap.rotate180 {
+    margin-left: 10px !important;
+    margin-top: 7px;
+}
+
+.arrow-tweet-panel-wrap {
+    margin-left: -25px;
+    margin-top: 7px;
+
 }
 
 .arrow-tweet-panel-wrap .arrow-tweet-panel path {
     fill: #eee
 }
+
 .arrow-tweet-panel-wrap.rotate180 .arrow-tweet-panel path {
-    fill: #1CA1F2
-}
-
-.arrow-tweet-panel-wrap.rotate180 {
-    margin-right: 30px !important;
-    margin-top: 0px;
-}
-
-.arrow-tweet-panel-wrap {
-    margin-left: -30px;
-    margin-top: 7px;
-
-}
-
-.arrow-tweet-panel-wrap.rotate180 .arrow-tweet-panel {
+    // fill: #1CA1F2
+    fill: #EEE
 }
 
 .arrow-tweet-panel-wrap .arrow-tweet-panel {
@@ -909,5 +909,5 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
     }
 }
 
-//END ARROW TWEET PANEL
+//END ARROW IN TWEET PANEL OPENER
 </style>
