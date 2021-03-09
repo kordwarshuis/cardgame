@@ -12,9 +12,7 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
-                            {{content}}
-                        </div>
+                        <div class="col-md-12" v-html="content"></div>
 
                     </div>
                 </div>
@@ -28,6 +26,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
     name: "TwitterRealTimeInfoModal",
     data: function () {
