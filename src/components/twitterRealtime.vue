@@ -87,6 +87,15 @@
 
         <input type="checkbox" id="open-button" />
         <label class="menu-icon" for="open-button">
+            <div class="arrow-tweet-panel-wrap rotate180">
+                <!-- <img class="arrow-tweet-panel" src="../assets/img/icons/ui/arrow.svg" alt=""> -->
+            
+            <svg style="width: 100px; height: 40px;border: 1px solid yellow;" class="arrow-tweet-panel" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(-11,-11)">
+            <path width="100" height="100" d="M41.895 6.484C38.58 4.165 35.151 1.338 31.265.077c-1.677-.544-3.236 1.906-1.79 3.075a134.635 134.635 0 003.892 3.022c-3.56-.113-7.222.252-10.626.217-7.208-.076-14.428-.378-21.633-.02-1.479.072-1.478 2.216 0 2.296 11.347.615 22.721.397 34.056.903-1.218.691-2.47 1.328-3.692 2.027-2.079 1.19-3.956 2.381-4.225 4.921-.067.633.602 1.211 1.195 1.195 2.54-.064 4.678-1.886 6.861-3.013 2.528-1.303 4.939-2.609 7.07-4.514 1.214-1.085.692-2.885-.477-3.702" fill-rule="evenodd"/>
+            </g>
+            </svg>
+            </div>
             <span></span>
             <span class="visuallyhidden">Open/Close Menu</span>
         </label>
@@ -514,8 +523,10 @@ function slideInMenu() {
     function toggleMenu() {
         if (isOpen) {
             bodyEl.classList.remove("show-menu");
+            document.querySelector(".arrow-tweet-panel-wrap").classList.add("rotate180");
         } else {
             bodyEl.classList.add("show-menu");
+            document.querySelector(".arrow-tweet-panel-wrap").classList.remove("rotate180");
         }
         isOpen = !isOpen;
     }
@@ -833,4 +844,70 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
         background-color: transparent;
     }
 }
+
+// END HAMBURGER
+
+//ARROW TWEET PANEL
+//https://codepen.io/Nonoroazoro/pen/xWdPNp
+
+
+.arrow-tweet-panel-wrap, .arrow-tweet-panel {
+    width: 145px;
+    height: 40px;
+
+}
+.arrow-tweet-panel {
+    border: 1px solid red;
+}
+
+.arrow-tweet-panel-wrap .arrow-tweet-panel path {
+    fill: #eee
+}
+.arrow-tweet-panel-wrap.rotate180 .arrow-tweet-panel path {
+    fill: #1CA1F2
+}
+
+.arrow-tweet-panel-wrap.rotate180 {
+    margin-right: 30px !important;
+    margin-top: 0px;
+}
+
+.arrow-tweet-panel-wrap {
+    margin-left: -30px;
+    margin-top: 7px;
+
+}
+
+.arrow-tweet-panel-wrap.rotate180 .arrow-tweet-panel {
+}
+
+.arrow-tweet-panel-wrap .arrow-tweet-panel {
+    animation: arrow-tweet-panel-pulse 0.82s ease-in-out infinite;
+}
+
+.rotate90 {
+    transform: rotate(90deg);
+}
+
+.rotate180 {
+    transform: rotate(180deg);
+}
+
+.rotate270 {
+    transform: rotate(270deg);
+}
+
+@keyframes arrow-tweet-panel-pulse {
+
+    0%,
+    to {
+        transform: translateZ(0);
+    }
+
+    50% {
+        transform: translate3d(1px, 0, 0);
+    }
+}
+
+//END ARROW TWEET PANEL
 </style>
