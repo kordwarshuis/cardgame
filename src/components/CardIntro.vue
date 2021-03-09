@@ -117,7 +117,7 @@ export default {
     },
     watch: {
         getMisconception(newValue, oldValue) {
-            this.typeWriter(".typed", newValue, 20);
+            this.typeWriter(".typed", newValue, 70);
         }
     },
     mounted: function () {
@@ -140,7 +140,13 @@ export default {
                     if (localStorage.getItem("soundOn") === "true") typewriter.play();
                     audioPlaying = true;
                 }
-                text.innerHTML += textCopy[i];
+                //option 1:
+                // text.innerHTML += textCopy[i];
+                //option 2:
+                // text.insertAdjacentHTML("beforeend", textCopy[i]);
+                //option 3:
+                text.append(textCopy[i]);
+
                 i++;
                 if (i === textCopy.length) {
                     if (localStorage.getItem("soundOn") === "true") typewriter.stop();
