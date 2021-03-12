@@ -10,12 +10,21 @@
                         <!-- <span class="quote">“</span> -->
                         <p class="typed mb-3">{{ getMisconception }} …</p>
                         <!-- <span class="quote">”</span> -->
-                        <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button>
+                        <!-- <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button> -->
                     </div>
 
                     <img v-if="showSocialMediaImage === 'true'" class="mt-3" style="width: 100%; border-radius: 10px;" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt="">
 
                     <RandomCard />
+
+                    <template v-if="this.$store.state.currentCard['Misconception Elaborate']">
+                        <p class="text-center" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item">
+                            <!-- <span class="quote">“</span> -->
+                            {{ item }}
+                            <!-- <span class="quote">”</span> -->
+                        </p>
+                    </template>
+
                 </div>
             </div>
         </div>
@@ -27,7 +36,8 @@
 
                     <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
 
-                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}</p>
+                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}
+                    </p>
                     <hr>
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <VideoYoutubeBare />
@@ -39,13 +49,153 @@
                         <ImageSelfHosted />
                     </div>
 
-                    <!-- <div v-if="(this.$store.state.currentCard['Quiz'])" class="col-lg-12 col-sm-12">
-                        <Quiz />
-                    </div> -->
-
                 </div>
             </div>
         </div>
+
+        <!-- CARD FULL -->
+        <div class="col-lg-12 col-sm-12 p-4">
+            <div>
+                <!-- <div class="modal-content p-3 pt-5"> -->
+
+                <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Long Answer']">
+                    <h3 class="longAnswer">{{ longAnswer }}</h3>
+                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">
+                        {{ item }}</p>
+                </div>
+
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
+                    <h3 class="diagram">{{ diagram }}</h3>
+                    <p v-linkified:options="$store.state.linkifyOptions">
+                        {{this.$store.state.currentCard["Diagram Description"]}}</p>
+                    <div class="ct-chart ct-golden-section " style=" max-width: 50em;margin: auto !important; "></div>
+                </div>
+
+                <Quiz />
+<!--                 <!~~ if there is Youtube video ~~>
+                <div class="row" v-if="(this.$store.state.currentCard['Youtube Video Id'])">
+                    <div class="col-md-4 mb-3">
+                        <VideoYoutube />
+                    </div>
+                    <div class="col-md-8 mb-3">
+                        <!~~ READ MORE 1 ~~>
+                        <div class="content-item border p-3 " v-if="this.$store.state.currentCard['Read On 1 Text']">
+                            <h3 class="readOn">{{ readMore }}</h3>
+                            <p v-linkified:options="$store.state.linkifyOptions">
+                                {{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                            <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!~~ if there is NO Youtube video ~~>
+                <div class="row" v-else>
+                    <div class="col-md-12 mb-3">
+                        <!~~ READ MORE 1 ~~>
+                        <div class="content-item border p-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
+                            <h3 class="readOn">{{ readMore }}</h3>
+                            <p v-linkified:options="$store.state.linkifyOptions">
+                                {{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                            <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div> -->
+
+<!--                 <!~~ if there is Self Hosted video ~~>
+                <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Video'])">
+                    <div class="col-md-12 mb-3">
+                        <MediaSelfHosted />
+                    </div>
+                </div>
+
+                <!~~ if there is Self Hosted Image ~~>
+                <!~~ The assumption is that if any image is used this should be in the first one  ~~>
+                <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Image 1'])">
+                    <div class="col-md-12 mb-3">
+                        <ImagesSelfHosted />
+                    </div>
+                </div> -->
+
+                <!-- READ MORE 2 -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
+                    <h3 class="readOn">{{ readMore }}</h3>
+                    <p v-linkified:options="$store.state.linkifyOptions">
+                        {{this.$store.state.currentCard["Read On 2 Text"]}}</p>
+                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">{{ readOn }}</a></p>
+                </div>
+
+                <!-- READ MORE 3 -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
+                    <h3 class="readOn">{{ readMore }}</h3>
+                    <p v-linkified:options="$store.state.linkifyOptions">
+                        {{this.$store.state.currentCard["Read On 3 Text"]}}</p>
+                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">{{ readOn }}</a></p>
+                </div>
+
+                <!-- EXPERT 1 -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert1']">
+                    <h3 class="expert1">{{expert1}}</h3>
+                    <img v-if='expert1Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert1Logo" alt="portrait of the expert">
+                    <p v-linkified:options="$store.state.linkifyOptions">
+                        {{ this.$store.state.currentCard['Expert1'] }}</p>
+                </div>
+
+                <!-- EXPERT 2 -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert2']">
+                    <h3 class="expert2">{{expert2}}</h3>
+                    <img v-if='expert2Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert2Logo" alt="portrait of the expert">
+                    <p v-linkified:options="$store.state.linkifyOptions">
+                        {{ this.$store.state.currentCard['Expert2'] }}</p>
+                </div>
+
+                <!-- EXPERT 3 -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert3']">
+                    <h3 class="expert3">{{expert3}}</h3>
+                    <img v-if='expert3Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert3Logo" alt="portrait of the expert">
+                    <p>{{expert3Description}}<a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
+                </div>
+
+                <!-- COUNTER QUESTIONS -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter Questions']">
+                    <h3 class="counter-question">{{ counterQuestions }}</h3>
+                    <p v-linkified:options="$store.state.linkifyOptions">
+                        {{this.$store.state.currentCard["Counter Questions"]}}</p>
+                </div>
+
+                <!-- ANALOGY -->
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Analogy']">
+                    <h3 class="">{{ analogy }}</h3>
+                    <p v-linkified:options="$store.state.linkifyOptions">
+                        {{this.$store.state.currentCard["Analogy"]}}</p>
+                </div>
+
+                <!-- RELATED CARDS -->
+                <RelatedCards />
+
+                <!-- KEYWORDS CARDS -->
+                <Keywords />
+
+                <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button>
+                <div class="discussion-group-link center m-4 mb-0 p-3 ">
+                    <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
+                </div>
+
+                <Person3 />
+                <!-- </div> -->
+            </div>
+            <!-- <div class="bottom-bar">
+                <div>
+                    <div style="display: inline-block;">
+                        <SocialMedia />
+                    </div>
+                    <button class="copyURLtoClipboard copyURLtoClipboardCardIntroAndFull " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
+                </div>
+            </div> -->
+
+        </div>
+        <!-- END CARD FULL -->
 
         <div class="col-lg-6 col-sm-6">
             <div class="card h-100 bg-transparent" style="border:none;">
@@ -83,6 +233,13 @@ import Quiz from "@/components/Quiz.vue";
 import VideoYoutubeBare from "@/components/VideoYoutubeBare.vue";
 import MediaSelfHostedBare from "@/components/MediaSelfHostedBare.vue";
 import ImageSelfHosted from "@/components/ImageSelfHosted.vue";
+
+import VideoYoutube from "@/components/VideoYoutube.vue";
+import MediaSelfHosted from "@/components/MediaSelfHosted.vue";
+import ImagesSelfHosted from "@/components/ImagesSelfHosted.vue";
+import Keywords from "@/components/Keywords.vue";
+import Person3 from "@/components/AnimatedCharacters/Person3.vue";
+
 // import Quiz from "@/components/Quiz.vue";
 import {
     disableBodyScrollMixin
@@ -97,8 +254,17 @@ export default {
         RandomCard,
         VideoYoutubeBare,
         MediaSelfHostedBare,
-        ImageSelfHosted
-        // Quiz
+        ImageSelfHosted,
+
+        Quiz,
+        VideoYoutube,
+        MediaSelfHosted,
+        ImagesSelfHosted,
+        SocialMedia,
+        RelatedCards,
+        Keywords,
+        Person3
+
     },
     data() {
         return {
@@ -107,7 +273,28 @@ export default {
             openFullCard: language.openFullCard,
             backToCards: language.backToCards,
             showSocialMediaImage: process.env.VUE_APP_SHOW_SOCIAL_MEDIA_IMAGE_IN_CARD,
-            socialMediaImagesPath: process.env.VUE_APP_SOCIAL_MEDIA_IMAGES_PATH
+            socialMediaImagesPath: process.env.VUE_APP_SOCIAL_MEDIA_IMAGES_PATH,
+
+            backToCardIntro: language.backToCardIntro,
+            expert1: language.expert1,
+            expert1Description: language.expert1Description,
+            expert1Logo: language.expert1Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert1Logo : "",
+            expert2: language.expert2,
+            expert2Description: language.expert2Description,
+            expert2Logo: language.expert2Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert2Logo : "",
+            expert3: language.expert3,
+            expert3Description: language.expert3Description,
+            expert3Logo: language.expert3Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert3Logo : "",
+            shortAnswer: language.shortAnswer,
+            longAnswer: language.longAnswer,
+            diagram: language.diagram,
+            readMore: language.readMore,
+            readOn: language.readOn,
+            counterQuestions: language.counterQuestions,
+            analogy: language.analogy,
+            flowerPower: language.flowerPower,
+            discussionLink: process.env.VUE_APP_DISCUSSION_LINK,
+            discussionLinkDescription: process.env.VUE_APP_DISCUSSION_LINK_DESCRIPTION
         }
     },
     computed: {
@@ -118,11 +305,19 @@ export default {
     watch: {
         getMisconception(newValue, oldValue) {
             this.typeWriter(".typed", newValue, 70);
+
+            setTimeout(() => {
+                if (this.$store.state.currentCard['Diagram Data']) {
+                    this.createBarGraph();
+                }
+            }, 1000);
+
         }
     },
     mounted: function () {
         this.handleCardIntro();
         this.disableBodyScroll(".overlay-fullscreen>div"); //mixin
+        // this.showPurringCat();
     },
     methods: {
         typeWriter(selector, misconception, interval) {
@@ -212,7 +407,92 @@ export default {
             document.querySelectorAll('video, audio').forEach(function (vid) {
                 vid.pause();
             });
+        },
+
+        createBarGraph() {
+            var options = {
+                seriesBarDistance: 1,
+                // divisor: 40,
+                // stackBars: true,
+                axisX: {
+                    offset: 40
+                },
+                axisY: {
+                    offset: 40,
+                    onlyInteger: true,
+                    // ticks: [1, 10, 20, 30],
+                    // position: 'end',
+                    labelInterpolationFnc: function (value) {
+                        return value;
+                    },
+                    scaleMinSpace: 15
+                }
+            };
+            var currentCardDiagram = this.$store.state.currentCard['Diagram Data'];
+            var data = {};
+            var labels = currentCardDiagram.split('|')[0];
+            var series = currentCardDiagram.split('|')[1];
+            labels = labels.split(',');
+            series = series.split(',');
+            data.labels = labels;
+            data.series = [];
+            data.series[0] = series;
+            var diagram = new Chartist.Bar('.ct-chart', data, options);
+
+            // https://stackoverflow.com/a/48299759
+            diagram.on('draw', function (data) {
+                if (data.type == 'bar') {
+                    data.element.animate({
+                        y2: {
+                            dur: '2s',
+                            from: data.y1,
+                            to: data.y2
+                        }
+                    });
+                }
+            });
+        },
+        showPurringCat() {
+            // var inViewport = false;
+            var isStarted = false;
+            /*!
+             * https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/
+             * Determine if an element is in the viewport
+             * (c) 2017 Chris Ferdinandi, MIT License, https://gomakethings.com
+             * @param  {Node}    elem The element
+             * @return {Boolean}      Returns true if element is in the viewport
+             */
+            var isInViewport = function (elem) {
+                var distance = elem.getBoundingClientRect();
+                return (
+                    distance.top >= 0 &&
+                    distance.left >= 0 &&
+                    distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    distance.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            };
+
+            function check(event) {
+                if (isInViewport(object)) {
+                    if (!isStarted) {
+                        if (localStorage.getItem("soundOn") === "true") pur.play();
+                        document.querySelector("body").classList.add("person3");
+                        setTimeout(function () {
+                            pur.stop();
+                            document.querySelector("body").classList.remove("person3");
+                            isStarted = false;
+                        }, 7000);
+                        isStarted = true;
+                    }
+                }
+            }
+
+            var object = document.querySelector('.md-close');
+            // window.addEventListener('scroll', _.throttle(check, 1000), false);
+
+            // var interval = setInterval(check, 1000);
         }
+
     }
 };
 </script>
@@ -410,7 +690,99 @@ h3.reply {
 .card-intro-misconception {
     color: $card-intro-content-item-color;
     background-color: $card-intro-content-item-background;
-    min-height: 9em;
+    min-height: 6em;
     border-radius: 10px;
 }
+
+
+
+
+
+
+
+
+
+
+h2 {
+    margin: 1.5em 0 0.5em; // to keep distance from sec / tert menu
+    font-size: 2em;
+    color: $misconception-heading-color;
+}
+
+h2.reply {
+    color: $reply-heading-color;
+}
+
+.misconception-short-and-elaborate {
+    margin: 0em 0 1em; // to keep distance from sec / tert menu
+    padding: 1em 0;
+    border-top: 3px dotted #666;
+    border-bottom: 3px dotted #666;
+    color: $misconception-short-and-elaborate-color;
+}
+
+.content-item {
+    background: $card-full-content-item-background;
+    color: $card-full-content-item-color;
+    border-radius: 10px;
+}
+
+.content-item>p {
+    margin-left: $cardFullTextIndent;
+}
+
+// .modal-content {
+//     color: $card-full-color;
+//     background: $card-full-background !important; //Suddenly needs important, can't explain why
+// }
+
+h3 {
+    background-repeat: no-repeat;
+    background-size: 0.8em;
+    // padding: 0.4em;
+    padding-left: 1.1em;
+    // padding-bottom: 1em;
+    // margin-top: 1em;
+}
+
+h3.longAnswer {
+    background-image: url(../assets/img/icons/jv-creative/answer.svg);
+}
+
+h3.quiz {
+    background-image: url(../assets/img/icons/jv-creative/quiz.svg);
+    text-align: left;
+}
+
+h3.video {
+    background-image: url(../assets/img/icons/flat/film.svg);
+    text-align: left;
+}
+
+h3.flowerPower {
+    background-image: url(../assets/img/animated-gif/pink_panther_e0.gif);
+}
+
+h3.readOn {
+    background-image: url(../assets/img/icons/jv-creative/read-more.svg);
+
+}
+
+h3.counter-question {
+    background-image: url(../assets/img/icons/jv-creative/counter-questions.svg);
+}
+
+h3.related {
+    background-image: url(../assets/img/logo/logo.png);
+}
+
+.bottom-bar {
+    margin-bottom: 1em; // to make the bottom bar fully visible
+    background: $linear-gradient1;
+}
+
+.discussion-group-link {
+    border-top: 1px dashed $card-full-content-item-color;
+}
+
 </style>
