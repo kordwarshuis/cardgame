@@ -29,7 +29,7 @@
                     <router-link class="search-result" :to="'/card/' + card['Unique URL']">{{ card.Misconception }}</router-link>
                 </h2>
 
-                <img v-if="showSocialMediaImage === 'true'" class="mt-3" style="width: 100%; border-radius: 10px;" :src="socialMediaImagesPath + card['Unique URL'] + '.jpg'" alt="">
+                <router-link class="search-result" :to="'/card/' + card['Unique URL']"><img @click="stopSearch2" v-if="showSocialMediaImage === 'true'" class="mt-3" style="width: 100%; border-radius: 10px;" :src="socialMediaImagesPath + card['Unique URL'] + '.jpg'" alt=""></router-link>
 
                 <!-- misconception longer -->
                 <p v-for="item in card['Misconception Elaborate']" v-bind:key="item" @click="stopSearch2" class="search-result mt-4 w-3/4" style="cursor: pointer">
