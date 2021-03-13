@@ -34,11 +34,6 @@
                 <div class="card-body center" style="">
                     <h3 class="pt-2 reply">{{ reply }}</h3>
 
-                    <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
-
-                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}
-                    </p>
-                    <hr>
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <VideoYoutubeBare />
                     </div>
@@ -48,6 +43,11 @@
                     <div v-if="(this.$store.state.currentCard['Self Hosted Image 1'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <ImageSelfHosted />
                     </div>
+                    <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
+
+                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}
+                    </p>
+                    <hr>
 
                 </div>
             </div>
