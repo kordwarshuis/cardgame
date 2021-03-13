@@ -35,17 +35,17 @@
                     <h3 class="pt-2 reply">{{ reply }}</h3>
 
                     <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
-                        <VideoYoutubeBare />
+                        <VideoYoutube />
                     </div>
                     <div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
-                        <MediaSelfHostedBare />
+                        <MediaSelfHosted />
                     </div>
                     <div v-if="(this.$store.state.currentCard['Self Hosted Image 1'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
                         <ImageSelfHosted />
                     </div>
                     <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
 
-                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}
+                    <p class="mt-3" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}
                     </p>
                     <hr>
 
@@ -117,6 +117,16 @@
                         <ImagesSelfHosted />
                     </div>
                 </div> -->
+
+
+                <!-- READ MORE 1 -->
+                <div class="content-item border p-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
+                    <h3 class="readOn">{{ readMore }}</h3>
+                    <p v-linkified:options="$store.state.linkifyOptions">
+                        {{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a>
+                    </p>
+                </div>
 
                 <!-- READ MORE 2 -->
                 <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
