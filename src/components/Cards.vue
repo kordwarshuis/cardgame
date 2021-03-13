@@ -211,52 +211,54 @@ export default {
             });
         },
         getIllustrations() {
-            let one = this.homepageIllustrationsCarousel + '?timestamp=' + new Date().getTime();
-            const requestOne = axios.get(one);
+            if (this.homepageIllustrationsCarousel !== "") {
+                let one = this.homepageIllustrationsCarousel + '?timestamp=' + new Date().getTime();
+                const requestOne = axios.get(one);
 
-            // https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
-            return axios.all([requestOne]).then(axios.spread((...responses) => {
-                var responseOne = responses[0];
+                // https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
+                return axios.all([requestOne]).then(axios.spread((...responses) => {
+                    var responseOne = responses[0];
 
-                // only images with '-text' in the name
-                function checker(value) {
-                    var obligatory = ['-text'];
-                    return obligatory.every(function (v) {
-                        return value.indexOf(v) !== -1;
-                    });
-                }
-
-                function shuffle(array) {
-                    var currentIndex = array.length,
-                        temporaryValue, randomIndex;
-
-                    // While there remain elements to shuffle...
-                    while (0 !== currentIndex) {
-
-                        // Pick a remaining element...
-                        randomIndex = Math.floor(Math.random() * currentIndex);
-                        currentIndex -= 1;
-
-                        // And swap it with the current element.
-                        temporaryValue = array[currentIndex];
-                        array[currentIndex] = array[randomIndex];
-                        array[randomIndex] = temporaryValue;
+                    // only images with '-text' in the name
+                    function checker(value) {
+                        var obligatory = ['-text'];
+                        return obligatory.every(function (v) {
+                            return value.indexOf(v) !== -1;
+                        });
                     }
 
-                    return array;
-                }
+                    function shuffle(array) {
+                        var currentIndex = array.length,
+                            temporaryValue, randomIndex;
 
-                responseOne = responseOne.data;
-                responseOne = responseOne.filter(checker);
-                responseOne = shuffle(responseOne);
-                this.homepageIllustrations = responseOne;
-                this.grabFilenameFromURL();
-            })).catch(errors => {
-                // react on errors.
-                console.log('errors: ', errors);
-                console.log("something goes wrong fetching the data");
-            })
+                        // While there remain elements to shuffle...
+                        while (0 !== currentIndex) {
 
+                            // Pick a remaining element...
+                            randomIndex = Math.floor(Math.random() * currentIndex);
+                            currentIndex -= 1;
+
+                            // And swap it with the current element.
+                            temporaryValue = array[currentIndex];
+                            array[currentIndex] = array[randomIndex];
+                            array[randomIndex] = temporaryValue;
+                        }
+
+                        return array;
+                    }
+
+                    responseOne = responseOne.data;
+                    responseOne = responseOne.filter(checker);
+                    responseOne = shuffle(responseOne);
+                    this.homepageIllustrations = responseOne;
+                    this.grabFilenameFromURL();
+                })).catch(errors => {
+                    // react on errors.
+                    console.log('errors: ', errors);
+                    console.log("something goes wrong fetching the data");
+                })
+
+            }
         },
         setCardsInitiallyShown() {
             if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE !== "") {
