@@ -1,7 +1,7 @@
 <template>
 <nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-0 pr-0">
     <!-- https://dev.to/yossiabramov/the-native-event-modifier-in-vue-js-bpb -->
-    <router-link @click.native="$store.commit('showItemsInSelectedCategory')" class="navbar-brand" to="/"><img :src="logo" :alt="logoAlt"></router-link>
+    <a class="navbar-brand" :href="logoURL"><img :src="logo" :alt="logoAlt"></a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -50,6 +50,7 @@ export default {
     data: function () {
         return {
             logo: process.env.VUE_APP_LOGO,
+            logoURL: process.env.VUE_APP_LOGO_URL,
             logoAlt: process.env.VUE_APP_LOGO_ALT,
             aboutPage: process.env.VUE_APP_ABOUT_PAGE_SOURCE,
             showScoresPage: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is “on” -> scores page. Note: True is not a boolean but a string
