@@ -2,7 +2,7 @@
 <!-- negate doesnt seem to work -->
 <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="">
     <div class="videoWrapper">
-        <iframe style="border-radius: 20px;" id="youtubeVideo" class="youtube" :src="'https://www.youtube.com/embed/' + this.$store.state.currentCard['Youtube Video Id'] + '?start=' + this.$store.state.currentCard['Youtube Video Start'] + '&end=' + this.$store.state.currentCard['Youtube Video End'] + '&playsinline=1&enablejsapi=1'" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
+        <iframe id="youtubeVideo" class="youtube" :src="'https://www.youtube.com/embed/' + this.$store.state.currentCard['Youtube Video Id'] + '?start=' + this.$store.state.currentCard['Youtube Video Start'] + '&end=' + this.$store.state.currentCard['Youtube Video End'] + '&playsinline=1&enablejsapi=1'" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
         </iframe>
     </div>
 </div>
@@ -57,5 +57,6 @@ export default {
     width: 100%;
     height: 100%;
     border: none;
+    border-radius: 20px;
 }
 </style>
