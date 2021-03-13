@@ -33,7 +33,7 @@ export default {
     position: relative;
     padding-bottom: 56.25%;
     /* 16:9 */
-    padding-top: 25px;
+    // padding-top: 25px;
     height: 0;
     margin-bottom: 3em;
 }
