@@ -120,7 +120,7 @@
 
 
                 <!-- READ MORE 1 -->
-                <div class="content-item border p-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
+                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
                     <h3 class="readOn">{{ readMore }}</h3>
                     <p v-linkified:options="$store.state.linkifyOptions">
                         {{this.$store.state.currentCard["Read On 1 Text"]}}</p>
