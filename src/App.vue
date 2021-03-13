@@ -108,7 +108,7 @@ export default {
 
                     // use/access the results 
 
-                    // 1: the scores data
+                    // the scores data
                     var tweetedCards = [];
                     var tweetedCardsFlat = [];
 
@@ -163,7 +163,7 @@ export default {
                         }());
                     }
 
-                    // 2: the cards data
+                    // the cards data
                     var responseData = d3.csvParse(responseOne.data);
                     var responseDataTemp = [];
 
