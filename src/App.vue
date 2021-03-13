@@ -85,6 +85,7 @@ export default {
     methods: {
         fetchData() {
             var that = this;
+            var allRequests = [];
 
             // only fetch data
             if (this.$store.state.dataFetched === false) {
@@ -93,16 +94,19 @@ export default {
                 let two = process.env.VUE_APP_CARDGAME_SCORES + '?timestamp=' + new Date().getTime();
 
                 const requestOne = axios.get(one);
+                allRequests.push(requestOne);
+
                 let requestTwo;
 
-                if (two === "") {
-                    requestTwo = ""
-                } else {
+                if (process.env.VUE_APP_CARDGAME_SCORES !== "") {
                     requestTwo = axios.get(two);
+                } else {
+                    requestTwo = "";//empty string makes that the two requests go through even though the scores are empty
                 }
+                allRequests.push(requestTwo);
 
                 // https://www.storyblok.com/tp/how-to-send-multiple-requests-using-axios
-                return axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
+                return axios.all(allRequests).then(axios.spread((...responses) => {
                     const responseOne = responses[0]
                     const responseTwo = responses[1]
 
@@ -113,7 +117,7 @@ export default {
                     var tweetedCardsFlat = [];
 
                     // only if there is something to do:
-                    if (two !== "") {
+                    if (process.env.VUE_APP_CARDGAME_SCORES !== "") {
                         responseTwo.data.scores.forEach(function (entry) {
                             tweetedCards.push(entry.cardURLs);
                         })
