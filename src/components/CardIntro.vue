@@ -72,7 +72,7 @@
                 </div>
 
                 <Quiz />
-<!--                 <!~~ if there is Youtube video ~~>
+                <!--                 <!~~ if there is Youtube video ~~>
                 <div class="row" v-if="(this.$store.state.currentCard['Youtube Video Id'])">
                     <div class="col-md-4 mb-3">
                         <VideoYoutube />
@@ -103,7 +103,7 @@
                     </div>
                 </div> -->
 
-<!--                 <!~~ if there is Self Hosted video ~~>
+                <!--                 <!~~ if there is Self Hosted video ~~>
                 <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Video'])">
                     <div class="col-md-12 mb-3">
                         <MediaSelfHosted />
@@ -171,13 +171,9 @@
                         {{this.$store.state.currentCard["Analogy"]}}</p>
                 </div>
 
-                <!-- RELATED CARDS -->
-                <RelatedCards />
 
-                <!-- KEYWORDS CARDS -->
-                <Keywords />
 
-                <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button>
+                <!-- <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button> -->
                 <div class="discussion-group-link center m-4 mb-0 p-3 ">
                     <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
                 </div>
@@ -198,19 +194,15 @@
         <!-- END CARD FULL -->
 
         <div class="col-lg-6 col-sm-6">
-            <div class="card h-100 bg-transparent" style="border:none;">
-                <div class="card-body p-0" style="">
-                </div>
-            </div>
+            <!-- KEYWORDS CARDS -->
+            <Keywords />
         </div>
 
         <div class="col-lg-6 col-sm-6">
-            <div class="card h-100 bg-transparent" style="border:none;">
-                <div class="card-body p-0">
-                    <RelatedCards />
-                </div>
-            </div>
+            <!-- RELATED CARDS -->
+            <RelatedCards />
         </div>
+
 
         <div class="footer col-lg-12 col-sm-12 m-0">
             <div>
@@ -694,15 +686,6 @@ h3.reply {
     border-radius: 10px;
 }
 
-
-
-
-
-
-
-
-
-
 h2 {
     margin: 1.5em 0 0.5em; // to keep distance from sec / tert menu
     font-size: 2em;
@@ -784,5 +767,4 @@ h3.related {
 .discussion-group-link {
     border-top: 1px dashed $card-full-content-item-color;
 }
-
 </style>
