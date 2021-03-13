@@ -296,7 +296,7 @@ export default {
     },
     watch: {
         getMisconception(newValue, oldValue) {
-            this.typeWriter(".typed", newValue, 70);
+            this.typeWriter(".typed", newValue, 35);
 
             setTimeout(() => {
                 if (this.$store.state.currentCard['Diagram Data']) {
