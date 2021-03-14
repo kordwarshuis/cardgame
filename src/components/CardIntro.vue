@@ -15,16 +15,14 @@
 
                     <img v-if="showSocialMediaImage === 'true'" class="mt-3" style="width: 100%; border-radius: 10px;" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt="">
 
-                    <RandomCard />
-
                     <template v-if="this.$store.state.currentCard['Misconception Elaborate']">
-                        <p class="text-center" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item">
+                        <p class="mt-3" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item">
                             <!-- <span class="quote">“</span> -->
                             {{ item }}
                             <!-- <span class="quote">”</span> -->
                         </p>
                     </template>
-
+                    <RandomCard />
                 </div>
             </div>
         </div>
@@ -34,18 +32,18 @@
                 <div class="card-body center" style="">
                     <h3 class="pt-2 reply">{{ reply }}</h3>
 
-                    <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
+                    <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0 mb-3" style="font-size: 0.9em;">
                         <VideoYoutube />
                     </div>
-                    <div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
+                    <div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="col-lg-12 col-sm-12 p-0 mb-3" style="font-size: 0.9em;">
                         <MediaSelfHosted />
                     </div>
-                    <div v-if="(this.$store.state.currentCard['Self Hosted Image 1'])" class="col-lg-12 col-sm-12 p-0" style="font-size: 0.9em;">
+                    <div v-if="(this.$store.state.currentCard['Self Hosted Image 1'])" class="col-lg-12 col-sm-12 p-0 mb-3" style="font-size: 0.9em;">
                         <ImageSelfHosted />
                     </div>
                     <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
 
-                    <p class="mt-3" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}
+                    <p class="" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}
                     </p>
                     <hr>
 
