@@ -230,12 +230,11 @@ import SocialMedia from "@/components/SocialMedia.vue";
 import RelatedCards from "@/components/RelatedCards.vue";
 import RandomCard from "@/components/RandomCard.vue";
 import Quiz from "@/components/Quiz.vue";
+import VideoYoutube from "@/components/VideoYoutube.vue";
 import VideoYoutubeBare from "@/components/VideoYoutubeBare.vue";
+import MediaSelfHosted from "@/components/MediaSelfHosted.vue";
 import MediaSelfHostedBare from "@/components/MediaSelfHostedBare.vue";
 import ImageSelfHosted from "@/components/ImageSelfHosted.vue";
-
-import VideoYoutube from "@/components/VideoYoutube.vue";
-import MediaSelfHosted from "@/components/MediaSelfHosted.vue";
 import ImagesSelfHosted from "@/components/ImagesSelfHosted.vue";
 import Keywords from "@/components/Keywords.vue";
 import Person3 from "@/components/AnimatedCharacters/Person3.vue";
@@ -252,19 +251,17 @@ export default {
         SocialMedia,
         RelatedCards,
         RandomCard,
-        VideoYoutubeBare,
-        MediaSelfHostedBare,
-        ImageSelfHosted,
-
-        Quiz,
         VideoYoutube,
+        VideoYoutubeBare,
+        ImageSelfHosted,
+        MediaSelfHostedBare,
         MediaSelfHosted,
         ImagesSelfHosted,
+        Quiz,
         SocialMedia,
         RelatedCards,
         Keywords,
         Person3
-
     },
     data() {
         return {
