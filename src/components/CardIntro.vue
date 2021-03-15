@@ -1,223 +1,171 @@
 <template>
 <!-- open/close -->
 <div class="overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
-    <div class="row m-0 pb-5">
-        <div class="col-lg-6 col-sm-6 column1 p-0">
-            <div class="card h-100 bg-transparent" style="border:none;">
+    <div class=columns-container>
+
+
+            <!-- MISCONCEPTION -->
+            <div class="card h-100">
                 <div class="card-body">
                     <h3 class="pt-sm-2">{{ misconception }}</h3>
                     <div class="card-intro-misconception p-3 mt-2 text-center">
                         <!-- <span class="quote">“</span> -->
-                        <p class="typed mb-3">{{ getMisconception }} …</p>
+                        <p style="font-size: 2em;" class="typed mb-3">{{ getMisconception }} </p>
                         <!-- <span class="quote">”</span> -->
                         <!-- <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button> -->
                     </div>
 
                     <img v-if="showSocialMediaImage === 'true'" class="mt-3" style="width: 100%; border-radius: 10px;" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt="">
 
-                    <template v-if="this.$store.state.currentCard['Misconception Elaborate']">
-                        <p class="mt-3" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item">
-                            <!-- <span class="quote">“</span> -->
-                            {{ item }}
-                            <!-- <span class="quote">”</span> -->
-                        </p>
-                    </template>
                     <RandomCard />
                 </div>
             </div>
-        </div>
 
-        <div class="col-lg-6 col-sm-6 column2 p-0">
-            <div class="card h-100 bg-transparent" style="border:none;">
+
+
+        <div class="columns-layout">
+            <!-- MISCONCEPTION ELABORATE-->
+            <div class="card h-100" v-if="this.$store.state.currentCard['Misconception Elaborate']">
+                <div class="card-body center" style="">
+                    <h3>{{ misconception }}</h3>
+                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item">
+                        <!-- <span class="quote">“</span> -->
+                        {{ item }}
+                        <!-- <span class="quote">”</span> -->
+                    </p>
+                </div>
+            </div>
+
+            <!-- SHORT ANSWER-->
+            <div class="card h-100">
                 <div class="card-body center" style="">
                     <h3 class="pt-2 reply">{{ reply }}</h3>
-
-                    <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="col-lg-12 col-sm-12 p-0 mb-3" style="font-size: 0.9em;">
-                        <VideoYoutube />
-                    </div>
-                    <div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="col-lg-12 col-sm-12 p-0 mb-3" style="font-size: 0.9em;">
-                        <MediaSelfHosted />
-                    </div>
-                    <div v-if="(this.$store.state.currentCard['Self Hosted Image 1'])" class="col-lg-12 col-sm-12 p-0 mb-3" style="font-size: 0.9em;">
-                        <ImageSelfHosted />
-                    </div>
                     <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
 
                     <p class="" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}
                     </p>
-                    <hr>
-
+                    <!-- <hr> -->
                 </div>
             </div>
-        </div>
 
-        <!-- CARD FULL -->
-        <div class="col-lg-12 col-sm-12 p-4">
-            <div>
-                <!-- <div class="modal-content p-3 pt-5"> -->
-
-                <div class="content-item border p-3 mb-3 mt-3" v-if="this.$store.state.currentCard['Long Answer']">
-                    <h3 class="longAnswer">{{ longAnswer }}</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">
-                        {{ item }}</p>
-                </div>
-
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Diagram Data']">
-                    <h3 class="diagram">{{ diagram }}</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">
-                        {{this.$store.state.currentCard["Diagram Description"]}}</p>
-                    <div class="ct-chart ct-golden-section " style=" max-width: 50em;margin: auto !important; "></div>
-                </div>
-
-                <Quiz />
-                <!--                 <!~~ if there is Youtube video ~~>
-                <div class="row" v-if="(this.$store.state.currentCard['Youtube Video Id'])">
-                    <div class="col-md-4 mb-3">
+            <!-- VIDEO YOUTUBE-->
+            <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="card h-100">
+                <div class="card-body center" style="">
+                    <div class="col-lg-12 col-sm-12 p-0 mb-3" style="font-size: 0.9em;">
                         <VideoYoutube />
                     </div>
-                    <div class="col-md-8 mb-3">
-                        <!~~ READ MORE 1 ~~>
-                        <div class="content-item border p-3 " v-if="this.$store.state.currentCard['Read On 1 Text']">
-                            <h3 class="readOn">{{ readMore }}</h3>
-                            <p v-linkified:options="$store.state.linkifyOptions">
-                                {{this.$store.state.currentCard["Read On 1 Text"]}}</p>
-                            <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a>
-                            </p>
-                        </div>
-                    </div>
                 </div>
+            </div>
 
-                <!~~ if there is NO Youtube video ~~>
-                <div class="row" v-else>
-                    <div class="col-md-12 mb-3">
-                        <!~~ READ MORE 1 ~~>
-                        <div class="content-item border p-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
-                            <h3 class="readOn">{{ readMore }}</h3>
-                            <p v-linkified:options="$store.state.linkifyOptions">
-                                {{this.$store.state.currentCard["Read On 1 Text"]}}</p>
-                            <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a>
-                            </p>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!--                 <!~~ if there is Self Hosted video ~~>
-                <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Video'])">
-                    <div class="col-md-12 mb-3">
+            <!-- MEDIA SELF HOSTED-->
+            <div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="card h-100">
+                <div class="card-body center" style="">
+                    <div class="col-lg-12 col-sm-12 p-0 mb-3" style="font-size: 0.9em;">
                         <MediaSelfHosted />
                     </div>
                 </div>
-
-                <!~~ if there is Self Hosted Image ~~>
-                <!~~ The assumption is that if any image is used this should be in the first one  ~~>
-                <div class="row" v-if="(this.$store.state.currentCard['Self Hosted Image 1'])">
-                    <div class="col-md-12 mb-3">
-                        <ImagesSelfHosted />
-                    </div>
-                </div> -->
-
-
-                <!-- READ MORE 1 -->
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 1 Text']">
-                    <h3 class="readOn">{{ readMore }}</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">
-                        {{this.$store.state.currentCard["Read On 1 Text"]}}</p>
-                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a>
-                    </p>
-                </div>
-
-                <!-- READ MORE 2 -->
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 2 Text']">
-                    <h3 class="readOn">{{ readMore }}</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">
-                        {{this.$store.state.currentCard["Read On 2 Text"]}}</p>
-                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">{{ readOn }}</a></p>
-                </div>
-
-                <!-- READ MORE 3 -->
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Read On 3 Text']">
-                    <h3 class="readOn">{{ readMore }}</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">
-                        {{this.$store.state.currentCard["Read On 3 Text"]}}</p>
-                    <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">{{ readOn }}</a></p>
-                </div>
-
-                <!-- EXPERT 1 -->
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert1']">
-                    <h3 class="expert1">{{expert1}}</h3>
-                    <img v-if='expert1Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert1Logo" alt="portrait of the expert">
-                    <p v-linkified:options="$store.state.linkifyOptions">
-                        {{ this.$store.state.currentCard['Expert1'] }}</p>
-                </div>
-
-                <!-- EXPERT 2 -->
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert2']">
-                    <h3 class="expert2">{{expert2}}</h3>
-                    <img v-if='expert2Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert2Logo" alt="portrait of the expert">
-                    <p v-linkified:options="$store.state.linkifyOptions">
-                        {{ this.$store.state.currentCard['Expert2'] }}</p>
-                </div>
-
-                <!-- EXPERT 3 -->
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Expert3']">
-                    <h3 class="expert3">{{expert3}}</h3>
-                    <img v-if='expert3Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert3Logo" alt="portrait of the expert">
-                    <p>{{expert3Description}}<a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
-                </div>
-
-                <!-- COUNTER QUESTIONS -->
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Counter Questions']">
-                    <h3 class="counter-question">{{ counterQuestions }}</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">
-                        {{this.$store.state.currentCard["Counter Questions"]}}</p>
-                </div>
-
-                <!-- ANALOGY -->
-                <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Analogy']">
-                    <h3 class="">{{ analogy }}</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">
-                        {{this.$store.state.currentCard["Analogy"]}}</p>
-                </div>
-
-
-
-                <!-- <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button> -->
-                <div class="discussion-group-link center m-4 mb-0 p-3 ">
-                    <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
-                </div>
-
-                <Person3 />
-                <!-- </div> -->
             </div>
-            <!-- <div class="bottom-bar">
+
+            <!-- LONG ANSWER -->
+            <div v-if="this.$store.state.currentCard['Long Answer']" class="card h-100 border p-3 mb-3">
+                <h3 class="longAnswer">{{ longAnswer }}</h3>
+                <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">
+                    {{ item }}</p>
+            </div>
+
+            <!-- DIAGRAM -->
+            <div v-if="this.$store.state.currentCard['Diagram Data']" class="card h-100 border p-3 mb-3">
+                <h3 class="diagram">{{ diagram }}</h3>
+                <p v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Diagram Description"]}}</p>
+                <div class="ct-chart ct-golden-section " style=" max-width: 50em;margin: auto !important; "></div>
+            </div>
+
+            <!-- QUIZ -->
+            <Quiz />
+
+            <!-- READ MORE 1 -->
+            <div v-if="this.$store.state.currentCard['Read On 1 Text']" class="card h-100 border p-3 mb-3">
+                <h3 class="readOn">{{ readMore }}</h3>
+                <p v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a>
+                </p>
+            </div>
+
+            <!-- READ MORE 2 -->
+            <div v-if="this.$store.state.currentCard['Read On 2 Text']" class="card h-100 border p-3 mb-3">
+                <h3 class="readOn">{{ readMore }}</h3>
+                <p v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Read On 2 Text"]}}</p>
+                <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">{{ readOn }}</a></p>
+            </div>
+
+            <!-- READ MORE 3 -->
+            <div v-if="this.$store.state.currentCard['Read On 3 Text']" class="card h-100 border p-3 mb-3">
+                <h3 class="readOn">{{ readMore }}</h3>
+                <p v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Read On 3 Text"]}}</p>
+                <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">{{ readOn }}</a></p>
+            </div>
+
+            <!-- EXPERT 1 -->
+            <div v-if="this.$store.state.currentCard['Expert1']" class="card h-100 border p-3 mb-3">
+                <h3 class="expert1">{{expert1}}</h3>
+                <img v-if='expert1Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert1Logo" alt="portrait of the expert">
+                <p v-linkified:options="$store.state.linkifyOptions">
+                    {{ this.$store.state.currentCard['Expert1'] }}</p>
+            </div>
+
+            <!-- EXPERT 2 -->
+            <div v-if="this.$store.state.currentCard['Expert2']" class="card h-100 border p-3 mb-3">
+                <h3 class="expert2">{{expert2}}</h3>
+                <img v-if='expert2Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert2Logo" alt="portrait of the expert">
+                <p v-linkified:options="$store.state.linkifyOptions">
+                    {{ this.$store.state.currentCard['Expert2'] }}</p>
+            </div>
+
+            <!-- EXPERT 3 -->
+            <div v-if="this.$store.state.currentCard['Expert3']" class="card h-100 border p-3 mb-3">
+                <h3 class="expert3">{{expert3}}</h3>
+                <img v-if='expert3Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert3Logo" alt="portrait of the expert">
+                <p>{{expert3Description}}<a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
+            </div>
+
+            <!-- COUNTER QUESTIONS -->
+            <div v-if="this.$store.state.currentCard['Counter Questions']" class="card h-100 border p-3 mb-3">
+                <h3 class="counter-question">{{ counterQuestions }}</h3>
+                <p v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Counter Questions"]}}</p>
+            </div>
+
+            <!-- ANALOGY -->
+            <div v-if="this.$store.state.currentCard['Analogy']" class="card h-100 border p-3 mb-3">
+                <h3 class="">{{ analogy }}</h3>
+                <p v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Analogy"]}}</p>
+            </div>
+
+            <!-- <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button> -->
+            <div class="discussion-group-link center card h-100 border p-3 mb-3 ">
+                <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
+            </div>
+
+            <Person3 />
+            
+            <!-- KEYWORDS CARDS -->
+            <Keywords />
+        
+            <!-- RELATED CARDS -->
+            <RelatedCards />
+
+            <div class="footer col-lg-12 col-sm-12 m-0">
                 <div>
-                    <div style="display: inline-block;">
+                    <div>
                         <SocialMedia />
                     </div>
                     <button class="copyURLtoClipboard copyURLtoClipboardCardIntroAndFull " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
                 </div>
-            </div> -->
-
-        </div>
-        <!-- END CARD FULL -->
-
-        <div class="col-lg-6 col-sm-6">
-            <!-- KEYWORDS CARDS -->
-            <Keywords />
-        </div>
-
-        <div class="col-lg-6 col-sm-6">
-            <!-- RELATED CARDS -->
-            <RelatedCards />
-        </div>
-
-
-        <div class="footer col-lg-12 col-sm-12 m-0">
-            <div>
-                <div>
-                    <SocialMedia />
-                </div>
-                <button class="copyURLtoClipboard copyURLtoClipboardCardIntroAndFull " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
             </div>
         </div>
     </div>
@@ -497,6 +445,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
+// https://www.dev-tips-and-tricks.com/use-bootstrap-4-media-query-mixins
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/_breakpoints";
+
 /*! https://tympanus.net/Development/FullscreenOverlayStyles/index7.html# */
 /* Overlay style */
 
@@ -505,6 +458,7 @@ export default {
     width: 100%;
     max-width: 70em;
     height: 100%;
+    // overflow: scroll;
     top: 50%;
     left: 50%;
     padding-top: 60px;
@@ -514,12 +468,6 @@ export default {
     background: $card-intro-background;
     border-radius: 10px;
     box-shadow: $card-intro-box-shadow;
-}
-
-.overlay-fullscreen>div {
-    overflow: scroll;
-    height: 100%;
-    -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
 }
 
 .footer {
@@ -678,11 +626,11 @@ h3.reply {
 }
 
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-    .column1 .card-body {
-        border-right: 1px dashed #A3A8B7;
-    }
-}
+// @media (min-width: 576px) {
+//     .column1 .card-body {
+//         border-right: 1px dashed #A3A8B7;
+//     }
+// }
 
 .card-intro-misconception {
     color: $card-intro-content-item-color;
@@ -709,15 +657,7 @@ h2.reply {
     color: $misconception-short-and-elaborate-color;
 }
 
-.content-item {
-    background: $card-full-content-item-background;
-    color: $card-full-content-item-color;
-    border-radius: 10px;
-}
 
-.content-item>p {
-    margin-left: $cardFullTextIndent;
-}
 
 // .modal-content {
 //     color: $card-full-color;
@@ -772,4 +712,48 @@ h3.related {
 .discussion-group-link {
     border-top: 1px dashed $card-full-content-item-color;
 }
+
+.columns-container {
+    overflow: scroll;
+    height: 100%;
+    -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
+}
+
+.columns-layout {
+    // border: 3px solid yellow;
+    padding: 0 0.5em 100px;
+    height: auto;
+    column-fill: auto;
+
+    @include media-breakpoint-only(lg) {
+        column-count: 2;
+        // column-span: all;
+    }
+
+    @include media-breakpoint-only(xl) {
+        column-count: 3;
+        // column-span: none;
+    }
+}
+
+.card {
+    // background: #5359a5;
+    background: $card-full-content-item-background;
+    color: $card-full-content-item-color;
+
+    display: inline-block;
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    // min-width: 300px;
+    // transition: 1s ease all;
+    // box-sizing: border-box;
+    // box-shadow: 2px 2px 4px 0 #ccc;
+    column-break-inside: avoid;
+}
+.card>p {
+    margin-left: $cardFullTextIndent;
+}
+
 </style>
