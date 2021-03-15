@@ -2,21 +2,26 @@
 <!-- if video -->
 <div v-if="(this.$store.state.currentCard['Self Hosted Video'].indexOf('mp4') > -1)" class="">
     <div class="videoWrapper">
-        <video :src="this.$store.state.currentCard['Self Hosted Video']" controls playsinline preload="metadata"></video>
+        <video :src="path + this.$store.state.currentCard['Self Hosted Video']" controls playsinline preload="metadata"></video>
     </div>
 </div>
 
 <!-- if audio -->
 <div v-else-if="(this.$store.state.currentCard['Self Hosted Video'].indexOf('mp3') > -1)" class="">
     <div class="audioWrapper">
-        <audio :src="this.$store.state.currentCard['Self Hosted Video']" controls></audio>
+        <audio :src="path + this.$store.state.currentCard['Self Hosted Video']" controls></audio>
     </div>
 </div>
 </template>
 
 <script>
 export default {
-    name: "MediaSelfHostedBare"
+    name: "MediaSelfHostedBare",
+    data() {
+        return {
+            path: process.env.VUE_APP_MEDIA_LOCATION
+        }
+    }
 };
 </script>
 
