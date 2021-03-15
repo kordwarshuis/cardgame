@@ -1,5 +1,5 @@
 <template>
-<div class="content-item miniQuizContainer modalbox-iconbackground border p-3 mb-3" v-if="this.$store.state.currentCard['Quiz']">
+<div class="content-item card h-100 border p-3 mb-3 miniQuizContainer modalbox-iconbackground" v-if="this.$store.state.currentCard['Quiz']">
     <h3 class="quiz">Quiz</h3>
     <form class="miniquiz">
         <fieldset>
@@ -72,7 +72,8 @@ form.miniquiz label {
 }
 
 form.miniquiz legend {
-    margin-left: $cardFullTextIndent;
+    // padding-left: $cardFullTextIndent;
+    // width: calc(100% - $cardFullTextIndent);
 }
 
 form.miniquiz .antw {
