@@ -1,6 +1,6 @@
-<template>
+<template v-if="(this.$store.state.currentCard['Youtube Video Id'])">
 <!-- negate doesnt seem to work -->
-<div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="content-item p-3">
+<div>
     <!-- <h3 class="video">Video</h3> -->
 
     <VideoYoutubeBare />
