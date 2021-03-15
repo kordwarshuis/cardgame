@@ -1,5 +1,5 @@
 <template>
-<div class="p-2 mb-3 mt-3 text-center keywords" v-if="this.$store.state.currentCard['Keywords']">
+<div class="card h-100 border p-3 mb-3 text-center keywords" v-if="this.$store.state.currentCard['Keywords']">
     <h3 class="keywords">{{ keywords }}</h3>
     <p>{{ this.$store.state.currentCard['Keywords'] }}</p>
 </div>
