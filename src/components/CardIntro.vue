@@ -1,28 +1,26 @@
 <template>
 <!-- open/close -->
 <div class="overlay-fullscreen overlay-fullscreen-contentpush" :class="this.$store.state.cssClassCardIntroState">
-    <div class=columns-container>
+    <div class=columns-layout-container>
 
+        <!-- MISCONCEPTION -->
+        <div class="masthead card h-100 mt-5 pb-3" style="height: auto !important;">
+            <div class="card-body">
+                <!-- <h3 class="pt-sm-2">{{ misconception }}</h3> -->
 
-            <!-- MISCONCEPTION -->
-            <div class="card h-100">
-                <div class="card-body">
-                    <h3 class="pt-sm-2">{{ misconception }}</h3>
-                    <div class="card-intro-misconception p-3 mt-2 text-center">
-                        <!-- <span class="quote">“</span> -->
-                        <p style="font-size: 2em;" class="typed mb-3">{{ getMisconception }} </p>
-                        <!-- <span class="quote">”</span> -->
-                        <!-- <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button> -->
-                    </div>
-
-                    <img v-if="showSocialMediaImage === 'true'" class="mt-3" style="width: 100%; border-radius: 10px;" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt="">
-
-                    <RandomCard />
+                <!-- SOCIAL MEDIA IMAGE -->
+                <div v-if="showSocialMediaImage === 'true'" class="social-media-image">
+                    <img class="mb-3" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt="">
                 </div>
+
+                <!-- TYPED TEXT -->
+                <!-- <span class="quote">“</span> -->
+                <p class="misconception-typed typed mb-3">{{ getMisconception }} </p>
+                <!-- <span class="quote">”</span> -->
+                <!-- <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button> -->
             </div>
-
-
-
+        </div>
+        <!-- <RandomCard /> -->
         <div class="columns-layout">
             <!-- MISCONCEPTION ELABORATE-->
             <div class="card h-100" v-if="this.$store.state.currentCard['Misconception Elaborate']">
@@ -152,10 +150,10 @@
             </div>
 
             <Person3 />
-            
+
             <!-- KEYWORDS CARDS -->
             <Keywords />
-        
+
             <!-- RELATED CARDS -->
             <RelatedCards />
 
@@ -268,12 +266,13 @@ export default {
         typeWriter(selector, misconception, interval) {
             var audioPlaying = false;
             var text = document.querySelector(selector),
-                textCopy = misconception,
+                textCopy = "",
                 i = 0,
                 clear,
                 pauseBeforeStart = 600;
 
             text.innerHTML = "";
+            clearInterval(clear);
 
             function typeText() {
                 if (audioPlaying === false) {
@@ -285,10 +284,10 @@ export default {
                 //option 2:
                 // text.insertAdjacentHTML("beforeend", textCopy[i]);
                 //option 3:
-                text.append(textCopy[i]);
+                text.append(misconception[i]);
 
                 i++;
-                if (i === textCopy.length) {
+                if (i === misconception.length) {
                     if (localStorage.getItem("soundOn") === "true") typewriter.stop();
                     clearInterval(clear);
                     setTimeout(function () {
@@ -303,6 +302,7 @@ export default {
             text.innerHTML = "";
 
             setTimeout(function () {
+                // textCopy = misconception;
                 clear = setInterval(typeText, interval);
             }, pauseBeforeStart);
         },
@@ -617,26 +617,86 @@ h3.reply {
     transition: all 0.2s ease-out;
 }
 
-.social-media-container {
-    display: inline-block;
+.masthead {
+    // margin: 0 1em 0;
+    min-height: 10em;
+    background: #5359a5 !important;
+    color: #eee !important;
 }
 
-.further-reading {
-    cursor: pointer;
-}
-
-/* Small devices (landscape phones, 576px and up) */
-// @media (min-width: 576px) {
-//     .column1 .card-body {
-//         border-right: 1px dashed #A3A8B7;
-//     }
-// }
-
-.card-intro-misconception {
-    color: $card-intro-content-item-color;
-    background-color: $card-intro-content-item-background;
-    min-height: 6em;
+.social-media-image img {
     border-radius: 10px;
+    width: 100%;
+}
+
+.misconception-typed {
+    p {
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 768px) {
+    .social-media-image {
+        margin-right: 2em;
+        float: left;
+        display: block;
+        max-width: 50%;
+        width: 100%;
+        // border: 3px solid purple;
+    }
+    .misconception-typed {
+        // padding-top: 1em;
+        font-size: 2.5em;
+    }
+
+    // .card-intro-misconception {
+    //     // color: $card-intro-content-item-color;
+    //     // background-color: $card-intro-content-item-background;
+
+    //     border-radius: 10px;
+    //     // float: right;
+    //     // max-width: 45%;
+    //     min-width: 2em;
+    //     // border: 3px solid green;
+    //     display: inline;
+
+    // }
+}
+
+.columns-layout-container {
+    overflow: scroll;
+    height: 100%;
+    -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
+    padding: 0 1em 100px;
+}
+
+.columns-layout {
+    height: auto;
+    column-fill: auto;
+
+    @include media-breakpoint-only(lg) {
+        column-count: 2;
+        // column-span: all;
+    }
+
+    @include media-breakpoint-only(xl) {
+        column-count: 3;
+        // column-span: none;
+    }
+}
+
+.card {
+    background: $card-full-content-item-background;
+    color: $card-full-content-item-color;
+    display: inline-block; // this is needed as long as the specs is not fully implemented
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    column-break-inside: avoid;
+}
+
+.card>p {
+    margin-left: $cardFullTextIndent;
 }
 
 h2 {
@@ -656,8 +716,6 @@ h2.reply {
     border-bottom: 3px dotted #666;
     color: $misconception-short-and-elaborate-color;
 }
-
-
 
 // .modal-content {
 //     color: $card-full-color;
@@ -712,48 +770,4 @@ h3.related {
 .discussion-group-link {
     border-top: 1px dashed $card-full-content-item-color;
 }
-
-.columns-container {
-    overflow: scroll;
-    height: 100%;
-    -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
-}
-
-.columns-layout {
-    // border: 3px solid yellow;
-    padding: 0 0.5em 100px;
-    height: auto;
-    column-fill: auto;
-
-    @include media-breakpoint-only(lg) {
-        column-count: 2;
-        // column-span: all;
-    }
-
-    @include media-breakpoint-only(xl) {
-        column-count: 3;
-        // column-span: none;
-    }
-}
-
-.card {
-    // background: #5359a5;
-    background: $card-full-content-item-background;
-    color: $card-full-content-item-color;
-
-    display: inline-block;
-    width: 100%;
-    margin-top: 1em;
-    margin-bottom: 1em;
-
-    // min-width: 300px;
-    // transition: 1s ease all;
-    // box-sizing: border-box;
-    // box-shadow: 2px 2px 4px 0 #ccc;
-    column-break-inside: avoid;
-}
-.card>p {
-    margin-left: $cardFullTextIndent;
-}
-
 </style>
