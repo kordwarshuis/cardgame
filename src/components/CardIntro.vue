@@ -48,7 +48,7 @@
 
             <!-- VIDEO YOUTUBE-->
             <div v-if="(this.$store.state.currentCard['Youtube Video Id'])" class="card h-100">
-                <div class="card-body center" style="">
+                <div class="card-body center p-1" style="">
                     <div class="col-lg-12 col-sm-12 p-0 mb-3" style="font-size: 0.9em;">
                         <VideoYoutube />
                     </div>
@@ -57,7 +57,7 @@
 
             <!-- MEDIA SELF HOSTED-->
             <div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="card h-100">
-                <div class="card-body center" style="">
+                <div class="card-body center p-1" style="">
                     <div class="col-lg-12 col-sm-12 p-0 mb-3" style="font-size: 0.9em;">
                         <MediaSelfHosted />
                     </div>
