@@ -145,7 +145,7 @@
             </div>
 
             <!-- <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button> -->
-            <div class="discussion-group-link center card h-100 border p-3 mb-3 ">
+            <div v-if="discussionLink !== ''" class="discussion-group-link center card h-100 border p-3 mb-3 ">
                 <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
             </div>
 
