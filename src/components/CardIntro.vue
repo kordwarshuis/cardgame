@@ -18,9 +18,10 @@
                 <p class="misconception-typed typed mb-3">{{ getMisconception }} </p>
                 <!-- <span class="quote">”</span> -->
                 <!-- <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button> -->
+                <RandomCard />
             </div>
         </div>
-        <!-- <RandomCard /> -->
+
         <div class="columns-layout">
             <!-- MISCONCEPTION ELABORATE-->
             <div class="card h-100" v-if="this.$store.state.currentCard['Misconception Elaborate']">
@@ -157,13 +158,13 @@
             <!-- RELATED CARDS -->
             <RelatedCards />
 
-            <div class="footer col-lg-12 col-sm-12 m-0">
+        </div>
+        <div class="footer col-lg-12 col-sm-12 m-0">
+            <div>
                 <div>
-                    <div>
-                        <SocialMedia />
-                    </div>
-                    <button class="copyURLtoClipboard copyURLtoClipboardCardIntroAndFull " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
+                    <SocialMedia />
                 </div>
+                <button class="copyURLtoClipboard copyURLtoClipboardCardIntroAndFull " style="display: inline-block;vertical-align: middle;margin-left: 1em !important;" title="Copy Link">Copy Link</button>
             </div>
         </div>
     </div>
@@ -644,6 +645,7 @@ h3.reply {
         width: 100%;
         // border: 3px solid purple;
     }
+
     .misconception-typed {
         // padding-top: 1em;
         font-size: 2.5em;
