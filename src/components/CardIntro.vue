@@ -680,7 +680,7 @@ h3.reply {
     }
 
     @include media-breakpoint-only(xl) {
-        column-count: 3;
+        column-count: 2;
         // column-span: none;
     }
 }
