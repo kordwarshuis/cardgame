@@ -224,7 +224,7 @@ export var realTimeTweets = (function () {
                         "<div class='col-6'>Keyword</div>" +
 
                         "<div class='col-6 mb-3'>Verified: " + data[i].user.verified + "</div>" +
-                        "<div class='col-6 mb-3'>Followers: <span class='followerscountXXX' data-followerscount='" + data[i].user.followers_count +"'>" + data[i].user.followers_count + "</span></div>" +
+                        "<div class='col-6 mb-3'>Followers: <span class='followerscount' data-followerscount='" + data[i].user.followers_count +"'>" + data[i].user.followers_count + "</span></div>" +
 
                         "<div class='col-6'></div>" +
                         "<div data-createdate='" + data[i].created_at + "' data-timestampms='" + data[i].timestamp_ms + "' class='col-6 timestamptweet timestampms'>" + timestampTweet(data[i].created_at) + "</div>" +
