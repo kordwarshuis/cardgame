@@ -1138,7 +1138,7 @@ footer {
 }
 
 .tweets-realtime .tweet.attention-seeker:nth-child(-n+5) {
-    background: rgb(126, 223, 253);
+    background: #1EA1F1;
     transition: background-color 0.3s ease-in-out;
 }
 
