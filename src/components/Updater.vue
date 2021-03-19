@@ -1,19 +1,33 @@
 <template>
-<div id="updateinfo" class="alert alert-info m-5" role="alert" style="display: none;">
-    <p class="text-center">Speed Update Available <button id="updater" onclick="window.location = window.location;">Update now</button></p>
+<div id="updateinfo" class="alert alert-info m-5 " style="display: none;">
+    <div role="alert">
+        <p class="text-center">Speed Update Available <button id="updater" @click="update">Update now</button></p>
+    </div>
+
+    <div class="spinner-border-container mx-auto" style="display: none; width: 1em;">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
 </div>
 </template>
 
 <script>
 import axios from "axios";
 import publicPath from "../../vue.config";
-import {versionCurrent} from "../assets/js/updater";
+import {
+    versionCurrent
+} from "../assets/js/updater";
 export default {
     name: "Updater",
     mounted: function () {
         this.updater();
     },
     methods: {
+        update() {
+            window.location = window.location;
+            document.querySelector(".spinner-border-container").style.display = "block";
+        },
         updater() {
             let one = window.location.protocol + "//" + window.location.host + publicPath.publicPath + "updater.php";
 
