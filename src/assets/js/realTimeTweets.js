@@ -10,6 +10,8 @@ import {
 import platform from 'platform-detect';
 // import {ios, android, tizen} from 'platform-detect/os.mjs';
 
+import {tweetStreamAttentionSeeker} from '@/assets/js/tweetStreamAttentionSeeker';
+
 export var realTimeTweets = (function () {
     // console showing messages to user
     var konsole;
@@ -281,9 +283,14 @@ export var realTimeTweets = (function () {
                         }, k);
                         // k = k + 10;
                         // spread available tweets, every 10 sec new tweet set arrives, tweets spread over 9 secs, 1 sec pause
-                        k = k + (Math.floor(9500 / newTweets.length));
+                        // k = k + (Math.floor(9500 / newTweets.length));
+                        
+                        // no more spreading, fast add
+                        k = k + 10;
                     }(i));
                 }
+                
+                tweetStreamAttentionSeeker();
             }
 
             domTempOld = domTemp;
