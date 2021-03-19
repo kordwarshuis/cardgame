@@ -1124,6 +1124,26 @@ footer {
 }
 
 /*
- *  EIND NEWS TICKER
+ *  END NEWS TICKER
  */
+
+
+/*
+ *  BEGIN ATTENTION SEEKER TWEETS IN TWEATSTREAM
+ */
+
+.tweets-realtime .tweet:nth-child(-n+5) {
+    background: fff;
+    transition: background-color 0.9s ease-in-out;
+}
+
+.tweets-realtime .tweet.attention-seeker:nth-child(-n+5) {
+    background: rgb(126, 223, 253);
+    transition: background-color 0.3s ease-in-out;
+}
+
+/*
+ *  END ATTENTION SEEKER TWEETS IN TWEATSTREAM
+ */
+
 </style>
