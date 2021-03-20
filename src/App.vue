@@ -1133,8 +1133,7 @@ footer {
  */
 
 .tweets-realtime .tweet:nth-child(-n+5) {
-    background: fff;
-    transition: background-color 0.9s ease-in-out;
+    transition: background-color 0.7s ease-in-out;
 }
 
 .tweets-realtime .tweet.attention-seeker:nth-child(-n+5) {
