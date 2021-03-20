@@ -5,6 +5,6 @@ export function tweetStreamAttentionSeeker() {
         element.classList.add('attention-seeker');
         setTimeout(function () {
             element.classList.remove('attention-seeker');
-        }, 1000);
+        }, 500);
     });
 }
