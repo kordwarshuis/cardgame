@@ -1,5 +1,5 @@
 <template>
-<div class="card h-100 border p-3 mb-3 text-center relatedItems" v-if="this.$store.state.currentCard['Related']">
+<div class="card h-100 p-3 mb-3 text-center relatedItems" v-if="this.$store.state.currentCard['Related']">
     <h3 class="related">{{ related }}</h3>
     <p>
         <span v-for="item in this.$store.state.currentCard['Related']" v-bind:key="item" @click="$store.commit('showCardIntroFromURL', item)">
