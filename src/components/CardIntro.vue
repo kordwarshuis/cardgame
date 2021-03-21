@@ -66,14 +66,14 @@
             </div>
 
             <!-- LONG ANSWER -->
-            <div v-if="this.$store.state.currentCard['Long Answer']" class="card h-100 border p-3 mb-3">
+            <div v-if="this.$store.state.currentCard['Long Answer']" class="card h-100 p-3 mb-3">
                 <h3 class="longAnswer">{{ longAnswer }}</h3>
                 <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">
                     {{ item }}</p>
             </div>
 
             <!-- DIAGRAM -->
-            <div v-if="this.$store.state.currentCard['Diagram Data']" class="card h-100 border p-3 mb-3">
+            <div v-if="this.$store.state.currentCard['Diagram Data']" class="card h-100 p-3 mb-3">
                 <h3 class="diagram">{{ diagram }}</h3>
                 <p v-linkified:options="$store.state.linkifyOptions">
                     {{this.$store.state.currentCard["Diagram Description"]}}</p>
@@ -84,7 +84,7 @@
             <Quiz />
 
             <!-- READ MORE 1 -->
-            <div v-if="this.$store.state.currentCard['Read On 1 Text']" class="card h-100 border p-3 mb-3">
+            <div v-if="this.$store.state.currentCard['Read On 1 Text']" class="card h-100 p-3 mb-3">
                 <h3 class="readOn">{{ readMore }}</h3>
                 <p v-linkified:options="$store.state.linkifyOptions">
                     {{this.$store.state.currentCard["Read On 1 Text"]}}</p>
@@ -93,7 +93,7 @@
             </div>
 
             <!-- READ MORE 2 -->
-            <div v-if="this.$store.state.currentCard['Read On 2 Text']" class="card h-100 border p-3 mb-3">
+            <div v-if="this.$store.state.currentCard['Read On 2 Text']" class="card h-100 p-3 mb-3">
                 <h3 class="readOn">{{ readMore }}</h3>
                 <p v-linkified:options="$store.state.linkifyOptions">
                     {{this.$store.state.currentCard["Read On 2 Text"]}}</p>
@@ -101,7 +101,7 @@
             </div>
 
             <!-- READ MORE 3 -->
-            <div v-if="this.$store.state.currentCard['Read On 3 Text']" class="card h-100 border p-3 mb-3">
+            <div v-if="this.$store.state.currentCard['Read On 3 Text']" class="card h-100 p-3 mb-3">
                 <h3 class="readOn">{{ readMore }}</h3>
                 <p v-linkified:options="$store.state.linkifyOptions">
                     {{this.$store.state.currentCard["Read On 3 Text"]}}</p>
@@ -109,7 +109,7 @@
             </div>
 
             <!-- EXPERT 1 -->
-            <div v-if="this.$store.state.currentCard['Expert1']" class="card h-100 border p-3 mb-3">
+            <div v-if="this.$store.state.currentCard['Expert1']" class="card h-100 p-3 mb-3">
                 <h3 class="expert1">{{expert1}}</h3>
                 <img v-if='expert1Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert1Logo" alt="portrait of the expert">
                 <p v-linkified:options="$store.state.linkifyOptions">
@@ -117,7 +117,7 @@
             </div>
 
             <!-- EXPERT 2 -->
-            <div v-if="this.$store.state.currentCard['Expert2']" class="card h-100 border p-3 mb-3">
+            <div v-if="this.$store.state.currentCard['Expert2']" class="card h-100 p-3 mb-3">
                 <h3 class="expert2">{{expert2}}</h3>
                 <img v-if='expert2Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert2Logo" alt="portrait of the expert">
                 <p v-linkified:options="$store.state.linkifyOptions">
@@ -125,28 +125,28 @@
             </div>
 
             <!-- EXPERT 3 -->
-            <div v-if="this.$store.state.currentCard['Expert3']" class="card h-100 border p-3 mb-3">
+            <div v-if="this.$store.state.currentCard['Expert3']" class="card h-100 p-3 mb-3">
                 <h3 class="expert3">{{expert3}}</h3>
                 <img v-if='expert3Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert3Logo" alt="portrait of the expert">
                 <p>{{expert3Description}}<a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
             </div>
 
             <!-- COUNTER QUESTIONS -->
-            <div v-if="this.$store.state.currentCard['Counter Questions']" class="card h-100 border p-3 mb-3">
+            <div v-if="this.$store.state.currentCard['Counter Questions']" class="card h-100 p-3 mb-3">
                 <h3 class="counter-question">{{ counterQuestions }}</h3>
                 <p v-linkified:options="$store.state.linkifyOptions">
                     {{this.$store.state.currentCard["Counter Questions"]}}</p>
             </div>
 
             <!-- ANALOGY -->
-            <div v-if="this.$store.state.currentCard['Analogy']" class="card h-100 border p-3 mb-3">
+            <div v-if="this.$store.state.currentCard['Analogy']" class="card h-100 p-3 mb-3">
                 <h3 class="">{{ analogy }}</h3>
                 <p v-linkified:options="$store.state.linkifyOptions">
                     {{this.$store.state.currentCard["Analogy"]}}</p>
             </div>
 
             <!-- <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button> -->
-            <div v-if="discussionLink !== ''" class="discussion-group-link center card h-100 border p-3 mb-3 ">
+            <div v-if="discussionLink !== ''" class="discussion-group-link center card h-100 p-3 mb-3 ">
                 <p><a class="btn btn-primary mr-2" style="border: none; background: #373E65;" target="_blank" rel="noopener" :href="discussionLink">{{ discussionLinkDescription }}</a></p>
             </div>
 
