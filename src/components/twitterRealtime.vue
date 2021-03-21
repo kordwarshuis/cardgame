@@ -17,7 +17,7 @@
                                 <TwitterRealTimeStartStopToggle class="align-middle inline mr-2" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
 
                                 <!-- CONFIGURATION -->
-                                <button type="button" class="tweet-stream-configuration btn btn-outline-dark align-middle inline ml-2" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
+                                <button type="button" class="tweet-stream-configuration btn btn-outline-dark align-middle inline ml-0" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
                                     <span class="visuallyhidden">Tweetstream configuration</span>
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
                                 </button>
@@ -29,7 +29,7 @@
                                 </div> -->
 
                                 <!-- CLEAR -->
-                                <button class="btn btn-sm btn-outline-light ml-2 clear-tweet-stream-button">Clear</button>
+                                <button class="btn btn-sm btn-outline-light ml-0 clear-tweet-stream-button">Clear</button>
 
                                 <!-- SORT -->
                                 <button @click="sort('followerscount')" type="button" class="btn btn-outline-light btn-sm">
