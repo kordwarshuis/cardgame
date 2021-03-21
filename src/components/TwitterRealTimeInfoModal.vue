@@ -53,23 +53,5 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-// https://github.com/jquery/jquery-mobile/issues/2069
-select {
-    font-size: 18px;
-}
 
-h1,
-h2 {
-    font-size: 1rem;
-}
-
-// https://stackoverflow.com/a/26917844
-.close {
-    font-size: 2em;
-    color: #eee;
-}
-
-.close:hover {
-    color: #fff;
-}
 </style>
