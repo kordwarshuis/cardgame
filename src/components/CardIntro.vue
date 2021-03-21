@@ -690,6 +690,7 @@ h3.reply {
 .card {
     background: $card-full-content-item-background;
     color: $card-full-content-item-color;
+    border: $card-intro-border;
     display: inline-block; // this is needed as long as the specs is not fully implemented
     width: 100%;
     margin-top: 1em;
