@@ -18,7 +18,6 @@
                 <p class="misconception-typed typed mb-3">{{ getMisconception }} </p>
                 <!-- <span class="quote">”</span> -->
                 <!-- <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button> -->
-                <RandomCard />
             </div>
         </div>
 
@@ -158,6 +157,7 @@
             <!-- RELATED CARDS -->
             <RelatedCards />
 
+            <RandomCard />
         </div>
         <div class="footer col-lg-12 col-sm-12 m-0">
             <div>
@@ -769,7 +769,7 @@ h3.related {
     background: $linear-gradient1;
 }
 
-.discussion-group-link {
-    border-top: 1px dashed $card-full-content-item-color;
-}
+// .discussion-group-link {
+//     border-top: 1px dashed $card-full-content-item-color;
+// }
 </style>
