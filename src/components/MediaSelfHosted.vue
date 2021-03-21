@@ -1,7 +1,7 @@
 
 <template>
 <!-- negate doesnt seem to work -->
-<div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="">
+<div v-if="(this.$store.state.currentCard['Self Hosted Video'])" class="mt-3">
     <!-- <h3 class="video">Video</h3> -->
 
     <MediaSelfHostedBare />
