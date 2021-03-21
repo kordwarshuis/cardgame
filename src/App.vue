@@ -1013,10 +1013,9 @@ footer {
     }
 
     .card {
-        border: 1px dashed $basic1 !important;
+        border: $card-intro-border;
         background: transparent;
         border-radius: 15px;
-        // border-style: dashed !important;
     }
 
 }
