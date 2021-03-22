@@ -61,9 +61,20 @@ Mainly to use the network-effect. Our main goal is to neutralise the misconcepti
 See - [Rules and Scores](rules-game-scores.md) of the game.
 
 ## How to use the cards
+
+
 Have a look at an example stack of cards:\
 Go to https://blockchainbird.com/t/btc/, use the Tweet stream to find an appealing tweet with a misconception radiating from it, find the right card to answer (or whole category of cards), copy URL, and *"step forward"* by _pasting_ the copied URL in the tweet-response of the original tweet from the Tweet-stream. Briefly:
 > Find a tweet - Select a card - Reply with card 
+
+### Expirienced users
+You can open multiple browsers with multiple settings of your filtering of the tweet stream. The result is a fine grained selection method of recent tweets so you'll be the first to see misconception tweets of twitter users with a large group of followers. This gives you an advance over your competitors who might not use this option and they'll have to work through the list of tweets.
+
+Sort the tweet stream on:
+1. numbers of followers
+2. age of the tweet
+for maximum leverage to be the first one to respond to misconception tweets of twitter users with a large group of followers.
+
 
 ## How to integrate illustrations or cartoons
 Consider a work management system where you've negotiated an illustration as 'finished'.
