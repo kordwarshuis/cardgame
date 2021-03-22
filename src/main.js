@@ -23,6 +23,8 @@ import linkify from 'vue-linkify';
 // import animated from 'animate.css';
 import VueConfetti from 'vue-confetti';
 
+var Mousetrap = require('mousetrap');
+
 Vue.use(VueTour);
 Vue.use(d3);
 Vue.use(VueConfetti);
