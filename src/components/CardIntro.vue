@@ -82,6 +82,12 @@
             <!-- QUIZ -->
             <Quiz />
 
+            <!-- if there is Self Hosted Image -->
+            <!-- The assumption is that if any image is used this should be in the first one  -->
+            <template v-if="(this.$store.state.currentCard['Self Hosted Image 1'])">
+                <ImagesSelfHosted />
+            </template>
+
             <!-- READ MORE 1 -->
             <div v-if="this.$store.state.currentCard['Read On 1 Text']" class="card h-100 p-3 mb-3">
                 <h3 class="readOn">{{ readMore }}</h3>
