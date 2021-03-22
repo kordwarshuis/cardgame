@@ -2,7 +2,7 @@
 <!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
     <div class="input-group">
-        <input @input="onSearchBarInput" v-model="searchBarInputString" class="searchBar border form-control" :placeholder="searchBarPlaceholderText" />
+        <input @input="onSearchBarInput" v-model="searchBarInputString" class="searchBar border form-control mousetrap" :placeholder="searchBarPlaceholderText" />
     </div>
 
     <div class="search-results-container hideSearchResults">
@@ -95,19 +95,22 @@ export default {
         }
     },
     mounted: function () {
+        var that = this;
         this.disableBodyScroll(".search-results-container"); //mixin
         this.setSearchTermFromUrlQueryParams();
 
-        // https://shubhamjain.co/til/vue-shortcuts/
-        this._keyListener = function (e) {
-            if (e.key === "Escape") {
-                e.preventDefault();
-                this.stopSearch1();
-            }
-        };
-        document.addEventListener('keydown', this._keyListener.bind(this));
         this.stopSearch3();
         this.handlePopState();
+
+        Mousetrap.bind(['command+f', 'ctrl+f'], function () {
+            document.querySelector('.searchBar').focus();
+            return false;
+        });
+        Mousetrap.bind(['esc'], function () {
+            document.querySelector('.searchBar').blur();
+            that.stopSearch1();
+            return false;
+        });
     },
     beforeDestroy() {
         document.removeEventListener('keydown', this._keyListener);
