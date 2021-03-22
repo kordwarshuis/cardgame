@@ -84,6 +84,7 @@ export default {
         this.initSound();
         this.$store.dispatch("setProspectHandles");
         this.showKeybindingsModal();
+        this.playVictory();
     },
     methods: {
         fetchData() {
@@ -452,7 +453,10 @@ export default {
                 volume: 0.1,
                 src: [require("./assets/audio/348477__jalastram__gui-sound-effects-044.mp4")]
             });
-
+            victory = new Howl({
+                volume: 0.5,
+                src: [require("./assets/audio/470083__sheyvan__music-orchestral-victory-fanfare.mp4")]
+            });
             // document.querySelectorAll("a").forEach(item => item.addEventListener('click', function () {
             //     click.play()
             // }, false));
@@ -463,6 +467,12 @@ export default {
         showKeybindingsModal() {
             Mousetrap.bind(['?'], function () {
                 $('#shortcutKeysHelp').modal();
+                return false;
+            });
+        },
+        playVictory() {
+            Mousetrap.bind(['b t c', 'B T C'], function () {
+                if (localStorage.getItem("soundOn") === "true") victory.play();
                 return false;
             });
         }
