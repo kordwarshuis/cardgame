@@ -7,6 +7,7 @@
     <template v-if="realTimeTweets === 'true'">
         <TwitterRealTimeInfoModal />
     </template>
+    <ShortcutKeysHelp />
     <MainMenu />
     <template v-if="tour !== ''">
         <Tour></Tour>
@@ -57,6 +58,7 @@ export default {
     components: {
         TwitterRealTimeConfigModal: () => import( /* webpackChunkName: "TwitterRealTimeConfigModal" */ './components/TwitterRealTimeConfigModal.vue'),
         TwitterRealTimeInfoModal: () => import( /* webpackChunkName: "TwitterRealTimeInfoModal" */ './components/TwitterRealTimeInfoModal.vue'),
+        ShortcutKeysHelp: () => import( /* webpackChunkName: "ShortcutKeysHelp" */ './components/ShortcutKeysHelp.vue'),
         twitterRealtime: () => import( /* webpackChunkName: "Realtimetweets" */ './components/twitterRealtime.vue'),
         MainMenu,
         NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
