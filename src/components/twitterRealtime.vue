@@ -51,7 +51,6 @@
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
                                 </button>
 
-
                                 <!-- FILTER TWEETS -->
                                 <div class="input-group input-group-sm mb-3">
                                     <div class="input-group-prepend">
@@ -517,6 +516,11 @@ function slideInMenu() {
         if (openbtn) openbtn.addEventListener("click", toggleMenu);
         if (openbtn2) openbtn2.addEventListener("click", toggleMenu);
 
+        Mousetrap.bind(['o'], function () {
+            toggleMenu()
+            return false;
+        });
+
         // Create a media condition that targets viewports at least 768px wide
         // Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint
         // Toggle menu to show tweet stream initially only on bigger screens
@@ -935,5 +939,6 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
         transform: translate3d(1px, 0, 0);
     }
 }
+
 //END ARROW IN TWEET PANEL OPENER
 </style>
