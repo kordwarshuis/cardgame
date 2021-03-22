@@ -83,6 +83,7 @@ export default {
         // this.soundSetting();
         this.initSound();
         this.$store.dispatch("setProspectHandles");
+        this.showKeybindingsModal();
     },
     methods: {
         fetchData() {
@@ -103,7 +104,7 @@ export default {
                 if (process.env.VUE_APP_CARDGAME_SCORES !== "") {
                     requestTwo = axios.get(two);
                 } else {
-                    requestTwo = "";//empty string makes that the two requests go through even though the scores are empty
+                    requestTwo = ""; //empty string makes that the two requests go through even though the scores are empty
                 }
                 allRequests.push(requestTwo);
 
@@ -458,6 +459,12 @@ export default {
             // document.querySelectorAll("button").forEach(item => item.addEventListener('click', function () {
             //     click.play()
             // }, false));
+        },
+        showKeybindingsModal() {
+            Mousetrap.bind(['?'], function () {
+                $('#shortcutKeysHelp').modal();
+                return false;
+            });
         }
     }
 }
@@ -1128,7 +1135,6 @@ footer {
  *  END NEWS TICKER
  */
 
-
 /*
  *  BEGIN ATTENTION SEEKER TWEETS IN TWEATSTREAM
  */
@@ -1145,5 +1151,4 @@ footer {
 /*
  *  END ATTENTION SEEKER TWEETS IN TWEATSTREAM
  */
-
 </style>
