@@ -36,7 +36,7 @@
             </li>
 
             <!-- INFO -->
-            <button type="button" class="tweet-stream-info btn btn-outline-dark align-middle inline ml-2 mt-0 pt-1" style="border: none;" data-toggle="modal" data-target="#shortcutKeysHelp">
+            <button type="button" class="key-bindings-info btn btn-outline-dark align-middle inline ml-2 mt-0 pt-1" style="border: none;" data-toggle="modal" data-target="#shortcutKeysHelp">
                 <span class="visuallyhidden">Tweetstream info</span>
                 <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
             </button>
