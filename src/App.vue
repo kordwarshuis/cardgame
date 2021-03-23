@@ -179,9 +179,6 @@ export default {
                     responseData.forEach(function (v) {
                         delete v.Illustration
                     });
-                    responseData.forEach(function (v) {
-                        delete v['Flower Power']
-                    });
 
                     // prepare data
 
