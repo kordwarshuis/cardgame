@@ -2,7 +2,7 @@
 <!-- https://codepen.io/AndrewThian/pen/QdeOVa -->
 <div class="">
     <div class="input-group">
-        <input @input="onSearchBarInput" v-model="searchBarInputString" class="searchBar border form-control mousetrap" :placeholder="searchBarPlaceholderText" />
+        <input @input="onSearchBarInput" v-model="searchBarInputString" class="searchBar border form-control" :placeholder="searchBarPlaceholderText" />
     </div>
 
     <div class="search-results-container hideSearchResults">
