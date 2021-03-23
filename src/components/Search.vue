@@ -111,6 +111,12 @@ export default {
             that.stopSearch1();
             return false;
         });
+        // keybindings are not working when inside input etc but here we make an exception for esc
+        Mousetrap(document.querySelector('.searchBar')).bind('esc', function (event) {
+            document.querySelector('.searchBar').blur();
+            that.stopSearch1();
+            return false;
+        });
     },
     beforeDestroy() {
         document.removeEventListener('keydown', this._keyListener);
