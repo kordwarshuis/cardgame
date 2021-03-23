@@ -165,10 +165,23 @@ export default {
         this.clock();
         this.insertAndRemoveMessageToTweetStream();
         recalculateTweetTimeStamps();
+        this.sortKeybindings();
     },
     methods: {
         sort(key) {
             sort(key);
+        },
+        sortKeybindings() {
+            Mousetrap.bind(['t f'], function () {
+                console.log("tf");
+                sort('followerscount');
+                return false;
+            });
+
+            Mousetrap.bind(['t n'], function () {
+                sort('timestampms');
+                return false;
+            });
         },
         hideThisTweet() {
             document.addEventListener("click", function (event) {
