@@ -334,10 +334,20 @@ export default {
             var that = this;
             var button = document.querySelector('.clear-tweet-stream-button');
             var tweets = document.querySelector('.tweets-realtime .tweets');
-            button.addEventListener('click', function () {
+
+            function clear() {
                 tweets.innerHTML = "";
                 that.setRealtimeTweetsToLocalStorage();
+            }
+
+            button.addEventListener('click', function () {
+                clear();
             }, false);
+
+            Mousetrap.bind(['t c'], function () {
+                clear();
+                return false;
+            });
         },
         clearSelectedTweets() {
             var that = this;
