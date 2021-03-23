@@ -131,12 +131,6 @@
                     <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Analogy"]}}</p>
                 </div>
 
-                <!-- FLOWER POWER -->
-                <!-- <div class="content-item border p-3 mb-3" v-if="this.$store.state.currentCard['Flower Power']">
-                    <h3 class="flowerPower">{{ flowerPower }}</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions">{{this.$store.state.currentCard["Flower Power"]}}</p>
-                </div> -->
-
                 <!-- RELATED CARDS -->
                 <RelatedCards />
 
