@@ -175,7 +175,7 @@ export default {
                     var responseData = d3.csvParse(responseOne.data);
                     var responseDataTemp = [];
 
-                    // Temporary solution: remove some columns (google sheet) / keys
+                    // Temporary solution: remove some columns (google sheet) / keys TODO: check if this is still necessary
                     responseData.forEach(function (v) {
                         delete v.Illustration
                     });
