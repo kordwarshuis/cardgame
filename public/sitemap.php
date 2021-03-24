@@ -5,7 +5,7 @@
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 $url = $protocol.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/";
 
-echo $url;
+
 
 $domain = 'https://blockchainbird.org';
 $pathCardGame1 = '/t/btc/';
@@ -55,6 +55,10 @@ foreach ($cardContent as $key => $value) {
         }
     }
 }
+
+
+
+
 //BCB
 foreach ($cardContent as $key => $value) {
     if (strpos($cardContent[$key][$arrayPositionStack], '2') > -1) {
