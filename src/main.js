@@ -70,6 +70,7 @@ Vue.use(VueGtag, {
   }
 }, router);
 
+// https://laracasts.com/series/learn-vue-2-step-by-step/episodes/13
 window.cardgameEvent = new Vue();
 
 
