@@ -1,6 +1,7 @@
 <template>
 <div id="slide-menu-and-buttons-wrapper">
     <div class="slide-menu-wrapper">
+        <Typewriter />
         <div class="twitter-open-close-handle"></div>
         <div class="content container-fluid pt-0">
             <!-- BEGIN own content -->
@@ -133,6 +134,8 @@ import {
     sort
 } from "@/assets/js/sortTweets.js";
 
+import Typewriter from "@/components/AnimatedCharacters/Typewriter.vue";
+
 export default {
     name: "twitterRealtime",
     data() {
@@ -140,7 +143,8 @@ export default {
     },
     mixins: [disableBodyScrollMixin],
     components: {
-        TwitterRealTimeStartStopToggle
+        TwitterRealTimeStartStopToggle,
+        Typewriter
     },
     mounted() {
         setTimeout(function () {
