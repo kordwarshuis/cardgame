@@ -1,5 +1,5 @@
 <template>
-<div>
+<div style="position: absolute; top: 100px; left: 100px;">
     <div class="typewriter">
         <div class="slide"><i></i></div>
         <div class="paper"></div>
@@ -7,7 +7,7 @@
     </div>
 
     <!-- dribbble -->
-    <a class="dribbble" href="https://dribbble.com/shots/8184246-Typewriter" target="_blank"><img src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg" alt=""></a>
+    <!-- <a class="dribbble" href="https://dribbble.com/shots/8184246-Typewriter" target="_blank"><img src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg" alt=""></a> -->
 </div>
 </template>
 
@@ -39,8 +39,8 @@ export default {
 }
 
 .typewriter {
-    --blue: #5C86FF;
-    --blue-dark: #275EFE;
+    --blue: #40b1f7;
+    --blue-dark: #1CA1F2;
     --key: #fff;
     --paper: #EEF0FD;
     --text: #D3D4EC;
@@ -288,42 +288,6 @@ export default {
 
     81% {
         @include keyboard(7, 12px);
-    }
-}
-
-html {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-}
-
-* {
-    box-sizing: inherit;
-
-    &:before,
-    &:after {
-        box-sizing: inherit;
-    }
-}
-
-// Center & dribbble
-body {
-    min-height: 100vh;
-    display: flex;
-    font-family: 'Roboto', Arial;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-
-    .dribbble {
-        position: fixed;
-        display: block;
-        right: 20px;
-        bottom: 20px;
-
-        img {
-            display: block;
-            height: 28px;
-        }
     }
 }
 </style>
