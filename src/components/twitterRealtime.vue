@@ -177,7 +177,6 @@ export default {
         },
         sortKeybindings() {
             Mousetrap.bind(['t f'], function () {
-                console.log("tf");
                 sort('followerscount');
                 return false;
             });
