@@ -22,6 +22,7 @@
     <router-view />
     <Person1 />
     <Person2 />
+    <Typewriter />
     <!-- <Person3 /> -->
 
     <Toasts :show-progress="false" :time-out="2500"></Toasts>
