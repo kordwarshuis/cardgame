@@ -29,7 +29,6 @@ export default {
     },
     methods: {
         startTypewriter() {
-            console.log('this: ', this);
             document.querySelector('.typewriter-container').classList.remove('bounceOutRight');
             document.querySelector('.typewriter-container').classList.add('bounceInRight');
             document.querySelector('.typewriter').classList.add('start');
