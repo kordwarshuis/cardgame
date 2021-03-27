@@ -52,6 +52,7 @@ import MainMenu from "@/components/MainMenu.vue";
 import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
+import Typewriter from "@/components/AnimatedCharacters/Typewriter.vue";
 import Tour from "@/components/Tour.vue";
 import Updater from "@/components/Updater.vue";
 
@@ -65,6 +66,7 @@ export default {
         NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
         Person1,
         Person2,
+        Typewriter,
         Tour,
         Updater
         // slideInMenu,
