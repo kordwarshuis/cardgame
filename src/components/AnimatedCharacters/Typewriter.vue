@@ -1,25 +1,83 @@
 <template>
-<div style="position: absolute; top: 100px; left: 100px;">
-    <div class="typewriter">
+<div class="typewriter-container" style="">
+    <div class="typewriter ">
         <div class="slide"><i></i></div>
         <div class="paper"></div>
         <div class="keyboard"></div>
     </div>
-
-    <!-- dribbble -->
-    <!-- <a class="dribbble" href="https://dribbble.com/shots/8184246-Typewriter" target="_blank"><img src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg" alt=""></a> -->
+    <p class="typewriter-message">Important tweets incoming</p>
 </div>
 </template>
 
 <script>
 export default {
-    name: "Typewriter"
+    name: "Typewriter",
+    mounted() {
+        window.cardgameEvent.$on('startTypewriter', (item, response) => {
+                this.startTypewriter();
+            }),
+            window.cardgameEvent.$on('stopTypewriter', (item, response) => {
+                this.stopTypewriter();
+            }),
+            window.cardgameEvent.$on('startStopTypewriter', (item, response) => {
+                var that = this;
+                this.startTypewriter();
+                setTimeout(function () {
+                    that.stopTypewriter();
+                }, 3000);
+            })
+    },
+    methods: {
+        startTypewriter() {
+            console.log('this: ', this);
+            document.querySelector('.typewriter-container').classList.remove('bounceOutRight');
+            document.querySelector('.typewriter-container').classList.add('bounceInRight');
+            document.querySelector('.typewriter').classList.add('start');
+            if (localStorage.getItem("soundOn") === "true") {
+                setTimeout(function () {
+                    typewriter.play();
+                }, 1000);
+            }
+        },
+        stopTypewriter() {
+            document.querySelector('.typewriter-container').classList.remove('bounceInRight');
+            document.querySelector('.typewriter-container').classList.add('bounceOutRight');
+            document.querySelector('.typewriter').classList.remove('start');
+            if (localStorage.getItem("soundOn") === "true") {
+                typewriter.stop();
+            }
+        }
+    }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
+.typewriter-container {
+    position: absolute;
+    top: calc(50% - 50px);
+    left: -200px;
+    transform: translate3d(3000px, 0, 0) scaleX(3); // same as in the bounceInRight keyframe animation
+    display: none;
+    width: 100px;
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .typewriter-container {
+        display: block;
+    }
+}
+
+.typewriter-message {
+    margin-top: 0.5em;
+    font-size: 0.8em;
+    ;
+    text-align: center;
+    background: yellow;
+}
+
 // https://codepen.io/aaroniker/pen/XWWPbep
 
 @mixin keyboard($position: 0, $value: 0) {
@@ -38,6 +96,25 @@ export default {
     83px #{map-get($keys, 9)} 0 var(--key);
 }
 
+// add class .start to start animation
+.typewriter.start {
+    animation: bounce var(--duration) linear infinite;
+}
+
+.typewriter.start .slide {
+    animation: slide var(--duration) ease infinite;
+}
+
+.typewriter.start .paper {
+    animation: paper var(--duration) linear infinite;
+}
+
+.typewriter.start .keyboard {
+    &:after {
+        animation: keyboard var(--duration) linear infinite;
+    }
+}
+
 .typewriter {
     --blue: #40b1f7;
     --blue-dark: #1CA1F2;
@@ -47,7 +124,6 @@ export default {
     --tool: #FBC56C;
     --duration: 3s;
     position: relative;
-    animation: bounce var(--duration) linear infinite;
 
     .slide {
         width: 92px;
@@ -56,7 +132,6 @@ export default {
         margin-left: 14px;
         transform: translateX(14px);
         background: linear-gradient(var(--blue), var(--blue-dark));
-        animation: slide var(--duration) ease infinite;
 
         &:before,
         &:after,
@@ -109,7 +184,6 @@ export default {
         border-radius: 5px;
         background: var(--paper);
         transform: translateY(46px);
-        animation: paper var(--duration) linear infinite;
 
         &:before {
             content: '';
@@ -156,7 +230,6 @@ export default {
             height: 4px;
             border-radius: 2px;
             @include keyboard;
-            animation: keyboard var(--duration) linear infinite;
         }
     }
 }
@@ -288,6 +361,64 @@ export default {
 
     81% {
         @include keyboard(7, 12px);
+    }
+}
+
+// from: https://animate.style
+.bounceInRight {
+    animation-name: bounceInRight;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes bounceInRight {
+
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    from {
+        transform: translate3d(3000px, 0, 0);
+    }
+
+    60% {
+        transform: translate3d(-25px, 0, 0);
+    }
+
+    75% {
+        transform: translate3d(10px, 0, 0);
+    }
+
+    90% {
+        transform: translate3d(-5px, 0, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.bounceOutRight {
+    animation-name: bounceOutRight;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes bounceOutRight {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    20% {
+        transform: translate3d(-20px, 0, 0);
+    }
+
+    to {
+        transform: translate3d(2000px, 0, 0);
     }
 }
 </style>
