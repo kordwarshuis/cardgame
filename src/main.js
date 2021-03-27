@@ -70,6 +70,8 @@ Vue.use(VueGtag, {
   }
 }, router);
 
+window.cardgameEvent = new Vue();
+
 
 // https://www.digitalocean.com/community/tutorials/vuejs-google-analytics
 // https://github.com/ScreamZ/vue-analytics
