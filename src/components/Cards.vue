@@ -397,6 +397,15 @@ export default {
 @media (min-width: 768px) {
     .cards {
         padding-top: 50px;
+    }    
+    .card-columns .card {
+        margin-top: 2px;
+        box-shadow: 0px 0px 0px 0px #f700ff;
+        transition: box-shadow 0.3s linear;
+    }
+
+    .card-columns .card:hover {
+        box-shadow: 0px 0px 0px 2px #f700ff;
     }
 }
 
