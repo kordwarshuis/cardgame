@@ -10,7 +10,9 @@ import {
 import platform from 'platform-detect';
 // import {ios, android, tizen} from 'platform-detect/os.mjs';
 
-import {tweetStreamAttentionSeeker} from '@/assets/js/tweetStreamAttentionSeeker';
+import {
+    tweetStreamAttentionSeeker
+} from '@/assets/js/tweetStreamAttentionSeeker';
 
 export var realTimeTweets = (function () {
     // console showing messages to user
@@ -199,6 +201,11 @@ export var realTimeTweets = (function () {
                     ) ||
                     data[i].handpickedTweet === true) {
                     somethingFound = true;
+
+                    if (data[i].user.followers_count > 100000) {
+                        window.cardgameEvent.$emit('startStopTypewriter', 'A tweet with more than 100 000 followers was just posted.');
+                    }
+
                     domTemp =
                         "<div class='card mb-3 tweet newTweet" + handpickedClass + "'>" +
                         "<div class='card-body p-2'>" +
@@ -226,7 +233,7 @@ export var realTimeTweets = (function () {
                         "<div class='col-6'>Keyword</div>" +
 
                         "<div class='col-6 mb-3'>Verified: " + data[i].user.verified + "</div>" +
-                        "<div class='col-6 mb-3'>Followers: <span class='followerscount' data-followerscount='" + data[i].user.followers_count +"'>" + data[i].user.followers_count + "</span></div>" +
+                        "<div class='col-6 mb-3'>Followers: <span class='followerscount' data-followerscount='" + data[i].user.followers_count + "'>" + data[i].user.followers_count + "</span></div>" +
 
                         "<div class='col-6'></div>" +
                         "<div data-createdate='" + data[i].created_at + "' data-timestampms='" + data[i].timestamp_ms + "' class='col-6 timestamptweet timestampms'>" + timestampTweet(data[i].created_at) + "</div>" +
@@ -284,12 +291,12 @@ export var realTimeTweets = (function () {
                         // k = k + 10;
                         // spread available tweets, every 10 sec new tweet set arrives, tweets spread over 9 secs, 1 sec pause
                         // k = k + (Math.floor(9500 / newTweets.length));
-                        
+
                         // no more spreading, fast add
                         k = k + 10;
                     }(i));
                 }
-                
+
                 tweetStreamAttentionSeeker();
             }
 
