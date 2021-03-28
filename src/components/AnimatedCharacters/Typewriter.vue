@@ -5,7 +5,7 @@
         <div class="paper"></div>
         <div class="keyboard"></div>
     </div>
-    <p class="typewriter-message">Important tweets incoming</p>
+    <p class="typewriter-message">–</p>
 </div>
 </template>
 
@@ -13,25 +13,26 @@
 export default {
     name: "Typewriter",
     mounted() {
-        window.cardgameEvent.$on('startTypewriter', (item, response) => {
+        window.cardgameEvent.$on('startTypewriter', () => {
                 this.startTypewriter();
             }),
-            window.cardgameEvent.$on('stopTypewriter', (item, response) => {
+            window.cardgameEvent.$on('stopTypewriter', () => {
                 this.stopTypewriter();
             }),
-            window.cardgameEvent.$on('startStopTypewriter', (item, response) => {
+            window.cardgameEvent.$on('startStopTypewriter', (message) => {
                 var that = this;
-                this.startTypewriter();
+                this.startTypewriter(message);
                 setTimeout(function () {
                     that.stopTypewriter();
-                }, 3000);
+                }, 5000);
             })
     },
     methods: {
-        startTypewriter() {
+        startTypewriter(message) {
             document.querySelector('.typewriter-container').classList.remove('bounceOutRight');
             document.querySelector('.typewriter-container').classList.add('bounceInRight');
             document.querySelector('.typewriter').classList.add('start');
+            document.querySelector('.typewriter-message').innerHTML = message;
             if (localStorage.getItem("soundOn") === "true") {
                 setTimeout(function () {
                     typewriter.play();
@@ -42,6 +43,7 @@ export default {
             document.querySelector('.typewriter-container').classList.remove('bounceInRight');
             document.querySelector('.typewriter-container').classList.add('bounceOutRight');
             document.querySelector('.typewriter').classList.remove('start');
+            document.querySelector('.typewriter-message').innerHTML = "";
             if (localStorage.getItem("soundOn") === "true") {
                 typewriter.stop();
             }
@@ -55,8 +57,8 @@ export default {
 <style lang="scss" scoped>
 .typewriter-container {
     position: absolute;
-    top: calc(50% - 50px);
-    left: -200px;
+    top: calc(50% - 65px);
+    left: -170px;
     transform: translate3d(3000px, 0, 0) scaleX(3); // same as in the bounceInRight keyframe animation
     display: none;
     width: 100px;
@@ -71,10 +73,14 @@ export default {
 
 .typewriter-message {
     margin-top: 0.5em;
+    padding: 0.5em;
     font-size: 0.8em;
-    ;
     text-align: center;
-    background: yellow;
+    background: #1CA1F2;
+    border-radius: 5px;
+    color: #eee;
+    display: block;
+    width: 120px;;
 }
 
 // https://codepen.io/aaroniker/pen/XWWPbep
