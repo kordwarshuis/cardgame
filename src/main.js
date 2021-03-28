@@ -70,6 +70,9 @@ Vue.use(VueGtag, {
   }
 }, router);
 
+// https://laracasts.com/series/learn-vue-2-step-by-step/episodes/13
+window.cardgameEvent = new Vue();
+
 
 // https://www.digitalocean.com/community/tutorials/vuejs-google-analytics
 // https://github.com/ScreamZ/vue-analytics
