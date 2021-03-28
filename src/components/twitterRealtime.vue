@@ -556,7 +556,7 @@ function slideInMenu() {
                 toggleMenu();
                 setTimeout(function () {
                     toggleMenu();
-                }, 4000);
+                }, 700);
 
                 localStorage.setItem("tweetStreamOpenedOnce", "true");
             }
