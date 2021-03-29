@@ -13,8 +13,12 @@
             <div class="row justify-content-center ">
 
                 <h2>All cards, and number of times tweeted</h2>
-                <p style="font-size: 0.8em;font-weight: bold;text-align: center;">
+                <!-- <p style="font-size: 0.8em;font-weight: bold;text-align: center;">
                         <span :style="{ fontSize: (10+(howOften/1.5)) + 'px' }" style="display: inline-block; border-radius: 5px; color: #111; background: #0385DB;margin: 0.3em; padding: 0.3em;" v-for="(howOften, cardName) in this.$store.state.tweetedCards" >{{cardName}}: {{howOften}} </span> 
+                </p> -->
+
+                <p style="font-size: 0.8em;font-weight: bold;text-align: center;">
+                    <a :data-id="cardName" @click="showCardIntro" :style="{ fontSize: (10+(howOften/1.5)) + 'px' }" style="display: inline-block; border-radius: 5px; color: #111; background: #0385DB;margin: 0.3em; padding: 0.3em;cursor: pointer;" v-for="(howOften, cardName) in this.$store.state.tweetedCards">{{cardName}}: {{howOften}} </a>
                 </p>
 
                 <!-- ALL TIME TWEETS -->
@@ -382,8 +386,13 @@ import {
 
 // import DatePickers from "./components/JavascriptComponents/DatePickers";
 
+import
+showCardIntro
+from "@/components/mixins/showCardIntro";
+
 export default {
     name: "Scores",
+    mixins: [showCardIntro],
     data() {
         return {
             scores: [],
