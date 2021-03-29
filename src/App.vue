@@ -150,13 +150,17 @@ export default {
                             return e.indexOf('card') > -1
                         });
 
-                        // remove the string 'card/'
                         tweetedCardsFlat.forEach(function (part, index, theArray) {
-                            var replace = "card/";
-                            var re = new RegExp(replace, "i");
-                            theArray[index] = theArray[index].replace(re, "");
+                            // if hash at the end, remove it
+                            theArray[index] = theArray[index].replace(/#$/, "");
+                            // if slash at the end, remove it
+                            theArray[index] = theArray[index].replace(/\/$/, "");
+
+                            // only keep everything after the last slash, https://stackoverflow.com/a/8376542
+                            var str = theArray[index];
+                            var n = str.lastIndexOf('/');
+                            theArray[index] = str.substring(n + 1);
                         });
-                        // console.log('tweetedCardsFlat: ', tweetedCardsFlat);
 
                         // save in $store how many times has each card been tweeted
                         (function () {
