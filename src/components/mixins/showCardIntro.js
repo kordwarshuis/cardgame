@@ -1,6 +1,6 @@
 export default {
     methods: {
-        showCardIntro() {
+        showCardIntro(event) {
             // deal with CSS to open and close
             this.$store.commit("changeCssClassCardIntroState", "open");
             this.$store.commit("changeCssClassCardOverviewState", "overlay-fullscreen-open");
