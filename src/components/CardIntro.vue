@@ -673,7 +673,7 @@ h3.reply {
 
 .columns-layout-container {
     overflow: scroll;
-    height: 100%;
+    height: calc(100% - 10px);// 10px so the scroll bar is not visible due to border radius element dat is in top
     -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
     padding: 0 1em 100px;
 }
