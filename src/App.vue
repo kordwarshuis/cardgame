@@ -233,10 +233,11 @@ export default {
 
                         // split string on \n\n, so we can make paragraphs later, or separate links for example
                         responseData[i]["Misconception Elaborate"] = this.splitString(responseData[i]["Misconception Elaborate"], "\n\n");
-
                         responseData[i]["Short Answer"] = this.splitString(responseData[i]["Short Answer"], "\n\n");
-
                         responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
+                        responseData[i]["Expert1"] = this.splitString(responseData[i]["Expert1"], "\n\n");
+                        responseData[i]["Expert2"] = this.splitString(responseData[i]["Expert2"], "\n\n");
+                        responseData[i]["Expert3"] = this.splitString(responseData[i]["Expert3"], "\n\n");
 
                         responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
 
