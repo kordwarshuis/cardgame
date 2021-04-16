@@ -229,20 +229,20 @@ export default {
                     // split strings into arrays
                     for (let i = 0; i < responseData.length; i++) {
                         // format quiz data
-                        responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
+                        if (responseData[i]["Quiz"] !== undefined) responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
 
                         // split string on \n\n, so we can make paragraphs later, or separate links for example
-                        responseData[i]["Misconception Elaborate"] = this.splitString(responseData[i]["Misconception Elaborate"], "\n\n");
-                        responseData[i]["Short Answer"] = this.splitString(responseData[i]["Short Answer"], "\n\n");
-                        responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
-                        responseData[i]["Expert1"] = this.splitString(responseData[i]["Expert1"], "\n\n");
-                        responseData[i]["Expert2"] = this.splitString(responseData[i]["Expert2"], "\n\n");
-                        responseData[i]["Expert3"] = this.splitString(responseData[i]["Expert3"], "\n\n");
+                        if (responseData[i]["Misconception Elaborate"] !== undefined) responseData[i]["Misconception Elaborate"] = this.splitString(responseData[i]["Misconception Elaborate"], "\n\n");
+                        if (responseData[i]["Short Answer"] !== undefined) responseData[i]["Short Answer"] = this.splitString(responseData[i]["Short Answer"], "\n\n");
+                        if (responseData[i]["Long Answer"] !== undefined) responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
+                        if (responseData[i]["Expert1"] !== undefined) responseData[i]["Expert1"] = this.splitString(responseData[i]["Expert1"], "\n\n");
+                        if (responseData[i]["Expert2"] !== undefined) responseData[i]["Expert2"] = this.splitString(responseData[i]["Expert2"], "\n\n");
+                        if (responseData[i]["Expert3"] !== undefined) responseData[i]["Expert3"] = this.splitString(responseData[i]["Expert3"], "\n\n");
 
-                        responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
+                        if (responseData[i]["Youtube Video Description"] !== undefined) responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
 
                         // split string on ','
-                        responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
+                        if (responseData[i]["Related"]) responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
 
                         // trim spaces (for example when source is: word1, word2) TODO: do this for everything
                         if (responseData[i]["Related"] !== undefined) {
