@@ -82,6 +82,12 @@
             <!-- QUIZ -->
             <Quiz />
 
+            <!-- if there is Self Hosted Image -->
+            <!-- The assumption is that if any image is used this should be in the first one  -->
+            <template v-if="(this.$store.state.currentCard['Self Hosted Image 1'])">
+                <ImagesSelfHosted />
+            </template>
+
             <!-- READ MORE 1 -->
             <div v-if="this.$store.state.currentCard['Read On 1 Text']" class="card h-100 p-3 mb-3">
                 <h3 class="readOn">{{ readMore }}</h3>
@@ -111,23 +117,24 @@
             <div v-if="this.$store.state.currentCard['Expert1']" class="card h-100 p-3 mb-3">
                 <h3 class="expert1">{{expert1}}</h3>
                 <img v-if='expert1Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert1Logo" alt="portrait of the expert">
-                <p v-linkified:options="$store.state.linkifyOptions">
-                    {{ this.$store.state.currentCard['Expert1'] }}</p>
+                <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Expert1']" v-bind:key="item">
+                    {{ item }}</p>
             </div>
 
             <!-- EXPERT 2 -->
             <div v-if="this.$store.state.currentCard['Expert2']" class="card h-100 p-3 mb-3">
                 <h3 class="expert2">{{expert2}}</h3>
                 <img v-if='expert2Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert2Logo" alt="portrait of the expert">
-                <p v-linkified:options="$store.state.linkifyOptions">
-                    {{ this.$store.state.currentCard['Expert2'] }}</p>
+                <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Expert2']" v-bind:key="item">
+                    {{ item }}</p>
             </div>
 
             <!-- EXPERT 3 -->
             <div v-if="this.$store.state.currentCard['Expert3']" class="card h-100 p-3 mb-3">
                 <h3 class="expert3">{{expert3}}</h3>
                 <img v-if='expert3Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert3Logo" alt="portrait of the expert">
-                <p>{{expert3Description}}<a target="_blank" rel="noopener" :href="this.$store.state.currentCard['Expert3']">Read</a></p>
+                <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Expert3']" v-bind:key="item">
+                    {{ item }}</p>
             </div>
 
             <!-- COUNTER QUESTIONS -->
@@ -667,7 +674,7 @@ h3.reply {
 
 .columns-layout-container {
     overflow: scroll;
-    height: 100%;
+    height: calc(100% - 10px); // 10px so the scroll bar is not visible due to border radius element dat is in top
     -webkit-overflow-scrolling: touch; //https://stackoverflow.com/a/41601290
     padding: 0 1em 100px;
 }

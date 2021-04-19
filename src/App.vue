@@ -7,6 +7,7 @@
     <template v-if="realTimeTweets === 'true'">
         <TwitterRealTimeInfoModal />
     </template>
+    <ShortcutKeysHelp />
     <MainMenu />
     <template v-if="tour !== ''">
         <Tour></Tour>
@@ -45,7 +46,6 @@ import TwitterRealTimeConfigModal from "@/components/TwitterRealTimeConfigModal.
 import TwitterRealTimeInfoModal from "@/components/TwitterRealTimeInfoModal.vue";
 import MainMenu from "@/components/MainMenu.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
-// import '~snapsvg/dist/snapsvg/dist/snap.svg.js';
 // import * as Hammer from "hammerjs";
 import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
@@ -57,6 +57,7 @@ export default {
     components: {
         TwitterRealTimeConfigModal: () => import( /* webpackChunkName: "TwitterRealTimeConfigModal" */ './components/TwitterRealTimeConfigModal.vue'),
         TwitterRealTimeInfoModal: () => import( /* webpackChunkName: "TwitterRealTimeInfoModal" */ './components/TwitterRealTimeInfoModal.vue'),
+        ShortcutKeysHelp: () => import( /* webpackChunkName: "ShortcutKeysHelp" */ './components/ShortcutKeysHelp.vue'),
         twitterRealtime: () => import( /* webpackChunkName: "Realtimetweets" */ './components/twitterRealtime.vue'),
         MainMenu,
         NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
@@ -81,6 +82,8 @@ export default {
         // this.soundSetting();
         this.initSound();
         this.$store.dispatch("setProspectHandles");
+        this.showKeybindingsModal();
+        this.playVictory();
     },
     methods: {
         fetchData() {
@@ -101,7 +104,7 @@ export default {
                 if (process.env.VUE_APP_CARDGAME_SCORES !== "") {
                     requestTwo = axios.get(two);
                 } else {
-                    requestTwo = "";//empty string makes that the two requests go through even though the scores are empty
+                    requestTwo = ""; //empty string makes that the two requests go through even though the scores are empty
                 }
                 allRequests.push(requestTwo);
 
@@ -147,13 +150,17 @@ export default {
                             return e.indexOf('card') > -1
                         });
 
-                        // remove the string 'card/'
                         tweetedCardsFlat.forEach(function (part, index, theArray) {
-                            var replace = "card/";
-                            var re = new RegExp(replace, "i");
-                            theArray[index] = theArray[index].replace(re, "");
+                            // if hash at the end, remove it
+                            theArray[index] = theArray[index].replace(/#$/, "");
+                            // if slash at the end, remove it
+                            theArray[index] = theArray[index].replace(/\/$/, "");
+
+                            // only keep everything after the last slash, https://stackoverflow.com/a/8376542
+                            var str = theArray[index];
+                            var n = str.lastIndexOf('/');
+                            theArray[index] = str.substring(n + 1);
                         });
-                        // console.log('tweetedCardsFlat: ', tweetedCardsFlat);
 
                         // save in $store how many times has each card been tweeted
                         (function () {
@@ -171,12 +178,9 @@ export default {
                     var responseData = d3.csvParse(responseOne.data);
                     var responseDataTemp = [];
 
-                    // Temporary solution: remove some columns (google sheet) / keys
+                    // Temporary solution: remove some columns (google sheet) / keys TODO: check if this is still necessary
                     responseData.forEach(function (v) {
                         delete v.Illustration
-                    });
-                    responseData.forEach(function (v) {
-                        delete v['Flower Power']
                     });
 
                     // prepare data
@@ -225,19 +229,20 @@ export default {
                     // split strings into arrays
                     for (let i = 0; i < responseData.length; i++) {
                         // format quiz data
-                        responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
+                        if (responseData[i]["Quiz"] !== undefined) responseData[i]["Quiz"] = this.prepareQuiz(responseData[i]["Quiz"]);
 
                         // split string on \n\n, so we can make paragraphs later, or separate links for example
-                        responseData[i]["Misconception Elaborate"] = this.splitString(responseData[i]["Misconception Elaborate"], "\n\n");
+                        if (responseData[i]["Misconception Elaborate"] !== undefined) responseData[i]["Misconception Elaborate"] = this.splitString(responseData[i]["Misconception Elaborate"], "\n\n");
+                        if (responseData[i]["Short Answer"] !== undefined) responseData[i]["Short Answer"] = this.splitString(responseData[i]["Short Answer"], "\n\n");
+                        if (responseData[i]["Long Answer"] !== undefined) responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
+                        if (responseData[i]["Expert1"] !== undefined) responseData[i]["Expert1"] = this.splitString(responseData[i]["Expert1"], "\n\n");
+                        if (responseData[i]["Expert2"] !== undefined) responseData[i]["Expert2"] = this.splitString(responseData[i]["Expert2"], "\n\n");
+                        if (responseData[i]["Expert3"] !== undefined) responseData[i]["Expert3"] = this.splitString(responseData[i]["Expert3"], "\n\n");
 
-                        responseData[i]["Short Answer"] = this.splitString(responseData[i]["Short Answer"], "\n\n");
-
-                        responseData[i]["Long Answer"] = this.splitString(responseData[i]["Long Answer"], "\n\n");
-
-                        responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
+                        if (responseData[i]["Youtube Video Description"] !== undefined) responseData[i]["Youtube Video Description"] = this.splitString(responseData[i]["Youtube Video Description"], "\n\n");
 
                         // split string on ','
-                        responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
+                        if (responseData[i]["Related"]) responseData[i]["Related"] = this.splitString(responseData[i]["Related"], ",");
 
                         // trim spaces (for example when source is: word1, word2) TODO: do this for everything
                         if (responseData[i]["Related"] !== undefined) {
@@ -449,13 +454,28 @@ export default {
                 volume: 0.1,
                 src: [require("./assets/audio/348477__jalastram__gui-sound-effects-044.mp4")]
             });
-
+            victory = new Howl({
+                volume: 0.5,
+                src: [require("./assets/audio/470083__sheyvan__music-orchestral-victory-fanfare.mp4")]
+            });
             // document.querySelectorAll("a").forEach(item => item.addEventListener('click', function () {
             //     click.play()
             // }, false));
             // document.querySelectorAll("button").forEach(item => item.addEventListener('click', function () {
             //     click.play()
             // }, false));
+        },
+        showKeybindingsModal() {
+            Mousetrap.bind(['?'], function () {
+                $('#shortcutKeysHelp').modal();
+                return false;
+            });
+        },
+        playVictory() {
+            Mousetrap.bind(['b t c', 'B T C'], function () {
+                if (localStorage.getItem("soundOn") === "true") victory.play();
+                return false;
+            });
         }
     }
 }
@@ -1126,7 +1146,6 @@ footer {
  *  END NEWS TICKER
  */
 
-
 /*
  *  BEGIN ATTENTION SEEKER TWEETS IN TWEATSTREAM
  */
@@ -1143,5 +1162,4 @@ footer {
 /*
  *  END ATTENTION SEEKER TWEETS IN TWEATSTREAM
  */
-
 </style>

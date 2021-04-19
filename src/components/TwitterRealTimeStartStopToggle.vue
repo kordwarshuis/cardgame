@@ -24,17 +24,26 @@ export default {
             function stop() {
                 getJSON.stop();
             }
+
             function start() {
                 getJSON.start(process.env.VUE_APP_REALTIME_TWITTER_JSON);
             }
 
-            // toggle between stream is on and stream is off
-            twitterRealTimeToggleInput.addEventListener('change', function () {
+            function startStop() {
                 streamOn ?
                     stop() :
                     start();
                 streamOn = !streamOn;
+            }
+
+            // toggle between stream is on and stream is off
+            twitterRealTimeToggleInput.addEventListener('change', startStop);
+
+            Mousetrap.bind(['t s'], function () {
+                startStop();
+                return false;
             });
+
         }
     }
 };

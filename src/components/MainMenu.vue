@@ -34,6 +34,12 @@
             <li class="nav-item" style="border-right: none;">
                 <SoundToggle />
             </li>
+
+            <!-- INFO -->
+            <button type="button" class="key-bindings-info btn btn-outline-dark align-middle inline ml-2 mt-0 pt-1" style="border: none;" data-toggle="modal" data-target="#shortcutKeysHelp">
+                <span class="visuallyhidden">Tweetstream info</span>
+                <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
+            </button>
         </ul>
         <Search />
         <div class="text-center navbar-toggler2" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">▲</div>

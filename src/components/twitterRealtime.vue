@@ -1,6 +1,7 @@
 <template>
 <div id="slide-menu-and-buttons-wrapper">
     <div class="slide-menu-wrapper">
+        <Typewriter />
         <div class="twitter-open-close-handle"></div>
         <div class="content container-fluid pt-0">
             <!-- BEGIN own content -->
@@ -50,7 +51,6 @@
                                     <span class="visuallyhidden">Tweetstream info</span>
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
                                 </button>
-
 
                                 <!-- FILTER TWEETS -->
                                 <div class="input-group input-group-sm mb-3">
@@ -134,6 +134,8 @@ import {
     sort
 } from "@/assets/js/sortTweets.js";
 
+import Typewriter from "@/components/AnimatedCharacters/Typewriter.vue";
+
 export default {
     name: "twitterRealtime",
     data() {
@@ -141,7 +143,8 @@ export default {
     },
     mixins: [disableBodyScrollMixin],
     components: {
-        TwitterRealTimeStartStopToggle
+        TwitterRealTimeStartStopToggle,
+        Typewriter
     },
     mounted() {
         setTimeout(function () {
@@ -166,10 +169,22 @@ export default {
         this.clock();
         this.insertAndRemoveMessageToTweetStream();
         recalculateTweetTimeStamps();
+        this.sortKeybindings();
     },
     methods: {
         sort(key) {
             sort(key);
+        },
+        sortKeybindings() {
+            Mousetrap.bind(['t f'], function () {
+                sort('followerscount');
+                return false;
+            });
+
+            Mousetrap.bind(['t n'], function () {
+                sort('timestampms');
+                return false;
+            });
         },
         hideThisTweet() {
             document.addEventListener("click", function (event) {
@@ -335,10 +350,20 @@ export default {
             var that = this;
             var button = document.querySelector('.clear-tweet-stream-button');
             var tweets = document.querySelector('.tweets-realtime .tweets');
-            button.addEventListener('click', function () {
+
+            function clear() {
                 tweets.innerHTML = "";
                 that.setRealtimeTweetsToLocalStorage();
+            }
+
+            button.addEventListener('click', function () {
+                clear();
             }, false);
+
+            Mousetrap.bind(['t c'], function () {
+                clear();
+                return false;
+            });
         },
         clearSelectedTweets() {
             var that = this;
@@ -517,6 +542,11 @@ function slideInMenu() {
         if (openbtn) openbtn.addEventListener("click", toggleMenu);
         if (openbtn2) openbtn2.addEventListener("click", toggleMenu);
 
+        Mousetrap.bind(['o'], function () {
+            toggleMenu()
+            return false;
+        });
+
         // Create a media condition that targets viewports at least 768px wide
         // Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint
         // Toggle menu to show tweet stream initially only on bigger screens
@@ -526,7 +556,7 @@ function slideInMenu() {
                 toggleMenu();
                 setTimeout(function () {
                     toggleMenu();
-                }, 4000);
+                }, 700);
 
                 localStorage.setItem("tweetStreamOpenedOnce", "true");
             }
@@ -935,5 +965,6 @@ https://tympanus.net/codrops/2014/09/16/off-canvas-menu-effects/
         transform: translate3d(1px, 0, 0);
     }
 }
+
 //END ARROW IN TWEET PANEL OPENER
 </style>
