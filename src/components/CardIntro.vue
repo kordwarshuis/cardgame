@@ -159,7 +159,7 @@
             <Person3 />
 
             <!-- KEYWORDS CARDS -->
-            <Keywords />
+            <!-- <Keywords /> -->
 
             <!-- RELATED CARDS -->
             <RelatedCards />
