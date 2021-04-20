@@ -26,11 +26,11 @@
             <div class="card h-100" v-if="this.$store.state.currentCard['Misconception Elaborate']">
                 <div class="card-body center" style="">
                     <h3>{{ misconception }}</h3>
-                    <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item">
+                    <vue-markdown v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Misconception Elaborate']" v-bind:key="item">
                         <!-- <span class="quote">“</span> -->
                         {{ item }}
                         <!-- <span class="quote">”</span> -->
-                    </p>
+                    </vue-markdown>
                 </div>
             </div>
 
@@ -40,8 +40,8 @@
                     <h3 class="pt-2 reply">{{ reply }}</h3>
                     <time v-if="(this.$store.state.currentCard['Date'])">{{this.$store.state.currentCard['Date']}}</time>
 
-                    <p class="" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}
-                    </p>
+                    <vue-markdown class="" v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Short Answer']" v-bind:key="item">{{ item }}
+                    </vue-markdown>
                     <!-- <hr> -->
                 </div>
             </div>
@@ -67,8 +67,11 @@
             <!-- LONG ANSWER -->
             <div v-if="this.$store.state.currentCard['Long Answer']" class="card h-100 p-3 mb-3">
                 <h3 class="longAnswer">{{ longAnswer }}</h3>
-                <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">
-                    {{ item }}</p>
+                <!-- <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">
+                    {{ item }}</p> -->
+                <vue-markdown v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Long Answer']" v-bind:key="item">
+                    {{ item }}
+                </vue-markdown>
             </div>
 
             <!-- DIAGRAM -->
@@ -91,8 +94,8 @@
             <!-- READ MORE 1 -->
             <div v-if="this.$store.state.currentCard['Read On 1 Text']" class="card h-100 p-3 mb-3">
                 <h3 class="readOn">{{ readMore }}</h3>
-                <p v-linkified:options="$store.state.linkifyOptions">
-                    {{this.$store.state.currentCard["Read On 1 Text"]}}</p>
+                <vue-markdown v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Read On 1 Text"]}}</vue-markdown>
                 <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 1 Link']">{{ readOn }}</a>
                 </p>
             </div>
@@ -100,16 +103,16 @@
             <!-- READ MORE 2 -->
             <div v-if="this.$store.state.currentCard['Read On 2 Text']" class="card h-100 p-3 mb-3">
                 <h3 class="readOn">{{ readMore }}</h3>
-                <p v-linkified:options="$store.state.linkifyOptions">
-                    {{this.$store.state.currentCard["Read On 2 Text"]}}</p>
+                <vue-markdown v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Read On 2 Text"]}}</vue-markdown>
                 <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 2 Link']">{{ readOn }}</a></p>
             </div>
 
             <!-- READ MORE 3 -->
             <div v-if="this.$store.state.currentCard['Read On 3 Text']" class="card h-100 p-3 mb-3">
                 <h3 class="readOn">{{ readMore }}</h3>
-                <p v-linkified:options="$store.state.linkifyOptions">
-                    {{this.$store.state.currentCard["Read On 3 Text"]}}</p>
+                <vue-markdown v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Read On 3 Text"]}}</vue-markdown>
                 <p><a class="btn btn-outline-dark" target="_blank" rel="noopener" :href="this.$store.state.currentCard['Read On 3 Link']">{{ readOn }}</a></p>
             </div>
 
@@ -117,38 +120,38 @@
             <div v-if="this.$store.state.currentCard['Expert1']" class="card h-100 p-3 mb-3">
                 <h3 class="expert1">{{expert1}}</h3>
                 <img v-if='expert1Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert1Logo" alt="portrait of the expert">
-                <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Expert1']" v-bind:key="item">
-                    {{ item }}</p>
+                <vue-markdown v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Expert1']" v-bind:key="item">
+                    {{ item }}</vue-markdown>
             </div>
 
             <!-- EXPERT 2 -->
             <div v-if="this.$store.state.currentCard['Expert2']" class="card h-100 p-3 mb-3">
                 <h3 class="expert2">{{expert2}}</h3>
                 <img v-if='expert2Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert2Logo" alt="portrait of the expert">
-                <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Expert2']" v-bind:key="item">
-                    {{ item }}</p>
+                <vue-markdown v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Expert2']" v-bind:key="item">
+                    {{ item }}</vue-markdown>
             </div>
 
             <!-- EXPERT 3 -->
             <div v-if="this.$store.state.currentCard['Expert3']" class="card h-100 p-3 mb-3">
                 <h3 class="expert3">{{expert3}}</h3>
                 <img v-if='expert3Logo !== ""' class="img-thumbnail rounded float-left mr-3" :src="expert3Logo" alt="portrait of the expert">
-                <p v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Expert3']" v-bind:key="item">
-                    {{ item }}</p>
+                <vue-markdown v-linkified:options="$store.state.linkifyOptions" v-for="item in this.$store.state.currentCard['Expert3']" v-bind:key="item">
+                    {{ item }}</vue-markdown>
             </div>
 
             <!-- COUNTER QUESTIONS -->
             <div v-if="this.$store.state.currentCard['Counter Questions']" class="card h-100 p-3 mb-3">
                 <h3 class="counter-question">{{ counterQuestions }}</h3>
-                <p v-linkified:options="$store.state.linkifyOptions">
-                    {{this.$store.state.currentCard["Counter Questions"]}}</p>
+                <vue-markdown v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Counter Questions"]}}</vue-markdown>
             </div>
 
             <!-- ANALOGY -->
             <div v-if="this.$store.state.currentCard['Analogy']" class="card h-100 p-3 mb-3">
                 <h3 class="">{{ analogy }}</h3>
-                <p v-linkified:options="$store.state.linkifyOptions">
-                    {{this.$store.state.currentCard["Analogy"]}}</p>
+                <vue-markdown v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["Analogy"]}}</vue-markdown>
             </div>
 
             <!-- <button class="md-close mt-1 btn btn-primary text-right" @click="$store.commit('hideModal')">Close</button> -->
@@ -192,6 +195,7 @@ import ImageSelfHosted from "@/components/ImageSelfHosted.vue";
 import ImagesSelfHosted from "@/components/ImagesSelfHosted.vue";
 import Keywords from "@/components/Keywords.vue";
 import Person3 from "@/components/AnimatedCharacters/Person3.vue";
+import VueMarkdown from 'vue-markdown';
 
 // import Quiz from "@/components/Quiz.vue";
 import {
@@ -215,7 +219,8 @@ export default {
         SocialMedia,
         RelatedCards,
         Keywords,
-        Person3
+        Person3,
+        VueMarkdown
     },
     data() {
         return {
