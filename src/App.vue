@@ -120,6 +120,7 @@ export default {
                     var tweetedCardsFlat = [];
 
                     // only if there is something to do:
+                    // TODO: the code breaks when JSON structure is wrong, check if JSON had correct structure
                     if (process.env.VUE_APP_CARDGAME_SCORES !== "") {
                         responseTwo.data.scores.forEach(function (entry) {
                             tweetedCards.push(entry.cardURLs);
