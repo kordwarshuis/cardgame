@@ -137,6 +137,15 @@
                     {{ item }}</p>
             </div>
 
+            <!-- MULTILINK -->
+            <div v-if="this.$store.state.currentCard['MultiLink']" class="card h-100 p-3 mb-3">
+                <!-- TODO: text to language file -->
+                <h3 class="expert3">Links</h3>
+
+                <p v-linkified:options="$store.state.linkifyOptions">
+                    {{this.$store.state.currentCard["MultiLink"]}}</p>
+            </div>
+
             <!-- COUNTER QUESTIONS -->
             <div v-if="this.$store.state.currentCard['Counter Questions']" class="card h-100 p-3 mb-3">
                 <h3 class="counter-question">{{ counterQuestions }}</h3>
