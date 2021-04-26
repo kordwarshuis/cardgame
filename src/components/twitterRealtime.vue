@@ -552,14 +552,19 @@ function slideInMenu() {
         // Toggle menu to show tweet stream initially only on bigger screens
         if (mediaQuery.matches) {
             // open the tweetstream only once
-            if (localStorage.getItem("tweetStreamOpenedOnce") !== "true") {
-                toggleMenu();
-                setTimeout(function () {
-                    toggleMenu();
-                }, 700);
+            // if (localStorage.getItem("tweetStreamOpenedOnce") !== "true") {
+            //     toggleMenu();
+            //     setTimeout(function () {
+            //         toggleMenu();
+            //     }, 700);
+            //
+            //     localStorage.setItem("tweetStreamOpenedOnce", "true");
+            // }
 
-                localStorage.setItem("tweetStreamOpenedOnce", "true");
-            }
+            // or open the tweetstream always
+            setTimeout(function () {
+                toggleMenu();
+            }, 2000);
         }
 
         if (isOpen === true && document.querySelector("#open-button")) {
