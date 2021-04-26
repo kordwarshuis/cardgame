@@ -6,6 +6,10 @@ import {
     realTimeTweets
 } from "@/assets/js/realTimeTweets.js";
 
+import {
+    tweetsHistory
+} from "./tweetsHistory.js";
+
 export var getJSON = (function () {
     var fetchTweetsLoop;
     var fetchTweetsLoopHandpicked;
@@ -36,6 +40,7 @@ export var getJSON = (function () {
         var refreshInterval = 10000;
 
         function fetchData(source, handpicked) {
+            console.log('source: ', source);
             // console.log('handpicked: ', handpicked);
             var connectionSymbol = document.querySelector('.menu-icon');
             fetch(source)
@@ -133,7 +138,7 @@ export var getJSON = (function () {
         fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
         fetchTweetsLoop = setInterval(function () {
             console.log('Fetch new tweets.');
-            konsole.innerHTML = 'Fetch new tweets.'
+            konsole.innerHTML = 'Fetch new tweets.';
             fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
         }, refreshInterval);
     }
