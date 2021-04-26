@@ -6,16 +6,16 @@ import {
 } from "@/assets/js/calculateTweetTimeStamps";
 
 export var tweetTemplate = function (
-    createdAt = "",
+    createdAt = "Thu Jan 01 00:00:00 +0000 1970",
     idStr = "0",
-    text = "",
+    text = "-",
     lang = "en",
     timestampMs = "0",
-    userName = "",
-    userScreenName = "",
-    userFollowersCount = "",
+    userName = "-",
+    userScreenName = "-",
+    userFollowersCount = "-",
     userProfileImageUrlHttps = "",
-    userVerified = ""
+    userVerified = "-"
 ) {
     var template = "<div class='card mb-3 tweet newTweet displayBlokTweet" + "'>" +
         "<div class='card-body p-2'>" +
