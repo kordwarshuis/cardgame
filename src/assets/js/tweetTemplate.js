@@ -17,7 +17,7 @@ export var tweetTemplate = function (
     userProfileImageUrlHttps = "",
     userVerified = "-"
 ) {
-    var template = "<div class='card mb-3 tweet newTweet displayBlokTweet" + "'>" +
+    var template = "<div class='card mb-3 tweet displayBlokTweet" + "'>" +
         "<div class='card-body p-2'>" +
         "<div class='row pt-3'>" +
         "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>" +
