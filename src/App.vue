@@ -833,16 +833,6 @@ a.overlay__close:not(.overlay__close-cross):hover,
     display: none;
 }
 
-.card.handpicked {
-    background-color: rgb(250, 239, 202) !important;
-}
-
-.handpickedTweetIndication {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
 footer {
     background: $page-footer-background;
     color: $page-footer-color;
@@ -852,10 +842,6 @@ footer {
 
 .tweet small {
     font-size: 1.1em;
-}
-
-.handpicked-tweet-text small {
-    background: rgb(247, 229, 130);
 }
 
 .realtime-tweet-text small {
