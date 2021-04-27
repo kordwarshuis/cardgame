@@ -96,7 +96,6 @@ export var realTimeTweets = (function () {
         var tweets = document.querySelector(".tweets-realtime .tweets");
         var domMenuIcon = document.querySelector(".menu-icon");
         var somethingFound = false;
-        var handpickedClass = "";
 
         // if we dont remove tweets the DOM will be overpopulated and the browser will not keep up
         function removeOldestTweets() {
@@ -117,18 +116,6 @@ export var realTimeTweets = (function () {
             }
         }
 
-        // 
-        // Only for handpicked tweets; if the first element is true then all is true
-        if (data[0].handpickedTweet === true) {
-            // here we take one random tweet from an array, so the tweet stream is not flooded with handpicked tweets
-            // pick random tweet from handpicked tweets:
-            let selectedRandomTweet = randomValue(data);
-            // empty the handpicked tweets array
-            data = [];
-            // create array with selected element
-            data[0] = selectedRandomTweet;
-        }
-
         function loopThroughAllTweets(data) {
             // TODO: remove duplicate code, see elsewhere in this file
             konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed filter.';
@@ -139,17 +126,6 @@ export var realTimeTweets = (function () {
                 var numberOfFollowersCriterium = false;
                 var anyOfTheseStringsCriterium = false;
                 var noneOfTheseStringsCriterium = false;
-
-                // HANDPICKED TWEETS
-                if (data[i].handpickedTweet === true) {
-                    handpickedClass = " handpicked ";
-                    tweetTypeText = "<div class='col-12 mb-2 handpicked-tweet-text text-center'><small class='m-0'>– Handpicked –</small></div>";
-                } else {
-                    handpickedClass = "";
-                    // TODO: remove eventually
-                    // tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>– Real Time –</small></div>";
-                    tweetTypeText = "<div class='col-12 mb-2 realtime-tweet-text text-center'><small class='m-0'>–</small></div>";
-                }
 
                 // NUMBER OF FOLLOWERS
                 if (data[i].user.followers_count >= numberOfFollowers) {
@@ -198,8 +174,7 @@ export var realTimeTweets = (function () {
                         onlyVerifiedAccountsUsersChoiceCriterium &&
                         anyOfTheseStringsCriterium &&
                         noneOfTheseStringsCriterium
-                    ) ||
-                    data[i].handpickedTweet === true) {
+                    )) {
                     somethingFound = true;
 
                     if (data[i].user.followers_count > 100000) {
@@ -207,7 +182,7 @@ export var realTimeTweets = (function () {
                     }
 
                     domTemp =
-                        "<div class='card mb-3 tweet newTweet" + handpickedClass + "'>" +
+                        "<div class='card mb-3 tweet newTweet" + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
                         tweetTypeText +
