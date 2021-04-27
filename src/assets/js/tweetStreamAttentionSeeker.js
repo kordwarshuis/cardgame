@@ -1,5 +1,5 @@
 export function tweetStreamAttentionSeeker() {
-    var allTweets = document.querySelectorAll('.tweets-realtime .tweet');
+    var allTweets = document.querySelectorAll('.tweets-realtime .newTweet');
 
     allTweets.forEach(element => {
         element.classList.add('attention-seeker');
