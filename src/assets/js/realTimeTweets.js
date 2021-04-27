@@ -27,6 +27,7 @@ export var realTimeTweets = (function () {
     var tweetNumber = 0;
     var tweetTypeText = "";
     var delaySoundTimer = 0; // restrict how often new-tweet-sound plays
+    var tweetsPassedFilter = 0;
 
 
     // criteria
@@ -38,19 +39,18 @@ export var realTimeTweets = (function () {
     var noneOfTheseStringsDefault = [];
     var noneOfTheseStrings = [];
 
-    var tweetsPassedFilter = 0;
 
     // mechanism to prevent new-tweets-sound to play too often
     setInterval(function () {
         delaySoundTimer += 10000; // increase timer every 10 sec
     }, 10000);
 
-    function processTwitters(data) {
+    function processTwitters(data) { // runs every ten seconds
         var tweets = document.querySelector(".tweets-realtime .tweets");
         var domMenuIcon = document.querySelector(".menu-icon");
         var somethingFound = false;
 
-        // if we dont remove tweets the DOM will be overpopulated and the browser will not keep up
+        // keep number of tweets lower than a certain number
         function removeOldestTweets() {
             let allTweets = tweets.querySelectorAll('.tweet');
 
@@ -136,7 +136,7 @@ export var realTimeTweets = (function () {
                     }
 
                     domTemp =
-                        "<div class='card mb-3 tweet displayBlokTweet" + "'>" +
+                        "<div class='card mb-3 tweet newTweet displayBlokTweet" + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
                         tweetTypeText +
@@ -186,12 +186,9 @@ export var realTimeTweets = (function () {
 
         tweetsPassedFilter = 0;
 
-        // console.log('somethingFound: ', somethingFound);
-
         console.log("-----------");
 
         if (localStorage.getItem("soundOn") === "true") {
-
             // mechanism to prevent new-tweets-sound to play too often
             if (delaySoundTimer > 300000) {
                 alert.play();
@@ -261,7 +258,7 @@ export var realTimeTweets = (function () {
     }
 
     return {
-        start: processTwitters,
+        start: processTwitters,// called every ten seconds
         setFollowersNumber: setFollowersNumber,
         setOnlyVerifiedAccountsUsersChoice: setOnlyVerifiedAccountsUsersChoice,
 
