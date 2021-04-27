@@ -23,12 +23,6 @@
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
                                 </button>
 
-                                <!-- ALL TWEETS -->
-                                <!-- <div class="form-check ml-0 m-0 " style="display: inline;">
-                                    <input type="checkbox" class="form-check-input mt-3" id="showAllTweets">
-                                    <label style="color: #eee;" class="form-check-label align-middle inline" for="showAllTweets">all tweets</label>
-                                </div> -->
-
                                 <!-- CLEAR -->
                                 <button class="btn btn-sm btn-outline-light ml-0 clear-tweet-stream-button">Clear</button>
 
