@@ -12,6 +12,25 @@ import {
 
 tweetsHistory();
 
+// function handleVisibilityChange() {
+//     if (document.hidden) {
+//         //   code
+//     } else {
+//         tweetsHistory();
+//         console.log("In view again");
+//     }
+// }
+
+// document.addEventListener("visibilitychange", handleVisibilityChange, false);
+
+// window.onfocus = function () {
+//     tweetsHistory();
+//     console.log("In view again");
+// };
+
+
+
+
 export var getJSON = (function () {
     var fetchTweetsLoop;
 
@@ -26,7 +45,7 @@ export var getJSON = (function () {
     function start(source) {
         const mediaQuery = window.matchMedia('(max-width: 767px)');
         console.log("Started fetching tweets");
-        
+
         if (document.querySelector('.tweet-stream-info-in-stream')) {
             document.querySelector('.tweet-stream-info-in-stream').classList.add('hidden');
         }
