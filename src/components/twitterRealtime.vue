@@ -383,13 +383,6 @@ export default {
             }, false);
 
         },
-        showAllTweets() {
-            document.querySelector('#showAllTweets').addEventListener('change', function () {
-                var tweetStreamConfiguration = document.querySelector('.tweet-stream-configuration');
-                realTimeTweets.toggleAllTweets();
-                tweetStreamConfiguration.disabled = !tweetStreamConfiguration.disabled;
-            }, false);
-        },
         removeNewTweetsSign() {
             document.querySelector(".menu-icon").addEventListener('click', function () {
                 this.classList.remove('new-tweets');
@@ -500,15 +493,15 @@ export default {
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message1);
-            }, 60000);
+            }, 120000);
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message5);
-            }, 100000);
+            }, 240000);
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message6);
-            }, 180000);
+            }, 640000);
 
             // setTimeout(function () {
             //     insertAndRemoveMessage(language.tweetStream.message1);
@@ -516,11 +509,11 @@ export default {
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message1);
-            }, 250000);
+            }, 1000000);
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message1);
-            }, 360000);
+            }, 2000000);
         }
     }
 };
