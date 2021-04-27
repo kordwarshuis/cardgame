@@ -2,7 +2,7 @@ import {
     tweetTemplate
 } from "./tweetTemplate";
 
-export var tweetsHistory = (function () {
+export var tweetsHistory = function () {
     fetch(process.env.VUE_APP_REALTIME_TWITTER_HISTORY_JSON)
 
         // 1 json
@@ -37,4 +37,4 @@ export var tweetsHistory = (function () {
             console.log("No historic tweets available");
 
         });
-}());
+};
