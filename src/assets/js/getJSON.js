@@ -7,8 +7,10 @@ import {
 } from "@/assets/js/realTimeTweets.js";
 
 import {
-    tweetsHistory // IIFE
+    tweetsHistory
 } from "./tweetsHistory.js";
+
+tweetsHistory();
 
 export var getJSON = (function () {
     var fetchTweetsLoop;
