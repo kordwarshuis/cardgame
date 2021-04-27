@@ -54,18 +54,6 @@ export var realTimeTweets = (function () {
 
     var tweetsPassedFilter = 0;
 
-    // var domKeywords = document.querySelector("#keywords");
-    // var domTweetAccounts = document.querySelector("#tweetAccounts");
-    // var onlyVerifiedAccounts = false;
-    // var domOnlyVerifiedAccounts = document.querySelector("#onlyVerifiedAccounts");
-    // domOnlyVerifiedAccounts.addEventListener("change", function () {
-    //     if (domOnlyVerifiedAccounts.checked === true) {
-    //         onlyVerifiedAccounts = true;
-    //     } else {
-    //         onlyVerifiedAccounts = false;
-    //     }
-    // }, false);
-
     setInterval(function () {
         timer += 10000; // increase timer every 10 sec
     }, 10000);
