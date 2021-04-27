@@ -23,7 +23,7 @@ export var realTimeTweets = (function () {
 
     var stringTweets = "";
     var currentKeyword = "";
-    var tweetTypeText = "+++++";
+    var tweetTypeText = "";
     var delaySoundTimer = 0; // restrict how often new-tweet-sound plays
 
     // criteria
