@@ -22,8 +22,6 @@ export var realTimeTweets = (function () {
     });
 
     var stopNow = false;
-    var isSpecialAccount = false;
-
     var domTemp = "";
     var domTempOld = "x";
 
@@ -32,7 +30,7 @@ export var realTimeTweets = (function () {
     var tweetNumber = 0;
     var tweetTypeText = "";
 
-    var timer = 0; // restrict how often new-tweet-sound plays
+    var delaySoundTimer = 0; // restrict how often new-tweet-sound plays
 
 
     // criteria
@@ -48,14 +46,10 @@ export var realTimeTweets = (function () {
     var noneOfTheseStringsDefault = [];
     var noneOfTheseStrings = [];
 
-    var tweetAccounts = [];
-    // var followersSelect = document.querySelector("#followers");
-    var followersSetCounter = document.querySelector("#followersset span");
-
     var tweetsPassedFilter = 0;
 
     setInterval(function () {
-        timer += 10000; // increase timer every 10 sec
+        delaySoundTimer += 10000; // increase timer every 10 sec
     }, 10000);
 
     function processTwitters(data) {
@@ -142,13 +136,15 @@ export var realTimeTweets = (function () {
                         noneOfTheseStringsCriterium
                     )) {
                     somethingFound = true;
+                    console.log("++++++++++++++++++ ");
 
                     if (data[i].user.followers_count > 100000) {
                         window.cardgameEvent.$emit('startStopTypewriter', 'A tweet with more than 100 000 followers was just posted.');
                     }
 
                     domTemp =
-                        "<div class='card mb-3 tweet newTweet" + "'>" +
+                        // "<div class='card mb-3 tweet newTweet" + "'>" +
+                        "<div class='card mb-3 tweet displayBlokTweet" + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
                         tweetTypeText +
@@ -189,10 +185,10 @@ export var realTimeTweets = (function () {
                         domTemp;
                     tweetNumber++;
                 } else {
+                    console.log("we gaan langs somethingFound = false");
                     somethingFound = false;
                 }
                 stopNow = false;
-                isSpecialAccount = false;
             }
         }
 
@@ -200,68 +196,37 @@ export var realTimeTweets = (function () {
 
         tweetsPassedFilter = 0;
 
-        if (somethingFound) {
-            if (localStorage.getItem("soundOn") === "true") {
-                //only play the sound after enough time has passed
-                if (timer > 300000) {
-                    alert.play();
-                    timer = 0;
-                }
+        console.log('somethingFound: ', somethingFound);
+
+        console.log("-----------");
+
+        if (localStorage.getItem("soundOn") === "true") {
+            //only play the sound after enough time has passed
+            if (delaySoundTimer > 300000) {
+                alert.play();
+                delaySoundTimer = 0;
             }
-
-            domMenuIcon.classList.add('new-tweets');
-            if (domTempOld !== domTemp) {
-                var k = 0;
-
-                tweets.insertAdjacentHTML("afterbegin", domTemp);
-
-                var newTweets = document.querySelectorAll(".newTweet");
-                tweetsPassedFilter = newTweets.length;
-
-                // TODO: remove duplicate code, see elsewhere in this file
-                konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed filter.';
-
-                for (var i = newTweets.length - 1; i > -1; i--) {
-                    (function (i) {
-                        setTimeout(function () {
-                            newTweets[i].classList.add("displayBlokTweet");
-                            setTimeout(function () {
-                                newTweets[i].classList.remove("newTweet");
-                            }, 100);
-                        }, k);
-                        // k = k + 10;
-                        // spread available tweets, every 10 sec new tweet set arrives, tweets spread over 9 secs, 1 sec pause
-                        // k = k + (Math.floor(9500 / newTweets.length));
-
-                        // no more spreading, fast add
-                        k = k + 10;
-                    }(i));
-                }
-
-                tweetStreamAttentionSeeker();
-            }
-
-            domTempOld = domTemp;
-            domTemp = "";
         }
+
+        domMenuIcon.classList.add('new-tweets');
+        if (domTempOld !== domTemp) {
+            var k = 0;
+
+            tweets.insertAdjacentHTML("afterbegin", domTemp);
+
+            var newTweets = document.querySelectorAll(".newTweet");
+            tweetsPassedFilter = newTweets.length;
+
+            // TODO: remove duplicate code, see elsewhere in this file
+            konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed filter.';
+
+            tweetStreamAttentionSeeker();
+        }
+
+        domTempOld = domTemp;
+        domTemp = "";
 
         removeOldestTweets();
-    }
-
-    function toggleAllTweets() {
-        if (anyOfTheseStrings.length !== 0) {
-            anyOfTheseStrings = []; // don't do anyOfTheseStrings.length = 0, that will affect anyOfTheseStringsDefault
-            store.commit("showToast", language.tweetStream.message7);
-        } else {
-            store.commit("showToast", language.tweetStream.message8);
-            anyOfTheseStrings = anyOfTheseStringsDefault;
-        }
-
-        if (numberOfFollowers !== 0) {
-            numberOfFollowers = 0;
-        } else {
-            numberOfFollowers = numberOfFollowersBackup;
-        }
     }
 
     function setFollowersNumber(a) {
@@ -306,7 +271,6 @@ export var realTimeTweets = (function () {
 
     return {
         start: processTwitters,
-        toggleAllTweets: toggleAllTweets,
         setFollowersNumber: setFollowersNumber,
         setOnlyVerifiedAccountsUsersChoice: setOnlyVerifiedAccountsUsersChoice,
 
