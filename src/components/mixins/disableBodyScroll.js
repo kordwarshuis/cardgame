@@ -11,14 +11,14 @@ export const disableBodyScrollMixin = {
                     // detect single touch
                     _clientY = event.targetTouches[0].clientY;
                 }
-            }, false);
+            }, {passive: true});
 
             _overlay.addEventListener('touchmove', function (event) {
                 if (event.targetTouches.length === 1) {
                     // detect single touch
                     disableRubberBand(event);
                 }
-            }, false);
+            }, {passive: true});
 
             function disableRubberBand(event) {
                 var clientY = event.targetTouches[0].clientY - _clientY;
