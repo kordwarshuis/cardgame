@@ -23,7 +23,7 @@ export var getJSON = (function () {
 
     function start(source) {
         const mediaQuery = window.matchMedia('(max-width: 767px)');
-        console.log("start");
+        console.log("Started fetching tweets");
         
         if (document.querySelector('.tweet-stream-info-in-stream')) {
             document.querySelector('.tweet-stream-info-in-stream').classList.add('hidden');
