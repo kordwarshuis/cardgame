@@ -71,10 +71,6 @@ export var realTimeTweets = (function () {
         return myArray[Math.floor(Math.random() * myArray.length)];
     };
 
-    function showNumberOfFollowers() {
-        document.querySelector("#numberOfFollowers").innerHTML = numberOfFollowers;
-    }
-
     setInterval(function () {
         timer += 10000; // increase timer every 10 sec
     }, 10000);
