@@ -7,18 +7,11 @@ import {
 } from "@/assets/js/realTimeTweets.js";
 
 import {
-    tweetsHistory
+    tweetsHistory // IIFE
 } from "./tweetsHistory.js";
 
 export var getJSON = (function () {
     var fetchTweetsLoop;
-    var fetchTweetsLoopHandpicked;
-    var handpicked1;
-    var handpicked2;
-    var handpicked3;
-    var handpicked4;
-    var handpicked5;
-    var handpicked6;
 
     // console showing messages to user
     var konsole;
@@ -39,9 +32,7 @@ export var getJSON = (function () {
         var resp;
         var refreshInterval = 10000;
 
-        function fetchData(source, handpicked) {
-            console.log('source: ', source);
-            // console.log('handpicked: ', handpicked);
+        function fetchData(source) {
             var connectionSymbol = document.querySelector('.menu-icon');
             fetch(source)
                 // 1 json
@@ -52,19 +43,7 @@ export var getJSON = (function () {
 
                 .then(data => {
                     connectionSymbol.classList.remove('disconnected');
-                    // 1: we need what is insides statuses
-                    // resp = data.statuses;
-
-                    // 2
                     resp = data;
-
-
-                    // 1
-                    // resp = JSON.stringify(resp);
-
-                    // 2
-                    // nothing, is already string
-
                     // regex can only operate on string
                     resp = resp.replace(/,\:/g, ':');
                     resp = resp.replace(/\:,/g, ':');
@@ -72,7 +51,6 @@ export var getJSON = (function () {
                     resp = resp.replace(/,,"/g, ',"');
                     resp = resp.replace(/\[,"/g, '[');
                     resp = resp.replace(/,\]"/g, ']');
-                    // console.log('resp 2: ', resp);
 
                     // 1
                     resp = fixJSON(resp); // fixJSON also converts to object, resp is now an object
@@ -84,18 +62,6 @@ export var getJSON = (function () {
                     // we need what is insides statuses
                     resp = resp.statuses;
 
-                    // if the json is taken from the handpicked source, then give each array element a property named handpickedTweet
-                    if (handpicked === true) {
-                        resp.forEach(element => {
-                            element.handpickedTweet = true;
-                        });
-                    } else {
-                        resp.forEach(element => {
-                            element.handpickedTweet = false;
-                        });
-                    }
-
-                    // console.log('resp 3: ', resp);
                     realTimeTweets.start(resp);
                 })
                 .catch(error => {
@@ -105,35 +71,6 @@ export var getJSON = (function () {
                     // handle the error
                 });
         }
-
-        fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-
-
-        // simple way of showing some handpicked tweets
-        handpicked1 = setTimeout(function () {
-            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        }, 0);
-        handpicked2 = setTimeout(function () {
-            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        }, 60000);
-        handpicked3 = setTimeout(function () {
-            fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        }, 180000);
-        // handpicked4 = setTimeout(function () {
-        //     fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        // }, 45000);
-        // handpicked5 = setTimeout(function () {
-        //     fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        // }, 80000);
-        // handpicked6 = setTimeout(function () {
-        //     fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        // }, 190000);
-        // fetchTweetsLoopHandpicked = setInterval(function () {
-        //     console.log('Fetch handpicked tweets');
-        //     konsole.innerHTML = 'Fetch handpicked tweets.';
-        //     fetchData(process.env.VUE_APP_REALTIME_TWITTER_QUIKSTART_JSON, true);
-        // }, 580000);
-
 
         fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
         fetchTweetsLoop = setInterval(function () {
@@ -147,17 +84,7 @@ export var getJSON = (function () {
         document.querySelector('.tweet-stream-info-in-stream').classList.remove('hidden');
         console.log("stop");
 
-        clearTimeout(handpicked1);
-        clearTimeout(handpicked2);
-        clearTimeout(handpicked3);
-        // clearTimeout(handpicked4);
-        // clearTimeout(handpicked5);
-        // clearTimeout(handpicked6);
-
         clearInterval(fetchTweetsLoop);
-        console.log('fetchTweetsLoop: ', fetchTweetsLoop);
-        clearInterval(fetchTweetsLoopHandpicked);
-        console.log('fetchTweetsLoopHandpicked: ', fetchTweetsLoopHandpicked);
     }
 
     return {
