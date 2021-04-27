@@ -22,13 +22,10 @@ export var realTimeTweets = (function () {
     });
 
     var stringTweets = "";
-    var stringTweetsOld = "x";
+    var stringTweetsOld = "";
     var currentKeyword = "";
-    var tweetNumber = 0;
-    var tweetTypeText = "";
+    var tweetTypeText = "+++++";
     var delaySoundTimer = 0; // restrict how often new-tweet-sound plays
-    var tweetsPassedFilter = 0;
-
 
     // criteria
     var numberOfFollowersBackup = 0;
@@ -48,7 +45,12 @@ export var realTimeTweets = (function () {
     function processTwitters(data) { // runs every ten seconds
         var tweets = document.querySelector(".tweets-realtime .tweets");
         var domMenuIcon = document.querySelector(".menu-icon");
-        var tweetPassed = false;
+        var tweetsPassedFilter = 0;
+
+        // new cycle, so remove all .newTweets
+        document.querySelectorAll('.newTweet').forEach(function (a) {
+            a.classList.remove('newTweet');
+        });
 
         // keep number of tweets lower than a certain number
         function removeOldestTweets() {
@@ -70,9 +72,6 @@ export var realTimeTweets = (function () {
         }
 
         function loopThroughAllTweets(data) {
-            // TODO: remove duplicate code, see elsewhere in this file
-            konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed filter.';
-
             for (var i = 0; i < data.length; i++) {
                 // for every tweet set back to false
                 var onlyVerifiedAccountsUsersChoiceCriterium = false;
@@ -135,7 +134,6 @@ export var realTimeTweets = (function () {
                     anyOfTheseStringsCriterium &&
                     noneOfTheseStringsCriterium
                 ) {
-                    tweetPassed = true;
                     console.log("++++++++++++++++++ ");
 
                     // special occasion
@@ -167,7 +165,7 @@ export var realTimeTweets = (function () {
 
                         "<div class='row mb-3'>" +
                         "<div class='col-6'>Name: " + data[i].user.name + "</div>" +
-                        "<div class='col-6'>Keyword</div>" +
+                        "<div class='col-6'>Keyword: " + currentKeyword + "</div>" +
 
                         "<div class='col-6 mb-3'>Verified: " + data[i].user.verified + "</div>" +
                         "<div class='col-6 mb-3'>Followers: <span class='followerscount' data-followerscount='" + data[i].user.followers_count + "'>" + data[i].user.followers_count + "</span></div>" +
@@ -183,16 +181,11 @@ export var realTimeTweets = (function () {
                         "</div>" +
                         "</div>" +
                         stringTweets;
-                    tweetNumber++;
-                } else {
-                    tweetPassed = false;
-                }
+                } 
             }
         }
 
         loopThroughAllTweets(data);
-
-        tweetsPassedFilter = 0;
 
         console.log("-----------");
 
@@ -204,15 +197,15 @@ export var realTimeTweets = (function () {
             }
         }
 
-        domMenuIcon.classList.add('new-tweets');
+        // if new tweets have arrived to be inserted
         if (stringTweetsOld !== stringTweets) {
+            domMenuIcon.classList.add('new-tweets');
+
             tweets.insertAdjacentHTML("afterbegin", stringTweets);
 
             var newTweets = document.querySelectorAll(".newTweet");
             tweetsPassedFilter = newTweets.length;
             console.log('tweetsPassedFilter: ', tweetsPassedFilter);
-
-            // TODO: remove duplicate code, see elsewhere in this file
             konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed filter.';
 
             tweetStreamAttentionSeeker();
