@@ -39,7 +39,7 @@ export var tweetTemplate = function (
 
         "<div class='row mb-3'>" +
         "<div class='col-6'>Name: " + userName + "</div>" +
-        "<div class='col-6'>Keyword</div>" +
+        "<div class='col-6'></div>" +
 
         "<div class='col-6 mb-3'>Verified: " + userVerified + "</div>" +
         "<div class='col-6 mb-3'>Followers: <span class='followerscount' data-followerscount='" + userFollowersCount + "'>" + userFollowersCount + "</span></div>" +
