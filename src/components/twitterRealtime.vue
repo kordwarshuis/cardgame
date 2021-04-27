@@ -487,7 +487,7 @@ export default {
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message1);
-            }, 120000);
+            }, 500);
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message5);
