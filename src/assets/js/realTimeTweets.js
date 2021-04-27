@@ -22,7 +22,6 @@ export var realTimeTweets = (function () {
     });
 
     var stringTweets = "";
-    var stringTweetsOld = "";
     var currentKeyword = "";
     var tweetTypeText = "+++++";
     var delaySoundTimer = 0; // restrict how often new-tweet-sound plays
@@ -198,7 +197,7 @@ export var realTimeTweets = (function () {
         }
 
         // if new tweets have arrived to be inserted
-        if (stringTweetsOld !== stringTweets) {
+        if (stringTweets !== "") {
             domMenuIcon.classList.add('new-tweets');
 
             tweets.insertAdjacentHTML("afterbegin", stringTweets);
@@ -211,7 +210,6 @@ export var realTimeTweets = (function () {
             tweetStreamAttentionSeeker();
         }
 
-        stringTweetsOld = stringTweets;
         stringTweets = "";
 
         removeOldestTweets();
