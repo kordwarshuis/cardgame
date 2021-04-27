@@ -21,8 +21,8 @@ export var realTimeTweets = (function () {
         konsole = document.querySelector('.console .message');
     });
 
-    var domTemp = "";
-    var domTempOld = "x";
+    var stringTweets = "";
+    var stringTweetsOld = "x";
     var currentKeyword = "";
     var tweetNumber = 0;
     var tweetTypeText = "";
@@ -48,7 +48,7 @@ export var realTimeTweets = (function () {
     function processTwitters(data) { // runs every ten seconds
         var tweets = document.querySelector(".tweets-realtime .tweets");
         var domMenuIcon = document.querySelector(".menu-icon");
-        var somethingFound = false;
+        var tweetPassed = false;
 
         // keep number of tweets lower than a certain number
         function removeOldestTweets() {
@@ -73,12 +73,16 @@ export var realTimeTweets = (function () {
             // TODO: remove duplicate code, see elsewhere in this file
             konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed filter.';
 
-            // loop through all tweets:
             for (var i = 0; i < data.length; i++) {
+                // for every tweet set back to false
                 var onlyVerifiedAccountsUsersChoiceCriterium = false;
                 var numberOfFollowersCriterium = false;
                 var anyOfTheseStringsCriterium = false;
                 var noneOfTheseStringsCriterium = false;
+
+                /*
+                 * CHECK CRITERIA FOR TWEET
+                 */
 
                 // NUMBER OF FOLLOWERS
                 if (data[i].user.followers_count >= numberOfFollowers) {
@@ -123,19 +127,23 @@ export var realTimeTweets = (function () {
                     } // end noneOfTheseStrings loop
                 }
 
+                /*
+                 * IF CRITERIA ARE MET FOR THIS TWEET
+                 */
                 if (numberOfFollowersCriterium &&
                     onlyVerifiedAccountsUsersChoiceCriterium &&
                     anyOfTheseStringsCriterium &&
                     noneOfTheseStringsCriterium
                 ) {
-                    somethingFound = true;
+                    tweetPassed = true;
                     console.log("++++++++++++++++++ ");
 
+                    // special occasion
                     if (data[i].user.followers_count > 100000) {
                         window.cardgameEvent.$emit('startStopTypewriter', 'A tweet with more than 100 000 followers was just posted.');
                     }
 
-                    domTemp =
+                    stringTweets =
                         "<div class='card mb-3 tweet newTweet displayBlokTweet" + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
@@ -174,10 +182,10 @@ export var realTimeTweets = (function () {
                         "</div>" +
                         "</div>" +
                         "</div>" +
-                        domTemp;
+                        stringTweets;
                     tweetNumber++;
                 } else {
-                    somethingFound = false;
+                    tweetPassed = false;
                 }
             }
         }
@@ -197,13 +205,12 @@ export var realTimeTweets = (function () {
         }
 
         domMenuIcon.classList.add('new-tweets');
-        if (domTempOld !== domTemp) {
-            var k = 0;
-
-            tweets.insertAdjacentHTML("afterbegin", domTemp);
+        if (stringTweetsOld !== stringTweets) {
+            tweets.insertAdjacentHTML("afterbegin", stringTweets);
 
             var newTweets = document.querySelectorAll(".newTweet");
             tweetsPassedFilter = newTweets.length;
+            console.log('tweetsPassedFilter: ', tweetsPassedFilter);
 
             // TODO: remove duplicate code, see elsewhere in this file
             konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed filter.';
@@ -211,8 +218,8 @@ export var realTimeTweets = (function () {
             tweetStreamAttentionSeeker();
         }
 
-        domTempOld = domTemp;
-        domTemp = "";
+        stringTweetsOld = stringTweets;
+        stringTweets = "";
 
         removeOldestTweets();
     }
@@ -258,7 +265,7 @@ export var realTimeTweets = (function () {
     }
 
     return {
-        start: processTwitters,// called every ten seconds
+        start: processTwitters, // called every ten seconds
         setFollowersNumber: setFollowersNumber,
         setOnlyVerifiedAccountsUsersChoice: setOnlyVerifiedAccountsUsersChoice,
 
