@@ -21,33 +21,26 @@ export var realTimeTweets = (function () {
         konsole = document.querySelector('.console .message');
     });
 
-    var stopNow = false;
     var domTemp = "";
     var domTempOld = "x";
-
     var currentKeyword = "";
-
     var tweetNumber = 0;
     var tweetTypeText = "";
-
     var delaySoundTimer = 0; // restrict how often new-tweet-sound plays
 
 
     // criteria
-
     var numberOfFollowersBackup = 0;
     var numberOfFollowers = numberOfFollowersBackup;
-
     var onlyVerifiedAccountsUsersChoice = false;
-
     var anyOfTheseStringsDefault = [];
     var anyOfTheseStrings = [];
-
     var noneOfTheseStringsDefault = [];
     var noneOfTheseStrings = [];
 
     var tweetsPassedFilter = 0;
 
+    // mechanism to prevent new-tweets-sound to play too often
     setInterval(function () {
         delaySoundTimer += 10000; // increase timer every 10 sec
     }, 10000);
@@ -130,11 +123,11 @@ export var realTimeTweets = (function () {
                     } // end noneOfTheseStrings loop
                 }
 
-                if ((numberOfFollowersCriterium &&
-                        onlyVerifiedAccountsUsersChoiceCriterium &&
-                        anyOfTheseStringsCriterium &&
-                        noneOfTheseStringsCriterium
-                    )) {
+                if (numberOfFollowersCriterium &&
+                    onlyVerifiedAccountsUsersChoiceCriterium &&
+                    anyOfTheseStringsCriterium &&
+                    noneOfTheseStringsCriterium
+                ) {
                     somethingFound = true;
                     console.log("++++++++++++++++++ ");
 
@@ -143,7 +136,6 @@ export var realTimeTweets = (function () {
                     }
 
                     domTemp =
-                        // "<div class='card mb-3 tweet newTweet" + "'>" +
                         "<div class='card mb-3 tweet displayBlokTweet" + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
@@ -185,10 +177,8 @@ export var realTimeTweets = (function () {
                         domTemp;
                     tweetNumber++;
                 } else {
-                    console.log("we gaan langs somethingFound = false");
                     somethingFound = false;
                 }
-                stopNow = false;
             }
         }
 
@@ -196,12 +186,13 @@ export var realTimeTweets = (function () {
 
         tweetsPassedFilter = 0;
 
-        console.log('somethingFound: ', somethingFound);
+        // console.log('somethingFound: ', somethingFound);
 
         console.log("-----------");
 
         if (localStorage.getItem("soundOn") === "true") {
-            //only play the sound after enough time has passed
+
+            // mechanism to prevent new-tweets-sound to play too often
             if (delaySoundTimer > 300000) {
                 alert.play();
                 delaySoundTimer = 0;
