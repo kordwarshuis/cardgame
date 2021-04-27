@@ -66,11 +66,6 @@ export var realTimeTweets = (function () {
     //     }
     // }, false);
 
-
-    var randomValue = function (myArray) {
-        return myArray[Math.floor(Math.random() * myArray.length)];
-    };
-
     setInterval(function () {
         timer += 10000; // increase timer every 10 sec
     }, 10000);
