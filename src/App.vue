@@ -1136,16 +1136,14 @@ footer {
 /*
  *  BEGIN ATTENTION SEEKER TWEETS IN TWEATSTREAM
  */
-
-.tweets-realtime .tweet:nth-child(-n+5) {
+.tweets-realtime .tweet {
     transition: background-color 0.7s ease-in-out;
 }
 
-.tweets-realtime .tweet.attention-seeker:nth-child(-n+5) {
+.tweets-realtime .tweet.attention-seeker {
     background: #1EA1F1;
     transition: background-color 0.3s ease-in-out;
 }
-
 /*
  *  END ATTENTION SEEKER TWEETS IN TWEATSTREAM
  */
