@@ -23,7 +23,9 @@ export var tweetTemplate = function (
         "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>" +
         //IMAGE
         "<div class='col-auto' >" +
-        "<img class='img-thumbnail float-left' src='" + userProfileImageUrlHttps + "' alt=''></img>" +
+        // TODO: implement lazyloading images
+        // "<img class='img-thumbnail float-left' src='" + userProfileImageUrlHttps + "' alt=''></img>" +
+        "<img class='img-thumbnail float-left' src='#' alt=''></img>" +
         "</div>" +
 
         // TEXT
