@@ -3,6 +3,10 @@ import {
 } from "./tweetTemplate";
 
 export var tweetsHistory = function () {
+    var tweetsContainer = document.querySelector(".tweets-realtime .tweets");
+    // loading spinner:
+    tweetsContainer.insertAdjacentHTML("afterbegin", '<div class="mx-auto"><div class="loading-historic-tweets m-5 spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></div>');
+
     fetch(process.env.VUE_APP_REALTIME_TWITTER_HISTORY_JSON)
 
         // 1 json
@@ -29,8 +33,12 @@ export var tweetsHistory = function () {
                     response[i].user.verified
                 );
             }
-
+            
             document.querySelector(".tweets-realtime .tweets").insertAdjacentHTML("afterbegin", domTemp);
+
+            // remove loading spinner:
+            var loader = document.querySelector('.loading-historic-tweets');
+            loader.parentNode.removeChild(loader);
         })
         .catch(error => {
             // handle the error
