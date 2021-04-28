@@ -487,7 +487,7 @@ export default {
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message1);
-            }, 500);
+            }, 235000);
 
             setTimeout(function () {
                 insertAndRemoveMessage(language.tweetStream.message5);
@@ -543,7 +543,7 @@ function slideInMenu() {
             // or open the tweetstream always
             setTimeout(function () {
                 toggleMenu();
-            }, 2000);
+            }, 10);
         }
 
         if (isOpen === true && document.querySelector("#open-button")) {
