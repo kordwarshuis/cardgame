@@ -10,25 +10,23 @@ import {
     tweetsHistory
 } from "./tweetsHistory.js";
 
-tweetsHistory();
+// load tweets history on load
+document.addEventListener("DOMContentLoaded", tweetsHistory, false);
 
-// function handleVisibilityChange() {
-//     if (document.hidden) {
-//         //   code
-//     } else {
-//         tweetsHistory();
-//         console.log("In view again");
-//     }
-// }
+// when window out of focus or tab out of focus
+function handleVisibilityChange() {
+    if (document.hidden) {
+        //   code
+    } else {
+        tweetsHistory();
+    }
+}
 
-// document.addEventListener("visibilitychange", handleVisibilityChange, false);
+document.addEventListener("visibilitychange", handleVisibilityChange, false);
 
-// window.onfocus = function () {
-//     tweetsHistory();
-//     console.log("In view again");
-// };
-
-
+window.onfocus = function () {
+    tweetsHistory();
+};
 
 
 export var getJSON = (function () {
