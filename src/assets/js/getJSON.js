@@ -13,22 +13,6 @@ import {
 // load tweets history on load
 document.addEventListener("DOMContentLoaded", tweetsHistory, false);
 
-// // when window out of focus or tab out of focus
-// function handleVisibilityChange() {
-//     if (document.hidden) {
-//         //   code
-//     } else {
-//         tweetsHistory();
-//     }
-// }
-
-// document.addEventListener("visibilitychange", handleVisibilityChange, false);
-
-// window.onfocus = function () {
-//     tweetsHistory();
-// };
-
-
 export var getJSON = (function () {
     var fetchTweetsLoop;
 

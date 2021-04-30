@@ -2,6 +2,10 @@ import {
     tweetTemplate
 } from "./tweetTemplate";
 
+import {
+    lazyloadImages
+} from "@/assets/js/lazyloadImages";
+
 export var tweetsHistory = function () {
     var tweetsContainer = document.querySelector(".tweets-realtime .tweets");
     // loading spinner:
@@ -35,6 +39,8 @@ export var tweetsHistory = function () {
             }
             
             document.querySelector(".tweets-realtime .tweets").insertAdjacentHTML("afterbegin", domTemp);
+
+            lazyloadImages();
 
             // remove loading spinner:
             var loader = document.querySelector('.loading-historic-tweets');

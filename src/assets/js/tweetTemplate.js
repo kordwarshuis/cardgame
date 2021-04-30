@@ -24,8 +24,8 @@ export var tweetTemplate = function (
         //IMAGE
         "<div class='col-auto' >" +
         // TODO: implement lazyloading images
-        // "<img class='img-thumbnail float-left' src='" + userProfileImageUrlHttps + "' alt=''></img>" +
-        "<img class='img-thumbnail float-left' src='#' alt=''></img>" +
+        "<img class='img-thumbnail float-left lazy' data-src='" + userProfileImageUrlHttps + "' alt=''></img>" +
+        // "<img class='img-thumbnail float-left' src='#' alt=''></img>" +
         "</div>" +
 
         // TEXT
