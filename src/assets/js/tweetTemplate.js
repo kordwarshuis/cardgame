@@ -5,6 +5,12 @@ import {
     timestampTweet
 } from "@/assets/js/calculateTweetTimeStamps";
 
+import {
+    lazyloadImages
+} from "@/assets/js/lazyloadImages";
+
+lazyloadImages();
+
 export var tweetTemplate = function (
     createdAt = "Thu Jan 01 00:00:00 +0000 1970",
     idStr = "0",
@@ -24,8 +30,8 @@ export var tweetTemplate = function (
         //IMAGE
         "<div class='col-auto' >" +
         // TODO: implement lazyloading images
-        // "<img class='img-thumbnail float-left' src='" + userProfileImageUrlHttps + "' alt=''></img>" +
-        "<img class='img-thumbnail float-left' src='#' alt=''></img>" +
+        "<img class='img-thumbnail float-left lazy' data-src='" + userProfileImageUrlHttps + "' alt=''></img>" +
+        // "<img class='img-thumbnail float-left' src='#' alt=''></img>" +
         "</div>" +
 
         // TEXT
