@@ -5,12 +5,6 @@ import {
     timestampTweet
 } from "@/assets/js/calculateTweetTimeStamps";
 
-import {
-    lazyloadImages
-} from "@/assets/js/lazyloadImages";
-
-lazyloadImages();
-
 export var tweetTemplate = function (
     createdAt = "Thu Jan 01 00:00:00 +0000 1970",
     idStr = "0",
