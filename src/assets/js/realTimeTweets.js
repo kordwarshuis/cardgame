@@ -141,7 +141,7 @@ export var realTimeTweets = (function () {
                     }
 
                     stringTweets =
-                        "<div class='card mb-3 tweet newTweet displayBlokTweet" + "'>" +
+                        "<div class='card mb-3 pt-3 tweet newTweet displayBlokTweet" + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
                         tweetTypeText +
