@@ -23,9 +23,7 @@ export var tweetTemplate = function (
         "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>" +
         //IMAGE
         "<div class='col-auto' >" +
-        // TODO: implement lazyloading images
-        "<img class='img-thumbnail float-left lazy' data-src='" + userProfileImageUrlHttps + "' alt=''></img>" +
-        // "<img class='img-thumbnail float-left' src='#' alt=''></img>" +
+        "<img style='width: 50px;' class='float-left' data-src='" + userProfileImageUrlHttps + "' src='" + require('@/assets/img/logo/logo.png') + "' alt=''></img>" +
         "</div>" +
 
         // TEXT
