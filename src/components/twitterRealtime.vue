@@ -45,14 +45,25 @@
                                     <span class="visuallyhidden">Tweetstream info</span>
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
                                 </button>
-
-                                <!-- FILTER TWEETS -->
-                                <div class="input-group input-group-sm mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputGroup-sizing-sm">Search tweets</span>
+                                <div class="row w-100 mr-0 pr-0">
+                                    <!-- FILTER TWEETS -->
+                                    <div class="col-md-11 m-0 p-0 pl-3">
+                                        <div class="input-group input-group-sm ">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Search tweets</span>
+                                            </div>
+                                            <input type="text" class="form-control" id="filterTweets" value="" aria-label="Search tweet stream" aria-describedby="Search tweet stream">
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control" id="filterTweets" value="" aria-label="Search tweet stream" aria-describedby="Search tweet stream">
+                                    <!-- DOWNLOAD TWEETS HISTORY -->
+                                    <div class="col-md-1 m-0 p-0 ">
+                                        <button @click="tweetsHistory" type="button" class="m-0 ml-1 pt-2 pb-1 btn btn-outline-light btn-sm download-tweets-history" style="width: 100%;" title="Download tweets again">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 515.556 515.556" fill="white" class="bi">
+                                                <defs />
+                                                <path d="M257.778 0C115.641 0 0 115.641 0 257.778s115.641 257.778 257.778 257.778 257.778-115.641 257.778-257.778S399.914 0 257.778 0zm0 386.667l-96.667-112.778h64.444v-145H290v145h64.444z" /></svg></button>
+                                    </div>
                                 </div>
+                                
                                 <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
                             </div>
                         </div>
@@ -130,6 +141,11 @@ import {
 
 import Typewriter from "@/components/AnimatedCharacters/Typewriter.vue";
 
+import {
+    tweetsHistory
+} from "@/assets/js/tweetsHistory.js";
+
+
 export default {
     name: "twitterRealtime",
     data() {
@@ -166,6 +182,9 @@ export default {
         this.sortKeybindings();
     },
     methods: {
+        tweetsHistory() {
+            tweetsHistory();
+        },
         sort(key) {
             sort(key);
         },
