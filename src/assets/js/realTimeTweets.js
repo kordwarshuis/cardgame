@@ -148,7 +148,7 @@ export var realTimeTweets = (function () {
                         "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>" +
                         //IMAGE
                         "<div class='col-auto' >" +
-                        "<img class='img-thumbnail float-left' src='" + data[i].user.profile_image_url_https + "' alt=''></img>" +
+                        "<img style='width: 50px;' class='float-left' src='" + data[i].user.profile_image_url_https + "' alt=''></img>" +
                         "</div>" +
 
                         // TEXT
