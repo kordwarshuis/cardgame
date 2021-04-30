@@ -4,23 +4,25 @@ export function lazyloadImages() {
 
         if ("IntersectionObserver" in window) {
             lazyloadImages = document.querySelectorAll(".lazy");
-            // console.log('lazyloadImages: ', lazyloadImages);
             var imageObserver = new IntersectionObserver(function (entries, observer) {
+                console.log(observer);
                 entries.forEach(function (entry) {
-                    console.log('entry.isIntersecting: ', entry.isIntersecting);
+                    // console.log('entry.isIntersecting: ', entry.isIntersecting);
+
                     if (entry.isIntersecting) {
-                        console.log("jawel");
+                        // console.log('entry.isIntersecting: ', entry.isIntersecting);
                         var image = entry.target;
                         image.src = image.dataset.src;
                         image.classList.remove("lazy");
                         imageObserver.unobserve(image);
                     }
                 });
+            }, {
+                root: document.querySelector(".tweets"),
+                rootMargin: "0px 0px 0px 0px"
             });
 
             lazyloadImages.forEach(function (image) {
-                // console.log("jawel2");
-                // dit runt, heb ik gecheckt
                 imageObserver.observe(image);
             });
         } else {
