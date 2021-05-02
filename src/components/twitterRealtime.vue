@@ -11,7 +11,7 @@
 
                 <!-- REALTIME TWEETS -->
                 <div class="tweets-realtime col-md-12 m-0 p-0" style="padding-bottom: 10em !important;">
-                    <nav class="navbar navbar-expand-md sticky-top p-0 " style="background: #1FA1F2;">
+                    <nav class="navbar navbar-expand-md sticky-top p-0 m-0 " style="background: #1FA1F2;">
                         <div class="row m-0 p-0" style="width: 100%;">
                             <div class="col-md-12 m-0 p-0 ">
                                 <!-- START STOP -->
@@ -45,9 +45,13 @@
                                     <span class="visuallyhidden">Tweetstream info</span>
                                     <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
                                 </button>
-                                <div class="row w-100 mr-0 pr-0">
-                                    <!-- FILTER TWEETS -->
-                                    <div class="col-md-11 m-0 p-0 pl-3">
+
+                            </div>
+
+                            <div class="col-md-12 m-0 p-0 ">
+                                <!-- FILTER TWEETS -->
+                                <div class="row m-0 p-0" style="width: 100%;">
+                                    <div class="col-11 m-0 p-0">
                                         <div class="input-group input-group-sm ">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Search tweets</span>
@@ -56,23 +60,24 @@
                                         </div>
                                     </div>
                                     <!-- DOWNLOAD TWEETS HISTORY -->
-                                    <div class="col-md-1 m-0 p-0 ">
-                                        <button @click="tweetsHistory" type="button" class="m-0 ml-1 pt-2 pb-1 btn btn-outline-light btn-sm download-tweets-history" style="width: 100%;" title="Download tweets again">
+                                    <div class="col-1 m-0 p-0 ">
+                                        <button @click="tweetsHistory" type="button" class="btn btn-outline-light btn-sm m-0 ml-1 download-tweets-history" style="height: 100%;" title="Download tweets again">
+                                            <!-- Icons made by <a href="" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> -->
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 515.556 515.556" fill="white" class="bi">
                                                 <defs />
                                                 <path d="M257.778 0C115.641 0 0 115.641 0 257.778s115.641 257.778 257.778 257.778 257.778-115.641 257.778-257.778S399.914 0 257.778 0zm0 386.667l-96.667-112.778h64.444v-145H290v145h64.444z" /></svg></button>
                                     </div>
+                                    <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
                                 </div>
-                                
-                                <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
                             </div>
                         </div>
                     </nav>
-                    <div class="col-md-12 m-0 p-0 mr-2 mt-1">
-                        <div style="font-family: courier; font-weight: bold;font-size: 1.3em; color: #eee;" class="console"><span class="timestamp">-</span>: <span class="message">-</span></div>
-                        <!-- <h2 class="header-tweets-realtime " style="display: inline;">Realtime</h2> -->
-                    </div>
                     <div class="row m-0 p-0">
+                        <div class="col-md-12 m-0 p-0 mr-2 mt-1">
+                            <div style="font-family: courier; font-weight: bold;font-size: 1.3em; color: #eee;" class="console"><span class="timestamp">-</span>: <span class="message">-</span></div>
+                            <!-- <h2 class="header-tweets-realtime " style="display: inline;">Realtime</h2> -->
+                        </div>
+
                         <div class=" col-md-12 m-0 p-0">
                             <div class="tweets row m-0 p-0"></div>
                         </div>
@@ -144,7 +149,6 @@ import Typewriter from "@/components/AnimatedCharacters/Typewriter.vue";
 import {
     tweetsHistory
 } from "@/assets/js/tweetsHistory.js";
-
 
 export default {
     name: "twitterRealtime",
