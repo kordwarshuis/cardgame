@@ -49,23 +49,25 @@
                             </div>
 
                             <div class="col-md-12 m-0 p-0 ">
-                                <!-- FILTER TWEETS -->
-                                <div class="row m-0 p-0" style="width: 100%;">
-                                    <div class="col-11 m-0 p-0">
+                                <div class="row m-0 mb-2 p-0">
+                                    <!-- FILTER TWEETS -->
+                                    <div class="col-10 m-0 p-0">
                                         <div class="input-group input-group-sm ">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="inputGroup-sizing-sm">Search tweets</span>
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Search</span>
                                             </div>
                                             <input type="text" class="form-control" id="filterTweets" value="" aria-label="Search tweet stream" aria-describedby="Search tweet stream">
                                         </div>
                                     </div>
                                     <!-- DOWNLOAD TWEETS HISTORY -->
-                                    <div class="col-1 m-0 p-0 ">
-                                        <button @click="tweetsHistory" type="button" class="btn btn-outline-light btn-sm m-0 ml-1 download-tweets-history" style="height: 100%;" title="Download tweets again">
-                                            <!-- Icons made by <a href="" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> -->
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 515.556 515.556" fill="white" class="bi">
-                                                <defs />
-                                                <path d="M257.778 0C115.641 0 0 115.641 0 257.778s115.641 257.778 257.778 257.778 257.778-115.641 257.778-257.778S399.914 0 257.778 0zm0 386.667l-96.667-112.778h64.444v-145H290v145h64.444z" /></svg></button>
+                                    <div class="col-2 m-0 p-0">
+                                        <div class="m-0 p-0 pl-1" style="height: 100%;">
+                                            <button @click="tweetsHistory" type="button" class="btn btn-outline-light btn-sm m-0 download-tweets-history" style="height: 100%; width: 100%;" title="Download tweets again">
+                                                <!-- Icons made by <a href="" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 515.556 515.556" fill="white" class="bi">
+                                                    <defs />
+                                                    <path d="M257.778 0C115.641 0 0 115.641 0 257.778s115.641 257.778 257.778 257.778 257.778-115.641 257.778-257.778S399.914 0 257.778 0zm0 386.667l-96.667-112.778h64.444v-145H290v145h64.444z" /></svg></button>
+                                        </div>
                                     </div>
                                     <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
                                 </div>
