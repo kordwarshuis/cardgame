@@ -205,7 +205,7 @@ export var realTimeTweets = (function () {
             var newTweets = document.querySelectorAll(".newTweet");
             tweetsPassedFilter = newTweets.length;
             console.log('tweetsPassedFilter: ', tweetsPassedFilter);
-            konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed filter.';
+            konsole.innerHTML = data.length + ' new tweets, ' + tweetsPassedFilter + ' passed.';
 
             tweetStreamAttentionSeeker();
         }
