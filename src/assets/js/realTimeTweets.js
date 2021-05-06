@@ -155,7 +155,7 @@ export var realTimeTweets = (function () {
                     }
 
                     stringTweets =
-                        "<div data-verified='"+ isVerified +"' class='card mb-3 pt-3 tweet newTweet displayBlokTweet" + "'>" +
+                        "<div class='card mb-3 pt-3 tweet newTweet displayBlokTweet" + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
                         tweetTypeText +
@@ -180,7 +180,7 @@ export var realTimeTweets = (function () {
                         "<div class='col-6'>Name: " + data[i].user.name + "</div>" +
                         "<div class='col-6'>Keyword: " + currentKeyword + "</div>" +
 
-                        "<div class='col-6 mb-3'>Verified: " + verifiedString + "</div>" +
+                        "<div data-verified='"+ isVerified +"' class='col-6 mb-3 verified'>Verified: " + verifiedString + "</div>" +
                         "<div class='col-6 mb-3'>Followers: <span class='followerscount' data-followerscount='" + data[i].user.followers_count + "'>" + data[i].user.followers_count + "</span></div>" +
 
                         "<div class='col-6'></div>" +
