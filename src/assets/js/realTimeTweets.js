@@ -82,11 +82,14 @@ export var realTimeTweets = (function () {
                 var noneOfTheseStringsCriterium = false;
 
                 var verifiedString = "";
+                var isVerified = false;
 
                 if (data[i].user.verified === false) {
                     verifiedString = "No ";
+                    isVerified = false;
                 } else {
                     verifiedString = "Yes " + svgfile;
+                    isVerified = true;
                 }
             
                 /*
@@ -152,7 +155,7 @@ export var realTimeTweets = (function () {
                     }
 
                     stringTweets =
-                        "<div class='card mb-3 pt-3 tweet newTweet displayBlokTweet" + "'>" +
+                        "<div data-verified='"+ isVerified +"' class='card mb-3 pt-3 tweet newTweet displayBlokTweet" + "'>" +
                         "<div class='card-body p-2'>" +
                         "<div class='row'>" +
                         tweetTypeText +

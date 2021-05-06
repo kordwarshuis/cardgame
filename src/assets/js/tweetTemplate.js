@@ -22,14 +22,17 @@ export var tweetTemplate = function (
     userVerified = "-"
 ) {
     var verifiedString = "";
+    var isVerified = false;
 
     if (userVerified === false) {
         verifiedString = "No ";
+        isVerified = false;
     } else {
         verifiedString = "Yes " + svgfile;
+        isVerified = true;
     }
 
-    var template = "<div class='card mb-3 pt-3 tweet displayBlokTweet" + "'>" +
+    var template = "<div data-verified='"+ isVerified +"' class='card mb-3 pt-3 tweet displayBlokTweet" + "'>" +
         "<div class='card-body p-2'>" +
         "<div class='row pt-3'>" +
         "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>" +
