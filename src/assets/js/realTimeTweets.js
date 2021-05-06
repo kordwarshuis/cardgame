@@ -14,6 +14,10 @@ import {
     tweetStreamAttentionSeeker
 } from '@/assets/js/tweetStreamAttentionSeeker';
 
+import {
+    svgfile
+} from "@/assets/img/icons/flat/verified-svg.js";
+
 export var realTimeTweets = (function () {
     // console showing messages to user
     var konsole;
@@ -34,7 +38,6 @@ export var realTimeTweets = (function () {
     var anyOfTheseStrings = [];
     var noneOfTheseStringsDefault = [];
     var noneOfTheseStrings = [];
-
 
     // mechanism to prevent new-tweets-sound to play too often
     setInterval(function () {
@@ -78,6 +81,14 @@ export var realTimeTweets = (function () {
                 var anyOfTheseStringsCriterium = false;
                 var noneOfTheseStringsCriterium = false;
 
+                var verifiedString = "";
+
+                if (data[i].user.verified === false) {
+                    verifiedString = "No ";
+                } else {
+                    verifiedString = "Yes " + svgfile;
+                }
+            
                 /*
                  * CHECK CRITERIA FOR TWEET
                  */
@@ -166,7 +177,7 @@ export var realTimeTweets = (function () {
                         "<div class='col-6'>Name: " + data[i].user.name + "</div>" +
                         "<div class='col-6'>Keyword: " + currentKeyword + "</div>" +
 
-                        "<div class='col-6 mb-3'>Verified: " + data[i].user.verified + "</div>" +
+                        "<div class='col-6 mb-3'>Verified: " + verifiedString + "</div>" +
                         "<div class='col-6 mb-3'>Followers: <span class='followerscount' data-followerscount='" + data[i].user.followers_count + "'>" + data[i].user.followers_count + "</span></div>" +
 
                         "<div class='col-6'></div>" +
