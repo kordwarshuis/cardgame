@@ -32,7 +32,7 @@ export var tweetTemplate = function (
         isVerified = true;
     }
 
-    var template = "<div data-verified='"+ isVerified +"' class='card mb-3 pt-3 tweet displayBlokTweet" + "'>" +
+    var template = "<div class='card mb-3 pt-3 tweet displayBlokTweet" + "'>" +
         "<div class='card-body p-2'>" +
         "<div class='row pt-3'>" +
         "<button class='close'><span class='visuallyhidden'>remove this tweet</span>×</button>" +
@@ -56,7 +56,7 @@ export var tweetTemplate = function (
         "<div class='col-6'>Name: " + userName + "</div>" +
         "<div class='col-6'></div>" +
 
-        "<div class='col-6 mb-3'>Verified: " + verifiedString + "</div>" +
+        "<div data-verified='"+ isVerified +"' class='col-6 mb-3 verified'>Verified: " + verifiedString + "</div>" +
         "<div class='col-6 mb-3'>Followers: <span class='followerscount' data-followerscount='" + userFollowersCount + "'>" + userFollowersCount + "</span></div>" +
 
         "<div class='col-6'></div>" +
