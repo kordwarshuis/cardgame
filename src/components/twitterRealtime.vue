@@ -42,19 +42,14 @@
                                     </svg>
                                     <span> Nwst</span>
                                 </button>
-                                
+
                                 <!-- verified -->
                                 <button title="Toggle verified users" @click="toggleVerifiedTweets()" type="button" class="btn btn-outline-light btn-sm">
-                                    <svg viewBox="0 0 512 512" width="16" height="16" fill="#fafafa" xmlns="http://www.w3.org/2000/svg"><path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0" fill="#2196f3"/><path d="m385.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" /></svg>
+                                    <svg viewBox="0 0 512 512" width="16" height="16" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0" fill="#2196f3" />
+                                        <path d="m385.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" /></svg>
                                     <span class="visuallyhidden">Only verified</span>
                                 </button>
-
-                                <!-- INFO -->
-                                <button type="button" class="tweet-stream-info btn btn-outline-dark align-middle inline ml-2" style="border: none;" data-toggle="modal" data-target="#tweetStreamInfoModal">
-                                    <span class="visuallyhidden">Tweetstream info</span>
-                                    <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
-                                </button>
-
                             </div>
 
                             <div class="col-md-12 m-0 p-0 ">
@@ -69,13 +64,23 @@
                                         </div>
                                     </div>
                                     <!-- DOWNLOAD TWEETS HISTORY -->
-                                    <div class="col-2 m-0 p-0">
+                                    <div class="col-1 m-0 p-0">
                                         <div class="m-0 p-0 pl-1" style="height: 100%;">
                                             <button @click="tweetsHistory" type="button" class="btn btn-outline-light btn-sm m-0 download-tweets-history" style="height: 100%; width: 100%;" title="Download tweets again">
                                                 <!-- Icons made by <a href="" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 515.556 515.556" fill="white" class="bi">
                                                     <defs />
                                                     <path d="M257.778 0C115.641 0 0 115.641 0 257.778s115.641 257.778 257.778 257.778 257.778-115.641 257.778-257.778S399.914 0 257.778 0zm0 386.667l-96.667-112.778h64.444v-145H290v145h64.444z" /></svg></button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-1 m-0 p-0">
+                                        <!-- INFO -->
+                                        <div class="m-0 p-0" style="height: 100%;">
+                                        <button type="button" class="tweet-stream-info btn btn-outline-light btn-sm m-0 ml-1" style="height: 100%; width: 100%;" data-toggle="modal" data-target="#tweetStreamInfoModal">
+                                            <span class="visuallyhidden">Tweetstream info</span>
+                                            <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
+                                        </button>
                                         </div>
                                     </div>
                                     <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
