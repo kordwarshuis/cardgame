@@ -5,6 +5,10 @@ import {
     timestampTweet
 } from "@/assets/js/calculateTweetTimeStamps";
 
+import {
+    svgfile
+} from "../img/icons/flat/verified-svg.js";
+
 export var tweetTemplate = function (
     createdAt = "Thu Jan 01 00:00:00 +0000 1970",
     idStr = "0",
@@ -17,6 +21,14 @@ export var tweetTemplate = function (
     userProfileImageUrlHttps = "",
     userVerified = "-"
 ) {
+    var verifiedString = "";
+
+    if (userVerified === false) {
+        verifiedString = "No ";
+    } else {
+        verifiedString = "Yes " + svgfile;
+    }
+
     var template = "<div class='card mb-3 pt-3 tweet displayBlokTweet" + "'>" +
         "<div class='card-body p-2'>" +
         "<div class='row pt-3'>" +
@@ -41,7 +53,7 @@ export var tweetTemplate = function (
         "<div class='col-6'>Name: " + userName + "</div>" +
         "<div class='col-6'></div>" +
 
-        "<div class='col-6 mb-3'>Verified: " + userVerified + "</div>" +
+        "<div class='col-6 mb-3'>Verified: " + verifiedString + "</div>" +
         "<div class='col-6 mb-3'>Followers: <span class='followerscount' data-followerscount='" + userFollowersCount + "'>" + userFollowersCount + "</span></div>" +
 
         "<div class='col-6'></div>" +
