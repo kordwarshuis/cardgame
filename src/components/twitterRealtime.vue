@@ -13,18 +13,25 @@
                 <div class="tweets-realtime col-md-12 m-0 p-0" style="padding-bottom: 10em !important;">
                     <nav class="navbar navbar-expand-md sticky-top p-0 m-0 " style="background: #1FA1F2;">
                         <div class="row m-0 p-0" style="width: 100%;">
-                            <div class="col-md-12 m-0 p-0 ">
+                            <div class="col-md-12 m-0 mt-2 p-0 ">
                                 <!-- START STOP -->
                                 <TwitterRealTimeStartStopToggle class="align-middle inline mr-2" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
 
                                 <!-- CONFIGURATION -->
-                                <button type="button" class="tweet-stream-configuration btn btn-outline-dark align-middle inline ml-0" style="border: none;" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
+                                <button type="button" class="tweet-stream-configuration btn btn-sm btn-outline-light align-middle inline ml-0 p-1" style="" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
                                     <span class="visuallyhidden">Tweetstream configuration</span>
-                                    <img style="width: 20px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
+                                    <img style="width: 15px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
                                 </button>
 
                                 <!-- CLEAR -->
-                                <button class="btn btn-sm btn-outline-light ml-0 clear-tweet-stream-button">Clear</button>
+                                <button class="btn btn-sm btn-outline-light ml-0 clear-tweet-stream-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 512 512">
+                                        <defs />
+                                        <path d="M368 65h-18.414C342.719 28.727 310.916 0 272 0h-32c-38.891 0-70.715 28.708-77.586 65H144c-52.383 0-95 42.617-95 95 0 8.284 6.716 15 15 15h26.031l21.023 295.196C112.722 493.638 132.439 512 155.939 512H356.06c23.5 0 43.217-18.362 44.886-41.804L421.969 175H448c8.284 0 15-6.716 15-15 0-52.383-42.617-95-95-95zM240 30h32c21.9 0 40.49 14.734 46.748 35H193.252C199.51 44.734 218.1 30 240 30zm131.023 438.065c-.557 7.813-7.129 13.935-14.962 13.935H155.939c-7.833 0-14.406-6.121-14.962-13.935L120.106 175h271.787zM80.747 145C87.536 116.365 113.32 95 144 95h224c30.681 0 56.464 21.365 63.253 50H80.747z" />
+                                        <path d="M303.251 430.981c8.247.41 15.315-5.931 15.73-14.232l8-160c.414-8.273-5.958-15.316-14.232-15.73-8.261-.423-15.317 5.958-15.73 14.232l-8 160c-.414 8.273 5.958 15.316 14.232 15.73zM207.987 431c8.637 0 15.42-7.223 14.994-15.749l-8-160c-.414-8.273-7.468-14.647-15.73-14.232-8.274.414-14.646 7.457-14.232 15.73l8 160c.4 8.019 7.028 14.251 14.968 14.251z" />
+                                    </svg>
+                                    <span class="visuallyhidden">Delete tweets / clear stream</span>
+                                </button>
 
                                 <!-- SORT -->
                                 <!-- followers -->
@@ -55,13 +62,13 @@
                                 <!-- verified -->
                                 <button title="Toggle verified users" @click="toggleVerifiedTweets()" type="button" class="btn btn-outline-light btn-sm">
                                     <svg viewBox="0 0 512 512" width="16" height="16" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0" fill="#2196f3" />
+                                        <path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0" fill="#0085F2" />
                                         <path d="m385.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" /></svg>
                                     <span class="visuallyhidden">Only verified</span>
                                 </button>
                             </div>
 
-                            <div class="col-md-12 m-0 p-0 ">
+                            <div class="col-md-12 m-0 mt-2 p-0 ">
                                 <div class="row m-0 mb-2 p-0">
                                     <!-- FILTER TWEETS -->
                                     <div class="col-10 m-0 p-0">
