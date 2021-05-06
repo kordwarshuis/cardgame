@@ -18,13 +18,14 @@
                                 <TwitterRealTimeStartStopToggle class="align-middle inline mr-2" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
 
                                 <!-- CONFIGURATION -->
-                                <button type="button" class="tweet-stream-configuration btn btn-sm btn-outline-light align-middle inline ml-0 p-1" style="" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
+                                <button title="Tweetstream configuration" type="button" class="tweet-stream-configuration btn btn-sm btn-outline-light align-middle inline ml-0 p-1" style="" data-toggle="modal" data-target="#tweetStreamConfigurationModal">
                                     <span class="visuallyhidden">Tweetstream configuration</span>
                                     <img style="width: 15px;" src="@/assets/img/icons/ui/configuration.svg" alt="" />
                                 </button>
 
                                 <!-- CLEAR -->
-                                <button class="btn btn-sm btn-outline-light ml-0 clear-tweet-stream-button">
+                                <button title="Delete tweets / clear stream" class="btn btn-sm btn-outline-light ml-0 clear-tweet-stream-button">
+                                    <!-- Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 512 512">
                                         <defs />
                                         <path d="M368 65h-18.414C342.719 28.727 310.916 0 272 0h-32c-38.891 0-70.715 28.708-77.586 65H144c-52.383 0-95 42.617-95 95 0 8.284 6.716 15 15 15h26.031l21.023 295.196C112.722 493.638 132.439 512 155.939 512H356.06c23.5 0 43.217-18.362 44.886-41.804L421.969 175H448c8.284 0 15-6.716 15-15 0-52.383-42.617-95-95-95zM240 30h32c21.9 0 40.49 14.734 46.748 35H193.252C199.51 44.734 218.1 30 240 30zm131.023 438.065c-.557 7.813-7.129 13.935-14.962 13.935H155.939c-7.833 0-14.406-6.121-14.962-13.935L120.106 175h271.787zM80.747 145C87.536 116.365 113.32 95 144 95h224c30.681 0 56.464 21.365 63.253 50H80.747z" />
@@ -93,7 +94,7 @@
                                     <div class="col-1 m-0 p-0">
                                         <!-- INFO -->
                                         <div class="m-0 p-0 pr-1" style="height: 100%;">
-                                            <button type="button" class="tweet-stream-info btn btn-outline-light btn-sm m-0 ml-1 p-0" style="height: 100%; width: 100%;" data-toggle="modal" data-target="#tweetStreamInfoModal">
+                                            <button title="Tweetstream info" type="button" class="tweet-stream-info btn btn-outline-light btn-sm m-0 ml-1 p-0" style="height: 100%; width: 100%;" data-toggle="modal" data-target="#tweetStreamInfoModal">
                                                 <span class="visuallyhidden">Tweetstream info</span>
                                                 <img style="width: 15px; margin: 0;" src="@/assets/img/icons/ui/question.svg" alt="" />
                                             </button>
