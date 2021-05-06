@@ -7,7 +7,7 @@ import {
 
 import {
     svgfile
-} from "../img/icons/flat/verified-svg.js";
+} from "@/assets/img/icons/flat/verified-svg.js";
 
 export var tweetTemplate = function (
     createdAt = "Thu Jan 01 00:00:00 +0000 1970",
