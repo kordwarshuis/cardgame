@@ -28,7 +28,7 @@
 
                                 <!-- SORT -->
                                 <!-- followers -->
-                                <button @click="sort('followerscount')" type="button" class="btn btn-outline-light btn-sm">
+                                <button title="Tweets with most followers first" @click="sort('followerscount')" type="button" class="btn btn-outline-light btn-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up" viewBox="0 0 16 16">
                                         <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
                                     </svg>
@@ -36,7 +36,7 @@
                                 </button>
 
                                 <!-- timestamp -->
-                                <button @click="sort('timestampms')" type="button" class="btn btn-outline-light btn-sm">
+                                <button title="Newest tweets first" @click="sort('timestampms')" type="button" class="btn btn-outline-light btn-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-up" viewBox="0 0 16 16">
                                         <path d="M3.5 12.5a.5.5 0 0 1-1 0V3.707L1.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L3.5 3.707V12.5zm3.5-9a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
                                     </svg>
@@ -44,7 +44,7 @@
                                 </button>
                                 
                                 <!-- verified -->
-                                <button @click="sort('followers')" type="button" class="btn btn-outline-light btn-sm">
+                                <button title="Toggle verified users" @click="toggleVerifiedTweets()" type="button" class="btn btn-outline-light btn-sm">
                                     <svg viewBox="0 0 512 512" width="16" height="16" fill="#fafafa" xmlns="http://www.w3.org/2000/svg"><path d="m256 0c-141.164062 0-256 114.835938-256 256s114.835938 256 256 256 256-114.835938 256-256-114.835938-256-256-256zm0 0" fill="#2196f3"/><path d="m385.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" /></svg>
                                     <span class="visuallyhidden">Only verified</span>
                                 </button>
@@ -155,6 +155,10 @@ import {
     sort
 } from "@/assets/js/sortTweets.js";
 
+import {
+    toggleVerifiedTweets
+} from "@/assets/js/toggleVerifiedTweets.js";
+
 import Typewriter from "@/components/AnimatedCharacters/Typewriter.vue";
 
 import {
@@ -202,6 +206,9 @@ export default {
         },
         sort(key) {
             sort(key);
+        },
+        toggleVerifiedTweets(key) {
+            toggleVerifiedTweets(key);
         },
         sortKeybindings() {
             Mousetrap.bind(['t f'], function () {
