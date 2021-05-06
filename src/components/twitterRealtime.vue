@@ -76,10 +76,10 @@
 
                                     <div class="col-1 m-0 p-0">
                                         <!-- INFO -->
-                                        <div class="m-0 p-0" style="height: 100%;">
-                                            <button type="button" class="tweet-stream-info btn btn-outline-light btn-sm m-0 ml-1" style="height: 100%; width: 100%;" data-toggle="modal" data-target="#tweetStreamInfoModal">
+                                        <div class="m-0 p-0 pr-1" style="height: 100%;">
+                                            <button type="button" class="tweet-stream-info btn btn-outline-light btn-sm m-0 ml-1 p-0" style="height: 100%; width: 100%;" data-toggle="modal" data-target="#tweetStreamInfoModal">
                                                 <span class="visuallyhidden">Tweetstream info</span>
-                                                <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
+                                                <img style="width: 15px; margin: 0;" src="@/assets/img/icons/ui/question.svg" alt="" />
                                             </button>
                                         </div>
                                     </div>
