@@ -2,7 +2,7 @@
 <div class="twitterRealTimeToggle">
     <input type="checkbox" id="twitterRealTimeToggleInput" class="visuallyhidden" checked>
     <div class="control-me"></div>
-    <label for="twitterRealTimeToggleInput">Toggle</label>
+    <label title="Start/Stop tweet stream" for="twitterRealTimeToggleInput">Toggle</label>
 </div>
 </template>
 
