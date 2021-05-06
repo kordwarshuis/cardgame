@@ -77,10 +77,10 @@
                                     <div class="col-1 m-0 p-0">
                                         <!-- INFO -->
                                         <div class="m-0 p-0" style="height: 100%;">
-                                        <button type="button" class="tweet-stream-info btn btn-outline-light btn-sm m-0 ml-1" style="height: 100%; width: 100%;" data-toggle="modal" data-target="#tweetStreamInfoModal">
-                                            <span class="visuallyhidden">Tweetstream info</span>
-                                            <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
-                                        </button>
+                                            <button type="button" class="tweet-stream-info btn btn-outline-light btn-sm m-0 ml-1" style="height: 100%; width: 100%;" data-toggle="modal" data-target="#tweetStreamInfoModal">
+                                                <span class="visuallyhidden">Tweetstream info</span>
+                                                <img style="width: 20px;" src="@/assets/img/icons/ui/question.svg" alt="" />
+                                            </button>
                                         </div>
                                     </div>
                                     <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
