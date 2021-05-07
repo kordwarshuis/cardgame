@@ -789,8 +789,12 @@ a.overlay__close:not(.overlay__close-cross):hover,
     display: block;
 }
 
+.tweet-config-menu-explanation {
+    color: #eee;    
+}
+
 .tweet-stream-info-in-stream {
-    color: #111;
+    color: #eee;
     font-size: 2em;
     text-align: center;
 }
