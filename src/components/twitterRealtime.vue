@@ -13,6 +13,7 @@
                 <div class="tweets-realtime col-md-12 m-0 p-0" style="padding-bottom: 10em !important;">
                     <nav class="navbar navbar-expand-md sticky-top p-0 m-0 " style="background: #1FA1F2;">
                         <div class="row m-0 p-0" style="width: 100%;">
+                            <!-- CONFIGURATION BUTTONS -->
                             <div class="col-md-12 m-0 mt-2 p-0 ">
                                 <!-- START STOP -->
                                 <TwitterRealTimeStartStopToggle class="align-middle inline mr-2" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
@@ -67,12 +68,31 @@
                                         <path d="m385.75 201.75-138.667969 138.664062c-4.160156 4.160157-9.621093 6.253907-15.082031 6.253907s-10.921875-2.09375-15.082031-6.253907l-69.332031-69.332031c-8.34375-8.339843-8.34375-21.824219 0-30.164062 8.339843-8.34375 21.820312-8.34375 30.164062 0l54.25 54.25 123.585938-123.582031c8.339843-8.34375 21.820312-8.34375 30.164062 0 8.339844 8.339843 8.339844 21.820312 0 30.164062zm0 0" /></svg>
                                     <span class="visuallyhidden">Only verified</span>
                                 </button>
+
+                                <!-- DOWNLOAD TWEETS HISTORY -->
+                                <button @click="tweetsHistory" type="button" class="btn btn-outline-light btn-sm m-0 download-tweets-history" title="Download tweets again">
+                                    <!-- Icons made by <a href="" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 515.556 515.556" fill="white" class="bi">
+                                        <defs />
+                                        <path d="M257.778 0C115.641 0 0 115.641 0 257.778s115.641 257.778 257.778 257.778 257.778-115.641 257.778-257.778S399.914 0 257.778 0zm0 386.667l-96.667-112.778h64.444v-145H290v145h64.444z" /></svg></button>
+
+                                <!-- INFO -->
+
+                                <button title="Tweetstream info" type="button" class="tweet-stream-info btn btn-outline-light btn-sm m-0 ml-1 p-0" data-toggle="modal" data-target="#tweetStreamInfoModal">
+                                    <span class="visuallyhidden">Tweetstream info</span>
+                                    <img style="width: 15px; margin: 7px;" src="@/assets/img/icons/ui/question.svg" alt="" />
+                                </button>
+                            </div>
+
+                            <!-- CONFIGURATION BUTTONS EXPLANATION -->
+                            <div class="col-md-12 m-0 p-0 ">
+                                <p class="p-0 m-0 tweet-config-menu-explanation"></p>
                             </div>
 
                             <div class="col-md-12 m-0 mt-2 p-0 ">
                                 <div class="row m-0 mb-2 p-0">
                                     <!-- FILTER TWEETS -->
-                                    <div class="col-10 m-0 p-0">
+                                    <div class="col-12 m-0 p-0">
                                         <div class="input-group input-group-sm ">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-sm">Search</span>
@@ -80,31 +100,13 @@
                                             <input type="text" class="form-control" id="filterTweets" value="" aria-label="Search tweet stream" aria-describedby="Search tweet stream">
                                         </div>
                                     </div>
-                                    <!-- DOWNLOAD TWEETS HISTORY -->
-                                    <div class="col-1 m-0 p-0">
-                                        <div class="m-0 p-0 pl-1" style="height: 100%;">
-                                            <button @click="tweetsHistory" type="button" class="btn btn-outline-light btn-sm m-0 download-tweets-history" style="height: 100%; width: 100%;" title="Download tweets again">
-                                                <!-- Icons made by <a href="" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 515.556 515.556" fill="white" class="bi">
-                                                    <defs />
-                                                    <path d="M257.778 0C115.641 0 0 115.641 0 257.778s115.641 257.778 257.778 257.778 257.778-115.641 257.778-257.778S399.914 0 257.778 0zm0 386.667l-96.667-112.778h64.444v-145H290v145h64.444z" /></svg></button>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-1 m-0 p-0">
-                                        <!-- INFO -->
-                                        <div class="m-0 p-0 pr-1" style="height: 100%;">
-                                            <button title="Tweetstream info" type="button" class="tweet-stream-info btn btn-outline-light btn-sm m-0 ml-1 p-0" style="height: 100%; width: 100%;" data-toggle="modal" data-target="#tweetStreamInfoModal">
-                                                <span class="visuallyhidden">Tweetstream info</span>
-                                                <img style="width: 15px; margin: 0;" src="@/assets/img/icons/ui/question.svg" alt="" />
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <h2 class='tweet-stream-info-in-stream hidden'>Tweet stream is paused.</h2>
+                                    <h2 class='tweet-stream-info-in-stream hidden p-0 m-0 mt-2'>Tweet stream is paused.</h2>
                                 </div>
                             </div>
                         </div>
                     </nav>
+
+                    <!-- Clock and messages -->
                     <div class="row m-0 p-0">
                         <div class="col-md-12 m-0 p-0 mr-2 mt-1">
                             <div style="font-family: courier; font-weight: bold;font-size: 1.3em; color: #eee;" class="console"><span class="timestamp">-</span>: <span class="message">-</span></div>
@@ -224,12 +226,32 @@ export default {
     },
     methods: {
         tweetsHistory() {
+            this.konsole("Tweets are downloaded again.");
             tweetsHistory();
         },
+        konsole(message) {
+            var konsole = document.querySelector('.tweet-config-menu-explanation');
+
+            konsole.innerHTML = "–";
+
+            setTimeout(function () {
+                konsole.innerHTML = message;
+            }, 200);
+        },
         sort(key) {
-            sort(key);
+            if (key === "followerscount") {
+                this.konsole("Tweets are now sorted by number of followers.");
+            }
+            if (key === "timestampms") {
+                this.konsole("Tweets are now sorted by creation time.");
+            }
+
+            setTimeout(function () {
+                sort(key);
+            }, 500);
         },
         toggleVerifiedTweets(key) {
+            this.konsole("Toggle only verified users.");
             toggleVerifiedTweets(key);
         },
         sortKeybindings() {
@@ -409,6 +431,7 @@ export default {
             var tweets = document.querySelector('.tweets-realtime .tweets');
 
             function clear() {
+                that.konsole("Tweets are deleted but you can download again.");
                 tweets.innerHTML = "";
                 that.setRealtimeTweetsToLocalStorage();
             }
