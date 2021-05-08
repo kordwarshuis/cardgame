@@ -86,7 +86,7 @@
 
                             <!-- CONFIGURATION BUTTONS EXPLANATION -->
                             <div class="col-md-12 m-0 p-0 ">
-                                <p class="p-0 m-0 tweet-config-menu-explanation"></p>
+                                <p class="p-0 m-0 tweet-config-menu-explanation">Play with the configuration buttons.</p>
                             </div>
 
                             <div class="col-md-12 m-0 mt-2 p-0 ">
@@ -250,18 +250,24 @@ export default {
                 sort(key);
             }, 500);
         },
-        toggleVerifiedTweets(key) {
+        toggleVerifiedTweets() {
             this.konsole("Toggle only verified users.");
-            toggleVerifiedTweets(key);
+            toggleVerifiedTweets();
         },
         sortKeybindings() {
+            var that = this;
             Mousetrap.bind(['t f'], function () {
-                sort('followerscount');
+                that.sort('followerscount');
                 return false;
             });
 
             Mousetrap.bind(['t n'], function () {
-                sort('timestampms');
+                that.sort('timestampms');
+                return false;
+            });
+
+            Mousetrap.bind(['t v'], function () {
+                that.toggleVerifiedTweets();
                 return false;
             });
         },
