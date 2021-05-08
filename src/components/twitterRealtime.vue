@@ -118,7 +118,7 @@
                         </div>
                     </div>
 
-                    <button title="scroll to top" style="position: fixed; right: 0; top: 80%;" @click="scrollToFirstTweet()" type="button" class="btn btn-primary">↑</button>
+                    <button title="scroll to top" style="position: fixed; right: 0.5em; top: 78%;" @click="scrollToFirstTweet()" type="button" class="btn btn-outline-dark">↑</button>
                 </div>
 
                 <!-- SELECTED TWEETS -->
