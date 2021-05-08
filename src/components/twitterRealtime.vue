@@ -117,6 +117,8 @@
                             <div class="tweets row m-0 p-0"></div>
                         </div>
                     </div>
+
+                    <button title="scroll to top" style="position: fixed; right: 0; top: 80%;" @click="scrollToFirstTweet()" type="button" class="btn btn-primary">↑</button>
                 </div>
 
                 <!-- SELECTED TWEETS -->
@@ -225,6 +227,13 @@ export default {
         this.sortKeybindings();
     },
     methods: {
+        scrollToFirstTweet() {
+            document.querySelector(".tweet").scrollIntoView({
+                behavior: "smooth",
+                block: "end",
+                inline: "nearest"
+            });
+        },
         tweetsHistory() {
             this.konsole("Tweets are downloaded again.");
             tweetsHistory();
