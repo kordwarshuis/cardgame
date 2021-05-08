@@ -32,15 +32,9 @@ export function sort(key) {
         container.appendChild(itemsArr[i]);
     }
 
-    // remove anchor if exists (if sort was done before)
-    if (topTweet) {
-        topTweet.removeAttribute('id');
-    }
-    // add anchor
-    document.querySelector(".tweets-realtime .tweets .tweet").setAttribute('id', 'topTweet');
-
     // scroll
-    document.querySelector("#topTweet").scrollIntoView({
+    // this query will return only one element, the first one, exactly what we need here:
+    document.querySelector(".tweet").scrollIntoView({
         behavior: "smooth",
         block: "end",
         inline: "nearest"
