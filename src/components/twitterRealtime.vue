@@ -14,7 +14,7 @@
                     <nav class="navbar navbar-expand-md sticky-top p-0 m-0 " style="background: #1FA1F2;">
                         <div class="row m-0 p-0" style="width: 100%;">
                             <!-- CONFIGURATION BUTTONS -->
-                            <div class="col-md-12 m-0 mt-2 p-0 ">
+                            <div class="col-md-12 m-0 mt-2" style=" overflow-x: scroll; overflow-y: hidden; white-space: nowrap; padding-right: calc(2em + 50px);">
                                 <!-- START STOP -->
                                 <TwitterRealTimeStartStopToggle class="align-middle inline mr-2" style="width: 20px; height: 20px;transform: translateY(-0.1em);" />
 
