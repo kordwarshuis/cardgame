@@ -1,11 +1,15 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sitemap</title>
+</head>
+<body>
 <?php
 // Configuration
 
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-$url = $protocol.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/";
-
-
+$url = $protocol . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/";
 
 $domain = 'https://blockchainbird.org';
 $pathCardGame1 = '/t/btc/';
@@ -50,21 +54,18 @@ foreach ($cardContent as $key => $value) {
     if (strpos($cardContent[$key][$arrayPositionStack], '1') > -1) {
         foreach ($value as $key2 => $value2) {
             if ($row0[$key2] == $uniqueHeaderName && $value2 != $uniqueHeaderName) {
-                echo $domain . $pathCardGame1 . $card . $value2 . "\r\n";
+                echo "<a href='" . $domain . $pathCardGame1 . $card . $value2 . "'>" . $domain . $pathCardGame1 . $card . $value2 . "</a>" . "\r\n";
             }
         }
     }
 }
-
-
-
 
 //BCB
 foreach ($cardContent as $key => $value) {
     if (strpos($cardContent[$key][$arrayPositionStack], '2') > -1) {
         foreach ($value as $key2 => $value2) {
             if ($row0[$key2] == $uniqueHeaderName && $value2 != $uniqueHeaderName) {
-                echo $domain . $pathCardGame2 . $card . $value2 . "\r\n";
+                echo "<a href='" . $domain . $pathCardGame2 . $card . $value2 . "'>" . $domain . $pathCardGame2 . $card . $value2 . "</a>" . "\r\n";
             }
         }
     }
@@ -74,8 +75,13 @@ foreach ($cardContent as $key => $value) {
     if (strpos($cardContent[$key][$arrayPositionStack], '3') > -1) {
         foreach ($value as $key2 => $value2) {
             if ($row0[$key2] == $uniqueHeaderName && $value2 != $uniqueHeaderName) {
-                echo $domain . $pathCardGame3 . $card . $value2 . "\r\n";
+                echo "<a href='" . $domain . $pathCardGame3 . $card . $value2 . "'>" . $domain . $pathCardGame3 . $card . $value2 . "</a>" . "\r\n";
             }
         }
     }
 }
+
+?>
+
+</body>
+</html>
