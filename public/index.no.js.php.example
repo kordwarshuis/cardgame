@@ -1,17 +1,20 @@
 <?php
 
-// Configuration
-//location, everything after the top level domain
-$pathCardGame = '/t/btc/';
-// path to csv file containing content
-$content = 'https://domain.org/t/data/cards.csv';
+// CONFIGURATION
 
-// Configuration: location of images
-$path = '/t/media/img/social-media/system/'; // also change .env file
+//domain:
 $domain = 'https://blockchainbird.org';
+//location, everything after the top level domain:
+$pathCardGame = '/t/btc/';
+// path to csv file containing content:
+$content = 'https://domain.org/t/data/cards.csv';
+//images location:
+$path = '/t/media/img/social-media/system/'; // also change .env file
 $defaultImage = 'https://blockchainbird.org/t/media/img/social-media/social-media-bitcoin8.jpg';
+
 $shortText = 'Bitcoin misconceptions.';
 $longText = 'Misconceptions about bitcoin hold back progress. Found a misconception? Lookup-Copy-Paste our permanent links with curated expert info!';
+// END CONFIGURATION
 
 // if specific image exists (image with url as name) then use that image, else use default image
 function check_file_exist($fullPath)
