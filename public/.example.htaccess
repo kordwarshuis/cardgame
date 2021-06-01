@@ -9,13 +9,13 @@
     
 
     # redirect so twitterbot receives unique images per url
-    RewriteCond %{HTTP_USER_AGENT} Twitterbot
-    # RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Googlebot)
+    # RewriteCond %{HTTP_USER_AGENT} Twitterbot
+    RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Googlebot)
     # simpel redirect test
     # RewriteRule "index.html"  "index-twitter.html" [PT]
     
     # actual redirect for social media bots
-    RewriteRule "card/(.*)$" "/path/to/index-social-media.php?url=$1" [NC,L]
+    RewriteRule "card/(.*)$" "/path/to/index.no.js.php?url=$1" [NC,L]
 
     # redirect for normal visitors
     RewriteCond %{REQUEST_FILENAME} !-f
