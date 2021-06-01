@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sitemap</title>
+</head>
+<body>
+<?php
+// CONFIGURATION
+$content = 'https://blockchainbird.org/t/data/cards.csv';
+$stack = 1;
+// END CONFIGURATION
+
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$url = $protocol . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/";
+$card = 'card/';
+$uniqueHeaderName = 'Unique URL';
+$stackName = 'Stack';
+
+// https://phpenthusiast.com/blog/parse-csv-with-php
+// The nested array to hold all the arrays
+$cardContent = [];
+
+// Open file
+if (($h = fopen("{$content}", "r")) !== false) {
+    // Each line in the file is converted into an individual array that we call $data
+    // The items of the array are comma separated
+    while (($data = fgetcsv($h, 1000, ",")) !== false) {
+        // Each individual array is being pushed into the nested array
+        $cardContent[] = $data;
+    }
+
+    // Close the file
+    fclose($h);
+}
+
+// find where the Unique URL is
+// select the first row
+$row0 = $cardContent[0];
+for ($i = 0; $i < count($row0); $i++) {
+    if ($row0[$i] == $uniqueHeaderName) {
+        $arrayPositionUniqueURL = $i;
+    }
+    if ($row0[$i] == $stackName) {
+        $arrayPositionStack = $i;
+    }
+}
+
+foreach ($cardContent as $key => $value) {
+    if (strpos($cardContent[$key][$arrayPositionStack], $stack) > -1) {
+        foreach ($value as $key2 => $value2) {
+            if ($row0[$key2] == $uniqueHeaderName && $value2 != $uniqueHeaderName) {
+                echo "<a href='" . $url . $card . $value2 . "'>" . $url . $card . $value2 . "</a>" . " | ";
+            }
+        }
+    }
+}
+?>
+</body>
+</html>
