@@ -4,7 +4,7 @@ module.exports = {
 
   //=============
   // if your app will run from a sub directory then this is the path to the sub directory
-  publicPath: process.env.NODE_ENV === 'production' ? '/path/to/app/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? process.env.VUE_APP_PATH : '/',
   //=============
 
   lintOnSave: false,
