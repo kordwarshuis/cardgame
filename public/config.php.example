@@ -1,0 +1,24 @@
+<?php
+// CONFIGURATION
+
+// path to csv file containing content:
+$content = 'https://blockchainbird.org/t/data/cards.csv';
+
+// stack:
+$stack = "1"; // must be a string
+
+//domain:
+$domain = 'https://blockchainbird.org';
+
+//location, everything after the top level domain:
+$pathCardGame = '/t/btc/';
+
+//images location:
+$path = '/t/media/img/social-media/system/'; // also change .env file
+$defaultImage = 'https://blockchainbird.org/t/media/img/social-media/social-media-bitcoin8.jpg';
+
+// texts for title, meta description etc:
+$shortText = 'Bitcoin misconceptions.';
+$longText = 'Misconceptions about bitcoin hold back progress. Found a misconception? Lookup-Copy-Paste our permanent links with curated expert info!';
+
+// END CONFIGURATION
