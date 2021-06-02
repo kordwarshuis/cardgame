@@ -10,7 +10,7 @@
 
     # redirect so twitterbot receives unique images per url
     # RewriteCond %{HTTP_USER_AGENT} Twitterbot
-    RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Googlebot)
+    RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Googlebot|LinkedInBot/1.0)
     # simpel redirect test
     # RewriteRule "index.html"  "index-twitter.html" [PT]
     
