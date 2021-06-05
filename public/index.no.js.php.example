@@ -15,9 +15,11 @@ function check_file_exist($fullPath)
 $filename = $_GET['url'];
 
 $socialMediaImage = "";
-if (check_file_exist($_SERVER['DOCUMENT_ROOT'] . $path . $filename . '.jpg')) {
-    $socialMediaImage = $domain . $path . $filename . '-text.jpg';
-    $twitterImage = $domain . $path . $filename . '.jpg';
+
+// https: //stackoverflow.com/a/15132482
+if (@getimagesize($imgDomain . $imgPath . $filename . '.jpg')) {
+    $socialMediaImage = $imgDomain . $imgPath . $filename . '-text.jpg';
+    $twitterImage = $imgDomain . $imgPath . $filename . '.jpg';
 } else {
     $socialMediaImage = $defaultImage;
     $twitterImage = $defaultImage;
