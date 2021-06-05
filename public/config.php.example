@@ -7,14 +7,9 @@ $content = 'https://blockchainbird.org/t/data/cards.csv';
 // stack:
 $stack = "1"; // must be a string
 
-//domain:
-$domain = 'https://blockchainbird.org';
-
-//location, everything after the top level domain:
-$pathCardGame = '/t/btc/';
-
 //images location:
-$path = '/t/media/img/social-media/system/'; // also change .env file
+$imgDomain = 'https://blockchainbird.org';
+$imgPath = '/t/media/img/social-media/system/'; // also change .env file
 $defaultImage = 'https://blockchainbird.org/t/media/img/social-media/social-media-bitcoin8.jpg';
 
 // texts for title, meta description etc:
