@@ -111,17 +111,35 @@ foreach ($cardContent as $key => $value) {
                 if ($row0[$key2] == 'Misconception') {
                     echo "<h1>" . $value2 . "</h1>\r\n";
                 } else if (
-                    $row0[$key2] != '\'Nr' &&
-                    $row0[$key2] != 'Pick' &&
-                    $row0[$key2] != 'Unique URL' &&
-                    $row0[$key2] != 'Illustration' &&
-                    $row0[$key2] != '#tag' &&
-                    $row0[$key2] != 'Short Url' &&
-                    $row0[$key2] != 'Stack' &&
-                    $row0[$key2] != 'Related' &&
-                    $row0[$key2] != 'I' &&
-                    $row0[$key2] != 'K' &&
-                    $row0[$key2] != 'H'
+                    $row0[$key2] == 'Category' ||
+                    $row0[$key2] == 'Related Keywords' ||
+                    $row0[$key2] == 'Misconception' ||
+                    $row0[$key2] == 'Misconception Elaborate' ||
+                    $row0[$key2] == 'Short Answer' ||
+                    $row0[$key2] == 'Long Answer' ||
+                    $row0[$key2] == 'Quiz' ||
+                    $row0[$key2] == 'Read On 1 Text' ||
+                    $row0[$key2] == 'Read On 2 Text' ||
+                    $row0[$key2] == 'Read On 3 Text' ||
+                    $row0[$key2] == 'Counter Questions' ||
+                    $row0[$key2] == 'Youtube Video Description' ||
+                    $row0[$key2] == 'Self Hosted Video Description' ||
+                    $row0[$key2] == 'Self Hosted Image Alt 1' ||
+                    $row0[$key2] == 'Self Hosted Image Description 1' ||
+                    $row0[$key2] == 'Self Hosted Image Alt 2' ||
+                    $row0[$key2] == 'Self Hosted Image Description 2' ||
+                    $row0[$key2] == 'Self Hosted Image Alt 3' ||
+                    $row0[$key2] == 'Self Hosted Image Description 3' ||
+                    $row0[$key2] == 'Self Hosted Image Alt 4' ||
+                    $row0[$key2] == 'Self Hosted Image Description 4' ||
+                    $row0[$key2] == 'Expert1' ||
+                    $row0[$key2] == 'Expert1-elaborate' ||
+                    $row0[$key2] == 'Expert2' ||
+                    $row0[$key2] == 'Expert2-elaborate' ||
+                    $row0[$key2] == 'Expert3' ||
+                    $row0[$key2] == 'Diagram Data' ||
+                    $row0[$key2] == 'Diagram Description' ||
+                    $row0[$key2] == 'Twitter'
                 ) {
                     echo "<p>" . $value2 . "</p>\r\n";
                 }
