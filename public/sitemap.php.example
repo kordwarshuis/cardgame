@@ -6,10 +6,7 @@
 </head>
 <body>
 <?php
-// CONFIGURATION
-$content = 'https://blockchainbird.org/t/data/cards.csv';
-$stack = "1"; // must be a string
-// END CONFIGURATION
+include_once 'config.php';
 
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
 
@@ -30,6 +27,9 @@ $stackName = 'Stack';
 // https://phpenthusiast.com/blog/parse-csv-with-php
 // The nested array to hold all the arrays
 $cardContent = [];
+
+// used for creating a sitemap.txt file
+$allURLs = "";
 
 // Open file
 if (($h = fopen("{$content}", "r")) !== false) {
@@ -61,10 +61,14 @@ foreach ($cardContent as $key => $value) {
         foreach ($value as $key2 => $value2) {
             if ($row0[$key2] == $uniqueHeaderName && $value2 != $uniqueHeaderName) {
                 echo "<a href='" . $url . $card . $value2 . "'>" . $url . $card . $value2 . "</a>" . " | ";
+                $allURLs .= $url . $card . $value2 . "\r\n";
             }
         }
     }
 }
+
+file_put_contents('sitemap.txt', $allURLs);
+
 ?>
 </body>
 </html>
