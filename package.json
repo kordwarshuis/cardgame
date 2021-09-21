@@ -27,7 +27,7 @@
     "popper.js": "^1.16.1",
     "vue": "^2.6.12",
     "vue-bootstrap-toasts": "^1.0.7",
-    "vue-confetti": "^2.2.1",
+    "vue-confetti": "^2.2.2",
     "vue-countup-v2": "^4.0.0",
     "vue-gtag": "^1.11.0",
     "vue-linkify": "^1.0.1",
