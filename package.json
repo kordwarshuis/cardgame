@@ -29,7 +29,7 @@
     "vue-bootstrap-toasts": "^1.0.7",
     "vue-confetti": "^2.2.2",
     "vue-countup-v2": "^4.0.0",
-    "vue-gtag": "^1.11.0",
+    "vue-gtag": "^1.16.1",
     "vue-linkify": "^1.0.1",
     "vue-markdown": "^2.2.4",
     "vue-router": "^3.5.1",
