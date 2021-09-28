@@ -1,13 +1,13 @@
 <?php
 // CONFIGURATION
 
-// path to csv file containing content:
+// path to csv file containing content, example:
 $content = 'https://blockchainbird.org/t/data/cards.csv';
 
 // stack:
 $stack = "1"; // must be a string
 
-//images location:
+//images location, example:
 $imgDomain = 'https://blockchainbird.org';
 $imgPath = '/t/media/img/social-media/system/'; // also change .env file
 $defaultImage = 'https://blockchainbird.org/t/media/img/social-media/social-media-bitcoin8.jpg';
