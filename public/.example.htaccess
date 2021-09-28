@@ -3,7 +3,6 @@
     RewriteEngine On
 
     ### CONFIG #################
-    # (local development server ignores the RewriteBase)
     RewriteBase /path/to/app
     ### END CONFIG #############
     
