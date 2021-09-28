@@ -2,10 +2,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    ####################
+    ### CONFIG #################
     # (local development server ignores the RewriteBase)
     RewriteBase /path/to/app
-    ####################
+    ### END CONFIG #############
     
     RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Googlebot|LinkedInBot/1.0)
     # simpel redirect test
