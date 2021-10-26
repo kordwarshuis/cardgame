@@ -572,9 +572,13 @@ p {
 }
 
 a {
-    text-decoration: underline;
+    text-decoration: none;
     color: $basic3;
     outline: none;
+}
+
+a:not(.overlay-fullscreen-close) {
+    text-decoration: underline;
 }
 
 a.light {
