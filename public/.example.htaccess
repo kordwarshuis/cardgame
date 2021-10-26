@@ -3,7 +3,7 @@
     RewriteEngine On
 
     ### CONFIG #################
-    RewriteBase /path/to/app
+    RewriteBase /path/to/app/
     ### END CONFIG #############
     
     RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit/[0-9]|Twitterbot|Pinterest|Googlebot|LinkedInBot/1.0)
