@@ -572,7 +572,7 @@ p {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: underline;
     color: $basic3;
     outline: none;
 }
@@ -584,7 +584,7 @@ a.light {
 
 a:hover,
 a:focus {
-    color: $basic3;
+    color: $basic2;
     outline: none;
 }
 
