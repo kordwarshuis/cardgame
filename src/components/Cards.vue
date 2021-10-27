@@ -128,7 +128,11 @@
         </div>
         <button class="btn btn-primary cards-show-all display-none" @click="showAllCards">{{showAllCardsButtonText}}</button>
     </div>
-    <button @click="startTourBis" class="btn  btn-light btn-sm tour-start-bis mb-5">Start tour</button>
+
+    <template v-if="tour !== ''">
+        <button @click="startTourBis" class="btn  btn-light btn-sm tour-start-bis mb-5">Start tour</button>
+    </template>
+
 </div>
 </template>
 
@@ -139,9 +143,9 @@ import publicPath from "../../vue.config";
 import GameInstructionsCarousel from "./GameInstructionsCarousel.vue";
 import store from "../store/store";
 import axios from "axios";
-import 
-    showCardIntro
- from "./mixins/showCardIntro";
+import
+showCardIntro
+from "./mixins/showCardIntro";
 
 export default {
     name: "Index",
@@ -180,7 +184,8 @@ export default {
             homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
             realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS,
             homepageIllustrationsCarousel: process.env.VUE_APP_HOMEPAGE_ILLUSTRATIONS_CAROUSEL,
-            showAllCardsButtonText: language.showAllCards
+            showAllCardsButtonText: language.showAllCards,
+            tour: process.env.VUE_APP_TOUR_FILE
         }
     },
     mounted() {
@@ -363,7 +368,8 @@ export default {
 @media (min-width: 768px) {
     .cards {
         padding-top: 50px;
-    }    
+    }
+
     .card-columns .card {
         margin-top: 2px;
         box-shadow: 0px 0px 0px 0px #f700ff;
