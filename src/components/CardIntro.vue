@@ -642,7 +642,7 @@ h3.reply {
 .masthead {
     // margin: 0 1em 0;
     min-height: 10em;
-    background: #5359a5 !important;
+    background: #5359a5;
     color: #eee !important;
 }
 
