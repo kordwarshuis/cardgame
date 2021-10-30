@@ -578,7 +578,7 @@ a {
 }
 
 a:not(.overlay-fullscreen-close) {
-    text-decoration: underline;
+    text-decoration: $card-overview-text-decoration;
 }
 
 a.light {

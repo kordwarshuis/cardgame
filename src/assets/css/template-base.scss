@@ -15,7 +15,8 @@ $color11: #474E71;
 $color12: #2F3558;
 
 $shadow1: 0px 0px 37px 0px rgba(0, 0, 0, 1);
-$shadow2: -10px 10px 0, 10px -10px 0 $color4;
+$shadow2: -10px 10px 0,
+10px -10px 0 $color4;
 $shadow3: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
 
 
@@ -37,18 +38,21 @@ $game-subtitle: $color3;
 
 // CARD OVERVIEW
 $card-overview-text: $color3;
+$card-overview-text-decoration: "underline";
+
 // background
 .card-columns {
     >.card {
         background-image: url(https://blockchainbird.org/t/media/img/card-background.svg), linear-gradient(#272f52, #3a4275);
     }
 }
+
 $borders: $color2;
 $card-footer-background: $color6;
 $card-footer-link-color: $color3;
 //category dropdown button
 $button-categories-color: $color3;
-$button-categories-background: $color8;// color of button and also background of dropdown box
+$button-categories-background: $color8; // color of button and also background of dropdown box
 $button-categories-background-hover: none;
 $category-menu-item-color: $color3;
 $category-menu-item-background: $color8;
@@ -68,7 +72,7 @@ $card-intro-background: $color11;
 $card-intro-border: none;
 $card-intro-content-item-color: $color3;
 $card-intro-content-item-background: #2F3659;
-$card-intro-box-shadow: 0 0 1000px 1000px  rgba(34, 34, 34, 0.8);// background around the box
+$card-intro-box-shadow: 0 0 1000px 1000px rgba(34, 34, 34, 0.8); // background around the box
 // back / close:
 $card-intro-back-color: $color3;
 $card-intro-back-background: #{linear-gradient(#2F3762, #343C6B)};
