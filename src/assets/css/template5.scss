@@ -103,8 +103,14 @@ $button-hide-search-results-color:#eee;
 
 //MAIN MENU
 $main-menu-link:#F0D8A8;
+$main-menu-link-active: #F0D8A8 !important; //TODO find out where the stronger declaration is that makes !important necessary
 $main-menu-link-background-active: #252B44;
 $main-menu-background: #909060;
+$main-menu-border-width: 0;
+$main-menu-border-style: solid;
+$main-menu-border-color: none;
+$main-menu-padding: 0;
+
 
 
 //NOTIFICATIONS
