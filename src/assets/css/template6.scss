@@ -5,14 +5,7 @@ $cardFullTextIndent: 1.8em;
 
 
 
-
-
-
-
-
-
-
-
+// code palette https: //codepen.io/syndicatefx/pen/XWajRJq
 $color1: #2F3032;
 $color2: none;
 $color3: #ea6962;
@@ -26,9 +19,9 @@ $color10: #a9b665;
 $color11: #474E71;
 $color12: #2F3558;
 
-$shadow1: 0px 0px 37px 0px rgba(0, 0, 0, 1);
+$shadow1: 0px 0px 37px 0px $color4;
 $shadow2: -10px 10px 0, 10px -10px 0 $color4;
-$shadow3: 0px 0px 37px 0px rgba(0, 0, 0, 0.75);
+$shadow3: 0px 0px 37px 0px $color4;
 
 
 $linear-gradient1: #{linear-gradient(to right, #cb91ec, #c174ee)};
@@ -43,6 +36,7 @@ $game-subtitle: $color3;
 
 // CARD OVERVIEW
 $card-overview-text: $color1;
+$card-overview-text-decoration: "none";
 // background
 .card-columns {
     >.card {
@@ -50,7 +44,7 @@ $card-overview-text: $color1;
     }
 }
 $borders: $color2;
-$card-footer-background: #C0A878;
+$card-footer-background: $color5;
 $card-footer-link-color: $color3;
 //category dropdown button
 $button-categories-color: #F0D8A8;

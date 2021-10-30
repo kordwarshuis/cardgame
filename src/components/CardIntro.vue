@@ -292,9 +292,26 @@ export default {
                 i = 0,
                 clear,
                 pauseBeforeStart = 600;
-
+            let endString = "";
             text.innerHTML = "";
             clearInterval(clear);
+
+            function createTextString() {
+                for (let i = 0; i < misconception.length; i++) {
+                    endString += "<span id='n"   + i + "' style='visibility: hidden'>" + misconception[i] + "</span>";
+                    
+                }
+            }
+            createTextString();
+                    // console.log('endString: ', endString);
+
+document.querySelector(selector).innerHTML = "endString";
+            console.log('selector: ', document.querySelector(selector).innerHTML);
+
+
+
+
+
 
             function typeText() {
                 if (audioPlaying === false) {
@@ -306,7 +323,7 @@ export default {
                 //option 2:
                 // text.insertAdjacentHTML("beforeend", textCopy[i]);
                 //option 3:
-                text.append(misconception[i]);
+                text.append("<span style='display: none'>" + misconception[i] + "</span>");
 
                 i++;
                 if (i === misconception.length) {
@@ -325,7 +342,7 @@ export default {
 
             setTimeout(function () {
                 // textCopy = misconception;
-                clear = setInterval(typeText, interval);
+                // clear = setInterval(typeText, interval);
             }, pauseBeforeStart);
         },
         handleCardIntro() {
