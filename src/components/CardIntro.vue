@@ -506,10 +506,6 @@ export default {
     display: inline-block;
 }
 
-// hr {
-
-// }
-
 // SECONDARY MENU
 
 .column1 h3 {
@@ -610,13 +606,6 @@ h3.reply {
 
 // END SECONDARY MENU
 
-// doesnt seem to serve a purpose
-// .container.overlay-fullscreen-open::after {
-//     visibility: visible;
-//     opacity: 1;
-//     -webkit-transition: opacity 0.5s;
-//     transition: opacity 0.5s;
-// }
 
 // Show/Hide card intro
 // Opacity effect
@@ -646,9 +635,7 @@ h3.reply {
 }
 
 .misconception-typed {
-    p {
-        font-size: 1.5em;
-    }
+        font-size: 2em;
 }
 
 @media (min-width: 768px) {
@@ -665,19 +652,6 @@ h3.reply {
         // padding-top: 1em;
         font-size: 2.5em;
     }
-
-    // .card-intro-misconception {
-    //     // color: $card-intro-content-item-color;
-    //     // background-color: $card-intro-content-item-background;
-
-    //     border-radius: 10px;
-    //     // float: right;
-    //     // max-width: 45%;
-    //     min-width: 2em;
-    //     // border: 3px solid green;
-    //     display: inline;
-
-    // }
 }
 
 .columns-layout-container {
