@@ -52,6 +52,7 @@ const router = new VueRouter({
   scrollBehavior() { //https://stackoverflow.com/a/57212309, TODO: https://router.vuejs.org/guide/advanced/scroll-behavior.html#async-scrolling
     var a = document.querySelector(".modal-content");
     var b = document.querySelector(".overlay-fullscreen .card-body");
+    var c = document.querySelectorAll("body");
 
     // setTimeout(function(){document.getElementById('app').scrollIntoView();}, 3000);
     document.getElementById("app").scrollIntoView();
@@ -59,8 +60,8 @@ const router = new VueRouter({
     if (a) {
       a.scrollIntoView();
     }
-    if (b) {
-      b.scrollIntoView();
+    if (b) {// if in card detail, then …
+      c.scrollIntoView();//… go to really top of page
     }
   }
 });
