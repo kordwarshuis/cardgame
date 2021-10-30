@@ -286,45 +286,41 @@ export default {
     },
     methods: {
         typeWriter(selector, misconception, interval) {
-            var audioPlaying = false;
-            var text = document.querySelector(selector),
-                textCopy = "",
+            let audioPlaying = false;
+            let text = document.querySelector(selector),
                 i = 0,
                 clear,
-                pauseBeforeStart = 600;
-
+                pauseBeforeStart = 600,
+                finalString = "";
             text.innerHTML = "";
             clearInterval(clear);
+
+            function createTextString() {
+                for (let i = 0; i < misconception.length; i++) {
+                    finalString += "<span id='n" + i + "' style='visibility: hidden'>" + misconception[i] + "</span>";
+                }
+            }
 
             function typeText() {
                 if (audioPlaying === false) {
                     if (localStorage.getItem("soundOn") === "true") typewriter.play();
                     audioPlaying = true;
                 }
-                //option 1:
-                // text.innerHTML += textCopy[i];
-                //option 2:
-                // text.insertAdjacentHTML("beforeend", textCopy[i]);
-                //option 3:
-                text.append(misconception[i]);
+                let counterId = "#n" + i;
 
+                document.querySelector(counterId).style.visibility = "visible";
                 i++;
+
                 if (i === misconception.length) {
                     if (localStorage.getItem("soundOn") === "true") typewriter.stop();
                     clearInterval(clear);
-                    setTimeout(function () {
-                        text.style.display = "none";
-                    }, 10);
-                    setTimeout(function () {
-                        text.style.display = "inline";
-                    }, 20);
                 }
             }
+            createTextString();
 
-            text.innerHTML = "";
+            document.querySelector(selector).innerHTML = finalString;
 
             setTimeout(function () {
-                // textCopy = misconception;
                 clear = setInterval(typeText, interval);
             }, pauseBeforeStart);
         },
@@ -510,10 +506,6 @@ export default {
     display: inline-block;
 }
 
-// hr {
-
-// }
-
 // SECONDARY MENU
 
 .column1 h3 {
@@ -614,13 +606,6 @@ h3.reply {
 
 // END SECONDARY MENU
 
-// doesnt seem to serve a purpose
-// .container.overlay-fullscreen-open::after {
-//     visibility: visible;
-//     opacity: 1;
-//     -webkit-transition: opacity 0.5s;
-//     transition: opacity 0.5s;
-// }
 
 // Show/Hide card intro
 // Opacity effect
@@ -640,9 +625,7 @@ h3.reply {
 }
 
 .masthead {
-    // margin: 0 1em 0;
-    min-height: 10em;
-    background: #5359a5 !important;
+    background: #5359a5;
     color: #eee !important;
 }
 
@@ -652,9 +635,7 @@ h3.reply {
 }
 
 .misconception-typed {
-    p {
-        font-size: 1.5em;
-    }
+        font-size: 2em;
 }
 
 @media (min-width: 768px) {
@@ -671,19 +652,6 @@ h3.reply {
         // padding-top: 1em;
         font-size: 2.5em;
     }
-
-    // .card-intro-misconception {
-    //     // color: $card-intro-content-item-color;
-    //     // background-color: $card-intro-content-item-background;
-
-    //     border-radius: 10px;
-    //     // float: right;
-    //     // max-width: 45%;
-    //     min-width: 2em;
-    //     // border: 3px solid green;
-    //     display: inline;
-
-    // }
 }
 
 .columns-layout-container {
