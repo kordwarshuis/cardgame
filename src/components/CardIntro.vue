@@ -288,42 +288,31 @@ export default {
         typeWriter(selector, misconception, interval) {
             var audioPlaying = false;
             var text = document.querySelector(selector),
-                textCopy = "",
                 i = 0,
                 clear,
-                pauseBeforeStart = 600;
-            let endString = "";
+                pauseBeforeStart = 600,
+                finalString = "";
             text.innerHTML = "";
             clearInterval(clear);
 
             function createTextString() {
                 for (let i = 0; i < misconception.length; i++) {
-                    endString += "<span id='n"   + i + "' style='visibility: hidden'>" + misconception[i] + "</span>";
-                    
+                    finalString += "<span id='n" + i + "' style='visibility: hidden'>" + misconception[i] + "</span>";
                 }
             }
             createTextString();
-                    // console.log('endString: ', endString);
 
-document.querySelector(selector).innerHTML = "endString";
-            console.log('selector: ', document.querySelector(selector).innerHTML);
-
-
-
-
-
+            document.querySelector(selector).innerHTML = finalString;
 
             function typeText() {
                 if (audioPlaying === false) {
                     if (localStorage.getItem("soundOn") === "true") typewriter.play();
                     audioPlaying = true;
                 }
-                //option 1:
-                // text.innerHTML += textCopy[i];
-                //option 2:
-                // text.insertAdjacentHTML("beforeend", textCopy[i]);
-                //option 3:
-                text.append("<span style='display: none'>" + misconception[i] + "</span>");
+                console.log('i: ', i);
+                let counterId = "#n" + i;
+
+                document.querySelector(counterId).style.visibility = "visible";
 
                 i++;
                 if (i === misconception.length) {
@@ -338,11 +327,8 @@ document.querySelector(selector).innerHTML = "endString";
                 }
             }
 
-            text.innerHTML = "";
-
             setTimeout(function () {
-                // textCopy = misconception;
-                // clear = setInterval(typeText, interval);
+                clear = setInterval(typeText, interval);
             }, pauseBeforeStart);
         },
         handleCardIntro() {
