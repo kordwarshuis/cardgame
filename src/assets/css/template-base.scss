@@ -111,9 +111,14 @@ $button-hide-search-results-color:#eee;
 
 
 //MAIN MENU
-$main-menu-link: $color3;
-$main-menu-link-active: #252B44;
+$main-menu-link: $color1;
+$main-menu-link-active: $color1;
+$main-menu-link-background-active: #252B44;
 $main-menu-background: #191F3A;
+// $main-menu-border-width:
+// $main-menu-border-style:
+// $main-menu-border-color:
+$main-menu-padding: 0;
 
 
 //NOTIFICATIONS

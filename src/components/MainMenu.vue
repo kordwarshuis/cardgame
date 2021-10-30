@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-md sticky-top pt-0 pb-0 pl-0 pr-0">
+<nav class="navbar navbar-expand-md sticky-top">
     <!-- https://dev.to/yossiabramov/the-native-event-modifier-in-vue-js-bpb -->
     <a class="navbar-brand" :href="logoURL"><img :src="logo" :alt="logoAlt"></a>
 
@@ -79,14 +79,10 @@ export default {
 <style lang="scss" scoped>
 .navbar {
     background: $main-menu-background;
-    // https://forum.freecodecamp.org/t/bootsrap-4-5-navbar-full-width/233369 :
-    // margin-right: -15px;
-    // margin-left: -15px;
-    // margin-left: -3rem;
-    // margin-right: -3rem;
-    // box-shadow: 100px 0 0px 0px #909060;
-    // border-right: 100px solid #909060;
-    // border-left: 100px solid #909060;
+    border-width: $main-menu-border-width;
+    border-style: $main-menu-border-style;
+    border-color: $main-menu-border-color;
+    padding: $main-menu-padding;
 }
 
 // a:link {}
@@ -108,7 +104,8 @@ export default {
     }
 
     .router-link-exact-active {
-        background: $main-menu-link-active;
+        color: $main-menu-link-active;
+        background: $main-menu-link-background-active;
     }
 
     .navbar-toggler2 {
