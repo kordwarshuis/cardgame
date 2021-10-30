@@ -286,8 +286,8 @@ export default {
     },
     methods: {
         typeWriter(selector, misconception, interval) {
-            var audioPlaying = false;
-            var text = document.querySelector(selector),
+            let audioPlaying = false;
+            let text = document.querySelector(selector),
                 i = 0,
                 clear,
                 pauseBeforeStart = 600,
@@ -300,32 +300,25 @@ export default {
                     finalString += "<span id='n" + i + "' style='visibility: hidden'>" + misconception[i] + "</span>";
                 }
             }
-            createTextString();
-
-            document.querySelector(selector).innerHTML = finalString;
 
             function typeText() {
                 if (audioPlaying === false) {
                     if (localStorage.getItem("soundOn") === "true") typewriter.play();
                     audioPlaying = true;
                 }
-                console.log('i: ', i);
                 let counterId = "#n" + i;
 
                 document.querySelector(counterId).style.visibility = "visible";
-
                 i++;
+
                 if (i === misconception.length) {
                     if (localStorage.getItem("soundOn") === "true") typewriter.stop();
                     clearInterval(clear);
-                    setTimeout(function () {
-                        text.style.display = "none";
-                    }, 10);
-                    setTimeout(function () {
-                        text.style.display = "inline";
-                    }, 20);
                 }
             }
+            createTextString();
+
+            document.querySelector(selector).innerHTML = finalString;
 
             setTimeout(function () {
                 clear = setInterval(typeText, interval);
