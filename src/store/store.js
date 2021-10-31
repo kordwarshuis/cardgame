@@ -13,7 +13,7 @@ export default new Vuex.Store({
     gameSubTitle: "",
     cssClassCardOverviewState: "",
     cssClassCardIntroState: "",
-    cssClassCardFullState: "popup md-modal md-effect-1",
+    // cssClassCardFullState: "popup md-modal md-effect-1",
     theJSON: null,
     categories: [], // [{name: xxx, numberOfItems: xxx}],
     allKeys: [],
@@ -64,9 +64,6 @@ export default new Vuex.Store({
       this.state.gameSubTitle = name;
     },
     hideModal(state) {
-      //TODO: is this the way to change a store value? Seems not.
-      this.state.cssClassCardFullState = "";
-
       if (localStorage.getItem("soundOn") === "true") whoosh2.play();
 
       // document.querySelector(".videoWrapper").innerHTML = "";
