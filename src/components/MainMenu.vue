@@ -82,7 +82,10 @@ export default {
     border-width: $main-menu-border-width;
     border-style: $main-menu-border-style;
     border-color: $main-menu-border-color;
-    padding: $main-menu-padding;
+    padding-top: $main-menu-padding-top;
+    padding-right: 0;
+    padding-bottom: $main-menu-padding-bottom;
+    padding-left: 0;
 }
 
 // a:link {}

@@ -458,7 +458,6 @@ export default {
 
 /*! https://tympanus.net/Development/FullscreenOverlayStyles/index7.html# */
 /* Overlay style */
-
 #app .overlay-fullscreen {
     position: fixed;
     width: 100%;
@@ -467,7 +466,7 @@ export default {
     // overflow: scroll;
     top: 50%;
     left: 50%;
-    padding-top: 60px;
+    padding-top: calc(#{$main-menu-padding-top} + #{$main-menu-padding-bottom} + 60px); //position fixed, so this has to be set explicitly
     transform: translate(-50%, -50%);
     box-shadow: $shadow3;
     color: $card-intro-color;
@@ -494,7 +493,6 @@ export default {
     display: inline-block;
 }
 
-
 // Workings of the card
 .column1 h3 {
     padding-top: 2em;
@@ -519,7 +517,10 @@ export default {
     // height of secondary menu bar
     line-height: 1.0;
     font-size: 1.0em;
-    padding: 0.6em 0.2em;
+    padding-top: calc(0.6em + #{$main-menu-padding-top} + #{$main-menu-padding-bottom}); //position fixed, so this has to be set explicitly. Padding-top takes care for the right distance from top so that the top menu bar does not hide it
+    padding-right: 0.2em;
+    padding-bottom: 0.6em;
+    padding-left: 0.2em;
 }
 
 .overlay-fullscreen .overlay-fullscreen-close:hover {
@@ -562,8 +563,6 @@ export default {
         // border: 1px solid red;
         // border-radius: 50%;
         color: $card-intro-back-color-bigscreen;
-        ;
-        padding: 0.2em;
         margin-top: 0;
         display: inline-block;
         font-size: 2.5em;
@@ -614,7 +613,7 @@ export default {
 }
 
 .misconception-typed {
-        font-size: 2em;
+    font-size: 2em;
 }
 
 @media (min-width: 768px) {
@@ -670,7 +669,6 @@ export default {
     background: $misconception-container-background;
     color: $misconception-container-color;
 }
-
 
 .card>p {
     margin-left: $cardFullTextIndent;
