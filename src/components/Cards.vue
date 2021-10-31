@@ -472,12 +472,16 @@ p.subtitle {
         h2 {
             line-height: 1.7;
             font-family: poppinsregular;
-        }
-
-        h2 {
             color: $card-overview-text;
-            font-size: 1.1em;
+            font-size: 1.5em;
             margin: 0.5em;
+        }
+        /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+        @media (min-width: 768px) {
+            h2 {
+                font-size: 1.1em;
+                line-height: 1.7;
+            }
         }
 
         .card-footer {
