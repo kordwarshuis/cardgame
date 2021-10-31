@@ -691,11 +691,11 @@ h3.reply {
     margin-left: $cardFullTextIndent;
 }
 
-h2 {
-    margin: 1.5em 0 0.5em; // to keep distance from sec / tert menu
-    font-size: 2em;
-    color: $misconception-heading-color;
-}
+// h2 {
+//     margin: 1.5em 0 0.5em; // to keep distance from sec / tert menu
+//     font-size: 2em;
+//     color: $misconception-heading-color;
+// }
 
 h2.reply {
     color: $reply-heading-color;
