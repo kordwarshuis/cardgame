@@ -4,7 +4,7 @@
     <div class=columns-layout-container>
 
         <!-- MISCONCEPTION -->
-        <div class="masthead card h-100 mt-5 pb-3" style="height: auto !important;">
+        <div class="misconception-container card h-100 mt-5 pb-3" style="height: auto !important;">
             <div class="card-body">
                 <!-- <h3 class="pt-sm-2">{{ misconception }}</h3> -->
 
@@ -608,11 +608,6 @@ export default {
     transition: all 0.2s ease-out;
 }
 
-.masthead {
-    background: #5359a5 !important;
-    color: #eee !important;
-}
-
 .social-media-image img {
     border-radius: 10px;
     width: 100%;
@@ -670,6 +665,12 @@ export default {
     margin-bottom: 1em;
     column-break-inside: avoid;
 }
+
+.card.misconception-container {
+    background: #5359a5;
+    color: #eee;
+}
+
 
 .card>p {
     margin-left: $cardFullTextIndent;
