@@ -667,8 +667,8 @@ export default {
 }
 
 .card.misconception-container {
-    background: #5359a5;
-    color: #eee;
+    background: $misconception-container-background;
+    color: $misconception-container-color;
 }
 
 
