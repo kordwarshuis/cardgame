@@ -625,7 +625,7 @@ h3.reply {
 }
 
 .masthead {
-    background: #5359a5;
+    background: #5359a5 !important;
     color: #eee !important;
 }
 
