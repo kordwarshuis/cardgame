@@ -4,7 +4,6 @@
         <Cards />
     </div>
     <CardIntro />
-    <CardFull />
 </div>
 </template>
 
@@ -13,7 +12,6 @@
 import store from "../store/store";
 import Cards from "@/components/Cards.vue";
 import CardIntro from "@/components/CardIntro.vue";
-import CardFull from "@/components/CardFull.vue";
 
 export default {
     name: "Home",
@@ -22,8 +20,7 @@ export default {
     },
     components: {
         Cards,
-        CardIntro,
-        CardFull
+        CardIntro
     },
     watch: { //https://www.reddit.com/r/vuejs/comments/58g6u7/how_can_i_detect_the_browser_back_button_with_vue/
         '$route'(to, from) { // https://flaviocopes.com/vue-watchers/
