@@ -61,8 +61,8 @@ $misconception-short-and-elaborate-color: $color3;
 
 
 // CARD INTRO
-$misconception-container-background: $color9;
-$misconception-container-color: #eee;
+$misconception-container-background: $color4;
+$misconception-container-color: $color3;
 $card-intro-color: #484830;
 $card-intro-background: $color9;
 $card-intro-content-item-color: #484830;
@@ -124,3 +124,7 @@ $toast-content-background: #C0A878;
 //CATEGORIES
 $category-color: $color1;
 $category-background: #909060;
+
+.misconception-typed {
+    text-align: center;
+}
