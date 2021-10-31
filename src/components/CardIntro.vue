@@ -494,8 +494,8 @@ export default {
     display: inline-block;
 }
 
-// SECONDARY MENU
 
+// Workings of the card
 .column1 h3 {
     padding-top: 2em;
 }
@@ -592,11 +592,7 @@ export default {
     }
 }
 
-// END SECONDARY MENU
-
-
-// Show/Hide card intro
-// Opacity effect
+// Show/Hide card with fade
 .overlay-fullscreen-contentpush {
     visibility: hidden;
     opacity: 0;
@@ -686,11 +682,6 @@ export default {
     border-bottom: 3px dotted #666;
     color: $misconception-short-and-elaborate-color;
 }
-
-// .modal-content {
-//     color: $card-full-color;
-//     background: $card-full-background !important; //Suddenly needs important, can't explain why
-// }
 
 h3 {
     background-repeat: no-repeat;
