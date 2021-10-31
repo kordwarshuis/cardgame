@@ -360,17 +360,6 @@ export default {
             closeBttn.addEventListener('click', toggleOverlayFullscreen);
             // closeBttn2.addEventListener('click', toggleOverlayFullscreen);
         },
-        showCardFull(event) {
-            if (localStorage.getItem("soundOn") === "true") whoosh2.play();
-            //TODO: why is this working, should mutations be used?
-            this.$store.state.cssClassCardFullState = " md-show";
-
-            // stop html video when opening modal. Simply stop all video:
-            document.querySelectorAll('video, audio').forEach(function (vid) {
-                vid.pause();
-            });
-        },
-
         createBarGraph() {
             var options = {
                 seriesBarDistance: 1,
