@@ -134,8 +134,15 @@ export default {
     }
 }
 
+
+// 1: encode svg to data:image: https://yoksel.github.io/url-encoder/
+// 2: use scss var in data:image: https://stackoverflow.com/a/25478589
+@function main-menu-icons-colors($colour) {
+    @return '%23' + str-slice('#{$colour}', 2, -1)
+}
+
 .navbar .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(89,213,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"), url(../assets/img/icons/jv-creative/magnifier.svg);
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{main-menu-icons-colors($main-menu-icons-color)}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21.67' height='22.848'%3E%3Cdefs/%3E%3Cg data-name='Group 165' transform='translate(.096 .531)'%3E%3Crect width='10.635' height='2.279' fill='#{main-menu-icons-colors($main-menu-icons-color)}' data-name='Rectangle 31' rx='1.139' transform='rotate(43 -10.108 24.21)'/%3E%3Cg data-name='Group 164'%3E%3Cg fill='none' stroke='#{main-menu-icons-colors($main-menu-icons-color)}' stroke-width='3' data-name='Ellipse 7' transform='translate(-.096 -.531)'%3E%3Ccircle cx='9' cy='9' r='9' stroke='none'/%3E%3Ccircle cx='9' cy='9' r='7.5'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E%0A");
     background-position: 32px 0px, 0px 6px;
     background-size: 32px 32px, 22px 22px;
     width: 64px;
