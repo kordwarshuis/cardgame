@@ -17,7 +17,6 @@
                 <!-- <span class="quote">“</span> -->
                 <p class="misconception-typed typed mb-3">{{ getMisconception }} </p>
                 <!-- <span class="quote">”</span> -->
-                <!-- <button class="btn btn-primary mt-3 d-block ml-auto mr-auto" style="cursor:pointer;" @click="showCardFull">{{ openFullCard }}</button> -->
             </div>
         </div>
 
