@@ -512,7 +512,7 @@ export default {
     padding-top: 2em;
 }
 
-h3.reply {
+.reply {
     color: $reply-heading-color;
 }
 
@@ -689,16 +689,6 @@ h3.reply {
 
 .card>p {
     margin-left: $cardFullTextIndent;
-}
-
-// h2 {
-//     margin: 1.5em 0 0.5em; // to keep distance from sec / tert menu
-//     font-size: 2em;
-//     color: $misconception-heading-color;
-// }
-
-h2.reply {
-    color: $reply-heading-color;
 }
 
 .misconception-short-and-elaborate {
