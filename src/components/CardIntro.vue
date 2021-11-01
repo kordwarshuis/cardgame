@@ -4,18 +4,18 @@
     <div class=columns-layout-container>
 
         <!-- MISCONCEPTION -->
-        <div class="misconception-container card h-100 mt-5 pb-3" style="height: auto !important;">
+        <div class="misconception-container card h-100 pb-3" style="height: auto !important;">
             <div class="card-body">
                 <!-- <h3 class="pt-sm-2">{{ misconception }}</h3> -->
 
                 <!-- SOCIAL MEDIA IMAGE -->
                 <div v-if="showSocialMediaImage === 'true'" class="social-media-image">
-                    <img class="mb-3" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt="">
+                    <img class="mb-3 mt-5" :src="socialMediaImagesPath + this.$store.state.currentCard['Unique URL'] + '.jpg'" alt="">
                 </div>
 
                 <!-- TYPED TEXT -->
                 <!-- <span class="quote">“</span> -->
-                <p class="misconception-typed typed mb-3">{{ getMisconception }} </p>
+                <p class="misconception-typed typed mt-5 mb-3">{{ getMisconception }} </p>
                 <!-- <span class="quote">”</span> -->
             </div>
         </div>
