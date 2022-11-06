@@ -1063,6 +1063,7 @@ footer {
 // END SCORES
 
 // CONFETTI
+//TODO: remove?
 #confetti-canvas {
     z-index: 1021;
 }
