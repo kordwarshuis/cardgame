@@ -1,6 +1,13 @@
 # Introduction
 
-This is a card game engine.
+This is a card game engine. The engine is meant for developers who want to offer a creative and playfull way to explain a certain concept.
+The game consist of 
+1. tracking social media for (errorness) statements about a certain concept, e.g. crypto currencies and then 
+2. offer informative virtual cards that address a neutral strength and weaknesses analysis of a certain feature or chracteristic of the concept. For example: "what about the energy consumption of cryptocurrencies.
+3. Use the card in a reply, plain or with extra explanation
+4. Score points by getting acknowledgement (likes, thumbs up, forwards etc.) from a community.
+
+The focus in my work is the explain concepts and terms with imaginary expressed in sites and educational tools. See more: [dwarshuis.com](https:\\dwarshuis.com)
 
 Here are the live versions of the cardsets:
 * [Bitcoin misconceptions](https://blockchainbird.com/t/btc/)
