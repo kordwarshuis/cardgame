@@ -236,19 +236,19 @@ export default {
             reply: language.reply,
             openFullCard: language.openFullCard,
             backToCards: language.backToCards,
-            showSocialMediaImage: process.env.VUE_APP_SHOW_SOCIAL_MEDIA_IMAGE_IN_CARD,
-            socialMediaImagesPath: process.env.VUE_APP_SOCIAL_MEDIA_IMAGES_PATH,
+            showSocialMediaImage: import.meta.env.VITE_APP_SHOW_SOCIAL_MEDIA_IMAGE_IN_CARD,
+            socialMediaImagesPath: import.meta.env.VITE_APP_SOCIAL_MEDIA_IMAGES_PATH,
 
             backToCardIntro: language.backToCardIntro,
             expert1: language.expert1,
             expert1Description: language.expert1Description,
-            expert1Logo: language.expert1Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert1Logo : "",
+            expert1Logo: language.expert1Logo ? import.meta.env.VITE_APP_MEDIA_LOCATION + language.expert1Logo : "",
             expert2: language.expert2,
             expert2Description: language.expert2Description,
-            expert2Logo: language.expert2Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert2Logo : "",
+            expert2Logo: language.expert2Logo ? import.meta.env.VITE_APP_MEDIA_LOCATION + language.expert2Logo : "",
             expert3: language.expert3,
             expert3Description: language.expert3Description,
-            expert3Logo: language.expert3Logo ? process.env.VUE_APP_MEDIA_LOCATION + language.expert3Logo : "",
+            expert3Logo: language.expert3Logo ? import.meta.env.VITE_APP_MEDIA_LOCATION + language.expert3Logo : "",
             shortAnswer: language.shortAnswer,
             longAnswer: language.longAnswer,
             diagram: language.diagram,
@@ -257,8 +257,8 @@ export default {
             counterQuestions: language.counterQuestions,
             analogy: language.analogy,
             flowerPower: language.flowerPower,
-            discussionLink: process.env.VUE_APP_DISCUSSION_LINK,
-            discussionLinkDescription: process.env.VUE_APP_DISCUSSION_LINK_DESCRIPTION
+            discussionLink: import.meta.env.VITE_APP_DISCUSSION_LINK,
+            discussionLinkDescription: import.meta.env.VITE_APP_DISCUSSION_LINK_DESCRIPTION
         }
     },
     computed: {
@@ -452,9 +452,9 @@ export default {
 
 <style lang="scss" scoped>
 // https://www.dev-tips-and-tricks.com/use-bootstrap-4-media-query-mixins
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins/_breakpoints";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/_breakpoints";
 
 /*! https://tympanus.net/Development/FullscreenOverlayStyles/index7.html# */
 /* Overlay style */

@@ -11,7 +11,7 @@ export var tweetsHistory = function () {
     // loading spinner:
     tweetsContainer.insertAdjacentHTML("afterbegin", '<div class="mx-auto"><div class="loading-historic-tweets m-5 spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div></div>');
 
-    fetch(process.env.VUE_APP_REALTIME_TWITTER_HISTORY_JSON)
+    fetch(import.meta.env.VITE_APP_REALTIME_TWITTER_HISTORY_JSON)
 
         // 1 json
         // .then(response => response.json())

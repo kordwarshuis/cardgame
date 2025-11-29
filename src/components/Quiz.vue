@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import publicPath from "../../vue.config";
 export default {
     name: "Quiz",
     methods: {

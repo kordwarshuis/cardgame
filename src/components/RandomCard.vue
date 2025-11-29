@@ -11,7 +11,7 @@ export default {
     name: "RandomCard",
     data() {
         return {
-            randomCardButton: process.env.VUE_APP_RANDOM_CARD,
+            randomCardButton: import.meta.env.VITE_APP_RANDOM_CARD,
             randomCard: "",
             randomCardButtonText: language.random
         }

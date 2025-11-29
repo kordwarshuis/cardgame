@@ -55,12 +55,12 @@ export default {
     name: "MainMenu",
     data: function () {
         return {
-            logo: process.env.VUE_APP_LOGO,
-            logoURL: process.env.VUE_APP_LOGO_URL,
-            logoAlt: process.env.VUE_APP_LOGO_ALT,
-            aboutPage: process.env.VUE_APP_ABOUT_PAGE_SOURCE,
-            showScoresPage: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is “on” -> scores page. Note: True is not a boolean but a string
-            quizPage: process.env.VUE_APP_QUIZ,
+            logo: import.meta.env.VITE_APP_LOGO,
+            logoURL: import.meta.env.VITE_APP_LOGO_URL,
+            logoAlt: import.meta.env.VITE_APP_LOGO_ALT,
+            aboutPage: import.meta.env.VITE_APP_ABOUT_PAGE_SOURCE,
+            showScoresPage: false, // Twitter/X API removed, scores feature disabled
+            quizPage: import.meta.env.VITE_APP_QUIZ,
             menuItemCards: language.menu.cards,
             menuItemAbout: language.menu.about,
             menuItemScores: language.menu.scores,

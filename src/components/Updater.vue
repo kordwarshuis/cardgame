@@ -14,7 +14,6 @@
 
 <script>
 import axios from "axios";
-import publicPath from "../../vue.config";
 import {
     versionCurrent
 } from "../assets/js/updater";
@@ -29,7 +28,8 @@ export default {
             document.querySelector(".spinner-border-container").style.display = "block";
         },
         updater() {
-            let one = window.location.protocol + "//" + window.location.host + publicPath.publicPath + "updater.php";
+            const publicPath = import.meta.env.MODE === 'production' ? import.meta.env.VITE_APP_PATH : '/';
+            let one = window.location.protocol + "//" + window.location.host + publicPath + "updater.php";
 
             var getUpdateInfo = function () {
                 const requestOne = axios.get(one + '?timestamp=' + new Date().getTime());

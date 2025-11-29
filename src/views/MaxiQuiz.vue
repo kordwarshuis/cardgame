@@ -65,7 +65,7 @@ export default {
     methods: {
         getContent() {
             var that = this;
-            return axios.get(process.env.VUE_APP_QUIZ_PAGE_SOURCE)
+            return axios.get(import.meta.env.VITE_APP_QUIZ_PAGE_SOURCE)
                 .then(response => {
                     this.content = response.data;
                 })

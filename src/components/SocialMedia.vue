@@ -32,12 +32,11 @@
 </template>
 
 <script>
-import publicPath from "../../vue.config";
 export default {
     name: "SocialMedia",
     data: function () {
         return {
-            publicPath: publicPath.publicPath,
+            publicPath: import.meta.env.MODE === 'production' ? import.meta.env.VITE_APP_PATH : '/',
             windowLocationOrigin: window.location.origin
         }
     }

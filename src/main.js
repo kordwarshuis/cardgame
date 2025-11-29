@@ -1,8 +1,7 @@
 import Vue from 'vue';
-import VueConfig from "../vue.config";
 import App from './App.vue';
 import VueTour from 'vue-tour';
-require('vue-tour/dist/vue-tour.css');
+import 'vue-tour/dist/vue-tour.css';
 import router from './router/router';
 import VueGtag from 'vue-gtag';
 // import VueAnalytics from 'vue-ua';
@@ -22,8 +21,7 @@ import VueBootstrapToasts from 'vue-bootstrap-toasts';
 import linkify from 'vue-linkify';
 // import animated from 'animate.css';
 import VueConfetti from 'vue-confetti';
-
-var Mousetrap = require('mousetrap');
+import Mousetrap from 'mousetrap';
 
 Vue.use(VueTour);
 Vue.use(d3);
@@ -42,12 +40,12 @@ var cardgame = new Vue({ // https://stackoverflow.com/a/46978163/9749918
   },
   methods: {
     startConfetti() {
-      if (process.env.VUE_APP_CONFETTI === "true") {
+      if (import.meta.env.VITE_APP_CONFETTI === "true") {
         this.$confetti.start({particlesPerFrame: 0.2});
       }
     },
     stopConfetti() {
-      if (process.env.VUE_APP_CONFETTI === "true") {
+      if (import.meta.env.VITE_APP_CONFETTI === "true") {
         this.$confetti.stop();
       }
     }
@@ -56,7 +54,7 @@ var cardgame = new Vue({ // https://stackoverflow.com/a/46978163/9749918
 
 Vue.use(VueGtag, {
   config: {
-    id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID,
+    id: import.meta.env.VITE_APP_GOOGLE_ANALYTICS_ID,
     params: {
       send_page_view: true
     }
@@ -82,7 +80,7 @@ window.cardgameEvent = new Vue();
 //   // [Required] The version of your app.
 //   appVersion: '0',
 //   // [Required] Your Google Analytics tracking ID.
-//   trackingId: process.env.VUE_APP_GOOGLE_ANALYTICS_ID,
+//   trackingId: import.meta.env.VITE_APP_GOOGLE_ANALYTICS_ID,
 //   // If you're using vue-router, pass the router instance here.
 //   vueRouter: router,
 //   trackPage: true
@@ -90,11 +88,11 @@ window.cardgameEvent = new Vue();
 
 
 // set which game
-document.querySelector('body').classList.add(process.env.VUE_APP_ID);
-store.commit('setGameId', process.env.VUE_APP_ID);
-store.commit('setGameTitle', process.env.VUE_APP_TITLE);
-store.commit('setGameTitle2', process.env.VUE_APP_TITLE_2);
-store.commit('setGameSubTitle', process.env.VUE_APP_SUBTITLE);
+document.querySelector('body').classList.add(import.meta.env.VITE_APP_ID);
+store.commit('setGameId', import.meta.env.VITE_APP_ID);
+store.commit('setGameTitle', import.meta.env.VITE_APP_TITLE);
+store.commit('setGameTitle2', import.meta.env.VITE_APP_TITLE_2);
+store.commit('setGameSubTitle', import.meta.env.VITE_APP_SUBTITLE);
 
 
 // copy URL into clipboard via click on button
@@ -135,7 +133,8 @@ copyURLtoClipboardCardIntroAndFull.on('success', function (e) {
 var copyURLtoClipboardCardOverview = new ClipboardJS('.copyURLtoClipboardCardOverview', {
   text: function (trigger) {
     //https://stackoverflow.com/a/6941624
-    return "“" + trigger.dataset.misconception + "”\n" + " 👉 " + window.location.protocol + "//" + window.location.host + VueConfig.publicPath + "card/" + trigger.dataset.url;
+    const publicPath = import.meta.env.MODE === 'production' ? import.meta.env.VITE_APP_PATH : '/';
+    return "" + trigger.dataset.misconception + "\n" + " 👉 " + window.location.protocol + "//" + window.location.host + publicPath + "card/" + trigger.dataset.url;
   }
 });
 copyURLtoClipboardCardOverview.on('success', function (e) {
@@ -200,7 +199,8 @@ clipboardBookmarkedURLsToEmail.on('success', function (e) {
 // CLIPBOARD SEARCH RESULTS
 var clipboardSearchResults = new ClipboardJS('.copyURLtoClipboard6', {
   text: function (trigger) {
-    return "“" + trigger.dataset.misconception + "”\n" + " 👉 " + window.location.protocol + "//" + window.location.host + VueConfig.publicPath + trigger.dataset.url;
+    const publicPath = import.meta.env.MODE === 'production' ? import.meta.env.VITE_APP_PATH : '/';
+    return "" + trigger.dataset.misconception + "\n" + " 👉 " + window.location.protocol + "//" + window.location.host + publicPath + trigger.dataset.url;
   }
 });
 clipboardSearchResults.on('success', function (e) {

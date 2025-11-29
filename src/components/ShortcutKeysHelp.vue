@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         getContent() {
-            return axios.get(process.env.VUE_APP_SHORTCUT_KEYS_HELP + '?timestamp=' + new Date().getTime())
+            return axios.get(import.meta.env.VITE_APP_SHORTCUT_KEYS_HELP + '?timestamp=' + new Date().getTime())
                 .then(response => {
                     this.content = response.data;
                 }).catch(function (error) {

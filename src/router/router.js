@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import publicPath from "../../vue.config";
 import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
@@ -45,8 +44,8 @@ const routes = [{
 ];
 
 const router = new VueRouter({
-  base: publicPath.publicPath,
-  // mode: 'hash', // back button not work, https://github.com/vuejs/vue-router/issues/853 ??
+  base: import.meta.env.MODE === 'production' ? import.meta.env.VITE_APP_PATH : '/',
+  // mode: 'hash', // back button not work, https://github.com/vuejs/vue-router/issues=853 ??
   mode: 'history',
   routes,
   scrollBehavior() { //https://stackoverflow.com/a/57212309, TODO: https://router.vuejs.org/guide/advanced/scroll-behavior.html#async-scrolling

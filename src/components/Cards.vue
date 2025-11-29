@@ -37,12 +37,7 @@
         </div>
 
         <div class="col-md-12">
-            <p class="mt-0 subtitle">{{this.$store.state.gameSubTitle}}
-                <template v-if="realtimeTweets === 'true'">
-                    <GameInstructionsCarousel />
-                </template>
-            </p>
-
+            <p class="mt-0 subtitle">{{this.$store.state.gameSubTitle}}</p>
         </div>
     </div>
 
@@ -104,7 +99,6 @@
                         <!-- <span class="quote">”</span> -->
                     </h2>
                 </a>
-                <p v-if='realtimeTweets === "true"' class="times-tweeted" :title="'This card has been tweeted ' + item['Number of tweets'] + ' times'"><img class="twitter-logo" src="../assets/img/icons/social-media-buttons/twitter.svg" alt="twitter logo" />{{item['Number of tweets']}}</p>
             </div>
             <div class="card-footer">
                 <a @click="$store.commit('showItemsInSelectedCategory',item.category)" class="category" :class="item.category" style="color: $card-footer-link-color; text-align: left;display: inline-block;font-size: 1em; padding: 0.2em 0.4em; margin: 0.5em 0 ;">{{ item.category }}</a>
@@ -139,8 +133,6 @@
 <script>
 import SoundToggle from "@/components/SoundToggle.vue";
 import ICountUp from 'vue-countup-v2';
-import publicPath from "../../vue.config";
-import GameInstructionsCarousel from "./GameInstructionsCarousel.vue";
 import store from "../store/store";
 import axios from "axios";
 import
@@ -152,8 +144,7 @@ export default {
     mixins: [showCardIntro],
     components: {
         SoundToggle,
-        ICountUp,
-        GameInstructionsCarousel
+        ICountUp
     },
     props: {
         msg: String,
@@ -173,19 +164,17 @@ export default {
                 prefix: '',
                 duration: 4 //sec
             },
-            publicPath: publicPath.publicPath,
+            publicPath: import.meta.env.MODE === 'production' ? import.meta.env.VITE_APP_PATH : '/',
             windowLocationOrigin: window.location.origin,
-            appId: process.env.VUE_APP_ID,
-            realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS, // if realtime tweets is on then scores page makes sense. Note: True is not a boolean but a string
-            homepageVideo: process.env.VUE_APP_HOMEPAGE_VIDEO,
+            appId: import.meta.env.VITE_APP_ID,
+            homepageVideo: import.meta.env.VITE_APP_HOMEPAGE_VIDEO,
             homepageIllustrations: [],
             homepageIllustrationsUniqueUrl: [],
-            homepageVideoPathToVideo: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
-            homepageVideoPathToPoster: process.env.VUE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
-            realtimeTweets: process.env.VUE_APP_REALTIME_TWEETS,
-            homepageIllustrationsCarousel: process.env.VUE_APP_HOMEPAGE_ILLUSTRATIONS_CAROUSEL,
+            homepageVideoPathToVideo: import.meta.env.VITE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
+            homepageVideoPathToPoster: import.meta.env.VITE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
+            homepageIllustrationsCarousel: import.meta.env.VITE_APP_HOMEPAGE_ILLUSTRATIONS_CAROUSEL,
             showAllCardsButtonText: language.showAllCards,
-            tour: process.env.VUE_APP_TOUR_FILE
+            tour: import.meta.env.VITE_APP_TOUR_FILE
         }
     },
     mounted() {
@@ -270,16 +259,16 @@ export default {
             }
         },
         setCardsInitiallyShown() {
-            if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE !== "") {
+            if (import.meta.env.VITE_APP_MAX_CARDS_HOMEPAGE !== "") {
                 // set the number of cards to be shown
-                this.cardsInitiallyShown = parseInt(process.env.VUE_APP_MAX_CARDS_HOMEPAGE, 10);
+                this.cardsInitiallyShown = parseInt(import.meta.env.VITE_APP_MAX_CARDS_HOMEPAGE, 10);
             } // else we do not set this
         },
         createCardsShown() {
             this.allCards = JSON.parse(JSON.stringify(this.$store.state.allCardsInChosenCategory));
 
             // if the number of cards to be shown is set then chop aray
-            if (process.env.VUE_APP_MAX_CARDS_HOMEPAGE !== "") {
+            if (import.meta.env.VITE_APP_MAX_CARDS_HOMEPAGE !== "") {
                 this.allCards.splice(this.cardsInitiallyShown);
                 // if number of cards to be shown is less than total then show “show all” button
                 if (this.cardsInitiallyShown < this.$store.state.allCardsInChosenCategory.length) {
@@ -352,9 +341,9 @@ export default {
 
 <style lang="scss" scoped>
 // https://www.dev-tips-and-tricks.com/use-bootstrap-4-media-query-mixins
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins/_breakpoints";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/_breakpoints";
 
 .display-none {
     display: none;

@@ -75,11 +75,11 @@ export var getJSON = (function () {
                 });
         }
 
-        fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
+        fetchData(import.meta.env.VITE_APP_REALTIME_TWITTER_JSON, false);
         fetchTweetsLoop = setInterval(function () {
             console.log('Fetch tweets.');
             konsole.innerHTML = 'Fetch tweets.';
-            fetchData(process.env.VUE_APP_REALTIME_TWITTER_JSON, false);
+            fetchData(import.meta.env.VITE_APP_REALTIME_TWITTER_JSON, false);
         }, refreshInterval);
     }
 

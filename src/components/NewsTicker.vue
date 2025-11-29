@@ -16,7 +16,7 @@ export default {
     },
     methods: {
         getContent() {
-            return axios.get(process.env.VUE_APP_NEWSTICKER_SOURCE)
+            return axios.get(import.meta.env.VITE_APP_NEWSTICKER_SOURCE)
                 .then(response => {
                     this.content = response.data;
                 }).catch(function (error) {

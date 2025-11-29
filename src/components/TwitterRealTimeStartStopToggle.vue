@@ -26,7 +26,7 @@ export default {
             }
 
             function start() {
-                getJSON.start(process.env.VUE_APP_REALTIME_TWITTER_JSON);
+                getJSON.start(import.meta.env.VITE_APP_REALTIME_TWITTER_JSON);
             }
 
             function startStop() {

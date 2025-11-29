@@ -1,12 +1,5 @@
 <template>
 <div id="app" class="container-fluid pl-0 pr-0">
-    <!-- true and false are strings not booleans -->
-    <template v-if="realTimeTweets === 'true'">
-        <TwitterRealTimeConfigModal />
-    </template>
-    <template v-if="realTimeTweets === 'true'">
-        <TwitterRealTimeInfoModal />
-    </template>
     <ShortcutKeysHelp />
     <MainMenu />
     <template v-if="tour !== ''">
@@ -15,9 +8,6 @@
 
     <Updater />
     <!-- <slideInMenu /> -->
-    <template v-if="realTimeTweets === 'true'">
-        <twitterRealtime />
-    </template>
     <!-- <CryptoRadio /> -->
     <router-view />
     <Person1 />
@@ -37,13 +27,9 @@
 
 <script>
 import store from "./store/store";
-import publicPath from "../vue.config";
 import axios from "axios";
 import * as d3 from "d3-dsv";
 // import slideInMenu from "@/components/slideInMenu.vue";
-import twitterRealtime from "@/components/twitterRealtime.vue";
-import TwitterRealTimeConfigModal from "@/components/TwitterRealTimeConfigModal.vue";
-import TwitterRealTimeInfoModal from "@/components/TwitterRealTimeInfoModal.vue";
 import MainMenu from "@/components/MainMenu.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
 // import * as Hammer from "hammerjs";
@@ -55,10 +41,7 @@ import Updater from "@/components/Updater.vue";
 
 export default {
     components: {
-        TwitterRealTimeConfigModal: () => import( /* webpackChunkName: "TwitterRealTimeConfigModal" */ './components/TwitterRealTimeConfigModal.vue'),
-        TwitterRealTimeInfoModal: () => import( /* webpackChunkName: "TwitterRealTimeInfoModal" */ './components/TwitterRealTimeInfoModal.vue'),
         ShortcutKeysHelp: () => import( /* webpackChunkName: "ShortcutKeysHelp" */ './components/ShortcutKeysHelp.vue'),
-        twitterRealtime: () => import( /* webpackChunkName: "Realtimetweets" */ './components/twitterRealtime.vue'),
         MainMenu,
         NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
         Person1,
@@ -71,10 +54,9 @@ export default {
     },
     data: function () {
         return {
-            realTimeTweets: process.env.VUE_APP_REALTIME_TWEETS,
-            newsticker: process.env.VUE_APP_NEWSTICKER,
+            newsticker: import.meta.env.VITE_APP_NEWSTICKER,
             footerContent: language.footerContent,
-            tour: process.env.VUE_APP_TOUR_FILE
+            tour: import.meta.env.VITE_APP_TOUR_FILE
         }
     },
     mounted() {
@@ -93,15 +75,15 @@ export default {
             // only fetch data
             if (this.$store.state.dataFetched === false) {
 
-                let one = process.env.VUE_APP_CARDS_CONTENT + '?timestamp=' + new Date().getTime();
-                let two = process.env.VUE_APP_CARDGAME_SCORES + '?timestamp=' + new Date().getTime();
+                let one = import.meta.env.VITE_APP_CARDS_CONTENT + '?timestamp=' + new Date().getTime();
+                let two = import.meta.env.VITE_APP_CARDGAME_SCORES + '?timestamp=' + new Date().getTime();
 
                 const requestOne = axios.get(one);
                 allRequests.push(requestOne);
 
                 let requestTwo;
 
-                if (process.env.VUE_APP_CARDGAME_SCORES !== "") {
+                if (import.meta.env.VITE_APP_CARDGAME_SCORES !== "") {
                     requestTwo = axios.get(two);
                 } else {
                     requestTwo = ""; //empty string makes that the two requests go through even though the scores are empty
@@ -121,7 +103,7 @@ export default {
 
                     // only if there is something to do:
                     // TODO: the code breaks when JSON structure is wrong, check if JSON had correct structure
-                    if (process.env.VUE_APP_CARDGAME_SCORES !== "") {
+                    if (import.meta.env.VITE_APP_CARDGAME_SCORES !== "") {
                         responseTwo.data.scores.forEach(function (entry) {
                             tweetedCards.push(entry.cardURLs);
                         })
@@ -137,10 +119,11 @@ export default {
                             theArray[index] = theArray[index].replace(/https?:\/\/[^\/]+/i, "");
 
                             // remove subdirs:
-                            var replace = publicPath.publicPath;
+                            const publicPath = import.meta.env.MODE === 'production' ? import.meta.env.VITE_APP_PATH : '/';
+                            var replace = publicPath;
                             var re = new RegExp(replace, "i");
                             theArray[index] = theArray[index].replace(re, "");
-                            var replace = publicPath.publicPath.slice(0, -1); // does not always work on local server, where the app is in the root, and remote it is not necessarily the case.
+                            var replace = publicPath.slice(0, -1); // does not always work on local server, where the app is in the root, and remote it is not necessarily the case.
 
                             var re = new RegExp(replace, "i");
                             theArray[index] = theArray[index].replace(re, "");
@@ -190,7 +173,7 @@ export default {
                     // "stack" is a column in the Google Sheet content source. It defines where a card belongs to. It works like this: if the string contains an "1", it belongs to STACK 1, if a "2" it's STACK 2, "12" means it belongs to both.
                     // TODO: move this to main.js
 
-                    var stack = Number(process.env.VUE_APP_STACK);
+                    var stack = Number(import.meta.env.VITE_APP_STACK);
 
                     // select only the items that are in the selected stack
                     // avoid working on a changing array by using a temp array
@@ -483,10 +466,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/dist/css/bootstrap.min.css";
-// @import "~bootstrap/scss/functions";
-// @import "~bootstrap/scss/variables";
-// @import "~bootstrap/scss/mixins/_breakpoints";
+@import "bootstrap/dist/css/bootstrap.min.css";
+// @import "bootstrap/scss/functions";
+// @import "bootstrap/scss/variables";
+// @import "bootstrap/scss/mixins/_breakpoints";
 
 /*! Generated by Font Squirrel (https://www.fontsquirrel.com) on October 9, 2020 */
 @font-face {
