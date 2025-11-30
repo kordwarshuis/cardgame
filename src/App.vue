@@ -19,9 +19,7 @@
     <footer class="footer mt-auto py-2">
         <div class="container-fluid text-center" v-html="footerContent"></div>
     </footer>
-    <template v-if="newsticker === 'true'">
-        <NewsTicker />
-    </template>
+    <!-- NewsTicker removed -->
 </div>
 </template>
 
@@ -33,7 +31,7 @@ import * as d3 from "d3-dsv";
 import MainMenu from "@/components/MainMenu.vue";
 // import CryptoRadio from "@/components/CryptoRadio.vue";
 // import * as Hammer from "hammerjs";
-import NewsTicker from "@/components/NewsTicker.vue";
+// import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 import Tour from "@/components/Tour.vue";
@@ -43,7 +41,7 @@ export default {
     components: {
         ShortcutKeysHelp: () => import( /* webpackChunkName: "ShortcutKeysHelp" */ './components/ShortcutKeysHelp.vue'),
         MainMenu,
-        NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
+        // NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
         Person1,
         Person2,
         Tour,
