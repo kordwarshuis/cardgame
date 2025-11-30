@@ -23,7 +23,8 @@ export default defineConfig(({ mode }) => {
       preprocessorOptions: {
         scss: {
           additionalData: env.VITE_APP_TEMPLATE_CSS ? `@import "@/assets/css/template-base.scss";@import "@/assets/css/${env.VITE_APP_TEMPLATE_CSS}";` : '',
-          api: 'modern-compiler'
+          api: 'modern-compiler',
+          silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin', 'color-functions', 'slash-div']
         }
       }
     },

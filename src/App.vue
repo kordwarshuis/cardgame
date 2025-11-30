@@ -372,15 +372,15 @@ export default {
             });
             quizCorrectAnswer = new Howl({
                 volume: 0.1,
-                src: [require("./assets/audio/29543__bennychico11__wink.mp4")]
+                src: [new URL('./assets/audio/29543__bennychico11__wink.mp4', import.meta.url).href]
             });
             quizWrongAnswer = new Howl({
                 volume: 0.1,
-                src: [require("./assets/audio/348477__jalastram__gui-sound-effects-044.mp4")]
+                src: [new URL('./assets/audio/348477__jalastram__gui-sound-effects-044.mp4', import.meta.url).href]
             });
             victory = new Howl({
                 volume: 0.5,
-                src: [require("./assets/audio/470083__sheyvan__music-orchestral-victory-fanfare.mp4")]
+                src: [new URL('./assets/audio/470083__sheyvan__music-orchestral-victory-fanfare.mp4', import.meta.url).href]
             });
             // document.querySelectorAll("a").forEach(item => item.addEventListener('click', function () {
             //     click.play()
