@@ -28,7 +28,7 @@ Vue.use(d3);
 Vue.use(VueConfetti);
 Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
-Vue.use(Howl, Howler);
+// Howler is imported but not used as a Vue plugin
 Vue.directive('linkified', linkify);
 
 var cardgame = new Vue({ // https://stackoverflow.com/a/46978163/9749918

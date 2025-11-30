@@ -408,25 +408,26 @@ export default {
             var button = document.querySelector("#activateSound");
 
             // see index.html for declaration of vars
+            // Use new URL() with import.meta.url for Vite compatibility
             alert = new Howl({
-                src: [require("./assets/audio/330050__paulmorek__beep-03-single.mp4")]
+                src: [new URL('./assets/audio/330050__paulmorek__beep-03-single.mp4', import.meta.url).href]
             });
             go = new Howl({
                 volume: 0.5,
-                src: [require("./assets/audio/394477__gameloops__gamepack1-main-horrible-finish.mp4")]
+                src: [new URL('./assets/audio/394477__gameloops__gamepack1-main-horrible-finish.mp4', import.meta.url).href]
             });
             whoosh2 = new Howl({
                 volume: 0.1,
-                src: [require("./assets/audio/399934__waveplay__short-click-snap-perc.mp4")]
+                src: [new URL('./assets/audio/399934__waveplay__short-click-snap-perc.mp4', import.meta.url).href]
             });
             whistle = new Howl({
                 volume: 0.1,
-                src: [require("./assets/audio/110390__soundscalpel-com__cartoon-siren-whistle-001.mp4")]
+                src: [new URL('./assets/audio/110390__soundscalpel-com__cartoon-siren-whistle-001.mp4', import.meta.url).href]
             });
             typewriter = new Howl({
                 volume: 0.6,
                 loop: true,
-                src: [require("./assets/audio/331656__trollarch2__keyboard-typing.mp4")]
+                src: [new URL('./assets/audio/331656__trollarch2__keyboard-typing.mp4', import.meta.url).href]
             });
             quizCorrectAnswer = new Howl({
                 volume: 0.1,

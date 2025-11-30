@@ -248,7 +248,15 @@ export default {
                     responseOne = responseOne.data;
                     responseOne = responseOne.filter(checker);
                     responseOne = shuffle(responseOne);
-                    this.homepageIllustrations = responseOne;
+                    // Prepend media location to relative URLs
+                    const mediaLocation = import.meta.env.VITE_APP_MEDIA_LOCATION || '';
+                    this.homepageIllustrations = responseOne.map(url => {
+                        // If URL doesn't start with http/https, prepend media location
+                        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                            return mediaLocation + url;
+                        }
+                        return url;
+                    });
                     this.grabFilenameFromURL();
                 })).catch(errors => {
                     // react on errors.
