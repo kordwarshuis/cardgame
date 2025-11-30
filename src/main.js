@@ -4,22 +4,12 @@ import VueTour from 'vue-tour';
 import 'vue-tour/dist/vue-tour.css';
 import router from './router/router';
 import VueGtag from 'vue-gtag';
-// import VueAnalytics from 'vue-ua';
 import store from './store/store';
 import * as d3 from 'd3-dsv';
-import {
-  Howl,
-  Howler
-} from 'howler';
-// import _ from 'lodash';
-// import interact from 'interactjs';
-// import './assets/js/menu_sideslide';
-// import bootstrap from 'bootstrap';
+import { Howl } from 'howler';
 
-//https://github.com/rakk7/vue-bootstrap-toasts
 import VueBootstrapToasts from 'vue-bootstrap-toasts';
 import linkify from 'vue-linkify';
-// import animated from 'animate.css';
 import VueConfetti from 'vue-confetti';
 import Mousetrap from 'mousetrap';
 
@@ -28,16 +18,12 @@ Vue.use(d3);
 Vue.use(VueConfetti);
 Vue.config.productionTip = false;
 Vue.use(VueBootstrapToasts);
-// Howler is imported but not used as a Vue plugin
 Vue.directive('linkified', linkify);
 
 var cardgame = new Vue({ // https://stackoverflow.com/a/46978163/9749918
   router,
   store,
   render: h => h(App),
-  mounted() {
-    // this.start();
-  },
   methods: {
     startConfetti() {
       if (import.meta.env.VITE_APP_CONFETTI === "true") {
@@ -68,24 +54,7 @@ Vue.use(VueGtag, {
   }
 }, router);
 
-// https://laracasts.com/series/learn-vue-2-step-by-step/episodes/13
 window.cardgameEvent = new Vue();
-
-
-// https://www.digitalocean.com/community/tutorials/vuejs-google-analytics
-// https://github.com/ScreamZ/vue-analytics
-// Vue.use(VueAnalytics, {
-//   // [Required] The name of your app as specified in Google Analytics.
-//   appName: 'Card game',
-//   // [Required] The version of your app.
-//   appVersion: '0',
-//   // [Required] Your Google Analytics tracking ID.
-//   trackingId: import.meta.env.VITE_APP_GOOGLE_ANALYTICS_ID,
-//   // If you're using vue-router, pass the router instance here.
-//   vueRouter: router,
-//   trackPage: true
-// });
-
 
 // set which game
 document.querySelector('body').classList.add(import.meta.env.VITE_APP_ID);

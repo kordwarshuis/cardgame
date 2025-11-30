@@ -49,7 +49,6 @@ import store from "../store/store";
 import {
     languageEn
 } from "@/assets/js/quiz.language.en.js";
-// import interact from 'interactjs';
 
 export default {
     name: "Quiz",

@@ -34,13 +34,7 @@ const routes = [{
     name: "Quiz",
     component: () =>
       import("../views/MaxiQuiz.vue")
-  },
-  // {
-  //   path: "/twitter-real-time",
-  //   name: "TwitterRealTime",
-  //   component: () =>
-  //     import("../views/TwitterRealTime.vue")
-  // }
+  }
 ];
 
 const router = new VueRouter({

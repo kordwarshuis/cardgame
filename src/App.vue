@@ -7,19 +7,15 @@
     </template>
 
     <Updater />
-    <!-- <slideInMenu /> -->
-    <!-- <CryptoRadio /> -->
     <router-view />
     <Person1 />
     <Person2 />
-    <!-- <Person3 /> -->
 
     <Toasts :show-progress="false" :time-out="2500"></Toasts>
 
     <footer class="footer mt-auto py-2">
         <div class="container-fluid text-center" v-html="footerContent"></div>
     </footer>
-    <!-- NewsTicker removed -->
 </div>
 </template>
 
@@ -27,11 +23,7 @@
 import store from "./store/store";
 import axios from "axios";
 import * as d3 from "d3-dsv";
-// import slideInMenu from "@/components/slideInMenu.vue";
 import MainMenu from "@/components/MainMenu.vue";
-// import CryptoRadio from "@/components/CryptoRadio.vue";
-// import * as Hammer from "hammerjs";
-// import NewsTicker from "@/components/NewsTicker.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
 import Tour from "@/components/Tour.vue";
@@ -41,25 +33,19 @@ export default {
     components: {
         ShortcutKeysHelp: () => import( /* webpackChunkName: "ShortcutKeysHelp" */ './components/ShortcutKeysHelp.vue'),
         MainMenu,
-        // NewsTicker: () => import( /* webpackChunkName: "NewsTicker" */ './components/NewsTicker.vue'),
         Person1,
         Person2,
         Tour,
         Updater
-        // slideInMenu,
-        // CryptoRadio,
-        // Hammer,
     },
     data: function () {
         return {
-            newsticker: import.meta.env.VITE_APP_NEWSTICKER,
             footerContent: language.footerContent,
             tour: import.meta.env.VITE_APP_TOUR_FILE
         }
     },
     mounted() {
         this.fetchData();
-        // this.soundSetting();
         this.initSound();
         this.$store.dispatch("setProspectHandles");
         this.showKeybindingsModal();
@@ -359,51 +345,6 @@ export default {
                 });
             }
         },
-        //TODO: change 'of' to 'off'
-        // soundSetting() {
-        //     // radio buttons for sound on off:
-        //     var soundButton = document.querySelectorAll('input[name = "soundOnOf"]');
-        //     var i;
-
-        //     // set radio buttons with localstorage value, if any:
-        //     if (localStorage.getItem("soundOnOf") !== null) {
-        //         var val = localStorage.getItem("soundOnOf"); // local storage value
-        //         for (i = 0; i < soundButton.length; i++) {
-        //             if (soundButton[i].value === val) {
-        //                 soundButton[i].checked = true; // marking the required radio as checked
-        //             }
-        //         }
-        //     }
-
-        //     // set soud variable based on radio buttons setting:
-        //     for (i = 0; i < soundButton.length; i++) {
-        //         if (soundButton[i].checked === true) {
-        //             if (soundButton[i].value === "on") {
-        //                 sound = true;
-        //             } else {
-        //                 sound = false;
-        //             }
-        //         }
-        //     }
-
-        //     // dealing with radio buttons user interactions:
-        //     var prev = null; // not used here
-        //     for (i = 0; i < soundButton.length; i++) {
-        //         soundButton[i].addEventListener('change', function () {
-        //             // (prev) ? console.log(prev.value): null;
-        //             if (this !== prev) {
-        //                 prev = this;
-        //             }
-
-        //             localStorage.setItem("soundOnOf", this.value);
-        //             if (this.value === "on") {
-        //                 sound = true;
-        //             } else {
-        //                 sound = false;
-        //             }
-        //         });
-        //     }
-        // },
         initSound() {
             var button = document.querySelector("#activateSound");
 
@@ -1044,85 +985,9 @@ footer {
 
 // END SCORES
 
-// CONFETTI
-//TODO: remove?
 #confetti-canvas {
     z-index: 1021;
 }
-
-/*
- *  BEGIN NEWS TICKER
- */
-.news-ticker-container {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    /*om te overrulen, als je hem buiten de div plaatst, zodat het een section > div is*/
-    // left: auto;
-    /*om te overrulen, als je hem buiten de div plaatst, zodat het een section > div is*/
-    padding: 0;
-    /*om te overrulen, als je hem buiten de div plaatst, zodat het een section > div is*/
-    margin: 0;
-    height: auto !important;
-    transform: translateX(100%);
-    /* default speed, override via inline style, depending on text length */
-    animation-duration: 25s;
-    animation-timing-function: linear;
-    animation-iteration-count: 30;
-    pointer-events: none;
-    visibility: visible;
-    opacity: 1;
-}
-
-/*main .present .news-ticker-container, */
-/*alleen als slide actief is, loopt de animatie*/
-.news-ticker-container {
-    /*deze is voor als ie niet binnen de main staat en dus altijd te zien is*/
-    animation-name: news-ticker;
-}
-
-.news-ticker-container p {
-    white-space: nowrap;
-    margin: 0 1em;
-}
-
-.news-ticker-container p span {
-    background: linear-gradient(to right, #5C34A7, #2376D6);
-    color: $basic1;
-    padding: 0 2em;
-    // display: block;
-
-}
-
-.news-ticker-container img {
-    vertical-align: baseline;
-}
-
-@keyframes news-ticker {
-    0% {
-        right: 0;
-        transform: translate3d(100%, 0, 0);
-    }
-
-    100% {
-        right: 100%;
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-.news-ticker-container p {
-    line-height: 1;
-}
-
-@media only screen and (max-width: 961px) {
-    .news-ticker p {
-        line-height: 1;
-    }
-}
-
-/*
- *  END NEWS TICKER
- */
 
 /*
  *  BEGIN ATTENTION SEEKER TWEETS IN TWEATSTREAM
