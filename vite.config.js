@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => {
       open: true
     },
     
-    base: env.VITE_APP_PATH || '/',
+    base: mode === 'production' ? (env.VITE_APP_PATH || '/') : '/',
     build: {
       outDir: 'dist',
       assetsDir: 'assets',
