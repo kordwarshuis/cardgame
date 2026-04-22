@@ -55,7 +55,7 @@ export default {
     name: "MainMenu",
     data: function () {
         return {
-            logo: import.meta.env.VITE_APP_LOGO,
+            logo: import.meta.env.BASE_URL + import.meta.env.VITE_APP_LOGO,
             logoURL: import.meta.env.VITE_APP_LOGO_URL,
             logoAlt: import.meta.env.VITE_APP_LOGO_ALT,
             aboutPage: import.meta.env.VITE_APP_ABOUT_PAGE_SOURCE,

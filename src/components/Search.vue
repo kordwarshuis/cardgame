@@ -78,10 +78,10 @@ export default {
             searchBarPlaceholderText: language.searchBarPlaceholderText,
             everythingAbout: language.everythingAbout,
             searchResultsCopyOption: language.searchResultsCopyOption,
-            path: import.meta.env.VITE_APP_MEDIA_LOCATION,
+            path: import.meta.env.BASE_URL + import.meta.env.VITE_APP_MEDIA_LOCATION,
             searchCardsResult: [],
             showSocialMediaImage: import.meta.env.VITE_APP_SHOW_SOCIAL_MEDIA_IMAGE_IN_CARD,
-            socialMediaImagesPath: import.meta.env.VITE_APP_SOCIAL_MEDIA_IMAGES_PATH
+            socialMediaImagesPath: import.meta.env.BASE_URL + import.meta.env.VITE_APP_SOCIAL_MEDIA_IMAGES_PATH
         }
     },
     computed: {

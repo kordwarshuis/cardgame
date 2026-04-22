@@ -170,9 +170,9 @@ export default {
             homepageVideo: import.meta.env.VITE_APP_HOMEPAGE_VIDEO,
             homepageIllustrations: [],
             homepageIllustrationsUniqueUrl: [],
-            homepageVideoPathToVideo: import.meta.env.VITE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
-            homepageVideoPathToPoster: import.meta.env.VITE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
-            homepageIllustrationsCarousel: import.meta.env.VITE_APP_HOMEPAGE_ILLUSTRATIONS_CAROUSEL,
+            homepageVideoPathToVideo: import.meta.env.BASE_URL + import.meta.env.VITE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
+            homepageVideoPathToPoster: import.meta.env.BASE_URL + import.meta.env.VITE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
+            homepageIllustrationsCarousel: import.meta.env.BASE_URL + import.meta.env.VITE_APP_HOMEPAGE_ILLUSTRATIONS_CAROUSEL,
             showAllCardsButtonText: language.showAllCards,
             tour: import.meta.env.VITE_APP_TOUR_FILE
         }
@@ -248,12 +248,12 @@ export default {
                     responseOne = responseOne.data;
                     responseOne = responseOne.filter(checker);
                     responseOne = shuffle(responseOne);
-                    // Prepend media location to relative URLs
-                    const mediaLocation = import.meta.env.VITE_APP_MEDIA_LOCATION || '';
+                    // Prepend base + media location to relative URLs
+                    const mediaLocation = import.meta.env.BASE_URL + (import.meta.env.VITE_APP_MEDIA_LOCATION || '');
                     this.homepageIllustrations = responseOne.map(url => {
                         // If URL doesn't start with http/https, prepend media location
                         if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                            return mediaLocation + url;
+                            return mediaLocation + 'img/social-media/cards/' + url;
                         }
                         return url;
                     });

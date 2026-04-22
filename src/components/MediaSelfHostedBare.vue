@@ -19,7 +19,7 @@ export default {
     name: "MediaSelfHostedBare",
     data() {
         return {
-            path: import.meta.env.VITE_APP_MEDIA_LOCATION
+            path: import.meta.env.BASE_URL + import.meta.env.VITE_APP_MEDIA_LOCATION
         }
     }
 };
