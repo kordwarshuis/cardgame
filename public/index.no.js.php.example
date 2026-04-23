@@ -83,7 +83,6 @@ foreach ($cardContent as $key => $value) {
   <meta name=description content="<?php echo $misconception . " | " . $shortText; ?>">
   <meta name=keywords content="<?php echo $misconception . " | " . $shortText; ?>">
   <meta name=author content="Blockchain Bird">
-  <!-- <meta property=og:image itemprop=image content=https://blockchainbird.org/t/cardgametest/img-twitter/twitter.jpg> <meta -->
   <meta property=og:image itemprop=image content=<?php echo $socialMediaImage; ?>>
   <meta property=og:image:width content=1200>
   <meta property=og:image:height content=628>
