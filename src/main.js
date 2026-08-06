@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import App from './App.vue';
-import VueTour from 'vue-tour';
-import 'vue-tour/dist/vue-tour.css';
 import router from './router/router';
 import VueGtag from 'vue-gtag';
 import store from './store/store';
@@ -13,7 +11,6 @@ import linkify from 'vue-linkify';
 import VueConfetti from 'vue-confetti';
 import Mousetrap from 'mousetrap';
 
-Vue.use(VueTour);
 Vue.use(d3);
 Vue.use(VueConfetti);
 Vue.config.productionTip = false;

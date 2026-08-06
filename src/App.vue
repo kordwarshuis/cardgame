@@ -2,9 +2,6 @@
 <div id="app" class="container-fluid pl-0 pr-0">
     <ShortcutKeysHelp />
     <MainMenu />
-    <template v-if="tour !== ''">
-        <Tour></Tour>
-    </template>
 
     <Updater />
     <router-view />
@@ -26,7 +23,6 @@ import * as d3 from "d3-dsv";
 import MainMenu from "@/components/MainMenu.vue";
 import Person1 from "@/components/AnimatedCharacters/Person1.vue";
 import Person2 from "@/components/AnimatedCharacters/Person2.vue";
-import Tour from "@/components/Tour.vue";
 import Updater from "@/components/Updater.vue";
 
 export default {
@@ -35,13 +31,11 @@ export default {
         MainMenu,
         Person1,
         Person2,
-        Tour,
         Updater
     },
     data: function () {
         return {
-            footerContent: language.footerContent,
-            tour: import.meta.env.VITE_APP_TOUR_FILE
+            footerContent: language.footerContent
         }
     },
     mounted() {

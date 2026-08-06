@@ -123,10 +123,6 @@
         <button class="btn btn-primary cards-show-all display-none" @click="showAllCards">{{showAllCardsButtonText}}</button>
     </div>
 
-    <template v-if="tour !== ''">
-        <button @click="startTourBis" class="btn  btn-light btn-sm tour-start-bis mb-5">Start tour</button>
-    </template>
-
 </div>
 </template>
 
@@ -173,8 +169,7 @@ export default {
             homepageVideoPathToVideo: import.meta.env.BASE_URL + import.meta.env.VITE_APP_HOMEPAGE_VIDEO_PATH_TO_VIDEO,
             homepageVideoPathToPoster: import.meta.env.BASE_URL + import.meta.env.VITE_APP_HOMEPAGE_VIDEO_PATH_TO_POSTER_IMAGE,
             homepageIllustrationsCarousel: import.meta.env.BASE_URL + import.meta.env.VITE_APP_HOMEPAGE_ILLUSTRATIONS_CAROUSEL,
-            showAllCardsButtonText: language.showAllCards,
-            tour: import.meta.env.VITE_APP_TOUR_FILE
+            showAllCardsButtonText: language.showAllCards
         }
     },
     mounted() {
@@ -195,9 +190,6 @@ export default {
         }
     },
     methods: {
-        startTourBis() {
-            this.$tours['myTour'].start();
-        },
         grabFilenameFromURL() {
             // the filename is the only source we have for creating the unique Url.
             this.homepageIllustrations.forEach((element, index) => {
