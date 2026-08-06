@@ -128,7 +128,7 @@
 
 <script>
 import SoundToggle from "@/components/SoundToggle.vue";
-import ICountUp from 'vue-countup-v2';
+import ICountUp from '@/components/ICountUp.vue';
 import store from "../store/store";
 import axios from "axios";
 import

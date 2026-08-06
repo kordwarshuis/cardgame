@@ -1,0 +1,24 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies
+    # This app is Vue 2 + Vue Router 3 + Vuex 3. Major bumps of the Vue
+    # ecosystem are migrations, not routine dependency updates.
+    ignore:
+      - dependency-name: vue
+        update-types: ["version-update:semver-major"]
+      - dependency-name: vue-router
+        update-types: ["version-update:semver-major"]
+      - dependency-name: vuex
+        update-types: ["version-update:semver-major"]
+      - dependency-name: vue-gtag
+        update-types: ["version-update:semver-major"]
+      - dependency-name: bootstrap
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
