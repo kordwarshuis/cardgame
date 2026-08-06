@@ -1,6 +1,9 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue2'
 import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.
@@ -24,7 +27,8 @@ export default defineConfig(({ mode }) => {
         scss: {
           additionalData: env.VITE_APP_TEMPLATE_CSS ? `@import "@/assets/css/template-base.scss";@import "@/assets/css/${env.VITE_APP_TEMPLATE_CSS}";` : '',
           api: 'modern-compiler',
-          silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin', 'color-functions', 'slash-div']
+          quietDeps: true,
+          silenceDeprecations: ['legacy-js-api', 'import', 'global-builtin', 'color-functions', 'slash-div', 'if-function']
         }
       }
     },
