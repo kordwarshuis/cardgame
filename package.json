@@ -23,7 +23,7 @@
     "mousetrap": "^1.6.5",
     "platform-detect": "^3.0.1",
     "popper.js": "^1.16.1",
-    "vue": "^2.7.13",
+    "vue": "^3.0.0",
     "vue-bootstrap-toasts": "^1.0.7",
     "vue-confetti": "^2.3.0",
     "vue-countup-v2": "^1.0.3",
